@@ -9,6 +9,7 @@ import PublicationsSection from "@/components/publication"
 import KeyStatistics from "@/components/key"
 import PartnersSection from "@/components/partner"
 import BecomeMemberForm from "@/components/become"
+import VoiceOfBusiness from "@/components/voice"
 
 export default function Home() {
   return (
@@ -55,12 +56,14 @@ export default function Home() {
       
       <AdhesionSection />
 
-      <MissionsSection/>
-      <PublicationsSection/>
+        <MissionsSection/>
+      <PublicationsSection/> 
       <KeyStatistics/>
-      <PartnersSection/>
-      <BecomeMemberForm/>
-      <section className="py-12 bg-gray-100">
+       <VoiceOfBusiness/> 
+       <PartnersSection/> 
+      {/* <BecomeMemberForm/>   */}
+     
+      {/* <section className="py-12 bg-gray-100">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold mb-8 text-[#333]">Nos partenaires</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
@@ -73,7 +76,7 @@ export default function Home() {
             ))}
           </div>
         </div>
-      </section>
+      </section> */}
 
       <section className="py-12 bg-[#006633]">
         <div className="container mx-auto px-4 text-center">

@@ -1,6 +1,6 @@
 "use client";
 
-import { Info, Megaphone, Hand, ShieldCheck, CheckCircle } from "lucide-react";
+import {  CheckCircle } from "lucide-react";
 import Image from "next/image";
 
 export default function MissionsSection() {
@@ -19,8 +19,8 @@ export default function MissionsSection() {
             <Image
               src="/images/info.png"
               alt="Informer"
-              width={1000}
-              height={1000}
+              width={100}
+              height={100}
               className="w-14 object-cover object-center"
             />
             <p className="mt-2 font-semibold">Informer</p>
@@ -29,8 +29,8 @@ export default function MissionsSection() {
             <Image
               src="/images/pro.png"
               alt="Informer"
-              width={1000}
-              height={1000}
+              width={100}
+              height={100}
               className="w-14 object-cover object-center"
             />
             <p className="mt-2 font-semibold">Promouvoir</p>
@@ -39,8 +39,8 @@ export default function MissionsSection() {
             <Image
               src="/images/part.png"
               alt="Informer"
-              width={1000}
-              height={1000}
+              width={100}
+              height={100}
               className="w-14 object-cover object-center"
             />
             <p className="mt-2 font-semibold">Participer</p>
@@ -49,8 +49,8 @@ export default function MissionsSection() {
             <Image
               src="/images/defendre.png"
               alt="Informer"
-              width={1000}
-              height={1000}
+              width={100}
+              height={100}
               className="w-14 object-cover object-center"
             />
             <p className="mt-2 font-semibold">Défendre</p>

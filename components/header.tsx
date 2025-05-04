@@ -9,14 +9,14 @@ export default function Header() {
         <div className="flex items-center">
           <Link href="/">
             <div className="">
-              <Image src="/logo (1).png" alt="FEG Logo" width={1000} height={1000} className="object-contain w-full" />
+              <Image src="/logo (1).png" alt="FEG Logo" width={100} height={100} className="object-contain w-full" />
             </div>
           </Link>
         </div>
         <div className="flex items-center">
           <Link href="/contact">
             <div className="">
-              <Image src="/locate.png" alt="FEG Logo" width={1000} height={1000} className="object-contain w-full" />
+              <Image src="/locate.png" alt="FEG Logo" width={100} height={100} className="object-contain w-full" />
             </div>
           </Link>
         </div>

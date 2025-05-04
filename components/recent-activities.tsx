@@ -221,8 +221,8 @@ export default function RecentActivities() {
                   <Image
                     src={item.imageUrl}
                     alt={item.title}
-                    width={1000}
-                    height={1000}
+                    width={100}
+                    height={100}
                     className="object-cover object-center w-full h-full rounded-l-lg"
                   />
                 </div>
@@ -249,8 +249,8 @@ export default function RecentActivities() {
                   <Image
                     src={item.imageUrl}
                     alt={item.title}
-                    width={1000}
-                    height={1000}
+                    width={100}
+                    height={100}
                     className="object-cover object-center w-full h-full rounded-l-lg"
                   />
                 </div>
@@ -277,8 +277,8 @@ export default function RecentActivities() {
                   <Image
                     src={item.imageUrl}
                     alt={item.title}
-                    width={1000}
-                    height={1000}
+                    width={100}
+                    height={100}
                     className="object-cover object-center w-full h-full rounded-l-lg"
                   />
                 </div>

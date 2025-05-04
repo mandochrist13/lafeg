@@ -82,8 +82,8 @@ export default function AdhesionSection() {
               <Image
                 src={activeIndex === index ? item.activeIcon : item.icon}
                 alt={item.text}
-                width={1000}
-                height={1000}
+                width={100}
+                height={100}
                 className="w-36 object-cover object-center"
               />
             </button>

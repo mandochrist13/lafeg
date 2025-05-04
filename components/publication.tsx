@@ -1,9 +1,9 @@
 "use client";
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation } from "swiper/modules";
-import "swiper/css";
-import "swiper/css/navigation";
+// import { Swiper, SwiperSlide } from "swiper/react";
+// import { Autoplay, Navigation } from "swiper/modules";
+// import "swiper/css";
+// import "swiper/css/navigation";
 
 const publications = [
   {
@@ -34,11 +34,11 @@ export default function PublicationsSection() {
         Nos publications
       </h2>
       <p className="text-gray-600 mb-10 max-w-3xl mx-auto">
-        Découvrez et téléchargez ici l’ensemble de nos publications et documents utiles.
+        Découvrez et téléchargez ici l&apos;ensemble de nos publications et documents utiles.
         La FEG met à la disposition de ses membres tous les outils qui leur sont nécessaires.
       </p>
 
-      <Swiper
+      {/* <Swiper
         modules={[Autoplay, Navigation]}
         spaceBetween={30}
         slidesPerView={1}
@@ -73,7 +73,7 @@ export default function PublicationsSection() {
             </div>
           </SwiperSlide>
         ))}
-      </Swiper>
+      </Swiper> */}
     </section>
   );
 }
