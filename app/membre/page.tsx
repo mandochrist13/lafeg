@@ -1,7 +1,8 @@
 "use client"
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { motion, AnimatePresence } from 'framer-motion';
 
 interface Member {
   id: string;
@@ -60,7 +61,7 @@ const MembersPage = () => {
     { id: "ccima", name: "CCIMA", logo: "/logos/ccima.png" },
   ];
 
-  // 18 secteurs d'activité
+  // Secteurs d'activité
   const sectors = [
     "Tous les membres",
     "Activités Portuaires et Aéroportuaires",
@@ -88,6 +89,8 @@ const MembersPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedSector, setSelectedSector] = useState("Tous les membres");
   const [showAllPartners, setShowAllPartners] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // Filtrage des membres
   const filteredMembers = allMembers.filter(member => {
@@ -97,7 +100,29 @@ const MembersPage = () => {
   });
 
   // Affichage des partenaires
-  const displayedPartners = showAllPartners ? partners : partners.slice(0, 6);
+  const displayedPartners: Partner[] = showAllPartners ? partners : partners.slice(0, 6);
+
+  // Gestion du scroll pour la sidebar
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 100);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Animation variants pour les partenaires
+  const partnerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: (i: number) => ({
+      opacity: 1,
+      y: 0,
+      transition: {
+        delay: i * 0.1,
+        duration: 0.5
+      }
+    })
+  };
 
   return (
     <div className="bg-gray-50 min-h-screen">
@@ -124,12 +149,30 @@ const MembersPage = () => {
         </div>
       </div>
 
+      {/* Mobile Filter Button */}
+      <div className="lg:hidden sticky top-0 z-10 bg-white shadow-md p-4">
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="w-full flex items-center justify-between px-4 py-3 bg-[#006633] text-white rounded-lg"
+        >
+          <span>Filtrer les membres</span>
+          <svg
+            className={`w-5 h-5 transition-transform ${isMobileMenuOpen ? 'rotate-180' : ''}`}
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
+      </div>
+
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Sidebar - Filtres */}
-          <div className="lg:w-1/4">
-            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4 border border-gray-100">
+          <div className={`lg:w-1/4 ${isMobileMenuOpen ? 'block' : 'hidden'} lg:block`}>
+            <div className={`bg-white rounded-xl shadow-lg p-6 lg:sticky border border-gray-100 ${isScrolled ? 'lg:top-4' : 'lg:top-24'}`}>
               <h2 className="text-xl font-bold text-[#006633] mb-6 pb-2 border-b border-gray-200">Filtrer les membres</h2>
               
               {/* Barre de recherche */}
@@ -162,7 +205,12 @@ const MembersPage = () => {
                     {sectors.map((sector) => (
                       <li key={sector}>
                         <button
-                          onClick={() => setSelectedSector(sector)}
+                          onClick={() => {
+                            setSelectedSector(sector);
+                            if (window.innerWidth < 1024) {
+                              setIsMobileMenuOpen(false);
+                            }
+                          }}
                           className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
                             sector === selectedSector
                               ? "bg-[#006633] text-white"
@@ -214,7 +262,13 @@ const MembersPage = () => {
             {filteredMembers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredMembers.map((member) => (
-                  <div key={member.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                  <motion.div 
+                    key={member.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  >
                     <div className="p-6">
                       <div className="flex items-start">
                         <div className="flex-shrink-0 h-16 w-16 bg-gray-100 rounded-lg overflow-hidden mr-4 border border-gray-200 flex items-center justify-center">
@@ -255,11 +309,15 @@ const MembersPage = () => {
                         </svg>
                       </Link>
                     </div>
-                  </div>
+                  </motion.div>
                 ))}
               </div>
             ) : (
-              <div className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100">
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100"
+              >
                 <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -278,23 +336,43 @@ const MembersPage = () => {
                     Réinitialiser les filtres
                   </button>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
 
         {/* Partenaires */}
         <div className="mt-16">
-          <h2 className="text-2xl font-bold text-[#006633] mb-6 text-center">
+          <motion.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-2xl font-bold text-[#006633] mb-6 text-center"
+          >
             Nos <span className="text-[#f39c12]">partenaires institutionnels</span>
-          </h2>
-          <p className="text-gray-600 max-w-3xl mx-auto text-center mb-8">
+          </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-gray-600 max-w-3xl mx-auto text-center mb-8"
+          >
             La FEG collabore avec {partners.length} institutions et organisations pour promouvoir le développement économique du Gabon.
-          </p>
+          </motion.p>
           
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {displayedPartners.map((partner) => (
-              <div key={partner.id} className="bg-white rounded-xl shadow-md p-4 flex items-center justify-center h-32 hover:shadow-lg transition-all border border-gray-100 hover:border-[#f39c12]">
+            {displayedPartners.map((partner: Partner, index: number) => (
+              <motion.div
+                key={partner.id}
+                custom={index}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true }}
+                variants={partnerVariants}
+                className="bg-white rounded-xl shadow-md p-4 flex items-center justify-center h-32 hover:shadow-lg transition-all border border-gray-100 hover:border-[#f39c12]"
+              >
                 {partner.logo ? (
                   <Image
                     src={partner.logo}
@@ -306,12 +384,18 @@ const MembersPage = () => {
                 ) : (
                   <span className="text-sm text-center text-gray-500">{partner.name}</span>
                 )}
-              </div>
+              </motion.div>
             ))}
           </div>
 
           {partners.length > 6 && (
-            <div className="text-center mt-8">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5 }}
+              className="text-center mt-8"
+            >
               <button
                 onClick={() => setShowAllPartners(!showAllPartners)}
                 className="inline-flex items-center px-6 py-3 border border-[#f39c12] text-[#f39c12] rounded-lg hover:bg-[#fff5e6] font-medium transition-colors"
@@ -321,89 +405,8 @@ const MembersPage = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                 </svg>
               </button>
-            </div>
+            </motion.div>
           )}
-        </div>
-
-        {/* Newsletter */}
-        <div className="mt-16 bg-gradient-to-r from-[#006633] to-[#008044] text-white rounded-xl shadow-xl p-8">
-          <div className="max-w-4xl mx-auto">
-            <div className="text-center mb-8">
-              <h2 className="text-2xl font-bold mb-2">Restez informé</h2>
-              <p className="opacity-90">Abonnez-vous à notre newsletter pour recevoir les dernières actualités de la FEG</p>
-            </div>
-            
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="company" className="block text-sm font-medium mb-2 opacity-90">
-                  Raison sociale *
-                </label>
-                <input
-                  type="text"
-                  id="company"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] placeholder-[#a0cbb3]"
-                  placeholder="Votre entreprise"
-                />
-              </div>
-              
-              <div>
-                <label htmlFor="status" className="block text-sm font-medium mb-2 opacity-90">
-                  Secteur d'activité *
-                </label>
-                <select
-                  id="status"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] text-white"
-                >
-                  <option value="">Sélectionnez votre secteur...</option>
-                  {sectors.filter(s => s !== "Tous les membres").map(sector => (
-                    <option key={sector} value={sector}>{sector}</option>
-                  ))}
-                </select>
-              </div>
-              
-              <div className="md:col-span-2">
-                <label htmlFor="email" className="block text-sm font-medium mb-2 opacity-90">
-                  Email *
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  required
-                  className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] placeholder-[#a0cbb3]"
-                  placeholder="votre@email.com"
-                />
-              </div>
-              
-              <div className="md:col-span-2 flex items-start">
-                <input
-                  type="checkbox"
-                  id="consent"
-                  className="mt-1 mr-2 accent-[#f39c12]"
-                  required
-                />
-                <label htmlFor="consent" className="text-sm opacity-90">
-                  J'accepte de recevoir les informations de la FEG et j'ai pris connaissance de la 
-                  <Link href="/politique-de-confidentialite" className="text-[#f39c12] hover:underline ml-1">
-                    politique de confidentialité
-                  </Link>.
-                </label>
-              </div>
-              
-              <div className="md:col-span-2">
-                <button
-                  type="submit"
-                  className="w-full bg-[#f39c12] hover:bg-[#e67e22] text-white font-medium py-3 px-8 rounded-lg transition-colors shadow-md flex items-center justify-center"
-                >
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                  S'inscrire à la newsletter
-                </button>
-              </div>
-            </form>
-          </div>
         </div>
       </div>
     </div>
