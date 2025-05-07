@@ -1,294 +1,316 @@
-import Image from "next/image"
-import Link from "next/link"
+"use client"
+import { useState } from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
 
-interface MemberCompany {
-  id: string
-  name: string
-  logo: string
-  headquarters: string
-  sector: string
-  legalStatus: string
+interface Member {
+  id: string;
+  name: string;
+  logo: string;
+  headquarters: string;
+  sector: string;
+  legalStatus: string;
 }
 
-export default function MembresPage() {
-  // Données simulées des entreprises membres
-  const memberCompanies: MemberCompany[] = [
+interface Partner {
+  id: string;
+  name: string;
+  logo: string;
+}
+
+const MembersPage = () => {
+  // Données des membres
+  const allMembers: Member[] = [
     {
       id: "ags-frasers",
       name: "AGS FRASERS",
-      logo: "/images/members/ags-frasers.png",
-      headquarters: "BP.9161",
+      logo: "/logos/ags-frasers.png",
+      headquarters: "BP 8101",
       sector: "Services Divers",
-      legalStatus: "SA",
+      legalStatus: "SA"
     },
     {
       id: "art",
       name: "ART",
-      logo: "/images/members/default-logo.png",
-      headquarters: "B. P. 9193/569",
+      logo: "/logos/art.png",
+      headquarters: "B. P. R193/BB",
       sector: "Services Divers",
-      legalStatus: "N/A",
+      legalStatus: "N/A"
     },
-    {
-      id: "bgfi-bank",
-      name: "BGFI BANK",
-      logo: "/images/members/bgfi-bank.png",
-      headquarters: "BP.2253",
-      sector: "Banque et Services Financiers",
-      legalStatus: "SA",
-    },
-    {
-      id: "ceca-gadis",
-      name: "CECA GADIS",
-      logo: "/images/members/ceca-gadis.png",
-      headquarters: "BP.2975",
-      sector: "Commerce et Distribution",
-      legalStatus: "SA",
-    },
-    {
-      id: "cfao-motors",
-      name: "CFAO MOTORS",
-      logo: "/images/members/cfao-motors.png",
-      headquarters: "BP.2181",
-      sector: "Commerce et Distribution",
-      legalStatus: "SA",
-    },
-    {
-      id: "eramet",
-      name: "ERAMET",
-      logo: "/images/members/eramet.png",
-      headquarters: "BP.4905",
-      sector: "Mines",
-      legalStatus: "SA",
-    },
-  ]
+    // Ajouter les autres membres ici...
+  ];
 
-  // Catégories de secteurs d'activité
+  // Données des partenaires
+  const partners: Partner[] = [
+    { id: "ice", name: "ICE", logo: "/logos/ice.png" },
+    // Ajouter d'autres partenaires...
+  ];
+
+  // Secteurs d'activité
   const sectors = [
     "Tous les membres",
     "Activités Portuaires et Aéroportuaires",
     "Assurances et Courtiers",
     "Banque et Services Financiers",
-    "Bâtiments et Travaux Publics",
-    "Bois et Transformation",
-    "Cabinets et Agences Conseil",
-    "Importateurs et Exportateurs",
-    "Commerce et Distribution",
-    "Mines",
-    "Pétrole et Gaz",
-    "Services Divers",
-    "Technologies et Télécommunications",
-    "Transport et Logistique",
-  ]
+    // Ajouter les autres secteurs...
+  ];
+
+  // État
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedSector, setSelectedSector] = useState("Tous les membres");
+  const [showAllPartners, setShowAllPartners] = useState(false);
+
+  // Filtrage des membres
+  const filteredMembers = allMembers.filter(member => {
+    const matchesSearch = member.name.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSector = selectedSector === "Tous les membres" || member.sector === selectedSector;
+    return matchesSearch && matchesSector;
+  });
+
+  // Affichage des partenaires
+  const displayedPartners = showAllPartners ? partners : partners.slice(0, 6);
 
   return (
-    <>
-      {/* Hero Banner amélioré */}
-      <div className="relative bg-gradient-to-r from-[#006633] to-[#004d26] text-white py-24 md:py-32">
-        <div className="absolute inset-0 bg-black/30">
-          <Image 
-            src="/images/members-banner.jpg" 
-            alt="Membres de la FEG" 
-            fill 
-            className="object-cover"
-            priority
-          />
-        </div>
-        <div className="container mx-auto px-4 relative z-10 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 animate-fade-in">Entreprises membres</h1>
-          <p className="max-w-3xl mx-auto text-lg md:text-xl leading-relaxed">
-            Découvrez notre réseau d'entreprises dynamiques, moteurs de l'économie gabonaise, 
-            réparties dans les différents secteurs d'activité.
+    <div className="bg-gray-50 min-h-screen">
+      {/* Hero Section - Modifié avec la nouvelle couleur */}
+      <div className="bg-[#006633] text-white py-20">
+        <div className="container mx-auto px-4">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">Entreprises membres</h1>
+          <p className="text-xl max-w-3xl opacity-90">
+            Découvrez ici l'ensemble des entreprises membres de la Fédération des Entreprises du Gabon organisé dans les différents secteurs d'activité.
           </p>
-          <div className="mt-8">
-            <Link 
-              href="#members-list" 
-              className="inline-block bg-[#f39c12] hover:bg-[#e67e22] text-white font-medium px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-            >
-              Explorer les membres
-            </Link>
-          </div>
         </div>
       </div>
 
-      {/* Breadcrumb stylisé */}
+      {/* Breadcrumb - Modifié avec la nouvelle couleur orange */}
       <div className="bg-white shadow-sm py-3">
         <div className="container mx-auto px-4">
           <div className="flex items-center text-sm">
-            <Link href="/" className="text-gray-600 hover:text-[#006633] transition-colors">
-              Accueil
+            <Link href="/" className="text-[#006633] hover:text-[#004d26]">
+              ACCUEIL
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-[#f39c12] font-medium">Entreprises membres</span>
+            <span className="text-[#f39c12] font-medium">ENTREPRISES MEMBRES</span>
           </div>
         </div>
       </div>
 
+      {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
-        {/* Search Bar améliorée */}
-        <div className="bg-white p-6 rounded-xl shadow-lg mb-12 border border-gray-100">
-          <h2 className="text-2xl font-semibold text-[#006633] mb-4">Trouvez une entreprise membre</h2>
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-grow">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <svg className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                </svg>
+        <div className="flex flex-col lg:flex-row gap-8">
+          {/* Sidebar - Filtres - Style modernisé */}
+          <div className="lg:w-1/4">
+            <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4 border border-gray-100">
+              <h2 className="text-xl font-bold text-[#006633] mb-6 pb-2 border-b border-gray-200">Filtrer les membres</h2>
+              
+              {/* Barre de recherche modernisée */}
+              <div className="mb-6">
+                <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
+                  Rechercher une entreprise
+                </label>
+                <div className="relative">
+                  <input
+                    type="text"
+                    id="search"
+                    placeholder="Nom ou secteur..."
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition-all"
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                  />
+                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
+                    <svg className="h-5 w-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+                </div>
               </div>
-              <input
-                type="text"
-                placeholder="Rechercher par nom, secteur ou localisation..."
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#006633] focus:border-transparent"
-              />
-            </div>
-            <button className="bg-[#006633] hover:bg-[#005528] text-white px-6 py-3 rounded-lg transition-colors duration-300 flex items-center justify-center gap-2">
-              <svg className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-              </svg>
-              Rechercher
-            </button>
-          </div>
-          <p className="text-gray-500 mt-3 text-sm">Exemple : "Banque", "Mines", "Libreville"...</p>
-        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
-          {/* Sidebar - Sectors amélioré */}
-          <div className="lg:col-span-1">
-            <div className="bg-white rounded-xl shadow-md overflow-hidden sticky top-6">
-              <div className="bg-[#006633] p-4">
-                <h3 className="text-white text-lg font-semibold">Secteurs d'activité</h3>
+              {/* Filtre par secteur - Style modernisé */}
+              <div>
+                <h3 className="text-sm font-medium text-gray-700 mb-3">Secteur d'activité</h3>
+                <ul className="space-y-2">
+                  {sectors.map((sector) => (
+                    <li key={sector}>
+                      <button
+                        onClick={() => setSelectedSector(sector)}
+                        className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
+                          sector === selectedSector
+                            ? "bg-[#006633] text-white"
+                            : "text-gray-700 hover:bg-gray-100"
+                        }`}
+                      >
+                        {sector}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <ul className="divide-y divide-gray-100">
-                {sectors.map((sector, index) => (
-                  <li key={index}>
-                    <Link
-                      href="#"
-                      className={`flex items-center px-4 py-3 hover:bg-[#f5f5f5] transition-colors ${
-                        index === 0 
-                          ? "bg-[#f39c12]/10 text-[#f39c12] font-medium" 
-                          : "text-gray-700 hover:text-[#006633]"
-                      }`}
-                    >
-                      <span className={`w-2 h-2 rounded-full mr-3 ${index === 0 ? "bg-[#f39c12]" : "bg-gray-300"}`}></span>
-                      {sector}
-                      {index !== 0 && (
-                        <span className="ml-auto text-gray-400 text-sm">12</span>
-                      )}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
-          {/* Main Content - Member Companies amélioré */}
-          <div className="lg:col-span-3" id="members-list">
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-[#006633]">Nos entreprises membres</h2>
-              <p className="text-gray-600">Découvrez les entreprises qui font partie de notre réseau</p>
-            </div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {memberCompanies.map((company) => (
-                <div 
-                  key={company.id} 
-                  className="bg-white rounded-xl shadow-md hover:shadow-lg transition-shadow duration-300 overflow-hidden border border-gray-100"
-                >
-                  <div className="p-6">
-                    <div className="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-                      <div className="w-24 h-24 bg-gray-50 rounded-lg flex items-center justify-center p-2 border border-gray-200">
-                        <div className="relative w-full h-full">
+          {/* Liste des membres - Cartes modernisées */}
+          <div className="lg:w-3/4">
+            {filteredMembers.length > 0 ? (
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {filteredMembers.map((member) => (
+                  <div key={member.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100">
+                    <div className="p-6">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0 h-16 w-16 bg-gray-100 rounded-lg overflow-hidden mr-4 border border-gray-200 flex items-center justify-center">
                           <Image
-                            src={company.logo || "/placeholder.svg"}
-                            alt={company.name}
-                            fill
-                            className="object-contain"
+                            src={member.logo}
+                            alt={member.name}
+                            width={64}
+                            height={64}
+                            className="object-contain max-h-full max-w-full"
                           />
                         </div>
-                      </div>
-                      <div className="flex-1 text-center sm:text-left">
-                        <h3 className="text-xl font-bold text-[#006633] mb-2">{company.name}</h3>
-                        <div className="space-y-2 text-gray-600">
-                          <div className="flex items-center">
-                            <svg className="w-4 h-4 mr-2 text-[#f39c12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                            </svg>
-                            <span>{company.headquarters}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <svg className="w-4 h-4 mr-2 text-[#f39c12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
-                            </svg>
-                            <span>{company.sector}</span>
-                          </div>
-                          <div className="flex items-center">
-                            <svg className="w-4 h-4 mr-2 text-[#f39c12]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                            </svg>
-                            <span>Statut: {company.legalStatus}</span>
-                          </div>
+                        <div>
+                          <h3 className="text-lg font-bold text-[#006633] mb-1">{member.name}</h3>
+                          <p className="text-sm text-gray-600 mb-1">
+                            <span className="font-medium">Siège:</span> {member.headquarters}
+                          </p>
+                          <p className="text-sm text-gray-600 mb-1">
+                            <span className="font-medium">Secteur:</span> {member.sector}
+                          </p>
+                          <p className="text-sm text-gray-600">
+                            <span className="font-medium">Statut:</span> {member.legalStatus}
+                          </p>
                         </div>
                       </div>
                     </div>
+                    <div className="bg-gray-50 px-6 py-3 border-t border-gray-200">
+                      <Link
+                        href={`/membres/${member.id}`}
+                        className="text-[#f39c12] hover:text-[#e67e22] text-sm font-medium flex items-center transition-colors"
+                      >
+                        Voir la fiche
+                        <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                        </svg>
+                      </Link>
+                    </div>
                   </div>
-                  <div className="bg-gray-50 px-6 py-3 border-t border-gray-100">
-                    <Link 
-                      href={`/membres/${company.id}`} 
-                      className="text-[#006633] hover:text-[#f39c12] font-medium text-sm flex items-center justify-end gap-1 transition-colors"
-                    >
-                      Voir détails
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                      </svg>
-                    </Link>
-                  </div>
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            ) : (
+              <div className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100">
+                <p className="text-gray-500">Aucune entreprise ne correspond à votre recherche.</p>
+              </div>
+            )}
+          </div>
+        </div>
 
-            {/* Pagination améliorée */}
-            <div className="mt-12 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="text-sm text-gray-500">
-                Affichage de 1 à 6 sur 42 entreprises
+        {/* Partenaires - Section modernisée */}
+        <div className="mt-16">
+          <h2 className="text-2xl font-bold text-[#006633] mb-6 text-center">
+            Nos <span className="text-[#f39c12]">partenaires</span>
+          </h2>
+          <p className="text-gray-600 max-w-3xl mx-auto text-center mb-8">
+            Les partenaires de la FEG l'accompagnent au quotidien dans ses actions et missions en faveur de l'amélioration du climat des affaires au Gabon.
+          </p>
+          
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+            {displayedPartners.map((partner) => (
+              <div key={partner.id} className="bg-white rounded-xl shadow-md p-4 flex items-center justify-center h-32 hover:shadow-lg transition-all border border-gray-100">
+                <Image
+                  src={partner.logo}
+                  alt={partner.name}
+                  width={120}
+                  height={80}
+                  className="object-contain max-h-16 hover:scale-105 transition-transform"
+                />
               </div>
-              <div className="flex space-x-2">
-                <button className="px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 text-[#006633] disabled:opacity-50 disabled:cursor-not-allowed" disabled>
-                  Précédent
-                </button>
-                <button className="px-4 py-2 border border-[#006633] rounded-lg bg-[#006633] text-white hover:bg-[#005528]">
-                  1
-                </button>
-                <button className="px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 text-[#006633]">
-                  2
-                </button>
-                <button className="px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 text-[#006633]">
-                  3
-                </button>
-                <button className="px-4 py-2 border border-gray-300 rounded-lg bg-white hover:bg-gray-50 text-[#006633]">
-                  Suivant
-                </button>
-              </div>
+            ))}
+          </div>
+
+          {!showAllPartners && partners.length > 6 && (
+            <div className="text-center mt-8">
+              <button
+                onClick={() => setShowAllPartners(true)}
+                className="inline-flex items-center px-6 py-3 border border-[#f39c12] text-[#f39c12] rounded-lg hover:bg-[#fff5e6] font-medium transition-colors"
+              >
+                TOUT AFFICHER
+              </button>
             </div>
+          )}
+        </div>
+
+        {/* Newsletter - Modernisée avec les nouvelles couleurs */}
+        <div className="mt-16 bg-gradient-to-r from-[#006633] to-[#008044] text-white rounded-xl shadow-xl p-8">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl font-bold mb-4">Inscrivez-vous à notre newsletter</h2>
+            <p className="mb-6 opacity-90">Recevez nos actualités directement dans votre boîte mail.</p>
+            
+            <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label htmlFor="company" className="block text-sm font-medium mb-2 opacity-90">
+                  Raison sociale *
+                </label>
+                <input
+                  type="text"
+                  id="company"
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] placeholder-[#a0cbb3]"
+                  placeholder="Votre entreprise"
+                />
+              </div>
+              
+              <div>
+                <label htmlFor="status" className="block text-sm font-medium mb-2 opacity-90">
+                  Statut *
+                </label>
+                <select
+                  id="status"
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] text-white"
+                >
+                  <option value="" className="text-gray-400">Sélectionnez...</option>
+                  <option value="member">Membre</option>
+                  <option value="partner">Partenaire</option>
+                  <option value="other">Autre</option>
+                </select>
+              </div>
+              
+              <div className="md:col-span-2">
+                <label htmlFor="email" className="block text-sm font-medium mb-2 opacity-90">
+                  Email *
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  required
+                  className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] placeholder-[#a0cbb3]"
+                  placeholder="votre@email.com"
+                />
+              </div>
+              
+              <div className="md:col-span-2 flex items-start">
+                <input
+                  type="checkbox"
+                  id="consent"
+                  className="mt-1 mr-2 accent-[#f39c12]"
+                  required
+                />
+                <label htmlFor="consent" className="text-sm opacity-90">
+                  J'accepte de recevoir les informations de la FEG et ses partenaires.
+                </label>
+              </div>
+              
+              <div className="md:col-span-2">
+                <button
+                  type="submit"
+                  className="bg-[#f39c12] hover:bg-[#e67e22] text-white font-medium py-3 px-8 rounded-lg transition-colors shadow-md"
+                >
+                  S'inscrire
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
+  );
+};
 
-      {/* Section CTA */}
-      <div className="bg-[#006633] text-white py-16">
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-4">Votre entreprise souhaite nous rejoindre ?</h2>
-          <p className="max-w-2xl mx-auto mb-8 text-lg">
-            Bénéficiez des avantages de notre réseau et contribuez au développement économique du Gabon.
-          </p>
-          <Link 
-            href="/adhesion" 
-            className="inline-block bg-white text-[#006633] hover:bg-gray-100 font-medium px-8 py-3 rounded-lg transition-all duration-300 transform hover:scale-105"
-          >
-            Devenir membre
-          </Link>
-        </div>
-      </div>
-    </>
-  )
-}
+export default MembersPage;
