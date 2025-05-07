@@ -26,7 +26,7 @@ const MembersPage = () => {
       name: "AGS FRASERS",
       logo: "/logos/ags-frasers.png",
       headquarters: "BP 8101",
-      sector: "Services Divers",
+      sector: "Logistique et Transport",
       legalStatus: "SA"
     },
     {
@@ -34,25 +34,54 @@ const MembersPage = () => {
       name: "ART",
       logo: "/logos/art.png",
       headquarters: "B. P. R193/BB",
-      sector: "Services Divers",
+      sector: "Télécommunications",
       legalStatus: "N/A"
     },
-    // Ajouter les autres membres ici...
+    {
+      id: "bicig",
+      name: "BICIG",
+      logo: "/logos/bicig.png",
+      headquarters: "BP 2251",
+      sector: "Banque et Services Financiers",
+      legalStatus: "SA"
+    },
+    // Ajouter d'autres membres ici...
   ];
 
   // Données des partenaires
   const partners: Partner[] = [
     { id: "ice", name: "ICE", logo: "/logos/ice.png" },
-    // Ajouter d'autres partenaires...
+    { id: "mines", name: "Ministère des Mines", logo: "/logos/mines.png" },
+    { id: "commerce", name: "Ministère du Commerce", logo: "/logos/commerce.png" },
+    { id: "ue", name: "Union Européenne", logo: "/logos/ue.png" },
+    { id: "banque-mondiale", name: "Banque Mondiale", logo: "/logos/banque-mondiale.png" },
+    { id: "undp", name: "PNUD", logo: "/logos/undp.png" },
+    { id: "afdb", name: "Banque Africaine de Développement", logo: "/logos/afdb.png" },
+    { id: "ccima", name: "CCIMA", logo: "/logos/ccima.png" },
   ];
 
-  // Secteurs d'activité
+  // 18 secteurs d'activité
   const sectors = [
     "Tous les membres",
     "Activités Portuaires et Aéroportuaires",
+    "Agroalimentaire",
     "Assurances et Courtiers",
     "Banque et Services Financiers",
-    // Ajouter les autres secteurs...
+    "Bâtiment et Travaux Publics",
+    "Commerce et Distribution",
+    "Éducation et Formation",
+    "Énergie et Hydrocarbures",
+    "Industrie et Manufacture",
+    "Logistique et Transport",
+    "Mines et Métallurgie",
+    "Santé et Pharmacie",
+    "Services aux Entreprises",
+    "Services Divers",
+    "Télécommunications",
+    "Tourisme et Hôtellerie",
+    "Immobilier",
+    "Agriculture et Sylviculture",
+    "Technologie et Numérique"
   ];
 
   // État
@@ -72,17 +101,17 @@ const MembersPage = () => {
 
   return (
     <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section - Modifié avec la nouvelle couleur */}
+      {/* Hero Section */}
       <div className="bg-[#006633] text-white py-20">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold mb-4">Entreprises membres</h1>
           <p className="text-xl max-w-3xl opacity-90">
-            Découvrez ici l'ensemble des entreprises membres de la Fédération des Entreprises du Gabon organisé dans les différents secteurs d'activité.
+            Découvrez les {allMembers.length} entreprises membres de la Fédération des Entreprises du Gabon réparties dans {sectors.length - 1} secteurs d'activité.
           </p>
         </div>
       </div>
 
-      {/* Breadcrumb - Modifié avec la nouvelle couleur orange */}
+      {/* Breadcrumb */}
       <div className="bg-white shadow-sm py-3">
         <div className="container mx-auto px-4">
           <div className="flex items-center text-sm">
@@ -98,12 +127,12 @@ const MembersPage = () => {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar - Filtres - Style modernisé */}
+          {/* Sidebar - Filtres */}
           <div className="lg:w-1/4">
             <div className="bg-white rounded-xl shadow-lg p-6 sticky top-4 border border-gray-100">
               <h2 className="text-xl font-bold text-[#006633] mb-6 pb-2 border-b border-gray-200">Filtrer les membres</h2>
               
-              {/* Barre de recherche modernisée */}
+              {/* Barre de recherche */}
               <div className="mb-6">
                 <label htmlFor="search" className="block text-sm font-medium text-gray-700 mb-2">
                   Rechercher une entreprise
@@ -125,31 +154,63 @@ const MembersPage = () => {
                 </div>
               </div>
 
-              {/* Filtre par secteur - Style modernisé */}
+              {/* Filtre par secteur avec scroll */}
               <div>
-                <h3 className="text-sm font-medium text-gray-700 mb-3">Secteur d'activité</h3>
-                <ul className="space-y-2">
-                  {sectors.map((sector) => (
-                    <li key={sector}>
-                      <button
-                        onClick={() => setSelectedSector(sector)}
-                        className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
-                          sector === selectedSector
-                            ? "bg-[#006633] text-white"
-                            : "text-gray-700 hover:bg-gray-100"
-                        }`}
-                      >
-                        {sector}
-                      </button>
-                    </li>
-                  ))}
-                </ul>
+                <h3 className="text-sm font-medium text-gray-700 mb-3">Secteur d'activité ({sectors.length - 1})</h3>
+                <div className="max-h-[400px] overflow-y-auto pr-2">
+                  <ul className="space-y-2">
+                    {sectors.map((sector) => (
+                      <li key={sector}>
+                        <button
+                          onClick={() => setSelectedSector(sector)}
+                          className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
+                            sector === selectedSector
+                              ? "bg-[#006633] text-white"
+                              : "text-gray-700 hover:bg-gray-100"
+                          }`}
+                        >
+                          {sector}
+                          {sector !== "Tous les membres" && (
+                            <span className="float-right bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
+                              {allMembers.filter(m => m.sector === sector).length}
+                            </span>
+                          )}
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Liste des membres - Cartes modernisées */}
+          {/* Liste des membres */}
           <div className="lg:w-3/4">
+            {/* Résumé des filtres */}
+            <div className="bg-white rounded-xl shadow-md p-4 mb-6 flex flex-wrap items-center justify-between gap-3">
+              <div>
+                <span className="text-gray-600">Affichage de </span>
+                <span className="font-bold text-[#006633]">{filteredMembers.length}</span>
+                <span className="text-gray-600"> sur </span>
+                <span className="font-bold">{allMembers.length}</span>
+                <span className="text-gray-600"> entreprises</span>
+              </div>
+              
+              {selectedSector !== "Tous les membres" && (
+                <div className="bg-[#f0f7f4] text-[#006633] px-4 py-2 rounded-full flex items-center">
+                  <span>Secteur: {selectedSector}</span>
+                  <button 
+                    onClick={() => setSelectedSector("Tous les membres")}
+                    className="ml-2 text-[#f39c12] hover:text-[#e67e22]"
+                  >
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              )}
+            </div>
+
             {filteredMembers.length > 0 ? (
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {filteredMembers.map((member) => (
@@ -157,13 +218,17 @@ const MembersPage = () => {
                     <div className="p-6">
                       <div className="flex items-start">
                         <div className="flex-shrink-0 h-16 w-16 bg-gray-100 rounded-lg overflow-hidden mr-4 border border-gray-200 flex items-center justify-center">
-                          <Image
-                            src={member.logo}
-                            alt={member.name}
-                            width={64}
-                            height={64}
-                            className="object-contain max-h-full max-w-full"
-                          />
+                          {member.logo ? (
+                            <Image
+                              src={member.logo}
+                              alt={member.name}
+                              width={64}
+                              height={64}
+                              className="object-contain max-h-full max-w-full"
+                            />
+                          ) : (
+                            <div className="text-xs text-gray-400 text-center p-2">Logo indisponible</div>
+                          )}
                         </div>
                         <div>
                           <h3 className="text-lg font-bold text-[#006633] mb-1">{member.name}</h3>
@@ -184,7 +249,7 @@ const MembersPage = () => {
                         href={`/membres/${member.id}`}
                         className="text-[#f39c12] hover:text-[#e67e22] text-sm font-medium flex items-center transition-colors"
                       >
-                        Voir la fiche
+                        Voir la fiche complète
                         <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
                         </svg>
@@ -195,52 +260,78 @@ const MembersPage = () => {
               </div>
             ) : (
               <div className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100">
-                <p className="text-gray-500">Aucune entreprise ne correspond à votre recherche.</p>
+                <svg className="mx-auto h-12 w-12 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+                <h3 className="mt-2 text-lg font-medium text-gray-900">Aucun résultat</h3>
+                <p className="mt-1 text-gray-500">
+                  Aucune entreprise ne correspond à votre recherche "{searchTerm}" {selectedSector !== "Tous les membres" && `dans le secteur "${selectedSector}"`}
+                </p>
+                <div className="mt-6">
+                  <button
+                    onClick={() => {
+                      setSearchTerm("");
+                      setSelectedSector("Tous les membres");
+                    }}
+                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#f39c12] hover:bg-[#e67e22] focus:outline-none"
+                  >
+                    Réinitialiser les filtres
+                  </button>
+                </div>
               </div>
             )}
           </div>
         </div>
 
-        {/* Partenaires - Section modernisée */}
+        {/* Partenaires */}
         <div className="mt-16">
           <h2 className="text-2xl font-bold text-[#006633] mb-6 text-center">
-            Nos <span className="text-[#f39c12]">partenaires</span>
+            Nos <span className="text-[#f39c12]">partenaires institutionnels</span>
           </h2>
           <p className="text-gray-600 max-w-3xl mx-auto text-center mb-8">
-            Les partenaires de la FEG l'accompagnent au quotidien dans ses actions et missions en faveur de l'amélioration du climat des affaires au Gabon.
+            La FEG collabore avec {partners.length} institutions et organisations pour promouvoir le développement économique du Gabon.
           </p>
           
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
             {displayedPartners.map((partner) => (
-              <div key={partner.id} className="bg-white rounded-xl shadow-md p-4 flex items-center justify-center h-32 hover:shadow-lg transition-all border border-gray-100">
-                <Image
-                  src={partner.logo}
-                  alt={partner.name}
-                  width={120}
-                  height={80}
-                  className="object-contain max-h-16 hover:scale-105 transition-transform"
-                />
+              <div key={partner.id} className="bg-white rounded-xl shadow-md p-4 flex items-center justify-center h-32 hover:shadow-lg transition-all border border-gray-100 hover:border-[#f39c12]">
+                {partner.logo ? (
+                  <Image
+                    src={partner.logo}
+                    alt={partner.name}
+                    width={120}
+                    height={80}
+                    className="object-contain max-h-16 hover:scale-105 transition-transform"
+                  />
+                ) : (
+                  <span className="text-sm text-center text-gray-500">{partner.name}</span>
+                )}
               </div>
             ))}
           </div>
 
-          {!showAllPartners && partners.length > 6 && (
+          {partners.length > 6 && (
             <div className="text-center mt-8">
               <button
-                onClick={() => setShowAllPartners(true)}
+                onClick={() => setShowAllPartners(!showAllPartners)}
                 className="inline-flex items-center px-6 py-3 border border-[#f39c12] text-[#f39c12] rounded-lg hover:bg-[#fff5e6] font-medium transition-colors"
               >
-                TOUT AFFICHER
+                {showAllPartners ? 'VOIR MOINS' : 'TOUS NOS PARTENAIRES'}
+                <svg className={`w-4 h-4 ml-2 transition-transform ${showAllPartners ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
             </div>
           )}
         </div>
 
-        {/* Newsletter - Modernisée avec les nouvelles couleurs */}
+        {/* Newsletter */}
         <div className="mt-16 bg-gradient-to-r from-[#006633] to-[#008044] text-white rounded-xl shadow-xl p-8">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold mb-4">Inscrivez-vous à notre newsletter</h2>
-            <p className="mb-6 opacity-90">Recevez nos actualités directement dans votre boîte mail.</p>
+            <div className="text-center mb-8">
+              <h2 className="text-2xl font-bold mb-2">Restez informé</h2>
+              <p className="opacity-90">Abonnez-vous à notre newsletter pour recevoir les dernières actualités de la FEG</p>
+            </div>
             
             <form className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
@@ -258,17 +349,17 @@ const MembersPage = () => {
               
               <div>
                 <label htmlFor="status" className="block text-sm font-medium mb-2 opacity-90">
-                  Statut *
+                  Secteur d'activité *
                 </label>
                 <select
                   id="status"
                   required
                   className="w-full px-4 py-3 rounded-lg bg-[#00582b] border border-[#004d26] focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] text-white"
                 >
-                  <option value="" className="text-gray-400">Sélectionnez...</option>
-                  <option value="member">Membre</option>
-                  <option value="partner">Partenaire</option>
-                  <option value="other">Autre</option>
+                  <option value="">Sélectionnez votre secteur...</option>
+                  {sectors.filter(s => s !== "Tous les membres").map(sector => (
+                    <option key={sector} value={sector}>{sector}</option>
+                  ))}
                 </select>
               </div>
               
@@ -293,16 +384,22 @@ const MembersPage = () => {
                   required
                 />
                 <label htmlFor="consent" className="text-sm opacity-90">
-                  J'accepte de recevoir les informations de la FEG et ses partenaires.
+                  J'accepte de recevoir les informations de la FEG et j'ai pris connaissance de la 
+                  <Link href="/politique-de-confidentialite" className="text-[#f39c12] hover:underline ml-1">
+                    politique de confidentialité
+                  </Link>.
                 </label>
               </div>
               
               <div className="md:col-span-2">
                 <button
                   type="submit"
-                  className="bg-[#f39c12] hover:bg-[#e67e22] text-white font-medium py-3 px-8 rounded-lg transition-colors shadow-md"
+                  className="w-full bg-[#f39c12] hover:bg-[#e67e22] text-white font-medium py-3 px-8 rounded-lg transition-colors shadow-md flex items-center justify-center"
                 >
-                  S'inscrire
+                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                  </svg>
+                  S'inscrire à la newsletter
                 </button>
               </div>
             </form>
