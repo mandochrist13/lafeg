@@ -78,7 +78,7 @@ export default function Home() {
         </div>
       </section> */}
 
-      <section className="py-12 bg-[#006633]">
+      {/* <section className="py-12 bg-[#006633]">
         <div className="container mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-6 text-white">Rejoignez la Fédération des Entreprises du Gabon</h2>
           <p className="text-white mb-8 max-w-3xl mx-auto">
@@ -92,7 +92,7 @@ export default function Home() {
             DEVENIR MEMBRE
           </Link>
         </div>
-      </section>
+      </section> */}
     </>
   )
 }

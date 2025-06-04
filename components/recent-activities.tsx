@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ArrowRight} from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 interface ActivityProps {
   title: string;
@@ -22,51 +22,76 @@ function ActivityCard({
   description,
 }: ActivityProps) {
   return (
-    <div className="bg-[#f5f5f5] flex flex-col justify-between overflow-hidden rounded-lg shadow-md">
-      <div className="relative h-[300px]">
+    <div className="bg-white flex flex-col justify-between overflow-hidden rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 h-full">
+      <div className="relative h-48 md:h-56 lg:h-64 overflow-hidden">
         <Image
           src={imageUrl || "/placeholder.svg"}
           alt={title}
           fill
-          className="object-cover"
+          className="object-cover transition-transform duration-500 hover:scale-105"
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,102,51,0.8)] to-transparent"></div>
-        <div className="absolute top-4 left-4">
-          <div className="relative h-12 w-12">
-            <div className="bg-[#f39c12] absolute text-white p-2 rounded-md flex items-center justify-center mr-4">
-              <span className="text-sm   font-bold">{type}</span>
+        {type && (
+          <div className="absolute top-4 left-4">
+            <div className="bg-[#f39c12] text-white px-3 py-1 rounded-md text-xs font-bold">
+              {type}
             </div>
           </div>
-        </div>
+        )}
         <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
-          <h3 className="text-lg font-bold uppercase">{title}</h3>
+          <h3 className="text-lg font-bold uppercase line-clamp-2">{title}</h3>
         </div>
       </div>
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between flex-grow">
         <div className="p-4">
-          <p className="text-gray-700">{description}</p>
+          <p className="text-gray-600 line-clamp-3">{description}</p>
         </div>
-        <div className="p-4 flex items-center justify-between">
+        <div className="p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
           <div className="flex items-center">
-            <div className="bg-[#006633] text-white p-2 rounded-lg flex  items-center justify-center ">
-              <span className="text-xs uppercase border-r py-1 px-2">
-                {category}
-              </span>
-              <div className="">
-                {" "}
-                <span className="text-base font-bold mx-2">{date}</span>
-              </div>
+            <div className="bg-[#006633] text-white p-2 rounded-lg flex flex-col sm:flex-row items-center">
+              {category && (
+                <span className="text-xs uppercase border-b sm:border-b-0 sm:border-r py-1 px-2">
+                  {category}
+                </span>
+              )}
+              <span className="text-sm font-medium px-2">{date}</span>
             </div>
           </div>
           <Link
             href={link}
-            className="bg-[#f39c12] text-white px-4 py-2 rounded hover:bg-[#e67e22]"
+            className="bg-[#f39c12] text-white px-4 py-2 rounded hover:bg-[#e67e22] transition-colors duration-300 text-sm font-medium whitespace-nowrap"
           >
             Lire plus
           </Link>
         </div>
       </div>
     </div>
+  );
+}
+
+function SmallActivityCard({ title, date, type, imageUrl, link }: ActivityProps) {
+  return (
+    <Link href={link}>
+      <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 h-24 flex items-center overflow-hidden group">
+        <div className="relative h-full w-24 flex-shrink-0">
+          <Image
+            src={imageUrl}
+            alt={title}
+            fill
+            className="object-cover group-hover:scale-105 transition-transform duration-300"
+            sizes="100px"
+          />
+        </div>
+        <div className="p-3 flex-grow">
+          <span className="text-xs font-semibold text-[#f39c12]">{type}</span>
+          <h3 className="text-sm font-bold text-[#006633] line-clamp-2">
+            {title}
+          </h3>
+          <p className="text-xs text-gray-500 mt-1">{date}</p>
+        </div>
+      </div>
+    </Link>
   );
 }
 
@@ -83,7 +108,6 @@ export default function RecentActivities() {
         "La FEG a participé à une table ronde sur le mécanisme de refinancement hypothécaire au Gabon.",
       link: "/actualites/participation-table-ronde",
       imageUrl: "/images/activity1.jpg",
-      logoUrl: "/images/logo-feg-white.png",
     },
     {
       id: 2,
@@ -96,7 +120,6 @@ export default function RecentActivities() {
         "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions.",
       link: "/actualites/assises-nationales-emploi",
       imageUrl: "/images/activity2.jpg",
-      logoUrl: "/images/logo-feg-white.png",
     },
     {
       id: 3,
@@ -108,9 +131,9 @@ export default function RecentActivities() {
         "Appel à manifestation d'intérêt pour les entreprises intéressées.",
       link: "/actualites/appel-manifestation-interet",
       imageUrl: "/images/activity3.jpg",
-      logoUrl: "/images/logo-feg-white.png",
     },
   ];
+
   const subactivities = [
     {
       id: 5,
@@ -118,182 +141,147 @@ export default function RecentActivities() {
         "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
       date: "22 janv 2025",
       category: "Agenda",
-      type: "Événement",
+      type: "Actualité",
       description:
         "La FEG a participé à une table ronde sur le mécanisme de refinancement hypothécaire au Gabon.",
       link: "/actualites/participation-table-ronde",
       imageUrl: "/images/activity1.jpg",
-      logoUrl: "/images/logo-feg-white.png",
     },
     {
-      id: 3,
+      id: 6,
       title: "Appel à manifestation d'intérêt",
       date: "2025",
       category: "Agenda",
-      type: "Événement",
+      type: "Actualité",
       description:
         "Appel à manifestation d'intérêt pour les entreprises intéressées.",
       link: "/actualites/appel-manifestation-interet",
       imageUrl: "/images/activity3.jpg",
-      logoUrl: "/images/logo-feg-white.png",
     },
   ];
-  const comun = [
+
+  const events = [
     {
-      id: 1,
-      title:
-        "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
-      date: "22 janv 2025",
+      id: 7,
+      title: "Forum économique national 2025",
+      date: "15 mars 2025",
       category: "Agenda",
       type: "Événement",
-      description:
-        "La FEG a participé à une table ronde sur le mécanisme de refinancement hypothécaire au Gabon.",
-      link: "/actualites/participation-table-ronde",
-      imageUrl: "/images/activity1.jpg",
-      logoUrl: "/images/logo-feg-white.png",
-    },
-    {
-      id: 2,
-      title:
-        "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions",
-      date: "22 janv 2025",
-      category: "Agenda",
-      type: "Événement",
-      description:
-        "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions.",
-      link: "/actualites/assises-nationales-emploi",
+      description: "Le forum économique national annuel réunissant les acteurs clés du secteur.",
+      link: "/evenements/forum-economique",
       imageUrl: "/images/activity2.jpg",
-      logoUrl: "/images/logo-feg-white.png",
+    },
+    {
+      id: 8,
+      title: "Conférence sur l'innovation",
+      date: "30 avril 2025",
+      category: "Agenda",
+      type: "Événement",
+      description: "Conférence annuelle sur l'innovation et les technologies émergentes.",
+      link: "/evenements/conference-innovation",
+      imageUrl: "/images/activity1.jpg",
     },
   ];
-  const event = [
+
+  const communications = [
     {
-      id: 1,
-      title:
-        "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
-      date: "22 janv 2025",
+      id: 9,
+      title: "Nouvelle publication trimestrielle",
+      date: "10 fév 2025",
       category: "Agenda",
-      type: "Événement",
-      description:
-        "La FEG a participé à une table ronde sur le mécanisme de refinancement hypothécaire au Gabon.",
-      link: "/actualites/participation-table-ronde",
-      imageUrl: "/images/activity1.jpg",
-      logoUrl: "/images/logo-feg-white.png",
+      type: "Communication",
+      description: "Notre dernier rapport trimestriel est maintenant disponible.",
+      link: "/communications/publication-trimestrielle",
+      imageUrl: "/images/activity3.jpg",
     },
     {
-      id: 4,
-      title:
-        "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
-      date: "22 janv 2025",
+      id: 10,
+      title: "Communiqué de presse officiel",
+      date: "5 janv 2025",
       category: "Agenda",
-      type: "Événement",
-      description:
-        "La FEG a participé à une table ronde sur le mécanisme de refinancement hypothécaire au Gabon.",
-      link: "/actualites/participation-table-ronde",
-      imageUrl: "/images/activity1.jpg",
-      logoUrl: "/images/logo-feg-white.png",
+      type: "Communication",
+      description: "Lire notre dernier communiqué de presse concernant les nouvelles initiatives.",
+      link: "/communications/communique-presse",
+      imageUrl: "/images/activity2.jpg",
     },
   ];
 
   return (
-    <div>
-      <section className="py-12 px-14">
-        <div className="container mx-auto px-4">
-          <h2 className="text-2xl font-bold pb-2  border-b-2 mb-8 text-[#333]">
+    <div className="bg-white">
+      {/* Hero Cards Section */}
+      <section className="py-12 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-[#333] pb-3 border-b-2 border-[#006633] mb-8">
             Activités récentes
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {activities.map((activity, index) => (
-              <ActivityCard key={index} {...activity} />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {activities.map((activity) => (
+              <ActivityCard key={activity.id} {...activity} />
             ))}
           </div>
         </div>
       </section>
+
+      {/* Sub Activities Section */}
       <section className="py-12 bg-[#f9f9f9]">
-        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-10">
-          <div className="grid grid-cols-1 gap-6">
-            {subactivities.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white  rounded-lg shadow flex items-center justify-between h-24"
-              >
-                <div className="h-full rounded-l-lg ">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    width={100}
-                    height={100}
-                    className="object-cover object-center w-full h-full rounded-l-lg"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg truncate font-bold text-[#f39c12] mb-2">
-                    {item.type}
-                  </h3>
-                  <h3 className="text-lg truncate w-full max-w-[250px] font-bold text-[#006633] mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm">{item.date}</p>
-                </div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Actualités */}
+            <div className="space-y-6 gap-6">
+              <h3 className="text-xl font-bold text-[#006633] border-b-2 border-[#f39c12] pb-2">
+                Actualités
+              </h3>
+              <div className="space-y-4 gap-6">
+                {subactivities.map((item) => (
+                  <SmallActivityCard key={item.id} {...item} />
+                ))}
               </div>
-            ))}
-            <h1 className="flex text-[#006633]">Toutes les Actualités <span className="mx-2"><ArrowRight/></span></h1>
-          </div>
-          <div className="grid grid-cols-1 gap-6">
-            {event.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white  rounded-lg shadow flex items-center justify-between h-24"
+              <Link
+                href="/actualites"
+                className="flex items-center text-[#006633] font-semibold hover:text-[#f39c12] transition-colors duration-300"
               >
-                <div className="h-full rounded-l-lg ">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    width={100}
-                    height={100}
-                    className="object-cover object-center w-full h-full rounded-l-lg"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg truncate font-bold text-[#f39c12] mb-2">
-                    {item.type}
-                  </h3>
-                  <h3 className="text-lg truncate w-full max-w-[250px] font-bold text-[#006633] mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm">{item.date}</p>
-                </div>
+                Toutes les Actualités
+                <ArrowRight className="ml-2" size={18} />
+              </Link>
+            </div>
+
+            {/* Événements */}
+            <div className="space-y-6 gap-6">
+              <h3 className="text-xl font-bold text-[#006633] border-b-2 border-[#f39c12] pb-2">
+                Événements
+              </h3>
+              <div className="space-y-4">
+                {events.map((item) => (
+                  <SmallActivityCard key={item.id} {...item} />
+                ))}
               </div>
-            ))}
-                        <h1 className="flex text-[#006633]">Touts les Evenements <span className="mx-2"><ArrowRight/></span></h1>
-          </div>
-          <div className="grid grid-cols-1 gap-6">
-            {comun.map((item) => (
-              <div
-                key={item.id}
-                className="bg-white  rounded-lg shadow flex items-center justify-between h-24"
+              <Link
+                href="/evenements"
+                className="flex items-center text-[#006633] font-semibold hover:text-[#f39c12] transition-colors duration-300"
               >
-                <div className="h-full rounded-l-lg ">
-                  <Image
-                    src={item.imageUrl}
-                    alt={item.title}
-                    width={100}
-                    height={100}
-                    className="object-cover object-center w-full h-full rounded-l-lg"
-                  />
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg truncate font-bold text-[#f39c12] mb-2">
-                    {item.type}
-                  </h3>
-                  <h3 className="text-lg truncate w-full max-w-[250px] font-bold text-[#006633] mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm">{item.date}</p>
-                </div>
+                Tous les Événements
+                <ArrowRight className="ml-2" size={18} />
+              </Link>
+            </div>
+
+            {/* Communications */}
+            <div className="space-y-6 ">
+              <h3 className="text-xl font-bold text-[#006633] border-b-2 border-[#f39c12] pb-2">
+                Communications
+              </h3>
+              <div className="space-y-4">
+                {communications.map((item) => (
+                  <SmallActivityCard key={item.id} {...item} />
+                ))}
               </div>
-            ))}
-                        <h1 className="flex text-[#006633]">Toutes les Actualités <span className="mx-2"><ArrowRight/></span></h1>
+              <Link
+                href="/communications"
+                className="flex items-center text-[#006633] font-semibold hover:text-[#f39c12] transition-colors duration-300"
+              >
+                Toutes les Communications
+                <ArrowRight className="ml-2" size={18} />
+              </Link>
+            </div>
           </div>
         </div>
       </section>
