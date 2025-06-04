@@ -35,7 +35,7 @@ export default function VoiceOfBusiness() {
             <div className="relative h-80 w-full md:h-96">
               <div className="absolute inset-0 bg-[#f39c12] rounded-lg transform translate-x-2 translate-y-2"></div>
               <div className="relative h-full w-full rounded-lg overflow-hidden">
-                <Image src="/images/ppl.png" alt="Président de la FEG" fill className="object-cover object-center" />
+                <Image src="/images/Mr_KOUAKOUA.jpg" alt="Président de la FEG" fill className="object-bottom " />
               </div>
             </div>
           </div>

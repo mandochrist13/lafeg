@@ -28,12 +28,9 @@ export default function Header() {
               />
             </div>
           </Link>
-          
+
           {/* Burger menu button - mobile only */}
-          <button 
-            className="md:hidden text-gray-700"
-            onClick={toggleMenu}
-          >
+          <button className="md:hidden text-gray-700" onClick={toggleMenu}>
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
@@ -90,7 +87,11 @@ export default function Header() {
       <nav className="bg-[#063d21] px-4 sm:px-20 text-white shadow-lg">
         <div className="container mx-auto flex flex-wrap items-center relative">
           {/* Mobile Menu - full screen overlay */}
-          <div className={`md:hidden fixed inset-0 bg-[#063d21] z-40 overflow-y-auto transition-all duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : '-translate-x-full'} pt-20 px-4`}>
+          <div
+            className={`md:hidden fixed inset-0 bg-[#063d21] z-40 overflow-y-auto transition-all duration-300 ease-in-out ${
+              isMenuOpen ? "translate-x-0" : "-translate-x-full"
+            } pt-20 px-4`}
+          >
             <div className="flex flex-col space-y-4">
               <Link
                 href="/"
@@ -143,42 +144,42 @@ export default function Header() {
                     À propos de nous
                   </Link>
                   <Link
-                    href="/president"
+                    href="/la-feg/president"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Le président
                   </Link>
                   <Link
-                    href="/gouvernance"
+                    href="/la-feg/gouvernance"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     La gouvernance
                   </Link>
                   <Link
-                    href="/histoire"
+                    href="/la-feg/histoire"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Notre histoire
                   </Link>
                   <Link
-                    href="/valeurs"
+                    href="/la-feg/valeurs"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos valeurs
                   </Link>
                   <Link
-                    href="/services"
+                    href="/la-feg/services"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos services
                   </Link>
                   <Link
-                    href="/phototheque"
+                    href="/la-feg/phototheque"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
