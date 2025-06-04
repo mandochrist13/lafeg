@@ -175,7 +175,7 @@ export default function EnhancedFooter() {
                   Copyright © {new Date().getFullYear()} · Fédération des
                   Entreprises du Gabon · Développé par{" "}
                   <a href="#" className="text-[#f39c12] hover:underline">
-                    IT CORP
+                    OMDC 
                   </a>
                 </p>
                 
