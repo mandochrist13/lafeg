@@ -61,8 +61,8 @@ export default function LaFeg() {
                 className="w-full border border-gray-300 rounded px-3 py-2 bg-[#f39c12] text-white"
                 onChange={(e) => (window.location.href = e.target.value)}
               >
-                <option value="/a-propos">À propos</option>
-                <option value="/gouvernance">Gouvernance</option>
+                <option value="/la-feg">À propos</option>
+                <option value="/la-feg/gouvernance">Gouvernance</option>
                 <option value="/histoire">Notre histoire</option>
                 <option value="/valeurs">Nos valeurs</option>
                 <option value="/missions">Nos missions</option>
@@ -114,13 +114,13 @@ export default function LaFeg() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main Content - Takes full width on mobile, 2/3 on desktop */}
           <div className="lg:w-2/3">
-            <div className="border-t-4 border-[#006d40] pt-6 sm:pt-8 rounded-lg bg-white shadow-md p-4 sm:p-6">
+            <div className="border-t-4 border-[#fff] pt-6 sm:pt-8 rounded-lg bg-white shadow-md p-4 sm:p-6">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#006d40] mb-3 sm:mb-4 leading-tight">
                 Notre institution contribue à un idéal commun :
                 <br className="hidden sm:block" />
-                <span className="text-[#f39c12]">
+                
                   la performance des entreprises gabonaises
-                </span>
+               
               </h3>
 
               <div className="space-y-4 text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
