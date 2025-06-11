@@ -188,27 +188,30 @@ export default function LaFeg() {
               <div></div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
-              {[
-                { src: "/images/executive_club.png", alt: "Executive Club" },
-                { src: "/images/iga.png", alt: "IGA" },
-                { src: "/images/cch.png", alt: "CCH" },
-                { src: "/images/think_tank.png", alt: "Think Tank Fiscal" },
-              ].map((partner) => (
-                <div
-                  key={partner.alt}
-                  className="border p-3 sm:p-4 flex items-center justify-center bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-full"
-                >
-                  <Image
-                    src={partner.src}
-                    alt={partner.alt}
-                    width={120} // Largeur de base de l'image en pixels (doit correspondre au ratio souhaité)
-                    height={60} // Hauteur de base de l'image en pixels (doit correspondre au ratio souhaité)
-                    className="h-10 sm:h-12 lg:h-14 w-auto transition-transform object-contain" // Ajout de object-contain pour bien ajuster l'image
-                     priority={false} // Optionnel : ne priorise pas le chargement si ce ne sont pas des images LCP
-                  />
-                </div>
-              ))}
+            {/* Partners Section */}
+            <div className="bg-white rounded-xl shadow-md p-5">
+              <h4 className="font-bold text-[#006633] mb-4">Nos partenaires</h4>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { src: "/images/executive_club.png", alt: "Executive Club" },
+                  { src: "/images/iga.png", alt: "IGA" },
+                  { src: "/images/cch.png", alt: "CLUB CAPITAL HUMAIN" },
+                  { src: "/images/think_tank.png", alt: "Think Tank Fiscal" },
+                ].map((partner) => (
+                  <div
+                    key={partner.alt}
+                    className="p-3 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center hover:shadow-sm transition-shadow h-20"
+                  >
+                    <Image
+                      src={partner.src}
+                      alt={partner.alt}
+                      width={120}
+                      height={60}
+                      className="h-10 w-auto object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
