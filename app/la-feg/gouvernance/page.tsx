@@ -82,7 +82,7 @@ export default function LaFeg() {
       name: "Hélène ZOUA-ONDO",
       role: "Vice-Présidente en charge de la Fiscalité, de la Protection Judiciaire des Entreprises, des Relations Institutionnelles et du tourisme",
       position: "Présidente THINK TANK FISCAL",
-      image: "/images/membres/zoua-ondo.png",
+      image: "/images/membres/zoua-ondo.jpg",
     },
   ];
 
