@@ -61,8 +61,8 @@ export default function LaFeg() {
                 className="w-full border border-gray-300 rounded px-3 py-2 bg-[#f39c12] text-white"
                 onChange={(e) => (window.location.href = e.target.value)}
               >
-                <option value="/a-propos">À propos</option>
-                <option value="/gouvernance">Gouvernance</option>
+                <option value="/la-feg">À propos</option>
+                <option value="/la-feg/gouvernance">Gouvernance</option>
                 <option value="/histoire">Notre histoire</option>
                 <option value="/valeurs">Nos valeurs</option>
                 <option value="/missions">Nos missions</option>
@@ -114,13 +114,13 @@ export default function LaFeg() {
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main Content - Takes full width on mobile, 2/3 on desktop */}
           <div className="lg:w-2/3">
-            <div className="border-t-4 border-[#006d40] pt-6 sm:pt-8 rounded-lg bg-white shadow-md p-4 sm:p-6">
+            <div className="border-t-4 border-[#fff] pt-6 sm:pt-8 rounded-lg bg-white shadow-md p-4 sm:p-6">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#006d40] mb-3 sm:mb-4 leading-tight">
                 Notre institution contribue à un idéal commun :
                 <br className="hidden sm:block" />
-                <span className="text-[#f39c12]">
+                
                   la performance des entreprises gabonaises
-                </span>
+               
               </h3>
 
               <div className="space-y-4 text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
@@ -188,27 +188,30 @@ export default function LaFeg() {
               <div></div>
             </div>
 
-            <div className="grid grid-cols-2 lg:grid-cols-1 gap-3 sm:gap-4">
-              {[
-                { src: "/images/executive_club.png", alt: "Executive Club" },
-                { src: "/images/iga.png", alt: "IGA" },
-                { src: "/images/cch.png", alt: "CCH" },
-                { src: "/images/think_tank.png", alt: "Think Tank Fiscal" },
-              ].map((partner) => (
-                <div
-                  key={partner.alt}
-                  className="border p-3 sm:p-4 flex items-center justify-center bg-gray-50 rounded-lg hover:shadow-md transition-shadow h-full"
-                >
-                  <Image
-                    src={partner.src}
-                    alt={partner.alt}
-                    width={120} // Largeur de base de l'image en pixels (doit correspondre au ratio souhaité)
-                    height={60} // Hauteur de base de l'image en pixels (doit correspondre au ratio souhaité)
-                    className="h-10 sm:h-12 lg:h-14 w-auto transition-transform object-contain" // Ajout de object-contain pour bien ajuster l'image
-                     priority={false} // Optionnel : ne priorise pas le chargement si ce ne sont pas des images LCP
-                  />
-                </div>
-              ))}
+            {/* Partners Section */}
+            <div className="bg-white rounded-xl shadow-md p-5">
+              <h4 className="font-bold text-[#006633] mb-4">Nos partenaires</h4>
+              <div className="grid grid-cols-2 gap-3">
+                {[
+                  { src: "/images/executive_club.png", alt: "Executive Club" },
+                  { src: "/images/iga.png", alt: "IGA" },
+                  { src: "/images/cch.png", alt: "CLUB CAPITAL HUMAIN" },
+                  { src: "/images/think_tank.png", alt: "Think Tank Fiscal" },
+                ].map((partner) => (
+                  <div
+                    key={partner.alt}
+                    className="p-3 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center hover:shadow-sm transition-shadow h-20"
+                  >
+                    <Image
+                      src={partner.src}
+                      alt={partner.alt}
+                      width={120}
+                      height={60}
+                      className="h-10 w-auto object-contain"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
