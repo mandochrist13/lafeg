@@ -382,7 +382,7 @@ export default function Header() {
                   À propos de nous
                 </Link>
                 <Link
-                  href="/president"
+                  href="/la-feg/president"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -402,7 +402,7 @@ export default function Header() {
                   Le président
                 </Link>
                 <Link
-                  href="/gouvernance"
+                  href="/la-feg/gouvernance"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -422,7 +422,7 @@ export default function Header() {
                   La gouvernance
                 </Link>
                 <Link
-                  href="/histoire"
+                  href="/la-feg/histoire"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -442,7 +442,7 @@ export default function Header() {
                   Notre histoire
                 </Link>
                 <Link
-                  href="/valeurs"
+                  href="/la-feg/valeurs"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -462,7 +462,7 @@ export default function Header() {
                   Nos valeurs
                 </Link>
                 <Link
-                  href="/services"
+                  href="/la-feg/services"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -482,7 +482,7 @@ export default function Header() {
                   Nos services
                 </Link>
                 <Link
-                  href="/phototheque"
+                  href="/la-feg/phototheque"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
