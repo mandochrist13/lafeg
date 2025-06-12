@@ -166,7 +166,7 @@ export default function LaFeg() {
       <div className="relative bg-[#006633] text-white py-16 md:py-24 lg:py-32">
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/1ermai.jpg"
+            src="/images/banière.jpg"
             alt="Arrière-plan gouvernance"
             className="w-full h-full object-cover opacity-20"
           />
@@ -222,13 +222,19 @@ export default function LaFeg() {
                     À propos
                   </a>
                   <a
+                    href="/la-feg/president"
+                    className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
+                  >
+                    Présidence
+                  </a>
+                  <a
                     href="/la-feg/gouvernance"
                     className="whitespace-nowrap bg-[#f39c12] text-white px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-[#e67e22] transition"
                   >
                     Gouvernance
                   </a>
                   <a
-                    href="/histoire"
+                    href="/la-feg/histoire"
                     className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
                   >
                     Notre histoire

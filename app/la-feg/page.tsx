@@ -9,7 +9,7 @@ export default function LaFeg() {
         {/* Image d'arrière-plan avec overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/1ermai.jpg"
+            src="/images/banière.jpg"
             alt="Arrière-plan entreprises membres"
             className="w-full h-full object-cover opacity-20"
           />
@@ -37,7 +37,7 @@ export default function LaFeg() {
               </Link>
               <span className="mx-2 text-gray-400">/</span>
               <span className="text-[#f39c12] font-medium">
-                ENTREPRISES MEMBRES
+                à propos 
               </span>
             </div>
           </div>
@@ -53,58 +53,48 @@ export default function LaFeg() {
             performance des entreprises gabonaises.
           </p>
 
-          {/* Tabs - Responsive */}
-          <div className="mb-6 sm:mb-8">
-            {/* Mobile Tabs - Dropdown style */}
-            <div className="sm:hidden">
-              <select
-                className="w-full border border-gray-300 rounded px-3 py-2 bg-[#f39c12] text-white"
-                onChange={(e) => (window.location.href = e.target.value)}
-              >
-                <option value="/la-feg">À propos</option>
-                <option value="/la-feg/gouvernance">Gouvernance</option>
-                <option value="/histoire">Notre histoire</option>
-                <option value="/valeurs">Nos valeurs</option>
-                <option value="/missions">Nos missions</option>
-                <option value="/services">Nos services</option>
-              </select>
-            </div>
-
-            {/* Desktop/Tablet Tabs */}
-            <div className="hidden sm:flex flex-wrap">
+          {/* Responsive Tabs */}
+          <div className="mb-8 overflow-x-auto">
+            <div className="flex flex-nowrap sm:flex-wrap gap-1 sm:gap-0">
               <a
-                href="/a-propos"
-                className="bg-[#f39c12] text-white px-3 md:px-6 py-2 md:py-3 font-medium text-xs md:text-sm hover:bg-[#e67e22] transition"
+                href="/la-feg"
+               className="whitespace-nowrap bg-[#f39c12] text-white px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-[#e67e22] transition"
               >
                 À propos
               </a>
               <a
-                href="/gouvernance"
-                className="bg-gray-200 text-gray-700 px-3 md:px-6 py-2 md:py-3 font-medium text-xs md:text-sm hover:bg-gray-300 transition"
+                href="/la-feg/president"
+                className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
+              >
+                Présidence
+              </a>
+              <a
+                href="/la-feg/gouvernance"
+                className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Gouvernance
               </a>
               <a
-                href="/histoire"
-                className="bg-gray-200 text-gray-700 px-3 md:px-6 py-2 md:py-3 font-medium text-xs md:text-sm hover:bg-gray-300 transition"
+                href="/la-feg//histoire"
+                className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Notre histoire
               </a>
               <a
                 href="/valeurs"
-                className="bg-gray-200 text-gray-700 px-3 md:px-6 py-2 md:py-3 font-medium text-xs md:text-sm hover:bg-gray-300 transition"
+                className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Nos valeurs
               </a>
               <a
                 href="/missions"
-                className="bg-gray-200 text-gray-700 px-3 md:px-6 py-2 md:py-3 font-medium text-xs md:text-sm hover:bg-gray-300 transition"
+                className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Nos missions
               </a>
               <a
                 href="/services"
-                className="bg-gray-200 text-gray-700 px-3 md:px-6 py-2 md:py-3 font-medium text-xs md:text-sm hover:bg-gray-300 transition"
+                className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Nos services
               </a>
@@ -118,9 +108,7 @@ export default function LaFeg() {
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#006d40] mb-3 sm:mb-4 leading-tight">
                 Notre institution contribue à un idéal commun :
                 <br className="hidden sm:block" />
-                
-                  la performance des entreprises gabonaises
-               
+                la performance des entreprises gabonaises
               </h3>
 
               <div className="space-y-4 text-sm sm:text-base lg:text-lg text-gray-700 leading-relaxed">
