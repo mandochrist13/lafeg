@@ -73,7 +73,7 @@ function ActivityCard({
 function SmallActivityCard({ title, date, type, imageUrl, link }: ActivityProps) {
   return (
     <Link href={link}>
-      <div className="bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-300 h-24 flex items-center overflow-hidden group">
+      <div className="bg-white mb-4 rounded-lg transition-all duration-300 h-24 flex items-center overflow-hidden group">
         <div className="relative h-full w-24 flex-shrink-0">
           <Image
             src={imageUrl}
