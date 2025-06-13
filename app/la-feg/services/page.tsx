@@ -150,13 +150,13 @@ export default function Services() {
             </div>
             <div className="py-5 my-9 border-t border-gray-300">
               <button
-                onClick={() => {
+                onClick={() => { 
                   // Ouvre le PDF dans un nouvel onglet
-                  window.open("/CHARTE_FEG.pdf", "_blank");
+                  window.open("/Services.pdf", "_blank");
                 }}
                 className="px-6 py-3 bg-[#006633] text-white font-medium rounded-md transition-all duration-500 flex items-center mx-auto hover:bg-[#063d21]"
               >
-                <span>Consulter notre charte</span>
+                <span>Voir les details de nos services</span>
                 <svg
                   className="w-5 h-5 ml-2"
                   fill="none"

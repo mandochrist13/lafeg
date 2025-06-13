@@ -85,7 +85,7 @@ export default function PartnersSection() {
   };
 
   return (
-    <div className="py-16 bg-gray-50">
+    <div className="py-16 bg-white relative overflow-hidden">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

@@ -321,7 +321,7 @@ export default function Header() {
             {/* Logo & Accueil */}
             <Link
               href="/"
-              className="px-4 py-3 font-bold text-sm bg-[#f39c12] hover:bg-[#e67e22] flex items-center transition-all duration-300 transform hover:scale-105"
+             className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
