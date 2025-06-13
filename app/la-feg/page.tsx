@@ -81,19 +81,19 @@ export default function LaFeg() {
                 Notre histoire
               </a>
               <a
-                href="/valeurs"
+                href="/la-feg/valeurs"
                 className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Nos valeurs
               </a>
               <a
-                href="/missions"
+                href="/la-feg/missions"
                 className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Nos missions
               </a>
               <a
-                href="/services"
+                href="/la-feg/services"
                 className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
               >
                 Nos services

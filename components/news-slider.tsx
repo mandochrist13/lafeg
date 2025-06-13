@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import Image from "next/image";
+import { ChevronRight, ArrowLeft, ArrowRight } from "lucide-react";
 
 interface SlideProps {
   id: number;
@@ -23,16 +24,14 @@ export default function NewsSlider() {
     },
     {
       id: 2,
-      title:
-        "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
+      title: "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
       date: "22 janvier 2025",
       link: "/actualites/participation-table-ronde",
       imageUrl: "/images/slider-bg-2.jpg",
     },
     {
       id: 3,
-      title:
-        "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions",
+      title: "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions",
       date: "22 janvier 2025",
       link: "/actualites/assises-nationales-emploi",
       imageUrl: "/images/slider-bg-3.jpg",
@@ -47,66 +46,126 @@ export default function NewsSlider() {
   ];
 
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 2) % slides.length);
+      if (!isHovered) {
+        setCurrentSlide((prev) => (prev + 1) % slides.length);
+      }
     }, 5000);
     return () => clearInterval(interval);
-  }, [slides.length]);
+  }, [isHovered, slides.length]);
 
   const goToSlide = (index: number) => {
     setCurrentSlide(index);
   };
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slides.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + slides.length) % slides.length);
+  };
+
   return (
-    <div className="py-5 px-10 w-full max-w-screen-xl mx-auto space-y-6">
-      {[0].map((offset) => {
-        const slide = slides[(currentSlide + offset) % slides.length];
-        return (
-          <div
-            key={slide.id}
-            className="flex flex-col md:flex-row h-[400px] bg-white rounded-lg overflow-hidden shadow-md"
-          >
-            {/* Texte à gauche */}
-            <div className="bg-[#f39c12] text-white md:w-1/2 w-full p-6 flex flex-col justify-between">
-              <div>
-                <div className="inline-block bg-white text-black px-4 py-2 mb-4">
-                  <span>Agenda | {slide.date}</span>
-                </div>
-                <h2 className="text-xl md:text-2xl font-bold mb-4">{slide.title}</h2>
-              </div>
+    <div 
+      className="relative w-full px-4 py-8 sm:py-12 mx-auto max-w-7xl"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+
+      {/* Conteneur principal du slider */}
+      <div className="relative w-full">
+        {/* Boutons de navigation (desktop) */}
+        <button
+          onClick={prevSlide}
+          className="hidden sm:block absolute left-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md transition-all"
+          aria-label="Précédent"
+        >
+          <ArrowLeft size={20} />
+        </button>
+        
+        <button
+          onClick={nextSlide}
+          className="hidden sm:block absolute right-2 top-1/2 -translate-y-1/2 z-10 bg-white/90 hover:bg-white text-gray-800 p-2 rounded-full shadow-md transition-all"
+          aria-label="Suivant"
+        >
+          <ArrowRight size={20} />
+        </button>
+
+        {/* Slide actuelle */}
+        <div className="flex flex-col lg:flex-row h-auto min-h-[400px] bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
+          {/* Partie texte */}
+          <div className="lg:w-1/2 w-full p-6 sm:p-8 bg-[#f39c12] text-white flex flex-col">
+            <div className="mb-4">
+              <span className="inline-block bg-white text-[#f39c12] px-3 py-1 rounded-md text-sm font-medium">
+                {slides[currentSlide].date}
+              </span>
+            </div>
+            
+            <h3 className="text-xl sm:text-2xl font-bold mb-4 sm:mb-6">
+              {slides[currentSlide].title}
+            </h3>
+            
+            <div className="mt-auto">
               <Link
-                href={slide.link}
-                className="inline-flex items-center text-white hover:underline"
+                href={slides[currentSlide].link}
+                className="inline-flex items-center text-white font-medium hover:underline"
               >
-                LIRE LA SUITE <ChevronRight size={20} className="ml-2" />
+                Lire la suite
+                <ChevronRight size={18} className="ml-1" />
               </Link>
             </div>
+          </div>
 
-            {/* Image à droite */}
-            <div
-              className="md:w-1/2 w-full bg-cover bg-center"
-              style={{
-                backgroundImage: `url(${slide.imageUrl})`,
-              }}
+          {/* Partie image */}
+          <div className="lg:w-1/2 w-full h-64 sm:h-auto relative">
+            <Image
+              src={slides[currentSlide].imageUrl}
+              alt={slides[currentSlide].title}
+              fill
+              className="object-cover"
+              priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
           </div>
-        );
-      })}
+        </div>
+      </div>
 
       {/* Pagination */}
-      <div className="flex justify-center space-x-2 pt-4">
-        {Array.from({ length: Math.ceil(slides.length / 2) }).map((_, index) => (
-          <button
-            key={index}
-            onClick={() => goToSlide(index * 2)}
-            className={`w-4 h-4 rounded-full ${
-              index * 2 === currentSlide ? "bg-[#f39c12]" : "bg-gray-300"
-            }`}
-            aria-label={`Aller à la page ${index + 1}`}
-          />
-        ))}
+      <div className="flex justify-center mt-6">
+        <div className="flex space-x-2">
+          {slides.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => goToSlide(index)}
+              className={`w-3 h-3 rounded-full transition-all ${
+                index === currentSlide ? "bg-[#f39c12] w-6" : "bg-gray-300"
+              }`}
+              aria-label={`Aller à l'actualité ${index + 1}`}
+            />
+          ))}
+        </div>
+      </div>
+
+      {/* Boutons de navigation (mobile) */}
+      <div className="sm:hidden flex justify-center mt-6 space-x-4">
+        <button
+          onClick={prevSlide}
+          className="bg-white text-gray-800 p-2 rounded-full shadow-sm border border-gray-200"
+          aria-label="Précédent"
+        >
+          <ArrowLeft size={18} />
+        </button>
+        <button
+          onClick={nextSlide}
+          className="bg-white text-gray-800 p-2 rounded-full shadow-sm border border-gray-200"
+          aria-label="Suivant"
+        >
+          <ArrowRight size={18} />
+        </button>
       </div>
     </div>
   );
