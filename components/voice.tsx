@@ -56,7 +56,7 @@ export default function VoiceOfBusiness() {
 
           {/* Image Content - Exactement comme la maquette */}
           <div className="lg:w-1/3 w-full">
-            <div className="relative aspect-[3/4] w-full overflow-hidden border-[6px] border-[#f39c12] shadow-[0_4px_14px_rgba(0,0,0,0.12)]">
+            <div className="relative aspect-[3/4] w-full overflow-hidden border-[4px] border-[#f39c12] shadow-[0_4px_14px_rgba(0,0,0,0.12)]">
               <Image
                 src="/images/Mr_KOUAKOUA.jpg"
                 alt="Président de la FEG"
