@@ -1,154 +1,292 @@
 "use client";
-import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
+import PartnersSection from "@/components/partner"
 
 interface Member {
-  id: string;
+  id: number;
   name: string;
   logo: string;
   headquarters: string;
   sector: string;
   legalStatus: string;
+  description?: string;
 }
 
-interface Partner {
-  id: string;
+interface Sector {
+  id: number;
   name: string;
-  logo: string;
+  count: number;
 }
 
-const MembersPage = () => {
-  // Données des membres
-  const allMembers: Member[] = [
+// Données statiques des membres déclarées en premier
+const membersData: Member[] = [
+  {
+    id: 1,
+    name: "BGFIBANK",
+    logo: "/images/members/bgfibank.png",
+    headquarters: "BP. 2244, Libreville",
+    sector: "Banque et Services Financiers",
+    legalStatus: "SA",
+    description:
+      "Première banque gabonaise, membre actif de la FEG depuis 2010.",
+  },
+  {
+    id: 2,
+    name: "TOTAL Gabon",
+    logo: "/images/members/total.png",
+    headquarters: "BP. 525, Port-Gentil",
+    sector: "Energie et Eau",
+    legalStatus: "SA",
+    description:
+      "Leader dans le secteur pétrolier au Gabon, membre de la FEG depuis 1985.",
+  },
+  {
+    id: 3,
+    name: "SEEG",
+    logo: "/images/members/seeg.png",
+    headquarters: "BP. 400, Libreville",
+    sector: "Energie et Eau",
+    legalStatus: "SA",
+    description:
+      "Société d'Energie et d'Eau du Gabon, membre de la FEG depuis sa création.",
+  },
+  {
+    id: 4,
+    name: "CFAO Motors Gabon",
+    logo: "/images/members/cfao-motors.png",
+    headquarters: "BP. 1234, Libreville",
+    sector: "Commerce et Distribution",
+    legalStatus: "SA",
+    description:
+      "Leader de la distribution automobile au Gabon, membre de la FEG depuis 2012.",
+  },
+  {
+    id: 5,
+    name: "Gabon Oil Company",
+    logo: "/images/members/gabon-oil-company.png",
+    headquarters: "BP. 4567, Port-Gentil",
+    sector: "Mines et Métallurgie",
+    legalStatus: "SA",
+    description:
+      "Entreprise nationale pétrolière, membre de la FEG depuis sa création en 2011.",
+  },
+  {
+    id: 6,
+    name: "Gabon Telecom",
+    logo: "/images/members/gabon-telecom.png",
+    headquarters: "BP. 7890, Libreville",
+    sector: "Communication et Médias",
+    legalStatus: "SA",
+    description:
+      "Opérateur historique de télécommunications au Gabon, membre de la FEG depuis 2000.",
+  },
+  {
+    id: 7,
+    name: "Gabon Special Economic Zone",
+    logo: "/images/members/gabon-special-economic-zone.png",
+    headquarters: "BP. 1010, Nkok",
+    sector: "Industrie et Transformation",
+    legalStatus: "SA",
+    description:
+      "Zone économique spéciale dédiée à l'industrialisation du Gabon, membre de la FEG depuis 2015.",
+  },
+  {
+    id: 8,
+    name: "Gabon Mining Company",
+    logo: "/images/members/gabon-mining-company.png",
+    headquarters: "BP. 2020, Franceville",
+    sector: "Mines et Métallurgie",
+    legalStatus: "SA",
+    description:
+      "Entreprise minière spécialisée dans l'extraction de manganèse, membre de la FEG depuis 2018.",
+  },
+  {
+    id: 9,
+    name: "Gabon Post",
+    logo: "/images/members/gabon-post.png",
+    headquarters: "BP. 3030, Libreville",
+    sector: "Services Divers",
+    legalStatus: "SA",
+    description:
+      "Service postal national du Gabon, membre de la FEG depuis sa création.",
+  },
+  {
+    id: 10,
+    name: "Gabon Airports",
+    logo: "/images/members/gabon-airports.png",
+    headquarters: "BP. 4040, Libreville",
+    sector: "Activités Portuaires et Aéroportuaires",
+    legalStatus: "SA",
+    description:
+      "Gestionnaire des aéroports internationaux du Gabon, membre de la FEG depuis 2016.",
+  },
+  {
+    id: 11,
+    name: "Gabon National Railway",
+    logo: "/images/members/gabon-national-railway.png",
+    headquarters: "BP. 5050, Libreville",
+    sector: "Transport et Logistique Terrestre",
+    legalStatus: "SA",
+    description:
+      "Société nationale des chemins de fer du Gabon, membre de la FEG depuis 2005.",
+  },
+  {
+    id: 12,
+    name: "Gabon Cement Company",
+    logo: "/images/members/gabon-cement-company.png",
+    headquarters: "BP. 6060, Libreville",
+    sector: "Industrie et Transformation",
+
+    legalStatus: "SA",
+    description:
+      "Principal producteur de ciment au Gabon, membre de la FEG depuis 2019.",
+  },
+];
+
+export default function MembersPage() {
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const [filteredMembers, setFilteredMembers] = useState<Member[]>(membersData);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  const membersPerPage = 9;
+
+  // Tableau des secteurs qui utilise maintenant membersData déjà déclaré
+  const sectors: Sector[] = [
+    { id: 0, name: "Tous les secteurs", count: membersData.length },
     {
-      id: "ags-frasers",
-      name: "AGS FRASERS",
-      logo: "/logos/ags-frasers.png",
-      headquarters: "BP 8101",
-      sector: "Logistique et Transport",
-      legalStatus: "SA",
+      id: 1,
+      name: "Activités Portuaires et Aéroportuaires",
+      count: membersData.filter(
+        (m) => m.sector === "Activités Portuaires et Aéroportuaires"
+      ).length,
     },
     {
-      id: "art",
-      name: "ART",
-      logo: "/logos/art.png",
-      headquarters: "B. P. R193/BB",
-      sector: "Télécommunications",
-      legalStatus: "N/A",
+      id: 2,
+      name: "Assurances et Courtiers",
+      count: membersData.filter((m) => m.sector === "Assurances et Courtiers")
+        .length,
     },
     {
-      id: "bicig",
-      name: "BICIG",
-      logo: "/logos/bicig.png",
-      headquarters: "BP 2251",
-      sector: "Banque et Services Financiers",
-      legalStatus: "SA",
+      id: 3,
+      name: "Banque et Services Financiers",
+      count: membersData.filter(
+        (m) => m.sector === "Banque et Services Financiers"
+      ).length,
     },
-    // Ajouter d'autres membres ici...
+    {
+      id: 4,
+      name: "Bois et Dérivés",
+      count: membersData.filter((m) => m.sector === "Bois et Dérivés").length,
+    },
+    {
+      id: 5,
+      name: "Commerce et Distribution",
+      count: membersData.filter((m) => m.sector === "Commerce et Distribution")
+        .length,
+    },
+    {
+      id: 6,
+      name: "Communication et Médias",
+      count: membersData.filter((m) => m.sector === "Communication et Médias")
+        .length,
+    },
+    {
+      id: 7,
+      name: "Construction et BTP",
+      count: membersData.filter((m) => m.sector === "Construction et BTP")
+        .length,
+    },
+    {
+      id: 8,
+      name: "Energie et Eau",
+      count: membersData.filter((m) => m.sector === "Energie et Eau").length,
+    },
+    {
+      id: 9,
+      name: "Hôtellerie et Restauration",
+      count: membersData.filter(
+        (m) => m.sector === "Hôtellerie et Restauration"
+      ).length,
+    },
+    {
+      id: 10,
+      name: "Industrie et Transformation",
+      count: membersData.filter(
+        (m) => m.sector === "Industrie et Transformation"
+      ).length,
+    },
+    {
+      id: 11,
+      name: "Mines et Métallurgie",
+      count: membersData.filter((m) => m.sector === "Mines et Métallurgie")
+        .length,
+    },
+    {
+      id: 12,
+      name: "Santé et Pharmacie",
+      count: membersData.filter((m) => m.sector === "Santé et Pharmacie")
+        .length,
+    },
+    {
+      id: 13,
+      name: "Services Divers",
+      count: membersData.filter((m) => m.sector === "Services Divers").length,
+    },
+    {
+      id: 14,
+      name: "Transport et Logistique Terrestre",
+      count: membersData.filter(
+        (m) => m.sector === "Transport et Logistique Terrestre"
+      ).length,
+    },
   ];
 
-  // Données des partenaires
-  const partners: Partner[] = [
-    { id: "ice", name: "ICE", logo: "/logos/ice.png" },
-    { id: "mines", name: "Ministère des Mines", logo: "/logos/mines.png" },
-    {
-      id: "commerce",
-      name: "Ministère du Commerce",
-      logo: "/logos/commerce.png",
-    },
-    { id: "ue", name: "Union Européenne", logo: "/logos/ue.png" },
-    {
-      id: "banque-mondiale",
-      name: "Banque Mondiale",
-      logo: "/logos/banque-mondiale.png",
-    },
-    { id: "undp", name: "PNUD", logo: "/logos/undp.png" },
-    {
-      id: "afdb",
-      name: "Banque Africaine de Développement",
-      logo: "/logos/afdb.png",
-    },
-    { id: "ccima", name: "CCIMA", logo: "/logos/ccima.png" },
-  ];
-
-  // Secteurs d'activité
-  const sectors = [
-    "Tous les membres",
-    "Activités Portuaires et Aéroportuaires",
-    "Agroalimentaire",
-    "Assurances et Courtiers",
-    "Banque et Services Financiers",
-    "Bâtiment et Travaux Publics",
-    "Commerce et Distribution",
-    "Éducation et Formation",
-    "Énergie et Hydrocarbures",
-    "Industrie et Manufacture",
-    "Logistique et Transport",
-    "Mines et Métallurgie",
-    "Santé et Pharmacie",
-    "Services aux Entreprises",
-    "Services Divers",
-    "Télécommunications",
-    "Tourisme et Hôtellerie",
-    "Immobilier",
-    "Agriculture et Sylviculture",
-    "Technologie et Numérique",
-  ];
-
-  // État
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedSector, setSelectedSector] = useState("Tous les membres");
-  const [showAllPartners, setShowAllPartners] = useState(false);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
-  // Filtrage des membres
-  const filteredMembers = allMembers.filter((member) => {
-    const matchesSearch = member.name
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase());
-    const matchesSector =
-      selectedSector === "Tous les membres" || member.sector === selectedSector;
-    return matchesSearch && matchesSector;
-  });
-
-  // Affichage des partenaires
-  const displayedPartners: Partner[] = showAllPartners
-    ? partners
-    : partners.slice(0, 6);
-
-  // Gestion du scroll pour la sidebar
+  // Filtrer les membres
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+    let result = [...membersData];
 
-  // Animation variants pour les partenaires
-  const partnerVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.5,
-      },
-    }),
+    if (activeTab !== 0) {
+      const sectorName = sectors.find((s) => s.id === activeTab)?.name;
+      result = result.filter((member) => member.sector === sectorName);
+    }
+
+    if (searchQuery) {
+      const query = searchQuery.toLowerCase();
+      result = result.filter(
+        (member) =>
+          member.name.toLowerCase().includes(query) ||
+          member.sector.toLowerCase().includes(query) ||
+          member.headquarters.toLowerCase().includes(query)
+      );
+    }
+
+    setFilteredMembers(result);
+    setCurrentPage(1);
+  }, [activeTab, searchQuery]);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
   };
 
+  // Pagination
+  const totalPages = Math.ceil(filteredMembers.length / membersPerPage);
+  const paginatedMembers = filteredMembers.slice(
+    (currentPage - 1) * membersPerPage,
+    currentPage * membersPerPage
+  );
+
   return (
-    <div className="bg-gray-50 min-h-screen">
-      {/* Hero Section */}
-      <div className="relative bg-[#006633] text-white py-20">
+    <>
+      {/* Hero Section Institutionnelle */}
+     <div className="relative bg-[#006633] text-white py-20">
         {/* Image d'arrière-plan avec overlay */}
         <div className="absolute inset-0 z-0">
           <img
-            src="/images/1ermai.jpg"
+            src="/images/banière.jpg"
             alt="Arrière-plan entreprises membres"
             className="w-full h-full object-cover opacity-20"
           />
@@ -156,125 +294,107 @@ const MembersPage = () => {
 
         {/* Contenu par-dessus l'image */}
         <div className="container mx-auto px-4 relative z-0">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Entreprises membres
-          </h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-4">NOS MEMBRES</h1>
           <p className="text-xl max-w-3xl opacity-90">
-            Découvrez les entreprises membres de la Fédération des Entreprises
-            du Gabon réparties secteurs d'activité.
+            Bâtir ensemble une économie forte pour garantir la souveraineté
+            nationale. Notre institution contribue à un idéal commun : la
+            performance des entreprises gabonaises.
           </p>
         </div>
       </div>
 
-      {/* Mobile Filter Button */}
-      <div className="lg:hidden sticky top-0 z-10 bg-white shadow-md p-4">
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="w-full flex items-center justify-between px-4 py-3 bg-[#006633] text-white rounded-lg"
-        >
-          <span>Filtrer les membres</span>
-          <svg
-            className={`w-5 h-5 transition-transform ${
-              isMobileMenuOpen ? "rotate-180" : ""
-            }`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            />
-          </svg>
-        </button>
+      {/* Breadcrumb Minimaliste */}
+      <div className="bg-gray-50 border-b border-gray-200 py-3">
+        <div className="container mx-auto px-4">
+          <nav className="flex items-center space-x-2 text-sm text-gray-600">
+            <Link href="/" className="hover:text-[#005528] transition-colors">
+              Accueil
+            </Link>
+            <span>/</span>
+            <span className="font-medium text-gray-800">
+              Membres institutionnels
+            </span>
+          </nav>
+        </div>
       </div>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Sidebar - Filtres */}
-          <div
-            className={`lg:w-1/4 ${
-              isMobileMenuOpen ? "block" : "hidden"
-            } lg:block`}
-          >
-            <div
-              className={`bg-white rounded-xl shadow-lg p-6 lg:sticky border border-gray-100 ${
-                isScrolled ? "lg:top-4" : "lg:top-24"
-              }`}
-            >
-              <h2 className="text-xl font-bold text-[#006633] mb-6 pb-2 border-b border-gray-200">
-                Filtrer les membres
-              </h2>
-
-              {/* Barre de recherche */}
-              <div className="mb-6">
-                <label
-                  htmlFor="search"
-                  className="block text-sm font-medium text-gray-700 mb-2"
+          {/* Sidebar Institutionnelle */}
+          <div className="lg:w-1/4">
+            <div className="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden sticky top-8">
+              {/* Mobile menu button */}
+              <button
+                className="lg:hidden w-full flex justify-between items-center p-4 bg-[#005528] text-white"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                <span className="font-medium">FILTRES</span>
+                <svg
+                  className={`w-5 h-5 transition-transform ${
+                    isMobileMenuOpen ? "transform rotate-180" : ""
+                  }`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                  xmlns="http://www.w3.org/2000/svg"
                 >
-                  Rechercher une entreprise
-                </label>
-                <div className="relative">
-                  <input
-                    type="text"
-                    id="search"
-                    placeholder="Nom ou secteur..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#f39c12] focus:border-[#f39c12] transition-all"
-                    value={searchTerm}
-                    onChange={(e) => setSearchTerm(e.target.value)}
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
                   />
-                  <div className="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none">
-                    <svg
-                      className="h-5 w-5 text-gray-400"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                      />
-                    </svg>
-                  </div>
-                </div>
-              </div>
+                </svg>
+              </button>
 
-              {/* Filtre par secteur avec scroll */}
-              <div>
-                <h3 className="text-sm font-medium text-gray-700 mb-3">
-                  Secteur d'activité ({sectors.length - 1})
-                </h3>
-                <div className="max-h-[400px] overflow-y-auto pr-2">
+              {/* Filtres */}
+              <div
+                className={`${isMobileMenuOpen ? "block" : "hidden"} lg:block`}
+              >
+                <div className="p-6 border-b border-gray-200">
+                  <h3 className="font-bold  text-gray-800 mb-4 uppercase tracking-wider text-sm">
+                    Recherche Institutionnelle
+                  </h3>
+                  <form onSubmit={handleSearch} className="space-y-4">
+                    <input
+                      type="text"
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      placeholder="Nom, secteur, siège..."
+                      className="w-full px-4 py-2 border border-gray-300 rounded focus:ring-1 focus:ring-[#005528] focus:border-[#005528] outline-none text-sm"
+                    />
+                    <button
+                      type="submit"
+                      className="w-full bg-[#005528] hover:bg-[#00552b] text-white px-4 py-2 rounded font-medium transition-colors text-sm"
+                    >
+                      Appliquer les filtres
+                    </button>
+                  </form>
+                </div>
+
+                <div className="p-6">
+                  <h3 className="font-bold text-gray-800 mb-4 uppercase tracking-wider text-sm">
+                    Secteurs d'activité
+                  </h3>
                   <ul className="space-y-2">
                     {sectors.map((sector) => (
-                      <li key={sector}>
+                      <li key={sector.id}>
                         <button
                           onClick={() => {
-                            setSelectedSector(sector);
-                            if (window.innerWidth < 1024) {
-                              setIsMobileMenuOpen(false);
-                            }
+                            setActiveTab(sector.id);
+                            setIsMobileMenuOpen(false);
                           }}
-                          className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all ${
-                            sector === selectedSector
-                              ? "bg-[#006633] text-white"
-                              : "text-gray-700 hover:bg-gray-100"
+                          className={`w-full text-left px-3 py-2 rounded flex justify-between items-center transition-colors text-sm ${
+                            activeTab === sector.id
+                              ? "bg-gray-100 text-[#005528] font-medium"
+                              : "text-gray-700 hover:bg-gray-50"
                           }`}
                         >
-                          {sector}
-                          {sector !== "Tous les membres" && (
-                            <span className="float-right bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
-                              {
-                                allMembers.filter((m) => m.sector === sector)
-                                  .length
-                              }
-                            </span>
-                          )}
+                          <span className="truncate">{sector.name}</span>
+                          <span className="bg-gray-200 text-gray-700 text-xs font-medium px-2 py-1 rounded-full ml-2">
+                            {sector.count}
+                          </span>
                         </button>
                       </li>
                     ))}
@@ -284,245 +404,145 @@ const MembersPage = () => {
             </div>
           </div>
 
-          {/* Liste des membres */}
+          {/* Main Content Area */}
           <div className="lg:w-3/4">
-            {/* Résumé des filtres */}
-            <div className="bg-white rounded-xl shadow-md p-4 mb-6 flex flex-wrap items-center justify-between gap-3">
-              <div>
-                <span className="text-gray-600">Affichage de </span>
-                <span className="font-bold text-[#006633]">
-                  {filteredMembers.length}
-                </span>
-                <span className="text-gray-600"> sur </span>
-                <span className="font-bold">{allMembers.length}</span>
-                <span className="text-gray-600"> entreprises</span>
+            {/* Header Institutionnel */}
+            <div className="mb-8">
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+                <h2 className="text-2xl font-bold text-gray-800">
+                  Membres Institutionnels
+                  <span className="text-gray-500 font-normal ml-2">
+                    ({filteredMembers.length})
+                  </span>
+                </h2>
               </div>
 
-              {selectedSector !== "Tous les membres" && (
-                <div className="bg-[#f0f7f4] text-[#006633] px-4 py-2 rounded-full flex items-center">
-                  <span>Secteur: {selectedSector}</span>
-                  <button
-                    onClick={() => setSelectedSector("Tous les membres")}
-                    className="ml-2 text-[#f39c12] hover:text-[#e67e22]"
+              {/* Barre de recherche desktop */}
+              <form onSubmit={handleSearch} className="hidden lg:block mb-6">
+                <div className="relative">
+                  <input
+                    type="text"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                    placeholder="Rechercher une entreprise membre..."
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#006633] focus:border-[#006633] outline-none pl-12"
+                  />
+                  <svg
+                    className="absolute left-4 top-3.5 h-5 w-5 text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
                   >
-                    <svg
-                      className="w-4 h-4"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    />
+                  </svg>
                 </div>
-              )}
+              </form>
             </div>
 
-            {filteredMembers.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {filteredMembers.map((member) => (
-                  <motion.div
+            <>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {paginatedMembers.map((member) => (
+                  <div
                     key={member.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 border border-gray-100"
+                    className="bg-white rounded-lg border border-gray-200 hover: hover:border-[#005528] overflow-hidden duration-700 flex flex-col h-full"
                   >
-                    <div className="p-6">
-                      <div className="flex items-start">
-                        <div className="flex-shrink-0 h-16 w-16 bg-gray-100 rounded-lg overflow-hidden mr-4 border border-gray-200 flex items-center justify-center">
-                          {member.logo ? (
+                    <div className="p-5 flex-grow ">
+                      <div className="flex items-start space-x-4 mb-4">
+                        <div className="flex-shrink-0">
+                          <div className="h-14 w-14 bg-gray-100 rounded border border-gray-200 flex items-center justify-center overflow-hidden">
                             <Image
                               src={member.logo}
                               alt={member.name}
-                              width={64}
-                              height={64}
-                              className="object-contain max-h-full max-w-full"
+                              width={56}
+                              height={56}
+                              className="object-contain"
+                              onError={(e) => {
+                                (e.target as HTMLImageElement).src =
+                                  "/images/inconnu.png";
+                              }}
                             />
-                          ) : (
-                            <div className="text-xs text-gray-400 text-center p-2">
-                              Logo indisponible
-                            </div>
-                          )}
+                          </div>
                         </div>
                         <div>
-                          <h3 className="text-lg font-bold text-[#006633] mb-1">
+                          <h3 className="text-lg font-semibold text-gray-800 mb-1">
                             {member.name}
                           </h3>
-                          <p className="text-sm text-gray-600 mb-1">
-                            <span className="font-medium">Siège:</span>{" "}
-                            {member.headquarters}
-                          </p>
-                          <p className="text-sm text-gray-600 mb-1">
-                            <span className="font-medium">Secteur:</span>{" "}
-                            {member.sector}
-                          </p>
-                          <p className="text-sm text-gray-600">
-                            <span className="font-medium">Statut:</span>{" "}
+                          <span className="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">
                             {member.legalStatus}
-                          </p>
+                          </span>
                         </div>
                       </div>
+
+                      <div className="space-y-3 text-sm">
+                        <div className="flex items-start">
+                          <svg
+                            className="w-4 h-4 text-gray-500 mr-2 mt-0.5 flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                            />
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+                            />
+                          </svg>
+                          <span className="text-gray-600">
+                            {member.headquarters}
+                          </span>
+                        </div>
+
+                        <div className="flex items-start">
+                          <svg
+                            className="w-4 h-4 text-gray-500 mr-2 mt-0.5 flex-shrink-0"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={1.5}
+                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
+                            />
+                          </svg>
+                          <span className="text-gray-600">{member.sector}</span>
+                        </div>
+
+                        {member.description && (
+                          <div className="pt-3 mt-3 border-t border-gray-100">
+                            <p className="text-gray-600 line-clamp-2 text-sm">
+                              {member.description}
+                            </p>
+                          </div>
+                        )}
+                      </div>
                     </div>
-                    <div className="bg-gray-50 px-6 py-3 border-t border-gray-200">
-                      <Link
-                        href={`/membres/${member.id}`}
-                        className="text-[#f39c12] hover:text-[#e67e22] text-sm font-medium flex items-center transition-colors"
-                      >
-                        Voir la fiche complète
-                        <svg
-                          className="w-4 h-4 ml-1"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="M9 5l7 7-7 7"
-                          />
-                        </svg>
-                      </Link>
-                    </div>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
-            ) : (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="bg-white rounded-xl shadow-lg p-8 text-center border border-gray-100"
-              >
-                <svg
-                  className="mx-auto h-12 w-12 text-gray-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="1"
-                    d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <h3 className="mt-2 text-lg font-medium text-gray-900">
-                  Aucun résultat
-                </h3>
-                <p className="mt-1 text-gray-500">
-                  Aucune entreprise ne correspond à votre recherche "
-                  {searchTerm}"{" "}
-                  {selectedSector !== "Tous les membres" &&
-                    `dans le secteur "${selectedSector}"`}
-                </p>
-                <div className="mt-6">
-                  <button
-                    onClick={() => {
-                      setSearchTerm("");
-                      setSelectedSector("Tous les membres");
-                    }}
-                    className="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md shadow-sm text-white bg-[#f39c12] hover:bg-[#e67e22] focus:outline-none"
-                  >
-                    Réinitialiser les filtres
-                  </button>
-                </div>
-              </motion.div>
-            )}
+            </>
+          
           </div>
+           
         </div>
-
-        {/* Partenaires */}
-        <div className="mt-16">
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-2xl font-bold text-[#006633] mb-6 text-center"
-          >
-            Nos{" "}
-            <span className="text-[#f39c12]">partenaires institutionnels</span>
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-gray-600 max-w-3xl mx-auto text-center mb-8"
-          >
-            La FEG collabore avec {partners.length} institutions et
-            organisations pour promouvoir le développement économique du Gabon.
-          </motion.p>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6">
-            {displayedPartners.map((partner: Partner, index: number) => (
-              <motion.div
-                key={partner.id}
-                custom={index}
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true }}
-                variants={partnerVariants}
-                className="bg-white rounded-xl shadow-md p-4 flex items-center justify-center h-32 hover:shadow-lg transition-all border border-gray-100 hover:border-[#f39c12]"
-              >
-                {partner.logo ? (
-                  <Image
-                    src={partner.logo}
-                    alt={partner.name}
-                    width={120}
-                    height={80}
-                    className="object-contain max-h-16 hover:scale-105 transition-transform"
-                  />
-                ) : (
-                  <span className="text-sm text-center text-gray-500">
-                    {partner.name}
-                  </span>
-                )}
-              </motion.div>
-            ))}
-          </div>
-
-          {partners.length > 6 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.5 }}
-              className="text-center mt-8"
-            >
-              <button
-                onClick={() => setShowAllPartners(!showAllPartners)}
-                className="inline-flex items-center px-6 py-3 border border-[#f39c12] text-[#f39c12] rounded-lg hover:bg-[#fff5e6] font-medium transition-colors"
-              >
-                {showAllPartners ? "VOIR MOINS" : "TOUS NOS PARTENAIRES"}
-                <svg
-                  className={`w-4 h-4 ml-2 transition-transform ${
-                    showAllPartners ? "rotate-180" : ""
-                  }`}
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
-              </button>
-            </motion.div>
-          )}
-        </div>
+         <PartnersSection/>
       </div>
-    </div>
+    </>
   );
-};
-
-export default MembersPage;
+}
