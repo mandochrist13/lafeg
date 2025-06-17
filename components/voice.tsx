@@ -10,7 +10,7 @@ export default function VoiceOfBusiness() {
           <div className="lg:w-2/3 space-y-6">
             <h1 className="text-[32px] leading-[38px] font-bold text-[#1A1A1A]">
               La voix des affaires au Gabon,<br />
-              <span className="text-[#D97306]">une question d'engagement historique</span>
+              <span className="text-[#D97306] border-5 border-[#444]">une question d'engagement historique</span>
             </h1>
 
             <div className="space-y-5 text-[#666666] text-[16px] leading-[24px]">

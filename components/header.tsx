@@ -217,28 +217,28 @@ export default function Header() {
                 </button>
                 <div className="pl-4">
                   <Link
-                    href="/actualites"
+                    href="/activite/actualites"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Actualités
                   </Link>
                   <Link
-                    href="/agenda"
+                    href="/activite/agenda"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Agenda
                   </Link>
                   <Link
-                    href="/communiques"
+                    href="/activite/communiques"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Communiqués
                   </Link>
                   <Link
-                    href="/evenements"
+                    href="/activite/evenements"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -522,7 +522,7 @@ export default function Header() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
-                >
+                > 
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
@@ -533,7 +533,7 @@ export default function Header() {
               </button>
               <div className="absolute hidden group-hover:block bg-[#063d21] min-w-[220px] z-10 shadow-xl rounded-b-lg overflow-hidden animate-fadeIn">
                 <Link
-                  href="/actualites"
+                  href="/activite/actualites"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -553,7 +553,7 @@ export default function Header() {
                   Actualités
                 </Link>
                 <Link
-                  href="/agenda"
+                  href="/activite/agenda"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -573,7 +573,7 @@ export default function Header() {
                   Agenda
                 </Link>
                 <Link
-                  href="/communiques"
+                  href="/activite/communiques"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -593,7 +593,7 @@ export default function Header() {
                   Communiqués
                 </Link>
                 <Link
-                  href="/evenements"
+                  href="/activite/evenements"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
