@@ -62,7 +62,7 @@ export default function Services() {
   return (
     <>
       {/* En-tête avec image de fond */}
-      <div className="relative bg-[#006633] text-white py-20">
+      <div className="relative bg-[#063d21] text-white py-20">
         <div className="absolute inset-0 z-0">
           <img
             src="/images/banière.jpg"
@@ -84,7 +84,7 @@ export default function Services() {
       <div className="bg-white shadow-sm py-3">
         <div className="container mx-auto px-4">
           <div className="flex items-center text-sm">
-            <Link href="/" className="text-[#006633] hover:text-[#004d26]">
+            <Link href="/" className="text-[#063d21] hover:text-[#004d26]">
               ACCUEIL
             </Link>
             <span className="mx-2 text-gray-400">/</span>
@@ -229,7 +229,7 @@ export default function Services() {
 
             {/* Partenaires */}
             <div className="bg-white rounded-xl shadow-md p-5">
-              <h4 className="font-bold text-[#006633] mb-4">Nos partenaires</h4>
+              <h4 className="font-bold text-[#063d21] mb-4">Nos partenaires</h4>
               <div className="grid grid-cols-2 gap-3">
                 {[
                   { src: "/images/executive_club.png", alt: "Executive Club" },

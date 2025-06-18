@@ -35,7 +35,7 @@ export default function BecomeMemberForm() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="md:col-span-2">
-              <h2 className="text-3xl font-bold text-[#006633] mb-4">
+              <h2 className="text-3xl font-bold text-[#063d21] mb-4">
                 Bienvenue à la Fédération des Entreprises du Gabon
               </h2>
               <p className="text-gray-700 mb-4">

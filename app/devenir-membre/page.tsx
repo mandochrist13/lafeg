@@ -61,12 +61,12 @@ export default function DevenirMembre() {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-[#006633] mb-8">Devenir membre</h1>
+        <h1 className="text-3xl font-bold text-[#063d21] mb-8">Devenir membre</h1>
 
         {submitSuccess ? (
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle size={32} className="text-green-600" />
+              <CheckCircle size={32} className="text-[#063d21]" />
             </div>
             <h2 className="text-2xl font-bold mb-4">Demande envoyée avec succès !</h2>
             <p className="text-gray-700 mb-6">
@@ -107,7 +107,7 @@ export default function DevenirMembre() {
                           value={formData.companyName}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         />
                       </div>
 
@@ -121,7 +121,7 @@ export default function DevenirMembre() {
                           value={formData.sector}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         >
                           <option value="">Sélectionnez un secteur</option>
                           <option value="Agriculture">Agriculture</option>
@@ -152,7 +152,7 @@ export default function DevenirMembre() {
                         value={formData.address}
                         onChange={handleChange}
                         required
-                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                        className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                       />
                     </div>
 
@@ -167,7 +167,7 @@ export default function DevenirMembre() {
                           value={formData.employees}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         >
                           <option value="">Sélectionnez</option>
                           <option value="1-10">1-10</option>
@@ -189,7 +189,7 @@ export default function DevenirMembre() {
                           value={formData.turnover}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         >
                           <option value="">Sélectionnez</option>
                           <option value="Moins de 100 millions FCFA">Moins de 100 millions FCFA</option>
@@ -217,7 +217,7 @@ export default function DevenirMembre() {
                           value={formData.contactPerson}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         />
                       </div>
 
@@ -232,7 +232,7 @@ export default function DevenirMembre() {
                           value={formData.position}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         />
                       </div>
                     </div>
@@ -249,7 +249,7 @@ export default function DevenirMembre() {
                           value={formData.email}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         />
                       </div>
 
@@ -264,7 +264,7 @@ export default function DevenirMembre() {
                           value={formData.phone}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                         />
                       </div>
                     </div>
@@ -281,14 +281,14 @@ export default function DevenirMembre() {
                       onChange={handleChange}
                       required
                       rows={4}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                      className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                     ></textarea>
                   </div>
 
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="inline-flex items-center bg-[#006633] text-white px-6 py-3 rounded-md hover:bg-[#005528] transition-colors disabled:opacity-70"
+                    className="inline-flex items-center bg-[#063d21] text-white px-6 py-3 rounded-md hover:bg-[#005528] transition-colors disabled:opacity-70"
                   >
                     {isSubmitting ? (
                       <>Envoi en cours...</>

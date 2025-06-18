@@ -108,7 +108,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <Link href="/actualites" className="inline-flex items-center text-[#006633] hover:underline mb-6">
+        <Link href="/actualites" className="inline-flex items-center text-[#063d21] hover:underline mb-6">
           <ArrowLeft size={20} className="mr-2" /> Retour aux actualités
         </Link>
 
