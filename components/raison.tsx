@@ -115,7 +115,7 @@ export default function AdhesionSection() {
         </div>
 
         {/* Button - Responsive sizing */}
-        <button className="bg-transparent border-2 border-white text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded hover:bg-white hover:text-[#006633] transition-colors duration-300">
+        <button className="bg-transparent border-2 border-white text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base font-semibold rounded hover:bg-white hover:text-[#063d21] transition-colors duration-300">
           REJOIGNEZ-NOUS AUJOURD'HUI
         </button>
       </div>

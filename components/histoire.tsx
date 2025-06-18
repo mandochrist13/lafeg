@@ -3,113 +3,13 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-const HistoryPage: React.FC = () => {
+const Histoire: React.FC = () => {
   return (
     <>
-      <div className="relative bg-[#006633] text-white py-20">
-        {/* Image d'arrière-plan avec overlay */}
-        <div className="absolute inset-0 z-0">
-          <img
-            src="/images/banière.jpg"
-            alt="Arrière-plan entreprises membres"
-            className="w-full h-full object-cover opacity-20"
-          />
-        </div>
-
-        {/* Contenu par-dessus l'image */}
-        <div className="container mx-auto px-4 relative z-0">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            NOTRE HISTOIRE
-          </h1>
-          <p className="text-xl max-w-3xl opacity-90">
-            Bâtir ensemble une économie forte pour garantir la souveraineté
-            nationale. Notre institution contribue à un idéal commun : la
-            performance des entreprises gabonaises.
-          </p>
-        </div>
-      </div>
       <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Breadcrumb */}
-          <div className="mb-8">
-            <nav className="text-sm">
-              <ol className="flex space-x-2 text-gray-600">
-                <li>
-                  <a
-                    href="/"
-                    className="text-[#063d21] hover:text-[#16412a] transition-colors"
-                  >
-                    Accueil
-                  </a>
-                </li>
-                <li className="text-gray-400">/</li>
-                <li className="text-gray-500">Notre histoire</li>
-              </ol>
-            </nav>
-          </div>
-
-          <section className="mb-10">
-            <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4">
-              Mieux connaître la FEG
-            </h2>
-            <p className="text-gray-700 mb-6">
-              Bâtir ensemble une économie forte pour garantir la souveraineté
-              nationale. Notre institution contribue à un idéal commun : la
-              performance des entreprises gabonaises.
-            </p>
-
-            {/* Responsive Tabs */}
-            <div className="mb-8 overflow-x-auto">
-              <div className="flex flex-nowrap sm:flex-wrap gap-1 sm:gap-0">
-                <a
-                  href="/la-feg"
-                  className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
-                >
-                  À propos
-                </a>
-                <a
-                  href="/la-feg/president"
-                  className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
-                >
-                  Présidence
-                </a>
-                <a
-                  href="/la-feg/gouvernance"
-                  className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
-                >
-                  Gouvernance
-                </a>
-                <a
-                  href="/la-feg/histoire"
-                  className="whitespace-nowrap bg-[#f39c12] text-white px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-[#e67e22] transition"
-                >
-                  Notre histoire
-                </a>
-                <a
-                  href="/la-feg/valeurs"
-                  className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
-                >
-                  Nos valeurs
-                </a>
-                <a
-                  href="/la-feg/missions"
-                  className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
-                >
-                  Nos missions
-                </a>
-                <a
-                  href="/la-feg/services"
-                  className="whitespace-nowrap bg-gray-200 text-gray-700 px-4 py-2 sm:px-6 sm:py-3 font-medium text-sm hover:bg-gray-300 transition"
-                >
-                  Nos services
-                </a>
-              </div>
-            </div>
-          </section>
-
           <div className="flex flex-col lg:flex-row gap-8">
             {/* Main Content */}
-            <div className="lg:w-2/3">
+            <div className="">
               <div className="mb-10">
                 <h2 className="text-3xl font-bold text-gray-800 mb-4">
                   Mieux connaître la FEG
@@ -370,69 +270,10 @@ const HistoryPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            {/* Right Sidebar - Full width on mobile, 1/3 on desktop */}
-            <div className="lg:w-1/3 flex flex-col gap-6">
-              {/* President Card */}
-              <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-100">
-                <div className="mb-4 overflow-hidden rounded-lg">
-                  <Image
-                    src="/images/Mr_KOUAKOUA.jpg"
-                    alt="Alain-Claude KOUAKOUA"
-                    width={300}
-                    height={400}
-                    className="w-full h-auto hover:scale-105 transition-transform duration-500"
-                    layout="responsive"
-                  />
-                </div>
-                <h4 className="text-[#063d21] font-bold text-lg sm:text-xl mb-1">
-                  Alain-Claude KOUAKOUA
-                </h4>
-                <p className="text-gray-700 font-medium mb-2 text-sm sm:text-base">
-                  Président de La FEG
-                </p>
-                <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-[#e67e22]">
-                  "Bâtissons ensemble une économie forte pour garantir la
-                  souveraineté nationale"
-                </p>
-                <div></div>
-              </div>
-
-              {/* Partners Section */}
-              <div className="bg-white rounded-xl shadow-md p-5">
-                <h4 className="font-bold text-[#063d21] mb-4">
-                  Nos partenaires
-                </h4>
-                <div className="grid grid-cols-2 gap-3">
-                  {[
-                    {
-                      src: "/images/executive_club.png",
-                      alt: "Executive Club",
-                    },
-                    { src: "/images/iga.png", alt: "IGA" },
-                    { src: "/images/cch.png", alt: "CLUB CAPITAL HUMAIN" },
-                    { src: "/images/think_tank.png", alt: "Think Tank Fiscal" },
-                  ].map((partner) => (
-                    <div
-                      key={partner.alt}
-                      className="p-3 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center hover:shadow-sm transition-shadow h-20"
-                    >
-                      <Image
-                        src={partner.src}
-                        alt={partner.alt}
-                        width={120}
-                        height={60}
-                        className="h-10 w-auto object-contain"
-                      />
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-      </section>
+        </section>
     </>
   );
 };
 
-export default HistoryPage;
+export default Histoire;

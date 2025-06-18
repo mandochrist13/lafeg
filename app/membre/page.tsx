@@ -425,7 +425,7 @@ export default function MembersPage() {
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     placeholder="Rechercher une entreprise membre..."
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#006633] focus:border-[#006633] outline-none pl-12"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-1 focus:ring-[#063d21] focus:border-[#063d21] outline-none pl-12"
                   />
                   <svg
                     className="absolute left-4 top-3.5 h-5 w-5 text-gray-400"
