@@ -138,7 +138,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <Link href="/evenements" className="inline-flex items-center text-[#006633] hover:underline mb-6">
+        <Link href="/evenements" className="inline-flex items-center text-[#063d21] hover:underline mb-6">
           <ArrowLeft size={20} className="mr-2" /> Retour aux événements
         </Link>
 
@@ -153,32 +153,32 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
               <div className="space-y-4">
                 <div className="flex items-center text-gray-700">
-                  <Calendar size={20} className="mr-3 text-[#006633]" />
+                  <Calendar size={20} className="mr-3 text-[#063d21]" />
                   <span>{eventItem.date}</span>
                 </div>
                 <div className="flex items-center text-gray-700">
-                  <Clock size={20} className="mr-3 text-[#006633]" />
+                  <Clock size={20} className="mr-3 text-[#063d21]" />
                   <span>{eventItem.time}</span>
                 </div>
                 <div className="flex items-center text-gray-700">
-                  <MapPin size={20} className="mr-3 text-[#006633]" />
+                  <MapPin size={20} className="mr-3 text-[#063d21]" />
                   <span>{eventItem.location}</span>
                 </div>
               </div>
               <div className="space-y-4">
                 <div className="flex items-center text-gray-700">
-                  <User size={20} className="mr-3 text-[#006633]" />
+                  <User size={20} className="mr-3 text-[#063d21]" />
                   <span>{eventItem.organizer}</span>
                 </div>
                 <div className="flex items-center text-gray-700">
-                  <Users size={20} className="mr-3 text-[#006633]" />
+                  <Users size={20} className="mr-3 text-[#063d21]" />
                   <span>{eventItem.participants}</span>
                 </div>
               </div>
             </div>
 
             <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4 text-[#006633]">Description</h2>
+              <h2 className="text-xl font-bold mb-4 text-[#063d21]">Description</h2>
               <div className="prose max-w-none">
                 {eventItem.description.map((paragraph, index) => (
                   <p key={index} className="mb-4">
@@ -190,7 +190,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
 
             {eventItem.program.length > 0 && (
               <div>
-                <h2 className="text-xl font-bold mb-4 text-[#006633]">Programme</h2>
+                <h2 className="text-xl font-bold mb-4 text-[#063d21]">Programme</h2>
                 <div className="bg-gray-50 p-4 rounded-lg">
                   <table className="w-full">
                     <thead>

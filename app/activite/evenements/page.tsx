@@ -96,7 +96,7 @@ export default function Evenements() {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-[#006633] mb-8">Événements</h1>
+        <h1 className="text-3xl font-bold text-[#063d21] mb-8">Événements</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {events.map((event, index) => (

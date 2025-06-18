@@ -137,49 +137,49 @@ export default function Header() {
                 </button>
                 <div className="pl-4">
                   <Link
-                    href="/la-feg"
+                    href="/la-feg#a-propos"  scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     À propos de nous
                   </Link>
                   <Link
-                    href="/la-feg/president"
+                   href="/la-feg#presidence"   scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Le président
                   </Link>
                   <Link
-                    href="/la-feg/gouvernance"
+                     href="/la-feg#gouvernance"   scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     La gouvernance
                   </Link>
                   <Link
-                    href="/la-feg/histoire"
+                    href="/la-feg#histoire"   scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Notre histoire
                   </Link>
                   <Link
-                    href="/la-feg/valeurs"
+                    href="/la-feg#valeurs"   scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos valeurs
                   </Link>
                   <Link
-                    href="/la-feg/services"
+                    href="/la-feg#services"   scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos services
                   </Link>
                   <Link
-                    href="/la-feg/phototheque"
+                    href="/la-feg#phototheque"   scroll={false}
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -362,7 +362,7 @@ export default function Header() {
               </button>
               <div className="absolute hidden group-hover:block bg-[#063d21] min-w-[250px] z-10 shadow-xl rounded-b-lg overflow-hidden animate-fadeIn">
                 <Link
-                  href="/la-feg"
+                  href="/la-feg#a-propos"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -382,7 +382,7 @@ export default function Header() {
                   À propos de nous
                 </Link>
                 <Link
-                  href="/la-feg/president"
+                  href="/la-feg#presidence"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -402,7 +402,7 @@ export default function Header() {
                   Le président
                 </Link>
                 <Link
-                  href="/la-feg/gouvernance"
+                  href="/la-feg#gouvernance"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -422,7 +422,7 @@ export default function Header() {
                   La gouvernance
                 </Link>
                 <Link
-                  href="/la-feg/histoire"
+                  href="/la-feg#histoire"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -442,7 +442,7 @@ export default function Header() {
                   Notre histoire
                 </Link>
                 <Link
-                  href="/la-feg/valeurs"
+                  href="/la-feg#valeurs"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -462,7 +462,7 @@ export default function Header() {
                   Nos valeurs
                 </Link>
                 <Link
-                  href="/la-feg/services"
+                  href="/la-feg#services"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -482,7 +482,7 @@ export default function Header() {
                   Nos services
                 </Link>
                 <Link
-                  href="/la-feg/phototheque"
+                  href="/la-feg#phototheque"  scroll={false}
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg

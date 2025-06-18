@@ -49,7 +49,7 @@ export default function Contact() {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-[#006633] mb-8">Contact</h1>
+        <h1 className="text-3xl font-bold text-[#] mb-8">Contact</h1>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>
@@ -124,7 +124,7 @@ export default function Contact() {
                     value={formData.name}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                   />
                 </div>
 
@@ -139,7 +139,7 @@ export default function Contact() {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                    className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                   />
                 </div>
               </div>
@@ -155,7 +155,7 @@ export default function Contact() {
                   value={formData.subject}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                 />
               </div>
 
@@ -170,14 +170,14 @@ export default function Contact() {
                   onChange={handleChange}
                   required
                   rows={6}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#006633]"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-[#063d21]"
                 ></textarea>
               </div>
 
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="inline-flex items-center bg-[#006633] text-white px-6 py-3 rounded-md hover:bg-[#005528] transition-colors disabled:opacity-70"
+                className="inline-flex items-center bg-[#063d21] text-white px-6 py-3 rounded-md hover:bg-[#005528] transition-colors disabled:opacity-70"
               >
                 {isSubmitting ? (
                   <>Envoi en cours...</>
