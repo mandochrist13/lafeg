@@ -19,7 +19,7 @@ function PublicationCard({ title, type, date, description, imageUrl, fileUrl }: 
       </div>
       <div className="p-6">
         <div className="flex items-center justify-between mb-3">
-          <span className="bg-[#006633] text-white text-sm px-3 py-1 rounded-full">{type}</span>
+          <span className="bg-[#063d21] text-white text-sm px-3 py-1 rounded-full">{type}</span>
           <div className="flex items-center text-gray-500">
             <Calendar size={16} className="mr-1" />
             <span className="text-sm">{date}</span>
@@ -30,7 +30,7 @@ function PublicationCard({ title, type, date, description, imageUrl, fileUrl }: 
         <p className="text-gray-700 mb-4">{description}</p>
 
         <div className="flex justify-between items-center">
-          <Link href={fileUrl} className="inline-flex items-center text-[#006633] hover:underline">
+          <Link href={fileUrl} className="inline-flex items-center text-[#063d21] hover:underline">
             <FileText size={16} className="mr-2" />
             Consulter
           </Link>
@@ -110,7 +110,7 @@ export default function Publications() {
   return (
     <div className="py-12">
       <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-[#006633] mb-8">Publications</h1>
+        <h1 className="text-3xl font-bold text-[#063d21] mb-8">Publications</h1>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {publications.map((publication, index) => (

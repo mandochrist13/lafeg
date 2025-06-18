@@ -137,49 +137,49 @@ export default function Header() {
                 </button>
                 <div className="pl-4">
                   <Link
-                    href="/la-feg"
+                    href="/la-feg?tab=a-propos"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     À propos de nous
                   </Link>
                   <Link
-                    href="/la-feg/president"
+                    href="/la-feg?tab=presidence"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Le président
                   </Link>
                   <Link
-                    href="/la-feg/gouvernance"
+                    href="/la-feg?tab=gouvernance"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     La gouvernance
                   </Link>
                   <Link
-                    href="/la-feg/histoire"
+                    href="/la-feg?tab=histoire"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Notre histoire
                   </Link>
                   <Link
-                    href="/la-feg/valeurs"
+                    href="/la-feg?tab=valeurs"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos valeurs
                   </Link>
                   <Link
-                    href="/la-feg/services"
+                    href="/la-feg?tab=services"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos services
                   </Link>
                   <Link
-                    href="/la-feg/phototheque"
+                    href="/la-feg?tab=phototheque"
                     className="block px-4 py-2 hover:bg-[#005528] transition-colors duration-200"
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -321,7 +321,7 @@ export default function Header() {
             {/* Logo & Accueil */}
             <Link
               href="/"
-             className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200"
+              className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -362,7 +362,7 @@ export default function Header() {
               </button>
               <div className="absolute hidden group-hover:block bg-[#063d21] min-w-[250px] z-10 shadow-xl rounded-b-lg overflow-hidden animate-fadeIn">
                 <Link
-                  href="/la-feg"
+                  href="/la-feg?tab=a-propos"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -382,7 +382,7 @@ export default function Header() {
                   À propos de nous
                 </Link>
                 <Link
-                  href="/la-feg/president"
+                  href="/la-feg?tab=presidence"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -402,7 +402,7 @@ export default function Header() {
                   Le président
                 </Link>
                 <Link
-                  href="/la-feg/gouvernance"
+                  href="/la-feg?tab=gouvernance"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -422,7 +422,7 @@ export default function Header() {
                   La gouvernance
                 </Link>
                 <Link
-                  href="/la-feg/histoire"
+                  href="/la-feg?tab=histoire"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -442,7 +442,7 @@ export default function Header() {
                   Notre histoire
                 </Link>
                 <Link
-                  href="/la-feg/valeurs"
+                  href="/la-feg?tab=valeurs"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -462,7 +462,7 @@ export default function Header() {
                   Nos valeurs
                 </Link>
                 <Link
-                  href="/la-feg/services"
+                  href="/la-feg?tab=services"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -482,7 +482,7 @@ export default function Header() {
                   Nos services
                 </Link>
                 <Link
-                  href="/la-feg/phototheque"
+                  href="/la-feg?tab=phototheque"
                   className=" px-6 py-3 hover:bg-[#005528] transition-colors duration-200 flex items-center"
                 >
                   <svg
@@ -522,7 +522,7 @@ export default function Header() {
                   stroke="currentColor"
                   viewBox="0 0 24 24"
                   xmlns="http://www.w3.org/2000/svg"
-                > 
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

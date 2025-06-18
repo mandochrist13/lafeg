@@ -110,7 +110,7 @@ export default function PartnersSection() {
             className="absolute left-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors hidden md:block"
             aria-label="Précédent"
           >
-            <ChevronLeft size={24} className="text-[#006633]" />
+            <ChevronLeft size={24} className="text-[#063d21]" />
           </button>
 
           <div
@@ -148,14 +148,14 @@ export default function PartnersSection() {
             className="absolute right-0 top-1/2 transform -translate-y-1/2 z-10 bg-white rounded-full p-3 shadow-lg hover:bg-gray-100 transition-colors hidden md:block"
             aria-label="Suivant"
           >
-            <ChevronRight size={24} className="text-[#006633]" />
+            <ChevronRight size={24} className="text-[#063d21]" />
           </button>
         </div>
 
         <div className="flex justify-center mt-10">
           <Link
             href="/partenaires"
-            className="border-2 border-[#006633] text-[#006633] px-8 py-3 rounded-lg font-semibold hover:bg-[#006633] hover:text-white transition-all duration-300"
+            className="border-2 border-[#063d21] text-[#063d21] px-8 py-3 rounded-lg font-semibold hover:bg-[#063d21] hover:text-white transition-all duration-300"
           >
             TOUT AFFICHER
           </Link>

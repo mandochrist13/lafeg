@@ -2,9 +2,10 @@ import type React from "react"
 import type { Metadata } from "next"
 import { Inter } from "next/font/google"
 import "./globals.css"
-import Header from "@/components/header"
 import EnhancedFooter from "@/components/enhanced-footer"
-
+import { ThemeProvider } from "@/components/theme-provider";
+import { Providers } from "@/app/providers";
+import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
@@ -21,8 +22,28 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className={inter.className}>
-        <Header />
-        <main>{children}</main>
+      
+         <ThemeProvider
+          attribute="class"
+          defaultTheme="light"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Providers>{children}</Providers> 
+        
+        </ThemeProvider>
+        <Toaster
+          position="top-right"
+          richColors
+          closeButton
+          toastOptions={{
+            className: "text-base",
+            style: {
+              borderRadius: "8px",
+              padding: "12px",
+            },
+          }}
+        />
        
         <EnhancedFooter />
       </body>
