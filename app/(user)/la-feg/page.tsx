@@ -11,23 +11,22 @@ import Histoire from "../../components/histoire";
 import Valeurs from "../../components/valeur";
 import Services from "../../components/service";
 import Phototheque from "../../components/phototheque";
+import { Suspense } from "react";
 
 interface TabContent {
   title: string;
   content: string;
 }
 
-export default function LaFeg() {
+function TabComponent() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const [selectedTab, setSelectedTab] = useState("a-propos");
 
-  // Contenu pour chaque onglet
   const tabContents: Record<string, TabContent> = {
     "a-propos": {
-      title: "À propos ",
-      content:
-        "La Fédération des Entreprises du Gabon est une organisation patronale...",
+      title: "À propos",
+      content: "La Fédération des Entreprises du Gabon est une organisation patronale...",
     },
     presidence: {
       title: "Présidence",
@@ -51,33 +50,21 @@ export default function LaFeg() {
     },
     phototheque: {
       title: "Photothèque",
-      content:
-        "Découvrez notre photothèque avec des images de nos activités...",
+      content: "Découvrez notre photothèque avec des images de nos activités...",
     },
   };
 
-  // Synchronisation avec l'URL
   useEffect(() => {
-    const hash = window.location.hash.substring(1);
-    if (hash && Object.keys(tabContents).includes(hash)) {
-      setSelectedTab(hash);
+    const tabParam = searchParams.get('tab');
+    if (tabParam && tabParam in tabContents) {
+      setSelectedTab(tabParam);
     }
-  }, [pathname, searchParams, tabContents]);
+  }, [searchParams]);
 
   const handleTabChange = (value: string) => {
     setSelectedTab(value);
-    // Mise à jour de l'URL sans rechargement
-    if (pathname === "/la-feg") {
-      window.history.pushState(null, "", `#${value}`);
-    } else {
-      window.location.href = `/la-feg#${value}`;
-    }
-
-    // Défilement vers la section
-    const element = document.getElementById(value);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+    const newUrl = `${pathname}?tab=${value}`;
+    window.history.pushState(null, "", newUrl);
   };
 
   return (
@@ -112,7 +99,9 @@ export default function LaFeg() {
               ACCUEIL
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-[#f39c12] font-medium">{tabContents[selectedTab]?.title || "La FEG"}</span>
+            <span className="text-[#f39c12] font-medium">
+              {tabContents[selectedTab]?.title || "La FEG"}
+            </span>
           </div>
         </div>
       </div>
@@ -120,7 +109,6 @@ export default function LaFeg() {
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
-          {/* Left Content - Main */}
           <div className="lg:w-2/3">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
               Mieux connaître la FEG
@@ -143,36 +131,35 @@ export default function LaFeg() {
                     value={tabKey}
                     className="text-white hover:bg-[#f39c12]"
                   >
-                   {tabContents[tabKey]?.title || tabKey}
+                    {tabContents[tabKey]?.title || tabKey}
                   </TabsTrigger>
                 ))}
               </TabsList>
 
-              <TabsContent id="a-propos" value="a-propos">
+              <TabsContent value="a-propos">
                 <A_propos />
               </TabsContent>
-              <TabsContent id="presidence" value="presidence">
+              <TabsContent value="presidence">
                 <President />
               </TabsContent>
-              <TabsContent id="gouvernance" value="gouvernance">
+              <TabsContent value="gouvernance">
                 <Gouvernance />
               </TabsContent>
-              <TabsContent id="histoire" value="histoire">
+              <TabsContent value="histoire">
                 <Histoire />
               </TabsContent>
-              <TabsContent id="valeurs" value="valeurs">
+              <TabsContent value="valeurs">
                 <Valeurs />
               </TabsContent>
-              <TabsContent id="services" value="services">
+              <TabsContent value="services">
                 <Services />
               </TabsContent>
-              <TabsContent id="phototheque" value="phototheque">
+              <TabsContent value="phototheque">
                 <Phototheque />
               </TabsContent>
             </Tabs>
           </div>
 
-          {/* Right Sidebar */}
           <div className="lg:w-1/3 flex flex-col gap-6">
             {/* President Card */}
             <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-100">
@@ -227,5 +214,13 @@ export default function LaFeg() {
         </div>
       </div>
     </div>
+  );
+}
+
+export default function LaFeg() {
+  return (
+    <Suspense fallback={<div>Chargement...</div>}>
+      <TabComponent />
+    </Suspense>
   );
 }
