@@ -4,13 +4,13 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import A_propos from "../../components/a_propos";
-import President from "../../components/president";
-import Gouvernance from "../../components/gouvernance";
-import Histoire from "../../components/histoire";
-import Valeurs from "../../components/valeur";
-import Services from "../../components/service";
-import Phototheque from "../../components/phototheque";
+import A_propos from "@/components/a_propos";
+import President from "@/components/president";
+import Gouvernance from "@/components/gouvernance";
+import Histoire from "@/components/histoire";
+import Valeurs from "@/components/valeur";
+import Services from "@/components/service";
+import Phototheque from "@/components/phototheque";
 import { Suspense } from "react";
 
 interface TabContent {
