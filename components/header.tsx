@@ -663,7 +663,7 @@ export default function Header() {
               </div>
             </div>
 
-            {/* Nos Publications - Dropdown */}
+            {/* Nos Publications - Dropd */}
             <div className="group relative">
               <button className={`px-6 py-3 font-semibold text-md flex items-center transition-all duration-300 ${
                 (isActive("/documentation") || isActive("/presse-media") || isActive("/publications"))
