@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 
 import { useState, useEffect } from "react";
 import { X } from "lucide-react";
@@ -18,11 +19,13 @@ export default function HolidayModal() {
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-[#000]/60 backdrop-blur-sm p-4">
       {/* Conteneur de l'image avec ratio 16/9 */}
-      <div className="relative flex justify-center items-center w-full max-w-4xl aspect-[16/9]">
-        <img
-          src="/images/1ermai.jpg"
+      <div className="relative flex justify-center items-center w-full max-w-5xl aspect-[16/12] lg:aspect-[16/9]">
+        <Image
+        width={800}
+        height={450}
+          src="/images/nomitation.jpg"
           alt="1er Mai - Fête du Travail"
-          className="object-center w-[70%] h-[100%] rounded-sm"
+          className="object-center object-cover w-auto h-[100%] rounded-sm"
         />
         
         {/* Bouton fermer stylisé */}

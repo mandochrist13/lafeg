@@ -57,7 +57,7 @@ export default function Contact() {
 
             <div className="space-y-6 mb-8">
               <div className="flex items-start">
-                <MapPin size={24} className="mr-4 text-[#f39c12] flex-shrink-0" />
+                <MapPin size={24} className="mr-4 text-bronze-base flex-shrink-0" />
                 <div>
                   <h3 className="font-bold mb-1">Adresse</h3>
                   <p>Immeuble ODYSSEE, Boulevard de l'Indépendance, BP 415, Libreville, Gabon</p>
@@ -65,7 +65,7 @@ export default function Contact() {
               </div>
 
               <div className="flex items-start">
-                <Phone size={24} className="mr-4 text-[#f39c12] flex-shrink-0" />
+                <Phone size={24} className="mr-4 text-bronze-base flex-shrink-0" />
                 <div>
                   <h3 className="font-bold mb-1">Téléphone</h3>
                   <p>+241 011 77 55 57</p>
@@ -73,7 +73,7 @@ export default function Contact() {
               </div>
 
               <div className="flex items-start">
-                <Mail size={24} className="mr-4 text-[#f39c12] flex-shrink-0" />
+                <Mail size={24} className="mr-4 text-bronze-base flex-shrink-0" />
                 <div>
                   <h3 className="font-bold mb-1">Email</h3>
                   <p>info@feg.ga</p>

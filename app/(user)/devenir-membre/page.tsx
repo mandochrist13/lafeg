@@ -310,7 +310,7 @@ export default function DevenirMembre() {
                 <ul className="space-y-3">
                   {benefits.map((benefit, index) => (
                     <li key={index} className="flex items-start">
-                      <CheckCircle size={20} className="text-[#f39c12] mr-2 flex-shrink-0 mt-1" />
+                      <CheckCircle size={20} className="text-bronze-base mr-2 flex-shrink-0 mt-1" />
                       <span>{benefit}</span>
                     </li>
                   ))}

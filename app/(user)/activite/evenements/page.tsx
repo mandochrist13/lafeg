@@ -40,7 +40,7 @@ function EventCard({ title, date, time, location, description, imageUrl, slug }:
 
         <Link
           href={`/evenements/${slug}`}
-          className="inline-block bg-[#f39c12] text-white px-4 py-2 rounded hover:bg-[#e67e22]"
+          className="inline-block bg-primary hover:bg-primary-800 text-white px-4 py-2 rounded"
         >
           En savoir plus
         </Link>

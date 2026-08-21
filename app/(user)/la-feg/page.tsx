@@ -2,6 +2,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+
 import { usePathname, useSearchParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import A_propos from "@/components/a_propos";
@@ -72,8 +73,10 @@ function TabComponent() {
       {/* Hero Section */}
       <div className="relative bg-[#063d21] text-white py-12 md:py-20">
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/images/banière.jpg"
+            width={1920}
+            height={1080}
             alt="Arrière-plan entreprises membres"
             className="w-full h-full object-cover opacity-20"
           />
@@ -99,7 +102,7 @@ function TabComponent() {
               ACCUEIL
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-[#f39c12] font-medium">
+            <span className="text-bronze-base font-medium">
               {tabContents[selectedTab]?.title || "La FEG"}
             </span>
           </div>
@@ -129,7 +132,7 @@ function TabComponent() {
                   <TabsTrigger
                     key={tabKey}
                     value={tabKey}
-                    className="text-white hover:bg-[#f39c12]"
+                    className="text-white hover:bg-bronze-light hover:text-primary-900"
                   >
                     {tabContents[tabKey]?.title || tabKey}
                   </TabsTrigger>
@@ -162,7 +165,7 @@ function TabComponent() {
 
           <div className="lg:w-1/3 flex flex-col gap-6">
             {/* President Card */}
-            <div className="bg-white p-4 sm:p-6 rounded-lg shadow-md border border-gray-100">
+            <div className="bg-[#f5f5f5] p-4 sm:p-6 rounded-lg shadow-md border border-gray-100">
               <div className="mb-4 overflow-hidden rounded-lg">
                 <Image
                   src="/images/Mr_KOUAKOUA.jpg"
@@ -179,16 +182,16 @@ function TabComponent() {
               <p className="text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Président de La FEG
               </p>
-              <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-[#f39c12]">
+              <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-bronze-base">
                 "Bâtissons ensemble une économie forte pour garantir la
                 souveraineté nationale"
               </p>
             </div>
 
             {/* Partners Section */}
-            <div className="bg-white rounded-xl shadow-md p-5">
+            <div className="bg-[#f5f5f5] rounded-xl shadow-md p-5">
               <h4 className="font-bold text-[#063d21] mb-4">Nos partenaires</h4>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid gap-3">
                 {[
                   { src: "/images/executive_club.png", alt: "Executive Club" },
                   { src: "/images/iga.png", alt: "IGA" },
@@ -197,14 +200,14 @@ function TabComponent() {
                 ].map((partner) => (
                   <div
                     key={partner.alt}
-                    className="p-3 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center hover:shadow-sm transition-shadow h-20"
+                    className="p-3 bg-gray-50 rounded-lg border border-gray-200 flex items-center justify-center hover:shadow-sm transition-shadow "
                   >
                     <Image
                       src={partner.src}
                       alt={partner.alt}
-                      width={120}
-                      height={60}
-                      className="h-10 w-auto object-contain"
+                      width={200}
+                      height={200}
+                      className="h-20 w-auto object-cover object-center"
                     />
                   </div>
                 ))}

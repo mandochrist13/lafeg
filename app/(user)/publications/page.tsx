@@ -37,7 +37,7 @@ function PublicationCard({ title, type, date, description, imageUrl, fileUrl }: 
 
           <Link
             href={fileUrl}
-            className="inline-flex items-center bg-[#f39c12] text-white px-3 py-1 rounded hover:bg-[#e67e22]"
+            className="inline-flex items-center bg-primary hover:bg-primary-800 text-white px-3 py-1 rounded"
             download
           >
             <Download size={16} className="mr-2" />

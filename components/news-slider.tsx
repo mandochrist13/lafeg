@@ -98,9 +98,9 @@ export default function NewsSlider() {
         {/* Slide actuelle */}
         <div className="flex flex-col lg:flex-row h-auto min-h-[400px] bg-white rounded-lg overflow-hidden shadow-md border border-gray-100">
           {/* Partie texte */}
-          <div className="lg:w-1/2 w-full p-6 sm:p-8 bg-[#f39c12] text-white flex flex-col">
+          <div className="lg:w-1/2 w-full p-6 sm:p-8 bg-primary text-white flex flex-col">
             <div className="mb-4">
-              <span className="inline-block bg-white text-[#f39c12] px-3 py-1 rounded-md text-sm font-medium">
+              <span className="inline-block bg-bronze-light text-primary-900 px-3 py-1 rounded-md text-sm font-medium">
                 {slides[currentSlide].date}
               </span>
             </div>
@@ -142,7 +142,7 @@ export default function NewsSlider() {
               key={index}
               onClick={() => goToSlide(index)}
               className={`w-3 h-3 rounded-full transition-all ${
-                index === currentSlide ? "bg-[#f39c12] w-6" : "bg-gray-300"
+                index === currentSlide ? "bg-bronze-base w-6" : "bg-gray-300"
               }`}
               aria-label={`Aller à l'actualité ${index + 1}`}
             />
