@@ -1,14 +1,22 @@
 "use client";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { Facebook, Linkedin, Twitter, Youtube, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  // Helper function to check if a path is active
+  const isActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname?.startsWith(path);
   };
 
   return (
@@ -95,7 +103,11 @@ export default function Header() {
             <div className="flex flex-col space-y-4">
               <Link
                 href="/"
-                className="px-4 py-3 font-bold text-sm bg-[#f39c12] hover:bg-[#e67e22] flex items-center transition-all duration-300"
+                className={`px-4 py-3 font-bold text-sm flex items-center transition-all duration-300 relative ${
+                  isActive("/")
+                    ? "bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 border-l-4 border-bronze-lighter shadow-lg"
+                    : "bg-primary-100 text-primary-900 hover:bg-primary-700 hover:text-white hover:pl-6"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <svg
@@ -118,7 +130,11 @@ export default function Header() {
 
               {/* Mobile Dropdown - La FEG */}
               <div className="group">
-                <button className="w-full px-4 py-3 font-semibold text-sm hover:bg-[#005528] flex justify-between items-center transition-all duration-200">
+                <button className={`w-full px-4 py-3 font-semibold text-sm flex justify-between items-center transition-all duration-300 ${
+                  isActive("/la-feg")
+                    ? "bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 border-l-4 border-bronze-lighter shadow-lg"
+                    : "hover:bg-[#005528] hover:pl-6"
+                }`}>
                   LA FEG
                   <svg
                     className="ml-1 h-4 w-4 transition-transform duration-200"
@@ -190,7 +206,11 @@ export default function Header() {
 
               <Link
                 href="/membre"
-                className="px-4 py-3 font-semibold text-sm hover:bg-[#005528] transition-colors duration-200 block"
+                className={`px-4 py-3 font-semibold text-sm transition-all duration-300 block ${
+                  isActive("/membre")
+                    ? "bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 border-l-4 border-bronze-lighter shadow-lg"
+                    : "hover:bg-[#005528] hover:pl-6"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 NOS MEMBRES
@@ -198,7 +218,11 @@ export default function Header() {
 
               {/* Mobile Dropdown - Nos Activités */}
               <div className="group">
-                <button className="w-full px-4 py-3 font-semibold text-sm hover:bg-[#005528] flex justify-between items-center transition-all duration-200">
+                <button className={`w-full px-4 py-3 font-semibold text-sm flex justify-between items-center transition-all duration-300 ${
+                  isActive("/activite")
+                    ? "bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 border-l-4 border-bronze-lighter shadow-lg"
+                    : "hover:bg-[#005528] hover:pl-6"
+                }`}>
                   NOS ACTIVITÉS
                   <svg
                     className="ml-1 h-4 w-4 transition-transform duration-200"
@@ -249,7 +273,11 @@ export default function Header() {
 
               {/* Mobile Dropdown - Nos Publications */}
               <div className="group">
-                <button className="w-full px-4 py-3 font-semibold text-sm hover:bg-[#005528] flex justify-between items-center transition-all duration-200">
+                <button className={`w-full px-4 py-3 font-semibold text-sm flex justify-between items-center transition-all duration-300 ${
+                  (isActive("/documentation") || isActive("/presse-media") || isActive("/publications"))
+                    ? "bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 border-l-4 border-bronze-lighter shadow-lg"
+                    : "hover:bg-[#005528] hover:pl-6"
+                }`}>
                   NOS PUBLICATIONS
                   <svg
                     className="ml-1 h-4 w-4 transition-transform duration-200"
@@ -286,7 +314,11 @@ export default function Header() {
 
               <Link
                 href="/contact"
-                className="px-4 py-3 font-semibold text-sm hover:bg-[#005528] transition-colors duration-200 block"
+                className={`px-4 py-3 font-semibold text-sm transition-all duration-300 block ${
+                  isActive("/contact")
+                    ? "bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 border-l-4 border-bronze-lighter shadow-lg"
+                    : "hover:bg-[#005528] hover:pl-6"
+                }`}
                 onClick={() => setIsMenuOpen(false)}
               >
                 CONTACT
@@ -294,7 +326,7 @@ export default function Header() {
 
               <Link
                 href="/devenir-membre"
-                className="px-4 py-3 bg-[#f39c12] font-bold text-sm hover:bg-[#e67e22] inline-block transition-all duration-300 mt-2"
+                className="px-4 py-3 bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 animate-shimmer font-bold text-sm hover:from-bronze-lighter hover:to-bronze-medium inline-block transition-all duration-400 ease-out mt-2 rounded-md"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <svg
@@ -317,11 +349,15 @@ export default function Header() {
           </div>
 
           {/* Desktop Menu - hidden on mobile */}
-          <div className="hidden md:flex flex-wrap items-center w-full">
+          <div className="hidden md:flex md:py-2 flex-wrap items-center w-full">
             {/* Logo & Accueil */}
             <Link
               href="/"
-              className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200"
+              className={`px-6 py-2 font-semibold text-md flex items-center transition-all duration-300 ${
+                isActive("/")
+                  ? "bg-bronze-base text-primary-900"
+                  : "hover:bg-[#005528]"
+              }`}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -343,7 +379,11 @@ export default function Header() {
 
             {/* La FEG - Dropdown */}
             <div className="group relative">
-              <button className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200">
+              <button className={`px-6 py-3 font-semibold text-md flex items-center transition-all duration-300 ${
+                isActive("/la-feg")
+                  ? "bg-bronze-base text-primary-900"
+                  : "hover:bg-[#005528]"
+              }`}>
                 LA FEG
                 <svg
                   className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
@@ -507,14 +547,22 @@ export default function Header() {
             {/* Nos Membres */}
             <Link
               href="/membre"
-              className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] transition-colors duration-200"
+              className={`px-6 py-3 font-semibold text-md transition-all duration-300 ${
+                isActive("/membre")
+                  ? "bg-bronze-base text-primary-900"
+                  : "hover:bg-[#005528]"
+              }`}
             >
               NOS MEMBRES
             </Link>
 
             {/* Nos Activités - Dropdown */}
             <div className="group relative">
-              <button className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200">
+              <button className={`px-6 py-3 font-semibold text-md flex items-center transition-all duration-300 ${
+                isActive("/activite")
+                  ? "bg-bronze-base text-primary-900"
+                  : "hover:bg-[#005528]"
+              }`}>
                 NOS ACTIVITÉS
                 <svg
                   className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
@@ -617,7 +665,11 @@ export default function Header() {
 
             {/* Nos Publications - Dropdown */}
             <div className="group relative">
-              <button className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] flex items-center transition-all duration-200">
+              <button className={`px-6 py-3 font-semibold text-md flex items-center transition-all duration-300 ${
+                (isActive("/documentation") || isActive("/presse-media") || isActive("/publications"))
+                  ? "bg-bronze-base text-primary-900"
+                  : "hover:bg-[#005528]"
+              }`}>
                 NOS PUBLICATIONS
                 <svg
                   className="ml-1 h-4 w-4 transition-transform duration-200 group-hover:rotate-180"
@@ -681,16 +733,20 @@ export default function Header() {
             {/* Contact */}
             <Link
               href="/contact"
-              className="px-6 py-3 font-semibold text-sm hover:bg-[#005528] transition-colors duration-200"
+              className={`px-6 py-3 font-semibold text-md transition-all duration-300 ${
+                isActive("/contact")
+                  ? "bg-bronze-base text-primary-900"
+                  : "hover:bg-[#005528]"
+              }`}
             >
               CONTACT
             </Link>
 
-            {/* Bouton Devenir Membre - Mise en valeur */}
+            {/* Bouton Devenir Membre - Mise en valeur avec effet bronze shimmer */}
             <div className="ml-auto">
               <Link
                 href="/devenir-membre"
-                className="px-6 py-3 bg-[#f39c12] font-bold text-sm hover:bg-[#e67e22] inline-block transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                className="px-6 py-3 bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 animate-shimmer font-bold text-sm hover:from-bronze-lighter hover:to-bronze-medium inline-block transition-all duration-400 ease-out shadow-md hover:shadow-lg rounded-md"
               >
                 <svg
                   className="w-4 h-4 inline mr-2 -mt-1"
