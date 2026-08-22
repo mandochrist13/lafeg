@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Menu, X, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 
 export default function Header() {
@@ -191,13 +191,16 @@ export default function Header() {
                 </div>
               </div>
 
-              {/* Bouton Contact avec flèche */}
+              {/* Contact */}
               <Link
                 href="/contact"
-                className="ml-2 px-5 py-2.5 bg-primary-900 text-white font-semibold text-sm uppercase rounded-lg hover:bg-primary-800 transition-all duration-300 ease-out flex items-center gap-2 shadow-md hover:shadow-xl transform hover:scale-105 group"
+                className={`px-4 py-2 font-semibold text-sm uppercase transition-all duration-300 ease-out rounded-lg transform hover:scale-105 ${
+                  isActive("/contact")
+                    ? "text-white bg-primary-900 shadow-md"
+                    : "text-gray-700 hover:text-primary-900 hover:bg-primary-50"
+                }`}
               >
                 Contact
-                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform duration-300" />
               </Link>
 
               {/* Bouton Devenir Membre - Style original avec effet shimmer */}
@@ -473,9 +476,6 @@ export default function Header() {
             </div>
           </div>
         </nav>
-
-        {/* Dégradé blanc entre nav et hero */}
-        <div className="h-16 bg-gradient-to-b from-white via-white/50 to-transparent pointer-events-none"></div>
       </header>
 
       {/* Spacer pour compenser le header fixe */}
