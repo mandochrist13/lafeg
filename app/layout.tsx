@@ -18,9 +18,9 @@ export const metadata: Metadata = {
   description: "Site officiel de la Fédération des Entreprises du Gabon",
   generator: 'v0.dev',
   icons: {
-    icon: '/logo (1).png',
-    shortcut: '/logo (1).png',
-    apple: '/logo (1).png',
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
   },
 }
 
