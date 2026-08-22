@@ -5,53 +5,88 @@ import Image from "next/image";
 
 const Loader = () => {
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Toujours afficher le loader brièvement
+    // Animation de progression
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 20);
+
+    // Masquer le loader après 1.2 secondes
     setTimeout(() => {
       setLoading(false);
-    }, 1500); // 1.5 secondes seulement
+    }, 1200);
+
+    return () => clearInterval(progressInterval);
   }, []);
 
   if (!loading) return null;
 
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 z-50">
-      <div className="flex flex-col items-center gap-6">
-        {/* Logo animé */}
+    <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
+      <div className="flex flex-col items-center gap-8">
+        {/* Logo avec animation élégante */}
         <div className="relative">
-          <div className="absolute inset-0 rounded-full blur-2xl bg-bronze-base/30 animate-pulse"></div>
-          <div className="relative bg-white rounded-full p-8 shadow-2xl">
+          {/* Cercles d'animation autour du logo */}
+          <div className="absolute inset-0 -m-12">
+            <div className="absolute inset-0 rounded-full border-2 border-primary-100 animate-ping opacity-20"></div>
+            <div className="absolute inset-0 rounded-full border-2 border-bronze-base/30 animate-pulse"></div>
+          </div>
+
+          {/* Logo */}
+          <div className="relative z-10 bg-white rounded-2xl p-6 shadow-lg">
             <Image
               src="/logo (1).png"
               alt="Logo FEG"
-              width={120}
-              height={120}
-              className="h-24 w-auto animate-pulse"
+              width={100}
+              height={100}
+              className="h-20 w-auto"
               priority
             />
           </div>
         </div>
 
-        {/* Texte */}
-        <div className="text-center">
-          <h2 className="text-2xl font-bold text-white mb-2">
+        {/* Texte élégant */}
+        <div className="text-center space-y-2">
+          <h2 className="text-xl font-bold text-primary-900">
             Fédération des Entreprises du Gabon
           </h2>
-          <p className="text-bronze-light text-sm">Chargement en cours...</p>
+          <p className="text-sm text-gray-500">Chargement en cours...</p>
         </div>
 
-        {/* Barre de progression moderne */}
-        <div className="w-64 h-1 bg-white/20 rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-bronze-base via-bronze-light to-bronze-base bg-[length:200%_100%] animate-shimmer"></div>
+        {/* Barre de progression minimaliste */}
+        <div className="w-64 h-1 bg-gray-100 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-primary-900 via-bronze-base to-primary-900 transition-all duration-300 ease-out"
+            style={{ width: `${progress}%` }}
+          ></div>
         </div>
 
-        {/* Spinner circulaire */}
-        <div className="relative w-12 h-12">
-          <div className="absolute inset-0 rounded-full border-4 border-white/20"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-bronze-base border-r-bronze-light animate-spin"></div>
+        {/* Points animés */}
+        <div className="flex gap-2">
+          <div className="w-2 h-2 bg-primary-900 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+          <div className="w-2 h-2 bg-bronze-base rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+          <div className="w-2 h-2 bg-primary-900 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
         </div>
       </div>
+
+      <style jsx>{`
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+
+        div {
+          animation: fadeIn 0.3s ease-in;
+        }
+      `}</style>
     </div>
   );
 };
