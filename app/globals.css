@@ -2,18 +2,74 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Police Hyundai Sans FEG */
+@font-face {
+  font-family: 'Hyundai Sans';
+  src: url('/Police Feg/Police Feg/HyundaiSansTextOffice-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hyundai Sans';
+  src: url('/Police Feg/Police Feg/HyundaiSansTextOffice-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hyundai Sans';
+  src: url('/Police Feg/Police Feg/HyundaiSansTextOffice-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hyundai Sans';
+  src: url('/Police Feg/Police Feg/HyundaiSansTextOffice-Italic.ttf') format('truetype');
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hyundai Sans Head';
+  src: url('/Police Feg/Police Feg/HyundaiSansHeadOffice-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hyundai Sans Head';
+  src: url('/Police Feg/Police Feg/HyundaiSansHeadOffice-Medium.ttf') format('truetype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Hyundai Sans Head';
+  src: url('/Police Feg/Police Feg/HyundaiSansHeadOffice-Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
   --background-rgb: 255, 255, 255;
+  --font-hyundai: 'Hyundai Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-hyundai-head: 'Hyundai Sans Head', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 }
 
 body {
   color: rgb(var(--foreground-rgb));
   background: rgb(var(--background-rgb));
-}
-
-body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-hyundai);
 }
 
 @layer utilities {
