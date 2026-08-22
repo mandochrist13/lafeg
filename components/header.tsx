@@ -2,7 +2,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { Facebook, Linkedin, Twitter, Youtube, Menu, X } from "lucide-react";
+import { Menu, X, ArrowRight } from "lucide-react";
 import { useState } from "react";
 
 export default function Header() {
@@ -20,79 +20,177 @@ export default function Header() {
   };
 
   return (
-    <header className="bg-white sticky top-0 z-30">
-      {/* Top Bar */}
-      <div className="py-5 mx-auto gap-10 px-4 sm:px-20 flex flex-col md:flex-row justify-between items-center">
-        {/* Logo */}
-        <div className="flex items-center w-full md:w-auto justify-between md:flex-col-reverse">
-          <Link href="/">
-            <div className="">
-              <Image
-                src="/logo (1).png"
-                alt="FEG Logo"
-                width={100}
-                height={100}
-                className="object-contain w-full"
-              />
-            </div>
+    <header className="absolute top-0 left-0 right-0 z-50">
+      {/* Navigation moderne avec fond semi-transparent */}
+      <nav className="backdrop-blur-md bg-white/95 shadow-sm">
+        <div className="container mx-auto px-4 md:px-8 py-4 flex items-center justify-between">
+          {/* Logo */}
+          <Link href="/" className="flex items-center">
+            <Image
+              src="/logo (1).png"
+              alt="FEG Logo"
+              width={120}
+              height={50}
+              className="object-contain h-12 w-auto"
+              priority
+            />
           </Link>
 
           {/* Burger menu button - mobile only */}
-          <button className="md:hidden text-gray-700" onClick={toggleMenu}>
+          <button
+            className="md:hidden text-primary-900 p-2 hover:bg-primary-50 rounded-lg transition-colors"
+            onClick={toggleMenu}
+            aria-label="Toggle menu"
+          >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-1">
+            <Link
+              href="/"
+              className={`px-4 py-2 font-medium text-sm transition-colors rounded-lg ${
+                isActive("/")
+                  ? "text-primary-900 bg-primary-50"
+                  : "text-gray-700 hover:text-primary-900 hover:bg-primary-50/50"
+              }`}
+            >
+              Accueil
+            </Link>
+
+            {/* La FEG - Dropdown */}
+            <div className="group relative">
+              <button className={`px-4 py-2 font-medium text-sm flex items-center gap-1 transition-colors rounded-lg ${
+                isActive("/la-feg")
+                  ? "text-primary-900 bg-primary-50"
+                  : "text-gray-700 hover:text-primary-900 hover:bg-primary-50/50"
+              }`}>
+                La FEG
+                <svg
+                  className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute hidden group-hover:block bg-white min-w-[220px] shadow-xl rounded-lg overflow-hidden top-full mt-1 border border-gray-100">
+                <Link href="/la-feg?tab=a-propos" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  À propos de nous
+                </Link>
+                <Link href="/la-feg?tab=presidence" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Le président
+                </Link>
+                <Link href="/la-feg?tab=gouvernance" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  La gouvernance
+                </Link>
+                <Link href="/la-feg?tab=histoire" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Notre histoire
+                </Link>
+                <Link href="/la-feg?tab=valeurs" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Nos valeurs
+                </Link>
+                <Link href="/la-feg?tab=services" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Nos services
+                </Link>
+                <Link href="/la-feg?tab=phototheque" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Photothèque
+                </Link>
+              </div>
+            </div>
+
+            <Link
+              href="/membre"
+              className={`px-4 py-2 font-medium text-sm transition-colors rounded-lg ${
+                isActive("/membre")
+                  ? "text-primary-900 bg-primary-50"
+                  : "text-gray-700 hover:text-primary-900 hover:bg-primary-50/50"
+              }`}
+            >
+              Nos Membres
+            </Link>
+
+            {/* Nos Activités - Dropdown */}
+            <div className="group relative">
+              <button className={`px-4 py-2 font-medium text-sm flex items-center gap-1 transition-colors rounded-lg ${
+                isActive("/activite")
+                  ? "text-primary-900 bg-primary-50"
+                  : "text-gray-700 hover:text-primary-900 hover:bg-primary-50/50"
+              }`}>
+                Nos Activités
+                <svg
+                  className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute hidden group-hover:block bg-white min-w-[200px] shadow-xl rounded-lg overflow-hidden top-full mt-1 border border-gray-100">
+                <Link href="/activite/actualites" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Actualités
+                </Link>
+                <Link href="/activite/agenda" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Agenda
+                </Link>
+                <Link href="/activite/communiques" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Communiqués
+                </Link>
+                <Link href="/activite/evenements" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Événements
+                </Link>
+              </div>
+            </div>
+
+            {/* Nos Publications - Dropdown */}
+            <div className="group relative">
+              <button className={`px-4 py-2 font-medium text-sm flex items-center gap-1 transition-colors rounded-lg ${
+                (isActive("/documentation") || isActive("/presse-media") || isActive("/publications"))
+                  ? "text-primary-900 bg-primary-50"
+                  : "text-gray-700 hover:text-primary-900 hover:bg-primary-50/50"
+              }`}>
+                Nos Publications
+                <svg
+                  className="w-4 h-4 transition-transform duration-200 group-hover:rotate-180"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+              <div className="absolute hidden group-hover:block bg-white min-w-[200px] shadow-xl rounded-lg overflow-hidden top-full mt-1 border border-gray-100">
+                <Link href="/documentation" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Documentation
+                </Link>
+                <Link href="/presse-media" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-colors">
+                  Presse & Média
+                </Link>
+              </div>
+            </div>
+
+            {/* Bouton Contact avec flèche */}
+            <Link
+              href="/contact"
+              className="ml-2 px-5 py-2.5 bg-primary-900 text-white font-medium text-sm rounded-lg hover:bg-primary-800 transition-all duration-300 flex items-center gap-2 shadow-md hover:shadow-lg group"
+            >
+              Contact
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            {/* Bouton Devenir Membre */}
+            <Link
+              href="/devenir-membre"
+              className="ml-1 px-5 py-2.5 bg-gradient-to-r from-bronze-base to-bronze-light text-primary-900 font-bold text-sm rounded-lg hover:from-bronze-light hover:to-bronze-lighter transition-all duration-300 shadow-md hover:shadow-lg"
+            >
+              Devenir Membre
+            </Link>
+          </div>
         </div>
 
-        {/* Contact Icon - hidden on mobile when menu is open */}
-        {!isMenuOpen && (
-          <div className="flex items-center">
-            <Link href="/contact">
-              <div className="">
-                <Image
-                  src="/locate.png"
-                  alt="FEG Logo"
-                  width={100}
-                  height={100}
-                  className="object-contain w-full"
-                />
-              </div>
-            </Link>
-          </div>
-        )}
-
-        {/* Social Icons - hidden on mobile when menu is open */}
-        {/* {!isMenuOpen && (
-          <div className="grid grid-cols-2 gap-2">
-            <Link
-              href="https://facebook.com"
-              className="text-[#3b5998] hover:opacity-80"
-            >
-              <Facebook size={20} />
-            </Link>
-            <Link
-              href="https://linkedin.com"
-              className="text-[#0077b5] hover:opacity-80"
-            >
-              <Linkedin size={20} />
-            </Link>
-            <Link
-              href="https://twitter.com"
-              className="text-[#1da1f2] hover:opacity-80"
-            >
-              <Twitter size={20} />
-            </Link>
-            <Link
-              href="https://youtube.com"
-              className="text-[#ff0000] hover:opacity-80"
-            >
-              <Youtube size={20} />
-            </Link>
-          </div>
-        )} */}
-      </div>
-
-      {/* Navigation */}
-      <nav className="bg-[#063d21] px-4 sm:px-20 text-white shadow-lg">
+        {/* Mobile Menu */}
         <div className="container mx-auto flex flex-wrap items-center relative">
           {/* Mobile Menu - full screen overlay */}
           <div
