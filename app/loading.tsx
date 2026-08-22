@@ -32,16 +32,9 @@ const Loader = () => {
   return (
     <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
       <div className="flex flex-col items-center gap-8">
-        {/* Logo avec animation élégante */}
+        {/* Logo simple */}
         <div className="relative">
-          {/* Cercles d'animation autour du logo */}
-          <div className="absolute inset-0 -m-12">
-            <div className="absolute inset-0 rounded-full border-2 border-primary-100 animate-ping opacity-20"></div>
-            <div className="absolute inset-0 rounded-full border-2 border-bronze-base/30 animate-pulse"></div>
-          </div>
-
-          {/* Logo */}
-          <div className="relative z-10 bg-white rounded-2xl p-6 shadow-lg">
+          <div className="bg-white rounded-2xl p-6 shadow-lg">
             <Image
               src="/logo (1).png"
               alt="Logo FEG"
@@ -76,17 +69,6 @@ const Loader = () => {
           <div className="w-2 h-2 bg-primary-900 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
         </div>
       </div>
-
-      <style jsx>{`
-        @keyframes fadeIn {
-          from { opacity: 0; }
-          to { opacity: 1; }
-        }
-
-        div {
-          animation: fadeIn 0.3s ease-in;
-        }
-      `}</style>
     </div>
   );
 };
