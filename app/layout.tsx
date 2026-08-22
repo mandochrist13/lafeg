@@ -16,7 +16,12 @@ const sourceSerif = Source_Serif_4({
 export const metadata: Metadata = {
   title: "Fédération des Entreprises du Gabon (FEG)",
   description: "Site officiel de la Fédération des Entreprises du Gabon",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: '/logo (1).png',
+    shortcut: '/logo (1).png',
+    apple: '/logo (1).png',
+  },
 }
 
 export default function RootLayout({
