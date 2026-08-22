@@ -9,14 +9,18 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        // Bouton primaire - Vert FEG
+        default: "bg-primary text-white hover:bg-primary-800 transition-all duration-300",
+        // Bouton bronze avec effet shimmer (inspiré du Guide Numérique)
+        bronze: "bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 hover:from-bronze-lighter hover:to-bronze-medium animate-shimmer font-medium transition-all duration-400 ease-out overflow-hidden relative group",
+        // Bouton outline vert
+        outline:
+          "border-2 border-primary text-primary bg-transparent hover:bg-primary hover:text-white transition-all duration-300",
+        // Variante vert clair
+        "primary-light": "bg-primary-100 text-primary-900 hover:bg-primary-700 hover:text-white transition-all duration-300",
         destructive:
           "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-primary-100 hover:text-primary-900 transition-all duration-200",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {

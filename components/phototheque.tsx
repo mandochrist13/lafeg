@@ -103,7 +103,7 @@ export default function Phototheque() {
                   <button className="px-3 py-1 rounded bg-gray-200 text-gray-700">
                     Précédent
                   </button>
-                  <button className="px-3 py-1 rounded bg-[#f39c12] text-white">
+                  <button className="px-3 py-1 rounded bg-primary text-white">
                     1
                   </button>
                   <button className="px-3 py-1 rounded bg-gray-200 text-gray-700 hover:bg-gray-300">

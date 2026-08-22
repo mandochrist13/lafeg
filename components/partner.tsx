@@ -128,8 +128,20 @@ export default function PartnersSection() {
                 viewport={{ once: true }}
                 className="flex-shrink-0 px-4"
               >
-                <div className="w-40 h-32 bg-white rounded-xl shadow-md flex items-center justify-center p-4 hover:shadow-lg transition-all duration-300">
-                  <div className="relative w-full h-full">
+                <motion.div
+                  className="w-40 h-32 bg-white rounded-xl shadow-md flex items-center justify-center p-4 transition-all duration-300 cursor-pointer"
+                  whileHover={{
+                    scale: 1.08,
+                    boxShadow: "0 20px 30px rgba(0, 0, 0, 0.15)",
+                    y: -5,
+                  }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <motion.div
+                    className="relative w-full h-full"
+                    whileHover={{ rotate: [0, -3, 3, 0] }}
+                    transition={{ duration: 0.5 }}
+                  >
                     <Image
                       src={partner.logo || "/placeholder.svg"}
                       alt={partner.name}
@@ -137,8 +149,8 @@ export default function PartnersSection() {
                       className="object-contain"
                       sizes="(max-width: 768px) 100px, 160px"
                     />
-                  </div>
-                </div>
+                  </motion.div>
+                </motion.div>
               </motion.div>
             ))}
           </div>
@@ -152,14 +164,22 @@ export default function PartnersSection() {
           </button>
         </div>
 
-        <div className="flex justify-center mt-10">
-          <Link
-            href="/partenaires"
-            className="border-2 border-[#063d21] text-[#063d21] px-8 py-3 rounded-lg font-semibold hover:bg-[#063d21] hover:text-white transition-all duration-300"
-          >
-            TOUT AFFICHER
-          </Link>
-        </div>
+        <motion.div
+          className="flex justify-center mt-10"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.3 }}
+        >
+          <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <Link
+              href="/partenaires"
+              className="border-2 border-[#063d21] text-[#063d21] px-8 py-3 rounded-lg font-semibold hover:bg-[#063d21] hover:text-white transition-all duration-300 inline-block"
+            >
+              TOUT AFFICHER
+            </Link>
+          </motion.div>
+        </motion.div>
 
         {/* Newsletter Section - Version Institutionnelle Verte avec Image de Fond */}
         <div className="w-full bg-[#063D21] mt-11 py-16 px-4 sm:px-6 lg:px-8 relative rounded-sm overflow-hidden">
@@ -178,23 +198,47 @@ export default function PartnersSection() {
 
           {/* Éléments décoratifs animés */}
           {/* <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-[#2ECC71]/10 blur-xl animate-pulse animation-delay-1000"></div>
-  <div className="absolute -left-10 -bottom-10 w-48 h-48 rounded-full bg-[#ED9727]/10 blur-xl animate-pulse"></div>
+  <div className="absolute -left-10 -bottom-10 w-48 h-48 rounded-full bg-bronze-base/10 blur-xl animate-pulse"></div>
   <div className="absolute right-1/2 bottom-0 w-32 h-32 rounded-full bg-[#2ECC71]/15 blur-lg animate-pulse animation-delay-500"></div> */}
 
           <div className="max-w-5xl mx-auto relative z-10">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-                <span className="inline-block bg-clip-text text-transparent bg-[#ED9727]">
+            <motion.div
+              className="text-center mb-12"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <motion.h2
+                className="text-3xl md:text-4xl font-bold text-white mb-4"
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <span className="inline-block text-bronze-light">
                   Inscrivez-vous à notre newsletter
                 </span>
-              </h2>
-              <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              </motion.h2>
+              <motion.p
+                className="text-lg text-white/90 max-w-2xl mx-auto"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4, duration: 0.5 }}
+              >
                 Recevez nos actualités et informations institutionnelles
                 directement dans votre boîte mail
-              </p>
-            </div>
+              </motion.p>
+            </motion.div>
 
-            <form className="space-y-8">
+            <motion.form
+              className="space-y-8"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.5, duration: 0.6 }}
+            >
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-4">
                 {/* Raison sociale */}
                 <div className="lg:col-span-4">
@@ -291,7 +335,7 @@ export default function PartnersSection() {
                 <div className="lg:col-span-2 flex items-end">
                   <button
                     type="submit"
-                    className="w-full bg-gradient-to-r from-[#ED9727] to-[#e67e22] hover:from-[#e67e22] hover:to-[#ED9727] text-white font-medium py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center hover:scale-[1.02] active:scale-95 transform-gpu"
+                    className="w-full bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 animate-shimmer hover:from-bronze-lighter hover:to-bronze-medium font-medium py-3 px-4 rounded-lg shadow-lg hover:shadow-xl transition-all duration-400 ease-out flex items-center justify-center hover:scale-[1.02] active:scale-95 transform-gpu"
                   >
                     <span>S'INSCRIRE</span>
                     <svg
@@ -359,7 +403,7 @@ export default function PartnersSection() {
                   </div>
                 </div>
               </div>
-            </form>
+            </motion.form>
           </div>
         </div>
       </div>
