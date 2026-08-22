@@ -9,11 +9,11 @@ export default function StickyCTA() {
   const [isClosed, setIsClosed] = useState(false);
 
   useEffect(() => {
-    // Afficher le CTA après 2 secondes de scroll
+    // Afficher le CTA après scroll
     const handleScroll = () => {
-      if (window.scrollY > 500 && !isClosed) {
+      if (window.scrollY > 300 && !isClosed) {
         setIsVisible(true);
-      } else if (window.scrollY <= 500) {
+      } else if (window.scrollY <= 300) {
         setIsVisible(false);
       }
     };
@@ -31,48 +31,23 @@ export default function StickyCTA() {
 
   return (
     <div className="fixed left-0 top-1/2 -translate-y-1/2 z-40 animate-slideInLeft">
-      <div className="bg-gradient-to-r from-primary-900 to-primary-800 text-white shadow-2xl rounded-r-xl overflow-hidden flex items-stretch">
-        {/* Contenu principal */}
-        <div className="flex flex-col py-4 px-5 gap-2">
-          <h3 className="font-bold text-sm uppercase tracking-wide">
-            Suivez le mouvement
-          </h3>
-          <div className="flex flex-col gap-1 text-xs">
-            <Link
-              href="/devenir-membre"
-              className="hover:text-bronze-light transition-colors duration-300 flex items-center gap-2"
-            >
-              <span className="w-2 h-2 bg-bronze-base rounded-full"></span>
-              Économie
-            </Link>
-            <Link
-              href="/devenir-membre"
-              className="hover:text-bronze-light transition-colors duration-300 flex items-center gap-2"
-            >
-              <span className="w-2 h-2 bg-bronze-base rounded-full"></span>
-              Entrepreneuriat
-            </Link>
-          </div>
-        </div>
-
-        {/* Bouton adhérer vertical */}
+      <div className="relative">
+        {/* Bouton adhérer */}
         <Link
           href="/devenir-membre"
-          className="bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] animate-shimmer text-primary-900 font-bold text-sm px-4 flex items-center justify-center hover:scale-105 transition-transform duration-300 relative group"
+          className="bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] animate-shimmer text-primary-900 font-bold text-base px-6 py-4 flex items-center gap-3 hover:scale-105 transition-all duration-300 shadow-2xl rounded-r-xl group"
         >
-          <div className="flex items-center gap-2 -rotate-0">
-            <UserPlus size={18} className="group-hover:scale-110 transition-transform" />
-            <span className="whitespace-nowrap">Adhérez</span>
-          </div>
+          <UserPlus size={22} className="group-hover:scale-110 transition-transform" />
+          <span className="whitespace-nowrap">Adhérez</span>
         </Link>
 
         {/* Bouton fermer */}
         <button
           onClick={handleClose}
-          className="absolute -top-2 -right-2 bg-white text-primary-900 rounded-full p-1 shadow-lg hover:bg-bronze-light hover:text-white transition-all duration-300 transform hover:rotate-90"
+          className="absolute -top-2 -right-2 bg-white text-primary-900 rounded-full p-1.5 shadow-lg hover:bg-red-500 hover:text-white transition-all duration-300 transform hover:rotate-90 border-2 border-primary-900"
           aria-label="Fermer"
         >
-          <X size={14} />
+          <X size={16} />
         </button>
       </div>
 
