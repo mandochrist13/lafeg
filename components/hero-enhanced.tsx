@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRight, Calendar, TrendingUp } from "lucide-react";
+import { ArrowRight, TrendingUp } from "lucide-react";
 
 interface SlideItem {
   id: number;
@@ -179,11 +179,11 @@ export default function HeroEnhanced() {
     } else if (diff === 2) {
       // First small card - positioned at right with better spacing
       return {
-        left: "calc(50% + 140px)",
+        left: "calc(50% + 120px)",
         top: "50%",
         transform: "translate(-50%, -50%) scale(1)",
-        width: "260px",
-        height: "360px",
+        width: "240px",
+        height: "320px",
         zIndex: 5,
         opacity: 1,
         borderRadius: "16px",
@@ -191,11 +191,11 @@ export default function HeroEnhanced() {
     } else if (diff === 3) {
       // Second small card - stacked with depth
       return {
-        left: "calc(50% + 420px)",
+        left: "calc(50% + 380px)",
         top: "50%",
         transform: "translate(-50%, -50%) scale(0.92)",
-        width: "260px",
-        height: "360px",
+        width: "240px",
+        height: "320px",
         zIndex: 4,
         opacity: 0.85,
         borderRadius: "16px",
@@ -203,11 +203,11 @@ export default function HeroEnhanced() {
     } else if (diff === 4) {
       // Third small card - more depth
       return {
-        left: "calc(50% + 680px)",
+        left: "calc(50% + 620px)",
         top: "50%",
         transform: "translate(-50%, -50%) scale(0.84)",
-        width: "260px",
-        height: "360px",
+        width: "240px",
+        height: "320px",
         zIndex: 3,
         opacity: 0.65,
         borderRadius: "16px",
@@ -233,7 +233,7 @@ export default function HeroEnhanced() {
 
   return (
     <section
-      className="relative w-full h-[700px] md:h-[600px] lg:h-[700px] bg-gradient-to-br from-gray-800 via-gray-700 to-primary-900 overflow-hidden"
+      className="relative w-full h-[500px] md:h-[550px] lg:h-[600px] xl:h-[650px] bg-gradient-to-br from-gray-800 via-gray-700 to-primary-900 overflow-hidden"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -381,7 +381,7 @@ export default function HeroEnhanced() {
                         animation: diff === 1 ? "slowZoom 20s ease-out forwards" : "none",
                       }}
                     />
-                    <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/15 via-35% to-white/25"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 via-40% to-white/20"></div>
                   </>
                 )}
 
@@ -431,47 +431,47 @@ export default function HeroEnhanced() {
 
         {/* Main content (shows for the second slide in rotation) */}
         <div className="absolute top-0 left-0 w-full h-full flex items-center z-10 pointer-events-none">
-          <div className="container mx-auto px-6 md:px-8 lg:px-12 max-w-7xl">
+          <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
             {/* Limiter la largeur pour ne pas chevaucher les cartes */}
             <div className="max-w-xl lg:max-w-2xl xl:max-w-xl">
-              <div className="text-white space-y-4 md:space-y-5 animate-fadeInUp">
+              <div className="text-white space-y-3 md:space-y-4 animate-fadeInUp">
                   {/* Category badge */}
                   <div>
-                    <span className="inline-flex items-center gap-2 bg-bronze-base text-primary-900 px-4 py-2.5 text-xs font-bold uppercase tracking-wider rounded-sm shadow-lg">
-                      <TrendingUp size={14} />
+                    <span className="inline-flex items-center gap-2 bg-bronze-base text-primary-900 px-3 md:px-4 py-2 text-[10px] md:text-xs font-bold uppercase tracking-wider rounded-sm shadow-lg">
+                      <TrendingUp size={12} className="md:w-3.5 md:h-3.5" />
                       {contentItem.category}
                     </span>
                   </div>
 
                   {/* Title */}
-                  <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight drop-shadow-lg">
+                  <h1 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold leading-tight drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)] text-shadow-strong">
                     {contentItem.title}
                   </h1>
 
                   {/* Subtitle */}
                   {contentItem.subtitle && (
-                    <h2 className="text-lg md:text-xl lg:text-2xl font-semibold text-bronze-light drop-shadow-md">
+                    <h2 className="text-base md:text-lg lg:text-xl xl:text-2xl font-semibold text-bronze-light drop-shadow-[0_2px_6px_rgba(0,0,0,0.8)]">
                       {contentItem.subtitle}
                     </h2>
                   )}
 
                   {/* Description */}
                   {contentItem.description && (
-                    <p className="text-sm md:text-base lg:text-xl text-gray-100 leading-relaxed drop-shadow-md">
+                    <p className="text-sm md:text-base lg:text-lg xl:text-xl text-gray-50 leading-relaxed drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] font-medium">
                       {contentItem.description}
                     </p>
                   )}
 
                   {/* CTA Button */}
-                  <div className="pointer-events-auto pt-2">
+                  <div className="pointer-events-auto pt-1 md:pt-2">
                     <Link
                       href={contentItem.link}
-                      className="inline-flex items-center gap-2 md:gap-3 bg-white text-primary px-6 md:px-8 py-3 md:py-4 font-bold text-sm md:text-base hover:bg-bronze-light hover:text-primary-900 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 group rounded-sm"
+                      className="inline-flex items-center gap-2 md:gap-3 bg-white text-primary px-5 md:px-7 py-2.5 md:py-3.5 font-bold text-xs md:text-sm lg:text-base hover:bg-bronze-light hover:text-primary-900 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105 group rounded-sm"
                     >
                       {contentItem.ctaText}
                       <ArrowRight
-                        size={20}
-                        className="group-hover:translate-x-1 transition-transform"
+                        size={18}
+                        className="group-hover:translate-x-1 transition-transform md:w-5 md:h-5"
                       />
                     </Link>
                   </div>
@@ -506,7 +506,7 @@ export default function HeroEnhanced() {
       {/* Responsive: Hide small cards on mobile */}
       <style jsx>{`
         @media (max-width: 1024px) {
-          div[style*="260px"] {
+          div[style*="240px"] {
             display: none !important;
           }
         }
