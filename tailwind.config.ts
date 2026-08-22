@@ -24,6 +24,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
+        hyundai: ['var(--font-hyundai)', 'sans-serif'],
+        'hyundai-head': ['var(--font-hyundai-head)', 'sans-serif'],
         serif: ['var(--font-source-serif)', 'serif'],
       },
       colors: {
