@@ -1,12 +1,17 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Source_Serif_4 } from "next/font/google"
 import "./globals.css"
-import EnhancedFooter from "@/components/enhanced-footer"
 import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "@/app/providers";
 import { Toaster } from "sonner";
+
 const inter = Inter({ subsets: ["latin"] })
+const sourceSerif = Source_Serif_4({
+  subsets: ["latin"],
+  variable: '--font-source-serif',
+  display: 'swap',
+})
 
 export const metadata: Metadata = {
   title: "Fédération des Entreprises du Gabon (FEG)",
@@ -21,7 +26,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={inter.className}>
+      <body className={`${inter.className} ${sourceSerif.variable}`}>
       
          <ThemeProvider
           attribute="class"
@@ -45,7 +50,7 @@ export default function RootLayout({
           }}
         />
        
-        <EnhancedFooter />
+       
       </body>
     </html>
   )

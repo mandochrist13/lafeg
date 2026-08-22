@@ -215,7 +215,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
             <div className="mt-8 text-center">
               <Link
                 href="/contact"
-                className="inline-block bg-[#f39c12] text-white px-6 py-3 rounded-lg font-bold hover:bg-[#e67e22] transition-colors"
+                className="inline-block bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 px-6 py-3 rounded-lg font-bold animate-shimmer transition-colors"
               >
                 S'inscrire à cet événement
               </Link>

@@ -47,7 +47,7 @@ export default function BecomeMemberForm() {
                 Créée en 1983, la FEG regroupe aujourd'hui plus de 300 entreprises de toutes tailles et de tous secteurs
                 d'activité. Elle est un interlocuteur privilégié des pouvoirs publics et des partenaires sociaux.
               </p>
-              <div className="bg-[#f39c12] text-white p-4 rounded-lg">
+              <div className="bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 animate-shimmer p-4 rounded-lg">
                 <h3 className="font-bold mb-2">Notre mission</h3>
                 <p>" Bâtir ensemble une économie forte pour garantir la souveraineté nationale "</p>
               </div>

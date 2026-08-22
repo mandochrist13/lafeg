@@ -195,7 +195,7 @@ export default function Gouvernance() {
                   <div>
                     <h3 className="text-xl sm:text-2xl font-bold text-[#063d21] relative inline-block pb-1">
                       Bureau Exécutif
-                      <span className="absolute bottom-0 left-0 w-full h-1 bg-[#e67e22]  rounded-full"></span>
+                      <span className="absolute bottom-0 left-0 w-full h-1 bg-bronze-base rounded-full"></span>
                     </h3>
                     <p className="text-sm text-gray-500 mt-1">
                       Les dirigeants de notre organisation
@@ -210,13 +210,13 @@ export default function Gouvernance() {
                       className="group relative bg-white rounded-xl mt-10 p-6 shadow-md hover:shadow-lg transition-all duration-500 border border-gray-100 hover:border-[#063d21]/20 text-center hover:-translate-y-1"
                     >
                       {/* Photo circulaire  */}
-                      <div className="relative mx-auto -mt-16 mb-4 w-28 h-28 rounded-full overflow-hidden border-4 border-white shadow-xl ring-2 ring-[#063d21]/10 group-hover:ring-[#063d21]/30 transition-all duration-500">
+                      <div className="relative mx-auto -mt-16 mb-4 w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-xl ring-2 ring-[#063d21]/10 group-hover:ring-[#063d21]/30 transition-all duration-500">
                         <Image
                           src={member.image}
                           alt={member.name}
                           width={300}
                           height={300}
-                          className="w-full h-full object-fill transition-transform duration-700"
+                          className="w-full h-full object-cover object-center transition-transform duration-700"
                         />
                       </div>
 
@@ -225,7 +225,7 @@ export default function Gouvernance() {
                         <h4 className="text-lg font-bold text-gray-900 group-hover:text-[#063d21] transition-colors">
                           {member.name}
                         </h4>
-                        <p className="text-sm font-semibold text-[#e67e22] my-1">
+                        <p className="text-sm font-semibold text-bronze-base my-1">
                           {member.role}
                         </p>
                         {member.position && (
@@ -237,7 +237,7 @@ export default function Gouvernance() {
 
                       {/* Éléments décoratifs */}
                       <div className="absolute top-0 right-0 w-14 h-14 bg-[#063d21]/5 rounded-bl-full transition-all duration-500 group-hover:bg-[#063d21]/10"></div>
-                      <div className="absolute bottom-0 left-0 w-14 h-14 bg-[#e67e22]/5 rounded-tr-full transition-all duration-500 group-hover:bg-[#e67e22]/10"></div>
+                      <div className="absolute bottom-0 left-0 w-14 h-14 bg-bronze-base/5 rounded-tr-full transition-all duration-500 group-hover:bg-bronze-base/10"></div>
                     </div>
                   ))}
                 </div>
@@ -250,7 +250,7 @@ export default function Gouvernance() {
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#063d21] relative inline-block pb-1">
                     Commissions Permanentes
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-[#e67e22] rounded-full"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-1 bg-bronze-base rounded-full"></span>
                   </h3>
                 </div>
               </div>
@@ -273,7 +273,7 @@ export default function Gouvernance() {
                     <h4 className="font-bold text-gray-800 group-hover:text-[#063d21] transition-colors mt-2">
                       {member.name}
                     </h4>
-                    <p className="text-sm text-transparent bg-clip-text bg-[#e67e22] font-medium my-1">
+                    <p className="text-sm text-bronze-base font-medium my-1">
                       {member.role}
                     </p>
                     <div className="absolute top-0 right-0 w-12 h-12 bg-[#063d21]/5 rounded-bl-full"></div>
@@ -288,7 +288,7 @@ export default function Gouvernance() {
                 <div>
                   <h3 className="text-xl sm:text-2xl font-bold text-[#063d21] relative inline-block pb-1">
                     Comités Spécialisés
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-[#e67e22]  rounded-full"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-1 bg-bronze-base  rounded-full"></span>
                   </h3>
                 </div>
               </div>

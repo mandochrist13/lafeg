@@ -99,7 +99,7 @@ function TabComponent() {
               ACCUEIL
             </Link>
             <span className="mx-2 text-gray-400">/</span>
-            <span className="text-[#f39c12] font-medium">
+            <span className="text-bronze-base font-medium">
               {tabContents[selectedTab]?.title || "La FEG"}
             </span>
           </div>
@@ -129,7 +129,7 @@ function TabComponent() {
                   <TabsTrigger
                     key={tabKey}
                     value={tabKey}
-                    className="text-white hover:bg-[#f39c12]"
+                    className="text-white hover:bg-bronze-light hover:text-primary-900"
                   >
                     {tabContents[tabKey]?.title || tabKey}
                   </TabsTrigger>
@@ -179,7 +179,7 @@ function TabComponent() {
               <p className="text-gray-700 font-medium mb-2 text-sm sm:text-base">
                 Président de La FEG
               </p>
-              <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-[#f39c12]">
+              <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-bronze-base">
                 "Bâtissons ensemble une économie forte pour garantir la
                 souveraineté nationale"
               </p>

@@ -34,7 +34,7 @@ function ActivityCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[rgba(0,102,51,0.8)] to-transparent"></div>
         {type && (
           <div className="absolute top-4 left-4">
-            <div className="bg-[#f39c12] text-white px-3 py-1 rounded-md text-xs font-bold">
+            <div className="bg-bronze-light text-primary-900 px-3 py-1 rounded-md text-xs font-bold">
               {type}
             </div>
           </div>
@@ -60,7 +60,7 @@ function ActivityCard({
           </div>
           <Link
             href={link}
-            className="bg-[#f39c12] text-white px-4 py-2 rounded hover:bg-[#e67e22] transition-colors duration-300 text-sm font-medium whitespace-nowrap"
+            className="bg-primary text-white px-4 py-2 rounded hover:bg-primary-800 transition-colors duration-300 text-sm font-medium whitespace-nowrap"
           >
             Lire plus
           </Link>
@@ -84,7 +84,7 @@ function SmallActivityCard({ title, date, type, imageUrl, link }: ActivityProps)
           />
         </div>
         <div className="p-3 flex-grow">
-          <span className="text-xs font-semibold text-[#f39c12]">{type}</span>
+          <span className="text-xs font-semibold text-bronze-base">{type}</span>
           <h3 className="text-sm font-bold text-[#063d21] line-clamp-2">
             {title}
           </h3>
@@ -228,7 +228,7 @@ export default function RecentActivities() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Actualités */}
             <div className="space-y-6 gap-6">
-              <h3 className="text-xl font-bold text-[#063d21] border-b-2 border-[#f39c12] pb-2">
+              <h3 className="text-xl font-bold text-[#063d21] border-b-2 border-bronze-base pb-2">
                 Actualités
               </h3>
               <div className="space-y-4 gap-6">
@@ -238,7 +238,7 @@ export default function RecentActivities() {
               </div>
               <Link
                 href="/actualites"
-                className="flex items-center text-[#063d21] font-semibold hover:text-[#f39c12] transition-colors duration-300"
+                className="flex items-center text-[#063d21] font-semibold hover:text-bronze-light transition-colors duration-300"
               >
                 Toutes les Actualités
                 <ArrowRight className="ml-2" size={18} />
@@ -247,7 +247,7 @@ export default function RecentActivities() {
 
             {/* Événements */}
             <div className="space-y-6 gap-6">
-              <h3 className="text-xl font-bold text-[#063d21] border-b-2 border-[#f39c12] pb-2">
+              <h3 className="text-xl font-bold text-[#063d21] border-b-2 border-bronze-base pb-2">
                 Événements
               </h3>
               <div className="space-y-4">
@@ -257,7 +257,7 @@ export default function RecentActivities() {
               </div>
               <Link
                 href="/evenements"
-                className="flex items-center text-[#063d21] font-semibold hover:text-[#f39c12] transition-colors duration-300"
+                className="flex items-center text-[#063d21] font-semibold hover:text-bronze-light transition-colors duration-300"
               >
                 Tous les Événements
                 <ArrowRight className="ml-2" size={18} />
@@ -266,7 +266,7 @@ export default function RecentActivities() {
 
             {/* Communications */}
             <div className="space-y-6 ">
-              <h3 className="text-xl font-bold text-[#063d21] border-b-2 border-[#f39c12] pb-2">
+              <h3 className="text-xl font-bold text-[#063d21] border-b-2 border-bronze-base pb-2">
                 Communications
               </h3>
               <div className="space-y-4">
@@ -276,7 +276,7 @@ export default function RecentActivities() {
               </div>
               <Link
                 href="/communications"
-                className="flex items-center text-[#063d21] font-semibold hover:text-[#f39c12] transition-colors duration-300"
+                className="flex items-center text-[#063d21] font-semibold hover:text-bronze-light transition-colors duration-300"
               >
                 Toutes les Communications
                 <ArrowRight className="ml-2" size={18} />
