@@ -1,7 +1,6 @@
 import HolidayModal from "@/components/holiday-modal"
 import HeroEnhanced from "@/components/hero-enhanced"
-import ActivitesPhotos from "@/components/activites-photos"
-import RecentActivities from "@/components/recent-activities"
+import FegActualitesSection from "@/components/feg-actualites-section"
 import President from "@/components/president"
 import KeyStatistics from "@/components/key"
 import AdhesionSection from "@/components/raison"
@@ -14,16 +13,14 @@ export default function Home() {
     <>
       <HolidayModal />
       <HeroEnhanced />
-      <ActivitesPhotos />
-      <RecentActivities />
-
-      <President />
-      <KeyStatistics/>
+      <FegActualitesSection />
       <AdhesionSection />
+      <President />
+      <KeyStatistics/>  
       <MissionsSection/>
       <PublicationsSection/>
-      <PartnersSection/> 
-      {/* <BecomeMemberForm/>   */}
+      <PartnersSection/>
+      {/* <BecomeMemberForm/>  */}
     </>
   )
 }

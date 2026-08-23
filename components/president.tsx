@@ -1,170 +1,360 @@
 "use client";
 
 import Image from "next/image";
-import { Quote, Briefcase, Award, Target } from "lucide-react";
+import { Quote } from "lucide-react";
+import { useState } from "react";
 
 export default function President() {
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateXValue = ((y - centerY) / centerY) * -15;
+    const rotateYValue = ((x - centerX) / centerX) * 15;
+
+    setRotateX(rotateXValue);
+    setRotateY(rotateYValue);
+  };
+
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+
   return (
-    <section className="py-16 lg:py-20 bg-white">
-      <div className="container mx-auto px-4 max-w-7xl">
-        {/* En-tête */}
-        <div className="mb-12 text-center">
-          <div className="inline-block mb-3">
-            <span className="text-bronze-base font-bold text-sm uppercase tracking-wider">
+    <section className="py-20 lg:py-28 bg-gradient-to-b from-white via-gray-50/40 to-white relative overflow-hidden">
+      {/* Effets de fond décoratifs */}
+      <div className="absolute inset-0 opacity-[0.015]">
+        <div className="absolute top-20 left-10 w-96 h-96 bg-bronze-base rounded-full blur-3xl animate-blob"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-primary-600 rounded-full blur-3xl animate-blob animation-delay-2000"></div>
+      </div>
+
+      <div className="container mx-auto px-4 max-w-7xl relative z-10">
+        {/* En-tête élégant avec animation */}
+        <div className="mb-16 text-center">
+          <div className="inline-flex items-center gap-4 mb-5 animate-fade-in-down">
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-bronze-base to-transparent"></div>
+            <span className="text-[9px] font-bold tracking-[0.5em] text-primary-900/70 uppercase">
               Leadership
             </span>
+            <div className="w-16 h-px bg-gradient-to-r from-transparent via-bronze-base to-transparent"></div>
           </div>
-          <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-3">
+
+          <h2 className="text-4xl lg:text-5xl font-bold text-primary-900 tracking-tight mb-3 animate-fade-in-up">
             Le Président de la FEG
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-primary to-bronze-base mx-auto"></div>
+          <p className="text-gray-600 max-w-2xl mx-auto text-sm lg:text-base animate-fade-in-up animation-delay-200">
+            À la tête du patronat gabonais, un leader visionnaire au service du développement économique
+          </p>
         </div>
 
-        {/* Layout avec photo + texte */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* Photo du président avec effet 3D */}
-          <div className="relative perspective-[1200px] group">
+        {/* Layout asymétrique - Photo dominante */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+          {/* Photo avec effet 3D avancé */}
+          <div
+            className="lg:col-span-1 relative group perspective-2000"
+            onMouseMove={handleMouseMove}
+            onMouseLeave={handleMouseLeave}
+          >
+            {/* Glow effect background */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-bronze-base/20 via-primary-600/20 to-bronze-dark/20 rounded-2xl blur-2xl opacity-0 group-hover:opacity-100 transition-all duration-700 animate-pulse-slow"></div>
+
             <div
-              className="relative h-[500px] transition-all duration-500 ease-out"
+              className="relative aspect-[3/4] transition-all duration-200 ease-out transform-gpu card-3d"
               style={{
                 transformStyle: 'preserve-3d',
-                transform: 'rotateY(-8deg) rotateX(2deg)',
+                transform: `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(20px)`,
               }}
             >
-              {/* Cadre avec effet de profondeur */}
-              <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary-800 rounded-lg transform translate-x-3 translate-y-3 blur-sm opacity-40"></div>
+              {/* Ombre portée 3D multicouche */}
+              <div className="absolute inset-0 bg-gradient-to-br from-primary-900/40 to-bronze-dark/30 rounded-xl transform translate-x-6 translate-y-6 blur-2xl transition-all duration-700 group-hover:translate-x-8 group-hover:translate-y-8 group-hover:opacity-50"></div>
+              <div className="absolute inset-0 bg-gradient-to-tl from-bronze-base/20 to-transparent rounded-xl transform translate-x-3 translate-y-3 blur-xl transition-all duration-700 group-hover:translate-x-5 group-hover:translate-y-5"></div>
 
-              {/* Photo principale */}
-              <div className="relative h-full overflow-hidden rounded-lg shadow-[20px_20px_40px_-12px_rgba(6,61,33,0.5)] transition-all duration-500 group-hover:shadow-[25px_25px_50px_-10px_rgba(6,61,33,0.6)]">
+              {/* Photo principale avec bordure 3D */}
+              <div className="relative h-full overflow-hidden rounded-xl shadow-2xl transition-all duration-700 group-hover:shadow-[0_30px_60px_-15px_rgba(6,61,33,0.5)] border border-white/20 ring-1 ring-bronze-base/10">
                 <Image
-                  src="/images/nomitation.jpg"
+                  src="/images/président.jpg"
                   alt="Alain-Claude KOUAKOUA - Président de la FEG"
                   fill
-                  className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="object-cover transition-all duration-700 group-hover:scale-110"
+                  sizes="(max-width: 1024px) 100vw, 33vw"
+                  priority
                 />
-                {/* Overlay subtil avec dégradé */}
-                <div className="absolute inset-0 bg-gradient-to-t from-primary/30 via-primary/5 to-transparent"></div>
 
-                {/* Bordure intérieure subtile (effet cadre) */}
-                <div className="absolute inset-4 border-2 border-white/20 rounded pointer-events-none"></div>
-              </div>
+                {/* Overlay gradient sophistiqué */}
+                <div className="absolute inset-0 bg-gradient-to-br from-primary-900/10 via-transparent to-bronze-base/10 mix-blend-overlay"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-transparent"></div>
 
-              {/* Badge avec titre - redesigné pour l'effet 3D */}
-              <div className="absolute -bottom-4 -right-4 left-8 bg-white p-6 border-l-4 border-bronze-base shadow-[0_20px_50px_-12px_rgba(0,0,0,0.4)] rounded-r-lg transform transition-all duration-500 group-hover:translate-y-[-4px]">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-primary flex items-center justify-center flex-shrink-0 rounded">
-                    <Award size={24} className="text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-900 mb-1">
-                      Alain-Claude KOUAKOUA
-                    </h3>
-                    <p className="text-bronze-base font-semibold text-sm">
-                      Président de la Fédération des Entreprises du Gabon
-                    </p>
-                  </div>
+                {/* Shimmer au survol uniquement */}
+                <div className="absolute inset-0 overflow-hidden opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/60 to-transparent -translate-x-full group-hover:animate-shimmer-once"></div>
                 </div>
+
+                {/* Reflet lumineux diagonal au survol - style miroir */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/40 via-white/20 to-transparent opacity-0 group-hover:animate-mirror-reflection" style={{transformOrigin: 'top left'}}></div>
+                </div>
+
+                {/* Reflet secondaire pour effet réaliste */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-200 z-20 pointer-events-none">
+                  <div className="absolute top-0 left-0 right-0 h-1/3 bg-gradient-to-b from-white/20 to-transparent animate-fade-reflection"></div>
+                </div>
+
+                {/* Particules de lumière décoratives */}
+                <div className="absolute top-4 right-4 w-2 h-2 bg-bronze-base rounded-full opacity-0 group-hover:opacity-100 transition-all duration-700 delay-300 animate-float"></div>
+                <div className="absolute top-1/3 right-8 w-1 h-1 bg-white rounded-full opacity-0 group-hover:opacity-80 transition-all duration-700 delay-500 animate-float-delayed"></div>
+
+                {/* Badge nom avec effet glassmorphism */}
+                <div className="absolute bottom-0 left-0 right-0 backdrop-blur-md bg-gradient-to-t from-black/95 via-black/80 to-transparent p-6 border-t border-white/10">
+                  <h3 className="text-white font-bold text-lg mb-1 drop-shadow-lg">
+                    Alain-Claude KOUAKOUA
+                  </h3>
+                  <p className="text-bronze-base text-xs font-semibold uppercase tracking-wider drop-shadow-md">
+                    Président de la FEG
+                  </p>
+                </div>
+
+                {/* Bordure intérieure brillante */}
+                <div className="absolute inset-0 rounded-xl border-2 border-white/0 group-hover:border-white/20 transition-all duration-700 pointer-events-none"></div>
               </div>
             </div>
 
-            {/* Style pour l'effet 3D au survol */}
+            {/* Styles avancés */}
             <style jsx>{`
-              .perspective-1200px {
-                perspective: 1200px;
+              .perspective-2000 {
+                perspective: 2000px;
               }
 
-              .group:hover > div {
-                transform: rotateY(-5deg) rotateX(1deg) translateZ(10px);
+              .card-3d {
+                will-change: transform;
+                transition: transform 0.2s ease-out;
               }
 
-              @media (max-width: 1024px) {
-                .group > div {
-                  transform: rotateY(-4deg) rotateX(1deg);
+              @keyframes shimmer-once {
+                0% {
+                  transform: translateX(-100%) skewX(-15deg);
                 }
-                .group:hover > div {
-                  transform: rotateY(-2deg) rotateX(0.5deg);
+                100% {
+                  transform: translateX(200%) skewX(-15deg);
                 }
+              }
+
+              .animate-shimmer-once {
+                animation: shimmer-once 0.8s ease-out;
+              }
+
+              @keyframes light-sweep {
+                0% {
+                  transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                  opacity: 0;
+                }
+                50% {
+                  opacity: 1;
+                }
+                100% {
+                  transform: translateX(100%) translateY(100%) rotate(45deg);
+                  opacity: 0;
+                }
+              }
+
+              .animate-light-sweep {
+                animation: light-sweep 2.5s ease-in-out;
+              }
+
+              @keyframes float {
+                0%, 100% {
+                  transform: translateY(0) scale(1);
+                }
+                50% {
+                  transform: translateY(-10px) scale(1.2);
+                }
+              }
+
+              .animate-float {
+                animation: float 3s ease-in-out infinite;
+              }
+
+              .animate-float-delayed {
+                animation: float 3s ease-in-out infinite 1s;
+              }
+
+              @keyframes pulse-slow {
+                0%, 100% {
+                  opacity: 0;
+                }
+                50% {
+                  opacity: 1;
+                }
+              }
+
+              .animate-pulse-slow {
+                animation: pulse-slow 4s ease-in-out infinite;
+              }
+
+              @keyframes blob {
+                0%, 100% {
+                  transform: translate(0, 0) scale(1);
+                }
+                33% {
+                  transform: translate(30px, -50px) scale(1.1);
+                }
+                66% {
+                  transform: translate(-20px, 20px) scale(0.9);
+                }
+              }
+
+              .animate-blob {
+                animation: blob 20s ease-in-out infinite;
+              }
+
+              .animation-delay-2000 {
+                animation-delay: 2s;
+              }
+
+              .animation-delay-200 {
+                animation-delay: 0.2s;
+              }
+
+              @keyframes fade-in-down {
+                from {
+                  opacity: 0;
+                  transform: translateY(-20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+
+              @keyframes fade-in-up {
+                from {
+                  opacity: 0;
+                  transform: translateY(20px);
+                }
+                to {
+                  opacity: 1;
+                  transform: translateY(0);
+                }
+              }
+
+              .animate-fade-in-down {
+                animation: fade-in-down 0.6s ease-out;
+              }
+
+              .animate-fade-in-up {
+                animation: fade-in-up 0.6s ease-out;
+              }
+
+              @keyframes mirror-reflection {
+                0% {
+                  opacity: 0;
+                  transform: translateX(-100%) translateY(-100%) rotate(45deg) scale(1.5);
+                }
+                50% {
+                  opacity: 1;
+                }
+                100% {
+                  opacity: 0;
+                  transform: translateX(100%) translateY(100%) rotate(45deg) scale(1.5);
+                }
+              }
+
+              .animate-mirror-reflection {
+                animation: mirror-reflection 1.2s ease-out;
+              }
+
+              @keyframes fade-reflection {
+                0% {
+                  opacity: 0;
+                }
+                50% {
+                  opacity: 1;
+                }
+                100% {
+                  opacity: 0;
+                }
+              }
+
+              .animate-fade-reflection {
+                animation: fade-reflection 1.5s ease-in-out;
               }
             `}</style>
           </div>
 
-          {/* Contenu texte */}
-          <div>
-            <div className="mb-8">
-              <h3 className="text-2xl font-bold text-primary mb-4 leading-tight">
-                Notre institution contribue à un idéal commun :{" "}
-                <span className="text-bronze-base">
+          {/* Contenu textuel - 2 colonnes */}
+          <div className="lg:col-span-2 space-y-8">
+            {/* Titre accrocheur avec effet */}
+            <div className="relative pl-8">
+              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-bronze-base via-bronze-dark to-bronze-base rounded-full"></div>
+              <h3 className="text-2xl lg:text-4xl font-bold text-primary-900 leading-tight">
+                Un leader engagé pour{" "}
+                <span className="text-bronze-dark font-extrabold">
                   la performance des entreprises gabonaises
                 </span>
               </h3>
-
-              <div className="space-y-4 text-gray-700 leading-relaxed">
-                <p>
-                  Alain-Claude Kouakoua est à présent le leader du patronat
-                  gabonais, reconnu pour son influence grandissante au sein de
-                  la Fédération des Entreprises du Gabon (FEG) et pour ses
-                  engagements dans des secteurs essentiels tels que la
-                  logistique, le transport, la construction et les
-                  infrastructures. Il succède à Henri-Claude Oyima, qui occupe
-                  désormais le poste de ministre d'État.
-                </p>
-
-                <p>
-                  Né en 1960, Alain Claude KOUAKOUA, originaire de Lambaréné,
-                  entame sa carrière dans le monde des affaires en fondant Mika
-                  Transports, une entreprise spécialisée dans le transport et la
-                  distribution de produits pétroliers et de gaz. Quelques années
-                  plus tard, il prend la direction d'une nouvelle société, Mika
-                  Services, qui regroupe en son sein, en plus des hydrocarbures,
-                  des activités de BTP.
-                </p>
-              </div>
             </div>
 
-            {/* Points clés */}
-            <div className="space-y-3 mb-8">
-              <div className="flex items-start gap-3 p-4 bg-gray-50 border-l-4 border-primary">
-                <Briefcase size={20} className="text-primary flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-gray-900 text-sm mb-1">
-                    PDG du Groupe ACK
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    Conglomérat actif dans le BTP, transport et logistique
-                  </p>
-                </div>
-              </div>
+            {/* Biographie enrichie */}
+            <div className="space-y-6 text-gray-800 leading-relaxed text-base lg:text-lg">
+              <p className="first-letter:text-6xl first-letter:font-bold first-letter:text-bronze-base first-letter:mr-3 first-letter:float-left first-letter:leading-[0.8] first-letter:mt-2">
+                Alain-Claude Kouakoua est le leader du patronat gabonais, reconnu pour son influence au sein de la Fédération des Entreprises du Gabon (FEG) et ses engagements dans la logistique, le transport, la construction et les infrastructures.
+              </p>
 
-              <div className="flex items-start gap-3 p-4 bg-gray-50 border-l-4 border-bronze-base">
-                <Target size={20} className="text-bronze-base flex-shrink-0 mt-1" />
-                <div>
-                  <h4 className="font-bold text-gray-900 text-sm mb-1">
-                    Ancien Vice-président de la FEG
-                  </h4>
-                  <p className="text-sm text-gray-600">
-                    Chargé du corridor logistique et de la fédération des métiers de la construction
-                  </p>
-                </div>
-              </div>
+              <p className="pl-5 border-l-4 border-bronze-base/30 py-1">
+                Né en 1960 à Lambaréné, il fonde Mika Transports, entreprise spécialisée dans le transport et la distribution de produits pétroliers. Il dirige ensuite Mika Services, regroupant hydrocarbures et activités de BTP.
+              </p>
+
+             
             </div>
 
-            {/* Citation */}
-            <div className="bg-gradient-to-r from-primary to-primary-dark text-white p-6 relative overflow-hidden">
-              <div className="absolute top-2 right-2 opacity-10">
-                <Quote size={80} />
+            {/* Citation améliorée */}
+            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white p-8 shadow-2xl group hover:shadow-[0_20px_60px_-10px_rgba(6,61,33,0.5)] transition-all duration-500">
+              {/* Effet de brillance */}
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+
+              {/* Pattern décoratif */}
+              <div className="absolute top-0 right-0 opacity-[0.02]">
+                <Quote size={160} />
               </div>
+
               <div className="relative z-10">
-                <p className="text-lg font-medium italic mb-3">
-                  "Ensemble, bâtissons une économie forte pour garantir la souveraineté nationale"
+                <Quote size={28} className="text-bronze-base mb-4 drop-shadow-lg" />
+                <p className="text-lg lg:text-xl font-light italic mb-6 leading-relaxed text-white/95">
+                  "L'histoire économique d'un pays ne s'écrit pas dans les administrations. Elle s'écrit sur le terrain, dans la sueur des ateliers et le risque des entrepreneurs."
                 </p>
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-0.5 bg-bronze-light"></div>
-                  <p className="text-sm text-bronze-light font-semibold">
+                  <div className="w-12 h-px bg-gradient-to-r from-bronze-base to-transparent"></div>
+                  <p className="text-[11px] text-bronze-base font-bold tracking-[0.3em] uppercase">
                     Alain-Claude KOUAKOUA
                   </p>
                 </div>
               </div>
+
+              {/* Bordure animée */}
+              <div className="absolute inset-0 rounded-xl border border-white/10 pointer-events-none"></div>
+            </div>
+
+            {/* Bouton Lire la suite - Style amélioré */}
+            <div className="flex justify-center pt-6">
+              <button className="group/btn relative inline-flex items-center gap-3 px-10 py-5 bg-white text-primary-900 font-bold text-base rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden border-2 border-primary-900 hover:bg-primary-50">
+                <span className="relative z-10 flex items-center gap-2">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                  </svg>
+                  Lire la biographie complète
+                </span>
+                <svg className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+                {/* Effet de brillance au survol */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-bronze-base/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
+              </button>
             </div>
           </div>
         </div>
