@@ -14,27 +14,27 @@ const activities = [
     image: "/images/1ermai.jpg",
     category: "ÉVÉNEMENT NATIONAL",
     description: "La FEG célèbre la Fête du Travail aux côtés des travailleurs gabonais et rend hommage à leur contribution au développement économique du pays.",
-    type: "event"
+    type: "agenda"
   },
   {
     id: 2,
+    title: "Appel à manifestation d'intérêt",
+    date: "28 Mars 2025",
+    location: "Libreville, Gabon",
+    image: "/images/news1.jpg",
+    category: "ACTUALITÉ",
+    description: "La FEG lance un appel pour des projets innovants dans le secteur privé gabonais.",
+    type: "actualite"
+  },
+  {
+    id: 3,
     title: "Salon International des Façades, Fenêtres et Portes 2026",
     date: "Septembre 2026",
     location: "Alger, Algérie",
     image: "/images/siffp-2026.png",
-    category: "SALON INTERNATIONAL",
+    category: "AGENDA",
     description: "Participation de la FEG au SIFFP, salon international dédié aux professionnels du bâtiment, renforçant les échanges commerciaux Gabon-Algérie.",
-    type: "event"
-  },
-  {
-    id: 3,
-    title: "Cuisine Bain Expo 2025",
-    date: "Août 2025",
-    location: "Alger, Algérie",
-    image: "/images/cuisine-bain-expo.png",
-    category: "EXPOSITION",
-    description: "Participation au salon international des cuisines et salles de bain pour promouvoir les entreprises gabonaises à l'international.",
-    type: "actualite"
+    type: "agenda"
   },
   {
     id: 4,
@@ -42,28 +42,18 @@ const activities = [
     date: "Janvier 2025",
     location: "Siège de la FEG, Libreville",
     image: "/images/banière.jpg",
-    category: "ASSEMBLÉE GÉNÉRALE",
+    category: "COMMUNIQUÉ",
     description: "Rencontre annuelle des membres pour faire le bilan des actions menées et définir les orientations stratégiques pour l'année à venir.",
-    type: "actualite"
+    type: "communique"
   },
   {
     id: 5,
-    title: "Nomination et Investiture",
-    date: "Juin 2025",
+    title: "Table ronde sur le refinancement",
+    date: "22 Janvier 2025",
     location: "Libreville, Gabon",
-    image: "/images/nomitation.jpg",
-    category: "INSTITUTIONNEL",
-    description: "Cérémonie officielle de nomination et d'investiture des nouveaux membres du conseil d'administration de la FEG.",
-    type: "actualite"
-  },
-  {
-    id: 6,
-    title: "Publications et Rapports Annuels",
-    date: "Décembre 2024",
-    location: "Siège FEG",
-    image: "/images/publication1.jpg",
-    category: "PUBLICATION",
-    description: "Présentation des rapports d'activités et publications institutionnelles de la FEG pour l'année écoulée.",
+    image: "/images/news2.jpg",
+    category: "ACTUALITÉ",
+    description: "Participation de la FEG à une table ronde sur le refinancement hypothécaire.",
     type: "actualite"
   },
 ];
@@ -73,104 +63,111 @@ export default function FegActualitesSection() {
   const otherActivities = activities.slice(1);
 
   return (
-    <section className="py-24 bg-white relative overflow-hidden">
-      {/* Motif institutionnel en arrière-plan */}
-      <div className="absolute inset-0 opacity-[0.02]">
-        <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-primary-900 to-transparent"></div>
-        <div className="absolute bottom-0 left-0 w-1/2 h-full bg-gradient-to-r from-primary-900 to-transparent"></div>
+    <section className="py-28 bg-gradient-to-b from-white via-gray-50/30 to-white relative overflow-hidden">
+      {/* Grille subtile en arrière-plan */}
+      <div className="absolute inset-0 opacity-[0.015]">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `linear-gradient(#063d21 1px, transparent 1px), linear-gradient(90deg, #063d21 1px, transparent 1px)`,
+          backgroundSize: '60px 60px'
+        }}></div>
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        {/* En-tête institutionnel */}
-        <div className="mb-20">
-          <div className="flex items-center gap-4 mb-6">
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-900 to-transparent"></div>
-            <span className="text-xs font-bold tracking-[0.3em] text-primary-900 uppercase">
-              Actualités Institutionnelles
+        {/* En-tête institutionnel épuré */}
+        <div className="mb-24 text-center">
+          <div className="inline-flex items-center gap-4 mb-8">
+            <div className="w-16 h-px bg-bronze-base"></div>
+            <span className="text-[10px] font-bold tracking-[0.4em] text-primary-900/70 uppercase">
+              Notre Actualité
             </span>
-            <div className="h-px flex-1 bg-gradient-to-r from-transparent via-primary-900 to-transparent"></div>
+            <div className="w-16 h-px bg-bronze-base"></div>
           </div>
 
-          <h2 className="text-5xl lg:text-6xl font-bold text-center text-primary-900 mb-6 tracking-tight">
+          <h2 className="text-6xl lg:text-7xl font-bold text-primary-900 mb-8 tracking-tighter">
             La FEG en Action
           </h2>
 
-          <p className="text-center text-gray-600 text-lg max-w-3xl mx-auto leading-relaxed">
-            Au service du développement du secteur privé gabonais et du dialogue public-privé
+          <p className="text-gray-600 text-xl max-w-2xl mx-auto font-light leading-relaxed">
+            Au cœur du développement économique gabonais
           </p>
         </div>
 
-        {/* Événement principal - Format institutionnel */}
-        <div className="mb-20">
+        {/* Événement principal - Design magazine premium */}
+        <div className="mb-28">
           <Link
             href={`/activite/evenements/${featuredEvent.id}`}
-            className="group block relative"
+            className="group block"
           >
-            <div className="grid lg:grid-cols-2 gap-0 bg-gray-50 overflow-hidden">
-              {/* Image - Gauche */}
-              <div className="relative h-[500px] lg:h-[600px] overflow-hidden">
-                <Image
-                  src={featuredEvent.image}
-                  alt={featuredEvent.title}
-                  fill
-                  className="object-cover transition-transform duration-[800ms] ease-out group-hover:scale-105"
-                  priority
-                  sizes="50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/40 to-transparent"></div>
+            <div className="relative overflow-hidden bg-white shadow-2xl">
+              <div className="grid lg:grid-cols-5 gap-0">
+                {/* Image - 3/5 */}
+                <div className="lg:col-span-3 relative h-[550px] lg:h-[700px] overflow-hidden bg-gray-900">
+                  <Image
+                    src={featuredEvent.image}
+                    alt={featuredEvent.title}
+                    fill
+                    className="object-cover transition-all duration-1000 ease-out group-hover:scale-105 group-hover:brightness-110"
+                    priority
+                    sizes="60vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-black/70 via-black/30 to-transparent"></div>
 
-                {/* Badge flottant */}
-                <div className="absolute top-8 left-8">
-                  <div className="bg-white/95 backdrop-blur-sm px-6 py-3 border-l-4 border-bronze-base">
-                    <span className="text-primary-900 font-bold text-xs tracking-[0.2em]">
-                      {featuredEvent.category}
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* Contenu - Droite */}
-              <div className="p-12 lg:p-16 flex flex-col justify-center bg-white">
-                <div className="space-y-6">
-                  {/* Date et lieu */}
-                  <div className="flex flex-col gap-3 text-sm text-gray-600 font-medium">
-                    <div className="flex items-center gap-3">
-                      <div className="w-1 h-6 bg-bronze-base"></div>
-                      <Calendar size={18} className="text-primary-900" />
-                      <span>{featuredEvent.date}</span>
-                    </div>
-                    <div className="flex items-center gap-3">
-                      <div className="w-1 h-6 bg-transparent"></div>
-                      <MapPin size={18} className="text-primary-900" />
-                      <span>{featuredEvent.location}</span>
-                    </div>
-                  </div>
-
-                  {/* Titre */}
-                  <h3 className="text-3xl lg:text-4xl font-bold text-primary-900 leading-tight">
-                    {featuredEvent.title}
-                  </h3>
-
-                  {/* Description */}
-                  <p className="text-gray-600 leading-relaxed text-lg">
-                    {featuredEvent.description}
-                  </p>
-
-                  {/* Participants */}
-                  {featuredEvent.participants && (
-                    <div className="pt-4 border-t border-gray-200">
-                      <span className="text-sm text-gray-500 uppercase tracking-wider">
-                        {featuredEvent.participants}
+                  {/* Badge premium */}
+                  <div className="absolute top-12 left-12">
+                    <div className="bg-white px-8 py-4 shadow-xl">
+                      <span className="text-primary-900 font-black text-[11px] tracking-[0.25em]">
+                        {featuredEvent.category}
                       </span>
                     </div>
-                  )}
+                  </div>
+                </div>
 
-                  {/* CTA */}
-                  <div className="pt-6">
-                    <span className="inline-flex items-center gap-3 text-primary-900 font-bold text-sm uppercase tracking-wider group-hover:gap-4 transition-all duration-300">
-                      Découvrir événement
-                      <ChevronRight size={20} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
+                {/* Contenu - 2/5 */}
+                <div className="lg:col-span-2 p-12 lg:p-16 flex flex-col justify-center bg-white">
+                  <div className="space-y-8">
+                    {/* Métadonnées */}
+                    <div className="space-y-4 pb-6 border-b border-gray-200">
+                      <div className="flex items-start gap-4">
+                        <div className="w-px h-12 bg-bronze-base"></div>
+                        <div className="space-y-2">
+                          <div className="flex items-center gap-3 text-sm text-gray-600">
+                            <Calendar size={16} className="text-bronze-base" />
+                            <span className="font-medium">{featuredEvent.date}</span>
+                          </div>
+                          <div className="flex items-center gap-3 text-sm text-gray-600">
+                            <MapPin size={16} className="text-bronze-base" />
+                            <span className="font-medium">{featuredEvent.location}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Titre */}
+                    <h3 className="text-4xl lg:text-5xl font-bold text-primary-900 leading-[1.1] tracking-tight">
+                      {featuredEvent.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-gray-600 text-lg leading-relaxed font-light">
+                      {featuredEvent.description}
+                    </p>
+
+                    {/* Participants */}
+                    {featuredEvent.participants && (
+                      <div className="pt-6">
+                        <p className="text-xs text-gray-500 uppercase tracking-[0.2em] font-bold">
+                          {featuredEvent.participants}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* CTA */}
+                    <div className="pt-8">
+                      <div className="inline-flex items-center gap-3 text-primary-900 font-bold text-sm uppercase tracking-[0.15em] group-hover:gap-5 transition-all duration-500 border-b-2 border-bronze-base pb-2">
+                        Découvrir
+                        <ChevronRight size={18} className="group-hover:translate-x-2 transition-transform duration-500" />
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -178,78 +175,70 @@ export default function FegActualitesSection() {
           </Link>
         </div>
 
-        {/* Autres actualités - Grille épurée */}
+        {/* Autres actualités - Grille minimaliste */}
         <div>
-          <div className="flex items-center justify-between mb-12">
-            <h3 className="text-2xl font-bold text-primary-900 tracking-tight">
-              Autres Actualités
+          <div className="flex items-center justify-between mb-16">
+            <h3 className="text-3xl font-bold text-primary-900 tracking-tight">
+              Activités récentes
             </h3>
             <Link
               href="/activite/actualites"
-              className="flex items-center gap-2 text-sm font-bold text-primary-900 uppercase tracking-wider hover:text-bronze-base transition-colors group"
+              className="flex items-center gap-3 text-sm font-bold text-primary-900 uppercase tracking-[0.15em] hover:text-bronze-base transition-colors group"
             >
-              Tout voir
-              <ChevronRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              Voir tout
+              <ChevronRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
             {otherActivities.map((activity, index) => (
               <Link
                 key={activity.id}
-                href={`/activite/${activity.type === 'event' ? 'evenements' : 'actualites'}/${activity.id}`}
+                href={`/activite/${activity.type === 'agenda' ? 'evenements' : 'actualites'}/${activity.id}`}
                 className="group"
               >
-                <article className="bg-white border border-gray-200 hover:border-primary-900 transition-all duration-500 overflow-hidden">
+                <article className="bg-white border border-gray-100 hover:border-primary-900/20 transition-all duration-700 shadow-sm hover:shadow-2xl overflow-hidden">
                   {/* Image */}
-                  <div className="relative h-64 overflow-hidden bg-gray-100">
+                  <div className="relative h-72 overflow-hidden bg-gray-100">
                     <Image
                       src={activity.image}
                       alt={activity.title}
                       fill
-                      className="object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-90"
-                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-all duration-1000 group-hover:scale-110"
+                      sizes="(max-width: 768px) 100vw, 25vw"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
-
-                    {/* Numéro */}
-                    <div className="absolute top-4 right-4">
-                      <div className="bg-white/95 backdrop-blur-sm w-12 h-12 flex items-center justify-center">
-                        <span className="text-primary-900 font-bold text-lg">
-                          {String(index + 2).padStart(2, '0')}
-                        </span>
-                      </div>
-                    </div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent"></div>
                   </div>
 
                   {/* Contenu */}
-                  <div className="p-6 space-y-4">
+                  <div className="p-8 space-y-5">
                     {/* Badge */}
-                    <div className="border-l-2 border-bronze-base pl-3">
-                      <span className="text-xs font-bold text-primary-900 tracking-[0.15em]">
+                    <div className="flex items-center gap-3">
+                      <div className="w-8 h-px bg-bronze-base"></div>
+                      <span className="text-[10px] font-black text-primary-900 tracking-[0.2em] uppercase">
                         {activity.category}
                       </span>
                     </div>
 
                     {/* Titre */}
-                    <h4 className="text-xl font-bold text-primary-900 leading-tight line-clamp-2 group-hover:text-bronze-base transition-colors duration-300">
+                    <h4 className="text-2xl font-bold text-primary-900 leading-tight line-clamp-2 group-hover:text-bronze-base transition-colors duration-500">
                       {activity.title}
                     </h4>
 
                     {/* Description */}
-                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3">
+                    <p className="text-gray-600 text-sm leading-relaxed line-clamp-3 font-light">
                       {activity.description}
                     </p>
 
                     {/* Footer */}
-                    <div className="pt-4 flex items-center justify-between border-t border-gray-100">
-                      <div className="flex items-center gap-2 text-xs text-gray-500">
-                        <Calendar size={14} />
+                    <div className="pt-6 flex items-center justify-between border-t border-gray-100">
+                      <div className="flex items-center gap-2 text-xs text-gray-500 font-medium">
+                        <Calendar size={14} className="text-bronze-base" />
                         <span>{activity.date}</span>
                       </div>
                       <ChevronRight
-                        size={18}
-                        className="text-primary-900 group-hover:translate-x-1 transition-transform"
+                        size={20}
+                        className="text-primary-900 group-hover:translate-x-2 transition-transform duration-500"
                       />
                     </div>
                   </div>
@@ -259,8 +248,12 @@ export default function FegActualitesSection() {
           </div>
         </div>
 
-        {/* Barre de séparation finale */}
-        <div className="mt-24 h-px bg-gradient-to-r from-transparent via-primary-900/20 to-transparent"></div>
+        {/* Séparateur final élégant */}
+        <div className="mt-32 flex items-center justify-center gap-4">
+          <div className="w-24 h-px bg-gradient-to-r from-transparent to-bronze-base"></div>
+          <div className="w-2 h-2 bg-bronze-base rotate-45"></div>
+          <div className="w-24 h-px bg-gradient-to-l from-transparent to-bronze-base"></div>
+        </div>
       </div>
     </section>
   );

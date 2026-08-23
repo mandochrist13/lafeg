@@ -14,14 +14,13 @@ export default function Home() {
       <HolidayModal />
       <HeroEnhanced />
       <FegActualitesSection />
-
-      <President />
-      <KeyStatistics/>
       <AdhesionSection />
+      <President />
+      <KeyStatistics/>  
       <MissionsSection/>
       <PublicationsSection/>
       <PartnersSection/>
-      {/* <BecomeMemberForm/>   */}
+      {/* <BecomeMemberForm/>  */}
     </>
   )
 }

@@ -35,7 +35,7 @@ export default function StickyCTA() {
         {/* Bouton adhérer */}
         <Link
           href="/devenir-membre"
-          className="bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] animate-shimmer text-primary-900 font-bold text-base px-6 py-4 flex items-center gap-3 hover:scale-105 transition-all duration-300 shadow-2xl rounded-r-xl group"
+          className="bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] shimmer-ultra-slow text-primary-900 font-bold text-base px-6 py-4 flex items-center gap-3 hover:scale-105 transition-all duration-300 shadow-2xl rounded-r-xl group"
         >
           <UserPlus size={22} className="group-hover:scale-110 transition-transform" />
           <span className="whitespace-nowrap">Adhérez</span>

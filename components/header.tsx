@@ -206,7 +206,7 @@ export default function Header() {
               {/* Bouton Devenir Membre - Style original avec effet shimmer */}
               <Link
                 href="/devenir-membre"
-                className="ml-1 px-5 py-2.5 bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 animate-shimmer font-bold text-sm uppercase hover:from-bronze-lighter hover:to-bronze-medium transition-all duration-300 ease-out shadow-md hover:shadow-xl rounded-lg flex items-center gap-2 transform hover:scale-105"
+                className="ml-1 px-5 py-2.5 bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 shimmer-ultra-slow font-bold text-sm uppercase hover:from-bronze-lighter hover:to-bronze-medium transition-all duration-300 ease-out shadow-md hover:shadow-xl rounded-lg flex items-center gap-2 transform hover:scale-105"
               >
                 <svg
                   className="w-4 h-4"
@@ -455,7 +455,7 @@ export default function Header() {
 
               <Link
                 href="/devenir-membre"
-                className="px-4 py-3 bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 animate-shimmer font-bold text-sm hover:from-bronze-lighter hover:to-bronze-medium inline-block transition-all duration-300 ease-out mt-2 rounded-md transform hover:scale-105"
+                className="px-4 py-3 bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 shimmer-ultra-slow font-bold text-sm hover:from-bronze-lighter hover:to-bronze-medium inline-block transition-all duration-300 ease-out mt-2 rounded-md transform hover:scale-105"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <svg
@@ -480,6 +480,23 @@ export default function Header() {
 
       {/* Spacer pour compenser le header fixe */}
       <div className="h-24"></div>
+
+      {/* Styles CSS personnalisés pour shimmer ultra-lent */}
+      <style jsx global>{`
+        @keyframes shimmer-ultra-slow {
+          0% {
+            background-position: 200% 0;
+          }
+          100% {
+            background-position: -200% 0;
+          }
+        }
+
+        .shimmer-ultra-slow {
+          animation: shimmer-ultra-slow 15s linear infinite;
+          background-size: 200% 100%;
+        }
+      `}</style>
     </>
   );
 }
