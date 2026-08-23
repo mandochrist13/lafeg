@@ -24,6 +24,8 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
+        hyundai: ['var(--font-hyundai)', 'sans-serif'],
+        'hyundai-head': ['var(--font-hyundai-head)', 'sans-serif'],
         serif: ['var(--font-source-serif)', 'serif'],
       },
       colors: {
@@ -129,9 +131,9 @@ const config: Config = {
   			}
       },
       animation: {
-        "accordion-down": "accordion-down 0.2s ease-out",
-        "accordion-up": "accordion-up 0.2s ease-out",
-        shimmer: 'shimmer 3s linear infinite',
+        "accordion-down": "accordion-down 10.2s ease-out",
+        "accordion-up": "accordion-up 10.2s ease-out",
+        shimmer: 'shimmer 15s cubic-bezier(0.4, 0.0, 0.2, 1) infinite',
       },
     },
   },

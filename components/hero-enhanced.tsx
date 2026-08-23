@@ -135,19 +135,6 @@ export default function HeroEnhanced() {
     ctaText: "Lire plus",
   }))];
 
-  const handleNext = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev + 1) % allItems.length);
-    setTimeout(() => setIsAnimating(false), 600);
-  };
-
-  const handlePrev = () => {
-    if (isAnimating) return;
-    setIsAnimating(true);
-    setCurrentIndex((prev) => (prev - 1 + allItems.length) % allItems.length);
-    setTimeout(() => setIsAnimating(false), 600);
-  };
 
   // Auto-advance slider every 6 seconds
   useEffect(() => {
@@ -233,7 +220,7 @@ export default function HeroEnhanced() {
 
   return (
     <section
-      className="relative w-full h-[500px] md:h-[550px] lg:h-[600px] xl:h-[650px] bg-gradient-to-br from-gray-800 via-gray-700 to-primary-900 overflow-hidden"
+      className="relative w-full h-[600px] md:h-[650px] lg:h-[700px] xl:h-[750px] bg-gradient-to-br from-gray-800 via-gray-700 to-primary-900 overflow-hidden -mt-24"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
     >
@@ -430,7 +417,7 @@ export default function HeroEnhanced() {
         })}
 
         {/* Main content (shows for the second slide in rotation) */}
-        <div className="absolute top-0 left-0 w-full h-full flex items-center z-10 pointer-events-none">
+        <div className="absolute top-0 left-0 w-full h-full flex items-center z-10 pointer-events-none pt-32 md:pt-28">
           <div className="container mx-auto px-4 md:px-6 lg:px-8 max-w-7xl">
             {/* Limiter la largeur pour ne pas chevaucher les cartes */}
             <div className="max-w-xl lg:max-w-2xl xl:max-w-xl">

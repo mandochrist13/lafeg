@@ -1,22 +1,19 @@
 import type React from "react"
 import type { Metadata } from "next"
-import { Inter, Source_Serif_4 } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider";
 import { Providers } from "@/app/providers";
 import { Toaster } from "sonner";
 
-const inter = Inter({ subsets: ["latin"] })
-const sourceSerif = Source_Serif_4({
-  subsets: ["latin"],
-  variable: '--font-source-serif',
-  display: 'swap',
-})
-
 export const metadata: Metadata = {
   title: "Fédération des Entreprises du Gabon (FEG)",
   description: "Site officiel de la Fédération des Entreprises du Gabon",
-    generator: 'v0.dev'
+  generator: 'v0.dev',
+  icons: {
+    icon: '/logo.png',
+    shortcut: '/logo.png',
+    apple: '/logo.png',
+  },
 }
 
 export default function RootLayout({
@@ -26,7 +23,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body className={`${inter.className} ${sourceSerif.variable}`}>
+      <body className="font-hyundai">
       
          <ThemeProvider
           attribute="class"

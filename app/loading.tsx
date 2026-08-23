@@ -5,43 +5,72 @@ import Image from "next/image";
 
 const Loader = () => {
   const [loading, setLoading] = useState(true);
+  const [progress, setProgress] = useState(0);
+
   useEffect(() => {
-    // Vérifie si l'utilisateur a déjà visité
-    if (!localStorage.getItem("hasVisited")) {
-      // Si c'est le premier chargement, on affiche le loader
-      setTimeout(() => {
-        setLoading(false);
-        localStorage.setItem("hasVisited", "true");
-      }, 20000); // Délai de 2 secondes
-    } else {
-      // Si l'utilisateur a déjà visité, on cache immédiatement
+    // Animation de progression
+    const progressInterval = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(progressInterval);
+          return 100;
+        }
+        return prev + 2;
+      });
+    }, 20);
+
+    // Masquer le loader après 1.2 secondes
+    setTimeout(() => {
       setLoading(false);
-    }
+    }, 1200);
+
+    return () => clearInterval(progressInterval);
   }, []);
 
+  if (!loading) return null;
+
   return (
-    <div> 
-      {loading && (
-
-       <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-80 z-50">
-      <div className="flex flex-col items-center">
-        <div className="relative w-16 h-16 mb-4">
-          <div className="absolute inset-0 rounded-full border-4 border-[#063a1e]/20"></div>
-          <div className="absolute inset-0 rounded-full border-4 border-t-[#063a1e] animate-spin"></div>
+    <div className="fixed inset-0 flex items-center justify-center bg-white z-[9999]">
+      <div className="flex flex-col items-center gap-8">
+        {/* Logo simple */}
+        <div className="relative">
+          <div className="bg-white rounded-2xl p-6 shadow-lg">
+            <Image
+              src="/logo (1).png"
+              alt="Logo FEG"
+              width={100}
+              height={100}
+              className="h-20 w-auto"
+              priority
+            />
+          </div>
         </div>
 
-        <div className="flex flex-col items-center">
-          <Image src="/images/logo-feg.png" alt="Logo FEG" width={60} height={60} className="h-12 w-auto mb-2" />
-          <h2 className="text-lg font-bold text-[#063a1e]">Répertoire des textes Juridiques</h2>
+        {/* Texte élégant */}
+        <div className="text-center space-y-2">
+          <h2 className="text-xl font-bold text-primary-900">
+            Fédération des Entreprises du Gabon
+          </h2>
+          <p className="text-sm text-gray-500">Chargement en cours...</p>
         </div>
-        <div className="mt-4 h-1 w-48 bg-gray-200 rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-[#dcdaa4] to-[#bdbd95] animate-pulse"></div>
+
+        {/* Barre de progression minimaliste */}
+        <div className="w-64 h-1 bg-gray-100 rounded-full overflow-hidden">
+          <div
+            className="h-full bg-gradient-to-r from-primary-900 via-bronze-base to-primary-900 transition-all duration-300 ease-out"
+            style={{ width: `${progress}%` }}
+          ></div>
+        </div>
+
+        {/* Points animés */}
+        <div className="flex gap-2">
+          <div className="w-2 h-2 bg-primary-900 rounded-full animate-bounce" style={{ animationDelay: '0ms' }}></div>
+          <div className="w-2 h-2 bg-bronze-base rounded-full animate-bounce" style={{ animationDelay: '150ms' }}></div>
+          <div className="w-2 h-2 bg-primary-900 rounded-full animate-bounce" style={{ animationDelay: '300ms' }}></div>
         </div>
       </div>
     </div>
-      )}</div>
   );
 };
 
 export default Loader;
-
