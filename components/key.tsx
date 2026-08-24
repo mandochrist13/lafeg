@@ -208,7 +208,7 @@ export default function KeyStatistics() {
               {/* Carte principale - Membres (pleine largeur, grande) */}
               <div className="col-span-2">
                 <StatisticItem
-                  value={800}
+                  value={1100}
                   label="Membres actifs"
                   prefix="+"
                   size="large"
