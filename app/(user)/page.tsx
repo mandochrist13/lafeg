@@ -7,6 +7,7 @@ import AdhesionSection from "@/components/raison"
 import MissionsSection from "@/components/mission"
 import PublicationsSection from "@/components/publication"
 import PartnersSection from "@/components/partner"
+import BecomeMemberSection from "@/components/become"
 
 export default function Home() {
   return (
@@ -16,11 +17,11 @@ export default function Home() {
       <FegActualitesSection />
       <AdhesionSection />
       <President />
-      <KeyStatistics/>  
+      <KeyStatistics/>
       <MissionsSection/>
       <PublicationsSection/>
+      <BecomeMemberSection/>
       <PartnersSection/>
-      {/* <BecomeMemberForm/>  */}
     </>
   )
 }

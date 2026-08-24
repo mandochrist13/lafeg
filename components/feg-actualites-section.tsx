@@ -6,7 +6,7 @@ import { Calendar, MapPin, ChevronRight } from "lucide-react";
 
 const activities = [
   {
-    id: 1,
+    id: "feg-1",
     title: "Célébration de la Fête du Travail 2025",
     date: "1er Mai 2025",
     location: "Libreville, Gabon",
@@ -17,7 +17,7 @@ const activities = [
     type: "agenda"
   },
   {
-    id: 2,
+    id: "feg-2",
     title: "Appel à manifestation d'intérêt",
     date: "28 Mars 2025",
     location: "Libreville, Gabon",
@@ -27,7 +27,7 @@ const activities = [
     type: "actualite"
   },
   {
-    id: 3,
+    id: "feg-3",
     title: "Salon International des Façades, Fenêtres et Portes 2026",
     date: "Septembre 2026",
     location: "Alger, Algérie",
@@ -37,7 +37,7 @@ const activities = [
     type: "agenda"
   },
   {
-    id: 4,
+    id: "feg-4",
     title: "Assemblée Générale Ordinaire de la FEG",
     date: "Janvier 2025",
     location: "Siège de la FEG, Libreville",
@@ -47,7 +47,7 @@ const activities = [
     type: "communique"
   },
   {
-    id: 5,
+    id: "feg-5",
     title: "Table ronde sur le refinancement",
     date: "22 Janvier 2025",
     location: "Libreville, Gabon",

@@ -6,7 +6,7 @@ import { ArrowRight, Calendar, MapPin, Users } from "lucide-react";
 
 const activities = [
   {
-    id: 1,
+    id: "photo-1",
     title: "Forum Économique du Gabon 2025",
     date: "15 mars 2025",
     location: "Libreville, Gabon",
@@ -15,7 +15,7 @@ const activities = [
     category: "Forum",
   },
   {
-    id: 2,
+    id: "photo-2",
     title: "Table ronde sur le refinancement hypothécaire",
     date: "22 janvier 2025",
     location: "Siège de la FEG",
@@ -24,7 +24,7 @@ const activities = [
     category: "Conférence",
   },
   {
-    id: 3,
+    id: "photo-3",
     title: "Assises nationales de l'emploi",
     date: "22 janvier 2025",
     location: "Palais des Congrès",
@@ -33,7 +33,7 @@ const activities = [
     category: "Événement",
   },
   {
-    id: 4,
+    id: "photo-4",
     title: "Formation des entreprises membres",
     date: "10 janvier 2025",
     location: "Centre de formation FEG",
@@ -42,7 +42,7 @@ const activities = [
     category: "Formation",
   },
   {
-    id: 5,
+    id: "photo-5",
     title: "Rencontre avec les autorités",
     date: "Décembre 2024",
     location: "Primature",
@@ -51,7 +51,7 @@ const activities = [
     category: "Réunion",
   },
   {
-    id: 6,
+    id: "photo-6",
     title: "Assemblée générale annuelle",
     date: "Novembre 2024",
     location: "Hôtel Radisson",
