@@ -8,8 +8,19 @@ export default function a_propos() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row gap-8">
           {/* Main Content - Takes full width on mobile, 2/3 on desktop */}
-          <div className="">
-            <div className="border-t-4 border-[#fff] pt-6 sm:pt-8 rounded-lg bg-white shadow-md p-4 sm:p-6">
+          <div className="relative">
+            {/* Logo en filigrane subtil */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+              <Image
+                src="/images/logo.png"
+                alt="Logo FEG"
+                width={500}
+                height={500}
+                className="opacity-[0.15] select-none"
+              />
+            </div>
+
+            <div className="border-t-4 border-[#fff] pt-6 sm:pt-8 rounded-lg bg-white shadow-md p-4 sm:p-6 relative z-10">
               <h3 className="text-xl sm:text-2xl lg:text-3xl font-bold text-[#006d40] mb-3 sm:mb-4 leading-tight">
                 Notre institution contribue à un idéal commun :
                 <br className="hidden sm:block" />
@@ -43,14 +54,14 @@ export default function a_propos() {
                 </p>
               </div>
 
-              <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 sm:p-6 mt-6 sm:mt-8 rounded-lg border-l-4 border-[#006d40] shadow-sm">
+              {/* <div className="bg-gradient-to-r from-gray-50 to-gray-100 p-4 sm:p-6 mt-6 sm:mt-8 rounded-lg border-l-4 border-[#006d40] shadow-sm">
                 <h4 className="text-[#006d40] font-bold mb-1 sm:mb-2 text-sm sm:text-base">
                   Alain-Claude KOUAKOUA
                 </h4>
                 <p className="text-gray-700 text-sm sm:text-base">
                   Président de La FEG
                 </p>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

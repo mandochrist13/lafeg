@@ -75,7 +75,7 @@ function TabComponent() {
           <img
             src="/images/banière.jpg"
             alt="Arrière-plan entreprises membres"
-            className="w-full h-full object-cover opacity-20"
+            className="w-full h-full object-cover opacity-50"
           />
         </div>
 
@@ -180,8 +180,7 @@ function TabComponent() {
                 Président de La FEG
               </p>
               <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-bronze-base">
-                "Bâtissons ensemble une économie forte pour garantir la
-                souveraineté nationale"
+                "L'histoire économique d'un pays ne s'écrit pas dans les administrations. Elle s'écrit sur le terrain, dans la sueur des ateliers et le risque des entrepreneurs."
               </p>
             </div>
 

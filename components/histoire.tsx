@@ -1,11 +1,16 @@
 "use client";
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Timeline } from "@/components/ui/timeline";
-import { HoverEffect } from "./ui/card-hover-effect";
+import { motion } from "framer-motion";
+import { Calendar, Award } from "lucide-react";
 
 export const president = [
+  {
+    name: "M. Alain-Claude KOUAKOUA",
+    period: "2025 - Aujourd'hui",
+    image: "/images/président.jpg",
+  },
   {
     name: "M. Henri-Claude OYIMA",
     period: "2022 - 2025",
@@ -69,312 +74,304 @@ const Histoire: React.FC = () => {
       title: "1959",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Création de l'Union Interprofessionnelle du Gabon (UNIGABON)
+          <h3 className="text-2xl font-bold text-primary-900 mb-4">
+            Naissance d'UNIGABON
+          </h3>
+          <p className="mb-8 text-gray-600 leading-relaxed">
+            Création de l'Union Interprofessionnelle du Gabon, marquant le début de l'organisation patronale gabonaise.
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src="https://assets.aceternity.com/templates/startup-1.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/templates/startup-2.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/templates/startup-3.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/templates/startup-4.webp"
-              alt="startup template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-          </div>
+          <p className="text-gray-600 leading-relaxed">
+            En octobre 1959, un mois après la création d'Unigabon, plusieurs syndicats vont se constituer : le Syndicat des Entrepreneurs de Manutention du Gabon, le Syndicat des Compagnies de Navigation et de Consignation de Navires, le Syndicat des Transitaires, et le Syndicat des Transporteurs Fluviaux.
+          </p>
         </div>
       ),
     },
     {
-      title: "Early 2023",
+      title: "1971",
       content: (
         <div>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            I usually run out of copy, but when I see content this big, I try to
-            integrate lorem ipsum.
+          <h3 className="text-2xl font-bold text-primary-900 mb-4">
+            Ouverture et Inclusion
+          </h3>
+          <p className="mb-4 text-gray-600 leading-relaxed">
+            Réforme des statuts pour permettre aux entreprises non syndiquées de rejoindre le patronat, élargissant la représentativité.
           </p>
-          <p className="mb-8 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Lorem ipsum is for people who are too lazy to write copy. But we are
-            not. Here are some more example of beautiful designs I built.
+          <p className="text-gray-600 leading-relaxed">
+            Une restriction de principes fut apportée pour permettre aux entreprises qui ne sont pas dans une organisation syndicale d'être membre à part entière du patronat gabonais.
           </p>
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src="https://assets.aceternity.com/pro/hero-sections.png"
-              alt="hero template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/features-section.png"
-              alt="feature template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/pro/bento-grids.png"
-              alt="bento template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/cards.png"
-              alt="cards template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-          </div>
         </div>
       ),
     },
     {
-      title: "Changelog",
+      title: "1978",
       content: (
         <div>
-          <p className="mb-4 text-xs font-normal text-neutral-800 md:text-sm dark:text-neutral-200">
-            Deployed 5 new components on Aceternity today
+          <h3 className="text-2xl font-bold text-primary-900 mb-4">
+            Naissance de la CPG
+          </h3>
+          <p className="mb-4 text-gray-600 leading-relaxed">
+            UNIGABON devient la Confédération Patronale Gabonaise, une fédération de syndicats et d'entreprises plus structurée.
           </p>
-          <div className="mb-8">
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Card grid component
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Startup template Aceternity
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Random file upload lol
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Himesh Reshammiya Music CD
-            </div>
-            <div className="flex items-center gap-2 text-xs text-neutral-700 md:text-sm dark:text-neutral-300">
-              ✅ Salman Bhai Fan Club registrations open
-            </div>
-          </div>
-          <div className="grid grid-cols-2 gap-4">
-            <img
-              src="https://assets.aceternity.com/pro/hero-sections.png"
-              alt="hero template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/features-section.png"
-              alt="feature template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/pro/bento-grids.png"
-              alt="bento template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-            <img
-              src="https://assets.aceternity.com/cards.png"
-              alt="cards template"
-              width={500}
-              height={500}
-              className="h-20 w-full rounded-lg object-cover shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset] md:h-44 lg:h-60"
-            />
-          </div>
+          <p className="text-gray-600 leading-relaxed">
+            Cette appellation reflétait mieux le caractère patronal de l'organisation d'une part, sa composition multi-syndicale d'autre part.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "2020",
+      content: (
+        <div>
+          <h3 className="text-2xl font-bold text-primary-900 mb-4">
+            Modernisation
+          </h3>
+          <p className="mb-4 text-gray-600 leading-relaxed">
+            La CPG s'organise autour de 18 secteurs forts et modernise sa gouvernance avec un Conseil d'Administration réduit.
+          </p>
+          <p className="text-gray-600 leading-relaxed">
+            Cette restructuration marque une nouvelle ère de professionnalisation et d'efficacité pour l'organisation patronale.
+          </p>
+        </div>
+      ),
+    },
+    {
+      title: "2022",
+      content: (
+        <div>
+          <h3 className="text-2xl font-bold text-primary-900 mb-4">
+            La FEG est née
+          </h3>
+          <p className="mb-4 text-gray-600 leading-relaxed">
+            La Confédération Patronale Gabonaise devient la Fédération des Entreprises du Gabon, marquant une nouvelle ère.
+          </p>
+          <p className="text-gray-600 leading-relaxed">
+            Au-delà de sa position de quasi-monopole, la FEG doit son statut autant à une longue histoire qu'à son implication grandissante auprès des décideurs et des partenaires sociaux.
+          </p>
         </div>
       ),
     },
   ];
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
-    <>
-      <section className="p-6 rounded-lg bg-[#f5f5f5]">
-        <div className="flex flex-col lg:flex-row gap-8">
-          {/* Main Content */}
-          <div className="">
-            <div className="mb-16">
-             
-              {/* Timeline Cards - Version Simplifiée */}
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-12">
-                {[
-                  {
-                    year: "1959",
-                    text: "Création de l'Union Interprofessionnelle du Gabon (UNIGABON)",
-                  },
-                  {
-                    year: "1971",
-                    text: "Réforme des statuts pour permettre aux entreprises non syndiquées de rejoindre le patronat.",
-                  },
-                  {
-                    year: "1978",
-                    text: "UNIGABON devient la Confédération Patronale Gabonaise, soit une fédération de syndicats ou d'entreprises.",
-                  },
-                  {
-                    year: "2020",
-                    text: "La CPG s'organise autour de 18 secteurs forts et réduit la taille de son Conseil d'Administration",
-                  },
-                  {
-                    year: "2022",
-                    text: "La CPG devient la FEG",
-                  },
-                ].map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-white p-6 rounded-lg border border-gray-200 hover:border-[#063d21] transition-colors duration-300 shadow-sm hover:shadow-md relative"
-                  >
-                    {/* Année */}
-                    <h3 className="text-2xl font-bold text-[#063d21] mb-3">
-                      {item.year}
-                    </h3>
+    <section className="relative bg-gradient-to-b from-gray-50 via-white to-gray-50">
+      {/* Logo en filigrane */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.5 }}
+        className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden -z-10"
+      >
+        <Image
+          src="/images/logo.png"
+          alt="Logo FEG"
+          width={700}
+          height={700}
+          className="opacity-[0.02] select-none"
+        />
+      </motion.div>
 
-                    {/* Texte */}
-                    <p className="text-gray-600 pl-2 border-l-2 border-[#063d21]">
-                      {item.text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <div className="relative w-full overflow-clip">
-                <Timeline data={data} />
-              </div>
+      <div className="max-w-7xl mx-auto px-4 py-16">
+        {/* En-tête */}
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center mb-20"
+        >
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-12 h-px bg-gradient-to-r from-transparent via-bronze-base to-bronze-base"></div>
+            <Calendar className="w-5 h-5 text-bronze-base" />
+            <span className="text-xs font-bold tracking-[0.3em] text-primary-900/70 uppercase">
+              Notre Histoire
+            </span>
+            <div className="w-12 h-px bg-gradient-to-r from-bronze-base via-bronze-base to-transparent"></div>
+          </div>
 
-              {/* History Section */}
-              <div className="space-y-8">
-                <h2 className="text-3xl font-bold text-gray-800">
-                  Notre histoire
-                </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  Créé le 4 septembre 1959, sous l'appellation d'Union
-                  Interprofessionnelle du Gabon (UNIGABON) le patronat gabonais
-                  a connu plusieurs évolutions avec le souci constant de
-                  s'adapter à son environnement.
-                </p>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-black text-primary-900 mb-6 tracking-tight">
+            67 ANS D'ENGAGEMENT
+          </h1>
 
-                <h3 className="text-2xl font-bold text-gray-800">
-                  Chronologie de l'evolution du patronat gabonais
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  Créé le 4 septembre 1959, sous l'appellation d'Union
-                  Interprofessionnelle du Gabon (UNIGABON) le patronat gabonais
-                  a connu plusieurs évolutions avec le souci constant de
-                  s'adapter à son environnement.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  En octobre 1959, un mois après la création d'Unigabon,
-                  plusieurs syndicats vont se constituer:
-                </p>
+          <p className="text-xl text-gray-700 max-w-3xl mx-auto leading-relaxed">
+            Depuis 1959, une histoire au service des entreprises gabonaises
+          </p>
+        </motion.div>
 
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                  {[
-                    "le Syndicat des Entrepreneurs de Manutention du Gabon;",
-                    "le Syndicat des Compagnies de Navigation et de Consignation de Navires du Gabon;",
-                    "le Syndicat des Transitaires du Gabon;",
-                    "le Syndicat des Transporteurs Fluviaux.",
-                  ].map((item, index) => (
-                    <li key={index}>{item}</li>
-                  ))}
-                </ul>
+        {/* Timeline animée avec scroll */}
+        <div className="mb-24">
+          <Timeline data={data} />
+        </div>
 
-                <h4 className="text-xl font-bold text-gray-800">
-                  Les années qui suivent verront l'apparition des groupements
-                  suivants :
-                </h4>
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                  <li>
-                    le Syndicat des Entreprises Minières du Gabon (1960) ;
-                  </li>
-                  <li>
-                    le Syndicat des Négociants en Bois et Courtiers du Gabon
-                    (1963).
-                  </li>
-                </ul>
+        {/* Histoire détaillée */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-24"
+        >
+          <div className="bg-white rounded-2xl p-8 md:p-12 shadow-xl border border-gray-100">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-8 flex items-center gap-4">
+              <div className="w-1.5 h-12 bg-gradient-to-b from-bronze-base to-bronze-dark rounded-full"></div>
+              L'évolution du patronat gabonais
+            </h2>
 
-                <p className="text-gray-600 leading-relaxed">
-                  En 1971, une restriction de principes fut apportée pour
-                  permettre aux entreprises qui ne sont pas dans une
-                  organisation syndicale d'être membre à part entière du
-                  patronat gabonais.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  En 1978, UNIGABON devenait la Confédération Patronale
-                  Gabonaise (CPG), appellation reflétant mieux le caractère
-                  patronal de l'organisation d'une part, sa composition multi
-                  syndicale d'autre part. Au-delà de sa position de
-                  quasi-monopole, la FEG doit son statut autant à une longue
-                  histoire qu'à son implication grandissante auprès des
-                  décideurs et des partenaires sociaux et à une crédibilité
-                  reconnue par toutes les instances nationales et
-                  internationales entretenant des rapports avec les entreprises.
-                </p>
+            <div className="space-y-6 text-gray-700 leading-relaxed text-base md:text-lg">
+              <p className="first-letter:text-6xl first-letter:font-bold first-letter:text-bronze-base first-letter:mr-3 first-letter:float-left first-letter:leading-[0.8] first-letter:mt-2">
+                Créé le 4 septembre 1959 sous l'appellation d'Union
+                Interprofessionnelle du Gabon (UNIGABON), le patronat gabonais a
+                connu plusieurs évolutions avec le souci constant de s'adapter à
+                son environnement.
+              </p>
 
-                {/* Presidents Section */}
-                <h2 className="text-3xl font-bold text-gray-800 pt-8">
-                  Les anciens présidents de la FEG
-                </h2>
-                <p className="text-gray-600 mb-8 leading-relaxed">
-                  Au fil des années, notre organisation a vu le passage de
-                  plusieurs présidents qui ont tour à tour marqué leurs mandats.
-                </p>
+              <p>
+                En octobre 1959, un mois après la création d'Unigabon, plusieurs
+                syndicats vont se constituer : le Syndicat des Entrepreneurs de
+                Manutention du Gabon, le Syndicat des Compagnies de Navigation et
+                de Consignation de Navires, le Syndicat des Transitaires, et le
+                Syndicat des Transporteurs Fluviaux.
+              </p>
 
-                <div className="max-w-5xl mx-auto px-8">
-                  <HoverEffect
-                    items={president.map((p) => ({
-                      title: p.name,
-                      description: p.period,
-                      link: p.image, // If 'link' is meant to be a URL, otherwise use "#" or ""
-                    }))}
-                  />
-                </div>
+              <p className="bg-gray-50 p-6 rounded-lg border-l-4 border-bronze-base">
+                Les années qui suivent verront l'apparition du Syndicat des
+                Entreprises Minières du Gabon (1960) et du Syndicat des Négociants
+                en Bois et Courtiers du Gabon (1963).
+              </p>
 
-                {/* Anniversary Section */}
-                <h2 className="text-3xl font-bold text-gray-800 pt-12">
-                  1959-2019 : 60 ans et des défis pour la promotion de la PME
-                  gabonaise
-                </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  Dans le cadre de la commémoration de cet âge d'or et de
-                  raison, la plus puissante organisation patronale gabonaise a
-                  organisé, le vendredi 13 décembre 2019 à l'hôtel Radisson Blu
-                  de Libreville, une conférence débat sur le thème "L'entreprise
-                  gabonaise et l'intégration régionale" suivie d'un dîner gala.
-                </p>
-                <p className="text-gray-600 leading-relaxed">
-                  Cette première édition des Rencontres de la FEG, sponsorisée
-                  par Comilog, Total et Gabon Télécom, a réuni les adhérents de
-                  la FEG, le Premier ministre, Julien Nkoghé Békalé et plusieurs
-                  membres de son équipe, ainsi que les décideurs économiques du
-                  Gabon et de la sous-région, pour discuter des grands enjeux
-                  économiques de demain.
-                </p>
-              </div>
+              <p>
+                En 1971, une restriction de principes fut apportée pour permettre
+                aux entreprises qui ne sont pas dans une organisation syndicale
+                d'être membre à part entière du patronat gabonais.
+              </p>
+
+              <p>
+                En 1978, UNIGABON devenait la Confédération Patronale Gabonaise
+                (CPG), appellation reflétant mieux le caractère patronal de
+                l'organisation d'une part, sa composition multi-syndicale d'autre
+                part. Au-delà de sa position de quasi-monopole, la FEG doit son
+                statut autant à une longue histoire qu'à son implication
+                grandissante auprès des décideurs et des partenaires sociaux.
+              </p>
             </div>
           </div>
-        </div>
-      </section>
-    </>
+        </motion.div>
+
+        {/* Les présidents */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="mb-24"
+        >
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-primary-900 mb-4">
+              Les Présidents de la FEG
+            </h2>
+            <p className="text-lg text-gray-600">
+              Au fil des années, notre organisation a vu le passage de plusieurs
+              présidents qui ont marqué leurs mandats
+            </p>
+          </div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6"
+          >
+            {president.map((p, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ y: -8, scale: 1.03 }}
+                className="group relative bg-white rounded-xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-gray-100 hover:border-bronze-base/30"
+              >
+                {/* Photo */}
+                <div className="relative aspect-[3/4] overflow-hidden bg-gray-100">
+                  <Image
+                    src={p.image}
+                    alt={p.name}
+                    fill
+                    className="object-cover object-top transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+                </div>
+
+                {/* Info */}
+                <div className="absolute bottom-0 left-0 right-0 p-4 text-white">
+                  <p className="text-xs font-bold text-bronze-base mb-1">
+                    {p.period}
+                  </p>
+                  <h3 className="text-sm font-bold leading-tight line-clamp-2">
+                    {p.name}
+                  </h3>
+                </div>
+
+                {/* Bordure top bronze */}
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-bronze-base to-bronze-dark"></div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </motion.div>
+
+        {/* 60 ans anniversaire */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+          className="bg-gradient-to-br from-primary-900 to-primary-800 rounded-2xl p-8 md:p-12 text-white shadow-2xl"
+        >
+          <div className="flex items-center gap-4 mb-6">
+            <Award className="w-12 h-12 text-bronze-base" />
+            <h2 className="text-3xl md:text-4xl font-bold">
+              1959-2019 : 60 ans d'excellence
+            </h2>
+          </div>
+
+          <div className="space-y-4 text-white/90 leading-relaxed">
+            <p>
+              Dans le cadre de la commémoration de cet âge d'or et de raison, la
+              plus puissante organisation patronale gabonaise a organisé, le
+              vendredi 13 décembre 2019 à l'hôtel Radisson Blu de Libreville, une
+              conférence débat sur le thème "L'entreprise gabonaise et
+              l'intégration régionale" suivie d'un dîner gala.
+            </p>
+
+            <p className="bg-white/10 p-6 rounded-lg backdrop-blur-sm">
+              Cette première édition des Rencontres de la FEG, sponsorisée par
+              Comilog, Total et Gabon Télécom, a réuni les adhérents de la FEG,
+              le Premier ministre, Julien Nkoghé Békalé et plusieurs membres de
+              son équipe, ainsi que les décideurs économiques du Gabon et de la
+              sous-région.
+            </p>
+          </div>
+        </motion.div>
+      </div>
+    </section>
   );
 };
 

@@ -63,8 +63,20 @@ export default function Phototheque() {
       {/* En-tête avec image de fond */}
       <div className="relative bg-[#063d21] text-white py-20">
         {/* Contenu principal */}
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="flex flex-col lg:flex-row gap-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 relative">
+          {/* Logo en filigrane subtil */}
+          <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+            <Image
+              src="/images/logo.png"
+              alt="Logo FEG"
+              width={5000}
+              height={5000}
+              className="opacity-[0.03] select-none"
+              style={{ mixBlendMode: 'multiply' }}
+            />
+          </div>
+
+          <div className="flex flex-col lg:flex-row gap-8 relative z-10">
             {/* Section principale de la photothèque */}
             <div className="">
               {/* Galerie d'images */}

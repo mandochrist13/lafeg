@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image"
 import Link from "next/link"
 import { Calendar, Clock, MapPin, ArrowLeft, User, Users } from "lucide-react"
@@ -46,7 +48,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
         { time: "12:30 - 13:00", activity: "Questions-réponses et clôture" },
         { time: "13:00 - 14:30", activity: "Cocktail déjeunatoire" },
       ],
-      imageUrl: "/images/event1.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop",
     },
     "forum-investissement": {
       title: "Forum sur l'investissement au Gabon",
@@ -73,7 +75,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
         { time: "16:00 - 17:00", activity: "Rencontres B2B" },
         { time: "17:00 - 17:30", activity: "Cérémonie de clôture" },
       ],
-      imageUrl: "/images/event2.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&h=600&fit=crop",
     },
     "seminaire-fiscalite": {
       title: "Séminaire sur la fiscalité des entreprises",
@@ -96,7 +98,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
         { time: "16:15 - 17:00", activity: "Optimisation fiscale et bonnes pratiques" },
         { time: "17:00 - 17:30", activity: "Questions-réponses et clôture" },
       ],
-      imageUrl: "/images/event3.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
     },
     "atelier-commerce-electronique": {
       title: "Atelier sur le commerce électronique",
@@ -119,7 +121,7 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
         { time: "11:15 - 12:00", activity: "Logistique, livraison et aspects juridiques" },
         { time: "12:00 - 12:30", activity: "Questions-réponses et clôture" },
       ],
-      imageUrl: "/images/event4.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1556761175-b413da4baf72?w=800&h=600&fit=crop",
     },
   }
 
@@ -136,93 +138,181 @@ export default function EventDetail({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="py-12">
-      <div className="container mx-auto px-4">
-        <Link href="/evenements" className="inline-flex items-center text-[#063d21] hover:underline mb-6">
-          <ArrowLeft size={20} className="mr-2" /> Retour aux événements
-        </Link>
+    <>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-primary-900 to-primary-800 text-white py-16">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={eventItem.imageUrl || "/images/banière.jpg"}
+            alt={eventItem.title}
+            fill
+            className="object-cover opacity-20"
+          />
+        </div>
 
-        <article className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="relative h-64 md:h-96">
-            <Image src={eventItem.imageUrl || "/placeholder.svg"} alt={eventItem.title} fill className="object-cover" />
+        <div className="container mx-auto px-4 relative z-10">
+          <Link
+            href="/activite/evenements"
+            className="inline-flex items-center text-bronze-base hover:text-bronze-light mb-6 transition-colors"
+          >
+            <ArrowLeft size={20} className="mr-2" /> Retour aux événements
+          </Link>
+
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-2 text-bronze-base mb-4">
+              <Calendar size={18} />
+              <span className="text-sm font-semibold">{eventItem.date}</span>
+            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+              {eventItem.title}
+            </h1>
           </div>
-
-          <div className="p-6 md:p-8">
-            <h1 className="text-2xl md:text-3xl font-bold mb-6">{eventItem.title}</h1>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-              <div className="space-y-4">
-                <div className="flex items-center text-gray-700">
-                  <Calendar size={20} className="mr-3 text-[#063d21]" />
-                  <span>{eventItem.date}</span>
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <Clock size={20} className="mr-3 text-[#063d21]" />
-                  <span>{eventItem.time}</span>
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <MapPin size={20} className="mr-3 text-[#063d21]" />
-                  <span>{eventItem.location}</span>
-                </div>
-              </div>
-              <div className="space-y-4">
-                <div className="flex items-center text-gray-700">
-                  <User size={20} className="mr-3 text-[#063d21]" />
-                  <span>{eventItem.organizer}</span>
-                </div>
-                <div className="flex items-center text-gray-700">
-                  <Users size={20} className="mr-3 text-[#063d21]" />
-                  <span>{eventItem.participants}</span>
-                </div>
-              </div>
-            </div>
-
-            <div className="mb-8">
-              <h2 className="text-xl font-bold mb-4 text-[#063d21]">Description</h2>
-              <div className="prose max-w-none">
-                {eventItem.description.map((paragraph, index) => (
-                  <p key={index} className="mb-4">
-                    {paragraph}
-                  </p>
-                ))}
-              </div>
-            </div>
-
-            {eventItem.program.length > 0 && (
-              <div>
-                <h2 className="text-xl font-bold mb-4 text-[#063d21]">Programme</h2>
-                <div className="bg-gray-50 p-4 rounded-lg">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-gray-300">
-                        <th className="text-left py-2 px-4 font-bold">Horaire</th>
-                        <th className="text-left py-2 px-4 font-bold">Activité</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {eventItem.program.map((item, index) => (
-                        <tr key={index} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
-                          <td className="py-2 px-4 border-b border-gray-200">{item.time}</td>
-                          <td className="py-2 px-4 border-b border-gray-200">{item.activity}</td>
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            )}
-
-            <div className="mt-8 text-center">
-              <Link
-                href="/contact"
-                className="inline-block bg-[linear-gradient(110deg,#b0b08b,45%,#dcdaa4,55%,#b0b08b)] bg-[length:200%_100%] text-primary-900 px-6 py-3 rounded-lg font-bold animate-shimmer transition-colors"
-              >
-                S'inscrire à cet événement
-              </Link>
-            </div>
-          </div>
-        </article>
+        </div>
       </div>
-    </div>
+
+      {/* Content */}
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <article className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="relative h-96">
+                <Image
+                  src={eventItem.imageUrl || "/placeholder.svg"}
+                  alt={eventItem.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="p-8 md:p-12">
+                {/* Event Details Grid */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10 pb-10 border-b border-gray-200">
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                        <Calendar size={18} className="text-primary-900" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Date</p>
+                        <p className="text-gray-900 font-medium">{eventItem.date}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                        <Clock size={18} className="text-primary-900" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Horaire</p>
+                        <p className="text-gray-900 font-medium">{eventItem.time}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                        <MapPin size={18} className="text-primary-900" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Lieu</p>
+                        <p className="text-gray-900 font-medium">{eventItem.location}</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                        <User size={18} className="text-primary-900" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Organisateur</p>
+                        <p className="text-gray-900 font-medium">{eventItem.organizer}</p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="w-10 h-10 rounded-full bg-primary-100 flex items-center justify-center flex-shrink-0">
+                        <Users size={18} className="text-primary-900" />
+                      </div>
+                      <div>
+                        <p className="text-xs font-semibold text-gray-500 uppercase mb-1">Participants</p>
+                        <p className="text-gray-900 font-medium">{eventItem.participants}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="mb-10">
+                  <h2 className="text-2xl font-bold text-primary-900 mb-6">Description</h2>
+                  <div className="prose prose-lg max-w-none">
+                    {eventItem.description.map((paragraph, index) => (
+                      <p key={index} className="mb-6 text-gray-700 leading-relaxed text-justify">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Program */}
+                {eventItem.program.length > 0 && (
+                  <div className="mb-10">
+                    <h2 className="text-2xl font-bold text-primary-900 mb-6">Programme</h2>
+                    <div className="bg-gradient-to-br from-gray-50 to-gray-100/50 rounded-xl overflow-hidden border border-gray-200">
+                      <div className="overflow-x-auto">
+                        <table className="w-full">
+                          <thead>
+                            <tr className="bg-primary-900 text-white">
+                              <th className="text-left py-4 px-6 font-bold">Horaire</th>
+                              <th className="text-left py-4 px-6 font-bold">Activité</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {eventItem.program.map((item, index) => (
+                              <tr
+                                key={index}
+                                className={`${
+                                  index % 2 === 0 ? "bg-white" : "bg-gray-50/50"
+                                } hover:bg-primary-50/30 transition-colors`}
+                              >
+                                <td className="py-4 px-6 border-b border-gray-200 font-semibold text-primary-900 whitespace-nowrap">
+                                  {item.time}
+                                </td>
+                                <td className="py-4 px-6 border-b border-gray-200 text-gray-700">
+                                  {item.activity}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* CTA Button */}
+                <div className="text-center pt-8 border-t border-gray-200">
+                  <Link
+                    href="/contact"
+                    className="inline-flex items-center gap-2 bg-gradient-to-r from-bronze-base to-bronze-dark hover:from-bronze-dark hover:to-bronze-base text-primary-900 px-8 py-4 rounded-lg font-bold transition-all duration-300 shadow-lg hover:shadow-xl hover:scale-105"
+                  >
+                    <span>S'inscrire à cet événement</span>
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </Link>
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-gray-200">
+                  <Link
+                    href="/activite/evenements"
+                    className="inline-flex items-center text-primary-900 hover:text-bronze-base font-semibold transition-colors"
+                  >
+                    <ArrowLeft size={20} className="mr-2" />
+                    Retour aux événements
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </>
   )
 }
