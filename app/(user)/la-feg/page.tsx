@@ -6,12 +6,12 @@ import { useState, useEffect } from "react";
 import { usePathname, useSearchParams } from "next/navigation";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import A_propos from "@/components/a_propos";
-import President from "@/components/president";
+import PresidentFull from "@/components/president-full";
 import Gouvernance from "@/components/gouvernance";
 import Histoire from "@/components/histoire";
 import Valeurs from "@/components/valeur";
 import Services from "@/components/service";
-import Phototheque from "@/components/phototheque";
+import Mission from "@/components/mission";
 import { Suspense } from "react";
 
 interface TabContent {
@@ -45,13 +45,13 @@ function TabComponent() {
       title: "Valeurs",
       content: "Les valeurs qui nous guident...",
     },
+    mission: {
+      title: "Mission",
+      content: "Notre mission et notre raison d'être...",
+    },
     services: {
       title: "Services",
       content: "Les services offerts par la FEG à ses membres...",
-    },
-    phototheque: {
-      title: "Photothèque",
-      content: "Découvrez notre photothèque avec des images de nos activités...",
     },
   };
 
@@ -110,8 +110,20 @@ function TabComponent() {
       </div>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="flex flex-col lg:flex-row gap-8">
+      <div className="container mx-auto px-4 py-8 relative">
+        {/* Logo en filigrane subtil */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+          <Image
+            src="/images/logo.png"
+            alt="Logo FEG"
+            width={5000}
+            height={5000}
+            className="opacity-[0.03] select-none"
+            style={{ mixBlendMode: 'multiply' }}
+          />
+        </div>
+
+        <div className="flex flex-col lg:flex-row gap-8 relative z-10">
           <div className="lg:w-2/3">
             <h2 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-4 sm:mb-6">
               Mieux connaître la FEG
@@ -143,7 +155,7 @@ function TabComponent() {
                 <A_propos />
               </TabsContent>
               <TabsContent value="presidence">
-                <President />
+                <PresidentFull />
               </TabsContent>
               <TabsContent value="gouvernance">
                 <Gouvernance />
@@ -154,11 +166,11 @@ function TabComponent() {
               <TabsContent value="valeurs">
                 <Valeurs />
               </TabsContent>
+              <TabsContent value="mission">
+                <Mission />
+              </TabsContent>
               <TabsContent value="services">
                 <Services />
-              </TabsContent>
-              <TabsContent value="phototheque">
-                <Phototheque />
               </TabsContent>
             </Tabs>
           </div>
@@ -183,8 +195,7 @@ function TabComponent() {
                 Président de La FEG
               </p>
               <p className="text-gray-600 text-xs sm:text-sm italic mb-4 bg-gray-50 p-3 rounded-lg border-l-2 border-bronze-base">
-                "Bâtissons ensemble une économie forte pour garantir la
-                souveraineté nationale"
+                "L'histoire économique d'un pays ne s'écrit pas dans les administrations. Elle s'écrit sur le terrain, dans la sueur des ateliers et le risque des entrepreneurs."
               </p>
             </div>
 

@@ -59,9 +59,33 @@ export default function DevenirMembre() {
   ]
 
   return (
-    <div className="py-12">
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold text-[#063d21] mb-8">Devenir membre</h1>
+    <>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-primary-900 to-primary-800 text-white py-16 md:py-20">
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 bg-[url('/images/pattern.png')] bg-repeat"></div>
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="w-8 h-px bg-bronze-base"></div>
+              <span className="text-xs font-bold tracking-widest text-bronze-base uppercase">
+                Rejoignez-nous
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4">
+              Devenir Membre
+            </h1>
+            <p className="text-lg md:text-xl text-white/80 max-w-2xl">
+              Rejoignez le réseau des acteurs majeurs de l'économie gabonaise
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="py-12">
+        <div className="container mx-auto px-4">
 
         {submitSuccess ? (
           <div className="bg-white rounded-lg shadow-md p-8 text-center">
@@ -332,6 +356,7 @@ export default function DevenirMembre() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </>
   )
 }
