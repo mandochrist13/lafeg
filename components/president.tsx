@@ -28,7 +28,7 @@ export default function President() {
   };
 
   return (
-    <section className="py-20 lg:py-28 bg-gradient-to-b from-white via-gray-50/40 to-white relative overflow-hidden">
+    <section className="py-12 lg:py-16 bg-gradient-to-b from-white via-gray-50/40 to-white relative overflow-hidden">
       {/* Effets de fond décoratifs */}
       <div className="absolute inset-0 opacity-[0.015]">
         <div className="absolute top-20 left-10 w-96 h-96 bg-bronze-base rounded-full blur-3xl animate-blob"></div>
@@ -37,7 +37,7 @@ export default function President() {
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
         {/* En-tête élégant avec animation */}
-        <div className="mb-16 text-center">
+        <div className="mb-8 text-center">
           <div className="inline-flex items-center gap-4 mb-5 animate-fade-in-down">
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-bronze-base to-transparent"></div>
             <span className="text-[9px] font-bold tracking-[0.5em] text-primary-900/70 uppercase">
@@ -46,7 +46,7 @@ export default function President() {
             <div className="w-16 h-px bg-gradient-to-r from-transparent via-bronze-base to-transparent"></div>
           </div>
 
-          <h2 className="text-4xl lg:text-5xl font-bold text-primary-900 tracking-tight mb-3 animate-fade-in-up">
+          <h2 className="text-3xl lg:text-4xl font-bold text-primary-900 tracking-tight mb-3 animate-fade-in-up">
             Le Président de la FEG
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto text-sm lg:text-base animate-fade-in-up animation-delay-200">
@@ -288,11 +288,11 @@ export default function President() {
           </div>
 
           {/* Contenu textuel - 2 colonnes */}
-          <div className="lg:col-span-2 space-y-8">
+          <div className="lg:col-span-2 space-y-4">
             {/* Titre accrocheur avec effet */}
             <div className="relative pl-8">
               <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-bronze-base via-bronze-dark to-bronze-base rounded-full"></div>
-              <h3 className="text-2xl lg:text-4xl font-bold text-primary-900 leading-tight">
+              <h3 className="text-xl lg:text-2xl font-bold text-primary-900 leading-tight">
                 Un leader engagé pour{" "}
                 <span className="text-bronze-dark font-extrabold">
                   la performance des entreprises gabonaises
@@ -300,32 +300,30 @@ export default function President() {
               </h3>
             </div>
 
-            {/* Biographie enrichie */}
-            <div className="space-y-6 text-gray-800 leading-relaxed text-base lg:text-lg">
-              <p className="first-letter:text-6xl first-letter:font-bold first-letter:text-bronze-base first-letter:mr-3 first-letter:float-left first-letter:leading-[0.8] first-letter:mt-2">
-                Alain-Claude Kouakoua est le leader du patronat gabonais, reconnu pour son influence au sein de la Fédération des Entreprises du Gabon (FEG) et ses engagements dans la logistique, le transport, la construction et les infrastructures.
+            {/* Biographie résumée */}
+            <div className="space-y-3 text-gray-800 leading-relaxed text-sm lg:text-base">
+              <p className="first-letter:text-4xl first-letter:font-bold first-letter:text-bronze-base first-letter:mr-2 first-letter:float-left first-letter:leading-[0.8] first-letter:mt-1">
+                Entrepreneur reconnu, membre actif de la FEG, Alain-Claude Kouakoua est né en 1960 au Gabon où il est originaire de Lambaréné dans la province du Moyen-Ogooué. Homme d'affaires, il est le président Directeur général (PDG) du groupe ACK, qui s'illustre dans divers domaines tels que le BTP, les assurances et les services.
               </p>
 
-              <p className="pl-5 border-l-4 border-bronze-base/30 py-1">
-                Né en 1960 à Lambaréné, il fonde Mika Transports, entreprise spécialisée dans le transport et la distribution de produits pétroliers. Il dirige ensuite Mika Services, regroupant hydrocarbures et activités de BTP.
+              <p>
+                En 2012, il a décidé, au vu de la multitude d'entreprises qu'il a créées, de les réunir sous une Holding baptisée ACK. Il prend les commandes du Patronat gabonais dans un contexte marqué par de nombreux défis, et s'engage « à poursuivre son œuvre en plaçant l'entreprise gabonaise au cœur de notre souveraineté économique ».
               </p>
-
-             
             </div>
 
             {/* Citation améliorée */}
-            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white p-8 shadow-2xl group hover:shadow-[0_20px_60px_-10px_rgba(6,61,33,0.5)] transition-all duration-500">
+            <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-primary-900 via-primary-800 to-primary-900 text-white p-5 shadow-2xl group hover:shadow-[0_20px_60px_-10px_rgba(6,61,33,0.5)] transition-all duration-500">
               {/* Effet de brillance */}
               <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
 
               {/* Pattern décoratif */}
               <div className="absolute top-0 right-0 opacity-[0.02]">
-                <Quote size={160} />
+                <Quote size={120} />
               </div>
 
               <div className="relative z-10">
-                <Quote size={28} className="text-bronze-base mb-4 drop-shadow-lg" />
-                <p className="text-lg lg:text-xl font-light italic mb-6 leading-relaxed text-white/95">
+                <Quote size={22} className="text-bronze-base mb-3 drop-shadow-lg" />
+                <p className="text-base lg:text-lg font-light italic mb-4 leading-relaxed text-white/95">
                   "L'histoire économique d'un pays ne s'écrit pas dans les administrations. Elle s'écrit sur le terrain, dans la sueur des ateliers et le risque des entrepreneurs."
                 </p>
                 <div className="flex items-center gap-3">
@@ -340,21 +338,17 @@ export default function President() {
               <div className="absolute inset-0 rounded-xl border border-white/10 pointer-events-none"></div>
             </div>
 
-            {/* Bouton Lire la suite - Style amélioré */}
-            <div className="flex justify-center pt-6">
-              <button className="group/btn relative inline-flex items-center gap-3 px-10 py-5 bg-white text-primary-900 font-bold text-base rounded-xl shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 overflow-hidden border-2 border-primary-900 hover:bg-primary-50">
-                <span className="relative z-10 flex items-center gap-2">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-                  </svg>
-                  Lire la biographie complète
-                </span>
-                <svg className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover/btn:translate-x-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            {/* Bouton Lire la biographie */}
+            <div className="flex justify-center lg:justify-start pt-2">
+              <a
+                href="/la-feg?tab=president"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-bronze-base hover:bg-bronze-dark text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+              >
+                Lire la biographie complète
+                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
                 </svg>
-                {/* Effet de brillance au survol */}
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-bronze-base/20 to-transparent -translate-x-full group-hover/btn:translate-x-full transition-transform duration-1000"></div>
-              </button>
+              </a>
             </div>
           </div>
         </div>

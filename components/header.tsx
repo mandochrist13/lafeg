@@ -95,27 +95,27 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute hidden group-hover:block bg-white min-w-[220px] shadow-2xl rounded-xl overflow-hidden top-full mt-2 border border-gray-100 animate-fadeIn">
-                  <Link href="/la-feg?tab=a-propos" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 bg-white min-w-[220px] shadow-2xl rounded-xl overflow-hidden top-full mt-2 border border-gray-100 transition-all duration-300 ease-in-out transform translate-y-2 group-hover:translate-y-0">
+                  <Link href="/la-feg?tab=a-propos" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     À propos de nous
                   </Link>
-                  <Link href="/la-feg?tab=presidence" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/la-feg?tab=presidence" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Le président
                   </Link>
-                  <Link href="/la-feg?tab=gouvernance" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/la-feg?tab=gouvernance" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     La gouvernance
                   </Link>
-                  <Link href="/la-feg?tab=histoire" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/la-feg?tab=histoire" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Notre histoire
                   </Link>
-                  <Link href="/la-feg?tab=valeurs" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/la-feg?tab=valeurs" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Nos valeurs
                   </Link>
-                  <Link href="/la-feg?tab=services" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
-                    Nos services
+                  <Link href="/la-feg?tab=mission" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
+                    Notre mission
                   </Link>
-                  <Link href="/la-feg?tab=phototheque" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
-                    Photothèque
+                  <Link href="/la-feg?tab=services" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
+                    Nos services
                   </Link>
                 </div>
               </div>
@@ -148,17 +148,17 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute hidden group-hover:block bg-white min-w-[200px] shadow-2xl rounded-xl overflow-hidden top-full mt-2 border border-gray-100 animate-fadeIn">
-                  <Link href="/activite/actualites" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 bg-white min-w-[200px] shadow-2xl rounded-xl overflow-hidden top-full mt-2 border border-gray-100 transition-all duration-300 ease-in-out transform translate-y-2 group-hover:translate-y-0">
+                  <Link href="/activite/actualites" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Actualités
                   </Link>
-                  <Link href="/activite/agenda" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/activite/agenda" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Agenda
                   </Link>
-                  <Link href="/activite/communiques" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/activite/communiques" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Communiqués
                   </Link>
-                  <Link href="/activite/evenements" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/activite/evenements" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Événements
                   </Link>
                 </div>
@@ -181,11 +181,11 @@ export default function Header() {
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                   </svg>
                 </button>
-                <div className="absolute hidden group-hover:block bg-white min-w-[200px] shadow-2xl rounded-xl overflow-hidden top-full mt-2 border border-gray-100 animate-fadeIn">
-                  <Link href="/documentation" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                <div className="absolute invisible opacity-0 group-hover:visible group-hover:opacity-100 bg-white min-w-[200px] shadow-2xl rounded-xl overflow-hidden top-full mt-2 border border-gray-100 transition-all duration-300 ease-in-out transform translate-y-2 group-hover:translate-y-0">
+                  <Link href="/documentation" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Documentation
                   </Link>
-                  <Link href="/presse-media" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-300 hover:pl-6">
+                  <Link href="/presse-media" className="block px-4 py-3 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-900 transition-all duration-200 hover:pl-6">
                     Presse & Média
                   </Link>
                 </div>
@@ -319,18 +319,18 @@ export default function Header() {
                     Nos valeurs
                   </Link>
                   <Link
+                    href="/la-feg?tab=mission"
+                    className="block px-4 py-2 text-white hover:bg-[#005528] transition-all duration-300 hover:pl-6"
+                    onClick={() => setIsMenuOpen(false)}
+                  >
+                    Notre mission
+                  </Link>
+                  <Link
                     href="/la-feg?tab=services"
                     className="block px-4 py-2 text-white hover:bg-[#005528] transition-all duration-300 hover:pl-6"
                     onClick={() => setIsMenuOpen(false)}
                   >
                     Nos services
-                  </Link>
-                  <Link
-                    href="/la-feg?tab=phototheque"
-                    className="block px-4 py-2 text-white hover:bg-[#005528] transition-all duration-300 hover:pl-6"
-                    onClick={() => setIsMenuOpen(false)}
-                  >
-                    Photothèque
                   </Link>
                 </div>
               </div>

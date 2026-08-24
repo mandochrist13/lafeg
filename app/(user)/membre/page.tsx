@@ -24,124 +24,138 @@ interface Sector {
 const membersData: Member[] = [
   {
     id: 1,
-    name: "BGFIBANK",
-    logo: "/images/members/bgfibank.png",
-    headquarters: "BP. 2244, Libreville",
-    sector: "Banque et Services Financiers",
+    name: "AGS FRASERS",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 9161, Libreville",
+    sector: "Services Divers",
     legalStatus: "SA",
-    description:
-      "Première banque gabonaise, membre actif de la FEG depuis 2010.",
+    description: "Spécialiste en déménagement international et logistique au Gabon.",
   },
   {
     id: 2,
-    name: "TOTAL Gabon",
-    logo: "/images/members/total.png",
-    headquarters: "BP. 525, Port-Gentil",
-    sector: "Energie et Eau",
+    name: "ART",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 9193/569, Libreville",
+    sector: "Services Divers",
     legalStatus: "SA",
-    description:
-      "Leader dans le secteur pétrolier au Gabon, membre de la FEG depuis 1985.",
+    description: "Entreprise de services diversifiés basée à Libreville.",
   },
   {
     id: 3,
-    name: "SEEG",
-    logo: "/images/members/seeg.png",
-    headquarters: "BP. 400, Libreville",
-    sector: "Energie et Eau",
+    name: "APRETAC",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 1500, Libreville",
+    sector: "Services Divers",
     legalStatus: "SA",
-    description:
-      "Société d'Energie et d'Eau du Gabon, membre de la FEG depuis sa création.",
+    description: "Association professionnelle pour la promotion du secteur tertiaire.",
   },
   {
     id: 4,
-    name: "CFAO Motors Gabon",
-    logo: "/images/members/cfao-motors.png",
-    headquarters: "BP. 1234, Libreville",
-    sector: "Commerce et Distribution",
+    name: "AVS TNT",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 10836, Libreville",
+    sector: "Services Divers",
     legalStatus: "SA",
-    description:
-      "Leader de la distribution automobile au Gabon, membre de la FEG depuis 2012.",
+    description: "Services de télécommunications et réseaux au Gabon.",
   },
   {
     id: 5,
-    name: "Gabon Oil Company",
-    logo: "/images/members/gabon-oil-company.png",
-    headquarters: "BP. 4567, Port-Gentil",
-    sector: "Mines et Métallurgie",
+    name: "BOLLORE TRANSPORT & LOGISTICS GABON",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 77, Libreville",
+    sector: "Transport et Logistique Terrestre",
     legalStatus: "SA",
-    description:
-      "Entreprise nationale pétrolière, membre de la FEG depuis sa création en 2011.",
+    description: "Leader mondial en transport et logistique, acteur majeur au Gabon.",
   },
   {
     id: 6,
-    name: "Gabon Telecom",
-    logo: "/images/members/gabon-telecom.png",
-    headquarters: "BP. 7890, Libreville",
-    sector: "Communication et Médias",
+    name: "BGFIBANK",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 2244, Libreville",
+    sector: "Banque et Services Financiers",
     legalStatus: "SA",
-    description:
-      "Opérateur historique de télécommunications au Gabon, membre de la FEG depuis 2000.",
+    description: "Première banque gabonaise, membre actif de la FEG depuis 2010.",
   },
   {
     id: 7,
-    name: "Gabon Special Economic Zone",
-    logo: "/images/members/gabon-special-economic-zone.png",
-    headquarters: "BP. 1010, Nkok",
-    sector: "Industrie et Transformation",
+    name: "TOTAL GABON",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 525, Port-Gentil",
+    sector: "Energie et Eau",
     legalStatus: "SA",
-    description:
-      "Zone économique spéciale dédiée à l'industrialisation du Gabon, membre de la FEG depuis 2015.",
+    description: "Leader dans le secteur pétrolier au Gabon, membre de la FEG depuis 1985.",
   },
   {
     id: 8,
-    name: "Gabon Mining Company",
-    logo: "/images/members/gabon-mining-company.png",
-    headquarters: "BP. 2020, Franceville",
-    sector: "Mines et Métallurgie",
+    name: "SEEG",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 400, Libreville",
+    sector: "Energie et Eau",
     legalStatus: "SA",
-    description:
-      "Entreprise minière spécialisée dans l'extraction de manganèse, membre de la FEG depuis 2018.",
+    description: "Société d'Energie et d'Eau du Gabon, fournisseur principal d'électricité.",
   },
   {
     id: 9,
-    name: "Gabon Post",
-    logo: "/images/members/gabon-post.png",
-    headquarters: "BP. 3030, Libreville",
-    sector: "Services Divers",
+    name: "CFAO MOTORS GABON",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 1234, Libreville",
+    sector: "Commerce et Distribution",
     legalStatus: "SA",
-    description:
-      "Service postal national du Gabon, membre de la FEG depuis sa création.",
+    description: "Leader de la distribution automobile au Gabon depuis 2012.",
   },
   {
     id: 10,
-    name: "Gabon Airports",
-    logo: "/images/members/gabon-airports.png",
-    headquarters: "BP. 4040, Libreville",
-    sector: "Activités Portuaires et Aéroportuaires",
+    name: "GABON OIL COMPANY",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 4567, Port-Gentil",
+    sector: "Mines et Métallurgie",
     legalStatus: "SA",
-    description:
-      "Gestionnaire des aéroports internationaux du Gabon, membre de la FEG depuis 2016.",
+    description: "Entreprise nationale pétrolière, acteur clé du secteur énergétique.",
   },
   {
     id: 11,
-    name: "Gabon National Railway",
-    logo: "/images/members/gabon-national-railway.png",
-    headquarters: "BP. 5050, Libreville",
-    sector: "Transport et Logistique Terrestre",
+    name: "GABON TELECOM",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 7890, Libreville",
+    sector: "Communication et Médias",
     legalStatus: "SA",
-    description:
-      "Société nationale des chemins de fer du Gabon, membre de la FEG depuis 2005.",
+    description: "Opérateur historique de télécommunications au Gabon depuis 2000.",
   },
   {
     id: 12,
-    name: "Gabon Cement Company",
-    logo: "/images/members/gabon-cement-company.png",
-    headquarters: "BP. 6060, Libreville",
-    sector: "Industrie et Transformation",
-
+    name: "AIRTEL GABON",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 8800, Libreville",
+    sector: "Communication et Médias",
     legalStatus: "SA",
-    description:
-      "Principal producteur de ciment au Gabon, membre de la FEG depuis 2019.",
+    description: "Opérateur de télécommunications mobile, réseau national étendu.",
+  },
+  {
+    id: 13,
+    name: "COMILOG",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 27, Moanda",
+    sector: "Mines et Métallurgie",
+    legalStatus: "SA",
+    description: "Premier producteur de manganèse au Gabon, acteur industriel majeur.",
+  },
+  {
+    id: 14,
+    name: "ORABANK GABON",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 2253, Libreville",
+    sector: "Banque et Services Financiers",
+    legalStatus: "SA",
+    description: "Banque panafricaine présente au Gabon, services financiers diversifiés.",
+  },
+  {
+    id: 15,
+    name: "SOCIETE GENERALE GABON",
+    logo: "/images/logo defaut.png",
+    headquarters: "BP. 4042, Libreville",
+    sector: "Banque et Services Financiers",
+    legalStatus: "SA",
+    description: "Institution bancaire internationale, partenaire du développement économique.",
   },
 ];
 
@@ -281,38 +295,47 @@ export default function MembersPage() {
 
   return (
     <>
-      {/* Hero Section Institutionnelle */}
-     <div className="relative bg-[#006633] text-white py-20">
+      {/* Hero Section Élégant */}
+      <div className="relative bg-gradient-to-br from-primary-900 to-primary-800 text-white py-16 md:py-20">
         {/* Image d'arrière-plan avec overlay */}
         <div className="absolute inset-0 z-0">
-          <img
+          <Image
             src="/images/banière.jpg"
             alt="Arrière-plan entreprises membres"
-            className="w-full h-full object-cover opacity-20"
+            fill
+            className="object-cover opacity-15"
           />
         </div>
 
-        {/* Contenu par-dessus l'image */}
-        <div className="container mx-auto px-4 relative z-0">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">NOS MEMBRES</h1>
-          <p className="text-xl max-w-3xl opacity-90">
-            Bâtir ensemble une économie forte pour garantir la souveraineté
-            nationale. Notre institution contribue à un idéal commun : la
-            performance des entreprises gabonaises.
-          </p>
+        {/* Contenu */}
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="max-w-4xl">
+            <div className="inline-flex items-center gap-2 mb-4">
+              <div className="w-8 h-px bg-bronze-base"></div>
+              <span className="text-xs font-bold tracking-widest text-bronze-base uppercase">
+                Notre Écosystème
+              </span>
+            </div>
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-4 tracking-tight">
+              Nos Membres
+            </h1>
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+              Un réseau d'excellence regroupant les acteurs majeurs de l'économie gabonaise
+            </p>
+          </div>
         </div>
       </div>
 
-      {/* Breadcrumb Minimaliste */}
-      <div className="bg-gray-50 border-b border-gray-200 py-3">
+      {/* Breadcrumb */}
+      <div className="bg-white border-b border-gray-200 py-3">
         <div className="container mx-auto px-4">
-          <nav className="flex items-center space-x-2 text-sm text-gray-600">
-            <Link href="/" className="hover:text-[#005528] transition-colors">
+          <nav className="flex items-center space-x-2 text-sm">
+            <Link href="/" className="text-primary-900 hover:text-bronze-base transition-colors">
               Accueil
             </Link>
-            <span>/</span>
-            <span className="font-medium text-gray-800">
-              Membres institutionnels
+            <span className="text-gray-400">/</span>
+            <span className="font-medium text-gray-700">
+              Nos Membres
             </span>
           </nav>
         </div>
@@ -445,98 +468,121 @@ export default function MembersPage() {
               </form>
             </div>
 
-            <>
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {paginatedMembers.map((member) => (
-                  <div
-                    key={member.id}
-                    className="bg-white rounded-lg border border-gray-200 hover: hover:border-[#005528] overflow-hidden duration-700 flex flex-col h-full"
-                  >
-                    <div className="p-5 flex-grow ">
-                      <div className="flex items-start space-x-4 mb-4">
-                        <div className="flex-shrink-0">
-                          <div className="h-14 w-14 bg-gray-100 rounded border border-gray-200 flex items-center justify-center overflow-hidden">
-                            <Image
-                              src={member.logo}
-                              alt={member.name}
-                              width={56}
-                              height={56}
-                              className="object-contain"
-                              onError={(e) => {
-                                (e.target as HTMLImageElement).src =
-                                  "/images/inconnu.png";
-                              }}
-                            />
-                          </div>
-                        </div>
+            {/* Cards des membres - Design magnifique */}
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-10">
+              {paginatedMembers.map((member) => (
+                <div
+                  key={member.id}
+                  className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 hover:border-primary-900/20 flex flex-col"
+                >
+                  {/* Section logo - Grand et centré */}
+                  <div className="relative bg-gradient-to-br from-gray-50 via-white to-gray-100 p-8 flex items-center justify-center min-h-[200px]">
+                    {/* Motif décoratif background */}
+                    <div className="absolute inset-0 opacity-5">
+                      <div className="absolute top-0 right-0 w-32 h-32 bg-primary-900 rounded-full blur-3xl"></div>
+                      <div className="absolute bottom-0 left-0 w-24 h-24 bg-bronze-base rounded-full blur-2xl"></div>
+                    </div>
+
+                    {/* Logo grand format */}
+                    <div className="relative z-10 w-32 h-32 flex items-center justify-center">
+                      <Image
+                        src={member.logo}
+                        alt={member.name}
+                        width={128}
+                        height={128}
+                        className="object-contain grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-500 drop-shadow-lg"
+                        onError={(e) => {
+                          (e.target as HTMLImageElement).src =
+                            "/images/logo defaut.png";
+                        }}
+                      />
+                    </div>
+
+                    {/* Badge statut - Position absolue */}
+                    <div className="absolute top-4 right-4">
+                      <span className="inline-block bg-white/90 backdrop-blur-sm text-primary-900 text-xs font-bold px-3 py-1.5 rounded-full shadow-md border border-gray-200">
+                        {member.legalStatus}
+                      </span>
+                    </div>
+
+                    {/* Bordure décorative en bas */}
+                    <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-primary-900/20 to-transparent"></div>
+                  </div>
+
+                  {/* Contenu */}
+                  <div className="p-6 flex-grow bg-white">
+                    {/* Nom de l'entreprise */}
+                    <h3 className="text-xl font-bold text-primary-900 mb-4 leading-tight min-h-[3.5rem] flex items-center">
+                      {member.name}
+                    </h3>
+
+                    {/* Informations */}
+                    <div className="space-y-3 text-sm">
+                      <div className="flex items-start gap-2">
+                        <svg className="w-4 h-4 text-primary-900/60 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                        </svg>
                         <div>
-                          <h3 className="text-lg font-semibold text-gray-800 mb-1">
-                            {member.name}
-                          </h3>
-                          <span className="inline-block bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded">
-                            {member.legalStatus}
-                          </span>
+                          <span className="font-semibold text-gray-700 text-xs uppercase tracking-wide block mb-1">Siège</span>
+                          <span className="text-gray-600">{member.headquarters}</span>
                         </div>
                       </div>
 
-                      <div className="space-y-3 text-sm">
-                        <div className="flex items-start">
-                          <svg
-                            className="w-4 h-4 text-gray-500 mr-2 mt-0.5 flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-                            />
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                            />
-                          </svg>
-                          <span className="text-gray-600">
-                            {member.headquarters}
-                          </span>
-                        </div>
-
-                        <div className="flex items-start">
-                          <svg
-                            className="w-4 h-4 text-gray-500 mr-2 mt-0.5 flex-shrink-0"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                            xmlns="http://www.w3.org/2000/svg"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={1.5}
-                              d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"
-                            />
-                          </svg>
+                      <div className="flex items-start gap-2">
+                        <svg className="w-4 h-4 text-primary-900/60 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                        <div>
+                          <span className="font-semibold text-gray-700 text-xs uppercase tracking-wide block mb-1">Secteur</span>
                           <span className="text-gray-600">{member.sector}</span>
                         </div>
-
-                        {member.description && (
-                          <div className="pt-3 mt-3 border-t border-gray-100">
-                            <p className="text-gray-600 line-clamp-2 text-sm">
-                              {member.description}
-                            </p>
-                          </div>
-                        )}
                       </div>
                     </div>
                   </div>
-                ))}
+
+                  {/* Bordure animée bottom */}
+                  <div className="h-1.5 bg-gradient-to-r from-primary-900 via-bronze-base to-primary-900 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-center"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* Pagination */}
+            {totalPages > 1 && (
+              <div className="flex items-center justify-center gap-2 mt-8">
+                <button
+                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
+                  disabled={currentPage === 1}
+                  className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Précédent
+                </button>
+
+                <div className="flex gap-2">
+                  {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                    <button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      className={`w-10 h-10 rounded-lg font-medium transition-colors ${
+                        currentPage === page
+                          ? "bg-primary-900 text-white"
+                          : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-50"
+                      }`}
+                    >
+                      {page}
+                    </button>
+                  ))}
+                </div>
+
+                <button
+                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
+                  disabled={currentPage === totalPages}
+                  className="px-4 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                >
+                  Suivant
+                </button>
               </div>
-            </>
+            )}
           
           </div>
            

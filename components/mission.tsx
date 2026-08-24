@@ -1,6 +1,6 @@
 "use client";
 
-import { Info, Megaphone, Users, Shield, ArrowRight } from "lucide-react";
+import { Info, Megaphone, Users, Shield } from "lucide-react";
 
 const missions = [
   {
@@ -32,103 +32,73 @@ const missions = [
 
 export default function MissionsSection() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-br from-gray-50 via-white to-gray-50 py-20 lg:py-32">
-      {/* Motif de fond décoratif subtil */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute top-20 right-20 w-96 h-96 bg-primary-900 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 left-20 w-80 h-80 bg-bronze-base rounded-full blur-3xl"></div>
+    <section className="relative overflow-hidden bg-white py-12">
+      {/* Logo en filigrane */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+        <img
+          src="/images/logo.png"
+          alt="Logo FEG"
+          className="w-[600px] h-[600px] opacity-[0.02] select-none"
+        />
       </div>
 
       <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        {/* En-tête moderne */}
-        <div className="mb-16 lg:mb-20">
-          <div className="inline-block mb-6">
+        {/* En-tête */}
+        <div className="mb-12">
+          <div className="inline-block mb-4">
             <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
               Notre raison d'être
             </span>
           </div>
-          <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary-900 leading-tight">
-            L'amélioration du <span className="text-primary-600">climat des affaires</span> au Gabon<br/>
-            pour le <span className="text-primary-600">secteur privé</span>.
+          <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-primary-900 leading-tight">
+            L'amélioration du <span className="text-bronze-base">climat des affaires</span> au Gabon<br/>
+            pour le <span className="text-bronze-base">secteur privé</span>.
           </h2>
         </div>
 
-        {/* Grille des 4 missions - Design avec effet glassmorphism et profondeur */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-20 perspective-1000">
+        {/* Grille des 4 missions */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
           {missions.map((mission, index) => {
             const IconComp = mission.iconComponent;
             return (
               <div
                 key={index}
-                className="group relative overflow-hidden rounded-3xl transition-all duration-700 hover:scale-105 h-[400px]"
-                style={{
-                  transform: `translateZ(${index * 10}px)`,
-                  boxShadow: '0 20px 60px -10px rgba(0, 0, 0, 0.3), 0 10px 20px -5px rgba(0, 0, 0, 0.2)',
-                }}
+                className="group relative overflow-hidden rounded-xl transition-all duration-500 hover:scale-[1.02] h-[280px] shadow-lg hover:shadow-xl"
               >
                 {/* Image de fond */}
                 <div className="absolute inset-0">
                   <img
                     src={mission.bgImage}
                     alt={mission.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
                   />
-                  {/* Overlay gradient sombre */}
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary-900/70 via-primary-900/60 to-primary-900/90"></div>
+                  {/* Overlay gradient */}
+                  <div className="absolute inset-0 bg-gradient-to-b from-primary-900/80 via-primary-900/70 to-primary-900/90"></div>
                 </div>
 
-                {/* Effet glassmorphism sur toute la carte */}
-                <div className="absolute inset-0 backdrop-blur-[2px] bg-gradient-to-br from-white/10 via-transparent to-black/20"></div>
-
-                {/* Bordure glass effect */}
-                <div className="absolute inset-0 rounded-3xl border border-white/20 group-hover:border-white/40 transition-all duration-700"></div>
-
-                {/* Reflets glass subtils */}
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 via-transparent to-transparent opacity-30 pointer-events-none"></div>
-                <div className="absolute inset-0 bg-gradient-to-tl from-white/10 via-transparent to-transparent opacity-20 pointer-events-none"></div>
+                {/* Bordure */}
+                <div className="absolute inset-0 rounded-xl border border-bronze-base/20 group-hover:border-bronze-base/40 transition-all duration-500"></div>
 
                 {/* Contenu */}
-                <div className="relative h-full flex flex-col justify-between p-8 text-white z-10">
-                  {/* Icône circulaire avec effet glass renforcé */}
-                  <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-white/25 backdrop-blur-xl border-2 border-white/40 group-hover:bg-white/35 group-hover:scale-110 transition-all duration-500 shadow-2xl">
-                    <IconComp size={36} className="text-white drop-shadow-lg" strokeWidth={2} />
+                <div className="relative h-full flex flex-col justify-between p-6 text-white z-10">
+                  {/* Icône */}
+                  <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-bronze-base/20 backdrop-blur-sm border border-bronze-base/40 group-hover:bg-bronze-base/30 group-hover:scale-110 transition-all duration-500">
+                    <IconComp size={28} className="text-bronze-base" strokeWidth={2} />
                   </div>
 
-                  {/* Texte avec effet de profondeur */}
-                  <div className="space-y-3">
-                    <h3 className="text-3xl font-black mb-3 text-white drop-shadow-2xl group-hover:text-bronze-light transition-colors duration-500 tracking-tight">
+                  {/* Texte */}
+                  <div className="space-y-2">
+                    <h3 className="text-2xl font-bold text-white group-hover:text-bronze-light transition-colors duration-500">
                       {mission.title}
                     </h3>
-                    <p className="text-sm text-gray-100 leading-relaxed drop-shadow-lg font-medium">
+                    <p className="text-sm text-gray-100 leading-relaxed">
                       {mission.description}
                     </p>
                   </div>
                 </div>
-
-                {/* Effet de brillance au survol */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                </div>
               </div>
             );
           })}
-        </div>
-
-        {/* Boutons d'action */}
-        <div className="flex flex-wrap gap-4 justify-center">
-          <a
-            href="/about"
-            className="group inline-flex items-center gap-3 px-8 py-4 bg-primary-900 text-white rounded-xl font-semibold hover:bg-primary-800 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            En savoir plus
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" size={20} />
-          </a>
-          <a
-            href="/contact"
-            className="inline-flex items-center gap-3 px-8 py-4 bg-white text-primary-900 rounded-xl font-semibold border-2 border-primary-900 hover:bg-primary-50 transition-all duration-300 shadow-lg hover:shadow-xl"
-          >
-            Nous contacter
-          </a>
         </div>
       </div>
     </section>

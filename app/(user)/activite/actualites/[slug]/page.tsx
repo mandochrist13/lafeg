@@ -30,7 +30,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
         "Les entreprises sélectionnées bénéficieront d'un accompagnement de la FEG dans la mise en œuvre de leur projet, notamment en termes de facilitation des démarches administratives, de mise en relation avec des partenaires techniques et financiers, et de promotion du projet auprès des autorités et du public.",
         "La date limite de soumission des dossiers est fixée au 30 avril 2025. Les résultats de la sélection seront communiqués aux candidats au plus tard le 31 mai 2025.",
       ],
-      imageUrl: "/images/news1.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop",
     },
     "participation-table-ronde": {
       title: "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
@@ -42,7 +42,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
         "Les discussions ont porté sur les différentes options de refinancement hypothécaire, les conditions de mise en œuvre, et les mesures d'accompagnement nécessaires pour garantir le succès de ce mécanisme.",
         "À l'issue de la table ronde, un comité de pilotage a été mis en place pour élaborer une feuille de route pour la mise en œuvre du mécanisme de refinancement hypothécaire au Gabon. La FEG sera représentée dans ce comité et contribuera activement à ses travaux.",
       ],
-      imageUrl: "/images/news2.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1591115765373-5207764f72e7?w=800&h=600&fit=crop",
     },
     "assises-nationales-emploi": {
       title: "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions",
@@ -55,7 +55,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
         "Concernant les élections professionnelles, le Ministre a annoncé la mise en place d'un comité de pilotage comprenant des représentants des employeurs, des syndicats de travailleurs, et de l'administration du travail. Ce comité sera chargé de définir les modalités pratiques d'organisation des élections et de veiller à leur bon déroulement.",
         "La FEG a réaffirmé son engagement à contribuer activement à la préparation et à la tenue des assises nationales de l'emploi, ainsi qu'à l'organisation des élections professionnelles, dans l'intérêt des entreprises et des travailleurs gabonais.",
       ],
-      imageUrl: "/images/news3.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=600&fit=crop",
     },
     "appel-manifestation-interet-2": {
       title: "Appel à manifestation d'intérêt",
@@ -69,7 +69,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
         "Les entreprises sélectionnées bénéficieront d'un accompagnement de la FEG dans la mise en œuvre de leurs projets, notamment en termes de facilitation des démarches administratives, de mise en relation avec des partenaires techniques et financiers, et de promotion des projets auprès des autorités et du public.",
         "La date limite de soumission des dossiers est fixée au 28 février 2025. Les résultats de la sélection seront communiqués aux candidats au plus tard le 31 mars 2025.",
       ],
-      imageUrl: "/images/news4.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=600&fit=crop",
     },
     "reunion-conseil-administration": {
       title: "Réunion du conseil d'administration de la FEG",
@@ -81,7 +81,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
         "Par ailleurs, le conseil a décidé de renforcer la présence de la FEG dans les provinces à travers la création de délégations provinciales. Cette décision vise à rapprocher la FEG des entreprises opérant en dehors de Libreville et à mieux prendre en compte leurs préoccupations.",
         "Enfin, le conseil a approuvé le calendrier des événements majeurs de la FEG pour l'année 2025, notamment le Forum économique Gabon-France prévu en mars, les Assises du secteur privé prévues en juin, et le Gala des entreprises prévu en décembre.",
       ],
-      imageUrl: "/images/news5.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1552664730-d307ca884978?w=800&h=600&fit=crop",
     },
     "forum-economique-gabon-france": {
       title: "Forum économique Gabon-France",
@@ -94,7 +94,7 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
         "À l'issue du forum, plusieurs accords de partenariat ont été signés entre des entreprises gabonaises et françaises, notamment dans les secteurs de l'énergie, des infrastructures, de l'agriculture, et des technologies de l'information et de la communication.",
         "Le prochain Forum économique Gabon-France se tiendra à Paris en 2026.",
       ],
-      imageUrl: "/images/news6.jpg",
+      imageUrl: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop",
     },
   }
 
@@ -106,35 +106,75 @@ export default function NewsDetail({ params }: { params: { slug: string } }) {
   }
 
   return (
-    <div className="py-12">
-      <div className="container mx-auto px-4">
-        <Link href="/actualites" className="inline-flex items-center text-[#063d21] hover:underline mb-6">
-          <ArrowLeft size={20} className="mr-2" /> Retour aux actualités
-        </Link>
+    <>
+      {/* Hero Section */}
+      <div className="relative bg-gradient-to-br from-primary-900 to-primary-800 text-white py-16">
+        <div className="absolute inset-0 z-0">
+          <Image
+            src={newsItem.imageUrl || "/images/banière.jpg"}
+            alt={newsItem.title}
+            fill
+            className="object-cover opacity-20"
+          />
+        </div>
 
-        <article className="bg-white rounded-lg shadow-md overflow-hidden">
-          <div className="relative h-64 md:h-96">
-            <Image src={newsItem.imageUrl || "/placeholder.svg"} alt={newsItem.title} fill className="object-cover" />
-          </div>
+        <div className="container mx-auto px-4 relative z-10">
+          <Link
+            href="/activite/actualites"
+            className="inline-flex items-center text-bronze-base hover:text-bronze-light mb-6 transition-colors"
+          >
+            <ArrowLeft size={20} className="mr-2" /> Retour aux actualités
+          </Link>
 
-          <div className="p-6 md:p-8">
-            <div className="flex items-center text-gray-500 mb-4">
-              <Calendar size={16} className="mr-2" />
-              <span>{newsItem.date}</span>
+          <div className="max-w-4xl">
+            <div className="flex items-center gap-2 text-bronze-base mb-4">
+              <Calendar size={18} />
+              <span className="text-sm font-semibold">{newsItem.date}</span>
             </div>
-
-            <h1 className="text-2xl md:text-3xl font-bold mb-6">{newsItem.title}</h1>
-
-            <div className="prose max-w-none">
-              {newsItem.content.map((paragraph, index) => (
-                <p key={index} className="mb-4">
-                  {paragraph}
-                </p>
-              ))}
-            </div>
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-black leading-tight">
+              {newsItem.title}
+            </h1>
           </div>
-        </article>
+        </div>
       </div>
-    </div>
-  )
+
+      {/* Content */}
+      <div className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <article className="max-w-4xl mx-auto">
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+              <div className="relative h-96">
+                <Image
+                  src={newsItem.imageUrl || "/placeholder.svg"}
+                  alt={newsItem.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+
+              <div className="p-8 md:p-12">
+                <div className="prose prose-lg max-w-none">
+                  {newsItem.content.map((paragraph, index) => (
+                    <p key={index} className="mb-6 text-gray-700 leading-relaxed text-justify">
+                      {paragraph}
+                    </p>
+                  ))}
+                </div>
+
+                <div className="mt-10 pt-8 border-t border-gray-200">
+                  <Link
+                    href="/activite/actualites"
+                    className="inline-flex items-center text-primary-900 hover:text-bronze-base font-semibold transition-colors"
+                  >
+                    <ArrowLeft size={20} className="mr-2" />
+                    Retour aux actualités
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </>
+  );
 }

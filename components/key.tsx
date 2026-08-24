@@ -204,7 +204,7 @@ export default function KeyStatistics() {
 
           {/* Colonne droite - Grille bento optimisée */}
           <div>
-            <div className="grid grid-cols-2 gap-5">
+            <div className="grid grid-cols-2 gap-4">
               {/* Carte principale - Membres (pleine largeur, grande) */}
               <div className="col-span-2">
                 <StatisticItem
@@ -212,7 +212,7 @@ export default function KeyStatistics() {
                   label="Membres actifs"
                   prefix="+"
                   size="large"
-                  bgColor="bg-primary-900/80 text-white"
+                  bgColor="bg-white/95"
                   iconImage="/images/Team5.jpg"
                 />
               </div>
@@ -222,7 +222,7 @@ export default function KeyStatistics() {
                 <StatisticItem
                   value={67}
                   label="Années d'existence"
-                  size="medium"
+                  size="small"
                   bgColor="bg-white/95 "
                   iconImage="/images/logo.png"
                 />
@@ -233,8 +233,8 @@ export default function KeyStatistics() {
                 <StatisticItem
                   value={18}
                   label="Secteurs d'activités"
-                  size="medium"
-                  bgColor="bg-primary-900/80 text-white"
+                  size="small"
+                  bgColor="bg-white/95"
                   iconImage="/images/secteur.jpg"
                 />
               </div>
@@ -244,7 +244,7 @@ export default function KeyStatistics() {
                 <StatisticItem
                   value={11}
                   label="Présidents depuis notre création"
-                  size="medium"
+                  size="small"
                   bgColor="bg-white/95"
                   iconImage="/images/Mr_KOUAKOUA.jpg"
                 />
