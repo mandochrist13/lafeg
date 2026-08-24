@@ -98,7 +98,7 @@ function SmallActivityCard({ title, date, type, imageUrl, link }: ActivityProps)
 export default function RecentActivities() {
   const activities = [
     {
-      id: 1,
+      id: "recent-1",
       title:
         "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
       date: "22 janv 2025",
@@ -110,7 +110,7 @@ export default function RecentActivities() {
       imageUrl: "/images/activity1.jpg",
     },
     {
-      id: 2,
+      id: "recent-2",
       title:
         "Les assises nationales de l'emploi et des élections professionnelles au cœur des discussions",
       date: "22 janv 2025",
@@ -122,7 +122,7 @@ export default function RecentActivities() {
       imageUrl: "/images/activity2.jpg",
     },
     {
-      id: 3,
+      id: "recent-3",
       title: "Appel à manifestation d'intérêt",
       date: "2025",
       category: "Agenda",
@@ -136,7 +136,7 @@ export default function RecentActivities() {
 
   const subactivities = [
     {
-      id: 5,
+      id: "recent-5",
       title:
         "Participation de la FEG à la table ronde sur le mécanisme de refinancement hypothécaire au Gabon",
       date: "22 janv 2025",
@@ -148,7 +148,7 @@ export default function RecentActivities() {
       imageUrl: "/images/activity1.jpg",
     },
     {
-      id: 6,
+      id: "recent-6",
       title: "Appel à manifestation d'intérêt",
       date: "2025",
       category: "Agenda",
@@ -162,7 +162,7 @@ export default function RecentActivities() {
 
   const events = [
     {
-      id: 7,
+      id: "recent-7",
       title: "Forum économique national 2025",
       date: "15 mars 2025",
       category: "Agenda",
@@ -172,7 +172,7 @@ export default function RecentActivities() {
       imageUrl: "/images/activity2.jpg",
     },
     {
-      id: 8,
+      id: "recent-8",
       title: "Conférence sur l'innovation",
       date: "30 avril 2025",
       category: "Agenda",
@@ -185,7 +185,7 @@ export default function RecentActivities() {
 
   const communications = [
     {
-      id: 9,
+      id: "recent-9",
       title: "Nouvelle publication trimestrielle",
       date: "10 fév 2025",
       category: "Agenda",
@@ -195,7 +195,7 @@ export default function RecentActivities() {
       imageUrl: "/images/activity3.jpg",
     },
     {
-      id: 10,
+      id: "recent-10",
       title: "Communiqué de presse officiel",
       date: "5 janv 2025",
       category: "Agenda",
