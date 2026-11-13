@@ -54,12 +54,12 @@ Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans
 - Le crescendo et l'impact de fin ont été retirés : l'accord final du morceau porte l'arrivée du logo. Il reste trois souffles discrets sur les grands mouvements de caméra.
 - Licence : morceau présenté comme libre de droits (SoundHill). **Vérifier les conditions de SoundHill**, qui demande souvent une mention de l'artiste dans la description de la vidéo publiée.
 
-## Ce qui a été vérifié
+## Ce qui a été vérifié (v5)
 
-- `npx hyperframes check` sur les deux versions : 0 erreur ; contraste 43/43 ; aucun avertissement de temps de lecture (`line_unread` corrigé sur la date du GEF) ; audio sans avertissement.
-- Images de contrôle sur chaque mot-repère et sur chaque titre de la version sans voix : aucun titre ne chevauche un objet 3D.
-- Le son a été **mesuré, pas écouté**. Version voix : −15,8 LUFS intégrés, crête vraie −2,1 dBTP. Version sans voix : −14,2 LUFS, crête −2,3 dBTP.
-- **Écoute automatique du mixage par Gemini** (deux extraits de la version voix) : intelligibilité 10/10 et 9/10, musique « bien dosée » sous la voix, aucun défaut relevé. La musique s'éteint naturellement sur la carte de fin (de −20 dB à 96 s jusqu'à −63 dB à 101 s).
+- `npx hyperframes check` sur les deux versions : 0 erreur ; contraste 64/64 en WCAG AA ; audio sans avertissement. Les avertissements GSAP « cible introuvable » de la couche de titres ont été supprimés.
+- Images de contrôle sur chaque mot-repère et sur chaque titre de la version sans voix, puis images extraites des deux MP4 finaux : la bulle se lit puis se dissout, le compteur tient sur une ligne, aucune date ni « Semaine » à l'écran, carte de fin sans mention d'événement.
+- Le son a été **mesuré, pas écouté**. Version voix : −15,7 LUFS intégrés, crête −2,3 dBFS. Version sans voix : −14,2 LUFS, crête −2,0 dBFS.
+- **Écoute automatique du mixage par Gemini** (version voix, en deux moitiés) : intelligibilité 10/10 et 9/10, la musique ne couvre jamais la voix, aucun défaut audible. Les seuls écarts relevés sont des homophones de transcription (« ses / c'est », « formation / formations »).
 
 ## Avertissements conservés
 
