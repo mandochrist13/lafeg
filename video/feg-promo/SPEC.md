@@ -39,7 +39,24 @@ TIME: ~100 s (fixé par la voix off) ≈ 3000 images. Musique ~96 BPM → 18,75 
 - Documents en vol : arc, `power2.inOut`, 1,0–1,4 s. Sorties : `power3.in`, 40–50 % plus courtes que les entrées.
 - Titres : flou 6 px → 0 et opacité par mot en 0,13 s, 0,067 s d'écart ; ou gris clair → encre par mot ; figés une fois posés. Chiffres : comptage 1,4 s en chiffres tabulaires.
 
-## SHOTS (temps définitifs après la voix off)
+## SHOTS
+
+Temps réels, calés sur la voix off (générés par `tools/build.mjs`) :
+
+| Phrase | Début | Fin |
+| --- | --- | --- |
+| L01 | 1.00 s | 7.68 s |
+| L02 | 8.58 s | 14.70 s |
+| L03 | 16.00 s | 28.20 s |
+| L04 | 29.10 s | 37.02 s |
+| L05 | 38.02 s | 46.66 s |
+| L06 | 47.76 s | 56.52 s |
+| L07 | 57.82 s | 68.26 s |
+| L08 | 69.36 s | 79.52 s |
+| L09 | 80.72 s | 90.48 s |
+| L10 | 91.78 s | 103.90 s |
+| Logo | 103.71 s | 109.40 s (fin) |
+
 
 1. **L01, le terrain** : atelier seul plein cadre (≥ 40 % de la hauteur), recul lent qui révèle un chantier et une boutique, isolés. Kicker « Semaine mondiale de l'entrepreneuriat 2026 ».
 2. **L02, seule** : poussée sur l'atelier ; la facture se soulève, la pile de formulaires monte plus haut que le toit. Reste gris.
