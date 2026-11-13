@@ -98,6 +98,7 @@ const overlays = [
   { id: "ov-reformes", src: "compositions/ov-reformes.html", start: S("L08") - 1.2, end: E("L08") + 1.25 },
   { id: "ov-end", src: "compositions/ov-end.html", start: LOGO_T - 0.1, end: total },
   { id: "ov-titres", src: "compositions/ov-titres.html", start: 0, end: total, only: "sans-voix" },
+  { id: "ov-theme", src: "compositions/ov-theme.html", start: S("L10") - 0.6, end: at("L10", "rejoignez") + 0.9, only: "voix" },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 
 // fenêtres des couches de titres, lues par chaque composition (C.ov[id].start / .dur)

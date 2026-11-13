@@ -1,0 +1,99 @@
+<template>
+  <!-- Version voix : le thème du GEF 2026 s'affiche et s'encre mot à mot au rythme de la voix (L10). -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    #th-wrap {
+      position: absolute;
+      left: 132px;
+      top: 124px;
+      width: 860px;
+    }
+    #th-rule {
+      width: 64px;
+      height: 5px;
+      background: #aeae7d;
+      margin-bottom: 20px;
+    }
+    #th-k {
+      font-weight: 500;
+      font-size: 32px;
+      color: #0a7537;
+      margin-bottom: 14px;
+    }
+    .th-line {
+      display: block;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 1.08;
+      letter-spacing: -0.015em;
+      color: #cfd2cb;
+    }
+    .th-line span {
+      display: inline-block;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-theme" data-width="1920" data-height="1080">
+    <div id="th-wrap">
+      <div id="th-rule"></div>
+      <div id="th-k">Thème du Gabon Economic Forum 2026</div>
+      <div id="th-l1" class="th-line"><span data-w="des:0">Des</span> <span data-w="entreprises:0">entreprises</span> <span data-w="fortes:0" data-accent>fortes</span></div>
+      <div id="th-l2" class="th-line"><span data-w="une:0">pour</span> <span data-w="une:0">une</span> <span data-w="croissance:0">croissance</span> <span data-w="durable:0" data-accent>durable</span></div>
+      <div id="th-l3" class="th-line"><span data-w="une:1">et</span> <span data-w="une:1">une</span> <span data-w="prosperite:0">prospérité</span> <span data-w="partagee:0" data-accent>partagée</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var W = (C.ov && C.ov["ov-theme"]) || { start: 0, dur: 10 };
+      var T0 = W.start;
+      var D = W.dur;
+      var L = function (abs) {
+        return Math.max(0, abs - T0);
+      };
+      var words = C.lines.L10.words;
+      function norm(s) {
+        return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9%]+/g, "");
+      }
+      // instant du k-ième mot prononcé qui commence par n (repli : début de la phrase)
+      function wt(n, k) {
+        var c = 0;
+        for (var i = 0; i < words.length; i++) {
+          if (words[i].n && words[i].n.indexOf(n) === 0) {
+            if (c === k) return words[i].s;
+            c++;
+          }
+        }
+        return C.lines.L10.start;
+      }
+      var tl = gsap.timeline({ paused: true });
+      var tIn = L(C.lines.L10.start - 0.25);
+      tl.fromTo("#th-rule", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.35, ease: "power3.out" }, tIn);
+      tl.fromTo("#th-k", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tIn + 0.05);
+      tl.fromTo(".th-line", { opacity: 0 }, { opacity: 1, duration: 0.18, ease: "power2.out" }, tIn + 0.1);
+      // chaque mot passe du gris clair à l'encre quand la voix le prononce
+      document.querySelectorAll(".th-line span").forEach(function (el) {
+        var p = el.getAttribute("data-w").split(":");
+        var t = L(wt(p[0], parseInt(p[1], 10)) - 0.04);
+        var ink = el.hasAttribute("data-accent") ? "#0a7537" : "#063d21";
+        tl.fromTo(el, { color: "#cfd2cb" }, { color: ink, duration: 0.16, ease: "power2.out" }, t);
+      });
+      var tOut = L(wt("rejoign", 0) + 0.4);
+      tl.fromTo("#th-wrap", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power3.in", immediateRender: false }, Math.min(tOut, D - 0.3));
+      window.__timelines["ov-theme"] = tl;
+    })();
+  </script>
+</template>
