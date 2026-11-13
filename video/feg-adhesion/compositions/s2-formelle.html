@@ -1,0 +1,267 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #f2f3ef;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    #s2-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    .s2-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s2-kick {
+      position: absolute;
+      left: 132px;
+      top: 138px;
+      font-weight: 500;
+      font-size: 36px;
+      color: #0a7537;
+    }
+    #s2-title {
+      position: absolute;
+      left: 132px;
+      top: 190px;
+      width: 960px;
+      font-weight: 700;
+      font-size: 84px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    #s2-title span {
+      display: inline-block;
+    }
+    #s2-title .acc {
+      color: #0a7537;
+    }
+    #s2-folder {
+      position: absolute;
+      left: 1430px;
+      top: 110px;
+      width: 300px;
+      height: 420px;
+    }
+    .s2-docw {
+      position: absolute;
+      width: 270px;
+      height: 340px;
+    }
+    .s2-doc {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      border-radius: 6px;
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.1);
+      padding: 26px 24px;
+    }
+    .s2-doc .dk {
+      font-weight: 700;
+      font-size: 52px;
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: #1a1c19;
+    }
+    .s2-doc .ds {
+      margin-top: 8px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      line-height: 1.15;
+      color: #5c6259;
+    }
+    .s2-doc .dl {
+      height: 9px;
+      border-radius: 4px;
+      background: #e4e6e0;
+      margin-top: 13px;
+    }
+    .s2-doc .seal {
+      position: absolute;
+      right: 24px;
+      bottom: 22px;
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      border: 3px solid #dadfd8;
+    }
+    .s2-stamp {
+      position: absolute;
+      left: 34px;
+      top: 196px;
+      padding: 6px 16px 4px;
+      border: 5px solid #0a7537;
+      border-radius: 10px;
+      color: #0a7537;
+      font-weight: 700;
+      font-size: 42px;
+      letter-spacing: 0.02em;
+      transform: rotate(-9deg);
+      opacity: 0;
+      mix-blend-mode: multiply;
+    }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+    <div id="s2-cam">
+      <!-- le dossier fermé, vu de dessus, avec la sangle et le cadenas -->
+      <div id="s2-folder">
+        <div id="s2-cover" class="s2-abs" style="width: 300px; height: 420px"></div>
+        <svg id="s2-lock" class="s2-abs" width="300" height="420" viewBox="0 0 300 420" style="overflow: visible">
+          <g id="s2-lockall">
+            <rect x="-14" y="246" width="328" height="30" rx="6" fill="#3A4540" />
+            <rect x="-14" y="246" width="328" height="8" rx="4" fill="#4A5650" />
+            <g id="s2-shackle">
+              <path d="M 262,252 L 262,224 C 262,200 302,200 302,224 L 302,252" fill="none" stroke="#8A9590" stroke-width="10" stroke-linecap="round" />
+            </g>
+            <rect x="248" y="240" width="68" height="60" rx="11" fill="#2F3A34" />
+            <rect x="248" y="240" width="68" height="14" rx="7" fill="#3E4A44" />
+            <circle cx="282" cy="266" r="7" fill="#1A1C19" />
+            <rect x="279" y="268" width="6" height="16" rx="3" fill="#1A1C19" />
+          </g>
+        </svg>
+      </div>
+
+      <!-- les cinq pièces de l'entreprise formelle -->
+      <div id="s2-w1" class="s2-docw" style="left: 185px; top: 610px">
+        <div class="s2-doc" style="transform: rotate(-4deg)">
+          <div class="dk">RCCM</div>
+          <div class="ds">Registre du commerce</div>
+          <div class="dl" style="width: 100%"></div>
+          <div class="dl" style="width: 86%"></div>
+          <div class="dl" style="width: 94%"></div>
+          <div class="dl" style="width: 64%"></div>
+          <div class="seal"></div>
+          <div id="s2-st1" class="s2-stamp">À JOUR</div>
+        </div>
+      </div>
+      <div id="s2-w2" class="s2-docw" style="left: 505px; top: 618px">
+        <div class="s2-doc" style="transform: rotate(2deg)">
+          <div class="dk">NIF</div>
+          <div class="ds">Identifiant fiscal</div>
+          <div class="dl" style="width: 100%"></div>
+          <div class="dl" style="width: 90%"></div>
+          <div class="dl" style="width: 96%"></div>
+          <div class="dl" style="width: 58%"></div>
+          <div class="seal"></div>
+          <div id="s2-st2" class="s2-stamp">À JOUR</div>
+        </div>
+      </div>
+      <div id="s2-w3" class="s2-docw" style="left: 825px; top: 606px">
+        <div class="s2-doc" style="transform: rotate(-2deg)">
+          <div class="dk">CNSS</div>
+          <div class="ds">Immatriculation, cotisations</div>
+          <div class="dl" style="width: 100%"></div>
+          <div class="dl" style="width: 84%"></div>
+          <div class="dl" style="width: 92%"></div>
+          <div class="seal"></div>
+          <div id="s2-st3" class="s2-stamp">À JOUR</div>
+        </div>
+      </div>
+      <div id="s2-w4" class="s2-docw" style="left: 1145px; top: 616px">
+        <div class="s2-doc" style="transform: rotate(3deg)">
+          <div class="dk">CNAMGS</div>
+          <div class="ds">Immatriculation, cotisations</div>
+          <div class="dl" style="width: 100%"></div>
+          <div class="dl" style="width: 88%"></div>
+          <div class="dl" style="width: 70%"></div>
+          <div class="seal"></div>
+          <div id="s2-st4" class="s2-stamp">À JOUR</div>
+        </div>
+      </div>
+      <div id="s2-w5" class="s2-docw" style="left: 1465px; top: 608px">
+        <div class="s2-doc" style="transform: rotate(-3deg)">
+          <div class="dk">Impôts</div>
+          <div class="ds">Situation fiscale</div>
+          <div class="dl" style="width: 100%"></div>
+          <div class="dl" style="width: 92%"></div>
+          <div class="dl" style="width: 96%"></div>
+          <div class="dl" style="width: 62%"></div>
+          <div class="seal"></div>
+          <div id="s2-st5" class="s2-stamp">À JOUR</div>
+        </div>
+      </div>
+
+      <div id="s2-arms" class="s2-abs"></div>
+    </div>
+
+    <div id="s2-kick">Condition impérative</div>
+    <div id="s2-title"><span>Être</span> <span>une</span> <span>entreprise</span><br /><span class="acc">formelle</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var L = C.local("s2");
+      var D = C.sc.s2.dur;
+      document.getElementById("s2-cover").innerHTML = P.folderTop(300, 420);
+      // la main droite et son tampon, vus de dessus (le tampon sous la main)
+      var stamp =
+        '<div style="position:absolute;left:-78px;top:-52px;width:156px;height:96px;border-radius:14px;background:#3A4540;box-shadow:0 6px 14px rgba(0,0,0,.18)">' +
+        '<div style="position:absolute;left:10px;top:8px;right:10px;bottom:14px;border-radius:10px;background:#46524C"></div></div>';
+      var R = -25; // inclinaison du bras (degrés)
+      document.getElementById("s2-arms").innerHTML = P.armTop("s2a", { pose: "grip", hand: "R", s: 1, r: R, under: stamp });
+      // position du coude pour que la main (prise à 0,-470 dans le repère du bras) tombe sur (tx, ty)
+      var rad = (R * Math.PI) / 180;
+      var gx = 470 * Math.sin(rad),
+        gy = -470 * Math.cos(rad);
+      function elbow(tx, ty) {
+        return { x: tx - gx, y: ty - gy };
+      }
+      var tl = gsap.timeline({ paused: true });
+
+      // raccord : on part de la couverture plein cadre (684 × 957, centrée), on recule
+      gsap.set("#s2-cam", { transformOrigin: "1580px 320px", scale: 2.28, x: -620, y: 220 });
+      tl.to("#s2-cam", { scale: 1, x: 0, y: 0, duration: 1.0, ease: "power2.out" }, 0);
+      // la sangle et le cadenas se referment sur le dossier
+      gsap.set("#s2-lockall", { x: 340, opacity: 0 });
+      tl.to("#s2-lockall", { x: 0, opacity: 1, duration: 0.4, ease: "power3.out" }, L(C.at("L02", ["D'abord", "abord"]) + 0.1));
+
+      // titres
+      tl.fromTo("#s2-kick", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, L(C.at("L02", ["condition"]) - 0.1));
+      tl.fromTo("#s2-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, L(C.at("L02", ["être", "etre"]) - 0.1));
+
+      // les cinq pièces : chacune arrive quand la voix la nomme, puis reçoit son tampon
+      var docs = [
+        { w: "#s2-w1", st: "#s2-st1", tin: C.at("L03", ["registre"]) - 0.55, hit: C.at("L03", ["commerce"]) + 0.15, x: 185, y: 610 },
+        { w: "#s2-w2", st: "#s2-st2", tin: C.at("L03", ["numéro", "numero"]) - 0.2, hit: C.at("L03", ["fiscale"]) + 0.08, x: 505, y: 618 },
+        { w: "#s2-w3", st: "#s2-st3", tin: C.at("L03", ["CNSS", "cnss"]) - 0.5, hit: C.at("L03", ["CNSS", "cnss"]) + 0.32, x: 825, y: 606 },
+        { w: "#s2-w4", st: "#s2-st4", tin: C.at("L03", ["CNAMGS", "cnamgs"]) - 0.45, hit: C.at("L03", ["CNAMGS", "cnamgs"]) + 0.42, x: 1145, y: 616 },
+        { w: "#s2-w5", st: "#s2-st5", tin: C.at("L03", ["impôts", "impots"]) - 0.5, hit: C.at("L03", ["impôts", "impots"]) + 0.3, x: 1465, y: 608 },
+      ];
+      var first = elbow(docs[0].x + 135, docs[0].y + 230);
+      gsap.set("#s2a", { x: first.x + 520, y: first.y + 520 });
+      gsap.set("#s2a-arm", { scale: 1.07, transformOrigin: "0px -470px" });
+      docs.forEach(function (d, i) {
+        var tin = L(d.tin),
+          hit = L(d.hit);
+        tl.fromTo(d.w, { y: 520, opacity: 1, rotation: i % 2 ? 6 : -6 }, { y: 0, rotation: 0, duration: 0.5, ease: "power3.out" }, tin);
+        // la main se place au-dessus de la pièce
+        var e = elbow(d.x + 140, d.y + 232);
+        var tMove = Math.max(tin + 0.15, hit - 0.75);
+        tl.to("#s2a", { x: e.x, y: e.y, duration: Math.min(0.55, hit - 0.12 - tMove), ease: "power2.inOut" }, tMove);
+        // levée, frappe, l'encre apparaît au contact
+        tl.to("#s2a-arm", { scale: 1.12, duration: 0.12, ease: "power2.out" }, hit - 0.18)
+          .to("#s2a-arm", { scale: 1.0, duration: 0.06, ease: "power4.in" }, hit - 0.06)
+          .set(d.st, { opacity: 0.92 }, hit)
+          .to("#s2a-arm", { scale: 1.07, duration: 0.2, ease: "power2.out" }, hit + 0.05);
+      });
+      // la main repart ; le cadenas s'ouvre
+      var tEnd = L(docs[4].hit) + 0.22;
+      tl.to("#s2a", { x: "+=560", y: "+=520", duration: 0.5, ease: "power2.in" }, tEnd);
+      tl.to("#s2-shackle", { y: -16, duration: 0.18, ease: "power2.out" }, tEnd + 0.05).to("#s2-lockall", { x: 360, opacity: 0, duration: 0.45, ease: "power2.in" }, tEnd + 0.3);
+      // raccord vers l'étape 1 : on pousse vers le dossier ouvert (360 × 504, centré)
+      tl.to(["#s2-kick", "#s2-title"], { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, D - 0.85);
+      tl.to(["#s2-w1", "#s2-w2", "#s2-w3", "#s2-w4", "#s2-w5"], { opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.7);
+      tl.to("#s2-cam", { scale: 1.2, x: -620, y: 220, duration: 0.75, ease: "power2.inOut" }, D - 0.75);
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

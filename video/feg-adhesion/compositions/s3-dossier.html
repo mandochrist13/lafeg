@@ -1,0 +1,301 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    #s3-stage,
+    #s3-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #s3-stage {
+      background: #f2f3ef;
+    }
+    .s3-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s3-kick {
+      position: absolute;
+      left: 132px;
+      top: 150px;
+      font-weight: 500;
+      font-size: 36px;
+      color: #0a7537;
+      opacity: 0;
+    }
+    .s3-lab {
+      position: absolute;
+      left: 132px;
+      top: 204px;
+      width: 660px;
+      font-weight: 700;
+      font-size: 76px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    .s3-lab span {
+      display: inline-block;
+    }
+    .s3-sub {
+      margin-top: 18px;
+      font-weight: 500;
+      font-size: 40px;
+      letter-spacing: -0.005em;
+      color: #0a7537;
+    }
+    #s3-back {
+      position: absolute;
+      left: 1220px;
+      top: 260px;
+      width: 400px;
+      height: 560px;
+      border-radius: 0 10px 10px 0;
+      background: #063d21;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+    }
+    #s3-inside {
+      position: absolute;
+      left: 820px;
+      top: 260px;
+      width: 400px;
+      height: 560px;
+      border-radius: 10px 0 0 10px;
+      background: #e4ece7;
+      box-shadow: 0 10px 28px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+    #s3-cover {
+      position: absolute;
+      left: 1220px;
+      top: 260px;
+      width: 400px;
+      height: 560px;
+    }
+    .s3-page {
+      position: absolute;
+      left: 1230px;
+      top: 272px;
+      width: 380px;
+      height: 537px;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.12);
+    }
+    .s3-page img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .s3-just {
+      position: absolute;
+      width: 350px;
+      height: 490px;
+      background: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      padding: 34px 30px;
+    }
+    .s3-just .jk {
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      line-height: 1.15;
+      color: #5c6259;
+    }
+    .s3-just .jt {
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 1;
+      color: #1a1c19;
+    }
+    .s3-just .dl {
+      height: 10px;
+      border-radius: 5px;
+      background: #e4e6e0;
+      margin-top: 16px;
+    }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div id="s3-stage">
+      <div id="s3-cam">
+        <div id="s3-inside">
+          <div style="position: absolute; left: 0; top: 380px; width: 400px; height: 180px; background: #d8e3dc; clip-path: polygon(0 26%, 100% 0, 100% 100%, 0 100%)"></div>
+        </div>
+        <div id="s3-folderR">
+          <div id="s3-back"></div>
+          <div id="s3-p2" class="s3-page"><img src="assets/img/dossier-02.png" alt="" /></div>
+          <div id="s3-p3" class="s3-page"><img src="assets/img/dossier-03.png" alt="" /></div>
+          <div id="s3-p4" class="s3-page"><img src="assets/img/dossier-04.png" alt="" /></div>
+          <div id="s3-p6" class="s3-page">
+            <img src="assets/img/dossier-06.png" alt="" />
+            <svg class="s3-abs" width="380" height="537" viewBox="0 0 380 537" style="overflow: visible">
+              <path id="s3-tick" d="M 291,168 L 298,176 L 312,158" fill="none" stroke="#0A7537" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div id="s3-p9" class="s3-page">
+            <img src="assets/img/dossier-09.png" alt="" />
+            <svg class="s3-abs" width="380" height="537" viewBox="0 0 380 537" style="overflow: visible">
+              <g id="s3-cachet" opacity="0" style="mix-blend-mode: multiply" data-layout-ignore>
+                <circle cx="196" cy="401" r="36" fill="none" stroke="#0A7537" stroke-width="3.5" />
+                <circle cx="196" cy="401" r="29" fill="none" stroke="#0A7537" stroke-width="1.6" />
+                <text x="196" y="397" text-anchor="middle" font-family="Hyundai Sans Head" font-weight="700" font-size="10.5" fill="#0A7537">VOTRE</text>
+                <text x="196" y="410" text-anchor="middle" font-family="Hyundai Sans Head" font-weight="700" font-size="10.5" fill="#0A7537">ENTREPRISE</text>
+              </g>
+              <path id="s3-sign" d="M 252,394 C 258,380 262,378 262,388 C 262,398 256,404 258,396 C 262,386 270,384 270,392 C 270,398 274,398 278,390 C 282,382 286,384 285,392 C 285,398 290,397 295,389 C 300,382 304,386 306,392 L 322,386" fill="none" stroke="#1A1C19" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+          </div>
+          <div id="s3-j1" class="s3-just" data-layout-allow-overlap style="left: 1250px; top: 300px; transform: rotate(-3deg)">
+            <div class="jk">Justificatif d'immatriculation</div>
+            <div class="jt">CNSS</div>
+            <div class="dl" style="width: 100%"></div>
+            <div class="dl" style="width: 88%"></div>
+            <div class="dl" style="width: 94%"></div>
+            <div class="dl" style="width: 60%"></div>
+          </div>
+          <div id="s3-j2" class="s3-just" data-layout-allow-overlap style="left: 1262px; top: 296px; transform: rotate(2deg)">
+            <div class="jk">Justificatif d'immatriculation</div>
+            <div class="jt">CNAMGS</div>
+            <div class="dl" style="width: 100%"></div>
+            <div class="dl" style="width: 90%"></div>
+            <div class="dl" style="width: 84%"></div>
+            <div class="dl" style="width: 66%"></div>
+          </div>
+          <svg id="s3-clip" class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="overflow: visible">
+            <path d="M 1426,330 L 1426,272 C 1426,258 1450,258 1450,272 L 1450,338 C 1450,352 1434,352 1434,338 L 1434,284" fill="none" stroke="#8A9590" stroke-width="5" stroke-linecap="round" />
+          </svg>
+          <div id="s3-cover"></div>
+        </div>
+        <div id="s3-hands" class="s3-abs"></div>
+      </div>
+    </div>
+
+    <div id="s3-k1" class="s3-kick">Étape 1 · Le dossier</div>
+    <div id="s3-k2" class="s3-kick">Étape 2 · Les justificatifs</div>
+    <div id="s3-l1" class="s3-lab"><span>Lettre</span> <span>de</span> <span>demande</span></div>
+    <div id="s3-l2" class="s3-lab"><span>Fiche</span> <span>entreprise</span></div>
+    <div id="s3-l3" class="s3-lab"><span>Fédération</span> <span>métier</span><div class="s3-sub">une seule case cochée</div></div>
+    <div id="s3-l4" class="s3-lab"><span>Déclaration</span> <span>d'engagement</span><div class="s3-sub">Charte d'éthique de la FEG</div></div>
+    <div id="s3-l5" class="s3-lab"><span>Signature</span> <span>et</span> <span>cachet</span></div>
+    <div id="s3-l6" class="s3-lab"><span>Joindre</span> <span>les</span> <span>justificatifs</span><div class="s3-sub">CNSS · CNAMGS</div></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var L = C.local("s3");
+      var D = C.sc.s3.dur;
+      document.getElementById("s3-cover").innerHTML = P.folderTop(400, 560);
+      // main au stylo (droite) et main au cachet (droite), vues de dessus
+      var round =
+        '<div style="position:absolute;left:-46px;top:-46px;width:92px;height:92px;border-radius:50%;background:#3A4540;box-shadow:0 6px 14px rgba(0,0,0,.18)">' +
+        '<div style="position:absolute;left:10px;top:9px;right:10px;bottom:13px;border-radius:50%;background:#46524C"></div></div>';
+      document.getElementById("s3-hands").innerHTML =
+        P.armTop("s3pen", { pose: "pen", hand: "R", s: 0.9, r: -20 }) + P.armTop("s3st", { pose: "grip", hand: "R", s: 0.9, r: -25, under: round });
+      // repères : pointe du stylo en (45,-551), prise en (0,-470) dans le repère du bras
+      function off(px, py, s, r) {
+        var a = (r * Math.PI) / 180;
+        return { x: s * (px * Math.cos(a) - py * Math.sin(a)), y: s * (px * Math.sin(a) + py * Math.cos(a)) };
+      }
+      var penO = off(45, -551, 0.9, -20),
+        stO = off(0, -470, 0.9, -25);
+      function penAt(x, y) {
+        return { x: x - penO.x, y: y - penO.y };
+      }
+      function stAt(x, y) {
+        return { x: x - stO.x, y: y - stO.y };
+      }
+      var tl = gsap.timeline({ paused: true });
+
+      // raccord : dossier fermé centré (360 × 504) puis il s'ouvre et prend sa place
+      gsap.set("#s3-cam", { transformOrigin: "1420px 540px", scale: 0.9, x: -460, y: 0 });
+      gsap.set("#s3-inside", { scaleX: 0, transformOrigin: "100% 50%" });
+      gsap.set("#s3-cover", { transformOrigin: "0% 50%" });
+      ["#s3-p3", "#s3-p4", "#s3-p6", "#s3-p9", "#s3-j1", "#s3-j2"].forEach(function (s) {
+        gsap.set(s, { x: 760, rotation: 8, opacity: 0 });
+      });
+      gsap.set("#s3-clip", { y: -60, opacity: 0 });
+      gsap.set("#s3-tick", { strokeDasharray: 40, strokeDashoffset: 40 });
+      gsap.set("#s3-sign", { strokeDasharray: 260, strokeDashoffset: 260 });
+      var p0 = penAt(1700, 1500),
+        s0 = stAt(1720, 1500);
+      gsap.set("#s3pen", { x: p0.x, y: p0.y });
+      gsap.set("#s3st", { x: s0.x, y: s0.y });
+      gsap.set("#s3st-arm", { scale: 1.07, transformOrigin: "0px -470px" });
+
+      var tOpen = L(C.at("L04", ["Remplissez"]) + 0.05);
+      tl.to("#s3-cover", { scaleX: 0, duration: 0.22, ease: "power2.in" }, tOpen)
+        .to("#s3-inside", { scaleX: 1, duration: 0.26, ease: "power2.out" }, tOpen + 0.22)
+        .to("#s3-cam", { scale: 1, x: 0, y: 0, duration: 0.9, ease: "power2.inOut" }, tOpen + 0.05);
+      tl.to("#s3-k1", { opacity: 1, duration: 0.2, ease: "power2.out" }, tOpen + 0.3);
+
+      // libellés : un seul à la fois, entrée mot à mot, sortie floue
+      function lab(sel, tIn, tOut) {
+        tl.fromTo(sel + " span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, tIn);
+        if (document.querySelector(sel + " .s3-sub")) tl.fromTo(sel + " .s3-sub", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, arguments[3] != null ? arguments[3] : tIn + 0.5);
+        tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, tOut);
+      }
+      function page(sel, t) {
+        tl.to(sel, { x: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, t);
+      }
+      var tLet = L(C.at("L04", ["lettre"]) - 0.15),
+        tFic = L(C.at("L04", ["fiche"]) - 0.12),
+        tFed = L(C.at("L04", ["choix"]) - 0.1),
+        tDec = L(C.at("L05", ["déclaration", "declaration"]) - 0.15),
+        tCha = L(C.at("L05", ["charte"]) - 0.05),
+        tCac = L(C.at("L05", ["apposez"]) - 0.05),
+        tJoi = L(C.at("L06", ["Joignez"]) - 0.1);
+      page("#s3-p3", tLet);
+      lab("#s3-l1", tLet + 0.05, tFic - 0.25);
+      page("#s3-p4", tFic);
+      lab("#s3-l2", tFic + 0.05, tFed - 0.25);
+      page("#s3-p6", tFed);
+      lab("#s3-l3", tFed + 0.05, tDec - 0.3, tFed + 0.5);
+      // le stylo coche « Logistique et manutention »
+      var tTick = L(C.at("L04", ["métier", "metier"], "e")) + 0.15;
+      var pk = penAt(1230 + 291, 272 + 168);
+      tl.to("#s3pen", { x: pk.x, y: pk.y, duration: 0.55, ease: "power2.inOut" }, tTick - 0.6)
+        .to("#s3-tick", { strokeDashoffset: 0, duration: 0.22, ease: "power1.inOut" }, tTick)
+        .to("#s3pen", { x: "+=22", y: "-=10", duration: 0.22, ease: "power1.inOut" }, tTick);
+      page("#s3-p9", tDec);
+      lab("#s3-l4", tDec + 0.05, tCac - 0.3, tCha);
+      // signature
+      var tSig = tCha + 0.15;
+      var ps = penAt(1230 + 252, 272 + 394);
+      tl.to("#s3pen", { x: ps.x, y: ps.y, duration: 0.6, ease: "power2.inOut" }, tSig - 0.7)
+        .to("#s3-sign", { strokeDashoffset: 0, duration: 1.1, ease: "none" }, tSig)
+        .to("#s3pen", { keyframes: [{ x: ps.x + 18, y: ps.y - 8, duration: 0.25 }, { x: ps.x + 36, y: ps.y + 2, duration: 0.25 }, { x: ps.x + 52, y: ps.y - 6, duration: 0.25 }, { x: ps.x + 70, y: ps.y - 6, duration: 0.35 }], ease: "none" }, tSig)
+        .to("#s3pen", { x: p0.x, y: p0.y, duration: 0.6, ease: "power2.in" }, tSig + 1.25);
+      // cachet
+      lab("#s3-l5", tCac + 0.05, tJoi - 0.35);
+      var hitC = L(C.at("L05", ["cachet"]) + 0.08);
+      var sc = stAt(1230 + 196, 272 + 401);
+      tl.to("#s3st", { x: sc.x, y: sc.y, duration: 0.65, ease: "power2.inOut" }, hitC - 0.85)
+        .to("#s3st-arm", { scale: 1.12, duration: 0.12, ease: "power2.out" }, hitC - 0.18)
+        .to("#s3st-arm", { scale: 1.0, duration: 0.06, ease: "power4.in" }, hitC - 0.06)
+        .set("#s3-cachet", { opacity: 0.9 }, hitC)
+        .to("#s3st-arm", { scale: 1.07, duration: 0.2, ease: "power2.out" }, hitC + 0.06)
+        .to("#s3st", { x: s0.x, y: s0.y, duration: 0.6, ease: "power2.in" }, hitC + 0.35);
+
+      // étape 2 : les justificatifs CNSS et CNAMGS, un trombone, le dossier se ferme et se soulève
+      tl.to("#s3-k1", { opacity: 0, duration: 0.2, ease: "power2.in" }, tJoi - 0.3).to("#s3-k2", { opacity: 1, duration: 0.2, ease: "power2.out" }, tJoi);
+      lab("#s3-l6", tJoi + 0.05, D - 0.8, L(C.at("L06", ["CNSS", "cnss"])) + 0.1);
+      page("#s3-j1", L(C.at("L06", ["CNSS", "cnss"]) - 0.3));
+      page("#s3-j2", L(C.at("L06", ["CNAMGS", "cnamgs"]) - 0.3));
+      var tClip = L(C.at("L06", ["CNAMGS", "cnamgs"]) + 0.45);
+      tl.to("#s3-clip", { y: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, tClip);
+      var tClose = tClip + 0.45;
+      tl.to("#s3-inside", { scaleX: 0, duration: 0.22, ease: "power2.in" }, tClose).to("#s3-cover", { scaleX: 1, duration: 0.26, ease: "power2.out" }, tClose + 0.22);
+      // elle soulève le dossier : bascule de la caméra vers la rue (raccord avec le plan suivant)
+      tl.to("#s3-folderR", { y: -140, scale: 1.04, transformOrigin: "1420px 540px", duration: 0.5, ease: "power2.inOut" }, D - 1.05);
+      tl.to(["#s3-stage", "#s3-k2", "#s3-l6"], { y: 1080, duration: 0.6, ease: "power2.in" }, D - 0.6);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

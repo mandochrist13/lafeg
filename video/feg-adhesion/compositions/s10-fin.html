@@ -1,0 +1,136 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    .s10-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s10-title {
+      position: absolute;
+      left: 132px;
+      top: 170px;
+      width: 900px;
+      font-weight: 700;
+      font-size: 104px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #063d21;
+    }
+    #s10-title span {
+      display: inline-block;
+    }
+    #s10-title .acc {
+      color: #0a7537;
+    }
+    #s10-logo {
+      position: absolute;
+      left: 797px;
+      top: 70px;
+      width: 325px;
+      height: 300px;
+    }
+    #s10-cta {
+      position: absolute;
+      left: 0;
+      top: 404px;
+      width: 1920px;
+      text-align: center;
+    }
+    #s10-line {
+      font-weight: 700;
+      font-size: 60px;
+      letter-spacing: -0.01em;
+      color: #063d21;
+    }
+    #s10-line span {
+      display: inline-block;
+    }
+    #s10-url {
+      color: #0a7537;
+    }
+    #s10-contact {
+      margin-top: 14px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 30px;
+      color: #5c6259;
+    }
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1920" data-height="1080">
+    <svg class="s10-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="1040" width="1920" height="40" fill="#F4F5F2" />
+      <ellipse cx="960" cy="1042" rx="760" ry="12" fill="#000" opacity="0.05" />
+    </svg>
+    <div id="s10-people" class="s10-abs"></div>
+    <div id="s10-title"><span class="acc">S'unir</span> <span>pour</span><br /><span>être</span> <span>plus</span> <span>fort</span></div>
+    <img id="s10-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
+    <div id="s10-cta">
+      <div id="s10-line"><span>Devenez</span> <span>membre</span> <span>·</span> <span id="s10-url">lafeg.ga</span></div>
+      <div id="s10-contact">info@lafeg.ga · Immeuble Odyssée, BP 410, Libreville</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var L = C.local("s10");
+      var D = C.sc.s10.dur;
+      // sept membres debout, main dans la main ; la dirigeante au centre
+      var S = 0.6,
+        FEET = 1040,
+        Y = FEET - 304 * S;
+      var ppl = [
+        { id: "u1", x: 300, skin: "#5C3A24", hair: "short", top: "#2F3A34", tie: "#063D21", bottom: "#2B3330", sex: "m" },
+        { id: "u2", x: 520, skin: "#7F5236", hair: "bun", top: "#C9CEC9", bottom: "#3A4540", sex: "f" },
+        { id: "u3", x: 740, skin: "#4A2D1C", hair: "shaved", top: "#5C6660", tie: "#AEB4AF", bottom: "#2B3330", sex: "m", beard: true },
+        { id: "u4", x: 960, skin: "#6E4429", hair: "afro", top: "#0A7537", bottom: "#1F2A24", sex: "f" },
+        { id: "u5", x: 1180, skin: "#5C3A24", hair: "grey", hairColor: "#BFC3BE", top: "#E4E6E0", tie: "#3A4540", bottom: "#3A4540", sex: "m", glasses: true },
+        { id: "u6", x: 1400, skin: "#4A2D1C", hair: "locs", top: "#3A4540", bottom: "#2B3330", sex: "f" },
+        { id: "u7", x: 1620, skin: "#7F5236", hair: "short", top: "#C9CEC9", tie: "#063D21", bottom: "#3A4540", sex: "m" },
+      ];
+      document.getElementById("s10-people").innerHTML = ppl
+        .map(function (p) {
+          return P.front(p.id, { x: p.x, y: Y, s: S, skin: p.skin, hair: p.hair, hairColor: p.hairColor, top: p.top, tie: p.tie, bottom: p.bottom, sex: p.sex, glasses: p.glasses, beard: p.beard, legs: true });
+        })
+        .join("");
+      var tl = gsap.timeline({ paused: true });
+      // angle des bras pour que les mains se rejoignent à mi-chemin (220 px entre deux membres)
+      function joinAngle(sex) {
+        var sx = (sex === "m" ? 79 : 70) * S;
+        return (Math.asin((110 - sx) / (220 * S)) * 180) / Math.PI;
+      }
+      var tJoin = L(C.at("L11", ["S'unir", "unir"]) + 0.05);
+      ppl.forEach(function (p, i) {
+        P.prep(p.id);
+        gsap.set("#" + p.id + "-uaL", { rotation: 5 });
+        gsap.set("#" + p.id + "-uaR", { rotation: -5 });
+        var a = joinAngle(p.sex);
+        var d = Math.abs(i - 3) * 0.06;
+        if (i > 0) tl.to("#" + p.id + "-uaL", { rotation: a, duration: 0.55, ease: "power2.inOut" }, tJoin + d);
+        if (i < ppl.length - 1) tl.to("#" + p.id + "-uaR", { rotation: -a, duration: 0.55, ease: "power2.inOut" }, tJoin + d + 0.03);
+        tl.to("#" + p.id + "-mouth", { scaleX: 1.1, scaleY: 1.3, duration: 0.35, ease: "power2.out" }, tJoin + 0.3 + d);
+        P.breathe(tl, p.id, 0.1 * i, D, 3.2 + 0.3 * (i % 3), 0.007);
+      });
+      gsap.set("#s10-people", { y: 60, opacity: 0 });
+      tl.to("#s10-people", { y: 0, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.0);
+      // titre, puis le logo et l'appel à l'action sur « rejoignez »
+      tl.fromTo("#s10-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, tJoin - 0.05);
+      var tLogo = C.logo - C.sc.s10.start;
+      tl.to("#s10-title", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, tLogo - 0.3);
+      tl.fromTo("#s10-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo);
+      tl.fromTo("#s10-line span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.08, ease: "power4.out" }, tLogo + 1.0);
+      tl.fromTo("#s10-contact", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tLogo + 1.6);
+      // les membres lèvent un peu la tête vers le logo
+      ppl.forEach(function (p, i) {
+        tl.to("#" + p.id + "-head", { y: -3, rotation: (3 - i) * 0.8, duration: 0.6, ease: "power2.inOut" }, tLogo + 0.2 + i * 0.04);
+      });
+      window.__timelines["s10"] = tl;
+    })();
+  </script>
+</template>

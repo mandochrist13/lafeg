@@ -1,0 +1,1145 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.91,
+      "speech": [
+        0.12,
+        5.723
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Vous",
+          "start": 0.12,
+          "end": 0.261
+        },
+        {
+          "text": "souhaitez",
+          "start": 0.261,
+          "end": 0.682
+        },
+        {
+          "text": "rejoindre",
+          "start": 0.682,
+          "end": 0.963
+        },
+        {
+          "text": "la",
+          "start": 0.963,
+          "end": 1.103
+        },
+        {
+          "text": "Fédération",
+          "start": 1.103,
+          "end": 1.665
+        },
+        {
+          "text": "des",
+          "start": 1.665,
+          "end": 1.805
+        },
+        {
+          "text": "Entreprises",
+          "start": 1.805,
+          "end": 2.367
+        },
+        {
+          "text": "du",
+          "start": 2.367,
+          "end": 2.507
+        },
+        {
+          "text": "Gabon",
+          "start": 2.507,
+          "end": 2.788
+        },
+        {
+          "text": "?",
+          "start": 2.788,
+          "end": 2.928
+        },
+        {
+          "text": "Voici",
+          "start": 3.249,
+          "end": 3.682
+        },
+        {
+          "text": "comment",
+          "start": 3.682,
+          "end": 4.116
+        },
+        {
+          "text": "adhérer,",
+          "start": 4.116,
+          "end": 4.766
+        },
+        {
+          "text": "étape",
+          "start": 4.89,
+          "end": 5.223
+        },
+        {
+          "text": "par",
+          "start": 5.223,
+          "end": 5.39
+        },
+        {
+          "text": "étape.",
+          "start": 5.39,
+          "end": 5.723
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.405,
+      "speech": [
+        0.12,
+        4.224
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "D'abord,",
+          "start": 0.12,
+          "end": 0.6
+        },
+        {
+          "text": "une",
+          "start": 0.895,
+          "end": 1.036
+        },
+        {
+          "text": "condition",
+          "start": 1.036,
+          "end": 1.456
+        },
+        {
+          "text": "impérative",
+          "start": 1.456,
+          "end": 2.017
+        },
+        {
+          "text": ":",
+          "start": 2.017,
+          "end": 2.158
+        },
+        {
+          "text": "être",
+          "start": 2.908,
+          "end": 3.096
+        },
+        {
+          "text": "une",
+          "start": 3.096,
+          "end": 3.284
+        },
+        {
+          "text": "entreprise",
+          "start": 3.284,
+          "end": 3.848
+        },
+        {
+          "text": "formelle.",
+          "start": 3.848,
+          "end": 4.224
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 10.419,
+      "speech": [
+        0.12,
+        10.239
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Immatriculée",
+          "start": 0.12,
+          "end": 1.091
+        },
+        {
+          "text": "au",
+          "start": 1.091,
+          "end": 1.285
+        },
+        {
+          "text": "registre",
+          "start": 1.285,
+          "end": 1.674
+        },
+        {
+          "text": "du",
+          "start": 1.674,
+          "end": 1.868
+        },
+        {
+          "text": "commerce,",
+          "start": 1.868,
+          "end": 2.257
+        },
+        {
+          "text": "dotée",
+          "start": 2.447,
+          "end": 2.823
+        },
+        {
+          "text": "d'un",
+          "start": 2.823,
+          "end": 3.011
+        },
+        {
+          "text": "numéro",
+          "start": 3.011,
+          "end": 3.576
+        },
+        {
+          "text": "d'identification",
+          "start": 3.576,
+          "end": 4.705
+        },
+        {
+          "text": "fiscale,",
+          "start": 4.705,
+          "end": 5.081
+        },
+        {
+          "text": "et",
+          "start": 5.202,
+          "end": 5.392
+        },
+        {
+          "text": "à",
+          "start": 5.392,
+          "end": 5.581
+        },
+        {
+          "text": "jour",
+          "start": 5.581,
+          "end": 5.77
+        },
+        {
+          "text": "de",
+          "start": 5.77,
+          "end": 5.96
+        },
+        {
+          "text": "ses",
+          "start": 5.96,
+          "end": 6.149
+        },
+        {
+          "text": "cotisations",
+          "start": 6.149,
+          "end": 6.906
+        },
+        {
+          "text": "CNSS,",
+          "start": 6.906,
+          "end": 7.663
+        },
+        {
+          "text": "CNAMGS",
+          "start": 8.107,
+          "end": 9.27
+        },
+        {
+          "text": "et",
+          "start": 9.27,
+          "end": 9.464
+        },
+        {
+          "text": "de",
+          "start": 9.464,
+          "end": 9.658
+        },
+        {
+          "text": "ses",
+          "start": 9.658,
+          "end": 9.852
+        },
+        {
+          "text": "impôts.",
+          "start": 9.852,
+          "end": 10.239
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.547,
+      "speech": [
+        0.12,
+        7.367
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Remplissez",
+          "start": 0.12,
+          "end": 0.669
+        },
+        {
+          "text": "ensuite",
+          "start": 0.669,
+          "end": 1.034
+        },
+        {
+          "text": "le",
+          "start": 1.034,
+          "end": 1.217
+        },
+        {
+          "text": "dossier",
+          "start": 1.217,
+          "end": 1.583
+        },
+        {
+          "text": "d'adhésion",
+          "start": 1.583,
+          "end": 2.131
+        },
+        {
+          "text": ":",
+          "start": 2.131,
+          "end": 2.314
+        },
+        {
+          "text": "lettre",
+          "start": 3.038,
+          "end": 3.303
+        },
+        {
+          "text": "de",
+          "start": 3.303,
+          "end": 3.569
+        },
+        {
+          "text": "demande,",
+          "start": 3.569,
+          "end": 4.099
+        },
+        {
+          "text": "fiche",
+          "start": 4.493,
+          "end": 4.785
+        },
+        {
+          "text": "entreprise,",
+          "start": 4.785,
+          "end": 5.661
+        },
+        {
+          "text": "et",
+          "start": 5.788,
+          "end": 5.946
+        },
+        {
+          "text": "choix",
+          "start": 5.946,
+          "end": 6.104
+        },
+        {
+          "text": "de",
+          "start": 6.104,
+          "end": 6.262
+        },
+        {
+          "text": "votre",
+          "start": 6.262,
+          "end": 6.42
+        },
+        {
+          "text": "fédération",
+          "start": 6.42,
+          "end": 7.051
+        },
+        {
+          "text": "métier.",
+          "start": 7.051,
+          "end": 7.367
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.341,
+      "speech": [
+        0.12,
+        6.161
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Signez",
+          "start": 0.12,
+          "end": 0.499
+        },
+        {
+          "text": "la",
+          "start": 0.499,
+          "end": 0.688
+        },
+        {
+          "text": "déclaration",
+          "start": 0.688,
+          "end": 1.444
+        },
+        {
+          "text": "d'engagement",
+          "start": 1.444,
+          "end": 2.201
+        },
+        {
+          "text": "à",
+          "start": 2.201,
+          "end": 2.39
+        },
+        {
+          "text": "la",
+          "start": 2.39,
+          "end": 2.579
+        },
+        {
+          "text": "charte",
+          "start": 2.579,
+          "end": 2.768
+        },
+        {
+          "text": "d'éthique",
+          "start": 2.768,
+          "end": 3.336
+        },
+        {
+          "text": "de",
+          "start": 3.336,
+          "end": 3.525
+        },
+        {
+          "text": "la",
+          "start": 3.525,
+          "end": 3.714
+        },
+        {
+          "text": "Fédération,",
+          "start": 3.714,
+          "end": 4.471
+        },
+        {
+          "text": "puis",
+          "start": 4.648,
+          "end": 4.785
+        },
+        {
+          "text": "apposez",
+          "start": 4.785,
+          "end": 5.198
+        },
+        {
+          "text": "le",
+          "start": 5.198,
+          "end": 5.335
+        },
+        {
+          "text": "cachet",
+          "start": 5.335,
+          "end": 5.61
+        },
+        {
+          "text": "de",
+          "start": 5.61,
+          "end": 5.748
+        },
+        {
+          "text": "l'entreprise.",
+          "start": 5.748,
+          "end": 6.161
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.783,
+      "speech": [
+        0.12,
+        8.603
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Joignez",
+          "start": 0.12,
+          "end": 0.495
+        },
+        {
+          "text": "vos",
+          "start": 0.495,
+          "end": 0.682
+        },
+        {
+          "text": "justificatifs",
+          "start": 0.682,
+          "end": 1.618
+        },
+        {
+          "text": "CNSS",
+          "start": 1.618,
+          "end": 2.366
+        },
+        {
+          "text": "et",
+          "start": 2.366,
+          "end": 2.554
+        },
+        {
+          "text": "CNAMGS,",
+          "start": 2.554,
+          "end": 3.677
+        },
+        {
+          "text": "et",
+          "start": 4.225,
+          "end": 4.403
+        },
+        {
+          "text": "déposez",
+          "start": 4.403,
+          "end": 4.936
+        },
+        {
+          "text": "le",
+          "start": 4.936,
+          "end": 5.113
+        },
+        {
+          "text": "dossier",
+          "start": 5.113,
+          "end": 5.469
+        },
+        {
+          "text": "complet",
+          "start": 5.469,
+          "end": 5.824
+        },
+        {
+          "text": "à",
+          "start": 5.824,
+          "end": 6.001
+        },
+        {
+          "text": "la",
+          "start": 6.001,
+          "end": 6.179
+        },
+        {
+          "text": "Fédération,",
+          "start": 6.179,
+          "end": 6.89
+        },
+        {
+          "text": "immeuble",
+          "start": 7.067,
+          "end": 7.358
+        },
+        {
+          "text": "Odyssée,",
+          "start": 7.358,
+          "end": 7.795
+        },
+        {
+          "text": "à",
+          "start": 7.983,
+          "end": 8.138
+        },
+        {
+          "text": "Libreville.",
+          "start": 8.138,
+          "end": 8.603
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.062,
+      "speech": [
+        0.12,
+        7.882
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Votre",
+          "start": 0.12,
+          "end": 0.285
+        },
+        {
+          "text": "dossier",
+          "start": 0.285,
+          "end": 0.615
+        },
+        {
+          "text": "est",
+          "start": 0.615,
+          "end": 0.78
+        },
+        {
+          "text": "examiné",
+          "start": 0.78,
+          "end": 1.439
+        },
+        {
+          "text": "et",
+          "start": 1.439,
+          "end": 1.604
+        },
+        {
+          "text": "validé",
+          "start": 1.604,
+          "end": 2.099
+        },
+        {
+          "text": "par",
+          "start": 2.099,
+          "end": 2.264
+        },
+        {
+          "text": "les",
+          "start": 2.264,
+          "end": 2.429
+        },
+        {
+          "text": "instances",
+          "start": 2.429,
+          "end": 2.924
+        },
+        {
+          "text": "compétentes.",
+          "start": 2.924,
+          "end": 3.583
+        },
+        {
+          "text": "Incomplet,",
+          "start": 3.918,
+          "end": 4.607
+        },
+        {
+          "text": "il",
+          "start": 4.768,
+          "end": 4.909
+        },
+        {
+          "text": "est",
+          "start": 4.909,
+          "end": 5.05
+        },
+        {
+          "text": "accepté",
+          "start": 5.05,
+          "end": 5.473
+        },
+        {
+          "text": "sous",
+          "start": 5.473,
+          "end": 5.613
+        },
+        {
+          "text": "réserve",
+          "start": 5.613,
+          "end": 5.895
+        },
+        {
+          "text": ":",
+          "start": 5.895,
+          "end": 6.036
+        },
+        {
+          "text": "vous",
+          "start": 6.421,
+          "end": 6.567
+        },
+        {
+          "text": "avez",
+          "start": 6.567,
+          "end": 6.859
+        },
+        {
+          "text": "six",
+          "start": 6.859,
+          "end": 7.005
+        },
+        {
+          "text": "mois",
+          "start": 7.005,
+          "end": 7.152
+        },
+        {
+          "text": "pour",
+          "start": 7.152,
+          "end": 7.298
+        },
+        {
+          "text": "le",
+          "start": 7.298,
+          "end": 7.444
+        },
+        {
+          "text": "compléter.",
+          "start": 7.444,
+          "end": 7.882
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.049,
+      "speech": [
+        0.12,
+        6.869
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Une",
+          "start": 0.12,
+          "end": 0.296
+        },
+        {
+          "text": "fois",
+          "start": 0.296,
+          "end": 0.473
+        },
+        {
+          "text": "le",
+          "start": 0.473,
+          "end": 0.649
+        },
+        {
+          "text": "dossier",
+          "start": 0.649,
+          "end": 1.002
+        },
+        {
+          "text": "validé,",
+          "start": 1.002,
+          "end": 1.531
+        },
+        {
+          "text": "réglez",
+          "start": 1.531,
+          "end": 1.884
+        },
+        {
+          "text": "la",
+          "start": 1.884,
+          "end": 2.061
+        },
+        {
+          "text": "cotisation",
+          "start": 2.061,
+          "end": 2.766
+        },
+        {
+          "text": "annuelle,",
+          "start": 2.766,
+          "end": 3.119
+        },
+        {
+          "text": "selon",
+          "start": 3.395,
+          "end": 3.841
+        },
+        {
+          "text": "votre",
+          "start": 3.841,
+          "end": 4.064
+        },
+        {
+          "text": "chiffre",
+          "start": 4.064,
+          "end": 4.286
+        },
+        {
+          "text": "d'affaires,",
+          "start": 4.286,
+          "end": 4.954
+        },
+        {
+          "text": "et",
+          "start": 5.243,
+          "end": 5.391
+        },
+        {
+          "text": "le",
+          "start": 5.391,
+          "end": 5.539
+        },
+        {
+          "text": "droit",
+          "start": 5.539,
+          "end": 5.687
+        },
+        {
+          "text": "d'accès",
+          "start": 5.687,
+          "end": 5.982
+        },
+        {
+          "text": "de",
+          "start": 5.982,
+          "end": 6.13
+        },
+        {
+          "text": "première",
+          "start": 6.13,
+          "end": 6.425
+        },
+        {
+          "text": "adhésion.",
+          "start": 6.425,
+          "end": 6.869
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.295,
+      "speech": [
+        0.119,
+        7.116
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Votre",
+          "start": 0.119,
+          "end": 0.276
+        },
+        {
+          "text": "adhésion",
+          "start": 0.276,
+          "end": 0.748
+        },
+        {
+          "text": "est",
+          "start": 0.748,
+          "end": 0.905
+        },
+        {
+          "text": "alors",
+          "start": 0.905,
+          "end": 1.219
+        },
+        {
+          "text": "effective",
+          "start": 1.219,
+          "end": 1.691
+        },
+        {
+          "text": ":",
+          "start": 1.691,
+          "end": 1.848
+        },
+        {
+          "text": "vous",
+          "start": 2.189,
+          "end": 2.421
+        },
+        {
+          "text": "prenez",
+          "start": 2.421,
+          "end": 2.885
+        },
+        {
+          "text": "place",
+          "start": 2.885,
+          "end": 3.116
+        },
+        {
+          "text": "dans",
+          "start": 3.116,
+          "end": 3.348
+        },
+        {
+          "text": "votre",
+          "start": 3.348,
+          "end": 3.58
+        },
+        {
+          "text": "fédération,",
+          "start": 3.58,
+          "end": 4.507
+        },
+        {
+          "text": "aux",
+          "start": 4.923,
+          "end": 5.06
+        },
+        {
+          "text": "côtés",
+          "start": 5.06,
+          "end": 5.334
+        },
+        {
+          "text": "des",
+          "start": 5.334,
+          "end": 5.471
+        },
+        {
+          "text": "entreprises",
+          "start": 5.471,
+          "end": 6.019
+        },
+        {
+          "text": "qui",
+          "start": 6.019,
+          "end": 6.156
+        },
+        {
+          "text": "font",
+          "start": 6.156,
+          "end": 6.293
+        },
+        {
+          "text": "l'économie",
+          "start": 6.293,
+          "end": 6.842
+        },
+        {
+          "text": "du",
+          "start": 6.842,
+          "end": 6.979
+        },
+        {
+          "text": "pays.",
+          "start": 6.979,
+          "end": 7.116
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.233,
+      "speech": [
+        0.12,
+        5.053
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Et",
+          "start": 0.12,
+          "end": 0.301
+        },
+        {
+          "text": "chaque",
+          "start": 0.301,
+          "end": 0.664
+        },
+        {
+          "text": "année,",
+          "start": 0.664,
+          "end": 1.026
+        },
+        {
+          "text": "avant",
+          "start": 1.026,
+          "end": 1.388
+        },
+        {
+          "text": "le",
+          "start": 1.388,
+          "end": 1.569
+        },
+        {
+          "text": "trente",
+          "start": 1.569,
+          "end": 1.751
+        },
+        {
+          "text": "et",
+          "start": 1.751,
+          "end": 1.932
+        },
+        {
+          "text": "un",
+          "start": 1.932,
+          "end": 2.113
+        },
+        {
+          "text": "mars,",
+          "start": 2.113,
+          "end": 2.294
+        },
+        {
+          "text": "vous",
+          "start": 2.536,
+          "end": 2.676
+        },
+        {
+          "text": "actualisez",
+          "start": 2.676,
+          "end": 3.235
+        },
+        {
+          "text": "les",
+          "start": 3.235,
+          "end": 3.375
+        },
+        {
+          "text": "données",
+          "start": 3.375,
+          "end": 3.655
+        },
+        {
+          "text": "économiques",
+          "start": 3.655,
+          "end": 4.354
+        },
+        {
+          "text": "de",
+          "start": 4.354,
+          "end": 4.494
+        },
+        {
+          "text": "votre",
+          "start": 4.494,
+          "end": 4.633
+        },
+        {
+          "text": "entreprise.",
+          "start": 4.633,
+          "end": 5.053
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "path": "assets/voice/L11.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.75,
+      "speech": [
+        0.121,
+        4.57
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "S'unir",
+          "start": 0.121,
+          "end": 0.611
+        },
+        {
+          "text": "pour",
+          "start": 0.611,
+          "end": 0.857
+        },
+        {
+          "text": "être",
+          "start": 0.857,
+          "end": 1.102
+        },
+        {
+          "text": "plus",
+          "start": 1.102,
+          "end": 1.348
+        },
+        {
+          "text": "fort",
+          "start": 1.348,
+          "end": 1.593
+        },
+        {
+          "text": ":",
+          "start": 1.593,
+          "end": 1.839
+        },
+        {
+          "text": "rejoignez",
+          "start": 2.309,
+          "end": 2.733
+        },
+        {
+          "text": "la",
+          "start": 2.733,
+          "end": 2.875
+        },
+        {
+          "text": "Fédération",
+          "start": 2.875,
+          "end": 3.44
+        },
+        {
+          "text": "des",
+          "start": 3.44,
+          "end": 3.581
+        },
+        {
+          "text": "Entreprises",
+          "start": 3.581,
+          "end": 4.146
+        },
+        {
+          "text": "du",
+          "start": 4.146,
+          "end": 4.288
+        },
+        {
+          "text": "Gabon.",
+          "start": 4.288,
+          "end": 4.57
+        }
+      ]
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Despina)",
+  "onepass": {
+    "voice": "Despina",
+    "model": "gemini-3.8-flash-tts"
+  },
+  "tts_provider": "gemini"
+}

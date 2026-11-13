@@ -1,0 +1,171 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    .s7-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s7-kick {
+      position: absolute;
+      left: 132px;
+      top: 150px;
+      font-weight: 500;
+      font-size: 36px;
+      color: #0a7537;
+    }
+    #s7-title {
+      position: absolute;
+      left: 132px;
+      top: 202px;
+      width: 640px;
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    #s7-title span {
+      display: inline-block;
+    }
+    #s7-sub {
+      position: absolute;
+      left: 132px;
+      top: 400px;
+      width: 600px;
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1.2;
+      color: #3c423b;
+    }
+    #s7-sub b {
+      font-weight: 700;
+      color: #0a7537;
+    }
+    .s7-step {
+      position: absolute;
+      width: 100px;
+      bottom: 180px;
+      background: #e4e6e0;
+      border-top: 10px solid #eef0ec;
+      transform-origin: 50% 100%;
+    }
+    #s7-axis {
+      position: absolute;
+      left: 860px;
+      top: 922px;
+      font-weight: 500;
+      font-size: 32px;
+      color: #5c6259;
+    }
+    #s7-ticket {
+      position: absolute;
+      left: 1300px;
+      top: 168px;
+      width: 520px;
+      height: 150px;
+      display: flex;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+    }
+    #s7-ticket .stub {
+      width: 140px;
+      background: #063d21;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-right: 4px dashed #ffffff;
+    }
+    #s7-ticket .stub img {
+      height: 92px;
+    }
+    #s7-ticket .tk {
+      padding: 26px 28px;
+    }
+    #s7-ticket .t1 {
+      font-weight: 700;
+      font-size: 46px;
+      color: #1a1c19;
+    }
+    #s7-ticket .t2 {
+      margin-top: 4px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 30px;
+      color: #5c6259;
+    }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+    <!-- l'escalier des tranches de chiffre d'affaires (aucun montant) -->
+    <div id="s7-steps" class="s7-abs" style="width: 1920px; height: 1080px"></div>
+    <svg class="s7-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="820" y="900" width="1100" height="4" fill="#DADDD6" />
+      <path id="s7-arrow" d="M 1196,940 L 1880,940 M 1862,928 L 1882,940 L 1862,952" fill="none" stroke="#9AA09B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <div id="s7-axis">Chiffre d'affaires</div>
+    <div id="s7-person" class="s7-abs"></div>
+
+    <div id="s7-kick">Étape 5 · Le règlement</div>
+    <div id="s7-title"><span>Cotisation</span> <span>et</span> <span>droit</span> <span>d'accès</span></div>
+    <div id="s7-sub"><span id="s7-s1">Une cotisation annuelle </span><b id="s7-s2">selon votre chiffre d'affaires</b></div>
+    <div id="s7-ticket">
+      <div class="stub"><img src="assets/img/feg-logo-white.png" alt="" /></div>
+      <div class="tk">
+        <div class="t1">Droit d'accès</div>
+        <div class="t2">première adhésion</div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var L = C.local("s7");
+      var D = C.sc.s7.dur;
+      var steps = "";
+      for (var k = 0; k < 10; k++) {
+        steps += '<div id="s7-st' + k + '" class="s7-step" style="left:' + (860 + k * 106) + "px;height:" + (70 + k * 46) + 'px"></div>';
+      }
+      document.getElementById("s7-steps").innerHTML = steps;
+      // la dirigeante debout sur sa marche (la troisième)
+      var MINE = 2;
+      var topY = 900 - (70 + MINE * 46);
+      var S = 0.44;
+      document.getElementById("s7-person").innerHTML = P.front("h7", { x: 860 + MINE * 106 + 50, y: topY - 304 * S, s: S, skin: "#6E4429", hair: "afro", top: "#0A7537", bottom: "#1F2A24", sex: "f", legs: true });
+      P.prep("h7");
+      gsap.set("#h7-uaL", { rotation: 5 });
+      gsap.set("#h7-uaR", { rotation: -5 });
+      gsap.set("#h7-mouth", { scaleX: 1.1, scaleY: 1.3 });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s7-kick", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.15);
+      tl.fromTo("#s7-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, 0.25);
+      // l'escalier monte quand la voix dit « cotisation annuelle »
+      var tCot = L(C.at("L08", ["réglez", "reglez"]));
+      var tRise = L(C.lines.L08.start) + 0.25;
+      for (var k = 0; k < 10; k++) tl.fromTo("#s7-st" + k, { scaleY: 0 }, { scaleY: 1, duration: 0.42, ease: "expo.out" }, tRise + k * 0.06);
+      tl.fromTo("#s7-axis", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tRise + 0.4);
+      tl.fromTo("#s7-arrow", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tRise + 0.4);
+      tl.fromTo("#h7", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, tCot);
+      tl.fromTo("#s7-s1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("L08", ["cotisation"])));
+      // « selon votre chiffre d'affaires » : les marches s'allument jusqu'à la sienne
+      var tCA = L(C.at("L08", ["selon"]));
+      tl.fromTo("#s7-s2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tCA);
+      for (var j = 0; j <= MINE; j++) tl.to("#s7-st" + j, { backgroundColor: j === MINE ? "#0A7537" : "#B9D3C2", borderTopColor: j === MINE ? "#2C8A55" : "#D3E4D9", duration: 0.2, ease: "power2.out" }, tCA + 0.25 + j * 0.16);
+      tl.to("#h7-head", { rotation: -4, duration: 0.4, ease: "power2.inOut" }, tCA + 0.6).to("#h7-head", { rotation: 0, duration: 0.4, ease: "power2.inOut" }, tCA + 1.4);
+      // « et le droit d'accès de première adhésion » : le ticket
+      var tDA = L(C.at("L08", ["droit"]) - 0.15);
+      tl.fromTo("#s7-ticket", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, tDA);
+      P.breathe(tl, "h7", 0, D, 3.4, 0.008);
+      P.blink(tl, "h7", [tCA + 1.1, tDA + 0.9]);
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,291 @@
+[
+ {
+  "id": "sfx-push",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.16,
+  "line": "L02",
+  "word": "D'abord",
+  "offset": -0.75
+ },
+ {
+  "id": "sfx-lock",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.32,
+  "line": "L02",
+  "word": "D'abord",
+  "offset": 0.42
+ },
+ {
+  "id": "sfx-doc1",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L03",
+  "word": "registre",
+  "offset": -0.55
+ },
+ {
+  "id": "sfx-doc2",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L03",
+  "word": "numéro",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-doc3",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L03",
+  "word": "CNSS",
+  "offset": -0.5
+ },
+ {
+  "id": "sfx-doc4",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L03",
+  "word": "CNAMGS",
+  "offset": -0.45
+ },
+ {
+  "id": "sfx-doc5",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L03",
+  "word": "impôts",
+  "offset": -0.5
+ },
+ {
+  "id": "sfx-stamp1",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.5,
+  "line": "L03",
+  "word": "commerce",
+  "offset": 0.13999999999999999
+ },
+ {
+  "id": "sfx-stamp2",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.5,
+  "line": "L03",
+  "word": "fiscale",
+  "offset": 0.07
+ },
+ {
+  "id": "sfx-stamp3",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.5,
+  "line": "L03",
+  "word": "CNSS",
+  "offset": 0.31
+ },
+ {
+  "id": "sfx-stamp4",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.5,
+  "line": "L03",
+  "word": "CNAMGS",
+  "offset": 0.41
+ },
+ {
+  "id": "sfx-stamp5",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.5,
+  "line": "L03",
+  "word": "impôts",
+  "offset": 0.29
+ },
+ {
+  "id": "sfx-unlock",
+  "src": "assets/sfx/click.mp3",
+  "dur": 0.366,
+  "volume": 0.28,
+  "line": "L03",
+  "word": "impôts",
+  "offset": 0.57
+ },
+ {
+  "id": "sfx-open",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.24,
+  "line": "L04",
+  "word": "Remplissez",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-page1",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L04",
+  "word": "lettre",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-page2",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L04",
+  "word": "fiche",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-page3",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L04",
+  "word": "choix",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-page4",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L05",
+  "word": "déclaration",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-tick1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.3,
+  "line": "L04",
+  "word": "métier",
+  "which": "e",
+  "offset": 0.15
+ },
+ {
+  "id": "sfx-sign",
+  "src": "assets/sfx/pen.wav",
+  "dur": 1.15,
+  "volume": 0.26,
+  "line": "L05",
+  "word": "charte",
+  "offset": 0.1
+ },
+ {
+  "id": "sfx-cachet",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.5,
+  "line": "L05",
+  "word": "cachet",
+  "offset": 0.07
+ },
+ {
+  "id": "sfx-just1",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L06",
+  "word": "CNSS",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-just2",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L06",
+  "word": "CNAMGS",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-clip",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.3,
+  "line": "L06",
+  "word": "CNAMGS",
+  "offset": 0.47
+ },
+ {
+  "id": "sfx-close",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.24,
+  "line": "L06",
+  "word": "CNAMGS",
+  "offset": 0.9
+ },
+ {
+  "id": "sfx-tilt",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.16,
+  "line": "L06",
+  "word": "déposez",
+  "offset": -0.45
+ },
+ {
+  "id": "sfx-tick2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.3,
+  "line": "L07",
+  "word": "validé",
+  "offset": 0.12
+ },
+ {
+  "id": "sfx-tick3",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.3,
+  "line": "L07",
+  "word": "réserve",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-ticket",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L08",
+  "word": "droit",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-shake",
+  "src": "assets/sfx/pat.wav",
+  "dur": 0.16,
+  "volume": 0.45,
+  "line": "L09",
+  "word": "effective",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-cal",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L10",
+  "word": "Et",
+  "offset": -0.4
+ },
+ {
+  "id": "sfx-pen2",
+  "src": "assets/sfx/pen.wav",
+  "dur": 1.15,
+  "volume": 0.24,
+  "line": "L10",
+  "word": "données",
+  "offset": 0.0
+ }
+]

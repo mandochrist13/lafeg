@@ -1,0 +1,160 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    #s1-stage,
+    #s1-cam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #s1-title {
+      position: absolute;
+      left: 132px;
+      top: 330px;
+      width: 600px;
+      font-weight: 700;
+      font-size: 88px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    #s1-title span {
+      display: inline-block;
+    }
+    #s1-title .acc {
+      color: #0a7537;
+    }
+    .s1-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s1-folder {
+      position: absolute;
+      left: 1132px;
+      top: 548px;
+      width: 236px;
+      height: 330px;
+    }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <div id="s1-stage">
+      <div id="s1-cam">
+        <!-- mur, fenêtre sur la ville -->
+        <svg class="s1-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+          <rect x="0" y="0" width="1920" height="1080" fill="#FFFFFF" />
+          <rect x="884" y="52" width="740" height="700" rx="8" fill="#E6E9E3" />
+          <rect x="902" y="70" width="704" height="664" fill="#F1F5F3" />
+          <g fill="#E2E9E5">
+            <rect x="918" y="470" width="86" height="264" />
+            <rect x="1014" y="388" width="66" height="346" />
+            <rect x="1092" y="512" width="118" height="222" />
+            <rect x="1226" y="330" width="76" height="404" />
+            <rect x="1316" y="452" width="102" height="282" />
+            <rect x="1432" y="402" width="58" height="332" />
+            <rect x="1502" y="526" width="96" height="208" />
+          </g>
+          <g fill="#D8E1DC">
+            <rect x="1238" y="312" width="52" height="18" />
+            <rect x="1026" y="372" width="42" height="16" />
+            <rect x="1442" y="388" width="38" height="14" />
+          </g>
+          <rect x="1250" y="70" width="10" height="664" fill="#E6E9E3" />
+          <rect x="902" y="402" width="704" height="10" fill="#E6E9E3" />
+        </svg>
+
+        <!-- plateau du bureau (derrière les bras, devant le buste) -->
+        <svg class="s1-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+          <path d="M 700,773 L 1800,773 L 1846,884 L 654,884 Z" fill="#F2F3EF" />
+          <path d="M 700,773 L 1800,773 L 1802,781 L 698,781 Z" fill="#E4E6E0" />
+          <!-- plante -->
+          <path d="M 812,868 L 900,868 L 892,806 L 820,806 Z" fill="#E4E6E0" />
+          <path d="M 852,806 C 832,770 796,758 782,718 C 822,726 848,758 856,804 Z" fill="#9DB3A4" />
+          <path d="M 858,806 C 858,756 880,716 910,698 C 910,744 888,780 860,806 Z" fill="#88A291" />
+          <path d="M 852,806 C 838,772 840,730 858,700 C 872,736 868,774 858,806 Z" fill="#AFC2B5" />
+          <!-- lampe -->
+          <rect x="1596" y="850" width="120" height="18" rx="8" fill="#3A4540" />
+          <rect x="1648" y="656" width="11" height="200" rx="5" fill="#3A4540" transform="rotate(-14 1653 856)" />
+          <path d="M 1604,640 L 1748,640 L 1714,568 L 1638,568 Z" fill="#3A4540" />
+          <ellipse cx="1676" cy="640" rx="72" ry="8" fill="#F7F3DE" />
+        </svg>
+
+        <div id="s1-people" class="s1-abs"></div>
+
+        <!-- le dossier tenu face à nous ; les pouces passent devant la couverture -->
+        <div id="s1-folder">
+          <svg class="s1-abs" width="236" height="330" viewBox="0 0 236 330" style="overflow: visible">
+            <g id="s1-arms-back"><circle cx="-94.0" cy="228.0" r="33" fill="#0A7537"/><path d="M -74.4,255.8 L -7.9,200.2 L -39.1,156.1 L -113.6,200.2 Z" fill="#0A7537"/><path d="M -113.6,200.2 L -39.1,156.1 L -30.4,168.3 L -103.2,214.9 Z" fill="#096832"/><path d="M -9.0,202.1 L 1.1,193.8 L -30.1,149.7 L -41.3,156.4 Z" fill="#FFFFFF"/><path d="M -40,150 C -36,136 -14,132 -2,138 L 6,146 L 6,200 C -6,208 -30,206 -38,194 C -44,182 -44,164 -40,150 Z" fill="#6E4429"/><path d="M -38,176 C -30,180 -16,180 -6,176" fill="none" stroke="#5C3A22" stroke-width="2.4" stroke-linecap="round"/><circle cx="330.0" cy="228.0" r="33" fill="#0A7537"/><path d="M 310.4,255.8 L 243.9,200.2 L 275.1,156.1 L 349.6,200.2 Z" fill="#0A7537"/><path d="M 349.6,200.2 L 275.1,156.1 L 266.4,168.3 L 339.2,214.9 Z" fill="#096832"/><path d="M 245.0,202.1 L 234.9,193.8 L 266.1,149.7 L 277.3,156.4 Z" fill="#FFFFFF"/><path d="M 276,150 C 272,136 250,132 238,138 L 230,146 L 230,200 C 242,208 266,206 274,194 C 280,182 280,164 276,150 Z" fill="#6E4429"/><path d="M 274,176 C 266,180 252,180 242,176" fill="none" stroke="#5C3A22" stroke-width="2.4" stroke-linecap="round"/></g>
+          </svg>
+          <div id="s1-cover" class="s1-abs" style="width: 236px; height: 330px"></div>
+          <svg class="s1-abs" width="236" height="330" viewBox="0 0 236 330" style="overflow: visible">
+            <g id="s1-thumbs"><path d="M 2,150 C 10,144 26,146 30,154 C 33,161 28,167 20,166 L 2,166 Z" fill="#6E4429"/><path d="M 22,151 C 27,152 29,157 27,161 C 25,163 22,163 21,161 Z" fill="#7F5236"/><path d="M 234,150 C 226,144 210,146 206,154 C 203,161 208,167 216,166 L 234,166 Z" fill="#6E4429"/><path d="M 214,151 C 209,152 207,157 209,161 C 211,163 214,163 215,161 Z" fill="#7F5236"/></g>
+          </svg>
+        </div>
+
+        <!-- façade du bureau -->
+        <svg class="s1-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+          <rect x="654" y="884" width="1192" height="196" fill="#E4E6E0" />
+          <rect x="654" y="884" width="1192" height="12" fill="#D3D7CF" />
+        </svg>
+      </div>
+
+      <div id="s1-title"><span>Comment</span> <span class="acc">adhérer</span><br /><span>à</span> <span>la</span> <span>FEG&nbsp;?</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var L = C.local("s1");
+      var D = C.sc.s1.dur;
+      // la dirigeante, assise : bassin à (1250, 1012), échelle 2,3 ; le buste s'arrête au bord arrière du plateau (y écran 773)
+      document.getElementById("s1-people").innerHTML = P.front("h1", { x: 1250, y: 1012, s: 2.3, skin: "#6E4429", hair: "afro", top: "#0A7537", sex: "f", cut: -104 });
+      document.getElementById("s1-cover").innerHTML = P.folderTop(236, 330);
+      P.prep("h1");
+
+      var tl = gsap.timeline({ paused: true });
+      // pose : elle tient le dossier devant elle, avant-bras en raccourci vers les bords du dossier
+      gsap.set("#h1-uaL", { rotation: 12.2 });
+      gsap.set("#h1-faL", { opacity: 0 });
+      gsap.set("#h1-uaR", { rotation: -12.2 });
+      gsap.set("#h1-faR", { opacity: 0 });
+      gsap.set("#h1-mouth", { scaleX: 1.1, scaleY: 1.3 });
+
+      // titre
+      tl.fromTo("#s1-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, 0.15);
+      // « Vous souhaitez rejoindre… » : léger mouvement de tête
+      var t1 = L(C.at("L01", ["rejoindre"]) - 0.2);
+      tl.to("#h1-head", { rotation: 3, duration: 0.6, ease: "power2.inOut" }, t1);
+      // « Voici comment adhérer » : elle présente le dossier, petit hochement
+      var t2 = L(C.at("L01", ["Voici"]) - 0.15);
+      tl.to("#s1-folder", { y: -7, duration: 0.45, ease: "power2.out" }, t2)
+        .to("#h1-uaL", { rotation: 11.2, duration: 0.45, ease: "power2.out" }, t2)
+        .to("#h1-uaR", { rotation: -11.2, duration: 0.45, ease: "power2.out" }, t2 + 0.02)
+        .to("#h1-head", { rotation: -1, y: 2, duration: 0.3, ease: "power2.inOut" }, t2 + 0.08)
+        .to("#h1-head", { rotation: 0, y: 0, duration: 0.35, ease: "power2.inOut" }, t2 + 0.4)
+        .to("#s1-folder", { y: 0, duration: 0.5, ease: "power2.inOut" }, t2 + 0.9)
+        .to("#h1-uaL", { rotation: 12.2, duration: 0.5, ease: "power2.inOut" }, t2 + 0.9)
+        .to("#h1-uaR", { rotation: -12.2, duration: 0.5, ease: "power2.inOut" }, t2 + 0.92);
+      // elle regarde le dossier ; la caméra entre dans la couverture (raccord avec la vue de dessus)
+      var t3 = L(C.at("L01", ["étape", "etape"]) - 0.1);
+      tl.to("#h1-eyes", { y: 4, scaleY: 0.7, duration: 0.25, ease: "power2.inOut" }, t3)
+        .to("#h1-head", { rotation: -2, y: 4, duration: 0.45, ease: "power2.inOut" }, t3)
+        .to("#h1-mouth", { scaleX: 1, scaleY: 1, duration: 0.3, ease: "power2.inOut" }, t3);
+      tl.to("#s1-title", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, D - 1.0);
+      // la couverture (centre 1250, 713) vient remplir le cadre : 236 × 330 → 684 × 957, centrée
+      tl.to("#s1-cam", { scale: 2.9, x: 960 - 1250, y: 540 - 713, transformOrigin: "1250px 713px", duration: 0.85, ease: "power2.in" }, D - 0.85);
+      P.breathe(tl, "h1", 0, D - 0.6, 3.2, 0.008);
+      P.blink(tl, "h1", [L(C.at("L01", ["Gabon"]) + 0.15), L(C.at("L01", ["Voici"]) + 0.9)]);
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

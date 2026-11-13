@@ -1,0 +1,61 @@
+{
+  "lead": 0.9,
+  "tail": 4.3,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0.0,
+      "text": "Vous souhaitez rejoindre la Fédération des Entreprises du Gabon ? Voici comment adhérer, étape par étape."
+    },
+    {
+      "id": "L02",
+      "gap": 1.0,
+      "text": "D'abord, une condition impérative : être une entreprise formelle."
+    },
+    {
+      "id": "L03",
+      "gap": 0.6,
+      "text": "Immatriculée au registre du commerce, dotée d'un numéro d'identification fiscale, et à jour de ses cotisations CNSS, CNAMGS et de ses impôts."
+    },
+    {
+      "id": "L04",
+      "gap": 1.4,
+      "text": "Remplissez ensuite le dossier d'adhésion : lettre de demande, fiche entreprise, et choix de votre fédération métier."
+    },
+    {
+      "id": "L05",
+      "gap": 0.8,
+      "text": "Signez la déclaration d'engagement à la charte d'éthique de la Fédération, puis apposez le cachet de l'entreprise."
+    },
+    {
+      "id": "L06",
+      "gap": 1.1,
+      "text": "Joignez vos justificatifs CNSS et CNAMGS, et déposez le dossier complet à la Fédération, immeuble Odyssée, à Libreville."
+    },
+    {
+      "id": "L07",
+      "gap": 1.3,
+      "text": "Votre dossier est examiné et validé par les instances compétentes. Incomplet, il est accepté sous réserve : vous avez six mois pour le compléter."
+    },
+    {
+      "id": "L08",
+      "gap": 1.3,
+      "text": "Une fois le dossier validé, réglez la cotisation annuelle, selon votre chiffre d'affaires, et le droit d'accès de première adhésion."
+    },
+    {
+      "id": "L09",
+      "gap": 1.4,
+      "text": "Votre adhésion est alors effective : vous prenez place dans votre fédération, aux côtés des entreprises qui font l'économie du pays."
+    },
+    {
+      "id": "L10",
+      "gap": 1.4,
+      "text": "Et chaque année, avant le trente et un mars, vous actualisez les données économiques de votre entreprise."
+    },
+    {
+      "id": "L11",
+      "gap": 1.3,
+      "text": "S'unir pour être plus fort : rejoignez la Fédération des Entreprises du Gabon."
+    }
+  ]
+}

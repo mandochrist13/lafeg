@@ -1,0 +1,162 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #f2f3ef;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    .s9-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s9-kick {
+      position: absolute;
+      left: 132px;
+      top: 150px;
+      font-weight: 500;
+      font-size: 36px;
+      color: #0a7537;
+    }
+    #s9-title {
+      position: absolute;
+      left: 132px;
+      top: 202px;
+      width: 620px;
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    #s9-title span {
+      display: inline-block;
+    }
+    #s9-cal {
+      position: absolute;
+      left: 860px;
+      top: 300px;
+      width: 380px;
+      height: 480px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+      overflow: hidden;
+      text-align: center;
+    }
+    #s9-cal .hd {
+      height: 96px;
+      background: #063d21;
+      color: #ffffff;
+      font-weight: 700;
+      font-size: 54px;
+      line-height: 96px;
+      letter-spacing: 0.04em;
+    }
+    #s9-cal .dd {
+      font-weight: 700;
+      font-size: 230px;
+      line-height: 1;
+      margin-top: 34px;
+      letter-spacing: -0.03em;
+      color: #063d21;
+    }
+    #s9-cal .lim {
+      margin-top: 14px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 32px;
+      color: #5c6259;
+    }
+    #s9-page {
+      position: absolute;
+      left: 1420px;
+      top: 272px;
+      width: 380px;
+      height: 537px;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      transform: rotate(2deg);
+    }
+    #s9-page img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .s9-hl {
+      position: absolute;
+      left: 40px;
+      height: 14px;
+      border-radius: 4px;
+      background: rgba(10, 117, 55, 0.28);
+      transform-origin: 0 50%;
+    }
+  </style>
+  <div id="root" data-composition-id="s9" data-width="1920" data-height="1080">
+    <svg class="s9-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <path id="s9-arc" d="M 1262,328 A 300 300 0 1 1 1102,245" fill="none" stroke="#0A7537" stroke-width="8" stroke-linecap="round" />
+      <path id="s9-head" d="M 1082,226 L 1106,246 L 1080,264" fill="none" stroke="#0A7537" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+    </svg>
+    <div id="s9-cal">
+      <div class="hd">MARS</div>
+      <div class="dd">31</div>
+      <div class="lim">date limite</div>
+    </div>
+    <div id="s9-page">
+      <img src="assets/img/dossier-04.png" alt="" />
+      <div id="s9-h1" class="s9-hl" style="top: 404px; width: 262px"></div>
+      <div id="s9-h2" class="s9-hl" style="top: 417px; width: 262px"></div>
+      <div id="s9-h3" class="s9-hl" style="top: 431px; width: 262px"></div>
+    </div>
+    <div id="s9-hands" class="s9-abs"></div>
+    <div id="s9-kick">Étape 6 · Chaque année</div>
+    <div id="s9-title"><span>Mettre</span> <span>à</span> <span>jour</span><br /><span>vos</span> <span>données</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var L = C.local("s9");
+      var D = C.sc.s9.dur;
+      document.getElementById("s9-hands").innerHTML = P.armTop("s9pen", { pose: "pen", hand: "R", s: 0.9, r: -20 });
+      function off(px, py, s, r) {
+        var a = (r * Math.PI) / 180;
+        return { x: s * (px * Math.cos(a) - py * Math.sin(a)), y: s * (px * Math.sin(a) + py * Math.cos(a)) };
+      }
+      var penO = off(45, -551, 0.9, -20);
+      function penAt(x, y) {
+        return { x: x - penO.x, y: y - penO.y };
+      }
+      var tl = gsap.timeline({ paused: true });
+      var arcLen = 1700;
+      gsap.set("#s9-arc", { strokeDasharray: arcLen, strokeDashoffset: arcLen });
+      gsap.set("#s9-head", { opacity: 0 });
+      gsap.set(".s9-hl", { scaleX: 0 });
+      var p0 = penAt(1900, 1500);
+      gsap.set("#s9pen", { x: p0.x, y: p0.y });
+
+      tl.fromTo("#s9-kick", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.15);
+      tl.fromTo("#s9-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, 0.25);
+      tl.fromTo("#s9-cal", { opacity: 0, y: 40, rotation: -4 }, { opacity: 1, y: 0, rotation: 0, duration: 0.55, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s9-page", { opacity: 0, x: 160 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 0.3);
+      // « chaque année » : la boucle se trace autour du calendrier
+      var tYear = L(C.at("L10", ["chaque"]) - 0.05);
+      tl.to("#s9-arc", { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, tYear).to("#s9-head", { opacity: 1, duration: 0.15 }, tYear + 0.92);
+      // « 31 mars » : le chiffre s'appuie
+      var t31 = L(C.at("L10", ["trente"]));
+      tl.fromTo("#s9-cal .dd", { scale: 1 }, { scale: 1.08, duration: 0.18, ease: "power2.out" }, t31).to("#s9-cal .dd", { scale: 1, duration: 0.3, ease: "power2.inOut" }, t31 + 0.2);
+      // « vous actualisez les données économiques » : le stylo reprend la fiche, les lignes se surlignent
+      var tUp = L(C.at("L10", ["actualisez"]) - 0.2);
+      var pa = penAt(1420 + 46, 272 + 404);
+      tl.to("#s9pen", { x: pa.x, y: pa.y, duration: 0.55, ease: "power2.inOut" }, tUp);
+      ["#s9-h1", "#s9-h2", "#s9-h3"].forEach(function (h, i) {
+        var t = L(C.at("L10", ["données", "donnees"])) + i * 0.45;
+        tl.to(h, { scaleX: 1, duration: 0.42, ease: "power1.inOut" }, t);
+        tl.to("#s9pen", { x: pa.x + 250, y: pa.y + i * 13, duration: 0.42, ease: "power1.inOut" }, t);
+        if (i < 2) tl.to("#s9pen", { x: pa.x, y: pa.y + (i + 1) * 13, duration: 0.03 }, t + 0.42);
+      });
+      tl.to("#s9pen", { x: p0.x, y: p0.y, duration: 0.55, ease: "power2.in" }, D - 0.75);
+      window.__timelines["s9"] = tl;
+    })();
+  </script>
+</template>
