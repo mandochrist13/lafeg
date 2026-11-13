@@ -31,7 +31,7 @@
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #e8e9e4;
+        background: #ffffff;
       }
       #world-cv,
       #world-svg {
@@ -260,7 +260,7 @@
       renderer.shadowMap.enabled = true;
       renderer.shadowMap.type = THREE.PCFSoftShadowMap;
       const scene = new THREE.Scene();
-      scene.background = new THREE.Color(0xe8e9e4);
+      scene.background = new THREE.Color(0xffffff);
 
       // Lumière : ciel + soleil haut gauche. FACE = éclairement d'une face horizontale.
       const HEMI = 2.9,
@@ -270,7 +270,7 @@
       const FACE = (HEMI + SUN * SUN_DIR.y) / Math.PI;
       // Couleur d'albédo telle qu'une face horizontale au soleil rende exactement `hex` (× k).
       const lit = (hex, k = 1) => new THREE.Color(hex).multiplyScalar(k / FACE);
-      scene.add(new THREE.HemisphereLight(0xffffff, 0xcfd3cc, HEMI));
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xe2e5df, HEMI));
       const sun = new THREE.DirectionalLight(0xffffff, SUN);
       sun.castShadow = true;
       sun.shadow.mapSize.set(2048, 2048);
@@ -281,7 +281,7 @@
       const mat = (hex, opts = {}) =>
         new THREE.MeshStandardMaterial({ color: lit(hex, opts.k || 1), roughness: opts.r ?? 0.86, metalness: opts.m ?? 0, ...(opts.extra || {}) });
       const COL = {
-        ground: 0xe8e9e4,
+        ground: 0xffffff,
         white: 0xf6f6f1,
         roof: 0xdedfd9,
         glass: 0x7f8c86,

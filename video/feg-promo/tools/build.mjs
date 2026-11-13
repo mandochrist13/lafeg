@@ -220,7 +220,7 @@ const html = `<!doctype html>
 <html
   lang="fr"
   data-composition-variables='[
-    {"id":"color-ground","type":"color","label":"Sol","default":"#E8E9E4"},
+    {"id":"color-ground","type":"color","label":"Sol","default":"#FFFFFF"},
     {"id":"color-ink","type":"color","label":"Texte","default":"#1A1C19"},
     {"id":"color-deep","type":"color","label":"Vert FEG profond","default":"#063D21"},
     {"id":"color-accent","type":"color","label":"Vert adhésion","default":"#0A7537"},
@@ -236,7 +236,7 @@ const html = `<!doctype html>
     <script src="assets/cues.js"></script>
     <style>
       :root {
-        --color-ground: #e8e9e4;
+        --color-ground: #ffffff;
         --color-ink: #1a1c19;
         --color-deep: #063d21;
         --color-accent: #0a7537;
