@@ -121,6 +121,25 @@
       background: #e4e6e0;
       margin-top: 16px;
     }
+    .s3-just .fr {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-top: 18px;
+    }
+    .s3-just .fr i {
+      flex: none;
+      width: 24px;
+      height: 24px;
+      border: 3px solid #c9cec9;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+    .s3-just .fr b {
+      height: 10px;
+      border-radius: 5px;
+      background: #e4e6e0;
+    }
   </style>
   <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
     <div id="s3-stage">
@@ -167,6 +186,14 @@
             <div class="dl" style="width: 84%"></div>
             <div class="dl" style="width: 66%"></div>
           </div>
+          <div id="s3-j0" class="s3-just" data-layout-allow-overlap style="left: 1238px; top: 302px; transform: rotate(-0.5deg)">
+            <div class="jk" data-layout-ignore>Pièce justificative</div>
+            <div class="jt">Fiche circuit</div>
+            <div class="fr"><i></i><b style="width: 200px"></b></div>
+            <div class="fr"><i></i><b style="width: 160px"></b></div>
+            <div class="fr"><i></i><b style="width: 184px"></b></div>
+            <div class="fr"><i></i><b style="width: 132px"></b></div>
+          </div>
           <svg id="s3-clip" class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="overflow: visible">
             <path d="M 1426,330 L 1426,272 C 1426,258 1450,258 1450,272 L 1450,338 C 1450,352 1434,352 1434,338 L 1434,284" fill="none" stroke="#8A9590" stroke-width="5" stroke-linecap="round" />
           </svg>
@@ -183,7 +210,7 @@
     <div id="s3-l3" class="s3-lab"><span>Fédération</span> <span>métier</span><div class="s3-sub">une seule case cochée</div></div>
     <div id="s3-l4" class="s3-lab"><span>Déclaration</span> <span>d'engagement</span><div class="s3-sub">Charte d'éthique de la FEG</div></div>
     <div id="s3-l5" class="s3-lab"><span>Signature</span> <span>et</span> <span>cachet</span></div>
-    <div id="s3-l6" class="s3-lab"><span>Joindre</span> <span>les</span> <span>justificatifs</span><div class="s3-sub">CNSS · CNAMGS</div></div>
+    <div id="s3-l6" class="s3-lab"><span>Joindre</span> <span>les</span> <span>justificatifs</span><div class="s3-sub">CNSS · CNAMGS · Fiche circuit</div></div>
   </div>
   <script>
     (function () {
@@ -218,7 +245,7 @@
       gsap.set("#s3-cam", { transformOrigin: "1420px 540px", scale: 0.9, x: -460, y: 0 });
       gsap.set("#s3-inside", { scaleX: 0, transformOrigin: "100% 50%" });
       gsap.set("#s3-cover", { transformOrigin: "0% 50%" });
-      ["#s3-p3", "#s3-p4", "#s3-p6", "#s3-p9", "#s3-j1", "#s3-j2"].forEach(function (s) {
+      ["#s3-p3", "#s3-p4", "#s3-p6", "#s3-p9", "#s3-j0", "#s3-j1", "#s3-j2"].forEach(function (s) {
         gsap.set(s, { x: 760, rotation: 8, opacity: 0 });
       });
       gsap.set("#s3-clip", { y: -60, opacity: 0 });
@@ -233,7 +260,7 @@
 
       var tOpen = L(C.at("L04", ["Remplissez"]) + 0.05);
       tl.to("#s3-cover", { scaleX: 0, duration: 0.22, ease: "power2.in" }, tOpen)
-        .set("#s3-cover", { opacity: 0 }, tOpen + 0.22)
+        .set("#s3-cover", { autoAlpha: 0 }, tOpen + 0.22)
         .to("#s3-inside", { scaleX: 1, duration: 0.26, ease: "power2.out" }, tOpen + 0.22)
         .to("#s3-cam", { scale: 1, x: 0, y: 0, duration: 0.9, ease: "power2.inOut" }, tOpen + 0.05);
       tl.to("#s3-k1", { opacity: 1, duration: 0.2, ease: "power2.out" }, tOpen + 0.3);
@@ -244,8 +271,10 @@
         if (document.querySelector(sel + " .s3-sub")) tl.fromTo(sel + " .s3-sub", { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, arguments[3] != null ? arguments[3] : tIn + 0.5);
         tl.to(sel, { opacity: 0, filter: "blur(8px)", duration: 0.2, ease: "power3.in" }, tOut);
       }
+      // une feuille arrive en glissant ; elle est opaque presque tout de suite (le papier ne laisse pas voir la page dessous)
       function page(sel, t) {
-        tl.to(sel, { x: 0, rotation: 0, opacity: 1, duration: 0.5, ease: "power3.out" }, t);
+        tl.to(sel, { opacity: 1, duration: 0.1, ease: "power1.out" }, t);
+        tl.to(sel, { x: 0, rotation: 0, duration: 0.5, ease: "power3.out" }, t);
       }
       var tLet = L(C.at("L04", ["lettre"]) - 0.15),
         tFic = L(C.at("L04", ["fiche"]) - 0.12),
@@ -286,16 +315,33 @@
         .to("#s3st-arm", { scale: 1.07, duration: 0.2, ease: "power2.out" }, hitC + 0.06)
         .to("#s3st", { x: s0.x, y: s0.y, duration: 0.6, ease: "power2.in" }, hitC + 0.35);
 
-      // étape 2 : les justificatifs CNSS et CNAMGS, un trombone, le dossier se ferme et se soulève
+      // étape 2 : la fiche circuit et les justificatifs CNSS et CNAMGS, posés dans l'ordre où la voix les nomme
+      // (la dernière nommée passe dessus), un trombone, le dossier se ferme et se soulève
+      var just = [
+        { sel: "#s3-j0", t: L(C.at("L06", ["ainsi"]) - 0.1), name: "Fiche circuit" },
+        { sel: "#s3-j1", t: L(C.at("L06", ["CNSS", "cnss"]) - 0.3), name: "CNSS" },
+        { sel: "#s3-j2", t: L(C.at("L06", ["CNAMGS", "cnamgs", "knam"]) - 0.3), name: "CNAMGS" },
+      ].sort(function (a, b) {
+        return a.t - b.t;
+      });
+      var clipEl = document.getElementById("s3-clip");
+      document.querySelector("#s3-l6 .s3-sub").textContent = just
+        .map(function (j) {
+          return j.name;
+        })
+        .join(" · ");
       tl.to("#s3-k1", { opacity: 0, duration: 0.2, ease: "power2.in" }, tJoi - 0.3).to("#s3-k2", { opacity: 1, duration: 0.2, ease: "power2.out" }, tJoi);
-      lab("#s3-l6", tJoi + 0.05, D - 0.8, L(C.at("L06", ["CNSS", "cnss"])) + 0.1);
-      page("#s3-j1", L(C.at("L06", ["CNSS", "cnss"]) - 0.3));
-      page("#s3-j2", L(C.at("L06", ["CNAMGS", "cnamgs", "knam"]) - 0.3));
-      var tClip = L(C.at("L06", ["CNAMGS", "cnamgs", "knam"]) + 0.45);
+      lab("#s3-l6", tJoi + 0.05, D - 0.8, just[0].t + 0.4);
+      just.forEach(function (j) {
+        clipEl.parentNode.insertBefore(document.querySelector(j.sel), clipEl);
+        page(j.sel, j.t);
+      });
+      // trombone puis fermeture juste après « circuit » : la fiche reste lisible environ une seconde
+      var tClip = L(C.at("L06", ["circuit"]) + 0.3);
       tl.to("#s3-clip", { y: 0, opacity: 1, duration: 0.25, ease: "power3.out" }, tClip);
-      var tClose = tClip + 0.45;
+      var tClose = tClip + 0.3;
       tl.to("#s3-inside", { scaleX: 0, duration: 0.22, ease: "power2.in" }, tClose)
-        .set("#s3-cover", { opacity: 1 }, tClose + 0.22)
+        .set("#s3-cover", { autoAlpha: 1 }, tClose + 0.22)
         .to("#s3-cover", { scaleX: 1, duration: 0.26, ease: "power2.out" }, tClose + 0.22);
       // elle soulève le dossier : bascule de la caméra vers la rue (raccord avec le plan suivant)
       tl.to("#s3-folderR", { y: -140, scale: 1.04, transformOrigin: "1420px 540px", duration: 0.5, ease: "power2.inOut" }, D - 1.05);

@@ -108,6 +108,27 @@
       opacity: 0;
       mix-blend-mode: multiply;
     }
+    /* RCCM et NIF : la pièce est validée (icône de validation), les cotisations sont « à jour » */
+    .s2-stamp.s2-valid {
+      left: 26px;
+      padding: 6px 14px 4px 10px;
+      font-size: 38px;
+      white-space: nowrap;
+    }
+    .s2-stamp .ok {
+      display: inline-block;
+      width: 34px;
+      height: 34px;
+      margin-right: 8px;
+      vertical-align: -3px;
+    }
+    .s2-stamp .ok path {
+      fill: none;
+      stroke: #0a7537;
+      stroke-width: 3.6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
   </style>
   <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
     <div id="s2-cam">
@@ -139,7 +160,7 @@
           <div class="dl" style="width: 94%"></div>
           <div class="dl" style="width: 64%"></div>
           <div class="seal"></div>
-          <div id="s2-st1" class="s2-stamp">À JOUR</div>
+          <div id="s2-st1" class="s2-stamp s2-valid"><svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.8 L9.6 17.6 L19.5 6.8" /></svg>VALIDÉ</div>
         </div>
       </div>
       <div id="s2-w2" class="s2-docw" style="left: 505px; top: 618px">
@@ -151,7 +172,7 @@
           <div class="dl" style="width: 96%"></div>
           <div class="dl" style="width: 58%"></div>
           <div class="seal"></div>
-          <div id="s2-st2" class="s2-stamp">À JOUR</div>
+          <div id="s2-st2" class="s2-stamp s2-valid"><svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 12.8 L9.6 17.6 L19.5 6.8" /></svg>VALIDÉ</div>
         </div>
       </div>
       <div id="s2-w3" class="s2-docw" style="left: 825px; top: 606px">

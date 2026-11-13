@@ -1,0 +1,18 @@
+{
+  "id": "L06",
+  "note": "Calage à la main : début (prise principale) mesuré sur le signal, suite (seconde prise, accélérée de 10 %) calée sur ses pauses. Le calage automatique confondait la pause après « Knam-GS, » avec la virgule après « circuit, ».",
+  "words": [
+    ["Joignez", 0.12, 0.48],
+    ["vos", 0.48, 0.68],
+    ["justificatifs", 0.68, 1.58],
+    ["CNSS", 1.6, 2.5],
+    ["et", 2.5, 2.72],
+    ["Knam-GS,", 2.75, 3.51]
+  ],
+  "segments": [
+    [3.955, 5.164, "ainsi que la fiche circuit,"],
+    [5.598, 7.711, "puis déposez le dossier complet à la Fédération,"],
+    [7.952, 10.426, "aux huitième et neuvième étages de l'immeuble Odyssée,"],
+    [10.554, 11.206, "à Libreville."]
+  ]
+}

@@ -1,11 +1,29 @@
-# REVIEW — « Comment adhérer à la FEG » (v4, 16:9 et 9:16)
+# REVIEW — « Comment adhérer à la FEG » (v5, 16:9 et 9:16)
 
 ## Livrables
 
-- `renders/FEG-comment-adherer-v4.mp4` : 1920 × 1080, 30 i/s, 1 min 37 s (96,7 s), voix off et musique.
-- `renders/FEG-comment-adherer-9x16.mp4` : 1080 × 1920, 30 i/s, même durée, même bande-son, sous-titres incrustés, pour les réseaux sociaux.
+- `renders/FEG-comment-adherer-v5.mp4` : 1920 × 1080, 30 i/s, 1 min 38 s (98,5 s), voix off et musique.
+- `renders/FEG-comment-adherer-9x16-v2.mp4` : 1080 × 1920, 30 i/s, même durée, même bande-son, sous-titres incrustés, pour les réseaux sociaux.
 
 Pour regénérer : `node tools/build.mjs` (16:9) ou `node tools/build.mjs --vertical` (9:16), puis `npx hyperframes render --quality delivery -o renders/<nom>.mp4`. Le dépôt garde la racine 16:9 ; la version 9:16 se reconstruit à la demande.
+
+## v5 : demandes de la FEG
+
+- **Fiche circuit** jointe au dossier comme pièce justificative, avec les justificatifs CNSS et CNAMGS :
+  - voix : « Joignez vos justificatifs CNSS et CNAMGS, ainsi que la fiche circuit, puis déposez le dossier complet… » ;
+  - écran : une troisième feuille « Pièce justificative · Fiche circuit » se pose sur les deux autres ; le sous-titre de l'étape 2 devient « CNSS · CNAMGS · Fiche circuit ». Le dossier 2026 ne contient pas de modèle de fiche circuit : la feuille est un formulaire neutre (cases et lignes).
+- **8ème et 9ème étages** : « aux huitième et neuvième étages de l'immeuble Odyssée » dans la voix, « Immeuble Odyssée, 8ème et 9ème étages » sous le titre du dépôt et sur la carte de fin.
+- **Téléphone** sur la carte de fin : « info@lafeg.ga · +241 77 55 95/97 », écrit tel que transmis.
+- **Conditions** : RCCM et NIF portent un tampon « ✓ VALIDÉ » avec une icône de validation ; CNSS, CNAMGS et impôts gardent « À JOUR ».
+- **Voix de L06**, toujours Despina. Le quota du jour du modèle de voix principal était épuisé. La phrase garde donc le début de la prise précédente, « Joignez vos justificatifs CNSS et CNAMGS, », dont le « knam » est vérifié. La suite vient d'une prise du second modèle, même voix, accélérée de 10 % : « ainsi que la fiche circuit, puis déposez le dossier complet à la Fédération, aux huitième et neuvième étages de l'immeuble Odyssée, à Libreville ». La coupe tombe dans la respiration après « CNAMGS, ». Les prises de la phrase entière par le second modèle ont été écartées : leur CNAMGS n'était pas un « knam » net. **À confirmer à l'oreille.**
+- **Calage des mots de L06 refait à la main** (`tools/align/L06.json`, `tools/align_segments.mjs`), mesuré sur le signal. Le calage automatique confondait la pause après « CNAMGS, » avec une virgule plus loin. Cela corrige aussi un décalage d'environ une seconde de la v4 : les pages CNSS et CNAMGS, et le passage vers la rue, arrivaient un peu tôt.
+- **Enchaînement** : le dossier se soulève et la caméra passe dans la rue sur « le dossier complet » ; la marche jusqu'à l'accueil est plus courte. Les feuilles qui se posent sont maintenant opaques dès leur entrée.
+- Durée : 98,5 s.
+- **Contrôles des rendus v5 (16:9 et 9:16)** :
+  - `check` : 0 erreur, 0 avertissement dans les deux formats. La petite mention « Pièce justificative » de la fiche circuit est marquée comme décor : le contrôle la croyait masquée quand la feuille glisse sur la page CNAMGS, alors qu'elle est au-dessus et reste lisible plus d'une seconde ;
+  - son mesuré, pas écouté : −15,4 LUFS, crête −1,2 dBFS, plage de loudness 3,0 LU ; la bande-son est identique dans les deux formats ;
+  - écoute automatique Gemini du mixage final (modèle d'écoute léger, les modèles principaux ayant atteint leur quota du jour) : film entier transcrit sans écart ; « ainsi que la fiche circuit » et « aux 8e et 9e étages de l'immeuble Odyssée » entendus ; même voix sans rupture dans L06 ; intelligibilité 10/10 ; aucun défaut ;
+  - images extraites des deux MP4 : tampons « ✓ VALIDÉ » et « À JOUR », fiche circuit, adresse, carte de fin. Les pages et les sous-titres arrivent avec les mots de la voix.
 
 ## v4 : demandes de la FEG
 
@@ -100,6 +118,7 @@ Pour regénérer : `node tools/build.mjs` (16:9) ou `node tools/build.mjs --vert
 - La fédération donnée en exemple : Logistique et manutention.
 - La mention « une seule case cochée » pour la fédération métier (texte du dossier : « une seule case »).
 - Les coordonnées de la carte de fin : lafeg.ga, info@lafeg.ga, Immeuble Odyssée, BP 410, Libreville (pied de page du dossier).
-- La pièce « Fiche circuit » n'est pas montrée.
+- L'aspect de la fiche circuit (formulaire neutre, faute de modèle dans le dossier).
+- Le numéro de téléphone « +241 77 55 95/97 » : un seul numéro ou deux numéros (…95 et …97) ? Il est écrit tel que transmis.
 - Le délai de **trois mois** pour compléter un dossier accepté sous réserve : la page 2 du dossier d'adhésion 2026 dit encore « six (6) mois ».
 - Le raccord de la voix dans L06, après « Fédération » (voir v4).

@@ -50,8 +50,8 @@ let total = r3(Math.max(E("L11") + cfg.tail, LOGO_T + 6.1));
 const scenes = [
   { id: "s1", src: "compositions/s1-bureau.html", start: 0, end: S("L02") - 0.2 },
   { id: "s2", src: "compositions/s2-formelle.html", start: S("L02") - 0.2, end: S("L04") - 0.1 },
-  { id: "s3", src: "compositions/s3-dossier.html", start: S("L04") - 0.1, end: at("L06", "déposez") + 0.15 },
-  { id: "s5", src: "compositions/s5-depot.html", start: at("L06", "déposez") - 0.45, end: S("L07") - 0.3 },
+  { id: "s3", src: "compositions/s3-dossier.html", start: S("L04") - 0.1, end: at("L06", "complet") + 0.3 },
+  { id: "s5", src: "compositions/s5-depot.html", start: at("L06", "complet") - 0.3, end: S("L07") - 0.3 },
   { id: "s6", src: "compositions/s6-validation.html", start: S("L07") - 0.3, end: S("L08") - 0.35 },
   { id: "s7", src: "compositions/s7-cotisation.html", start: S("L08") - 0.35, end: S("L09") - 0.4 },
   { id: "s8", src: "compositions/s8-membre.html", start: S("L09") - 0.4, end: S("L10") - 0.35 },
@@ -159,7 +159,7 @@ if (VERT) {
     writeFileSync(join(ROOT, "compositions/v", name), src);
     o.src = "compositions/v/" + name;
   }
-  // sous-titres : graphies d'écran (CNAMGS, 31 mars, 8ème étage) à partir des mots de la voix
+  // sous-titres : graphies d'écran (CNAMGS, 31 mars, 8ème et 9ème étages) à partir des mots de la voix
   const CAPS = JSON.parse(readFileSync(join(ROOT, "tools/captions.json"), "utf8"));
   const groups = [];
   for (const id of order) {
@@ -177,7 +177,7 @@ if (VERT) {
         out[out.length - 1].e = ws[i].e;
         continue;
       }
-      const t = ws[i].w.replace(/^Knam-GS/i, "CNAMGS").replace(/^CNAM-GS/i, "CNAMGS").replace(/^huitième/i, "8ème");
+      const t = ws[i].w.replace(/^Knam-GS/i, "CNAMGS").replace(/^CNAM-GS/i, "CNAMGS").replace(/^huitième/i, "8ème").replace(/^neuvième/i, "9ème");
       out.push({ t, s: ws[i].s, e: ws[i].e });
     }
     // groupes écrits à la main (tools/captions.json), calés sur les mots de la voix dans l'ordre
