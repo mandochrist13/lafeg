@@ -1,19 +1,29 @@
-# REVIEW — film FEG « De la facture à la réforme » (v2)
+# REVIEW — film FEG « De la voix à la réforme » (v5, intemporelle)
 
-Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 41 s (101,1 s) :
+Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 44 s (103,8 s) :
 
-- `renders/FEG-Semaine-entrepreneuriat-2026-voix.mp4` : voix off féminine + musique.
-- `renders/FEG-Semaine-entrepreneuriat-2026-sans-voix.mp4` : musique seule, les titres portent le récit.
+- `renders/FEG-presentation-voix.mp4` : voix off féminine + musique.
+- `renders/FEG-presentation-sans-voix.mp4` : musique seule, les titres portent le récit.
 
 Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans-voix`, puis `npx hyperframes render`. Une seule racine, `index.html`, reçoit la variante choisie. Le dépôt garde la version voix par défaut.
 
-## Ce qui a changé depuis la v1 (demandes de la FEG)
+## Version intemporelle (v5, demandes de la FEG)
+
+- **Semaine mondiale de l'entrepreneuriat retirée** : plus de surtitre d'ouverture, et L10 devient « Votre entreprise a sa place à nos côtés : rejoignez la Fédération des Entreprises du Gabon ».
+- **Aucune date** : « plus de 1 100 entreprises » (au lieu de 1 118, chiffre daté) ; L07 dit « Lors de sa dernière édition, ses huit ateliers ont abouti à la Déclaration de Libreville » ; à l'écran, le GEF est présenté sans date (« Sous le Très Haut Patronage du Chef de l'État · Palais des Congrès, Libreville · 8 ateliers thématiques ») et le thème sans année.
+- **Nouvelle introduction, plus générique** (choix A, « la voix ») : « Mais seule, une entreprise peine à se faire entendre, et pèse peu sur les décisions qui la concernent. » À l'image, une bulle de parole verte monte de l'atelier, puis se dissout en trois ondes qui ne rencontrent personne. La facture et la pile de formulaires ont disparu.
+- **Un seul objet du début à la fin** : la bulle remplace la facture dans le circuit (fédération métier → Bureau exécutif → table du dialogue) et se pose sur l'atelier « Dette intérieure et fiscalité » du GEF. Le film raconte ainsi une voix d'abord perdue, puis portée jusqu'aux réformes.
+- **Voix** : L02, L03, L07 et L10 régénérées seules (Despina), quatre prises chacune, chaque prise contrôlée par Gemini (texte exact, voix féminine) avant d'être gardée. Le texte de L03 écrit les nombres en toutes lettres : la première prise lisait « dix-neuf cent cinquante-neuf » pour 1959.
+- **Version sans voix** : « Seule, une entreprise peine à se faire entendre. » ; la citation du Président ouvre le film sans surtitre ; thème du GEF sans année.
+- **Retouches de mise en page** : « plus de » posé au-dessus du compteur (il passait sur deux lignes et « entreprises » touchait la carte) ; surtitre du GEF sur une ligne ; étiquette « Atelier 1 » déplacée au-dessus de la salle (elle croisait une table quand les ateliers se lèvent).
+
+## Ce qui a changé de la v1 à la v2 (demandes de la FEG)
 
 - **Voix plus naturelle** : audition de cinq voix Gemini, classées par une écoute automatique Gemini. Despina arrive en tête (naturel 9/10, engagement 8,5/10, chaleur 9/10, contre 6/10 pour Kore, jugée « robotique »). La narration complète est générée **d'un seul tenant**, ce qui donne une prosodie continue d'une phrase à l'autre, puis découpée aux pauses réelles (`tools/voice_onepass.mjs`).
 - **Réforme formulée en creux** : « La dette intérieure, la fiscalité, la commande publique, le financement des PME : ensemble, les entreprises pèsent désormais sur les réformes du pays ». La phrase fait écho à « une entreprise pèse peu » (L02). Le titre à l'écran devient « La voix des entreprises au cœur des réformes ».
 - **Source retirée** : la mention « Fichier unique des adhérents, au 31 octobre 2026 » n'apparaît plus.
 - **Musique** : SoundHill, « Find Yourself », fournie par la FEG.
-- **Version sans voix** : couche de titres `compositions/ov-titres.html`. Elle contient la citation du Président (« L'histoire économique d'un pays s'écrit sur le terrain… », Alain-Claude Kouakoua, site lafeg.ga), « Seule, une entreprise pèse peu », « 13 fédérations métiers », « Porter la voix des entreprises », « Votre préoccupation remonte jusqu'à l'État », « Des services au quotidien » et le thème du GEF 2026 (texte exact de la Déclaration).
+- **Version sans voix** : couche de titres `compositions/ov-titres.html`. Elle contient la citation du Président (« L'histoire économique d'un pays s'écrit sur le terrain… », Alain-Claude Kouakoua, site lafeg.ga), « Seule, une entreprise pèse peu », « 13 fédérations métiers », « Porter la voix des entreprises », « Votre préoccupation remonte jusqu'à l'État », « Des services au quotidien » et le thème du GEF (texte exact de la Déclaration).
 - Cadrages ajustés pour laisser une zone libre à chaque titre : atelier en bas à droite à l'ouverture, en haut à gauche de la fin.
 
 ## Fond blanc (v4)
@@ -21,9 +31,9 @@ Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans
 - La FEG trouvait la pierre froide #E8E9E4 trop terne. Le sol de la maquette et le fond de la page sont désormais en blanc pur (#FFFFFF). La lumière est inchangée : les ombres douces et les faces ombrées gardent le relief des bâtiments blancs, et les verts ressortent davantage.
 - Voix (Despina), musique, textes et calage sont inchangés.
 
-## Thème du GEF 2026 synchronisé (v3, version voix)
+## Thème du GEF synchronisé (v3, version voix)
 
-- Pendant la phrase finale, le thème officiel « Des entreprises fortes pour une croissance durable et une prospérité partagée » s'affiche en haut à gauche, sur trois lignes, sous le titre « Thème du Gabon Economic Forum 2026 » (`compositions/ov-theme.html`).
+- Pendant la phrase finale, le thème officiel « Des entreprises fortes pour une croissance durable et une prospérité partagée » s'affiche en haut à gauche, sur trois lignes, sous le titre « Thème du Gabon Economic Forum » (année retirée en v5) (`compositions/ov-theme.html`).
 - Le texte apparaît en gris clair, puis chaque mot s'encre au moment exact où la voix le prononce, d'après le calage mot à mot de L10 ; « pour » et « et », absents de la phrase dite, s'encrent avec le mot qui les suit. « fortes », « durable » et « partagée » passent en vert d'accent.
 - Le thème reste à l'écran jusqu'à « rejoignez », puis s'efface pendant que l'atelier passe au vert. Le vol de caméra vers l'atelier part 0,45 s plus tôt, pour que l'image soit posée avant le premier mot.
 - La version sans voix n'a pas changé : elle affichait déjà le thème, en titre fixe.
