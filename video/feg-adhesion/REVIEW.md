@@ -12,6 +12,11 @@
   - mains pendantes avec un pouce dessiné.
 - **Poignée de main** : le gros plan est remplacé par un plan en pied. La dirigeante et un représentant de la FEG, de profil devant le logo, se serrent la main. Les mains sont à leur taille naturelle, et le plan montre aussi la relation entre les deux personnes.
 - Durée : 91,7 s (la nouvelle prononciation est plus courte).
+- **Contrôles du rendu v2** :
+  - `check` : 0 erreur, 0 avertissement ;
+  - son mesuré, pas écouté : −15,3 LUFS, crête −1,0 dBFS ;
+  - dans le mixage final, Gemini entend « knam-gé-esse » (3 syllabes) dans les deux phrases et ne relève aucun défaut ; intelligibilité 9/10, la musique ne couvre pas la voix ;
+  - images des mains vérifiées dans le MP4 final.
 
 
 Un fichier : `renders/FEG-comment-adherer-v2.mp4`, 1920 × 1080, 30 i/s, 1 min 32 s (91,7 s), voix off et musique.
