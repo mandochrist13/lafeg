@@ -104,7 +104,7 @@
       id="world-root"
       data-composition-id="world"
       data-start="0"
-      data-duration="101.141"
+      data-duration="109.4"
       data-total
       data-width="1920"
       data-height="1080"
@@ -114,7 +114,7 @@
         id="world-cv"
         class="clip"
         data-start="0"
-        data-duration="101.141"
+        data-duration="109.4"
         data-total
         data-track-index="0"
       ></canvas>
@@ -911,22 +911,23 @@
       const CAM0 = { ...hp(heroPos), y: 0.32, V: 0.98, az: 45, el: ISO };
       const moves = [];
       const mv = (t0, dur, to, mode = "lin", ease = inOut) => moves.push({ t0, dur, to, mode, ease });
+      // Mouvements enchaînés : si un mouvement commence avant la fin du précédent,
+      // il repart de l'état où le précédent a été interrompu (aucun saut d'image).
       function camAt(t) {
         let s = { ...CAM0 };
-        for (const m of moves) {
+        for (let i = 0; i < moves.length; i++) {
+          const m = moves[i];
           if (t <= m.t0) break;
-          const u = prog(t, m.t0, m.dur);
+          const next = moves[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const u = prog(cut, m.t0, m.dur);
           const to = { ...s, ...m.to };
-          if (u >= 1) {
-            s = to;
-            continue;
-          }
           const e = m.ease(u);
           const V = Math.exp(lerp(Math.log(s.V), Math.log(to.V), e));
           let w = e;
           if (m.mode === "pivot" && Math.abs(to.V - s.V) > 1e-6) w = (V - s.V) / (to.V - s.V);
-          s = { x: lerp(s.x, to.x, w), y: lerp(s.y, to.y, w), z: lerp(s.z, to.z, w), V, az: lerp(s.az, to.az, e), el: lerp(s.el, to.el, e) };
-          break;
+          s = u >= 1 ? to : { x: lerp(s.x, to.x, w), y: lerp(s.y, to.y, w), z: lerp(s.z, to.z, w), V, az: lerp(s.az, to.az, e), el: lerp(s.el, to.el, e) };
+          if (!(next && next.t0 < t)) break;
         }
         return s;
       }

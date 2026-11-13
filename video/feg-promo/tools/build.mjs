@@ -157,10 +157,12 @@ if (bgm) {
 // Effets sonores : [id, fichier, temps absolu, volume]
 const sfxPlan = JSON.parse(readFileSync(join(ROOT, "tools/sfx.json"), "utf8"));
 for (const s of sfxPlan) {
-  const tAbs = r3((s.line ? at(s.line, s.word, s.which || "s") : 0) + (s.offset || 0));
+  const base = s.anchor === "logo" ? LOGO_T : s.line ? at(s.line, s.word, s.which || "s") : 0;
+  const tAbs = r3(base + (s.offset || 0));
+  const ms = s.mediaStart || 0;
   if (has(s.src)) {
     audio.push(
-      `    <audio id="${s.id}" src="${s.src}" data-start="${tAbs}" data-duration="${s.dur}" data-track-index="${30 + sfxPlan.indexOf(s)}" data-volume="${s.volume}"></audio>`,
+      `    <audio id="${s.id}" src="${s.src}" data-start="${tAbs}" data-duration="${r3(s.dur - ms)}"${ms ? ` data-media-start="${ms}"` : ""} data-track-index="${30 + sfxPlan.indexOf(s)}" data-volume="${s.volume}"${s.fadeIn ? ` data-fade-in="${s.fadeIn}"` : ""}></audio>`,
     );
   }
 }

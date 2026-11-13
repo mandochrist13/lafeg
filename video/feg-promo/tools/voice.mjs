@@ -147,11 +147,19 @@ for (const L of cfg.lines) {
   const rel = `assets/voice/${L.id}.wav`;
   const abs = join(ROOT, rel);
   if (!ALIGN_ONLY) {
-    const r = await synthesizeGemini(
-      { text: L.text, voiceId: VOICE, model: MODEL, style: STYLE, wavAbs: abs },
-      // clé en variable d'environnement si présente, sinon en-tête injecté par le proxy
-      process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY ? {} : { authenticate: () => ({ headers: {}, secret: undefined }) },
-    );
+    let r;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      r = await synthesizeGemini(
+        { text: L.text, voiceId: VOICE, model: MODEL, style: STYLE, wavAbs: abs },
+        // clé en variable d'environnement si présente, sinon en-tête injecté par le proxy
+        process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY ? {} : { authenticate: () => ({ headers: {}, secret: undefined }) },
+      );
+      const m = !r.ok && /HTTP 429/.test(r.error) ? /retry in ([0-9.]+)s/.exec(r.error) : null;
+      if (!m) break;
+      const wait = Math.ceil(parseFloat(m[1]) + 2);
+      console.log(`${L.id}: quota atteint, nouvel essai dans ${wait} s`);
+      await new Promise((res) => setTimeout(res, wait * 1000));
+    }
     if (!r.ok) {
       console.error(`${L.id}: échec — ${r.error}`);
       process.exitCode = 1;
