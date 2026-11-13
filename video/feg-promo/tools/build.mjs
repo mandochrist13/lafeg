@@ -144,7 +144,7 @@ for (const id of order) {
   const L = C.lines[id];
   if (L.src && has(L.src)) {
     audio.push(
-      `    <audio id="vo-${id}" src="${L.src}" data-start="${L.start}" data-duration="${L.dur}" data-track-index="${track}" data-volume="1"></audio>`,
+      `    <audio id="vo-${id}" src="${L.src}" data-start="${L.start}" data-duration="${L.dur}" data-track-index="${track}" data-volume="0.79"></audio>`,
     );
   }
 }

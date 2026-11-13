@@ -22,6 +22,7 @@ Fichier : `renders/FEG-Semaine-entrepreneuriat-2026.mp4` · 1920 × 1080 · 30 i
 
 - Effets : souffle sur le grand recul, sur le vol vers le GEF et sur le retour à l'atelier, crescendo et impact sur l'arrivée du logo (banque HyperFrames, licence Pixabay).
 - **Pas de musique** : Lyria 3 / 3.5 a un quota nul au niveau gratuit, Lyria RealTime passe par WebSocket (bloqué par le proxy de la session), HeyGen et HuggingFace sont bloqués. `tools/music.sh` (Lyria RealTime) et `tools/music_lyria3.py` (Lyria 3.5) sont prêts dès qu'une de ces voies s'ouvre. Il suffit ensuite de déposer `assets/bgm/track.wav` puis de lancer `node tools/build.mjs` : la piste est ajoutée à −16 dB sous la voix.
+- Mixage final mesuré : **−15,1 LUFS intégrés, crête vraie −3,1 dBTP**, plage dynamique 4 LU. Le premier rendu sortait à −13,1 LUFS (voix mono à −16 LUFS dupliquée en stéréo) : la voix a été baissée de 2 dB, dans le projet (`data-volume="0.79"`) et sur la piste audio du MP4 livré (image non réencodée).
 - Le son a été **mesuré, pas écouté** : niveaux, crêtes et positions vérifiés par outils.
 
 ## Ce qui a été vérifié
