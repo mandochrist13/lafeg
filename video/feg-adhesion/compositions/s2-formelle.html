@@ -243,7 +243,7 @@
       docs.forEach(function (d, i) {
         var tin = L(d.tin),
           hit = L(d.hit);
-        tl.fromTo(d.w, { y: 520, opacity: 1, rotation: i % 2 ? 6 : -6 }, { y: 0, rotation: 0, duration: 0.5, ease: "power3.out" }, tin);
+        tl.fromTo(d.w, { y: P.V ? 1600 : 520, opacity: 1, rotation: i % 2 ? 6 : -6 }, { y: 0, rotation: 0, duration: 0.5, ease: "power3.out" }, tin);
         // la main se place au-dessus de la pièce
         var e = elbow(d.x + 140, d.y + 232);
         var tMove = Math.max(tin + 0.15, hit - 0.75);
@@ -262,6 +262,34 @@
       tl.to(["#s2-kick", "#s2-title"], { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, D - 0.85);
       tl.to(["#s2-w1", "#s2-w2", "#s2-w3", "#s2-w4", "#s2-w5"], { opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.7);
       tl.to("#s2-cam", { scale: 1.2, x: -620, y: 220, duration: 0.75, ease: "power2.inOut" }, D - 0.75);
+      if (P.V) {
+        // vertical : la caméra va du dossier verrouillé à chaque pièce tamponnée, puis revient au cadenas
+        var vw = P.vwrap("s2-cam", ["s2-kick", "s2-title"]);
+        // sous-titres des pièces : décor du document (la voix et les sous-titres disent la même chose)
+        document.querySelectorAll("#s2-cam .s2-doc .ds").forEach(function (e) {
+          e.setAttribute("data-layout-ignore", "");
+        });
+        P.vkick("s2-kick");
+        P.vtitle("s2-title", 250, 92);
+        P.vset(vw, 960, 540, 0.95);
+        P.vto(tl, vw, 0.15, 1.0, 1580, 430, 1.0);
+        // la rangée des pièces en plan plus large : le dossier reste sous le titre, les tampons au-dessus des sous-titres
+        // deux premières pièces en plan serré (le dossier est hors champ), puis la rangée entière
+        var cams = [
+          [680, 740, 1.0],
+          [680, 740, 1.0],
+          [960, 680, 0.82],
+          [1180, 680, 0.82],
+          [1300, 680, 0.82],
+        ];
+        docs.forEach(function (d, i) {
+          var c = cams[i];
+          if (i === 0) P.vto(tl, vw, L(d.tin) - 0.55, 0.9, c[0], c[1], c[2]);
+          else P.vto(tl, vw, L(d.tin) - 0.3, 0.6, c[0], c[1], c[2]);
+        });
+        P.vto(tl, vw, L(docs[4].hit) + 0.05, 0.45, 1560, 430, 1.0);
+        P.vto(tl, vw, D - 0.75, 0.75, 960, 540, 0.95);
+      }
       window.__timelines["s2"] = tl;
     })();
   </script>

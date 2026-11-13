@@ -153,7 +153,7 @@
 
       var tl = gsap.timeline({ paused: true });
       // raccord : la scène descend du haut (bascule de caméra vers la rue)
-      gsap.set("#s5-stage", { y: -1080 });
+      gsap.set("#s5-stage", { y: P.V ? -2000 : -1080 });
       tl.to("#s5-stage", { y: 0, duration: 0.6, ease: "power2.out" }, 0);
 
       // marche : de x = 120 à x = 1330 ; le bras avant tient le dossier contre elle
@@ -188,6 +188,16 @@
       tl.fromTo("#s5-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, 0.55);
       tl.fromTo("#s5-a1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("L06", ["huitième", "huitieme", "limmeuble", "immeuble"]) - 0.1));
       tl.fromTo("#s5-a2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("L06", ["Libreville"]) + 0.1));
+      if (P.V) {
+        // vertical : la caméra accompagne la marche jusqu'à l'accueil ; bande blanche sous les textes
+        var vw = P.vwrap("s5-stage", ["s5-kick", "s5-title", "s5-addr"], null, [520, "#FFFFFF"]);
+        P.vbg("s5-stage", 900, "#EEF0EC", 1300);
+        P.vkick("s5-kick");
+        P.vtitle("s5-title", 250, 92);
+        P.vtext("s5-addr", { left: "80px", top: "372px", width: "920px", fontSize: "38px" });
+        P.vset(vw, 600, 700, 1.0);
+        P.vto(tl, vw, t0, t1 - t0 + 0.2, 1400, 700, 1.0, "sine.inOut");
+      }
       window.__timelines["s5"] = tl;
     })();
   </script>

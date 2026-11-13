@@ -165,6 +165,15 @@
       tl.fromTo("#s7-ticket", { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, tDA);
       P.breathe(tl, "h7", 0, D, 3.4, 0.008);
       P.blink(tl, "h7", [tCA + 1.1, tDA + 0.9]);
+      if (P.V) {
+        // vertical : l'escalier entier dans la bande utile, le ticket au-dessus des marches hautes
+        var vw = P.vwrap("s7-steps", ["s7-kick", "s7-title", "s7-sub", "s7-ticket"]);
+        P.vkick("s7-kick");
+        P.vtitle("s7-title", 250, 92);
+        P.vtext("s7-sub", { left: "80px", top: "456px", width: "920px", fontSize: "40px" });
+        P.vtext("s7-ticket", { left: "480px", top: "570px" });
+        P.vset(vw, 1390, 700, 0.95);
+      }
       window.__timelines["s7"] = tl;
     })();
   </script>

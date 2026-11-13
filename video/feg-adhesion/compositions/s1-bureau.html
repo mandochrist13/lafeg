@@ -157,6 +157,16 @@
       tl.to("#s1-cam", { scale: 2.9, x: 960 - 1250, y: 540 - 713, transformOrigin: "1250px 713px", duration: 0.85, ease: "power2.in" }, D - 0.85);
       P.breathe(tl, "h1", 0, D - 0.6, 3.2, 0.008);
       P.blink(tl, "h1", [L(C.at("L01", ["Gabon"]) + 0.15), L(C.at("L01", ["Voici"]) + 0.9)]);
+      if (P.V) {
+        // vertical : titre en haut, la dirigeante cadrée dans la bande utile ; la poussée finale recentre la couverture
+        var vw = P.vwrap("s1-stage", ["s1-title"], [884, "#E4E6E0"]);
+        P.vtitle("s1-title", 250, 104);
+        // le titre du dossier garde 28 px à l'écran malgré le plan à 0,95
+        var lab = document.querySelector("#s1-cover .pp-folder > div:nth-of-type(2)");
+        if (lab && /DOSSIER/.test(lab.textContent)) lab.style.fontSize = "30px";
+        P.vset(vw, 1250, 590, 0.95);
+        P.vto(tl, vw, D - 0.85, 0.85, 960, 540, 0.95, "power2.in");
+      }
       window.__timelines["s1"] = tl;
     })();
   </script>

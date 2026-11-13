@@ -146,6 +146,15 @@
       ppl.forEach(function (p, i) {
         tl.to("#" + p.id + "-head", { y: -3, rotation: (3 - i) * 0.8, duration: 0.6, ease: "power2.inOut" }, tLogo + 0.2 + i * 0.04);
       });
+      if (P.V) {
+        // vertical : la phrase en haut, puis le logo et l'appel ; les membres main dans la main en dessous
+        var vw = P.vwrap("s10-people", ["s10-title", "s10-logo", "s10-cta"]);
+        P.vtitle("s10-title", 230, 100);
+        P.vtext("s10-logo", { left: "378px", top: "250px" });
+        P.vtext("s10-cta", { left: "0px", top: "586px", width: "1080px" });
+        P.vtext("s10-contact", { fontSize: "32px", padding: "0 70px" });
+        P.vset(vw, 960, 840, 0.7);
+      }
       window.__timelines["s10"] = tl;
     })();
   </script>

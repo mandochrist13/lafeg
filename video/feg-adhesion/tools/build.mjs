@@ -1,7 +1,7 @@
 // Calage du film « Comment adhérer à la FEG » : lit tools/lines.json et audio_meta.json,
 // écrit assets/cues.js (temps de chaque phrase, de chaque mot, fenêtres des scènes) et index.html.
 // Usage : node tools/build.mjs
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -59,6 +59,10 @@ const scenes = [
   { id: "s10", src: "compositions/s10-fin.html", start: S("L11") - 0.3, end: total },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 const ONLY = (process.argv.find((a) => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
+// --vertical : racine 1080 × 1920 (réseaux sociaux), copies verticales des scènes et sous-titres incrustés
+const VERT = process.argv.includes("--vertical");
+const W = VERT ? 1080 : 1920,
+  H = VERT ? 1920 : 1080;
 
 const cues = { total, order, lines, logo: LOGO_T, sc: Object.fromEntries(scenes.map((o) => [o.id, { start: o.start, dur: r3(o.end - o.start) }])) };
 writeFileSync(
@@ -144,12 +148,115 @@ if (has("tools/sfx.json")) {
   });
 }
 
+// ----- version verticale : copies des scènes (racine 1080 × 1920) et sous-titres
+const capHosts = [];
+if (VERT) {
+  mkdirSync(join(ROOT, "compositions/v"), { recursive: true });
+  for (const o of scenes) {
+    if (!has(o.src)) continue;
+    const name = o.src.split("/").pop();
+    const src = readFileSync(join(ROOT, o.src), "utf8").replace(`data-composition-id="${o.id}" data-width="1920" data-height="1080"`, `data-composition-id="${o.id}" data-width="1080" data-height="1920"`);
+    writeFileSync(join(ROOT, "compositions/v", name), src);
+    o.src = "compositions/v/" + name;
+  }
+  // sous-titres : graphies d'écran (CNAMGS, 31 mars, 8ème étage) à partir des mots de la voix
+  const CAPS = JSON.parse(readFileSync(join(ROOT, "tools/captions.json"), "utf8"));
+  const groups = [];
+  for (const id of order) {
+    const ws = lines[id].words;
+    const out = [];
+    for (let i = 0; i < ws.length; i++) {
+      const n = norm(ws[i].w);
+      if (n === "trente" && ws[i + 2] && norm(ws[i + 1].w) === "et" && norm(ws[i + 2].w).startsWith("un")) {
+        out.push({ t: "31" + ws[i + 2].w.replace(/^un/i, ""), s: ws[i].s, e: ws[i + 2].e });
+        i += 2;
+        continue;
+      }
+      if (/^[:;!?»]$/.test(ws[i].w) && out.length) {
+        out[out.length - 1].t += " " + ws[i].w;
+        out[out.length - 1].e = ws[i].e;
+        continue;
+      }
+      const t = ws[i].w.replace(/^Knam-GS/i, "CNAMGS").replace(/^CNAM-GS/i, "CNAMGS").replace(/^huitième/i, "8ème");
+      out.push({ t, s: ws[i].s, e: ws[i].e });
+    }
+    // groupes écrits à la main (tools/captions.json), calés sur les mots de la voix dans l'ordre
+    const phrases = CAPS[id] || [];
+    let k = 0;
+    for (const ph of phrases) {
+      const toks = ph.replace(/ ([:;!?»])/g, "\u00a0$1").split(" ");
+      const take = out.slice(k, k + toks.length);
+      const ok = take.length === toks.length && take.every((w, j) => norm(w.t) === norm(toks[j]));
+      if (!ok) console.warn(`sous-titres ${id} : « ${ph} » ne correspond pas à « ${take.map((w) => w.t).join(" ")} »`);
+      if (take.length) groups.push({ text: ph.replace(/ ([:;!?»])/g, "\u00a0$1"), s: take[0].s, e: take[take.length - 1].e });
+      k += toks.length;
+    }
+    if (k !== out.length) console.warn(`sous-titres ${id} : ${out.length - k} mot(s) non couverts`);
+  }
+  groups.forEach((g, i) => {
+    g.s = r3(Math.max(0.15, g.s - 0.08));
+    const nextS = groups[i + 1] ? groups[i + 1].s - 0.08 : total;
+    g.e = r3(Math.min(g.e + 0.3, nextS - 0.02));
+  });
+  const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const capHtml = `<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Text", sans-serif;
+    }
+    .cg {
+      position: absolute;
+      left: 0;
+      top: 1196px;
+      width: 1080px;
+      text-align: center;
+      opacity: 0;
+    }
+    .cg span {
+      display: inline-block;
+      max-width: 940px;
+      padding: 10px 26px 13px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.93);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.07);
+      font-weight: 500;
+      font-size: 46px;
+      line-height: 1.22;
+      color: #1a1c19;
+    }
+  </style>
+  <div id="root" data-composition-id="cap" data-width="1080" data-height="1920">
+${groups.map((g, i) => `    <div id="cg${i}" class="cg"><span>${esc(g.text)}</span></div>`).join("\n")}
+  </div>
+  <script>
+    (function () {
+      // sous-titres : un groupe à la fois, entrée 0,1 s, effacement net à la fin du groupe
+      var G = ${JSON.stringify(groups.map((g) => [g.s, g.e]))};
+      var tl = gsap.timeline({ paused: true });
+      G.forEach(function (g, i) {
+        tl.fromTo("#cg" + i, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, g[0]);
+        tl.to("#cg" + i, { opacity: 0, duration: 0.08, ease: "power2.in" }, g[1] - 0.08);
+        tl.set("#cg" + i, { opacity: 0, visibility: "hidden" }, g[1]);
+      });
+      window.__timelines["cap"] = tl;
+    })();
+  </script>
+</template>
+`;
+  writeFileSync(join(ROOT, "compositions/v/cap.html"), capHtml);
+  capHosts.push(`    <div id="cap" data-composition-id="cap" data-composition-src="compositions/v/cap.html" data-start="0" data-duration="${total}" data-track-index="19" data-track-kind="captions" data-width="1080" data-height="1920"></div>`);
+  console.log(`sous-titres : ${groups.length} groupes`);
+}
+
 const hosts = scenes
   .filter((o) => (!ONLY.length || ONLY.includes(o.id)) && has(o.src))
   .map(
     (o, i) =>
-      `    <div id="${o.id}" data-composition-id="${o.id}" data-composition-src="${o.src}" data-start="${o.start}" data-duration="${r3(o.end - o.start)}" data-track-index="${i + 1}" data-track-kind="graphics" data-width="1920" data-height="1080"></div>`,
+      `    <div id="${o.id}" data-composition-id="${o.id}" data-composition-src="${o.src}" data-start="${o.start}" data-duration="${r3(o.end - o.start)}" data-track-index="${i + 1}" data-track-kind="graphics" data-width="${W}" data-height="${H}"></div>`,
   )
+  .concat(capHosts)
   .join("\n");
 
 const html = `<!doctype html>
@@ -166,8 +273,8 @@ const html = `<!doctype html>
 >
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=1920, height=1080" />
-    <title>FEG — Comment adhérer</title>
+    <meta name="viewport" content="width=${W}, height=${H}" />
+    <title>FEG — Comment adhérer${VERT ? " (9:16)" : ""}</title>${VERT ? "\n    <script>window.__FEG_V = true;</script>" : ""}
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <script src="assets/people.js"></script>
@@ -206,22 +313,22 @@ const html = `<!doctype html>
       }
       html,
       body {
-        width: 1920px;
-        height: 1080px;
+        width: ${W}px;
+        height: ${H}px;
         overflow: hidden;
         background: var(--color-ground);
       }
       #root {
         position: relative;
-        width: 1920px;
-        height: 1080px;
+        width: ${W}px;
+        height: ${H}px;
         overflow: hidden;
         background: var(--color-ground);
       }
     </style>
   </head>
   <body>
-    <div id="root" data-composition-id="main" data-start="0" data-duration="${total}" data-width="1920" data-height="1080">
+    <div id="root" data-composition-id="main" data-start="0" data-duration="${total}" data-width="${W}" data-height="${H}">
 ${hosts}
 ${audio.join("\n")}
     </div>

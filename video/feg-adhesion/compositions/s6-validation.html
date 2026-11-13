@@ -121,11 +121,11 @@
   <div id="root" data-composition-id="s6" data-width="1920" data-height="1080">
     <!-- salle des instances : mur, panneau, logo, table vue de face -->
     <svg class="s6-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
-      <rect x="880" y="200" width="1040" height="580" fill="#F4F5F2" />
-      <rect x="880" y="200" width="1040" height="8" fill="#E4E6E0" />
-      <image href="assets/img/feg-logo.png" x="1312" y="236" width="140" height="129" />
-      <path d="M 900,772 L 1920,772 L 1920,808 L 880,808 Z" fill="#F2F3EF" />
-      <rect x="880" y="772" width="1040" height="5" fill="#E4E6E0" />
+      <rect id="s6-wall" x="880" y="200" width="1040" height="580" fill="#F4F5F2" />
+      <rect id="s6-walltop" x="880" y="200" width="1040" height="8" fill="#E4E6E0" />
+      <image id="s6-logo" href="assets/img/feg-logo.png" x="1312" y="236" width="140" height="129" />
+      <path id="s6-tabletop" d="M 900,772 L 1920,772 L 1920,808 L 880,808 Z" fill="#F2F3EF" />
+      <rect id="s6-tableline" x="880" y="772" width="1040" height="5" fill="#E4E6E0" />
     </svg>
     <div id="s6-people" class="s6-abs"></div>
     <svg class="s6-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
@@ -135,8 +135,8 @@
       <path d="M 1242,768 L 1322,768 L 1330,796 L 1244,796 Z" fill="#F4F5F2" />
     </svg>
     <svg class="s6-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
-      <rect x="880" y="800" width="1040" height="280" fill="#E4E6E0" />
-      <rect x="880" y="800" width="1040" height="12" fill="#D3D7CF" />
+      <rect id="s6-front" x="880" y="800" width="1040" height="280" fill="#E4E6E0" />
+      <rect id="s6-frontline" x="880" y="800" width="1040" height="12" fill="#D3D7CF" />
     </svg>
 
     <div id="s6-kick">Étape 4 · La validation</div>
@@ -230,6 +230,22 @@
       });
       P.blink(tl, "c1", [L(C.at("L07", ["compétentes", "competentes"])), L(C.at("L07", ["mois"]))]);
       P.blink(tl, "c4", [L(C.at("L07", ["Incomplet", "incomplet"])) + 0.2]);
+      if (P.V) {
+        // vertical : carte de décision et délai au-dessus, les instances en dessous
+        var vw = P.vwrap("s6-people", ["s6-kick", "s6-title", "s6-card", "s6-months"], [806, "#E4E6E0"]);
+        P.vkick("s6-kick");
+        P.vtitle("s6-title", 250, 84);
+        P.vtext("s6-card", { left: "200px", top: "372px" });
+        P.vtext("s6-months", { left: "200px", top: "700px" });
+        ["s6-wall", "s6-walltop", "s6-tableline", "s6-front", "s6-frontline"].forEach(function (id) {
+          var r = document.getElementById(id);
+          r.setAttribute("x", "-400");
+          r.setAttribute("width", "2720");
+        });
+        document.getElementById("s6-tabletop").setAttribute("d", "M -400,772 L 2320,772 L 2320,808 L -400,808 Z");
+        document.getElementById("s6-logo").style.display = "none";
+        P.vset(vw, 1355, 587, 1.0);
+      }
       window.__timelines["s6"] = tl;
     })();
   </script>

@@ -156,6 +156,13 @@
         if (i < 2) tl.to("#s9pen", { x: pa.x, y: pa.y + (i + 1) * 13, duration: 0.03 }, t + 0.42);
       });
       tl.to("#s9pen", { x: p0.x, y: p0.y, duration: 0.55, ease: "power2.in" }, D - 0.75);
+      if (P.V) {
+        // vertical : le calendrier, sa boucle et la fiche dans la bande utile
+        var vw = P.vwrap("s9-cal", ["s9-kick", "s9-title"]);
+        P.vkick("s9-kick");
+        P.vtitle("s9-title", 250, 92);
+        P.vset(vw, 1270, 600, 0.95);
+      }
       window.__timelines["s9"] = tl;
     })();
   </script>

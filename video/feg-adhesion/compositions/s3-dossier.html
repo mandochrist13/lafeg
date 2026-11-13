@@ -224,8 +224,9 @@
       gsap.set("#s3-clip", { y: -60, opacity: 0 });
       gsap.set("#s3-tick", { strokeDasharray: 40, strokeDashoffset: 40 });
       gsap.set("#s3-sign", { strokeDasharray: 260, strokeDashoffset: 260 });
-      var p0 = penAt(1700, 1500),
-        s0 = stAt(1720, 1500);
+      // mains garées sous le cadre (plus bas en vertical, où l'on voit sous le plateau)
+      var p0 = penAt(1700, P.V ? 1800 : 1500),
+        s0 = stAt(1720, P.V ? 1800 : 1500);
       gsap.set("#s3pen", { x: p0.x, y: p0.y });
       gsap.set("#s3st", { x: s0.x, y: s0.y });
       gsap.set("#s3st-arm", { scale: 1.07, transformOrigin: "0px -470px" });
@@ -298,7 +299,20 @@
         .to("#s3-cover", { scaleX: 1, duration: 0.26, ease: "power2.out" }, tClose + 0.22);
       // elle soulève le dossier : bascule de la caméra vers la rue (raccord avec le plan suivant)
       tl.to("#s3-folderR", { y: -140, scale: 1.04, transformOrigin: "1420px 540px", duration: 0.5, ease: "power2.inOut" }, D - 1.05);
-      tl.to(["#s3-stage", "#s3-k2", "#s3-l6"], { y: 1080, duration: 0.6, ease: "power2.in" }, D - 0.6);
+      tl.to(["#s3-stage", "#s3-k2", "#s3-l6"], { y: P.V ? 2200 : 1080, duration: 0.6, ease: "power2.in" }, D - 0.6);
+      if (P.V) {
+        // vertical : le dossier ouvert occupe la bande utile, les libellés passent en titre
+        var vw = P.vwrap("s3-stage", ["s3-k1", "s3-k2", "s3-l1", "s3-l2", "s3-l3", "s3-l4", "s3-l5", "s3-l6"]);
+        ["s3-k1", "s3-k2"].forEach(function (k) {
+          P.vkick(k);
+        });
+        ["s3-l1", "s3-l2", "s3-l3", "s3-l4", "s3-l5", "s3-l6"].forEach(function (k) {
+          P.vtitle(k, 250, 88);
+        });
+        P.vbg("s3-stage", -500, "#F2F3EF", 2200);
+        P.vset(vw, 960, 540, 0.95);
+        P.vto(tl, vw, tOpen + 0.05, 0.9, 1220, 600, 1.0);
+      }
       window.__timelines["s3"] = tl;
     })();
   </script>

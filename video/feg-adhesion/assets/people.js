@@ -646,5 +646,75 @@
     );
   };
 
+  // ---------------------------------------------------------------- version verticale (1080 × 1920)
+  // La racine verticale pose window.__FEG_V = true. Chaque scène garde son dessin en repère 16:9 :
+  // P.vwrap l'enveloppe dans un conteneur « caméra » ; P.vset / P.vto amènent le point (cx, cy)
+  // de la scène 16:9 au point (540, P.VY) de l'écran vertical, à l'échelle k.
+  P.V = !!window.__FEG_V;
+  P.VY = 935;
+  // keep : ids des textes laissés hors de la caméra (remis au premier plan) ;
+  // fill : [y16, couleur] prolonge le sol vers le bas ; band : [hauteur, couleur] bande d'en-tête sous les textes
+  P.vwrap = function (anyId, keep, fill, band) {
+    var any = document.getElementById(anyId);
+    // le parent direct : la racine de la scène (celle qui porte la police et le cadre 1080 × 1920)
+    var root = any.parentElement;
+    var wrap = document.createElement("div");
+    wrap.id = anyId.split("-")[0] + "-vcam";
+    wrap.style.cssText = "position:absolute;left:0;top:0;width:1920px;height:1080px;transform-origin:0 0";
+    // la scène 16:9 dépasse volontairement du cadre vertical : la caméra n'en montre qu'une partie
+    wrap.setAttribute("data-layout-allow-overflow", "");
+    var kids = Array.prototype.slice.call(root.children);
+    keep = keep || [];
+    root.insertBefore(wrap, kids[0]);
+    kids.forEach(function (k) {
+      if (keep.indexOf(k.id) < 0) wrap.appendChild(k);
+    });
+    if (fill) {
+      var f = document.createElement("div");
+      f.style.cssText = "position:absolute;left:-3000px;width:8000px;top:" + fill[0] + "px;height:5000px;background:" + fill[1];
+      f.setAttribute("data-layout-allow-overflow", "");
+      wrap.insertBefore(f, wrap.firstChild);
+    }
+    if (band) {
+      var b = document.createElement("div");
+      b.style.cssText =
+        "position:absolute;left:0;top:0;width:1080px;height:" + band[0] + "px;background:linear-gradient(to bottom," + band[1] + " 0," + band[1] + " " + (band[0] - 50) + "px,rgba(255,255,255,0) " + band[0] + "px)";
+      root.appendChild(b);
+    }
+    keep.forEach(function (id) {
+      var e = document.getElementById(id);
+      if (e) root.appendChild(e);
+    });
+    return wrap;
+  };
+  // fond prolongé dans un élément donné, qui le suit dans ses mouvements (y16 : haut, h : hauteur, en px 16:9)
+  P.vbg = function (id, y16, color, h) {
+    var el = document.getElementById(id);
+    var f = document.createElement("div");
+    f.style.cssText = "position:absolute;left:-4000px;width:10000px;top:" + y16 + "px;height:" + h + "px;background:" + color;
+    f.setAttribute("data-layout-allow-overflow", "");
+    el.insertBefore(f, el.firstChild);
+  };
+  P.vset = function (wrap, cx, cy, k) {
+    gsap.set(wrap, { x: 540 - cx * k, y: P.VY - cy * k, scale: k, transformOrigin: "0px 0px" });
+  };
+  P.vto = function (tl, wrap, t, d, cx, cy, k, ease) {
+    tl.to(wrap, { x: 540 - cx * k, y: P.VY - cy * k, scale: k, duration: d, ease: ease || "power2.inOut" }, t);
+  };
+  P.vtext = function (id, css) {
+    var e = document.getElementById(id);
+    if (!e) return;
+    Object.keys(css).forEach(function (k) {
+      e.style[k] = css[k];
+    });
+  };
+  // gabarits de textes verticaux : surtitre, titre, sous-titre
+  P.vkick = function (id, top) {
+    P.vtext(id, { left: "80px", top: (top || 196) + "px", fontSize: "42px", width: "920px" });
+  };
+  P.vtitle = function (id, top, size) {
+    P.vtext(id, { left: "80px", top: (top || 250) + "px", width: "920px", fontSize: (size || 96) + "px", lineHeight: "1.02" });
+  };
+
   window.FEGP = P;
 })();
