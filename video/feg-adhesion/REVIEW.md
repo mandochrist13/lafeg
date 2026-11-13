@@ -24,7 +24,9 @@ Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --qualit
 - `npx hyperframes check` : 0 erreur, 0 avertissement. Contraste 26/26 en WCAG AA. Toutes les étiquettes font au moins 28 px.
 - **Voix contrôlée par Gemini**, phrase par phrase : les 11 phrases sont transcrites sans écart, les sigles CNSS et CNAMGS sont dits lettre par lettre, le naturel est noté de 9 à 10 sur 10.
 - Revue complète : images de début et de milieu de chaque plan, chaque raccord de −0,2 à +0,2 s, et le film à la largeur d'un téléphone. Corrections faites après la revue : une image blanche à un raccord, un point parasite, un plan vide pendant une demi-seconde, des mains qui semblaient pointer du doigt, des poignets invisibles sur fond blanc.
-- Le son est **mesuré, pas écouté** (mesures dans la note de livraison).
+- Le son est **mesuré, pas écouté** : −15,3 LUFS intégrés, crête −1,1 dBFS, plage de loudness 3,0 LU.
+- **Écoute automatique du mixage final par Gemini** (film entier) : texte conforme sans écart, intelligibilité 10/10, la musique ne couvre jamais la voix, aucun défaut relevé.
+- Images extraites du MP4 final sur 18 instants clés : conformes aux images de contrôle.
 
 ## Avertissements conservés
 
