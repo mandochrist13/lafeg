@@ -1,0 +1,68 @@
+<!doctype html>
+<html
+  lang="fr"
+  data-composition-variables='[
+    {"id":"color-ground","type":"color","label":"Sol","default":"#E8E9E4"},
+    {"id":"color-ink","type":"color","label":"Texte","default":"#1A1C19"},
+    {"id":"color-deep","type":"color","label":"Vert FEG profond","default":"#063D21"},
+    {"id":"color-accent","type":"color","label":"Vert adhésion","default":"#0A7537"},
+    {"id":"color-bronze","type":"color","label":"Bronze","default":"#AEAE7D"},
+    {"id":"font-display","type":"string","label":"Police titres","default":"Hyundai Sans Head"}
+  ]'
+>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — Semaine mondiale de l'entrepreneuriat 2026</title>
+    <script src="lib/gsap.min.js"></script>
+    <script src="assets/cues.js"></script>
+    <style>
+      :root {
+        --color-ground: #e8e9e4;
+        --color-ink: #1a1c19;
+        --color-deep: #063d21;
+        --color-accent: #0a7537;
+        --color-bronze: #aeae7d;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--color-ground);
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: var(--color-ground);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="101.141" data-width="1920" data-height="1080">
+    <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="0" data-duration="101.141" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-kicker" data-composition-id="ov-kicker" data-composition-src="compositions/ov-kicker.html" data-start="0" data-duration="9.097" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-feg" data-composition-id="ov-feg" data-composition-src="compositions/ov-feg.html" data-start="17.686" data-duration="9.009" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-poids" data-composition-id="ov-poids" data-composition-src="compositions/ov-poids.html" data-start="28.732" data-duration="8.397" data-track-index="4" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-gef" data-composition-id="ov-gef" data-composition-src="compositions/ov-gef.html" data-start="53.29" data-duration="10.946" data-track-index="5" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-reformes" data-composition-id="ov-reformes" data-composition-src="compositions/ov-reformes.html" data-start="64.536" data-duration="10.029" data-track-index="6" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-end" data-composition-id="ov-end" data-composition-src="compositions/ov-end.html" data-start="95.865" data-duration="5.276" data-track-index="7" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <audio id="sfx-pullback" src="assets/sfx/whoosh-cinematic.mp3" data-start="16.836" data-duration="5.544" data-track-index="30" data-volume="0.32"></audio>
+    <audio id="sfx-gef" src="assets/sfx/whoosh.mp3" data-start="52.54" data-duration="0.575" data-track-index="31" data-volume="0.3"></audio>
+    <audio id="sfx-return" src="assets/sfx/whoosh-short.mp3" data-start="85.411" data-duration="0.575" data-track-index="32" data-volume="0.28"></audio>
+    <audio id="sfx-riser" src="assets/sfx/riser.mp3" data-start="80.811" data-duration="10.032" data-track-index="33" data-volume="0.22"></audio>
+    <audio id="sfx-logo" src="assets/sfx/impact-bass-1.mp3" data-start="90.861" data-duration="2.116" data-track-index="34" data-volume="0.4"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,58 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    #kk-wrap {
+      position: absolute;
+      left: 132px;
+      top: 118px;
+    }
+    #kk-rule {
+      width: 64px;
+      height: 5px;
+      background: #aeae7d;
+      margin-bottom: 22px;
+    }
+    #kk-line {
+      font-weight: 700;
+      font-size: 38px;
+      letter-spacing: -0.005em;
+      color: #063d21;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-kicker" data-width="1920" data-height="1080">
+    <div id="kk-wrap">
+      <div id="kk-rule"></div>
+      <div id="kk-line" data-var-text="kicker">Semaine mondiale de l'entrepreneuriat 2026</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var W = (C.ov && C.ov["ov-kicker"]) || { start: 0, dur: 8 };
+      var T0 = W.start;
+      var D = W.dur;
+      var local = function (abs) {
+        return Math.max(0, abs - T0);
+      };
+      var tOut = local(C.lines.L01.end + 0.15);
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#kk-wrap", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power3.in" }, tOut);
+      window.__timelines["ov-kicker"] = tl;
+    })();
+  </script>
+</template>

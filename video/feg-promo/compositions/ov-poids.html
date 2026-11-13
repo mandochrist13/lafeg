@@ -1,0 +1,105 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    .pd-block {
+      position: absolute;
+      left: 1010px;
+      width: 780px;
+    }
+    #pd-a {
+      top: 250px;
+    }
+    #pd-b {
+      top: 560px;
+    }
+    .pd-num {
+      font-weight: 700;
+      font-size: 156px;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      color: #063d21;
+      font-variant-numeric: tabular-nums;
+    }
+    .pd-num small {
+      font-size: 0.55em;
+      font-weight: 500;
+      letter-spacing: 0;
+      margin-right: 10px;
+      color: #0a7537;
+    }
+    .pd-cap {
+      margin-top: 10px;
+      font-weight: 500;
+      font-size: 42px;
+      line-height: 1.12;
+      color: #1a1c19;
+    }
+    #pd-src {
+      position: absolute;
+      left: 1010px;
+      top: 880px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #5c6259;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-poids" data-width="1920" data-height="1080">
+    <div id="pd-a" class="pd-block">
+      <div class="pd-num"><small>près de</small><span id="pd-n1">80</span> %</div>
+      <div class="pd-cap">du PIB du Gabon</div>
+    </div>
+    <div id="pd-b" class="pd-block">
+      <div class="pd-num"><small>plus de</small><span id="pd-n2">90</span> %</div>
+      <div class="pd-cap">de la main-d'œuvre formelle</div>
+    </div>
+    <div id="pd-src">Poids des entreprises membres · source : lafeg.ga</div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var W = (C.ov && C.ov["ov-poids"]) || { start: 0, dur: 8 };
+      var T0 = W.start;
+      var D = W.dur;
+      var L = function (abs) {
+        return Math.max(0, abs - T0);
+      };
+      var t1 = L(C.at("L04", ["80", "quatre"]) - 0.45);
+      var t2 = L(C.at("L04", ["90", "quatre-vingt-dix", "quatrevingtdix"]) - 0.45);
+      if (t2 < t1 + 1.2) t2 = t1 + 1.2;
+      var tl = gsap.timeline({ paused: true });
+      var n1 = { v: 0 },
+        n2 = { v: 0 };
+      var e1 = document.getElementById("pd-n1"),
+        e2 = document.getElementById("pd-n2");
+      e1.textContent = "0";
+      e2.textContent = "0";
+      tl.fromTo("#pd-a", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, t1);
+      tl.fromTo(n1, { v: 0 }, { v: 80, duration: 1.3, ease: "power3.out", onUpdate: function () { e1.textContent = Math.round(n1.v); } }, t1);
+      tl.fromTo("#pd-b", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power4.out" }, t2);
+      tl.fromTo(n2, { v: 0 }, { v: 90, duration: 1.3, ease: "power3.out", onUpdate: function () { e2.textContent = Math.round(n2.v); } }, t2);
+      tl.fromTo("#pd-src", { opacity: 0 }, { opacity: 1, duration: 0.3 }, t2 + 0.8);
+      tl.fromTo(["#pd-a", "#pd-b", "#pd-src"], { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.25, stagger: 0.05, ease: "power3.in", immediateRender: false }, Math.max(t2 + 2.2, D - 0.4));
+      window.__timelines["ov-poids"] = tl;
+    })();
+  </script>
+</template>

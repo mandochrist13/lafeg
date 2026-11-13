@@ -1,0 +1,1443 @@
+<!doctype html>
+<!--
+  La maquette : une seule prise continue à travers une maquette d'architecte isométrique.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire).
+  Les temps viennent de assets/cues.js (window.__FEG_CUES), recalculés par tools/build.mjs
+  quand la voix off change.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Maquette FEG</title>
+    <style>
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 700;
+        src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 500;
+        src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Text";
+        font-weight: 400;
+        src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #e8e9e4;
+      }
+      #world-cv,
+      #world-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Hyundai Sans Head", sans-serif;
+        color: #1a1c19;
+      }
+      .wl .nm {
+        font-weight: 500;
+        font-size: 30px;
+        letter-spacing: -0.005em;
+      }
+      .wl .ct {
+        font-weight: 700;
+        font-size: 30px;
+        color: #0a7537;
+        margin-left: 14px;
+        font-variant-numeric: tabular-nums;
+      }
+      .wl .ti {
+        display: block;
+        font-weight: 700;
+        font-size: 40px;
+        letter-spacing: -0.01em;
+        color: #063d21;
+      }
+      .wl .ds {
+        display: block;
+        margin-top: 4px;
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-weight: 400;
+        font-size: 28px;
+        color: #3c423b;
+      }
+      .wl.tag .ti {
+        font-size: 34px;
+      }
+      #world-svg .ld {
+        fill: none;
+        stroke: #1a1c19;
+        stroke-width: 2;
+        stroke-opacity: 0.55;
+      }
+      #world-svg .dt {
+        fill: #063d21;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="101.141"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="101.141"
+        data-total
+        data-track-index="0"
+      ></canvas>
+      <svg id="world-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+        <polyline id="wk-fed-0" class="ld" points="" />
+        <polyline id="wk-fed-1" class="ld" points="" />
+        <polyline id="wk-fed-2" class="ld" points="" />
+        <polyline id="wk-fed-3" class="ld" points="" />
+        <polyline id="wk-fed-4" class="ld" points="" />
+        <polyline id="wk-fed-5" class="ld" points="" />
+        <polyline id="wk-fed-6" class="ld" points="" />
+        <polyline id="wk-fed-7" class="ld" points="" />
+        <polyline id="wk-fed-8" class="ld" points="" />
+        <polyline id="wk-fed-9" class="ld" points="" />
+        <polyline id="wk-fed-10" class="ld" points="" />
+        <polyline id="wk-fed-11" class="ld" points="" />
+        <polyline id="wk-fed-12" class="ld" points="" />
+        <polyline id="wk-mis-0" class="ld" points="" />
+        <polyline id="wk-mis-1" class="ld" points="" />
+        <polyline id="wk-mis-2" class="ld" points="" />
+        <polyline id="wk-mis-3" class="ld" points="" />
+        <polyline id="wk-cir-0" class="ld" points="" />
+        <polyline id="wk-cir-1" class="ld" points="" />
+        <polyline id="wk-cir-2" class="ld" points="" />
+        <polyline id="wk-cir-3" class="ld" points="" />
+        <polyline id="wk-cir-4" class="ld" points="" />
+        <polyline id="wk-gef-0" class="ld" points="" />
+        <polyline id="wk-svc-0" class="ld" points="" />
+        <polyline id="wk-svc-1" class="ld" points="" />
+        <polyline id="wk-svc-2" class="ld" points="" />
+        <polyline id="wk-svc-3" class="ld" points="" />
+      </svg>
+      <div id="world-labels">
+        <div id="wl-fed-0" class="wl fed"><span class="nm">Construction</span><span class="ct">337</span></div>
+        <div id="wl-fed-1" class="wl fed"><span class="nm">Services divers</span><span class="ct">118</span></div>
+        <div id="wl-fed-2" class="wl fed"><span class="nm">Commerce</span><span class="ct">110</span></div>
+        <div id="wl-fed-3" class="wl fed"><span class="nm">Conseil</span><span class="ct">83</span></div>
+        <div id="wl-fed-4" class="wl fed"><span class="nm">Logistique et manutention</span><span class="ct">83</span></div>
+        <div id="wl-fed-5" class="wl fed"><span class="nm">Industries extractives</span><span class="ct">67</span></div>
+        <div id="wl-fed-6" class="wl fed"><span class="nm">Numérique</span><span class="ct">67</span></div>
+        <div id="wl-fed-7" class="wl fed"><span class="nm">Industrie</span><span class="ct">61</span></div>
+        <div id="wl-fed-8" class="wl fed"><span class="nm">Finance</span><span class="ct">50</span></div>
+        <div id="wl-fed-9" class="wl fed"><span class="nm">Santé</span><span class="ct">43</span></div>
+        <div id="wl-fed-10" class="wl fed"><span class="nm">Bois</span><span class="ct">30</span></div>
+        <div id="wl-fed-11" class="wl fed"><span class="nm">Tourisme</span><span class="ct">29</span></div>
+        <div id="wl-fed-12" class="wl fed"><span class="nm">Agriculture et pêche</span><span class="ct">22</span></div>
+
+        <div id="wl-mis-0" class="wl mis"><span class="ti">Informer</span><span class="ds">Un avis sur toute question économique et sociale</span></div>
+        <div id="wl-mis-1" class="wl mis"><span class="ti">Promouvoir</span><span class="ds">La compétitivité et la croissance des entreprises</span></div>
+        <div id="wl-mis-2" class="wl mis"><span class="ti">Participer</span><span class="ds">Aux négociations avec l'État et les syndicats</span></div>
+        <div id="wl-mis-3" class="wl mis"><span class="ti">Défendre</span><span class="ds">Les intérêts des entreprises adhérentes</span></div>
+
+        <div id="wl-cir-0" class="wl tag"><span class="ti">Votre entreprise</span></div>
+        <div id="wl-cir-1" class="wl tag"><span class="ti">Fédération métier</span></div>
+        <div id="wl-cir-2" class="wl tag"><span class="ti">Bureau exécutif</span></div>
+        <div id="wl-cir-3" class="wl tag"><span class="ti">Dialogue public-privé</span></div>
+        <div id="wl-cir-4" class="wl tag"><span class="ti">Pouvoirs publics</span></div>
+
+        <div id="wl-gef-0" class="wl tag"><span class="ti">Atelier 1</span><span class="ds">Dette intérieure et fiscalité</span></div>
+
+        <div id="wl-svc-0" class="wl mis"><span class="ti">Veille et publications</span><span class="ds">Circulaires, newsletter, suivi des réformes</span></div>
+        <div id="wl-svc-1" class="wl mis"><span class="ti">Formations</span><span class="ds">Des cycles avec nos partenaires</span></div>
+        <div id="wl-svc-2" class="wl mis"><span class="ti">Réseau d'affaires</span><span class="ds">Forums, salons, tarifs négociés</span></div>
+        <div id="wl-svc-3" class="wl mis"><span class="ti">Médiation et arbitrage</span><span class="ds">Régler un litige à l'amiable</span></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FEG_CUES;
+        var total = C ? C.total : 101.141;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+      import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
+
+      const host = window.__worldHost;
+      const C = window.__FEG_CUES;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+
+      // ------------------------------------------------------------------ outils
+      const DEG = Math.PI / 180;
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const out4 = (u) => 1 - Math.pow(1 - clamp01(u), 4);
+      const expoOut = (u) => ((u = clamp01(u)), u >= 1 ? 1 : 1 - Math.pow(2, -10 * u));
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      // ressort amorti 0,8 (dépassement ~1,5 %), stabilisé à u = 1
+      const spring = (u) => {
+        u = clamp01(u);
+        if (u >= 1) return 1;
+        const z = 0.8,
+          w = 9,
+          wd = w * Math.sqrt(1 - z * z);
+        return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + ((z * w) / wd) * Math.sin(wd * u));
+      };
+      // fenêtre visible : monte sur [a, a+fi], descend sur [b, b+fo]
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let r = Math.imul(a ^ (a >>> 15), 1 | a);
+          r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(1959);
+
+      // ------------------------------------------------------------------ rendu
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xe8e9e4);
+
+      // Lumière : ciel + soleil haut gauche. FACE = éclairement d'une face horizontale.
+      const HEMI = 2.9,
+        SUN = 1.9;
+      const SUN_DIR = new THREE.Vector3(-0.35, 1.0, 0.75).normalize();
+      // three.js (lumières physiques) : Lambert = albédo / π
+      const FACE = (HEMI + SUN * SUN_DIR.y) / Math.PI;
+      // Couleur d'albédo telle qu'une face horizontale au soleil rende exactement `hex` (× k).
+      const lit = (hex, k = 1) => new THREE.Color(hex).multiplyScalar(k / FACE);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xcfd3cc, HEMI));
+      const sun = new THREE.DirectionalLight(0xffffff, SUN);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(2048, 2048);
+      sun.shadow.radius = 3;
+      sun.shadow.bias = -0.0002;
+      scene.add(sun, sun.target);
+
+      const mat = (hex, opts = {}) =>
+        new THREE.MeshStandardMaterial({ color: lit(hex, opts.k || 1), roughness: opts.r ?? 0.86, metalness: opts.m ?? 0, ...(opts.extra || {}) });
+      const COL = {
+        ground: 0xe8e9e4,
+        white: 0xf6f6f1,
+        roof: 0xdedfd9,
+        glass: 0x7f8c86,
+        door: 0xa8ada6,
+        member: 0x2e7d4f,
+        accent: 0x0a7537,
+        deep: 0x063d21,
+        bronze: 0xaeae7d,
+        bronzeLight: 0xd9d6a0,
+        state: 0xc7cdd2,
+        stateLight: 0xdde1e4,
+        plinth: 0xd4d5cc,
+        paper: 0xffffff,
+        figure: 0xe9e9e4,
+        figState: 0x9aa3aa,
+      };
+      const M = {
+        ground: mat(COL.ground, { r: 1 }),
+        white: mat(COL.white),
+        roof: mat(COL.roof),
+        glass: mat(COL.glass, { r: 0.35, m: 0.1 }),
+        door: mat(COL.door),
+        member: mat(COL.member, { r: 0.8 }),
+        deep: mat(COL.deep, { r: 0.5, m: 0.15 }),
+        bronze: mat(COL.bronze, { r: 0.55, m: 0.15 }),
+        state: mat(COL.state),
+        stateLight: mat(COL.stateLight),
+        paper: mat(COL.paper, { r: 0.9 }),
+        figure: mat(COL.figure),
+        figState: mat(COL.figState),
+        figMember: mat(COL.member),
+      };
+
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(3000, 3000), M.ground);
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // aides de construction
+      const BOX = new THREE.BoxGeometry(1, 1, 1);
+      BOX.translate(0, 0.5, 0);
+      const RBOX = new RoundedBoxGeometry(1, 1, 1, 2, 0.04);
+      RBOX.translate(0, 0.5, 0);
+      function box(parent, w, h, d, x, y, z, material, rounded = false) {
+        const m = new THREE.Mesh(rounded ? RBOX : BOX, material);
+        m.scale.set(w, h, d);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function cyl(parent, r, h, x, y, z, material, seg = 32) {
+        const g = new THREE.CylinderGeometry(r, r, h, seg);
+        g.translate(0, h / 2, 0);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function prism(parent, w, h, d, x, y, z, material) {
+        // prisme triangulaire (fronton, dent de shed) : section dans le plan XY, extrudé sur Z
+        const sh = new THREE.Shape();
+        sh.moveTo(-w / 2, 0);
+        sh.lineTo(w / 2, 0);
+        sh.lineTo(0, h);
+        sh.closePath();
+        const g = new THREE.ExtrudeGeometry(sh, { depth: d, bevelEnabled: false });
+        g.translate(0, 0, -d / 2);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ textures
+      const loadTex = (src) =>
+        new Promise((res) => {
+          new THREE.TextureLoader().load(src, (tx) => {
+            tx.colorSpace = THREE.SRGBColorSpace;
+            tx.anisotropy = 8;
+            res(tx);
+          });
+        });
+      function canvasTex(w, h, draw) {
+        const c = document.createElement("canvas");
+        c.width = w;
+        c.height = h;
+        draw(c.getContext("2d"), w, h);
+        const tx = new THREE.CanvasTexture(c);
+        tx.colorSpace = THREE.SRGBColorSpace;
+        tx.anisotropy = 8;
+        return tx;
+      }
+      function invoiceTexture() {
+        return canvasTex(600, 848, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          g.fillRect(0, 0, w, h);
+          g.fillStyle = "#1a1c19";
+          g.font = '700 74px "Hyundai Sans Head"';
+          g.fillText("FACTURE", 52, 118);
+          g.fillStyle = "#c9ccc6";
+          g.fillRect(52, 150, 200, 14);
+          g.fillRect(380, 66, 168, 14);
+          g.fillRect(380, 96, 120, 14);
+          const rows = [250, 310, 370, 430, 490];
+          rows.forEach((y, i) => {
+            g.fillStyle = "#d5d8d2";
+            g.fillRect(52, y, 300 - (i % 2) * 70, 16);
+            g.fillRect(430, y, 118, 16);
+          });
+          g.fillStyle = "#1a1c19";
+          g.fillRect(52, 560, 496, 4);
+          g.font = '700 40px "Hyundai Sans Head"';
+          g.fillText("Total", 52, 625);
+          g.fillStyle = "#9da29b";
+          g.fillRect(398, 598, 150, 26);
+          // tampon
+          g.save();
+          g.translate(300, 735);
+          g.rotate(-0.12);
+          g.strokeStyle = "#6f756d";
+          g.lineWidth = 7;
+          g.strokeRect(-238, -52, 476, 104);
+          g.fillStyle = "#6f756d";
+          g.font = '700 36px "Hyundai Sans Head"';
+          g.textAlign = "center";
+          g.fillText("EN ATTENTE", 0, -6);
+          g.fillText("DE PAIEMENT", 0, 34);
+          g.restore();
+        });
+      }
+      function signTexture(img, pad = 0.08) {
+        // enseigne : fond blanc + logo réel centré
+        return canvasTex(1024, Math.round((1024 * img.height) / img.width * (1 + pad) + 2 * pad * 1024 * 0.4), (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          g.fillRect(0, 0, w, h);
+          const iw = w * (1 - 2 * pad);
+          const ih = (iw * img.height) / img.width;
+          g.drawImage(img, (w - iw) / 2, (h - ih) / 2, iw, ih);
+        });
+      }
+
+      // ------------------------------------------------------------------ carte : socles et bâtiments
+      const DOTS = [[337.05,18.92],[377.5,18.89],[419.06,18.93],[337.06,58.14],[375.82,58.92],[419.06,58.96],[337.1,97.43],[375.82,98.13],[419.06,98.17],[222.19,98.91],[260.56,98.84],[297.83,98.88],[460.9,99.34],[499.0,100.12],[538.23,101.86],[184.12,136.65],[222.22,136.62],[260.56,136.59],[297.83,136.64],[337.06,140.12],[375.81,140.91],[419.06,140.91],[460.92,142.03],[499.02,142.84],[184.08,180.14],[222.18,180.11],[260.58,180.13],[297.84,180.14],[337.06,180.14],[375.81,180.91],[419.06,180.94],[460.92,182.05],[499.03,182.85],[145.7,220.5],[184.12,220.54],[222.27,220.52],[260.58,220.55],[297.83,220.53],[337.12,220.54],[375.76,221.3],[419.09,221.25],[460.92,222.44],[499.01,223.18],[538.31,222.49],[184.09,259.81],[222.18,259.82],[260.58,259.74],[297.85,259.8],[337.08,259.82],[375.82,259.82],[419.06,259.83],[460.92,260.95],[499.01,261.75],[538.2,263.1],[184.08,298.99],[222.2,300.15],[260.56,300.16],[297.84,300.16],[337.06,300.17],[375.84,300.16],[460.9,299.41],[499.03,299.41],[499.0,337.14],[222.25,338.52],[260.58,338.55],[297.81,338.54],[260.57,376.9],[297.83,376.94],[337.07,376.93],[297.83,415.27],[337.09,415.25]];
+      const SC = 5 / 38.9; // unités monde par pixel du logo
+      const LCX = 342,
+        LCY = 218;
+      const PL_R = 2.2,
+        PL_H = 0.14;
+      const plinths = DOTS.map(([px, py], i) => ({ i, x: (px - LCX) * SC, z: (py - LCY) * SC, px, py }));
+      const nearest = (px, py) => plinths.reduce((b, p) => (Math.hypot(p.px - px, p.py - py) < Math.hypot(b.px - px, b.py - py) ? p : b));
+      const PL_LBV = nearest(184.1, 180); // Libreville
+      const PL_CRANE = nearest(222.2, 180);
+      const PL_SHOP = nearest(184.1, 220.5);
+      const PL_OFFICE = nearest(222.2, 136.6);
+      plinths.forEach((p) => (p.d = Math.hypot(p.x - PL_LBV.x, p.z - PL_LBV.z)));
+      const MAXD = Math.max(...plinths.map((p) => p.d));
+
+      const OFF = [-1.32, -0.44, 0.44, 1.32];
+      const special = new Map(); // "plinth:a:b" -> rôle
+      const key = (p, a, b) => p.i + ":" + a + ":" + b;
+      special.set(key(PL_LBV, 1, 3), "hero");
+      special.set(key(PL_LBV, 2, 3), "hero");
+      special.set(key(PL_CRANE, 1, 3), "crane");
+      special.set(key(PL_SHOP, 2, 2), "shop");
+      special.set(key(PL_OFFICE, 2, 3), "office");
+      // 17 coins arrière retirés : 71 × 16 − 2 (atelier sur 2 cases) + 1 − 17 = 1 118 entreprises
+      let removed = 0;
+      plinths.forEach((p) => {
+        if (removed < 17 && p.i % 4 === 1 && p !== PL_LBV) {
+          special.set(key(p, 0, 0), "none");
+          removed++;
+        }
+      });
+      const SIZE_P = [0.574, 0.313, 0.091, 0.022];
+      const SIZE_H = [
+        [0.42, 0.72],
+        [0.78, 1.18],
+        [1.35, 1.95],
+        [2.25, 2.85],
+      ];
+      const blds = [];
+      plinths.forEach((p) => {
+        for (let a = 0; a < 4; a++)
+          for (let b = 0; b < 4; b++) {
+            const k = key(p, a, b);
+            const corner = (a === 0 || a === 3) && (b === 0 || b === 3);
+            const r = rnd(),
+              r2 = rnd(),
+              r3 = rnd();
+            if (special.has(k)) continue;
+            let cls = 0,
+              acc = 0;
+            for (let c = 0; c < 4; c++) {
+              acc += SIZE_P[c];
+              if (r <= acc) {
+                cls = c;
+                break;
+              }
+              cls = c;
+            }
+            const [h0, h1] = SIZE_H[cls];
+            blds.push({
+              p,
+              x: p.x + OFF[a],
+              z: p.z + OFF[b],
+              fw: corner ? 0.46 : 0.6,
+              h: lerp(h0, h1, r2) * (corner ? 0.8 : 1),
+              jit: r3,
+            });
+          }
+      });
+      const NB = blds.length; // 1 114 + 4 bâtiments spéciaux = 1 118
+
+      const plGeo = new THREE.CylinderGeometry(PL_R, PL_R, PL_H, 72);
+      plGeo.translate(0, PL_H / 2, 0);
+      const plMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.95 });
+      const plInst = new THREE.InstancedMesh(plGeo, plMat, plinths.length);
+      plInst.receiveShadow = true;
+      plInst.castShadow = true;
+      scene.add(plInst);
+
+      const bMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.84 });
+      const bInst = new THREE.InstancedMesh(RBOX, bMat, NB);
+      bInst.castShadow = true;
+      bInst.receiveShadow = true;
+      scene.add(bInst);
+
+      // ------------------------------------------------------------------ bâtiments isolés du début
+      const slotPos = (p, a, b) => new THREE.Vector3(p.x + OFF[a], 0, p.z + OFF[b]);
+      // Atelier héros (2 cases)
+      const hero = new THREE.Group();
+      const heroPos = slotPos(PL_LBV, 1, 3).add(slotPos(PL_LBV, 2, 3)).multiplyScalar(0.5);
+      hero.position.copy(heroPos);
+      scene.add(hero);
+      const heroWall = mat(COL.white);
+      const heroRoof = mat(COL.roof);
+      box(hero, 1.06, 0.46, 0.6, -0.2, 0, 0, heroWall, true);
+      for (let k = 0; k < 3; k++) {
+        const w = 1.06 / 3;
+        const x0 = -0.73 + k * w;
+        const sh = new THREE.Shape();
+        sh.moveTo(0, 0);
+        sh.lineTo(w, 0);
+        sh.lineTo(w, 0.17);
+        sh.closePath();
+        const g = new THREE.ExtrudeGeometry(sh, { depth: 0.6, bevelEnabled: false });
+        g.translate(0, 0, -0.3);
+        const tooth = new THREE.Mesh(g, heroRoof);
+        tooth.position.set(x0, 0.46, 0);
+        tooth.castShadow = tooth.receiveShadow = true;
+        hero.add(tooth);
+        box(hero, 0.012, 0.13, 0.54, x0 + w + 0.004, 0.475, 0, M.glass);
+      }
+      box(hero, 0.4, 0.66, 0.6, 0.53, 0, 0, heroWall, true); // annexe de bureau
+      box(hero, 0.012, 0.09, 0.5, 0.735, 0.36, 0, M.glass); // fenêtres annexe face +x
+      box(hero, 0.012, 0.09, 0.5, 0.735, 0.52, 0, M.glass);
+      box(hero, 0.32, 0.09, 0.012, 0.53, 0.36, 0.304, M.glass); // face +z
+      box(hero, 0.32, 0.09, 0.012, 0.53, 0.52, 0.304, M.glass);
+      box(hero, 0.34, 0.33, 0.014, -0.3, 0, 0.304, M.door); // porte de chargement
+      box(hero, 0.18, 0.1, 0.012, 0.1, 0.24, 0.304, M.glass);
+      // palettes
+      box(hero, 0.13, 0.03, 0.13, -0.62, 0, 0.47, M.roof);
+      box(hero, 0.1, 0.1, 0.1, -0.62, 0.03, 0.47, M.white, true);
+      box(hero, 0.13, 0.03, 0.13, -0.46, 0, 0.5, M.roof);
+      // chariot élévateur
+      const fork = new THREE.Group();
+      hero.add(fork);
+      box(fork, 0.14, 0.07, 0.09, 0, 0.02, 0, M.member, true);
+      box(fork, 0.07, 0.07, 0.08, -0.02, 0.09, 0, M.white);
+      box(fork, 0.015, 0.17, 0.08, -0.08, 0.02, 0, M.door);
+      box(fork, 0.11, 0.025, 0.11, -0.15, 0.05, 0, M.roof);
+      box(fork, 0.09, 0.09, 0.09, -0.15, 0.075, 0, M.white, true);
+      for (const [x, z] of [
+        [0.04, 0.05],
+        [0.04, -0.05],
+        [-0.04, 0.05],
+        [-0.04, -0.05],
+      ])
+        cyl(fork, 0.025, 0.02, x, 0, z, M.door, 12).rotation.set(Math.PI / 2, 0, 0);
+
+      // Chantier : ossature + grue
+      const crane = new THREE.Group();
+      crane.position.copy(slotPos(PL_CRANE, 1, 3));
+      scene.add(crane);
+      const craneMat = mat(0xeeeeea);
+      for (let f = 1; f <= 3; f++) box(crane, 0.58, 0.035, 0.58, 0, f * 0.3 - 0.035, 0, mat(COL.roof));
+      for (const [x, z] of [
+        [-0.27, -0.27],
+        [0.27, -0.27],
+        [-0.27, 0.27],
+        [0.27, 0.27],
+      ])
+        box(crane, 0.035, 0.86, 0.035, x, 0, z, craneMat);
+      const mast = box(crane, 0.05, 1.9, 0.05, -0.38, 0, -0.38, craneMat);
+      const jib = new THREE.Group();
+      jib.position.set(-0.38, 1.9, -0.38);
+      crane.add(jib);
+      box(jib, 1.5, 0.045, 0.05, 0.35, 0, 0, craneMat);
+      box(jib, 0.16, 0.11, 0.09, -0.32, -0.02, 0, M.door, true);
+      box(jib, 0.08, 0.08, 0.08, 0, -0.08, 0.06, M.member, true);
+      box(jib, 0.006, 0.55, 0.006, 0.82, -0.55, 0, M.door);
+      box(jib, 0.05, 0.05, 0.05, 0.82, -0.6, 0, M.door);
+
+      // Boutique
+      const shop = new THREE.Group();
+      shop.position.copy(slotPos(PL_SHOP, 2, 2));
+      scene.add(shop);
+      const shopWall = mat(COL.white);
+      box(shop, 0.6, 0.36, 0.54, 0, 0, 0, shopWall, true);
+      box(shop, 0.6, 0.03, 0.06, 0, 0.36, 0, mat(COL.roof));
+      box(shop, 0.46, 0.18, 0.012, 0, 0.04, 0.272, M.glass);
+      const awn = box(shop, 0.6, 0.02, 0.2, 0, 0.27, 0.36, mat(COL.roof));
+      awn.rotation.x = 0.35;
+      box(shop, 0.012, 0.18, 0.4, 0.302, 0.04, 0, M.glass);
+
+      // Bureau
+      const office = new THREE.Group();
+      office.position.copy(slotPos(PL_OFFICE, 2, 3));
+      scene.add(office);
+      const officeWall = mat(COL.white);
+      box(office, 0.56, 1.05, 0.56, 0, 0, 0, officeWall, true);
+      for (let k = 0; k < 4; k++) {
+        box(office, 0.5, 0.08, 0.012, 0, 0.18 + k * 0.23, 0.282, M.glass);
+        box(office, 0.012, 0.08, 0.5, 0.282, 0.18 + k * 0.23, 0, M.glass);
+      }
+      const specials = [hero, crane, shop, office];
+      const specialWalls = [shopWall, officeWall];
+
+      // ------------------------------------------------------------------ facture et formulaires
+      const invMat = new THREE.MeshBasicMaterial({ map: null, transparent: true });
+      const invoice = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.594), invMat);
+      invoice.renderOrder = 10;
+      scene.add(invoice);
+      const NFORM = 56;
+      const formGeo = new THREE.BoxGeometry(0.42, 0.022, 0.58);
+      formGeo.translate(0, 0.011, 0);
+      const forms = new THREE.InstancedMesh(formGeo, M.paper, NFORM);
+      forms.frustumCulled = false;
+      forms.castShadow = forms.receiveShadow = true;
+      scene.add(forms);
+      const formJit = Array.from({ length: NFORM }, () => [rnd() - 0.5, rnd() - 0.5, rnd() - 0.5]);
+      const pileBase = heroPos.clone().add(new THREE.Vector3(1.08, 0, 0.12));
+
+      // ------------------------------------------------------------------ 13 fédérations
+      const FEDS = [
+        ["Construction", 337],
+        ["Services divers", 118],
+        ["Commerce", 110],
+        ["Conseil", 83],
+        ["Logistique et manutention", 83],
+        ["Industries extractives", 67],
+        ["Numérique", 67],
+        ["Industrie", 61],
+        ["Finance", 50],
+        ["Santé", 43],
+        ["Bois", 30],
+        ["Tourisme", 29],
+        ["Agriculture et pêche", 22],
+      ];
+      const PF = new THREE.Vector3(50, 0, -50); // tour FEG (centre de l'anneau)
+      const RING_R = 10;
+      const CUBE = 0.5,
+        PITCH = 0.56;
+      // les plus hautes au fond (côté opposé à la caméra), les plus basses devant
+      const towers = FEDS.map(([name, n], k) => {
+        const step = (2 * Math.PI) / 13;
+        const off = k === 0 ? 0 : Math.ceil(k / 2) * (k % 2 ? 1 : -1);
+        const phi = 225 * DEG + off * step;
+        return { name, n, k, phi, x: PF.x + RING_R * Math.cos(phi), z: PF.z + RING_R * Math.sin(phi), layers: Math.ceil(n / 16) };
+      });
+      const NCUBE = FEDS.reduce((a, f) => a + f[1], 0);
+      const cubeGeo = new RoundedBoxGeometry(CUBE, CUBE, CUBE, 1, 0.035);
+      cubeGeo.translate(0, CUBE / 2, 0);
+      const cubeMat = new THREE.MeshStandardMaterial({ color: lit(COL.member), roughness: 0.8 });
+      const cubes = new THREE.InstancedMesh(cubeGeo, cubeMat, NCUBE);
+      cubes.frustumCulled = false;
+      cubes.castShadow = cubes.receiveShadow = true;
+      scene.add(cubes);
+      const cubeList = [];
+      towers.forEach((tw) => {
+        for (let i = 0; i < tw.n; i++) {
+          const layer = Math.floor(i / 16),
+            cell = i % 16;
+          cubeList.push({ tw, layer, ox: ((cell % 4) - 1.5) * PITCH, oz: (Math.floor(cell / 4) - 1.5) * PITCH });
+        }
+      });
+
+      // ------------------------------------------------------------------ tour FEG
+      const TOWER_H = 18,
+        TW = 3.2;
+      const tower = new THREE.Group();
+      tower.position.copy(PF);
+      scene.add(tower);
+      box(tower, TW, TOWER_H, TW, 0, 0, 0, M.deep);
+      const segMats = [0, 1, 2, 3].map(() => mat(COL.white));
+      for (let s = 0; s < 4; s++) {
+        const y0 = s * 4.5 + 0.12,
+          hh = 4.5 - 0.24;
+        for (let f = 0; f < 6; f++) {
+          const o = -TW / 2 + 0.28 + f * ((TW - 0.56) / 5);
+          box(tower, 0.09, hh, 0.2, o, y0, TW / 2 + 0.08, segMats[s]);
+          box(tower, 0.2, hh, 0.09, TW / 2 + 0.08, y0, o, segMats[s]);
+        }
+        if (s > 0) box(tower, TW + 0.36, 0.12, TW + 0.36, 0, s * 4.5 - 0.06, 0, M.bronze);
+      }
+      box(tower, TW + 0.36, 0.5, TW + 0.36, 0, TOWER_H, 0, M.bronze); // couronne
+      box(tower, TW - 0.2, 0.08, TW - 0.2, 0, TOWER_H + 0.5, 0, M.white);
+      // Bureau exécutif : table ronde sur la terrasse
+      const burex = new THREE.Group();
+      burex.position.set(0, TOWER_H + 0.58, 0);
+      tower.add(burex);
+      cyl(burex, 0.08, 0.38, 0, 0, 0, M.door, 12);
+      cyl(burex, 0.85, 0.05, 0, 0.38, 0, M.white, 48);
+      // enseigne logo FEG
+      const signFEG = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      signFEG.position.set(0, 0, TW / 2 + 0.2);
+      tower.add(signFEG);
+
+      // tiroirs de services (sortent vers +x)
+      const drawers = [0, 1, 2, 3].map((s) => {
+        const d = new THREE.Group();
+        d.position.set(0, s * 4.5 + 1.1, 0);
+        tower.add(d);
+        box(d, 2.9, 0.14, 2.6, 0, 0, 0, M.white, true);
+        box(d, 2.9, 0.06, 0.08, 0, 0.14, 1.26, M.bronze);
+        box(d, 2.9, 0.06, 0.08, 0, 0.14, -1.26, M.bronze);
+        box(d, 0.08, 0.06, 2.6, 1.41, 0.14, 0, M.bronze);
+        return d;
+      });
+      const FIG_BODY = new THREE.CylinderGeometry(0.075, 0.09, 0.3, 14);
+      FIG_BODY.translate(0, 0.15, 0);
+      const FIG_HEAD = new THREE.SphereGeometry(0.075, 16, 12);
+      FIG_HEAD.translate(0, 0.38, 0);
+      function figure(parent, x, y, z, material, s = 1) {
+        const f = new THREE.Group();
+        const b = new THREE.Mesh(FIG_BODY, material);
+        const h = new THREE.Mesh(FIG_HEAD, material);
+        b.castShadow = h.castShadow = true;
+        f.add(b, h);
+        f.position.set(x, y, z);
+        f.scale.setScalar(s);
+        parent.add(f);
+        return f;
+      }
+      {
+        // 1. veille et publications : piles de documents
+        const d = drawers[0];
+        for (let k = 0; k < 4; k++) {
+          const n = 4 + k * 2;
+          for (let j = 0; j < n; j++) box(d, 0.55, 0.05, 0.75, -0.75 + k * 0.62, 0.14 + j * 0.055, -0.3 + (k % 2) * 0.35, M.paper);
+        }
+        const nl = box(d, 0.9, 1.15, 0.03, 0.6, 0.14, 0.75, M.paper);
+        nl.rotation.y = -0.2;
+        // 2. formations : tableau + chaises
+        const d2 = drawers[1];
+        box(d2, 1.6, 0.9, 0.06, -0.1, 0.5, -1.05, mat(COL.deep, { k: 1.4 }));
+        for (let r = 0; r < 2; r++)
+          for (let c = 0; c < 4; c++) {
+            const x = -0.85 + c * 0.55,
+              z = 0.05 + r * 0.6;
+            box(d2, 0.26, 0.22, 0.26, x, 0.14, z, M.roof, true);
+            figure(d2, x, 0.3, z, M.figure, 0.9);
+          }
+        figure(d2, 0.95, 0.14, -0.7, M.figMember, 1.1);
+        // 3. réseau d'affaires : table ronde
+        const d3 = drawers[2];
+        cyl(d3, 0.1, 0.45, 0, 0.14, 0, M.door, 12);
+        cyl(d3, 0.75, 0.05, 0, 0.59, 0, M.white, 48);
+        for (let k = 0; k < 6; k++) {
+          const a = (k / 6) * Math.PI * 2;
+          figure(d3, Math.cos(a) * 1.05, 0.14, Math.sin(a) * 1.05, k % 2 ? M.figure : M.figMember, 1.25);
+        }
+        // 4. médiation et arbitrage : balance
+        const d4 = drawers[3];
+        cyl(d4, 0.35, 0.08, 0, 0.14, 0, M.bronze, 32);
+        cyl(d4, 0.05, 1.0, 0, 0.22, 0, M.bronze, 12);
+        box(d4, 1.5, 0.05, 0.06, 0, 1.2, 0, M.bronze);
+        for (const s of [-1, 1]) {
+          box(d4, 0.01, 0.4, 0.01, s * 0.7, 0.82, 0, M.door);
+          cyl(d4, 0.24, 0.04, s * 0.7, 0.8, 0, M.bronze, 28);
+          figure(d4, s * 1.05, 0.14, 0.7, s < 0 ? M.figMember : M.figure, 1.25);
+        }
+      }
+
+      // ------------------------------------------------------------------ État, table du dialogue
+      const PS = new THREE.Vector3(63, 0, -63);
+      const stateB = new THREE.Group();
+      stateB.position.copy(PS);
+      scene.add(stateB);
+      box(stateB, 9.2, 0.18, 6.4, 0, 0, 0, M.stateLight);
+      box(stateB, 8.8, 0.18, 6.0, 0, 0.18, 0, M.stateLight);
+      box(stateB, 8.4, 0.18, 5.6, 0, 0.36, 0, M.stateLight);
+      box(stateB, 7.4, 3.2, 3.8, 0, 0.54, -0.6, M.state);
+      for (let k = 0; k < 6; k++) cyl(stateB, 0.24, 3.0, -3.0 + k * 1.2, 0.54, 2.05, M.stateLight, 24);
+      box(stateB, 7.8, 0.45, 1.5, 0, 3.54, 1.75, M.stateLight);
+      prism(stateB, 7.8, 1.25, 1.5, 0, 3.99, 1.75, M.stateLight);
+      box(stateB, 7.6, 0.35, 3.9, 0, 3.74, -0.6, M.state);
+      for (let k = 0; k < 3; k++) box(stateB, 1.1, 1.5, 0.05, -2.2 + k * 2.2, 0.9, 1.31, M.glass);
+
+      const PT = new THREE.Vector3(56.5, 0, -56.5); // table du dialogue
+      const table = new THREE.Group();
+      table.position.copy(PT);
+      table.rotation.y = -Math.PI / 4; // grand axe selon (1,0,1)
+      scene.add(table);
+      box(table, 0.12, 0.72, 0.12, -1.9, 0, -0.45, M.door);
+      box(table, 0.12, 0.72, 0.12, 1.9, 0, -0.45, M.door);
+      box(table, 0.12, 0.72, 0.12, -1.9, 0, 0.45, M.door);
+      box(table, 0.12, 0.72, 0.12, 1.9, 0, 0.45, M.door);
+      box(table, 4.4, 0.08, 1.35, 0, 0.72, 0, M.white, true);
+      const tableFigs = [];
+      for (let k = 0; k < 3; k++) {
+        tableFigs.push(figure(table, -1.3 + k * 1.3, 0, 1.05, M.figMember, 1.7));
+        tableFigs.push(figure(table, -1.3 + k * 1.3, 0, -1.05, M.figState, 1.7));
+      }
+
+      // ------------------------------------------------------------------ Palais des Congrès (GEF)
+      const PG = new THREE.Vector3(74, 0, -44);
+      const hall = new THREE.Group();
+      hall.position.copy(PG);
+      scene.add(hall);
+      box(hall, 17, 0.14, 11, 0, 0, 0, M.white);
+      box(hall, 0.3, 3.0, 11, -8.35, 0.14, 0, M.white, true);
+      box(hall, 17, 3.0, 0.3, 0, 0.14, -5.35, M.white, true);
+      const glassMat = new THREE.MeshStandardMaterial({ color: lit(0xa9b8b2), roughness: 0.2, metalness: 0.1, transparent: true, opacity: 0.35 });
+      const glassA = box(hall, 0.08, 3.0, 11, 8.45, 0.14, 0, glassMat);
+      const glassB = box(hall, 17, 3.0, 0.08, 0, 0.14, 5.45, glassMat);
+      glassA.castShadow = glassB.castShadow = false;
+      for (const [x, z] of [
+        [8.4, 5.4],
+        [-8.4, 5.4],
+        [8.4, -5.4],
+      ])
+        box(hall, 0.3, 3.0, 0.3, x, 0.14, z, M.white);
+      const roof = new THREE.Group();
+      roof.position.set(0, 3.14, 0);
+      hall.add(roof);
+      const roofMat = mat(COL.white);
+      roofMat.transparent = true;
+      box(roof, 18.4, 0.42, 12.2, 0, 0, 0, roofMat, true);
+      const gefTables = [];
+      for (let r = 0; r < 2; r++)
+        for (let c = 0; c < 4; c++) {
+          const g = new THREE.Group();
+          g.position.set(-5.4 + c * 3.6, 0.14, -2.4 + r * 4.8);
+          hall.add(g);
+          cyl(g, 0.1, 0.72, 0, 0, 0, M.door, 12);
+          const topMat = mat(COL.white);
+          cyl(g, 0.95, 0.06, 0, 0.72, 0, topMat, 48);
+          const figs = [];
+          for (let k = 0; k < 6; k++) {
+            const a = (k / 6) * Math.PI * 2 + 0.3;
+            figs.push(figure(g, Math.cos(a) * 1.3, 0, Math.sin(a) * 1.3, M.figure, 1.6));
+          }
+          gefTables.push({ g, topMat, figs });
+        }
+      // panneau GEF devant l'entrée
+      const gefSign = new THREE.Group();
+      gefSign.position.set(PG.x + 2.5, 0, PG.z + 7.2);
+      scene.add(gefSign);
+      box(gefSign, 0.12, 1.4, 0.12, -2.3, 0, 0, M.door);
+      box(gefSign, 0.12, 1.4, 0.12, 2.3, 0, 0, M.door);
+      const gefPanel = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), new THREE.MeshBasicMaterial({ color: 0xffffff }));
+      gefPanel.position.set(0, 2.45, 0.07);
+      gefSign.add(gefPanel);
+      box(gefSign, 5.0, 2.2, 0.12, 0, 1.35, 0, M.white);
+
+      // feuilles des 8 ateliers et Déclaration
+      const sheetGeo = new THREE.PlaneGeometry(0.62, 0.88);
+      const sheets = gefTables.map(() => {
+        const m = new THREE.Mesh(sheetGeo, new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true }));
+        m.renderOrder = 9;
+        scene.add(m);
+        return m;
+      });
+      const declMat = new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true });
+      const decl = new THREE.Mesh(new THREE.PlaneGeometry(2.6, 3.68), declMat);
+      decl.renderOrder = 11;
+      scene.add(decl);
+
+      // liaisons « réformes » : de l'État vers la carte
+      const REF_TARGETS = [
+        [222.2, 98.9],
+        [337.1, 58.1],
+        [460.9, 142],
+        [184.1, 259.8],
+        [337.1, 220.5],
+        [499.0, 261.8],
+        [260.6, 338.5],
+        [337.1, 415.3],
+      ].map(([a, b]) => nearest(a, b));
+      const arcMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(COL.accent) });
+      const arcs = REF_TARGETS.map((p, k) => {
+        const a = new THREE.Vector3(PS.x, 5.2, PS.z);
+        const b = new THREE.Vector3(p.x, 0.6, p.z);
+        const mid = a.clone().add(b).multiplyScalar(0.5);
+        mid.y = 16 + k * 1.5;
+        const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+        const g = new THREE.TubeGeometry(curve, 120, 0.2, 8, false);
+        const m = new THREE.Mesh(g, arcMat);
+        m.frustumCulled = false;
+        scene.add(m);
+        return { m, total: g.index.count };
+      });
+
+      // trace du trajet de la facture (atelier → pied de la tour)
+      const ROUTE_A = new THREE.Vector3(heroPos.x, 5.2, heroPos.z);
+      const ROUTE_B = new THREE.Vector3(PF.x - 2.6, 1.6, PF.z + 2.6);
+      const ROUTE_M = ROUTE_A.clone().add(ROUTE_B).multiplyScalar(0.5);
+      ROUTE_M.y = 14;
+      const routeCurve = new THREE.QuadraticBezierCurve3(ROUTE_A, ROUTE_M, ROUTE_B);
+      const routeGeo = new THREE.TubeGeometry(routeCurve, 160, 0.16, 8, false);
+      const route = new THREE.Mesh(routeGeo, new THREE.MeshBasicMaterial({ color: new THREE.Color(0x0a7537), transparent: true }));
+      route.frustumCulled = false;
+      scene.add(route);
+      const ROUTE_N = routeGeo.index.count;
+
+      // ------------------------------------------------------------------ caméra
+      const camera = new THREE.OrthographicCamera(-16, 16, 9, -9, 1, 1600);
+      const ISO = 35.264;
+      const hp = (v) => ({ x: v.x, y: v.y || 0, z: v.z });
+      const CAM0 = { ...hp(heroPos), y: 0.32, V: 0.98, az: 45, el: ISO };
+      const moves = [];
+      const mv = (t0, dur, to, mode = "lin", ease = inOut) => moves.push({ t0, dur, to, mode, ease });
+      function camAt(t) {
+        let s = { ...CAM0 };
+        for (const m of moves) {
+          if (t <= m.t0) break;
+          const u = prog(t, m.t0, m.dur);
+          const to = { ...s, ...m.to };
+          if (u >= 1) {
+            s = to;
+            continue;
+          }
+          const e = m.ease(u);
+          const V = Math.exp(lerp(Math.log(s.V), Math.log(to.V), e));
+          let w = e;
+          if (m.mode === "pivot" && Math.abs(to.V - s.V) > 1e-6) w = (V - s.V) / (to.V - s.V);
+          s = { x: lerp(s.x, to.x, w), y: lerp(s.y, to.y, w), z: lerp(s.z, to.z, w), V, az: lerp(s.az, to.az, e), el: lerp(s.el, to.el, e) };
+          break;
+        }
+        return s;
+      }
+      // Décalage écran : déplace la cible pour que le sujet tombe à (fx, fy) du cadre (0 = centre, ±1 = bords).
+      function framed(p, V, fx, fy, el = ISO, az = 45) {
+        const A = 16 / 9;
+        const right = new THREE.Vector3(Math.cos(az * DEG), 0, -Math.sin(az * DEG));
+        // direction écran-haut projetée au sol : se déplacer de d au sol décale l'écran de d·sin(el)
+        const upG = new THREE.Vector3(-Math.sin(az * DEG), 0, -Math.cos(az * DEG));
+        const dx = -fx * V * A;
+        const dy = -fy * V / Math.max(0.2, Math.sin(el * DEG));
+        return { x: p.x + right.x * dx + upG.x * dy, y: p.y || 0, z: p.z + right.z * dx + upG.z * dy, V, el, az };
+      }
+
+      // ------------------------------------------------------------------ temps clés (depuis la voix)
+      const T = {};
+      T.l1 = S("L01");
+      T.fork = T.l1 + 0.4;
+      T.pull1 = T.l1 + 1.6;
+      T.push2 = S("L02") - 0.75;
+      T.invUp = at("L02", "facture") - 0.25;
+      T.pile = at("L02", ["démarche", "demarche"]) - 0.15;
+      T.pileEnd = at("L02", "pèse", "e") + 0.1;
+      T.pull3 = S("L03") - 1.2;
+      T.plinth = T.pull3 + 0.55;
+      T.rise = T.plinth + 0.3;
+      T.ring = at("L03", ["13", "treize"]) - 0.65;
+      T.ringRise = T.ring + 0.5;
+      T.fedLab = T.ringRise + 0.9;
+      T.merge = S("L04") + 0.15;
+      T.tower = T.merge + 0.35;
+      T.towerDone = T.tower + 2.2;
+      T.mis = [at("L05", "Informer"), at("L05", "promouvoir"), at("L05", "participer"), at("L05", ["défendre", "defendre"])];
+      T.l5push = S("L05") - 0.6;
+      T.wide6 = S("L06") - 1.1;
+      T.inv6 = at("L06", ["préoccupation", "preoccupation"]) - 0.1;
+      T.fedM = at("L06", ["fédération", "federation"]) - 0.2;
+      T.burex = at("L06", ["Bureau"]) - 0.25;
+      T.dialog = at("L06", ["dialogue"]) - 0.25;
+      T.state = S("L06") - 0.6;
+      T.toGef = S("L07") - 1.0;
+      T.hallUp = T.toGef + 0.2;
+      T.roofUp = at("L07", ["Gabon"]) + 0.1;
+      T.invGef = at("L07", ["juin"]) - 0.3;
+      T.ateliers = at("L07", ["huit", "8"]) - 0.1;
+      T.declUp = at("L07", ["abouti"]) - 0.1;
+      T.toState = S("L08") - 0.6;
+      T.declIn = S("L08") + 0.3;
+      T.wide8 = at("L08", ["plupart"]) - 0.6;
+      T.arcs = T.wide8 + 0.6;
+      T.toTower9 = S("L09") - 1.05;
+      T.svc = [at("L09", ["veille"]) - 0.1, at("L09", ["formations"]) - 0.1, at("L09", ["réseau", "reseau"]) - 0.1, at("L09", ["médiation", "mediation"]) - 0.1];
+      T.toHero = S("L10") - 1.1;
+      T.join = at("L10", ["rejoignez"]);
+      T.final = T.join + 0.45;
+      T.logo = T.join + 3.1;
+
+      // ------------------------------------------------------------------ plan de caméra
+      const LBV = hp(heroPos);
+      // L01 : recul lent qui révèle le chantier, la boutique et le bureau
+      const lone = new THREE.Vector3().add(heroPos).add(crane.position).add(shop.position).add(office.position).multiplyScalar(0.25);
+      mv(T.pull1, E("L01") - T.pull1 + 0.3, { ...framed({ x: lone.x, y: 0.4, z: lone.z }, 4.5, -0.03, 0.0) }, "pivot", inOutQ);
+      // L02 : retour sur l'atelier, cadre assez large pour la pile
+      mv(T.push2, 1.5, { ...framed({ x: heroPos.x + 0.45, y: 0.62, z: heroPos.z + 0.1 }, 1.32, 0.0, 0.0) }, "pivot");
+      // L03 : grand recul sur la carte (carte à droite, titre à gauche)
+      mv(T.pull3, 2.5, { ...framed({ x: 0, y: 0, z: 0 }, 31, 0.3, 0.02) }, "pivot", inOut);
+      // anneau des fédérations
+      mv(T.ring, 1.7, { ...framed({ x: PF.x, y: 2.5, z: PF.z }, 19.5, 0.0, -0.08) }, "lin", inOut);
+      // L04 : poussée lente vers la tour qui naît, sujet à droite
+      mv(T.merge - 0.1, 3.2, { ...framed({ x: PF.x, y: 7, z: PF.z }, 15.5, -0.3, 0.0) }, "lin", inOutQ);
+      // L05 : cadre la tour, étiquettes à droite
+      mv(T.l5push, 1.6, { ...framed({ x: PF.x, y: 9.4, z: PF.z }, 11.4, -0.22, 0.0) }, "lin", inOut);
+      // L06 : plan large atelier + tour, puis la tour, puis la table
+      mv(T.wide6, 1.6, { ...framed({ x: (heroPos.x + PF.x) / 2, y: 0, z: (heroPos.z + PF.z) / 2 }, 31, 0.0, 0.06) }, "lin", inOut);
+      mv(T.fedM + 0.2, 1.8, { ...framed({ x: PF.x, y: 9.2, z: PF.z }, 13.2, -0.12, 0.0) }, "pivot", inOut);
+      mv(T.dialog - 0.4, 1.4, { ...framed({ x: PT.x + 1.5, y: 1.4, z: PT.z - 1.5 }, 6.6, 0.0, 0.0) }, "lin", inOut);
+      // L07 : le Palais des Congrès
+      mv(T.toGef, 1.7, { ...framed({ x: PG.x, y: 1.5, z: PG.z }, 10.8, 0.34, 0.06) }, "lin", inOut);
+      mv(T.declUp - 0.2, 1.8, { ...framed({ x: PG.x, y: 5, z: PG.z }, 12.5, 0.32, 0.0) }, "lin", inOutQ);
+      // L08 : vers l'État, puis plan d'ensemble (carte + place)
+      mv(T.toState, 1.6, { ...framed({ x: PS.x, y: 2.5, z: PS.z }, 10.5, -0.3, 0.04) }, "lin", inOut);
+      mv(T.wide8, 2.4, { ...framed({ x: 26, y: 0, z: -26 }, 50, 0.0, -0.08) }, "pivot", inOut);
+      // L09 : retour à la tour, tiroirs à droite
+      mv(T.toTower9, 1.8, { ...framed({ x: PF.x + 1.5, y: 8.6, z: PF.z }, 11.6, -0.2, 0.0) }, "pivot", inOut);
+      // L10 : retour à l'atelier, puis grand recul vertical : la carte devient le logo
+      mv(T.toHero, 1.9, { ...framed({ x: heroPos.x, y: 0.35, z: heroPos.z }, 2.5, 0.0, 0.0) }, "pivot", inOut);
+      // logo : vue de dessus, azimut 0, échelle 0,62 px écran par px logo, logo centré (cy écran 470)
+      const K_LOGO = 0.62;
+      const V_LOGO = (SC * 540) / K_LOGO;
+      const logoCenterW = { x: (433 - LCX) * SC, z: (400 - LCY) * SC };
+      const finalTarget = { x: logoCenterW.x, y: 0, z: logoCenterW.z + (540 - 470) / (540 / V_LOGO) };
+      mv(T.final, T.logo - T.final, { ...finalTarget, V: V_LOGO, az: 0, el: 90 }, "pivot", inOut);
+
+      // ------------------------------------------------------------------ étiquettes
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (p) => {
+        v3.copy(p).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080];
+      };
+      function hideLabel(name) {
+        $("wl-" + name).style.opacity = "0";
+        const k = $("wk-" + name);
+        if (k) k.setAttribute("points", "");
+      }
+      // anchor monde → point écran ; label placé à (dx, dy) ; leader en coude
+      function label(name, anchor, dx, dy, a, align = "left") {
+        const el = $("wl-" + name);
+        const ld = $("wk-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          if (ld) ld.setAttribute("points", "");
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        const lx = ax + dx,
+          ly = ay + dy;
+        let left = align === "left" ? lx + 12 : align === "right" ? lx - w - 12 : lx - w / 2;
+        let top = ly - h / 2;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(left)}px, ${Math.round(top + (1 - a) * 8)}px)`;
+        if (ld) {
+          const ex = lx;
+          const k = Math.min(1, a * 1.4);
+          const mx = ax + (ex - ax) * k,
+            my = ay + (ly - ay) * k;
+          ld.setAttribute("points", `${ax.toFixed(1)},${ay.toFixed(1)} ${mx.toFixed(1)},${my.toFixed(1)}`);
+          ld.style.strokeOpacity = (0.55 * a).toFixed(3);
+        }
+      }
+
+      // ------------------------------------------------------------------ état des objets à t
+      const mtx = new THREE.Matrix4();
+      const q = new THREE.Quaternion();
+      const sc = new THREE.Vector3();
+      const pos = new THREE.Vector3();
+      const cWhite = lit(COL.white),
+        cMember = lit(COL.member),
+        cPlinth = lit(COL.plinth),
+        cBronze = lit(COL.bronze),
+        cAccent = lit(COL.accent),
+        cTmp = new THREE.Color();
+      const yUp = new THREE.Vector3(0, 1, 0);
+      const tiny = 1e-4;
+
+      function plinthRise(p, t) {
+        return spring(prog(t, T.plinth + (p.d / MAXD) * 1.3, 0.55));
+      }
+      function finalSink(t) {
+        return inOut(prog(t, T.final + 0.9, 1.4));
+      }
+
+      function render(t) {
+        // --- caméra
+        const s = camAt(t);
+        const top = clamp01((s.el - 50) / 40);
+        const drift = (1 - top) * 0.9 * Math.sin(t * 0.11);
+        const az = (s.az + drift) * DEG,
+          el = s.el * DEG,
+          D = 400;
+        camera.position.set(s.x + Math.sin(az) * Math.cos(el) * D, s.y + Math.sin(el) * D, s.z + Math.cos(az) * Math.cos(el) * D);
+        camera.rotation.set(-el, az, 0, "YXZ");
+        const A = 16 / 9;
+        camera.left = -s.V * A;
+        camera.right = s.V * A;
+        camera.top = s.V;
+        camera.bottom = -s.V;
+        camera.near = 1;
+        camera.far = 1600;
+        camera.updateProjectionMatrix();
+        camera.updateMatrixWorld();
+        // ombre recadrée sur la vue
+        const tgt = new THREE.Vector3(s.x, 0, s.z);
+        sun.target.position.copy(tgt);
+        sun.position.copy(tgt).addScaledVector(SUN_DIR, 220);
+        const ext = Math.max(4, s.V * 2.3);
+        const shc = sun.shadow.camera;
+        shc.left = -ext;
+        shc.right = ext;
+        shc.top = ext;
+        shc.bottom = -ext;
+        shc.near = 1;
+        shc.far = 500;
+        shc.updateProjectionMatrix();
+        sun.shadow.normalBias = 0.0016 * s.V + 0.002;
+
+        // --- socles
+        const fin = finalSink(t);
+        const bronzeMix = inOut(prog(t, T.final + 1.2, 1.2));
+        for (const p of plinths) {
+          const r = plinthRise(p, t);
+          const rw = r > 0.01 ? 1 : tiny;
+          mtx.compose(pos.set(p.x, 0, p.z), q.identity(), sc.set(rw, Math.max(tiny, r), rw));
+          plInst.setMatrixAt(p.i, mtx);
+          cTmp.copy(cPlinth).lerp(cBronze, bronzeMix);
+          plInst.setColorAt(p.i, cTmp);
+        }
+        plInst.instanceMatrix.needsUpdate = true;
+        plInst.instanceColor.needsUpdate = true;
+        plInst.visible = t > T.plinth - 0.05;
+
+        // --- bâtiments de la carte
+        for (let i = 0; i < NB; i++) {
+          const b = blds[i];
+          const t0 = T.rise + (b.p.d / MAXD) * 1.3 + b.jit * 0.35;
+          const r = spring(prog(t, t0, 0.6));
+          const h = b.h * r * (1 - fin);
+          const base = PL_H * plinthRise(b.p, t);
+          const fw = h > 0.004 ? b.fw : tiny;
+          mtx.compose(pos.set(b.x, base, b.z), q.identity(), sc.set(fw, Math.max(tiny, h), fw));
+          bInst.setMatrixAt(i, mtx);
+          const g = out3(prog(t, t0 + 0.3, 0.5));
+          cTmp.copy(cWhite).lerp(cMember, g);
+          bInst.setColorAt(i, cTmp);
+        }
+        bInst.instanceMatrix.needsUpdate = true;
+        bInst.instanceColor.needsUpdate = true;
+        bInst.visible = t > T.rise - 0.05 && fin < 0.999;
+
+        // --- bâtiments spéciaux : posés sur leur socle, s'enfoncent à la fin
+        specials.forEach((g) => {
+          const pl = g === hero ? PL_LBV : g === crane ? PL_CRANE : g === shop ? PL_SHOP : PL_OFFICE;
+          g.position.y = PL_H * plinthRise(pl, t);
+          g.scale.set(1, Math.max(tiny, 1 - fin), 1);
+          g.visible = 1 - fin > 0.003;
+        });
+        const memberT = T.rise + 0.5;
+        const gm = out3(prog(t, memberT, 0.6));
+        specialWalls.forEach((m) => m.color.copy(cWhite).lerp(cMember, gm));
+        craneMat.color.copy(lit(0xeeeeea)).lerp(cMember, gm * 0.0);
+        // l'atelier reste blanc jusqu'à « rejoignez »
+        heroWall.color.copy(cWhite).lerp(cAccent, out3(prog(t, T.join, 0.6)));
+        jib.rotation.y = 0.5 + t * 0.12;
+        // chariot : apporte une palette jusqu'à la porte
+        const fu = inOut(prog(t, T.fork, 3.4));
+        fork.position.set(lerp(0.62, -0.12, fu), 0, 0.5);
+        fork.visible = t < T.pull3 + 2;
+
+        // --- facture (panneau face caméra)
+        let invP = new THREE.Vector3(heroPos.x + 0.05, 1.12, heroPos.z + 0.05);
+        let invS = 0,
+          invA = 1;
+        // L02 : se soulève au-dessus du toit
+        const up2 = expoOut(prog(t, T.invUp, 0.8));
+        invS = up2 * (1 - in3(prog(t, T.pull3 + 0.2, 0.5)));
+        invP.y = lerp(0.7, 1.12, up2);
+        // L06 : réapparaît, file vers la tour, monte au Bureau exécutif, descend sur la table
+        const SCALE6 = 10.5;
+        const towerBase = new THREE.Vector3(PF.x - 2.6, 1.6, PF.z + 2.6);
+        const towerTop = new THREE.Vector3(PF.x, TOWER_H + 2.4, PF.z);
+        const tableTop = new THREE.Vector3(PT.x, 1.25, PT.z);
+        if (t >= T.inv6) {
+          const a0 = expoOut(prog(t, T.inv6, 0.7));
+          invS = lerp(0, SCALE6, a0);
+          invP = new THREE.Vector3(heroPos.x, 2.2 + a0 * 3, heroPos.z);
+          const u1 = inOut(prog(t, T.inv6 + 0.6, T.fedM - T.inv6 - 0.5));
+          if (u1 > 0) invP = routeCurve.getPoint(u1);
+          const u2 = inOut(prog(t, T.burex - 0.3, 1.3));
+          if (u2 > 0) {
+            invP = towerBase.clone().lerp(towerTop, u2);
+            invS = lerp(SCALE6, 3.2, u2);
+          }
+          const u3 = inOut(prog(t, T.dialog - 0.35, 1.3));
+          if (u3 > 0) {
+            const mid = towerTop.clone().add(tableTop).multiplyScalar(0.5);
+            mid.y += 3;
+            invP = new THREE.QuadraticBezierCurve3(towerTop, mid, tableTop).getPoint(u3);
+            invS = lerp(3.2, 2.6, u3);
+          }
+          // L07 : de la table vers l'atelier 1 du GEF
+          const t1 = gefTables[0].g.position.clone().add(PG);
+          const gefDrop = new THREE.Vector3(t1.x, 1.6, t1.z);
+          const u4 = inOut(prog(t, T.invGef, 1.3));
+          if (u4 > 0) {
+            const mid = tableTop.clone().add(gefDrop).multiplyScalar(0.5);
+            mid.y = 9;
+            invP = new THREE.QuadraticBezierCurve3(tableTop, mid, gefDrop).getPoint(u4);
+            invS = lerp(2.6, 2.2, u4);
+          }
+          // fond dans la Déclaration
+          const u5 = prog(t, T.declUp, 1.4);
+          if (u5 > 0) {
+            const dp = new THREE.Vector3(PG.x, 8.6, PG.z);
+            invP = gefDrop.clone().lerp(dp, inOut(u5));
+            invA = 1 - clamp01(u5 * 1.6);
+          }
+        }
+        invoice.position.copy(invP);
+        invoice.quaternion.copy(camera.quaternion);
+        invoice.rotateZ(-0.05);
+        invoice.scale.setScalar(Math.max(tiny, invS));
+        invMat.opacity = invA;
+        invoice.visible = invS > 0.001 && invA > 0.001;
+
+        // --- trace du trajet
+        {
+          const u1 = inOut(prog(t, T.inv6 + 0.6, T.fedM - T.inv6 - 0.5));
+          const fadeR = 1 - prog(t, T.burex, 0.8);
+          route.geometry.setDrawRange(0, Math.floor((ROUTE_N * u1) / 3) * 3);
+          route.material.opacity = 0.9 * fadeR;
+          route.visible = u1 > 0 && fadeR > 0.01;
+        }
+
+        // --- pile de formulaires
+        const pileGone = in3(prog(t, T.pull3 + 0.15, 0.6));
+        for (let i = 0; i < NFORM; i++) {
+          const ti = T.pile + (i / NFORM) * (T.pileEnd - T.pile);
+          const u = out3(prog(t, ti, 0.28));
+          const [jx, jz, jr] = formJit[i];
+          const y = i * 0.0235 + (1 - u) * 0.6;
+          q.setFromAxisAngle(yUp, jr * 0.18);
+          const k = u > 0 ? Math.max(tiny, 1 - pileGone) : tiny;
+          mtx.compose(pos.set(pileBase.x + jx * 0.05, y * (1 - pileGone), pileBase.z + jz * 0.05), q, sc.set(k, k, k));
+          forms.setMatrixAt(i, mtx);
+        }
+        forms.instanceMatrix.needsUpdate = true;
+        forms.visible = t > T.pile - 0.1 && t < T.pull3 + 0.9;
+
+        // --- 13 tours de fédérations, puis fusion vers la tour FEG
+        const mg = inOut(prog(t, T.merge, 2.0));
+        for (let i = 0; i < cubeList.length; i++) {
+          const c = cubeList[i];
+          const tw = c.tw;
+          const t0 = T.ringRise + tw.k * 0.07;
+          const grow = out4(prog(t, t0, 1.25)) * tw.layers;
+          const lr = clamp01(grow - c.layer);
+          const shrink = 1 - mg;
+          const cx = lerp(tw.x, PF.x + (tw.x - PF.x) * 0.18, mg);
+          const cz = lerp(tw.z, PF.z + (tw.z - PF.z) * 0.18, mg);
+          const k = lr > 0.02 && shrink > 0.02 ? 1 : tiny;
+          const y = c.layer * PITCH * shrink;
+          mtx.compose(pos.set(cx + c.ox, y, cz + c.oz), q.identity(), sc.set(k, Math.max(tiny, lr * shrink), k));
+          cubes.setMatrixAt(i, mtx);
+        }
+        cubes.instanceMatrix.needsUpdate = true;
+        cubes.visible = t > T.ringRise - 0.1 && mg < 0.999;
+
+        // --- tour FEG
+        const tr = inOut(prog(t, T.tower, 2.2));
+        const tSink = inOut(prog(t, T.final + 0.2, 1.1));
+        const tyS = tr * (1 - tSink);
+        tower.scale.set(1, Math.max(tiny, tyS), 1);
+        tower.visible = tyS > 0.003;
+        for (let k = 0; k < 4; k++) {
+          const on = win(t, T.mis[k] - 0.05, 0.35, k < 3 ? T.mis[k + 1] - 0.05 : E("L05") + 0.3, 0.4);
+          segMats[k].color.copy(cWhite).lerp(lit(COL.bronzeLight), on);
+        }
+        // tiroirs
+        drawers.forEach((d, k) => {
+          const o = out4(prog(t, T.svc[k], 0.9)) * (1 - in3(prog(t, T.toHero, 0.6)));
+          d.position.x = lerp(0, 2.9, o);
+          d.visible = o > 0.002;
+        });
+
+        // --- État et table
+        const sr = spring(prog(t, T.state, 0.9)) * (1 - tSink);
+        stateB.scale.set(1, Math.max(tiny, sr), 1);
+        stateB.visible = sr > 0.003;
+        const tb = out3(prog(t, T.dialog - 0.9, 0.7)) * (1 - tSink);
+        table.scale.set(1, Math.max(tiny, tb), 1);
+        table.visible = tb > 0.003;
+
+        // --- Palais des Congrès
+        const hu = spring(prog(t, T.hallUp, 1.0)) * (1 - tSink);
+        hall.scale.set(1, Math.max(tiny, hu), 1);
+        hall.visible = hu > 0.003;
+        const gs = spring(prog(t, T.hallUp + 0.3, 0.9)) * (1 - tSink);
+        gefSign.scale.set(1, Math.max(tiny, gs), 1);
+        gefSign.visible = gs > 0.003;
+        const ru = inOut(prog(t, T.roofUp, 1.2));
+        roof.position.y = 3.14 + ru * 7;
+        roof.rotation.z = ru * 0.05;
+        roofMat.opacity = 1 - clamp01((ru - 0.35) / 0.55);
+        roof.visible = roofMat.opacity > 0.01;
+        glassMat.opacity = 0.35 * (1 - ru);
+        gefTables.forEach((gt, k) => {
+          const on = k === 0 ? out3(prog(t, T.invGef + 1.15, 0.4)) : out3(prog(t, T.ateliers + k * 0.09, 0.35));
+          gt.topMat.color.copy(cWhite).lerp(cMember, on);
+          const fp = spring(prog(t, T.roofUp + 0.5 + k * 0.06, 0.6));
+          gt.figs.forEach((f) => f.scale.setScalar(Math.max(tiny, 1.6 * fp)));
+        });
+        // feuilles des ateliers → Déclaration
+        const dp = new THREE.Vector3(PG.x, 8.6, PG.z);
+        sheets.forEach((m, k) => {
+          const tp = gefTables[k].g.position.clone().add(PG);
+          tp.y = 1.2;
+          const u = inOut(prog(t, T.declUp + k * 0.05, 1.2));
+          const a = out3(prog(t, T.declUp + k * 0.05, 0.25)) * (1 - clamp01((u - 0.8) / 0.2));
+          m.position.copy(tp.clone().lerp(dp, u));
+          m.position.y += Math.sin(u * Math.PI) * 2.5;
+          m.quaternion.copy(camera.quaternion);
+          m.scale.setScalar(lerp(1, 1.4, u));
+          m.material.opacity = a;
+          m.visible = a > 0.01;
+        });
+        // Déclaration : apparaît au-dessus du palais, file vers l'État
+        const da = out3(prog(t, T.declUp + 1.0, 0.5));
+        const dIn = inOut(prog(t, T.declIn, 1.5));
+        const statePt = new THREE.Vector3(PS.x, 5.4, PS.z + 1.4);
+        const mid = dp.clone().add(statePt).multiplyScalar(0.5);
+        mid.y += 4;
+        decl.position.copy(new THREE.QuadraticBezierCurve3(dp, mid, statePt).getPoint(dIn));
+        decl.quaternion.copy(camera.quaternion);
+        decl.scale.setScalar(Math.max(tiny, lerp(1, 0.25, in3(dIn))));
+        declMat.opacity = da * (1 - clamp01((dIn - 0.85) / 0.15));
+        decl.visible = declMat.opacity > 0.01;
+
+        // --- liaisons « réformes »
+        arcs.forEach((a, k) => {
+          const u = inOut(prog(t, T.arcs + k * 0.12, 1.5));
+          const fade = 1 - prog(t, T.toTower9 + 0.2, 0.6);
+          const n = Math.floor((a.total * u) / 3) * 3;
+          a.m.geometry.setDrawRange(0, n);
+          a.m.visible = n > 0 && fade > 0.01;
+          a.m.scale.setScalar(1);
+        });
+        arcMat.opacity = 1;
+
+        // --- étiquettes
+        // fédérations : deux colonnes, gauche et droite de l'anneau
+        const fedA = win(t, T.fedLab, 0.45, T.merge - 0.1, 0.35);
+        if (fedA > 0.001) {
+          const items = towers.map((tw) => {
+            const topP = new THREE.Vector3(tw.x, tw.layers * PITCH * clamp01(out4(prog(t, T.ringRise + tw.k * 0.07, 1.25))), tw.z);
+            const [x, y] = toScreen(topP);
+            return { tw, x, y, topP };
+          });
+          const cx = toScreen(new THREE.Vector3(PF.x, 0, PF.z))[0];
+          const L = items.filter((o) => o.x < cx).sort((a, b) => a.y - b.y);
+          const R = items.filter((o) => o.x >= cx).sort((a, b) => a.y - b.y);
+          const place = (list, side) => {
+            const n = list.length;
+            const y0 = 540 - ((n - 1) * 74) / 2 - 20;
+            list.forEach((o, j) => {
+              const el = $("wl-fed-" + o.tw.k);
+              const ld = $("wk-fed-" + o.tw.k);
+              const ly = y0 + j * 74;
+              const lx = side < 0 ? 560 : 1360;
+              const w = el.offsetWidth;
+              const a = fedA * out3(prog(t, T.fedLab + j * 0.05, 0.4));
+              el.style.opacity = a.toFixed(3);
+              const left = side < 0 ? lx - w : lx;
+              el.style.transform = `translate(${Math.round(left)}px, ${Math.round(ly - el.offsetHeight / 2)}px)`;
+              const ex = side < 0 ? lx + 14 : lx - 14;
+              ld.setAttribute("points", `${o.x.toFixed(1)},${o.y.toFixed(1)} ${(ex + (side < 0 ? 40 : -40)).toFixed(1)},${ly.toFixed(1)} ${ex.toFixed(1)},${ly.toFixed(1)}`);
+              ld.style.strokeOpacity = (0.5 * a).toFixed(3);
+            });
+          };
+          place(L, -1);
+          place(R, 1);
+        } else for (let k = 0; k < 13; k++) hideLabel("fed-" + k);
+
+        // missions : bandeaux de la tour
+        for (let k = 0; k < 4; k++) {
+          const a = win(t, T.mis[k] - 0.05, 0.45, T.wide6 - 0.2, 0.35);
+          const anchor = new THREE.Vector3(PF.x + TW / 2 + 0.25, (k * 4.5 + 2.25) * tr, PF.z - TW / 2 + 0.3);
+          label("mis-" + k, anchor, 150, 0, a, "left");
+        }
+        // circuit
+        label("cir-0", new THREE.Vector3(heroPos.x, 0.9, heroPos.z + 0.3), 40, -190, win(t, T.inv6, 0.5, T.fedM + 0.6, 0.4), "left");
+        label("cir-1", new THREE.Vector3(PF.x - TW / 2, 0.8, PF.z + TW / 2), -60, 90, win(t, T.fedM + 0.15, 0.5, T.dialog - 0.2, 0.4), "right");
+        label("cir-2", new THREE.Vector3(PF.x + TW / 2, TOWER_H + 0.6, PF.z), 120, 20, win(t, T.burex + 0.6, 0.5, T.dialog - 0.2, 0.4), "left");
+        label("cir-3", new THREE.Vector3(PT.x + 0.4, 0.9, PT.z + 0.4), 40, 130, win(t, T.dialog + 0.7, 0.5, T.toGef + 0.3, 0.4), "left");
+        label("cir-4", new THREE.Vector3(PS.x, 5.3, PS.z + 1.75), 0, -95, win(t, T.dialog + 0.95, 0.5, T.toGef + 0.3, 0.4), "center");
+        // atelier 1
+        const t1w = gefTables[0].g.position.clone().add(PG);
+        label("gef-0", new THREE.Vector3(t1w.x, 1.6, t1w.z), -80, 100, win(t, T.invGef + 1.15, 0.5, T.declUp + 0.2, 0.4), "right");
+        // services
+        for (let k = 0; k < 4; k++) {
+          const a = win(t, T.svc[k] + 0.25, 0.5, T.toHero - 0.1, 0.35);
+          const anchor = new THREE.Vector3(PF.x + 1.45 + 2.9, k * 4.5 + 1.4, PF.z);
+          label("svc-" + k, anchor, 130, 0, a, "left");
+        }
+
+        renderer.render(scene, camera);
+      }
+
+      // ------------------------------------------------------------------ chargement
+      (async function init() {
+        await Promise.all([
+          document.fonts.load('700 74px "Hyundai Sans Head"'),
+          document.fonts.load('500 30px "Hyundai Sans Head"'),
+          document.fonts.load('400 28px "Hyundai Sans Text"'),
+        ]).catch(() => {});
+        invMat.map = invoiceTexture();
+        invMat.needsUpdate = true;
+        const [tDecl, tFeg, tGef] = await Promise.all([
+          loadTex("assets/img/declaration-p1.jpg"),
+          loadTex("assets/img/feg-logo.png"),
+          loadTex("assets/img/gef-logo.png"),
+        ]);
+        declMat.map = tDecl;
+        declMat.needsUpdate = true;
+        sheets.forEach((m) => {
+          m.material.map = tDecl;
+          m.material.needsUpdate = true;
+        });
+        const fegSign = signTexture(tFeg.image, 0.1);
+        signFEG.material = new THREE.MeshBasicMaterial({ map: fegSign });
+        signFEG.scale.set(2.2, (2.2 * fegSign.image.height) / fegSign.image.width, 1);
+        signFEG.position.y = TOWER_H - 1.6;
+        const gefTx = signTexture(tGef.image, 0.06);
+        gefPanel.material = new THREE.MeshBasicMaterial({ map: gefTx });
+        gefPanel.scale.set(4.8, (4.8 * gefTx.image.height) / gefTx.image.width, 1);
+        gefPanel.position.y = 1.35 + 1.1;
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>

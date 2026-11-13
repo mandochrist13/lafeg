@@ -1,0 +1,47 @@
+[
+  {
+    "id": "sfx-pullback",
+    "src": "assets/sfx/whoosh-cinematic.mp3",
+    "line": "L03",
+    "word": null,
+    "offset": -1.15,
+    "volume": 0.32,
+    "dur": 5.544
+  },
+  {
+    "id": "sfx-gef",
+    "src": "assets/sfx/whoosh.mp3",
+    "line": "L07",
+    "word": null,
+    "offset": -0.95,
+    "volume": 0.3,
+    "dur": 0.575
+  },
+  {
+    "id": "sfx-return",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "line": "L10",
+    "word": null,
+    "offset": -1.0,
+    "volume": 0.28,
+    "dur": 0.575
+  },
+  {
+    "id": "sfx-riser",
+    "src": "assets/sfx/riser.mp3",
+    "line": "L10",
+    "word": null,
+    "offset": -5.6,
+    "volume": 0.22,
+    "dur": 10.032
+  },
+  {
+    "id": "sfx-logo",
+    "src": "assets/sfx/impact-bass-1.mp3",
+    "line": "L10",
+    "word": null,
+    "offset": 4.45,
+    "volume": 0.4,
+    "dur": 2.116
+  }
+]

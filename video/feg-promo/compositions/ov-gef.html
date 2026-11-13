@@ -1,0 +1,109 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    #gf-col {
+      position: absolute;
+      left: 132px;
+      top: 150px;
+      width: 640px;
+    }
+    #gf-kick {
+      font-weight: 500;
+      font-size: 32px;
+      color: #5c6259;
+    }
+    #gf-title {
+      margin-top: 10px;
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    #gf-title span,
+    #gf-decl span {
+      display: inline-block;
+    }
+    #gf-meta {
+      margin-top: 22px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 30px;
+      line-height: 1.35;
+      color: #3c423b;
+    }
+    #gf-decl {
+      position: absolute;
+      left: 132px;
+      top: 640px;
+      width: 700px;
+    }
+    #gf-decl-k {
+      font-weight: 500;
+      font-size: 32px;
+      color: #0a7537;
+    }
+    #gf-decl-t {
+      margin-top: 6px;
+      font-weight: 700;
+      font-size: 54px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      color: #1a1c19;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-gef" data-width="1920" data-height="1080">
+    <div id="gf-col">
+      <div id="gf-kick">2e édition · sous le Très Haut Patronage du Chef de l'État</div>
+      <div id="gf-title"><span>Gabon</span> <span>Economic</span> <span>Forum</span></div>
+      <div id="gf-meta">27 juin 2026 · Palais des Congrès, Libreville<br />8 ateliers thématiques</div>
+    </div>
+    <div id="gf-decl">
+      <div id="gf-decl-k">Issue des travaux</div>
+      <div id="gf-decl-t"><span>Déclaration</span> <span>de</span> <span>Libreville</span> <span>du</span> <span>secteur</span> <span>privé</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var W = (C.ov && C.ov["ov-gef"]) || { start: 0, dur: 8 };
+      var T0 = W.start;
+      var D = W.dur;
+      var L = function (abs) {
+        return Math.max(0, abs - T0);
+      };
+      var tTitle = L(C.at("L07", ["Gabon"]) - 0.15);
+      var tMeta = L(C.at("L07", ["juin"]) - 0.2);
+      var tDecl = L(C.at("L07", ["Déclaration", "declaration"]) - 0.1);
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#gf-kick", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tTitle - 0.25);
+      tl.fromTo("#gf-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, tTitle);
+      tl.fromTo("#gf-meta", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tMeta);
+      tl.fromTo("#gf-decl-k", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, tDecl - 0.2);
+      tl.fromTo("#gf-decl-t span", { color: "#c9ccc5" }, { color: "#1a1c19", duration: 0.12, stagger: 0.08, ease: "none" }, tDecl);
+      tl.fromTo("#gf-decl-t", { opacity: 0 }, { opacity: 1, duration: 0.1 }, tDecl);
+      tl.fromTo("#gf-col", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in", immediateRender: false }, tDecl - 0.45);
+      tl.fromTo("#gf-decl", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.25, ease: "power3.in", immediateRender: false }, Math.max(tDecl + 1.8, D - 0.35));
+      window.__timelines["ov-gef"] = tl;
+    })();
+  </script>
+</template>
