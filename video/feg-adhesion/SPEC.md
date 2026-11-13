@@ -4,7 +4,7 @@ GOAL: un chef d'entreprise gabonais sait qu'il doit d'abord être une entreprise
 
 OUTPUT: HyperFrames, 1920 × 1080, 30 i/s, MP4 H.264, voix off Despina + musique.
 
-TIME: 91,7 s (fixé par la voix off) ≈ 2750 images. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
+TIME: 95,6 s (fixé par la voix off) ≈ 2868 images. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
 
 ## LOOK
 
@@ -26,7 +26,7 @@ TIME: 91,7 s (fixé par la voix off) ≈ 2750 images. Musique SoundHill « Find 
 - **Signature** : trait d'encre noire qui se dessine. **Cachet** : empreinte ronde verte « VOTRE ENTREPRISE ».
 - **Immeuble Odyssée** : tour élancée à ailettes verticales, entrée vitrée, logo FEG au-dessus de la porte ; un agent d'accueil.
 - **La salle des instances** : table vue de face, quatre membres assis, le dossier ouvert. Carte de décision avec les trois cases du vrai dossier : Acceptée, Acceptée sous réserve, Refusée.
-- **Six mois** : six cases de calendrier qui se remplissent.
+- **Trois mois** : trois cases qui se remplissent (délai pour compléter un dossier accepté sous réserve, indiqué par la FEG).
 - **Cotisation** : un escalier de dix tranches, sans aucun montant, avec le repère « votre chiffre d'affaires » ; un ticket « Droit d'accès · première adhésion ».
 - **Poignée de main** : en pied, de profil, la dirigeante et un représentant de la FEG devant le logo ; les mains serrées à leur taille naturelle (le gros plan de la v1 faisait trop dessiné).
 - **Carte de membre** : logo FEG, « Membre », liseré bronze.
@@ -63,11 +63,11 @@ Les étapes 1 et 2 sont dans le même plan (s3), le dossier restant à l'écran.
 3. **S3 · Le dossier** (L04–L05) : le dossier s'ouvre ; les pages arrivent quand la voix les nomme ; la fédération métier est cochée ; la déclaration est signée puis cachetée. Surtitre « Étape 1 ».
 4. **S4 · Les justificatifs** (L06, début) : les justificatifs CNSS et CNAMGS se trombonnent au dossier, qui se ferme ; ses mains le soulèvent. « Étape 2 ».
 5. **S5 · Le dépôt** (L06, fin) : vue de face, rue ; elle marche vers l'Immeuble Odyssée et remet le dossier à l'accueil. « Étape 3 », adresse et info@lafeg.ga.
-6. **S6 · La validation** (L07) : les instances examinent le dossier ; « Acceptée » se coche ; puis « sous réserve » et six mois qui se remplissent. « Étape 4 ».
+6. **S6 · La validation** (L07) : les instances examinent le dossier ; « Acceptée » se coche ; puis « sous réserve » et trois mois qui se remplissent. « Étape 4 ».
 7. **S7 · La cotisation** (L08) : l'escalier des tranches, son repère, puis le droit d'accès. « Étape 5 ». Aucun montant.
 8. **S8 · Membre** (L09) : poignée de main en pied devant le logo de la FEG, puis la table de sa fédération qui l'accueille.
 9. **S9 · Chaque année** (L10) : le calendrier « 31 mars », la fiche entreprise se met à jour. « Étape 6 ».
-10. **S10 · Fin** (L11) : « S'unir pour être plus fort », puis logo FEG, « Devenez membre · lafeg.ga », info@lafeg.ga, tenus au moins 2,5 s.
+10. **S10 · Fin** (L11) : « Bâtir ensemble une économie forte », « pour garantir la souveraineté nationale », puis logo FEG, « Devenez membre · lafeg.ga », info@lafeg.ga, tenus au moins 2,5 s.
 
 ## BANNED
 
@@ -79,7 +79,7 @@ Fond sombre ; lueurs, particules ; dégradés violet/bleu, cartes en verre ; pap
 - Les cinq pièces nommées et tamponnées, étiquettes ≥ 28 px ; le cadenas ne s'ouvre qu'au cinquième tampon.
 - Les vraies pages du dossier reconnaissables ; une fédération cochée ; signature et cachet visibles.
 - Dépôt : l'immeuble et l'adresse lisibles.
-- Validation : « Acceptée » puis « sous réserve · 6 mois ».
+- Validation : « Acceptée » puis « sous réserve · 3 mois ».
 - Cotisation : aucun chiffre en FCFA nulle part.
 - La poignée de main se lit au premier coup d'œil ; la table compte au moins six personnes.
 - Carte de fin : logo et appel à l'action tenus au moins 2,5 s.

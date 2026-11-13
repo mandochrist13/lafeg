@@ -1,4 +1,11 @@
-# REVIEW — « Comment adhérer à la FEG » (v2)
+# REVIEW — « Comment adhérer à la FEG » (v3)
+
+## v3 : demandes de la FEG
+
+- **Phrase de fin** : « S'unir pour être plus fort » devient « Bâtir ensemble une économie forte, pour garantir la souveraineté nationale : rejoignez la Fédération des Entreprises du Gabon. » À l'écran, la phrase s'affiche avant le logo, avec « souveraineté nationale » en vert.
+- **Dossier incomplet** : accepté sous réserve, avec **trois mois** (et non six) pour le compléter, dans la voix comme à l'écran (trois cases qui se remplissent). Attention : la page 2 du dossier d'adhésion 2026 indique encore « six (6) mois ».
+- **Voix** : L07 et L11 régénérées (Despina). Une première prise de L11 disait « Bâtissons » au lieu de « Bâtir » ; elle a été refaite avec la consigne de lire le texte mot pour mot. Une transcription neutre (sans le texte attendu) entend « Bâtir », et « trois mois ».
+- Durée : 95,6 s.
 
 ## v2 : demandes de la FEG
 
@@ -19,14 +26,14 @@
   - images des mains vérifiées dans le MP4 final.
 
 
-Un fichier : `renders/FEG-comment-adherer-v2.mp4`, 1920 × 1080, 30 i/s, 1 min 32 s (91,7 s), voix off et musique.
+Un fichier : `renders/FEG-comment-adherer-v3.mp4`, 1920 × 1080, 30 i/s, 1 min 36 s (95,6 s), voix off et musique.
 
-Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/FEG-comment-adherer-v2.mp4`.
+Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/FEG-comment-adherer-v3.mp4`.
 
 ## Choix de création
 
 - **Storyline A, « Le dossier »**, choisie par la FEG : une dirigeante de PME suit tout le parcours. Les deux autres pistes, non construites, restent décrites dans `STORYLINES.md` : B « Le contrôle » (un parcours fléché, style signalétique) et C « Le fil » (un seul trait qui dessine tout).
-- **Style 2D à plat** (demande : pas d'isométrique, des formes humaines, des partenariats). Les personnages sont articulés (`assets/people.js`) : tête, bras, avant-bras, yeux et bouche s'animent. Proportions réelles, peaux brunes, aucune caricature. Les partenariats sont montrés par une poignée de main en pied devant le logo, la table de la fédération qui accueille la dirigeante et, à la fin, sept membres main dans la main sous le logo.
+- **Style 2D à plat** (demande : pas d'isométrique, des formes humaines, des partenariats). Les personnages sont articulés (`assets/people.js`) : tête, bras, avant-bras, yeux et bouche s'animent. Proportions réelles, peaux brunes, aucune caricature. Les partenariats sont montrés par une poignée de main en pied devant le logo, la table de la fédération qui accueille la dirigeante et, à la fin, sept membres main dans la main sous le logo, sur « Bâtir ensemble une économie forte ».
 - **Entreprise formelle en tête du film** : « Condition impérative ». Le dossier est fermé par une sangle et un cadenas, qui ne s'ouvre qu'une fois les cinq pièces tamponnées « À JOUR » (RCCM, NIF, CNSS, CNAMGS, impôts), chacune au mot près dans la voix.
 - **Les vraies pages du dossier 2026** (procédure, lettre de demande, fiche entreprise, choix de la fédération métier, déclaration d'engagement) apparaissent quand la voix les nomme. La fédération cochée, « Logistique et manutention », est un exemple.
 - **Aucun montant de cotisation** (choix de la FEG) : un escalier de dix tranches sans chiffre, avec la marche de la dirigeante, puis un ticket « Droit d'accès · première adhésion ».

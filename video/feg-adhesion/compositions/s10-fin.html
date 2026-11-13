@@ -18,7 +18,7 @@
       top: 170px;
       width: 900px;
       font-weight: 700;
-      font-size: 104px;
+      font-size: 96px;
       line-height: 1;
       letter-spacing: -0.02em;
       color: #063d21;
@@ -27,6 +27,17 @@
       display: inline-block;
     }
     #s10-title .acc {
+      color: #0a7537;
+    }
+    #s10-sub {
+      margin-top: 22px;
+      font-weight: 500;
+      font-size: 46px;
+      letter-spacing: -0.005em;
+      color: #3c423b;
+    }
+    #s10-sub b {
+      font-weight: 700;
       color: #0a7537;
     }
     #s10-logo {
@@ -68,7 +79,7 @@
       <ellipse cx="960" cy="1042" rx="760" ry="12" fill="#000" opacity="0.05" />
     </svg>
     <div id="s10-people" class="s10-abs"></div>
-    <div id="s10-title"><span class="acc">S'unir</span> <span>pour</span><br /><span>être</span> <span>plus</span> <span>fort</span></div>
+    <div id="s10-title"><span>Bâtir</span> <span>ensemble</span><br /><span>une</span> <span>économie</span> <span>forte</span><div id="s10-sub">pour garantir la <b>souveraineté nationale</b></div></div>
     <img id="s10-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
     <div id="s10-cta">
       <div id="s10-line"><span>Devenez</span> <span>membre</span> <span>·</span> <span id="s10-url">lafeg.ga</span></div>
@@ -105,7 +116,7 @@
         var sx = (sex === "m" ? 79 : 70) * S;
         return (Math.asin((110 - sx) / (220 * S)) * 180) / Math.PI;
       }
-      var tJoin = L(C.at("L11", ["S'unir", "unir"]) + 0.05);
+      var tJoin = L(C.at("L11", ["Bâtir", "batir"]) + 0.05);
       ppl.forEach(function (p, i) {
         P.prep(p.id);
         gsap.set("#" + p.id + "-uaL", { rotation: 5 });
@@ -121,8 +132,9 @@
       tl.to("#s10-people", { y: 0, duration: 0.5, ease: "power3.out" }, 0.0);
       // titre, puis le logo et l'appel à l'action sur « rejoignez »
       tl.fromTo("#s10-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, tJoin - 0.05);
+      tl.fromTo("#s10-sub", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.22, ease: "power4.out" }, L(C.at("L11", ["pour"]) - 0.1));
       var tLogo = C.logo - C.sc.s10.start;
-      tl.to("#s10-title", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, tLogo - 0.3);
+      tl.to("#s10-title", { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, tLogo - 0.12);
       tl.fromTo("#s10-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo);
       tl.fromTo("#s10-line span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.08, ease: "power4.out" }, tLogo + 1.0);
       tl.fromTo("#s10-contact", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tLogo + 1.6);

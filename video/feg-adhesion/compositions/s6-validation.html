@@ -100,7 +100,7 @@
     }
     #s6-months .seg {
       display: inline-block;
-      width: 92px;
+      width: 180px;
       height: 18px;
       margin-right: 10px;
       border-radius: 9px;
@@ -160,8 +160,8 @@
       </div>
     </div>
     <div id="s6-months">
-      <div class="ml">Incomplet : 6 mois pour compléter</div>
-      <span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span>
+      <div class="ml">Incomplet : 3 mois pour compléter</div>
+      <span class="seg"><i></i></span><span class="seg"><i></i></span><span class="seg"><i></i></span>
     </div>
   </div>
   <script>
@@ -219,12 +219,12 @@
         );
       });
       tl.to("#c3-head", { y: 4, duration: 0.18, ease: "power2.inOut" }, tVal + 0.5).to("#c3-head", { y: 0, duration: 0.22, ease: "power2.inOut" }, tVal + 0.68);
-      // « Incomplet, il est accepté sous réserve » : la deuxième ligne, puis six mois
+      // « Incomplet, il est accepté sous réserve » : la deuxième ligne, puis trois mois
       var tRes = L(C.at("L07", ["accepté", "accepte"]));
       tl.to("#s6-hl", { opacity: 1, duration: 0.3, ease: "power2.out" }, tRes - 0.2).to("#s6-t2", { strokeDashoffset: 0, duration: 0.28, ease: "power2.out" }, L(C.at("L07", ["réserve", "reserve"])));
-      var tSix = L(C.at("L07", ["six"]) - 0.15);
+      var tSix = L(C.at("L07", ["trois"]) - 0.15);
       tl.fromTo("#s6-months", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tSix - 0.35);
-      tl.to("#s6-months .seg i", { scaleX: 1, duration: 0.16, stagger: 0.12, ease: "power1.out" }, tSix + 0.1);
+      tl.to("#s6-months .seg i", { scaleX: 1, duration: 0.24, stagger: 0.2, ease: "power1.out" }, tSix + 0.1);
       ppl.forEach(function (p, i) {
         P.breathe(tl, p.id, 0.2 * i, D, 3.6 + 0.3 * i, 0.007);
       });
