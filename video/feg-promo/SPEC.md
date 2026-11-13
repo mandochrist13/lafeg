@@ -9,7 +9,7 @@ TIME: ~100 s (fixé par la voix off) ≈ 3000 images. Musique ~96 BPM → 18,75 
 ## LOOK
 
 - **Médium** : maquette d'architecte blanche, projection orthographique isométrique vraie (azimut 45°, élévation 35,26°), éclairée comme un modèle en studio. Pas d'horizon : le sol remplit tout le cadre.
-- **Sol** : #E8E9E4 (pierre froide), mat (rugosité 1).
+- **Sol** : #FFFFFF (blanc pur, demandé par la FEG après la v2 : la pierre froide #E8E9E4 était jugée trop terne), mat (rugosité 1). Les ombres douces donnent le relief.
 - **Maquette** : #F4F4EF, rugosité 0,85, arêtes arrondies à 0,04 u. Bâtiments isolés et non-membres.
 - **Vert FEG** : #0A7537 = entreprise membre (le bâtiment change de couleur quand il rejoint) ; #063D21 = institution, titres.
 - **Bronze** : #AEAE7D (points du logo, couronne de la tour FEG, sceau de la Déclaration), #DCDAA4 en reflet. Rationné : jamais plus d'un élément bronze par plan avant la fin.

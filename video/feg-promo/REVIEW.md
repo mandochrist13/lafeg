@@ -16,6 +16,11 @@ Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans
 - **Version sans voix** : couche de titres `compositions/ov-titres.html`. Elle contient la citation du Président (« L'histoire économique d'un pays s'écrit sur le terrain… », Alain-Claude Kouakoua, site lafeg.ga), « Seule, une entreprise pèse peu », « 13 fédérations métiers », « Porter la voix des entreprises », « Votre préoccupation remonte jusqu'à l'État », « Des services au quotidien » et le thème du GEF 2026 (texte exact de la Déclaration).
 - Cadrages ajustés pour laisser une zone libre à chaque titre : atelier en bas à droite à l'ouverture, en haut à gauche de la fin.
 
+## Fond blanc (v4)
+
+- La FEG trouvait la pierre froide #E8E9E4 trop terne. Le sol de la maquette et le fond de la page sont désormais en blanc pur (#FFFFFF). La lumière est inchangée : les ombres douces et les faces ombrées gardent le relief des bâtiments blancs, et les verts ressortent davantage.
+- Voix (Despina), musique, textes et calage sont inchangés.
+
 ## Thème du GEF 2026 synchronisé (v3, version voix)
 
 - Pendant la phrase finale, le thème officiel « Des entreprises fortes pour une croissance durable et une prospérité partagée » s'affiche en haut à gauche, sur trois lignes, sous le titre « Thème du Gabon Economic Forum 2026 » (`compositions/ov-theme.html`).
