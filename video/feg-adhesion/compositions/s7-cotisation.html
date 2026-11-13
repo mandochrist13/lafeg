@@ -149,7 +149,7 @@
       tl.fromTo("#s7-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, 0.25);
       // l'escalier monte quand la voix dit « cotisation annuelle »
       var tCot = L(C.at("L08", ["réglez", "reglez"]));
-      var tRise = L(C.lines.L08.start) + 0.25;
+      var tRise = 0.2;
       for (var k = 0; k < 10; k++) tl.fromTo("#s7-st" + k, { scaleY: 0 }, { scaleY: 1, duration: 0.42, ease: "expo.out" }, tRise + k * 0.06);
       tl.fromTo("#s7-axis", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tRise + 0.4);
       tl.fromTo("#s7-arrow", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tRise + 0.4);

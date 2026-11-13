@@ -40,7 +40,23 @@ TIME: ≈ 88 s (fixé par la voix off) ≈ 2640 images. Musique SoundHill « Fin
 - **Caméra** : poussées et recadrages en `power2.inOut` de 1,0 à 1,6 s, puis immobile. Raccords d'objet à objet entre les plans.
 - **Titres** : mot à mot, flou 6 px → 0 et opacité en 0,13 s, décalage 0,067 s ; sortie floue 8 px en 0,22 s `power3.in` ; figés une fois posés. Étiquettes : avec leur objet, 0,2 s.
 
-## SHOTS (temps réels après la voix off, voir le tableau généré)
+## SHOTS
+
+Temps réels, calés sur la voix off (générés par `tools/build.mjs`) :
+
+| Plan | Phrases | Début | Fin |
+| --- | --- | --- | --- |
+| s1 · Le bureau | L01 | 0,00 s | 7,61 s |
+| s2 · Entreprise formelle | L02–L03 | 7,61 s | 24,53 s |
+| s3 · Le dossier et les justificatifs | L04–L06 | 24,53 s | 44,98 s |
+| s5 · Le dépôt | L06 | 44,38 s | 50,21 s |
+| s6 · La validation | L07 | 50,21 s | 59,52 s |
+| s7 · La cotisation | L08 | 59,52 s | 67,92 s |
+| s8 · Membre | L09 | 67,92 s | 76,66 s |
+| s9 · Chaque année | L10 | 76,66 s | 83,24 s |
+| s10 · Fin | L11 | 83,24 s | 92,59 s (logo à 85,75 s) |
+
+Les étapes 1 et 2 sont dans le même plan (s3), le dossier restant à l'écran.
 
 1. **S1 · Le bureau** (L01) : vue de face, la dirigeante à son bureau pose le dossier vert devant elle ; titre « Comment adhérer à la FEG ? ». Poussée lente 1,00 → 1,06 ; fin sur le dossier.
 2. **S2 · Entreprise formelle** (L02–L03) : vue de dessus, le dossier fermé par un cadenas ; titre « Condition impérative » / « Être une entreprise formelle ». Ses mains posent les cinq pièces, chacune tamponnée « À JOUR » quand la voix la nomme. Au cinquième tampon, le cadenas s'ouvre.

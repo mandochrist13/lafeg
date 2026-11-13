@@ -129,7 +129,7 @@
       }
       var tl = gsap.timeline({ paused: true });
       var arcLen = 1700;
-      gsap.set("#s9-arc", { strokeDasharray: arcLen, strokeDashoffset: arcLen });
+      gsap.set("#s9-arc", { strokeDasharray: arcLen, strokeDashoffset: arcLen, opacity: 0 });
       gsap.set("#s9-head", { opacity: 0 });
       gsap.set(".s9-hl", { scaleX: 0 });
       var p0 = penAt(1900, 1500);
@@ -141,7 +141,7 @@
       tl.fromTo("#s9-page", { opacity: 0, x: 160 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 0.3);
       // « chaque année » : la boucle se trace autour du calendrier
       var tYear = L(C.at("L10", ["chaque"]) - 0.05);
-      tl.to("#s9-arc", { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, tYear).to("#s9-head", { opacity: 1, duration: 0.15 }, tYear + 0.92);
+      tl.set("#s9-arc", { opacity: 1 }, tYear).to("#s9-arc", { strokeDashoffset: 0, duration: 1.0, ease: "power2.inOut" }, tYear).to("#s9-head", { opacity: 1, duration: 0.15 }, tYear + 0.92);
       // « 31 mars » : le chiffre s'appuie
       var t31 = L(C.at("L10", ["trente"]));
       tl.fromTo("#s9-cal .dd", { scale: 1 }, { scale: 1.08, duration: 0.18, ease: "power2.out" }, t31).to("#s9-cal .dd", { scale: 1, duration: 0.3, ease: "power2.inOut" }, t31 + 0.2);
