@@ -62,7 +62,7 @@
     }
     #tt-quote {
       left: 132px;
-      top: 210px;
+      top: 118px;
       width: 900px;
     }
     #tt-seule {
@@ -116,7 +116,7 @@
       <span class="a">Alain-Claude Kouakoua, Président de la FEG</span>
     </div>
     <div id="tt-seule" class="tt">
-      <span class="h"><span>Seule,</span> <span>une</span> <span>entreprise</span> <span>pèse</span> <span>peu.</span></span>
+      <span class="h"><span>Seule,</span> <span>une</span> <span>entreprise</span> <span>peine</span> <span>à</span> <span>se</span> <span>faire</span> <span>entendre.</span></span>
     </div>
     <div id="tt-feds" class="tt">
       <span class="k">Organisées par métier</span>
@@ -135,7 +135,7 @@
       <span class="h"><span>Des</span> <span>services</span> <span>au</span> <span>quotidien</span></span>
     </div>
     <div id="tt-theme" class="tt">
-      <span class="k">Thème du Gabon Economic Forum 2026</span>
+      <span class="k">Thème du Gabon Economic Forum</span>
       <span class="q"><span>Des</span> <span>entreprises</span> <span>fortes</span> <span>pour</span> <span>une</span> <span>croissance</span> <span>durable</span> <span>et</span> <span>une</span> <span>prospérité</span> <span>partagée</span></span>
     </div>
   </div>
@@ -155,11 +155,14 @@
       };
       var tl = gsap.timeline({ paused: true });
       // entrée mot à mot (flou → net), sortie flou ; titres immobiles une fois posés
+      var has = function (q) {
+        return document.querySelector(q) !== null;
+      };
       function show(sel, tIn, tOut) {
         tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.01 }, tIn);
-        tl.fromTo(sel + " .k", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tIn);
+        if (has(sel + " .k")) tl.fromTo(sel + " .k", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tIn);
         tl.fromTo(sel + " .h span, " + sel + " .q span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.07, ease: "power4.out" }, tIn + 0.12);
-        tl.fromTo(sel + " .a", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tIn + 1.2);
+        if (has(sel + " .a")) tl.fromTo(sel + " .a", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tIn + 1.2);
         tl.fromTo(sel, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.24, ease: "power3.in", immediateRender: false }, tOut);
       }
       show("#tt-quote", L(0.35), L(S("L02") - 0.45));

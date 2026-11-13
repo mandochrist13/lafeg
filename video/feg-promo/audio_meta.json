@@ -110,98 +110,103 @@
       "path": "assets/voice/L02.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 5.287,
+      "duration_s": 6.291,
       "speech": [
-        0.121,
-        5.107
+        0.12,
+        6.107
       ],
-      "pauses": 2,
+      "pauses": 5,
       "anchored": 2,
       "words": [
         {
           "text": "Mais",
-          "start": 0.121,
-          "end": 0.525
+          "start": 0.12,
+          "end": 0.197
         },
         {
           "text": "seule,",
-          "start": 0.525,
-          "end": 0.93
-        },
-        {
-          "text": "face",
-          "start": 1.076,
-          "end": 1.28
-        },
-        {
-          "text": "à",
-          "start": 1.28,
-          "end": 1.485
+          "start": 0.197,
+          "end": 0.274
         },
         {
           "text": "une",
-          "start": 1.485,
-          "end": 1.689
-        },
-        {
-          "text": "facture",
-          "start": 1.689,
-          "end": 2.099
-        },
-        {
-          "text": "impayée",
-          "start": 2.099,
-          "end": 2.508
-        },
-        {
-          "text": "ou",
-          "start": 2.508,
-          "end": 2.713
-        },
-        {
-          "text": "à",
-          "start": 2.713,
-          "end": 2.917
-        },
-        {
-          "text": "une",
-          "start": 2.917,
-          "end": 3.122
-        },
-        {
-          "text": "démarche",
-          "start": 3.122,
-          "end": 3.531
-        },
-        {
-          "text": "sans",
-          "start": 3.531,
-          "end": 3.736
-        },
-        {
-          "text": "fin,",
-          "start": 3.736,
-          "end": 3.94
-        },
-        {
-          "text": "une",
-          "start": 4.094,
-          "end": 4.263
+          "start": 0.477,
+          "end": 0.696
         },
         {
           "text": "entreprise",
-          "start": 4.263,
-          "end": 4.769
+          "start": 0.696,
+          "end": 1.354
+        },
+        {
+          "text": "peine",
+          "start": 1.354,
+          "end": 1.573
+        },
+        {
+          "text": "à",
+          "start": 1.573,
+          "end": 1.792
+        },
+        {
+          "text": "se",
+          "start": 1.792,
+          "end": 2.012
+        },
+        {
+          "text": "faire",
+          "start": 2.012,
+          "end": 2.231
+        },
+        {
+          "text": "entendre,",
+          "start": 2.231,
+          "end": 2.669
+        },
+        {
+          "text": "et",
+          "start": 2.82,
+          "end": 3.072
         },
         {
           "text": "pèse",
-          "start": 4.769,
-          "end": 4.938
+          "start": 3.072,
+          "end": 3.325
         },
         {
-          "text": "peu.",
-          "start": 4.938,
-          "end": 5.107
+          "text": "peu",
+          "start": 3.325,
+          "end": 3.578
+        },
+        {
+          "text": "sur",
+          "start": 3.578,
+          "end": 3.831
+        },
+        {
+          "text": "les",
+          "start": 3.831,
+          "end": 4.084
+        },
+        {
+          "text": "décisions",
+          "start": 4.084,
+          "end": 4.843
+        },
+        {
+          "text": "qui",
+          "start": 4.843,
+          "end": 5.095
+        },
+        {
+          "text": "la",
+          "start": 5.095,
+          "end": 5.348
+        },
+        {
+          "text": "concernent.",
+          "start": 5.348,
+          "end": 6.107
         }
       ]
     },
@@ -210,128 +215,158 @@
       "path": "assets/voice/L03.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 10.263,
+      "duration_s": 11.055,
       "speech": [
-        0.122,
-        10.071
+        0.12,
+        10.875
       ],
       "pauses": 4,
       "anchored": 3,
       "words": [
         {
           "text": "Depuis",
-          "start": 0.122,
-          "end": 0.469
+          "start": 0.12,
+          "end": 0.553
         },
         {
-          "text": "1959,",
-          "start": 0.469,
-          "end": 1.685
+          "text": "mille",
+          "start": 0.553,
+          "end": 0.77
+        },
+        {
+          "text": "neuf",
+          "start": 0.77,
+          "end": 0.986
+        },
+        {
+          "text": "cent",
+          "start": 0.986,
+          "end": 1.203
+        },
+        {
+          "text": "cinquante-neuf,",
+          "start": 1.203,
+          "end": 2.069
         },
         {
           "text": "la",
-          "start": 1.802,
-          "end": 1.961
+          "start": 2.421,
+          "end": 2.593
         },
         {
           "text": "Fédération",
-          "start": 1.961,
-          "end": 2.598
+          "start": 2.593,
+          "end": 3.282
         },
         {
           "text": "des",
-          "start": 2.598,
-          "end": 2.757
+          "start": 3.282,
+          "end": 3.454
         },
         {
           "text": "Entreprises",
-          "start": 2.757,
-          "end": 3.393
+          "start": 3.454,
+          "end": 4.143
         },
         {
           "text": "du",
-          "start": 3.393,
-          "end": 3.552
+          "start": 4.143,
+          "end": 4.315
         },
         {
           "text": "Gabon",
-          "start": 3.552,
-          "end": 3.87
+          "start": 4.315,
+          "end": 4.659
         },
         {
           "text": "rassemble",
-          "start": 3.87,
-          "end": 4.188
+          "start": 4.659,
+          "end": 5.004
         },
         {
           "text": "ceux",
-          "start": 4.188,
-          "end": 4.347
+          "start": 5.004,
+          "end": 5.176
         },
         {
           "text": "qui",
-          "start": 4.347,
-          "end": 4.506
+          "start": 5.176,
+          "end": 5.348
         },
         {
           "text": "font",
-          "start": 4.506,
-          "end": 4.666
+          "start": 5.348,
+          "end": 5.52
         },
         {
           "text": "l'économie",
-          "start": 4.666,
-          "end": 5.302
+          "start": 5.52,
+          "end": 6.209
         },
         {
           "text": "du",
-          "start": 5.302,
-          "end": 5.461
+          "start": 6.209,
+          "end": 6.381
         },
         {
           "text": "pays",
-          "start": 5.461,
-          "end": 5.62
+          "start": 6.381,
+          "end": 6.553
         },
         {
           "text": ":",
-          "start": 5.62,
-          "end": 5.779
+          "start": 6.553,
+          "end": 6.725
         },
         {
-          "text": "1 118",
-          "start": 6.455,
-          "end": 7.277
+          "text": "plus",
+          "start": 7.426,
+          "end": 7.635
+        },
+        {
+          "text": "de",
+          "start": 7.635,
+          "end": 7.843
+        },
+        {
+          "text": "mille",
+          "start": 7.843,
+          "end": 8.052
+        },
+        {
+          "text": "cent",
+          "start": 8.052,
+          "end": 8.26
         },
         {
           "text": "entreprises,",
-          "start": 7.277,
-          "end": 7.935
+          "start": 8.26,
+          "end": 9.094
         },
         {
           "text": "réparties",
-          "start": 8.092,
-          "end": 8.587
+          "start": 9.228,
+          "end": 9.677
         },
         {
           "text": "en",
-          "start": 8.587,
-          "end": 8.752
+          "start": 9.677,
+          "end": 9.827
         },
         {
-          "text": "13",
-          "start": 8.752,
-          "end": 9.081
+          "text": "treize",
+          "start": 9.827,
+          "end": 9.977
         },
         {
           "text": "fédérations",
-          "start": 9.081,
-          "end": 9.741
+          "start": 9.977,
+          "end": 10.575
         },
         {
           "text": "métiers.",
-          "start": 9.741,
-          "end": 10.071
+          "start": 10.575,
+          "end": 10.875
         }
       ]
     },
@@ -625,133 +660,143 @@
       "path": "assets/voice/L07.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 8.824,
+      "duration_s": 9.85,
       "speech": [
-        0.121,
-        8.643
+        0.12,
+        9.669
       ],
-      "pauses": 2,
-      "anchored": 2,
+      "pauses": 5,
+      "anchored": 3,
       "words": [
         {
           "text": "Ce",
-          "start": 0.121,
-          "end": 0.29
+          "start": 0.12,
+          "end": 0.287
         },
         {
           "text": "dialogue",
-          "start": 0.29,
-          "end": 0.797
+          "start": 0.287,
+          "end": 0.789
         },
         {
           "text": "a",
-          "start": 0.797,
-          "end": 0.966
+          "start": 0.789,
+          "end": 0.956
         },
         {
           "text": "son",
-          "start": 0.966,
-          "end": 1.135
+          "start": 0.956,
+          "end": 1.123
         },
         {
           "text": "grand",
-          "start": 1.135,
-          "end": 1.304
+          "start": 1.123,
+          "end": 1.29
         },
         {
           "text": "rendez-vous",
-          "start": 1.304,
-          "end": 1.811
+          "start": 1.29,
+          "end": 1.792
         },
         {
           "text": ":",
-          "start": 1.811,
-          "end": 1.98
+          "start": 1.792,
+          "end": 1.959
         },
         {
           "text": "le",
-          "start": 2.519,
-          "end": 2.674
+          "start": 2.551,
+          "end": 2.72
         },
         {
           "text": "Gabon",
-          "start": 2.674,
-          "end": 2.984
+          "start": 2.72,
+          "end": 3.057
         },
         {
           "text": "Economic",
-          "start": 2.984,
-          "end": 3.605
+          "start": 3.057,
+          "end": 3.732
         },
         {
           "text": "Forum.",
-          "start": 3.605,
-          "end": 3.915
+          "start": 3.732,
+          "end": 4.07
         },
         {
-          "text": "En",
-          "start": 4.656,
-          "end": 4.81
-        },
-        {
-          "text": "juin",
-          "start": 4.81,
-          "end": 4.963
-        },
-        {
-          "text": "2026,",
-          "start": 4.963,
-          "end": 5.73
-        },
-        {
-          "text": "ses",
-          "start": 5.73,
-          "end": 5.883
-        },
-        {
-          "text": "huit",
-          "start": 5.883,
-          "end": 6.036
-        },
-        {
-          "text": "ateliers",
-          "start": 6.036,
-          "end": 6.496
-        },
-        {
-          "text": "ont",
-          "start": 6.496,
-          "end": 6.65
-        },
-        {
-          "text": "abouti",
-          "start": 6.65,
-          "end": 7.11
-        },
-        {
-          "text": "à",
-          "start": 7.11,
-          "end": 7.263
-        },
-        {
-          "text": "la",
-          "start": 7.263,
-          "end": 7.416
-        },
-        {
-          "text": "Déclaration",
-          "start": 7.416,
-          "end": 8.03
+          "text": "Lors",
+          "start": 4.861,
+          "end": 5.056
         },
         {
           "text": "de",
-          "start": 8.03,
-          "end": 8.183
+          "start": 5.056,
+          "end": 5.251
+        },
+        {
+          "text": "sa",
+          "start": 5.251,
+          "end": 5.446
+        },
+        {
+          "text": "dernière",
+          "start": 5.446,
+          "end": 5.835
+        },
+        {
+          "text": "édition,",
+          "start": 5.835,
+          "end": 6.419
+        },
+        {
+          "text": "ses",
+          "start": 6.625,
+          "end": 6.785
+        },
+        {
+          "text": "huit",
+          "start": 6.785,
+          "end": 6.946
+        },
+        {
+          "text": "ateliers",
+          "start": 6.946,
+          "end": 7.426
+        },
+        {
+          "text": "ont",
+          "start": 7.426,
+          "end": 7.587
+        },
+        {
+          "text": "abouti",
+          "start": 7.587,
+          "end": 8.067
+        },
+        {
+          "text": "à",
+          "start": 8.067,
+          "end": 8.227
+        },
+        {
+          "text": "la",
+          "start": 8.227,
+          "end": 8.388
+        },
+        {
+          "text": "Déclaration",
+          "start": 8.388,
+          "end": 9.028
+        },
+        {
+          "text": "de",
+          "start": 9.028,
+          "end": 9.189
         },
         {
           "text": "Libreville.",
-          "start": 8.183,
-          "end": 8.643
+          "start": 9.189,
+          "end": 9.669
         }
       ]
     },
@@ -1025,123 +1070,138 @@
       "path": "assets/voice/L10.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 9.825,
+      "duration_s": 11.184,
       "speech": [
         0.12,
-        9.645
+        10.939
       ],
-      "pauses": 4,
-      "anchored": 4,
+      "pauses": 6,
+      "anchored": 2,
       "words": [
         {
           "text": "Des",
           "start": 0.12,
-          "end": 0.269
+          "end": 0.347
         },
         {
           "text": "entreprises",
-          "start": 0.269,
-          "end": 0.866
+          "start": 0.347,
+          "end": 1.252
         },
         {
           "text": "fortes,",
-          "start": 0.866,
-          "end": 1.165
+          "start": 1.252,
+          "end": 1.705
         },
         {
           "text": "une",
-          "start": 1.68,
-          "end": 1.873
+          "start": 2.011,
+          "end": 2.227
         },
         {
           "text": "croissance",
-          "start": 1.873,
-          "end": 2.26
+          "start": 2.227,
+          "end": 2.658
         },
         {
           "text": "durable,",
-          "start": 2.26,
-          "end": 2.646
+          "start": 2.658,
+          "end": 3.09
         },
         {
           "text": "une",
-          "start": 3.325,
-          "end": 3.455
+          "start": 3.09,
+          "end": 3.305
         },
         {
           "text": "prospérité",
-          "start": 3.455,
-          "end": 3.971
+          "start": 3.305,
+          "end": 4.168
         },
         {
           "text": "partagée.",
-          "start": 3.971,
-          "end": 4.359
+          "start": 4.168,
+          "end": 4.815
         },
         {
-          "text": "En",
-          "start": 5.134,
-          "end": 5.298
+          "text": "Votre",
+          "start": 4.93,
+          "end": 5.144
         },
         {
-          "text": "cette",
-          "start": 5.298,
-          "end": 5.462
+          "text": "entreprise",
+          "start": 5.144,
+          "end": 5.788
         },
         {
-          "text": "Semaine",
-          "start": 5.462,
-          "end": 5.789
+          "text": "a",
+          "start": 5.788,
+          "end": 6.003
         },
         {
-          "text": "mondiale",
-          "start": 5.789,
-          "end": 6.117
+          "text": "sa",
+          "start": 6.003,
+          "end": 6.217
         },
         {
-          "text": "de",
-          "start": 6.117,
-          "end": 6.281
+          "text": "place",
+          "start": 6.217,
+          "end": 6.432
         },
         {
-          "text": "l'entrepreneuriat,",
-          "start": 6.281,
-          "end": 7.099
+          "text": "à",
+          "start": 6.432,
+          "end": 6.647
+        },
+        {
+          "text": "nos",
+          "start": 6.647,
+          "end": 6.861
+        },
+        {
+          "text": "côtés",
+          "start": 6.861,
+          "end": 7.29
+        },
+        {
+          "text": ":",
+          "start": 7.29,
+          "end": 7.505
         },
         {
           "text": "rejoignez",
-          "start": 7.65,
-          "end": 8.024
-        },
-        {
-          "text": "la",
-          "start": 8.024,
+          "start": 7.505,
           "end": 8.149
         },
         {
-          "text": "Fédération",
+          "text": "la",
           "start": 8.149,
-          "end": 8.647
+          "end": 8.364
+        },
+        {
+          "text": "Fédération",
+          "start": 8.364,
+          "end": 9.222
         },
         {
           "text": "des",
-          "start": 8.647,
-          "end": 8.772
+          "start": 9.222,
+          "end": 9.437
         },
         {
           "text": "Entreprises",
-          "start": 8.772,
-          "end": 9.271
+          "start": 9.437,
+          "end": 10.295
         },
         {
           "text": "du",
-          "start": 9.271,
-          "end": 9.395
+          "start": 10.295,
+          "end": 10.51
         },
         {
           "text": "Gabon.",
-          "start": 9.395,
-          "end": 9.644
+          "start": 10.51,
+          "end": 10.939
         }
       ]
     }

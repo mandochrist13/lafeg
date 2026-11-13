@@ -49,14 +49,8 @@
     #en-url {
       color: #0a7537;
     }
-    #en-sub {
-      margin-top: 18px;
-      font-weight: 500;
-      font-size: 30px;
-      color: #4f554d;
-    }
     #en-contact {
-      margin-top: 8px;
+      margin-top: 18px;
       font-family: "Hyundai Sans Text", sans-serif;
       font-size: 28px;
       color: #5c6259;
@@ -66,7 +60,6 @@
     <img id="en-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
     <div id="en-cta">
       <div id="en-line"><span>Devenez</span> <span>membre</span> <span>·</span> <span id="en-url">lafeg.ga</span></div>
-      <div id="en-sub">Semaine mondiale de l'entrepreneuriat 2026</div>
       <div id="en-contact">info@lafeg.ga · +241 11 77 55 95</div>
     </div>
   </div>
@@ -76,7 +69,6 @@
       // le balayage révèle les arcs et « FEG » ; les points sont déjà là (socles 3D bronze)
       tl.fromTo("#en-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, 0.1);
       tl.fromTo("#en-line span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.08, ease: "power4.out" }, 1.15);
-      tl.fromTo("#en-sub", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 1.55);
       tl.fromTo("#en-contact", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, 1.8);
       window.__timelines["ov-end"] = tl;
     })();

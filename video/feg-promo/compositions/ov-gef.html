@@ -31,6 +31,7 @@
       font-weight: 500;
       font-size: 32px;
       color: #5c6259;
+      white-space: nowrap;
     }
     #gf-title {
       margin-top: 10px;
@@ -73,9 +74,9 @@
   </style>
   <div id="root" data-composition-id="ov-gef" data-width="1920" data-height="1080">
     <div id="gf-col">
-      <div id="gf-kick">2e édition · sous le Très Haut Patronage du Chef de l'État</div>
+      <div id="gf-kick">Sous le Très Haut Patronage du Chef de l'État</div>
       <div id="gf-title"><span>Gabon</span> <span>Economic</span> <span>Forum</span></div>
-      <div id="gf-meta">27 juin 2026 · Palais des Congrès, Libreville<br />8 ateliers thématiques</div>
+      <div id="gf-meta">Palais des Congrès, Libreville<br />8 ateliers thématiques</div>
     </div>
     <div id="gf-decl">
       <div id="gf-decl-k">Issue des travaux</div>
@@ -92,7 +93,7 @@
         return Math.max(0, abs - T0);
       };
       var tTitle = L(C.at("L07", ["Gabon"]) - 0.15);
-      var tMeta = Math.min(L(C.at("L07", ["juin"]) - 0.2), tTitle + 0.5);
+      var tMeta = Math.min(L(C.at("L07", ["Lors", "dernière"]) - 0.2), tTitle + 0.5);
       var tDecl = L(C.at("L07", ["Déclaration", "declaration"]) - 0.1);
       var tl = gsap.timeline({ paused: true });
       tl.fromTo("#gf-kick", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tTitle - 0.25);

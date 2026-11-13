@@ -48,10 +48,13 @@
       display: inline-block;
     }
     #fg-count {
-      margin-top: 56px;
+      margin-top: 44px;
+    }
+    #fg-row {
       display: flex;
       align-items: baseline;
       gap: 22px;
+      white-space: nowrap;
     }
     #fg-num {
       font-weight: 700;
@@ -60,6 +63,13 @@
       letter-spacing: -0.02em;
       color: #0a7537;
       font-variant-numeric: tabular-nums;
+    }
+    #fg-pre {
+      font-weight: 500;
+      font-size: 40px;
+      line-height: 1;
+      color: #0a7537;
+      white-space: nowrap;
     }
     #fg-unit {
       font-weight: 500;
@@ -72,8 +82,11 @@
       <div id="fg-since">Depuis <b>1959</b></div>
       <div id="fg-title"><span>Fédération</span> <span>des</span> <span>Entreprises</span> <span>du</span> <span>Gabon</span></div>
       <div id="fg-count">
-        <div id="fg-num">1 118</div>
-        <div id="fg-unit">entreprises</div>
+        <div id="fg-pre">plus de</div>
+        <div id="fg-row">
+          <div id="fg-num">1 100</div>
+          <div id="fg-unit">entreprises</div>
+        </div>
       </div>
     </div>
   </div>
@@ -86,9 +99,9 @@
       var L = function (abs) {
         return Math.max(0, abs - T0);
       };
-      var tSince = L(C.at("L03", "1959") - 0.15);
+      var tSince = L(C.at("L03", ["1959", "mille"]) - 0.15);
       var tTitle = L(C.at("L03", ["Fédération", "federation"]) - 0.1);
-      var tNum = L(C.at("L03", ["1118", "1 118", "mille"]) - 0.35);
+      var tNum = L(C.at("L03", ["plus"]) - 0.35);
       var tOut = Math.max(tNum + 2.2, D - 0.35);
       var tl = gsap.timeline({ paused: true });
       tl.fromTo("#fg-since", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tSince);
@@ -105,7 +118,7 @@
         counter,
         { v: 0 },
         {
-          v: 1118,
+          v: 1100,
           duration: 1.4,
           ease: "power3.out",
           onUpdate: function () {

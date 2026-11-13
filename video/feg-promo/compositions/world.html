@@ -104,7 +104,7 @@
       id="world-root"
       data-composition-id="world"
       data-start="0"
-      data-duration="101.08"
+      data-duration="103.757"
       data-total
       data-width="1920"
       data-height="1080"
@@ -114,7 +114,7 @@
         id="world-cv"
         class="clip"
         data-start="0"
-        data-duration="101.08"
+        data-duration="103.757"
         data-total
         data-track-index="0"
       ></canvas>
@@ -380,42 +380,49 @@
         tx.anisotropy = 8;
         return tx;
       }
-      function invoiceTexture() {
-        return canvasTex(600, 848, (g, w, h) => {
+      // Bulle de parole verte (la « voix » de l'entreprise), onde sonore blanche à l'intérieur
+      function bubbleTexture() {
+        return canvasTex(640, 520, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          const r = 78,
+            x0 = 24,
+            y0 = 24,
+            x1 = 616,
+            y1 = 396;
+          g.fillStyle = "#0a7537";
+          g.beginPath();
+          g.moveTo(x0 + r, y0);
+          g.lineTo(x1 - r, y0);
+          g.quadraticCurveTo(x1, y0, x1, y0 + r);
+          g.lineTo(x1, y1 - r);
+          g.quadraticCurveTo(x1, y1, x1 - r, y1);
+          g.lineTo(250, y1);
+          g.lineTo(132, 500);
+          g.lineTo(158, y1);
+          g.lineTo(x0 + r, y1);
+          g.quadraticCurveTo(x0, y1, x0, y1 - r);
+          g.lineTo(x0, y0 + r);
+          g.quadraticCurveTo(x0, y0, x0 + r, y0);
+          g.closePath();
+          g.fill();
           g.fillStyle = "#ffffff";
-          g.fillRect(0, 0, w, h);
-          g.fillStyle = "#1a1c19";
-          g.font = '700 74px "Hyundai Sans Head"';
-          g.fillText("FACTURE", 52, 118);
-          g.fillStyle = "#c9ccc6";
-          g.fillRect(52, 150, 200, 14);
-          g.fillRect(380, 66, 168, 14);
-          g.fillRect(380, 96, 120, 14);
-          const rows = [250, 310, 370, 430, 490];
-          rows.forEach((y, i) => {
-            g.fillStyle = "#d5d8d2";
-            g.fillRect(52, y, 300 - (i % 2) * 70, 16);
-            g.fillRect(430, y, 118, 16);
+          const hs = [64, 128, 196, 248, 196, 128, 64];
+          const bw = 30,
+            gap = 24;
+          const total = hs.length * bw + (hs.length - 1) * gap;
+          let x = (w - total) / 2;
+          const cy = (y0 + y1) / 2;
+          hs.forEach((hh) => {
+            const rr = bw / 2;
+            g.beginPath();
+            g.moveTo(x + rr, cy - hh / 2);
+            g.arc(x + rr, cy - hh / 2 + rr, rr, -Math.PI, 0);
+            g.lineTo(x + bw, cy + hh / 2 - rr);
+            g.arc(x + rr, cy + hh / 2 - rr, rr, 0, Math.PI);
+            g.closePath();
+            g.fill();
+            x += bw + gap;
           });
-          g.fillStyle = "#1a1c19";
-          g.fillRect(52, 560, 496, 4);
-          g.font = '700 40px "Hyundai Sans Head"';
-          g.fillText("Total", 52, 625);
-          g.fillStyle = "#9da29b";
-          g.fillRect(398, 598, 150, 26);
-          // tampon
-          g.save();
-          g.translate(300, 735);
-          g.rotate(-0.12);
-          g.strokeStyle = "#6f756d";
-          g.lineWidth = 7;
-          g.strokeRect(-238, -52, 476, 104);
-          g.fillStyle = "#6f756d";
-          g.font = '700 36px "Hyundai Sans Head"';
-          g.textAlign = "center";
-          g.fillText("EN ATTENTE", 0, -6);
-          g.fillText("DE PAIEMENT", 0, 34);
-          g.restore();
         });
       }
       function signTexture(img, pad = 0.08) {
@@ -618,7 +625,17 @@
 
       // ------------------------------------------------------------------ facture et formulaires
       const invMat = new THREE.MeshBasicMaterial({ map: null, transparent: true });
-      const invoice = new THREE.Mesh(new THREE.PlaneGeometry(0.42, 0.594), invMat);
+      const invoice = new THREE.Mesh(new THREE.PlaneGeometry(0.6, 0.4875), invMat);
+      // ondes qui se dissipent autour de la bulle (personne ne l'entend)
+      const rings = [0, 1, 2].map(() => {
+        const m = new THREE.Mesh(
+          new THREE.RingGeometry(0.27, 0.288, 96),
+          new THREE.MeshBasicMaterial({ color: new THREE.Color(0x0a7537), transparent: true, opacity: 0, depthWrite: false }),
+        );
+        m.renderOrder = 9;
+        scene.add(m);
+        return m;
+      });
       invoice.renderOrder = 10;
       scene.add(invoice);
       const NFORM = 56;
@@ -949,9 +966,8 @@
       T.fork = T.l1 + 0.4;
       T.pull1 = T.l1 + 1.6;
       T.push2 = S("L02") - 0.75;
-      T.invUp = at("L02", "facture") - 0.25;
-      T.pile = at("L02", ["démarche", "demarche"]) - 0.15;
-      T.pileEnd = at("L02", "pèse", "e") + 0.1;
+      T.bubbleUp = at("L02", ["entreprise"]) - 0.15;
+      T.bubbleFade = at("L02", ["pèse", "pese"]) - 0.05;
       T.pull3 = S("L03") - 1.2;
       T.plinth = T.pull3 + 0.55;
       T.rise = T.plinth + 0.3;
@@ -972,7 +988,7 @@
       T.toGef = S("L07") - 1.0;
       T.hallUp = T.toGef + 0.2;
       T.roofUp = at("L07", ["Gabon"]) + 0.1;
-      T.invGef = at("L07", ["juin"]) - 0.3;
+      T.invGef = at("L07", ["Lors", "dernière"]) - 0.3;
       T.ateliers = at("L07", ["huit", "8"]) - 0.1;
       T.declUp = at("L07", ["abouti"]) - 0.1;
       T.toState = S("L08") - 1.25;
@@ -992,7 +1008,7 @@
       const lone = new THREE.Vector3().add(heroPos).add(crane.position).add(shop.position).add(office.position).multiplyScalar(0.25);
       mv(T.pull1, E("L01") - T.pull1 + 0.3, { ...framed({ x: lone.x, y: 0.4, z: lone.z }, 4.5, -0.03, 0.0) }, "pivot", inOutQ);
       // L02 : retour sur l'atelier, cadre assez large pour la pile
-      mv(T.push2, 1.5, { ...framed({ x: heroPos.x + 0.45, y: 0.62, z: heroPos.z + 0.1 }, 1.32, 0.13, -0.02) }, "pivot");
+      mv(T.push2, 1.5, { ...framed({ x: heroPos.x + 0.08, y: 0.8, z: heroPos.z + 0.05 }, 1.28, 0.12, -0.05) }, "pivot");
       // L03 : grand recul sur la carte (carte à droite, titre à gauche)
       mv(T.pull3, 2.5, { ...framed({ x: 0, y: 0, z: 0 }, 31, 0.3, 0.02) }, "pivot", inOut);
       // anneau des fédérations
@@ -1169,20 +1185,33 @@
         fork.position.set(lerp(0.62, -0.12, fu), 0, 0.5);
         fork.visible = t < T.pull3 + 2;
 
-        // --- facture (panneau face caméra)
-        let invP = new THREE.Vector3(heroPos.x + 0.05, 1.12, heroPos.z + 0.05);
+        // --- bulle de parole (la voix de l'entreprise, face caméra)
+        let invP = new THREE.Vector3(heroPos.x + 0.05, 1.22, heroPos.z + 0.05);
         let invS = 0,
           invA = 1;
-        // L02 : se soulève au-dessus du toit
-        const up2 = expoOut(prog(t, T.invUp, 0.8));
-        invS = up2 * (1 - in3(prog(t, T.pull3 + 0.2, 0.5)));
-        invP.y = lerp(0.7, 1.12, up2);
+        // L02 : la bulle s'élève de l'atelier… puis se dissout dans le vide
+        const up2 = expoOut(prog(t, T.bubbleUp, 0.8));
+        const fade2 = inOut(prog(t, T.bubbleFade, 1.1));
+        invS = up2 * lerp(1, 1.3, fade2);
+        invA = 1 - fade2;
+        invP.y = lerp(0.75, 1.22, up2);
+        rings.forEach((rg, k) => {
+          const rt = prog(t, T.bubbleFade - 0.1 + k * 0.32, 1.3);
+          const on = rt > 0 && rt < 1 && t < T.pull3;
+          rg.visible = on;
+          if (!on) return;
+          rg.position.copy(invP);
+          rg.quaternion.copy(camera.quaternion);
+          rg.scale.setScalar(lerp(1.0, 3.6, out3(rt)));
+          rg.material.opacity = 0.55 * (1 - rt);
+        });
         // L06 : réapparaît, file vers la tour, monte au Bureau exécutif, descend sur la table
         const SCALE6 = 10.5;
         const towerBase = new THREE.Vector3(PF.x - 2.6, 1.6, PF.z + 2.6);
         const towerTop = new THREE.Vector3(PF.x, TOWER_H + 2.4, PF.z);
         const tableTop = new THREE.Vector3(PT.x, 1.25, PT.z);
         if (t >= T.inv6) {
+          invA = 1;
           const a0 = expoOut(prog(t, T.inv6, 0.7));
           invS = lerp(0, SCALE6, a0);
           invP = new THREE.Vector3(heroPos.x, 2.2 + a0 * 3, heroPos.z);
@@ -1234,20 +1263,8 @@
           route.visible = u1 > 0 && fadeR > 0.01;
         }
 
-        // --- pile de formulaires
-        const pileGone = in3(prog(t, T.pull3 + 0.15, 0.6));
-        for (let i = 0; i < NFORM; i++) {
-          const ti = T.pile + (i / NFORM) * (T.pileEnd - T.pile);
-          const u = out3(prog(t, ti, 0.28));
-          const [jx, jz, jr] = formJit[i];
-          const y = i * 0.0235 + (1 - u) * 0.6;
-          q.setFromAxisAngle(yUp, jr * 0.18);
-          const k = u > 0 ? Math.max(tiny, 1 - pileGone) : tiny;
-          mtx.compose(pos.set(pileBase.x + jx * 0.05, y * (1 - pileGone), pileBase.z + jz * 0.05), q, sc.set(k, k, k));
-          forms.setMatrixAt(i, mtx);
-        }
-        forms.instanceMatrix.needsUpdate = true;
-        forms.visible = t > T.pile - 0.1 && t < T.pull3 + 0.9;
+        // (pile de formulaires retirée : la bulle de parole porte l'introduction)
+        forms.visible = false;
 
         // --- 13 tours de fédérations, puis fusion vers la tour FEG
         const mg = inOut(prog(t, T.merge, 2.0));
@@ -1397,7 +1414,7 @@
         label("cir-4", new THREE.Vector3(PS.x, 5.3, PS.z + 1.75), 0, -95, win(t, T.dialog + 0.95, 0.5, T.toGef + 0.3, 0.4), "center");
         // atelier 1
         const t1w = gefTables[0].g.position.clone().add(PG);
-        label("gef-0", new THREE.Vector3(t1w.x, 1.6, t1w.z), -80, 100, win(t, T.invGef + 1.15, 0.5, T.declUp + 0.2, 0.4), "right");
+        label("gef-0", new THREE.Vector3(t1w.x, 1.6, t1w.z), 120, -150, win(t, T.invGef + 1.15, 0.5, T.declUp + 0.2, 0.4), "left");
         // services
         for (let k = 0; k < 4; k++) {
           const a = win(t, T.svc[k] + 0.25, 0.5, T.toHero - 0.1, 0.35);
@@ -1415,7 +1432,7 @@
           document.fonts.load('500 30px "Hyundai Sans Head"'),
           document.fonts.load('400 28px "Hyundai Sans Text"'),
         ]).catch(() => {});
-        invMat.map = invoiceTexture();
+        invMat.map = bubbleTexture();
         invMat.needsUpdate = true;
         const [tDecl, tFeg, tGef] = await Promise.all([
           loadTex("assets/img/declaration-p1.jpg"),

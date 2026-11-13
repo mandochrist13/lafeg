@@ -91,7 +91,6 @@ const E = (id) => C.lines[id].end;
 const VARIANT = process.argv.includes("--sans-voix") ? "sans-voix" : "voix";
 // Fenêtres des couches de titres (secondes absolues).
 const overlays = [
-  { id: "ov-kicker", src: "compositions/ov-kicker.html", start: 0, end: E("L01") + 0.5 },
   { id: "ov-feg", src: "compositions/ov-feg.html", start: S("L03") - 0.3, end: at("L03", ["13", "treize"]) + 0.35 },
   { id: "ov-poids", src: "compositions/ov-poids.html", start: S("L04") - 0.2, end: E("L04") + 0.6 },
   { id: "ov-gef", src: "compositions/ov-gef.html", start: S("L07") - 0.2, end: E("L07") + 0.7 },
@@ -231,7 +230,7 @@ const html = `<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>FEG — Semaine mondiale de l'entrepreneuriat 2026${VARIANT === "voix" ? "" : " (sans voix)"}</title>
+    <title>FEG — Fédération des Entreprises du Gabon${VARIANT === "voix" ? "" : " (sans voix)"}</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <style>
