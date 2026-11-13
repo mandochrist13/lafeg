@@ -656,6 +656,156 @@
       ]
     },
     {
+      "id": "L06b",
+      "path": "assets/voice/L06b.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.328,
+      "speech": [
+        0.157,
+        8.148
+      ],
+      "pauses": 4,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Il",
+          "start": 0.157,
+          "end": 0.333
+        },
+        {
+          "text": "ne",
+          "start": 0.333,
+          "end": 0.509
+        },
+        {
+          "text": "passe",
+          "start": 0.509,
+          "end": 0.685
+        },
+        {
+          "text": "pas",
+          "start": 0.685,
+          "end": 0.861
+        },
+        {
+          "text": "que",
+          "start": 0.861,
+          "end": 1.037
+        },
+        {
+          "text": "par",
+          "start": 1.037,
+          "end": 1.213
+        },
+        {
+          "text": "les",
+          "start": 1.213,
+          "end": 1.388
+        },
+        {
+          "text": "grands",
+          "start": 1.388,
+          "end": 1.564
+        },
+        {
+          "text": "forums",
+          "start": 1.564,
+          "end": 1.916
+        },
+        {
+          "text": ":",
+          "start": 1.916,
+          "end": 2.092
+        },
+        {
+          "text": "au",
+          "start": 2.354,
+          "end": 2.547
+        },
+        {
+          "text": "sortir",
+          "start": 2.547,
+          "end": 2.933
+        },
+        {
+          "text": "des",
+          "start": 2.933,
+          "end": 3.126
+        },
+        {
+          "text": "travaux",
+          "start": 3.126,
+          "end": 3.512
+        },
+        {
+          "text": "rapportés",
+          "start": 3.512,
+          "end": 4.09
+        },
+        {
+          "text": "par",
+          "start": 4.09,
+          "end": 4.283
+        },
+        {
+          "text": "les",
+          "start": 4.283,
+          "end": 4.476
+        },
+        {
+          "text": "fédérations",
+          "start": 4.476,
+          "end": 5.248
+        },
+        {
+          "text": "métiers,",
+          "start": 5.248,
+          "end": 5.633
+        },
+        {
+          "text": "des",
+          "start": 5.854,
+          "end": 6.031
+        },
+        {
+          "text": "réunions",
+          "start": 6.031,
+          "end": 6.384
+        },
+        {
+          "text": "se",
+          "start": 6.384,
+          "end": 6.56
+        },
+        {
+          "text": "tiennent",
+          "start": 6.56,
+          "end": 6.913
+        },
+        {
+          "text": "avec",
+          "start": 6.913,
+          "end": 7.266
+        },
+        {
+          "text": "le",
+          "start": 7.266,
+          "end": 7.442
+        },
+        {
+          "text": "secteur",
+          "start": 7.442,
+          "end": 7.795
+        },
+        {
+          "text": "public.",
+          "start": 7.795,
+          "end": 8.148
+        }
+      ]
+    },
+    {
       "id": "L07",
       "path": "assets/voice/L07.wav",
       "voice": "Despina",

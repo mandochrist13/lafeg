@@ -23,6 +23,7 @@ TIME: 103,8 s (fixé par la voix off) ≈ 3113 images. Musique SoundHill « Find
 - **Atelier héros** : hangar à toit en sheds, porte de chargement, annexe de bureau vitrée, palettes devant.
 - **Chantier** : grue à tour (mât en treillis, flèche, contrepoids) ; **commerce** : boutique à auvent ; **bureau** : petit immeuble à bandeaux de fenêtres.
 - **Bulle de parole** (la voix de l'entreprise) : bulle verte #0A7537 à coins arrondis et queue, onde sonore de 7 barres blanches ; trois anneaux verts s'élargissent quand elle se dissout. C'est l'objet qui voyage ensuite de l'atelier jusqu'au GEF.
+- **Les 9 provinces** : chaque socle appartient à sa province (carte administrative transmise par la FEG, ajustée sur la silhouette du logo). Cinq teintes claires (sauge, sable, brume, argile, lilas), jamais la même pour deux provinces voisines ; noms en Hyundai Sans Text Medium 28 px, posés sur leur province.
 - **Carte des membres** : 71 socles ronds aux positions exactes des points du logo FEG ; 1 118 bâtiments, l'effectif réel, non affiché (15–16 par socle) ; hauteurs selon la répartition réelle des tailles (micro 57 %, petite 31 %, moyenne 9 %, grande 2 %).
 - **13 fédérations** : 13 tours de cubes (1 cube = 1 entreprise, 9 par étage), étiquette nom + effectif.
 - **Tour FEG** (inspirée de l'Immeuble Odyssée) : tour élancée à ailettes verticales, couronne bronze, enseigne au logo réel ; quatre bandeaux de mission.
@@ -51,19 +52,21 @@ Temps réels, calés sur la voix off Despina (générés par `tools/build.mjs`, 
 | L04 | 29.48 s | 35.35 s |
 | L05 | 36.65 s | 44.44 s |
 | L06 | 45.94 s | 52.68 s |
-| L07 | 54.28 s | 64.13 s |
-| L08 | 66.03 s | 75.41 s |
-| L09 | 76.91 s | 85.45 s |
-| L10 | 87.05 s | 98.24 s |
-| Logo | 97.66 s | 103.76 s (fin) |
+| L06b | 53.98 s | 62.31 s |
+| L07 | 63.91 s | 73.76 s |
+| L08 | 75.66 s | 85.03 s |
+| L09 | 86.53 s | 95.08 s |
+| L10 | 96.68 s | 107.86 s |
+| Logo | 107.29 s | 113.39 s (fin) |
 
 
 1. **L01, le terrain** : atelier seul plein cadre (≥ 40 % de la hauteur), recul lent qui révèle un chantier, une boutique et un bureau, isolés. Pas de surtitre.
 2. **L02, seule** : poussée sur l'atelier ; sur « entreprise », une bulle de parole verte monte du toit ; sur « pèse », elle grossit, pâlit et se dissout en trois ondes qui s'élargissent sans rien atteindre. L'atelier reste gris et seul.
-3. **L03, le réseau** : grand recul ; 71 socles émergent, les bâtiments se lèvent depuis Libreville et virent au vert ; « Depuis 1959 » + titre + « plus de 1 100 entreprises » (compteur) ; puis 13 tours de fédérations se lèvent à droite de la carte, étiquetées.
+3. **L03, le réseau** : grand recul ; 71 socles émergent et prennent la teinte de leur province ; les 9 noms et « 9 provinces » s'affichent pendant « Depuis 1959, la Fédération des Entreprises du Gabon » ; sur « rassemble », les bâtiments se lèvent depuis Libreville et virent au vert, les teintes et les noms s'effacent ; « Depuis 1959 » + titre + « plus de 1 100 entreprises » (compteur) ; puis 13 tours de fédérations se lèvent à droite de la carte, étiquetées.
 4. **L04, le poids** : les 13 tours glissent l'une vers l'autre ; « ≈ 80 % du PIB », « + 90 % de la main-d'œuvre formelle » en grands chiffres.
 5. **L05, la raison d'être** : les tours fusionnent en tour FEG ; quatre bandeaux s'allument : Informer, Promouvoir, Participer, Défendre.
 6. **L06, le circuit** : la bulle réapparaît sur l'atelier et trace un chemin au sol : Fédération métier (pied de la tour) → Bureau exécutif (sommet) → table du dialogue public-privé.
+6 bis. **L06b, les réunions** : la caméra s'approche de la table : les membres face aux pouvoirs publics ; la bulle s'élève ; sur « travaux », trois dossiers verts des fédérations se posent ; étiquette « Réunions avec le secteur public · au sortir des travaux des fédérations métiers ». Version sans voix : « Le dialogue public-privé · Pas seulement les grands forums ».
 7. **L07, le GEF** : la caméra file vers le Palais des Congrès ; le toit se soulève ; la bulle se pose sur la table « Atelier 1 · Dette intérieure et fiscalité » ; les 8 ateliers se lèvent ; 8 feuilles fusionnent en Déclaration de Libreville. Surtitre « Sous le Très Haut Patronage du Chef de l'État », sans date.
 8. **L08, les réformes** : la Déclaration rejoint l'État ; des liaisons vertes repartent vers la carte ; citation exacte de l'Axe 1 ; « 8 axes · 24 recommandations · 1 comité paritaire de suivi ».
 9. **L09, les services** : retour à la tour ; quatre tiroirs sortent un par un avec leur objet et leur étiquette.

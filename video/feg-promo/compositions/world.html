@@ -88,6 +88,16 @@
       .wl.tag .ti {
         font-size: 34px;
       }
+      /* les 9 provinces, posées sur la carte */
+      .wl.prov {
+        text-align: center;
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-weight: 500;
+        font-size: 28px;
+        line-height: 1.04;
+        color: #1a1c19;
+        text-shadow: 0 0 5px #fff, 0 0 3px #fff, 0 0 2px #fff;
+      }
       #world-svg .ld {
         fill: none;
         stroke: #1a1c19;
@@ -104,7 +114,7 @@
       id="world-root"
       data-composition-id="world"
       data-start="0"
-      data-duration="103.757"
+      data-duration="113.385"
       data-total
       data-width="1920"
       data-height="1080"
@@ -114,7 +124,7 @@
         id="world-cv"
         class="clip"
         data-start="0"
-        data-duration="103.757"
+        data-duration="113.385"
         data-total
         data-track-index="0"
       ></canvas>
@@ -141,6 +151,7 @@
         <polyline id="wk-cir-2" class="ld" points="" />
         <polyline id="wk-cir-3" class="ld" points="" />
         <polyline id="wk-cir-4" class="ld" points="" />
+        <polyline id="wk-cir-5" class="ld" points="" />
         <polyline id="wk-gef-0" class="ld" points="" />
         <polyline id="wk-svc-0" class="ld" points="" />
         <polyline id="wk-svc-1" class="ld" points="" />
@@ -172,6 +183,17 @@
         <div id="wl-cir-2" class="wl tag"><span class="ti">Bureau exécutif</span></div>
         <div id="wl-cir-3" class="wl tag"><span class="ti">Dialogue public-privé</span></div>
         <div id="wl-cir-4" class="wl tag"><span class="ti">Pouvoirs publics</span></div>
+        <div id="wl-cir-5" class="wl"><span class="ti">Réunions avec le secteur public</span><span class="ds">au sortir des travaux des fédérations métiers</span></div>
+        <div id="wl-prov-0" class="wl prov">Estuaire</div>
+        <div id="wl-prov-1" class="wl prov">Woleu-<br />Ntem</div>
+        <div id="wl-prov-2" class="wl prov">Moyen-<br />Ogooué</div>
+        <div id="wl-prov-3" class="wl prov">Ogooué-<br />Maritime</div>
+        <div id="wl-prov-4" class="wl prov">Ngounié</div>
+        <div id="wl-prov-5" class="wl prov">Nyanga</div>
+        <div id="wl-prov-6" class="wl prov">Ogooué-<br />Ivindo</div>
+        <div id="wl-prov-7" class="wl prov">Ogooué-<br />Lolo</div>
+        <div id="wl-prov-8" class="wl prov">Haut-<br />Ogooué</div>
+        <div id="wl-prov-all" class="wl tag"><span class="ti">9 provinces</span></div>
 
         <div id="wl-gef-0" class="wl tag"><span class="ti">Atelier 1</span><span class="ds">Dette intérieure et fiscalité</span></div>
 
@@ -444,6 +466,16 @@
       const PL_R = 2.2,
         PL_H = 0.14;
       const plinths = DOTS.map(([px, py], i) => ({ i, x: (px - LCX) * SC, z: (py - LCY) * SC, px, py }));
+      // les 9 provinces : province de chaque point du logo, calée sur la carte administrative du Gabon
+      // (carte des provinces transmise par la FEG, ajustée sur la silhouette du logo : 69 points sur 71 dedans)
+      const PROV = [1,1,1,1,1,1,1,6,6,0,0,1,6,6,6,0,0,0,1,6,6,7,6,6,0,2,2,2,6,6,7,7,8,3,2,2,4,4,7,7,7,7,8,8,3,4,4,4,4,7,7,8,8,8,3,4,4,4,4,4,8,8,8,3,5,4,5,5,5,5,5];
+      const PROV_NAMES = ["Estuaire", "Woleu-Ntem", "Moyen-Ogooué", "Ogooué-Maritime", "Ngounié", "Nyanga", "Ogooué-Ivindo", "Ogooué-Lolo", "Haut-Ogooué"];
+      const PROV_TINT = [1,3,0,2,4,1,2,1,0]; // 5 teintes, deux provinces voisines jamais de la même
+      plinths.forEach((p) => (p.prov = PROV[p.i]));
+      const provCenter = PROV_NAMES.map((_, k) => {
+        const ps = plinths.filter((p) => p.prov === k);
+        return new THREE.Vector3(ps.reduce((a, p) => a + p.x, 0) / ps.length, 0.5, ps.reduce((a, p) => a + p.z, 0) / ps.length);
+      });
       const nearest = (px, py) => plinths.reduce((b, p) => (Math.hypot(p.px - px, p.py - py) < Math.hypot(b.px - px, b.py - py) ? p : b));
       const PL_LBV = nearest(184.1, 180); // Libreville
       const PL_CRANE = nearest(222.2, 180);
@@ -819,6 +851,16 @@
         tableFigs.push(figure(table, -1.3 + k * 1.3, 0, 1.05, M.figMember, 1.7));
         tableFigs.push(figure(table, -1.3 + k * 1.3, 0, -1.05, M.figState, 1.7));
       }
+      // les travaux rapportés par les fédérations métiers : trois dossiers posés devant les membres (L06b)
+      const dossiers = [];
+      for (let k = 0; k < 3; k++) {
+        const g = new THREE.Group();
+        box(g, 0.66, 0.04, 0.48, 0, 0, 0, M.figMember, true);
+        g.position.set(-1.3 + k * 1.3, 0.8, 0.32);
+        g.visible = false;
+        table.add(g);
+        dossiers.push(g);
+      }
 
       // ------------------------------------------------------------------ Palais des Congrès (GEF)
       const PG = new THREE.Vector3(74, 0, -44);
@@ -970,7 +1012,8 @@
       T.bubbleFade = at("L02", ["pèse", "pese"]) - 0.05;
       T.pull3 = S("L03") - 1.2;
       T.plinth = T.pull3 + 0.55;
-      T.rise = T.plinth + 0.3;
+      T.prov = T.plinth + 0.75; // les socles prennent la teinte de leur province, les noms apparaissent
+      T.rise = at("L03", ["rassemble"]) - 0.25; // « rassemble ceux qui font l'économie du pays » : les entreprises se lèvent
       T.ring = at("L03", ["13", "treize"]) - 0.65;
       T.ringRise = T.ring + 0.5;
       T.fedLab = T.ringRise + 0.9;
@@ -985,6 +1028,10 @@
       T.burex = at("L06", ["Bureau"]) - 0.25;
       T.dialog = at("L06", ["dialogue"]) - 0.25;
       T.state = S("L06") - 0.6;
+      // L06b : le dialogue ne passe pas que par les grands forums (réunions avec le secteur public)
+      T.l6b = S("L06b");
+      T.trav = at("L06b", ["travaux"]) - 0.15;
+      T.reun = at("L06b", ["réunions", "reunions"]) - 0.25;
       T.toGef = S("L07") - 1.0;
       T.hallUp = T.toGef + 0.2;
       T.roofUp = at("L07", ["Gabon"]) + 0.1;
@@ -1021,6 +1068,8 @@
       mv(T.wide6, 1.6, { ...framed({ x: (heroPos.x + PF.x) / 2, y: 0, z: (heroPos.z + PF.z) / 2 }, 31, 0.0, 0.06) }, "lin", inOut);
       mv(T.fedM + 0.2, 1.8, { ...framed({ x: PF.x, y: 9.2, z: PF.z }, 13.2, -0.12, 0.0) }, "pivot", inOut);
       mv(T.dialog - 0.4, 1.4, { ...framed({ x: PT.x + 1.5, y: 1.4, z: PT.z - 1.5 }, 6.6, 0.0, 0.0) }, "lin", inOut);
+      // L06b : on s'approche de la table, les membres face aux pouvoirs publics, étiquette à droite
+      mv(T.l6b - 0.3, 2.6, { ...framed({ x: PT.x + 0.2, y: 0.9, z: PT.z - 0.2 }, 3.9, -0.14, 0.05) }, "lin", inOut);
       // L07 : le Palais des Congrès
       mv(T.toGef, 1.7, { ...framed({ x: PG.x, y: 1.5, z: PG.z }, 10.8, 0.34, 0.06) }, "lin", inOut);
       mv(T.declUp - 0.2, 1.8, { ...framed({ x: PG.x, y: 5, z: PG.z }, 12.5, 0.32, 0.0) }, "lin", inOutQ);
@@ -1089,6 +1138,8 @@
         cBronze = lit(COL.bronze),
         cAccent = lit(COL.accent),
         cTmp = new THREE.Color();
+      // teintes des provinces : sauge, sable, brume, argile, lilas (claires)
+      const cProv = [lit(0xa9cdb5), lit(0xe3d49b), lit(0xb7c9d6), lit(0xe3b9a4), lit(0xd2c6de)];
       const yUp = new THREE.Vector3(0, 1, 0);
       const tiny = 1e-4;
 
@@ -1136,12 +1187,13 @@
         // --- socles
         const fin = finalSink(t);
         const bronzeMix = inOut(prog(t, T.final + 1.2, 1.2));
+        const provMix = inOut(prog(t, T.prov, 0.7)) * (1 - inOut(prog(t, T.rise + 0.3, 1.3)));
         for (const p of plinths) {
           const r = plinthRise(p, t);
           const rw = r > 0.01 ? 1 : tiny;
           mtx.compose(pos.set(p.x, 0, p.z), q.identity(), sc.set(rw, Math.max(tiny, r), rw));
           plInst.setMatrixAt(p.i, mtx);
-          cTmp.copy(cPlinth).lerp(cBronze, bronzeMix);
+          cTmp.copy(cPlinth).lerp(cProv[PROV_TINT[p.prov]], provMix).lerp(cBronze, bronzeMix);
           plInst.setColorAt(p.i, cTmp);
         }
         plInst.instanceMatrix.needsUpdate = true;
@@ -1229,15 +1281,23 @@
             invP = new THREE.QuadraticBezierCurve3(towerTop, mid, tableTop).getPoint(u3);
             invS = lerp(3.2, 2.6, u3);
           }
+          // L06b : la bulle s'élève au-dessus de la table, pour laisser voir les dossiers et les deux côtés
+          const tableHi = tableTop.clone();
+          tableHi.y += 1.25;
+          const u35 = inOut(prog(t, T.l6b + 0.1, 0.9));
+          if (u35 > 0 && u3 >= 1) {
+            invP = tableTop.clone().lerp(tableHi, u35);
+            invS = lerp(2.6, 2.1, u35);
+          }
           // L07 : de la table vers l'atelier 1 du GEF
           const t1 = gefTables[0].g.position.clone().add(PG);
           const gefDrop = new THREE.Vector3(t1.x, 1.6, t1.z);
           const u4 = inOut(prog(t, T.invGef, 1.3));
           if (u4 > 0) {
-            const mid = tableTop.clone().add(gefDrop).multiplyScalar(0.5);
+            const mid = tableHi.clone().add(gefDrop).multiplyScalar(0.5);
             mid.y = 9;
-            invP = new THREE.QuadraticBezierCurve3(tableTop, mid, gefDrop).getPoint(u4);
-            invS = lerp(2.6, 2.2, u4);
+            invP = new THREE.QuadraticBezierCurve3(tableHi, mid, gefDrop).getPoint(u4);
+            invS = lerp(2.1, 2.2, u4);
           }
           // fond dans la Déclaration
           const u5 = prog(t, T.declUp, 1.4);
@@ -1309,6 +1369,12 @@
         const tb = out3(prog(t, T.dialog - 0.9, 0.7)) * (1 - tSink);
         table.scale.set(1, Math.max(tiny, tb), 1);
         table.visible = tb > 0.003;
+        dossiers.forEach((g, k) => {
+          const u = out3(prog(t, T.trav + k * 0.2, 0.45));
+          g.visible = u > 0.002 && t < T.toGef + 2;
+          g.position.z = lerp(0.8, 0.32, u);
+          g.scale.setScalar(Math.max(tiny, u));
+        });
 
         // --- Palais des Congrès
         const hu = spring(prog(t, T.hallUp, 1.0)) * (1 - tSink);
@@ -1400,6 +1466,10 @@
           place(R, 1);
         } else for (let k = 0; k < 13; k++) hideLabel("fed-" + k);
 
+        // provinces : noms posés sur leur province, avant la levée des entreprises
+        for (let k = 0; k < 9; k++) label("prov-" + k, provCenter[k], 0, 0, win(t, T.prov + 0.35 + k * 0.11, 0.4, T.rise + 0.05, 0.4), "center");
+        label("prov-all", provCenter[5], -70, 150, win(t, T.prov + 0.2, 0.5, T.rise + 0.05, 0.4), "left");
+
         // missions : bandeaux de la tour
         for (let k = 0; k < 4; k++) {
           const a = win(t, T.mis[k] - 0.05, 0.45, T.wide6 - 0.2, 0.35);
@@ -1410,8 +1480,9 @@
         label("cir-0", new THREE.Vector3(heroPos.x, 0.9, heroPos.z + 0.3), 40, -190, win(t, T.inv6, 0.5, T.fedM + 0.6, 0.4), "left");
         label("cir-1", new THREE.Vector3(PF.x - TW / 2, 0.8, PF.z + TW / 2), -60, 90, win(t, T.fedM + 0.15, 0.5, T.dialog - 0.2, 0.4), "right");
         label("cir-2", new THREE.Vector3(PF.x + TW / 2, TOWER_H + 0.6, PF.z), 120, 20, win(t, T.burex + 0.6, 0.5, T.dialog - 0.2, 0.4), "left");
-        label("cir-3", new THREE.Vector3(PT.x + 0.4, 0.9, PT.z + 0.4), 40, 130, win(t, T.dialog + 0.7, 0.5, T.toGef + 0.3, 0.4), "left");
-        label("cir-4", new THREE.Vector3(PS.x, 5.3, PS.z + 1.75), 0, -95, win(t, T.dialog + 0.95, 0.5, T.toGef + 0.3, 0.4), "center");
+        label("cir-3", new THREE.Vector3(PT.x + 0.4, 0.9, PT.z + 0.4), 40, 130, win(t, T.dialog + 0.7, 0.5, T.l6b - 0.2, 0.4), "left");
+        label("cir-4", new THREE.Vector3(PS.x, 5.3, PS.z + 1.75), 0, -95, win(t, T.dialog + 0.95, 0.5, T.l6b - 0.2, 0.4), "center");
+        label("cir-5", new THREE.Vector3(PT.x + 0.9, 1.0, PT.z - 0.9), 150, -150, win(t, T.trav - 0.35, 0.5, T.toGef + 0.3, 0.4), "left");
         // atelier 1
         const t1w = gefTables[0].g.position.clone().add(PG);
         label("gef-0", new THREE.Vector3(t1w.x, 1.6, t1w.z), 120, -150, win(t, T.invGef + 1.15, 0.5, T.declUp + 0.2, 0.4), "left");

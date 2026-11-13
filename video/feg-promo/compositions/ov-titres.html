@@ -91,6 +91,14 @@
     #tt-circuit .h {
       font-size: 56px;
     }
+    #tt-forums {
+      left: 132px;
+      top: 104px;
+      width: 1000px;
+    }
+    #tt-forums .h {
+      font-size: 56px;
+    }
     #tt-svc {
       left: 132px;
       top: 300px;
@@ -129,6 +137,10 @@
     <div id="tt-circuit" class="tt">
       <span class="k">Comment ça marche</span>
       <span class="h"><span>Votre</span> <span>préoccupation</span> <span>remonte</span> <span>jusqu'à</span> <span>l'État</span></span>
+    </div>
+    <div id="tt-forums" class="tt">
+      <span class="k">Le dialogue public-privé</span>
+      <span class="h"><span>Pas</span> <span>seulement</span> <span>les</span> <span>grands</span> <span>forums</span></span>
     </div>
     <div id="tt-svc" class="tt">
       <span class="k">Être membre, c'est aussi</span>
@@ -170,6 +182,7 @@
       show("#tt-feds", L(C.at("L03", ["13", "treize"]) + 0.3), L(S("L04") - 0.15));
       show("#tt-voix", L(S("L05") - 0.2), L(S("L06") - 1.2));
       show("#tt-circuit", L(S("L06") - 0.3), L(C.at("L06", ["fédération", "federation"]) + 0.1));
+      show("#tt-forums", L(S("L06b") - 0.1), L(S("L07") - 1.25));
       show("#tt-svc", L(S("L09") - 0.4), L(S("L10") - 1.1));
       show("#tt-theme", L(S("L10") + 0.3), L(C.at("L10", ["rejoignez"]) + 0.6));
       window.__timelines["ov-titres"] = tl;

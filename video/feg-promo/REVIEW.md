@@ -1,11 +1,18 @@
-# REVIEW — film FEG « De la voix à la réforme » (v5, intemporelle)
+# REVIEW — film FEG « De la voix à la réforme » (v6)
 
-Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 44 s (103,8 s) :
+Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 53 s (113,4 s) :
 
-- `renders/FEG-presentation-voix.mp4` : voix off féminine + musique.
-- `renders/FEG-presentation-sans-voix.mp4` : musique seule, les titres portent le récit.
+- `renders/FEG-presentation-voix-v6.mp4` : voix off féminine + musique.
+- `renders/FEG-presentation-sans-voix-v6.mp4` : musique seule, les titres portent le récit.
 
 Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans-voix`, puis `npx hyperframes render`. Une seule racine, `index.html`, reçoit la variante choisie. Le dépôt garde la version voix par défaut.
+
+## v6 : demandes de la FEG
+
+- **Les 9 provinces sur la carte** (plan L03) : chaque socle prend la teinte de sa province. Cinq teintes claires, jamais la même pour deux provinces voisines. Les noms s'affichent un à un, avec « 9 provinces », pendant « Depuis 1959, la Fédération des Entreprises du Gabon ». Les entreprises se lèvent ensuite sur « rassemble ceux qui font l'économie du pays », dans toutes les provinces. La répartition des 71 socles vient de la carte administrative transmise par la FEG, ajustée sur la silhouette du logo (69 points sur 71 tombent dedans ; les deux autres vont à la province la plus proche).
+- **Le dialogue ne passe pas que par le GEF** : nouvelle phrase L06b, avant le Gabon Economic Forum : « Il ne passe pas que par les grands forums : au sortir des travaux rapportés par les fédérations métiers, des réunions se tiennent avec le secteur public. » À l'écran, la caméra s'approche de la table du dialogue : les membres font face aux pouvoirs publics, trois dossiers verts des fédérations se posent, et l'étiquette « Réunions avec le secteur public · au sortir des travaux des fédérations métiers » s'affiche. La version sans voix ajoute le titre « Le dialogue public-privé · Pas seulement les grands forums ».
+- **Voix de L06b** : même voix (Despina) et même modèle que le reste du film, une seule prise. Une transcription neutre, sans le texte attendu, la restitue mot pour mot, sans défaut relevé.
+- Durée : 113,4 s (+ 9,6 s).
 
 ## Version intemporelle (v5, demandes de la FEG)
 
