@@ -1,48 +1,56 @@
-# REVIEW — film FEG « De la facture à la réforme »
+# REVIEW — film FEG « De la facture à la réforme » (v2)
 
-Fichier : `renders/FEG-Semaine-entrepreneuriat-2026.mp4` · 1920 × 1080 · 30 i/s · 1 min 49 s (109,4 s).
+Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 41 s (101,1 s) :
 
-## Choix créatifs
+- `renders/FEG-Semaine-entrepreneuriat-2026-voix.mp4` : voix off féminine + musique.
+- `renders/FEG-Semaine-entrepreneuriat-2026-sans-voix.mp4` : musique seule, les titres portent le récit.
 
-- **Piste retenue** : A, « De la facture à la réforme ». Une seule prise continue à travers une maquette d'architecte isométrique (three.js, caméra orthographique). Un atelier isolé et sa facture impayée deviennent le fil conducteur jusqu'à la Déclaration de Libreville.
-- **Non construites** : B, « Les points de la carte » (typographique, sur vert profond, musique seule) ; C, « Une journée de dirigeante » (récit à la première personne). Détail dans `STORYLINES.md`.
-- **Look** : maquette blanche mate sur sol pierre froide #E8E9E4. Le vert signifie l'adhésion (#2E7D4F, #0A7537), le vert profond #063D21 l'institution, le bronze #AEAE7D le logo et la couronne de la tour. Police de la marque : Hyundai Sans Head/Text, issue du dépôt du site.
-- **Idée de fin** : les 71 socles de la carte reprennent exactement les positions des 71 points du logo FEG, mesurées sur le fichier du logo. Vue du dessus, les socles deviennent les points du logo ; la vraie image du logo est calée au pixel et révèle les arcs et « FEG ».
-- **L'atelier reste blanc** pendant tout le film, seul bâtiment non membre, et passe au vert sur « rejoignez ».
-- **Données réelles uniquement** : 1959, 1 118 entreprises, 13 fédérations et leurs effectifs, ≈ 80 % du PIB, + 90 % de la main-d'œuvre formelle, missions, services, GEF 2026 (27 juin 2026, 8 ateliers), texte exact de l'Axe 1, comité paritaire de suivi. Les hauteurs des bâtiments suivent la répartition réelle des tailles (micro 57 %, petite 31 %, moyenne 9 %, grande 2 %).
+Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans-voix`, puis `npx hyperframes render`. Une seule racine, `index.html`, reçoit la variante choisie. Le dépôt garde la version voix par défaut.
 
-## Voix off
+## Ce qui a changé depuis la v1 (demandes de la FEG)
 
-- Google Gemini TTS, voix « Kore » (féminine). L01 à L09 avec `gemini-3.8-flash-tts`. L10 avec `gemini-3.8-flash-lite-tts`, car le niveau gratuit plafonne à 10 requêtes par jour sur le modèle principal.
-- **Contrôle par Gemini (écoute automatique)** : transcription exacte sur les 9 phrases vérifiées, nombres bien lus (« mille neuf cent cinquante-neuf », « mille cent dix-huit », « quatre-vingt-dix pour cent », « deux mille vingt-six »), qualité jugée excellente. L09 et L10 sont jugées « même voix, passage inaudible ».
-- **À écouter** : L06 a été décrite une fois comme une voix « masculine ». Sa hauteur mesurée (médiane 169 Hz) est pourtant identique à celle des autres phrases (156 à 180 Hz) : c'est la même voix, dans un registre féminin grave. La vérification croisée L05/L06 n'a pas pu aboutir (quota).
-- Chaque phrase est normalisée à −16 LUFS, crête −1,5 dBTP. Calage mot à mot par détection des pauses réelles (ffmpeg) et répartition syllabique (`tools/voice.mjs`).
+- **Voix plus naturelle** : audition de cinq voix Gemini, classées par une écoute automatique Gemini. Despina arrive en tête (naturel 9/10, engagement 8,5/10, chaleur 9/10, contre 6/10 pour Kore, jugée « robotique »). La narration complète est générée **d'un seul tenant**, ce qui donne une prosodie continue d'une phrase à l'autre, puis découpée aux pauses réelles (`tools/voice_onepass.mjs`).
+- **Réforme formulée en creux** : « La dette intérieure, la fiscalité, la commande publique, le financement des PME : ensemble, les entreprises pèsent désormais sur les réformes du pays ». La phrase fait écho à « une entreprise pèse peu » (L02). Le titre à l'écran devient « La voix des entreprises au cœur des réformes ».
+- **Source retirée** : la mention « Fichier unique des adhérents, au 31 octobre 2026 » n'apparaît plus.
+- **Musique** : SoundHill, « Find Yourself », fournie par la FEG.
+- **Version sans voix** : couche de titres `compositions/ov-titres.html`. Elle contient la citation du Président (« L'histoire économique d'un pays s'écrit sur le terrain… », Alain-Claude Kouakoua, site lafeg.ga), « Seule, une entreprise pèse peu », « 13 fédérations métiers », « Porter la voix des entreprises », « Votre préoccupation remonte jusqu'à l'État », « Des services au quotidien » et le thème du GEF 2026 (texte exact de la Déclaration).
+- Cadrages ajustés pour laisser une zone libre à chaque titre : atelier en bas à droite à l'ouverture, en haut à gauche de la fin.
 
-## Son
+## Voix (version voix)
 
-- Effets : souffle sur le grand recul, sur le vol vers le GEF et sur le retour à l'atelier, crescendo et impact sur l'arrivée du logo (banque HyperFrames, licence Pixabay).
-- **Pas de musique** : Lyria 3 / 3.5 a un quota nul au niveau gratuit, Lyria RealTime passe par WebSocket (bloqué par le proxy de la session), HeyGen et HuggingFace sont bloqués. `tools/music.sh` (Lyria RealTime) et `tools/music_lyria3.py` (Lyria 3.5) sont prêts dès qu'une de ces voies s'ouvre. Il suffit ensuite de déposer `assets/bgm/track.wav` puis de lancer `node tools/build.mjs` : la piste est ajoutée à −16 dB sous la voix.
-- Mixage final mesuré : **−15,1 LUFS intégrés, crête vraie −3,1 dBTP**, plage dynamique 4 LU. Le premier rendu sortait à −13,1 LUFS (voix mono à −16 LUFS dupliquée en stéréo) : la voix a été baissée de 2 dB, dans le projet (`data-volume="0.79"`) et sur la piste audio du MP4 livré (image non réencodée).
-- Le son a été **mesuré, pas écouté** : niveaux, crêtes et positions vérifiés par outils.
+- Google Gemini TTS `gemini-3.8-flash-tts`, voix « Despina ».
+- **Contrôle Gemini** : dix phrases transcrites sans coupure ni mot manquant, voix féminine, naturel 8/10.
+- **Erreur corrigée** : la première prise disait « dette **antérieure** », confirmé par trois modèles. La phrase L08 a été régénérée seule, avec articles, puis vérifiée (« intérieure », voyelle [ɛ̃]) avant d'être gardée (`tools/voice_retake.mjs`).
+- Chaque phrase est normalisée à −16 LUFS, crête −1,5 dBTP, avec un gain de 0,79 dans le mixage.
+
+## Musique
+
+- Le morceau dure 138 s à 120 BPM. Sa section finale (accord final à 129,9 s) est calée sur l'arrivée du logo : le film commence au cœur du morceau et se termine sur sa fin naturelle.
+- Correspondances : la partie calme (50–59 s du morceau) tombe sous la carte et les fédérations, la remontée sous la naissance de la tour, le sommet d'énergie (93,7 s) sous le Gabon Economic Forum, la descente (115–130 s) sous le message final.
+- **Version voix** : enveloppe de volume. Musique présente avant la voix (0,5), en retrait sous la parole (0,19, soit environ 14 dB sous la voix), relevée entre les phrases (0,36) et pleine sur le logo (0,85).
+- **Version sans voix** : musique à 0,85 du début à la fin.
+- Le crescendo et l'impact de fin ont été retirés : l'accord final du morceau porte l'arrivée du logo. Il reste trois souffles discrets sur les grands mouvements de caméra.
+- Licence : morceau présenté comme libre de droits (SoundHill). **Vérifier les conditions de SoundHill**, qui demande souvent une mention de l'artiste dans la description de la vidéo publiée.
 
 ## Ce qui a été vérifié
 
-- `npx hyperframes check` : 0 erreur ; contraste 13/13 ; aucun avertissement de rythme (`line_unread`, `dead_stretch`) ; audio sans avertissement.
-- Images de contrôle sur chaque mot-repère (facture, démarche, 1959, 1 118, 13, 80 %, 90 %, missions, fédération, Bureau, dialogue, Gabon, huit, Déclaration, plupart, réformes, services, rejoignez) : chaque élément arrive sur son mot.
-- Alignement du logo vérifié au pixel (agrandissement × 3 : un seul disque net par point).
-
-## Plan le plus faible, et ce que je ferais avec plus de temps
-
-- **Plus faible** : le plan des missions (L05). La tour reste fixe 8 s ; seul le bandeau actif change. Ensuite, le plan large des réformes (L08), où les liaisons vertes restent fines à l'échelle de la carte entière.
-- Avec plus de temps : une nappe musicale (Lyria 3 en niveau payant, ou une piste fournie par la FEG), un flou de mouvement sur les vols de caméra rapides, des fenêtres sur les bâtiments en plan rapproché, une version 9:16 pour les réseaux sociaux.
+- `npx hyperframes check` sur les deux versions : 0 erreur ; contraste 43/43 ; aucun avertissement de temps de lecture (`line_unread` corrigé sur la date du GEF) ; audio sans avertissement.
+- Images de contrôle sur chaque mot-repère et sur chaque titre de la version sans voix : aucun titre ne chevauche un objet 3D.
+- Le son a été **mesuré, pas écouté** (niveaux en fin de rendu, voir plus bas).
 
 ## Avertissements conservés
 
-- `composition_file_too_large` (world.html) : la maquette est une seule scène WebGL continue ; la couper en fichiers casserait la prise unique.
-- Messages de performance WebGL « GPU stall due to ReadPixels » : propres au rendu logiciel (SwiftShader), sans effet sur l'image.
+- `composition_file_too_large` (world.html) : la maquette est une seule scène WebGL continue.
+- `canvas_content_at_edge` vers 50 s : la tour est volontairement coupée par le bord du cadre pendant le plan de la table du dialogue.
+- Messages WebGL « GPU stall due to ReadPixels » : propres au rendu logiciel, sans effet sur l'image.
+
+## Plans les plus faibles, et pistes
+
+- Les missions (tour fixe pendant ~8 s) et le plan large des réformes (liaisons fines à l'échelle de la carte).
+- Avec plus de temps : flou de mouvement sur les vols de caméra, fenêtres sur les bâtiments en gros plan, version 9:16 pour les réseaux sociaux.
 
 ## Points à valider par la FEG
 
-- « La plupart des réformes engagées aujourd'hui au Gabon sont nées de ces travaux » : affirmation du brief, absente des documents fournis.
-- « 24 recommandations » : décompte de la Déclaration (8 axes × 3 points), pas un chiffre écrit dans le texte.
-- Téléphone affiché : +241 11 77 55 95, d'après le pied de page de la Déclaration. Le site mentionne aussi +241 011 77 55 57.
+- « 24 recommandations » : décompte de la Déclaration (8 axes × 3 points).
+- Téléphone affiché : +241 11 77 55 95 (pied de page de la Déclaration ; le site mentionne aussi +241 011 77 55 57).
+- Mention de l'artiste de la musique selon la licence SoundHill.

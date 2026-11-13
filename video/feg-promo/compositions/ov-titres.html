@@ -1,0 +1,175 @@
+<template>
+  <!-- Version sans voix : les titres portent le récit que la voix off porte dans l'autre version. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    .tt {
+      position: absolute;
+      opacity: 0;
+    }
+    .tt .k {
+      display: block;
+      font-weight: 500;
+      font-size: 32px;
+      color: #0a7537;
+      margin-bottom: 12px;
+    }
+    .tt .h {
+      display: block;
+      font-weight: 700;
+      font-size: 66px;
+      line-height: 1.04;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    .tt .h span,
+    .tt .q span {
+      display: inline-block;
+    }
+    .tt .q {
+      display: block;
+      font-weight: 500;
+      font-size: 44px;
+      line-height: 1.18;
+      letter-spacing: -0.01em;
+      color: #1a1c19;
+    }
+    .tt .a {
+      display: block;
+      margin-top: 18px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #4f554d;
+    }
+    #tt-quote {
+      left: 132px;
+      top: 210px;
+      width: 900px;
+    }
+    #tt-seule {
+      left: 132px;
+      top: 190px;
+      width: 760px;
+    }
+    #tt-feds {
+      left: 132px;
+      top: 92px;
+      width: 470px;
+    }
+    #tt-feds .h {
+      font-size: 56px;
+    }
+    #tt-voix {
+      left: 132px;
+      top: 300px;
+      width: 470px;
+    }
+    #tt-circuit {
+      left: 760px;
+      top: 104px;
+      width: 1060px;
+    }
+    #tt-circuit .h {
+      font-size: 56px;
+    }
+    #tt-svc {
+      left: 132px;
+      top: 300px;
+      width: 470px;
+    }
+    #tt-svc .h {
+      font-size: 58px;
+    }
+    #tt-theme {
+      left: 132px;
+      top: 128px;
+      width: 640px;
+    }
+    #tt-theme .q {
+      font-weight: 700;
+      font-size: 52px;
+      color: #063d21;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-titres" data-width="1920" data-height="1080" data-layout-allow-overlap>
+    <div id="tt-quote" class="tt">
+      <span class="q"><span>«&nbsp;L'histoire</span> <span>économique</span> <span>d'un</span> <span>pays</span> <span>s'écrit</span> <span>sur</span> <span>le</span> <span>terrain,</span> <span>dans</span> <span>la</span> <span>sueur</span> <span>des</span> <span>ateliers</span> <span>et</span> <span>le</span> <span>risque</span> <span>des</span> <span>entrepreneurs.&nbsp;»</span></span>
+      <span class="a">Alain-Claude Kouakoua, Président de la FEG</span>
+    </div>
+    <div id="tt-seule" class="tt">
+      <span class="h"><span>Seule,</span> <span>une</span> <span>entreprise</span> <span>pèse</span> <span>peu.</span></span>
+    </div>
+    <div id="tt-feds" class="tt">
+      <span class="k">Organisées par métier</span>
+      <span class="h"><span>13</span> <span>fédérations</span> <span>métiers</span></span>
+    </div>
+    <div id="tt-voix" class="tt">
+      <span class="k">Notre raison d'être</span>
+      <span class="h"><span>Porter</span> <span>la</span> <span>voix</span> <span>des</span> <span>entreprises</span></span>
+    </div>
+    <div id="tt-circuit" class="tt">
+      <span class="k">Comment ça marche</span>
+      <span class="h"><span>Votre</span> <span>préoccupation</span> <span>remonte</span> <span>jusqu'à</span> <span>l'État</span></span>
+    </div>
+    <div id="tt-svc" class="tt">
+      <span class="k">Être membre, c'est aussi</span>
+      <span class="h"><span>Des</span> <span>services</span> <span>au</span> <span>quotidien</span></span>
+    </div>
+    <div id="tt-theme" class="tt">
+      <span class="k">Thème du Gabon Economic Forum 2026</span>
+      <span class="q"><span>Des</span> <span>entreprises</span> <span>fortes</span> <span>pour</span> <span>une</span> <span>croissance</span> <span>durable</span> <span>et</span> <span>une</span> <span>prospérité</span> <span>partagée</span></span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var W = (C.ov && C.ov["ov-titres"]) || { start: 0, dur: C.total };
+      var T0 = W.start;
+      var L = function (abs) {
+        return Math.max(0, abs - T0);
+      };
+      var S = function (id) {
+        return C.lines[id].start;
+      };
+      var E = function (id) {
+        return C.lines[id].end;
+      };
+      var tl = gsap.timeline({ paused: true });
+      // entrée mot à mot (flou → net), sortie flou ; titres immobiles une fois posés
+      function show(sel, tIn, tOut) {
+        tl.fromTo(sel, { opacity: 0 }, { opacity: 1, duration: 0.01 }, tIn);
+        tl.fromTo(sel + " .k", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tIn);
+        tl.fromTo(sel + " .h span, " + sel + " .q span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.07, ease: "power4.out" }, tIn + 0.12);
+        tl.fromTo(sel + " .a", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tIn + 1.2);
+        tl.fromTo(sel, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.24, ease: "power3.in", immediateRender: false }, tOut);
+      }
+      show("#tt-quote", L(0.35), L(S("L02") - 0.45));
+      show("#tt-seule", L(C.at("L02", ["seule"]) + 0.2), L(S("L03") - 1.25));
+      show("#tt-feds", L(C.at("L03", ["13", "treize"]) + 0.3), L(S("L04") - 0.15));
+      show("#tt-voix", L(S("L05") - 0.2), L(S("L06") - 1.2));
+      show("#tt-circuit", L(S("L06") - 0.3), L(C.at("L06", ["fédération", "federation"]) + 0.1));
+      show("#tt-svc", L(S("L09") - 0.4), L(S("L10") - 1.1));
+      show("#tt-theme", L(S("L10") + 0.3), L(C.at("L10", ["rejoignez"]) + 0.6));
+      window.__timelines["ov-titres"] = tl;
+    })();
+  </script>
+</template>

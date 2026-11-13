@@ -93,7 +93,7 @@
       <div id="rf-q"><span>«&nbsp;Apurer</span> <span>la</span> <span><b>dette</b></span> <span><b>intérieure</b></span> <span>de</span> <span>l'État</span> <span>envers</span> <span>les</span> <span>entreprises</span> <span>selon</span> <span>un</span> <span>échéancier</span> <span>transparent</span> <span>et</span> <span>contraignant.&nbsp;»</span></div>
       <div id="rf-qs">GEF 2026 · 27 juin 2026</div>
     </div>
-    <div id="rf-title"><span>Du</span> <span>Forum</span> <span>aux</span> <span>réformes</span></div>
+    <div id="rf-title"><span>La</span> <span>voix</span> <span>des</span> <span>entreprises</span> <span>au</span> <span>cœur</span> <span>des</span> <span>réformes</span></div>
     <div id="rf-stats">
       <div id="rf-s1"><b>8</b>axes</div>
       <div id="rf-s2"><b>24</b>recommandations</div>
@@ -109,10 +109,10 @@
       var L = function (abs) {
         return Math.max(0, abs - T0);
       };
-      var tQ = L(C.lines.L08.start + 0.1);
-      var tWide = L(C.at("L08", ["plupart"]) - 0.65);
-      var tTitle = L(C.at("L08", ["réformes", "reformes"]) - 0.2);
-      var tStats = tTitle + 0.9;
+      var tQ = L(C.lines.L08.start - 1.05);
+      var tWide = L(C.at("L08", ["ensemble"]) + 0.05);
+      var tTitle = tWide + 1.7;
+      var tStats = tTitle + 0.7;
       var tl = gsap.timeline({ paused: true });
       tl.fromTo("#rf-k", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tQ);
       tl.fromTo("#rf-q", { opacity: 0 }, { opacity: 1, duration: 0.05 }, tQ + 0.15);

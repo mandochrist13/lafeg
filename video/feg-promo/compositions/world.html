@@ -104,7 +104,7 @@
       id="world-root"
       data-composition-id="world"
       data-start="0"
-      data-duration="109.4"
+      data-duration="101.08"
       data-total
       data-width="1920"
       data-height="1080"
@@ -114,7 +114,7 @@
         id="world-cv"
         class="clip"
         data-start="0"
-        data-duration="109.4"
+        data-duration="101.08"
         data-total
         data-track-index="0"
       ></canvas>
@@ -908,7 +908,8 @@
       const camera = new THREE.OrthographicCamera(-16, 16, 9, -9, 1, 1600);
       const ISO = 35.264;
       const hp = (v) => ({ x: v.x, y: v.y || 0, z: v.z });
-      const CAM0 = { ...hp(heroPos), y: 0.32, V: 0.98, az: 45, el: ISO };
+      // plan d'ouverture : l'atelier en bas à droite, le haut gauche libre pour les titres
+      const CAM0 = framed({ x: heroPos.x, y: 0.32, z: heroPos.z }, 0.98, 0.16, -0.1);
       const moves = [];
       const mv = (t0, dur, to, mode = "lin", ease = inOut) => moves.push({ t0, dur, to, mode, ease });
       // Mouvements enchaînés : si un mouvement commence avant la fin du précédent,
@@ -974,9 +975,9 @@
       T.invGef = at("L07", ["juin"]) - 0.3;
       T.ateliers = at("L07", ["huit", "8"]) - 0.1;
       T.declUp = at("L07", ["abouti"]) - 0.1;
-      T.toState = S("L08") - 0.6;
-      T.declIn = S("L08") + 0.3;
-      T.wide8 = at("L08", ["plupart"]) - 0.6;
+      T.toState = S("L08") - 1.25;
+      T.declIn = S("L08") - 0.35;
+      T.wide8 = at("L08", ["ensemble"]) + 0.15;
       T.arcs = T.wide8 + 0.6;
       T.toTower9 = S("L09") - 1.05;
       T.svc = [at("L09", ["veille"]) - 0.1, at("L09", ["formations"]) - 0.1, at("L09", ["réseau", "reseau"]) - 0.1, at("L09", ["médiation", "mediation"]) - 0.1];
@@ -991,7 +992,7 @@
       const lone = new THREE.Vector3().add(heroPos).add(crane.position).add(shop.position).add(office.position).multiplyScalar(0.25);
       mv(T.pull1, E("L01") - T.pull1 + 0.3, { ...framed({ x: lone.x, y: 0.4, z: lone.z }, 4.5, -0.03, 0.0) }, "pivot", inOutQ);
       // L02 : retour sur l'atelier, cadre assez large pour la pile
-      mv(T.push2, 1.5, { ...framed({ x: heroPos.x + 0.45, y: 0.62, z: heroPos.z + 0.1 }, 1.32, 0.0, 0.0) }, "pivot");
+      mv(T.push2, 1.5, { ...framed({ x: heroPos.x + 0.45, y: 0.62, z: heroPos.z + 0.1 }, 1.32, 0.13, -0.02) }, "pivot");
       // L03 : grand recul sur la carte (carte à droite, titre à gauche)
       mv(T.pull3, 2.5, { ...framed({ x: 0, y: 0, z: 0 }, 31, 0.3, 0.02) }, "pivot", inOut);
       // anneau des fédérations
@@ -1011,9 +1012,9 @@
       mv(T.toState, 1.6, { ...framed({ x: PS.x, y: 2.5, z: PS.z }, 10.5, -0.3, 0.04) }, "lin", inOut);
       mv(T.wide8, 2.4, { ...framed({ x: 26, y: 0, z: -26 }, 50, 0.0, -0.08) }, "pivot", inOut);
       // L09 : retour à la tour, tiroirs à droite
-      mv(T.toTower9, 1.8, { ...framed({ x: PF.x + 1.5, y: 8.6, z: PF.z }, 11.6, -0.2, 0.0) }, "pivot", inOut);
+      mv(T.toTower9, 1.8, { ...framed({ x: PF.x + 1.5, y: 8.6, z: PF.z }, 11.6, -0.12, 0.0) }, "pivot", inOut);
       // L10 : retour à l'atelier, puis grand recul vertical : la carte devient le logo
-      mv(T.toHero, 1.9, { ...framed({ x: heroPos.x, y: 0.35, z: heroPos.z }, 2.5, 0.0, 0.0) }, "pivot", inOut);
+      mv(T.toHero, 1.9, { ...framed({ x: heroPos.x, y: 0.35, z: heroPos.z }, 2.2, 0.3, -0.3) }, "pivot", inOut);
       // logo : vue de dessus, azimut 0, échelle 0,62 px écran par px logo, logo centré (cy écran 470)
       const K_LOGO = 0.62;
       const V_LOGO = (SC * 540) / K_LOGO;

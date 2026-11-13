@@ -5,7 +5,7 @@
     "line": "L03",
     "word": null,
     "offset": -1.15,
-    "volume": 0.24,
+    "volume": 0.2,
     "dur": 5.544
   },
   {
@@ -14,7 +14,7 @@
     "line": "L07",
     "word": null,
     "offset": -0.95,
-    "volume": 0.3,
+    "volume": 0.2,
     "dur": 0.575
   },
   {
@@ -23,25 +23,7 @@
     "line": "L10",
     "word": null,
     "offset": -1.0,
-    "volume": 0.28,
+    "volume": 0.2,
     "dur": 0.575
-  },
-  {
-    "id": "sfx-riser",
-    "src": "assets/sfx/riser.mp3",
-    "offset": -3.05,
-    "volume": 0.14,
-    "dur": 4.4,
-    "anchor": "logo",
-    "mediaStart": 0,
-    "fadeIn": 0.6
-  },
-  {
-    "id": "sfx-logo",
-    "src": "assets/sfx/impact-bass-1.mp3",
-    "offset": 0.04,
-    "volume": 0.36,
-    "dur": 2.116,
-    "anchor": "logo"
   }
 ]

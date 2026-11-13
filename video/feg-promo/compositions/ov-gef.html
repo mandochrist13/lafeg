@@ -92,7 +92,7 @@
         return Math.max(0, abs - T0);
       };
       var tTitle = L(C.at("L07", ["Gabon"]) - 0.15);
-      var tMeta = L(C.at("L07", ["juin"]) - 0.2);
+      var tMeta = Math.min(L(C.at("L07", ["juin"]) - 0.2), tTitle + 0.5);
       var tDecl = L(C.at("L07", ["Déclaration", "declaration"]) - 0.1);
       var tl = gsap.timeline({ paused: true });
       tl.fromTo("#gf-kick", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tTitle - 0.25);

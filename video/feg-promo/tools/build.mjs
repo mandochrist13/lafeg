@@ -59,7 +59,8 @@ const cues = { total, order, lines, estimated: !meta };
   const L = lines.L10;
   const k = L.words.find((x) => x.n && x.n.startsWith("rejoign"));
   const logoT = (k ? k.s : L.start + 0.75 * L.dur) + 3.1;
-  if (logoT + 4.5 > total) total = r3(logoT + 4.5);
+  // la musique se termine ~5,9 s après sa section finale, calée sur le logo : on la laisse finir
+  if (logoT + 6.1 > total) total = r3(logoT + 6.1);
   cues.total = total;
 }
 
@@ -87,14 +88,16 @@ C.logo = LOGO_T;
 const S = (id) => C.lines[id].start;
 const E = (id) => C.lines[id].end;
 
+const VARIANT = process.argv.includes("--sans-voix") ? "sans-voix" : "voix";
 // Fenêtres des couches de titres (secondes absolues).
 const overlays = [
   { id: "ov-kicker", src: "compositions/ov-kicker.html", start: 0, end: E("L01") + 0.5 },
   { id: "ov-feg", src: "compositions/ov-feg.html", start: S("L03") - 0.3, end: at("L03", ["13", "treize"]) + 0.35 },
   { id: "ov-poids", src: "compositions/ov-poids.html", start: S("L04") - 0.2, end: E("L04") + 0.6 },
   { id: "ov-gef", src: "compositions/ov-gef.html", start: S("L07") - 0.2, end: E("L07") + 0.7 },
-  { id: "ov-reformes", src: "compositions/ov-reformes.html", start: S("L08") - 0.1, end: E("L08") + 0.7 },
+  { id: "ov-reformes", src: "compositions/ov-reformes.html", start: S("L08") - 1.2, end: E("L08") + 1.25 },
   { id: "ov-end", src: "compositions/ov-end.html", start: LOGO_T - 0.1, end: total },
+  { id: "ov-titres", src: "compositions/ov-titres.html", start: 0, end: total, only: "sans-voix" },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 
 // fenêtres des couches de titres, lues par chaque composition (C.ov[id].start / .dur)
@@ -142,17 +145,55 @@ const audio = [];
 let track = 20;
 for (const id of order) {
   const L = C.lines[id];
-  if (L.src && has(L.src)) {
+  if (VARIANT === "voix" && L.src && has(L.src)) {
     audio.push(
       `    <audio id="vo-${id}" src="${L.src}" data-start="${L.start}" data-duration="${L.dur}" data-track-index="${track}" data-volume="0.79"></audio>`,
     );
   }
 }
-const bgm = ["assets/bgm/track.wav", "assets/bgm/track.mp3"].find(has);
-if (bgm) {
-  audio.push(
-    `    <audio id="bgm" src="${bgm}" data-start="0" data-duration="${total}" data-track-index="21" data-volume="0.16" data-fade-in="0.4" data-fade-out="2.5"></audio>`,
-  );
+// Musique : SoundHill « Find Yourself » (fournie par la FEG). Sa section finale (accord final à 129,945 s)
+// tombe sur l'arrivée du logo ; la fin naturelle du morceau ferme le film.
+const MUSIC = { src: "assets/bgm/soundhill-find-yourself.mp3", length: 138.109, finalSection: 129.945 };
+if (has(MUSIC.src)) {
+  let offset = r3(MUSIC.finalSection - LOGO_T);
+  const startAt = offset < 0 ? r3(-offset) : 0;
+  if (offset < 0) offset = 0;
+  const dur = r3(Math.min(total - startAt, MUSIC.length - offset));
+  if (VARIANT === "voix") {
+    // enveloppe : présente avant la voix et entre les phrases, en retrait sous la voix, pleine sur le logo
+    const FULL = 0.5,
+      GAP = 0.36,
+      UNDER = 0.19,
+      END = 0.85;
+    const pts = [{ t: 0, v: FULL }];
+    const push = (t, v) => {
+      t = r3(Math.max(0, t - startAt));
+      if (pts.length && t <= pts[pts.length - 1].t) t = r3(pts[pts.length - 1].t + 0.01);
+      pts.push({ t, v });
+    };
+    order.forEach((id, k) => {
+      const L = C.lines[id];
+      const prev = pts[pts.length - 1].v;
+      push(L.start - 0.4, prev);
+      push(L.start - 0.05, UNDER);
+      const next = order[k + 1] ? C.lines[order[k + 1]] : null;
+      const gap = next ? next.start - L.end : Infinity;
+      if (gap > 1.0) {
+        push(L.end + 0.1, UNDER);
+        push(L.end + 0.55, GAP);
+      }
+    });
+    push(LOGO_T - 0.6, GAP);
+    push(LOGO_T - 0.05, END);
+    const auto = JSON.stringify({ version: 1, lanes: [{ target: "volume", points: pts }] });
+    audio.push(
+      `    <audio id="bgm" src="${MUSIC.src}" data-start="${startAt}" data-duration="${dur}" data-media-start="${offset}" data-track-index="21" data-volume="1" data-fade-in="1.2" data-automation='${auto}'></audio>`,
+    );
+  } else {
+    audio.push(
+      `    <audio id="bgm" src="${MUSIC.src}" data-start="${startAt}" data-duration="${dur}" data-media-start="${offset}" data-track-index="21" data-volume="0.85" data-fade-in="1.0"></audio>`,
+    );
+  }
 }
 // Effets sonores : [id, fichier, temps absolu, volume]
 const sfxPlan = JSON.parse(readFileSync(join(ROOT, "tools/sfx.json"), "utf8"));
@@ -167,7 +208,7 @@ for (const s of sfxPlan) {
   }
 }
 
-const hosts = (WORLD_ONLY ? [] : overlays)
+const hosts = (WORLD_ONLY ? [] : overlays.filter((o) => !o.only || o.only === VARIANT))
   .map(
     (o, i) =>
       `    <div id="${o.id}" data-composition-id="${o.id}" data-composition-src="${o.src}" data-start="${o.start}" data-duration="${r3(o.end - o.start)}" data-track-index="${i + 2}" data-track-kind="graphics" data-width="1920" data-height="1080"></div>`,
@@ -189,7 +230,7 @@ const html = `<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>FEG — Semaine mondiale de l'entrepreneuriat 2026</title>
+    <title>FEG — Semaine mondiale de l'entrepreneuriat 2026${VARIANT === "voix" ? "" : " (sans voix)"}</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <style>
@@ -234,6 +275,8 @@ ${audio.join("\n")}
   </body>
 </html>
 `;
+// Une seule racine (index.html) : la variante choisie y est écrite.
+// Version voix : node tools/build.mjs · version sans voix : node tools/build.mjs --sans-voix
 writeFileSync(join(ROOT, "index.html"), html);
 console.log(`total ${total}s  estimated=${!meta}  lines=${order.length}  audio=${audio.length}`);
 for (const id of order) console.log(id, C.lines[id].start, "→", C.lines[id].end);
