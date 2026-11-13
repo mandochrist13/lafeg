@@ -485,10 +485,10 @@
       "path": "assets/voice/L06.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 8.514,
+      "duration_s": 9.635,
       "speech": [
         0.12,
-        8.334
+        9.507
       ],
       "pauses": 4,
       "anchored": 3,
@@ -519,7 +519,7 @@
           "end": 2.33
         },
         {
-          "text": "CNAM-GS,",
+          "text": "Knam-GS,",
           "start": 2.33,
           "end": 2.5
         },
@@ -564,24 +564,44 @@
           "end": 6.112
         },
         {
-          "text": "immeuble",
-          "start": 6.566,
-          "end": 6.939
+          "text": "au",
+          "start": 6.418,
+          "end": 6.62
+        },
+        {
+          "text": "huitième",
+          "start": 6.62,
+          "end": 7.025
+        },
+        {
+          "text": "étage",
+          "start": 7.025,
+          "end": 7.429
+        },
+        {
+          "text": "de",
+          "start": 7.429,
+          "end": 7.632
+        },
+        {
+          "text": "l'immeuble",
+          "start": 7.632,
+          "end": 8.036
         },
         {
           "text": "Odyssée,",
-          "start": 6.939,
-          "end": 7.498
+          "start": 8.036,
+          "end": 8.643
         },
         {
           "text": "à",
-          "start": 7.765,
-          "end": 7.907
+          "start": 8.844,
+          "end": 9.009
         },
         {
           "text": "Libreville.",
-          "start": 7.907,
-          "end": 8.334
+          "start": 9.009,
+          "end": 9.507
         }
       ]
     },

@@ -48,6 +48,10 @@
       line-height: 1.4;
       color: #3c423b;
     }
+    #s5-addr sup {
+      font-size: 0.62em;
+      line-height: 0;
+    }
     #s5-addr b {
       font-family: "Hyundai Sans Head", sans-serif;
       font-weight: 500;
@@ -128,7 +132,7 @@
 
     <div id="s5-kick">Étape 3 · Le dépôt</div>
     <div id="s5-title"><span>Déposer</span> <span>le</span> <span>dossier</span></div>
-    <div id="s5-addr"><span id="s5-a1">Immeuble Odyssée · BP 410 · Libreville</span><br /><b id="s5-a2">info@lafeg.ga</b></div>
+    <div id="s5-addr"><span id="s5-a1">Immeuble Odyssée, 8ème étage · BP 410 · Libreville</span><br /><b id="s5-a2">info@lafeg.ga</b></div>
   </div>
   <script>
     (function () {
@@ -182,7 +186,7 @@
       // textes
       tl.fromTo("#s5-kick", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, 0.45);
       tl.fromTo("#s5-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, 0.55);
-      tl.fromTo("#s5-a1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("L06", ["immeuble"]) - 0.1));
+      tl.fromTo("#s5-a1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("L06", ["huitième", "huitieme", "limmeuble", "immeuble"]) - 0.1));
       tl.fromTo("#s5-a2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("L06", ["Libreville"]) + 0.1));
       window.__timelines["s5"] = tl;
     })();
