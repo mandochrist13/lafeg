@@ -6,6 +6,7 @@
 - **Dossier incomplet** : accepté sous réserve, avec **trois mois** (et non six) pour le compléter, dans la voix comme à l'écran (trois cases qui se remplissent). Attention : la page 2 du dossier d'adhésion 2026 indique encore « six (6) mois ».
 - **Voix** : L07 et L11 régénérées (Despina). Une première prise de L11 disait « Bâtissons » au lieu de « Bâtir » ; elle a été refaite avec la consigne de lire le texte mot pour mot. Une transcription neutre (sans le texte attendu) entend « Bâtir », et « trois mois ».
 - Durée : 95,6 s.
+- **Contrôles du rendu v3** : `check` sans erreur ni avertissement. Son mesuré, pas écouté : −15,4 LUFS, crête −1,0 dBFS. Dans le mixage final, Gemini transcrit « trois mois », « Bâtir » et « souveraineté nationale », sans écart ni défaut, intelligibilité 10/10.
 
 ## v2 : demandes de la FEG
 
