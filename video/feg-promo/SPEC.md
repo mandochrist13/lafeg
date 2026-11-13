@@ -41,21 +41,21 @@ TIME: ~100 s (fixé par la voix off) ≈ 3000 images. Musique ~96 BPM → 18,75 
 
 ## SHOTS
 
-Temps réels, calés sur la voix off (générés par `tools/build.mjs`) :
+Temps réels, calés sur la voix off Despina (générés par `tools/build.mjs`, identiques dans la version sans voix) :
 
 | Phrase | Début | Fin |
 | --- | --- | --- |
-| L01 | 1.00 s | 7.68 s |
-| L02 | 8.58 s | 14.70 s |
-| L03 | 16.00 s | 28.20 s |
-| L04 | 29.10 s | 37.02 s |
-| L05 | 38.02 s | 46.66 s |
-| L06 | 47.76 s | 56.52 s |
-| L07 | 57.82 s | 68.26 s |
-| L08 | 69.36 s | 79.52 s |
-| L09 | 80.72 s | 90.48 s |
-| L10 | 91.78 s | 103.90 s |
-| Logo | 103.71 s | 109.40 s (fin) |
+| L01 | 1.20 s | 7.13 s |
+| L02 | 8.13 s | 13.42 s |
+| L03 | 15.02 s | 25.28 s |
+| L04 | 27.68 s | 33.56 s |
+| L05 | 34.86 s | 42.65 s |
+| L06 | 44.15 s | 50.89 s |
+| L07 | 52.49 s | 61.31 s |
+| L08 | 63.21 s | 72.58 s |
+| L09 | 74.08 s | 82.63 s |
+| L10 | 84.23 s | 94.06 s |
+| Logo | 94.98 s | 101.08 s (fin) |
 
 
 1. **L01, le terrain** : atelier seul plein cadre (≥ 40 % de la hauteur), recul lent qui révèle un chantier et une boutique, isolés. Kicker « Semaine mondiale de l'entrepreneuriat 2026 ».

@@ -36,7 +36,8 @@ Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans
 
 - `npx hyperframes check` sur les deux versions : 0 erreur ; contraste 43/43 ; aucun avertissement de temps de lecture (`line_unread` corrigé sur la date du GEF) ; audio sans avertissement.
 - Images de contrôle sur chaque mot-repère et sur chaque titre de la version sans voix : aucun titre ne chevauche un objet 3D.
-- Le son a été **mesuré, pas écouté** (niveaux en fin de rendu, voir plus bas).
+- Le son a été **mesuré, pas écouté**. Version voix : −15,8 LUFS intégrés, crête vraie −2,1 dBTP. Version sans voix : −14,2 LUFS, crête −2,3 dBTP.
+- **Écoute automatique du mixage par Gemini** (deux extraits de la version voix) : intelligibilité 10/10 et 9/10, musique « bien dosée » sous la voix, aucun défaut relevé. La musique s'éteint naturellement sur la carte de fin (de −20 dB à 96 s jusqu'à −63 dB à 101 s).
 
 ## Avertissements conservés
 
