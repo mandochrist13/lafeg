@@ -204,8 +204,9 @@
       document.getElementById("s2-cover").innerHTML = P.folderTop(300, 420);
       // la main droite et son tampon, vus de dessus (le tampon sous la main)
       var stamp =
-        '<div style="position:absolute;left:-78px;top:-52px;width:156px;height:96px;border-radius:14px;background:#3A4540;box-shadow:0 6px 14px rgba(0,0,0,.18)">' +
-        '<div style="position:absolute;left:10px;top:8px;right:10px;bottom:14px;border-radius:10px;background:#46524C"></div></div>';
+        '<div style="position:absolute;left:-80px;top:-50px;width:160px;height:96px;border-radius:14px;background:#3A4540;box-shadow:0 6px 14px rgba(0,0,0,.18)">' +
+        '<div style="position:absolute;left:10px;top:8px;right:10px;bottom:14px;border-radius:10px;background:#46524C"></div></div>' +
+        '<div style="position:absolute;left:-30px;top:-30px;width:60px;height:60px;border-radius:50%;background:#2B3330"></div>';
       var R = -25; // inclinaison du bras (degrés)
       document.getElementById("s2-arms").innerHTML = P.armTop("s2a", { pose: "grip", hand: "R", s: 1, r: R, under: stamp });
       // position du coude pour que la main (prise à 0,-470 dans le repère du bras) tombe sur (tx, ty)
@@ -233,7 +234,7 @@
         { w: "#s2-w1", st: "#s2-st1", tin: C.at("L03", ["registre"]) - 0.55, hit: C.at("L03", ["commerce"]) + 0.15, x: 185, y: 610 },
         { w: "#s2-w2", st: "#s2-st2", tin: C.at("L03", ["numéro", "numero"]) - 0.2, hit: C.at("L03", ["fiscale"]) + 0.08, x: 505, y: 618 },
         { w: "#s2-w3", st: "#s2-st3", tin: C.at("L03", ["CNSS", "cnss"]) - 0.5, hit: C.at("L03", ["CNSS", "cnss"]) + 0.32, x: 825, y: 606 },
-        { w: "#s2-w4", st: "#s2-st4", tin: C.at("L03", ["CNAMGS", "cnamgs"]) - 0.45, hit: C.at("L03", ["CNAMGS", "cnamgs"]) + 0.42, x: 1145, y: 616 },
+        { w: "#s2-w4", st: "#s2-st4", tin: C.at("L03", ["CNAMGS", "cnamgs", "knam"]) - 0.45, hit: C.at("L03", ["CNAMGS", "cnamgs", "knam"]) + 0.42, x: 1145, y: 616 },
         { w: "#s2-w5", st: "#s2-st5", tin: C.at("L03", ["impôts", "impots"]) - 0.5, hit: C.at("L03", ["impôts", "impots"]) + 0.3, x: 1465, y: 608 },
       ];
       var first = elbow(docs[0].x + 135, docs[0].y + 230);

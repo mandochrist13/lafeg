@@ -4,7 +4,7 @@ GOAL: un chef d'entreprise gabonais sait qu'il doit d'abord être une entreprise
 
 OUTPUT: HyperFrames, 1920 × 1080, 30 i/s, MP4 H.264, voix off Despina + musique.
 
-TIME: ≈ 88 s (fixé par la voix off) ≈ 2640 images. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
+TIME: 91,7 s (fixé par la voix off) ≈ 2750 images. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
 
 ## LOOK
 
@@ -19,7 +19,7 @@ TIME: ≈ 88 s (fixé par la voix off) ≈ 2640 images. Musique SoundHill « Fin
 ## OBJECTS
 
 - **La dirigeante** (fil rouge) : femme d'une quarantaine d'années, peau #6E4429, cheveux courts naturels, veste #0A7537, haut blanc, pantalon #1F2A24. Proportions réelles (tête = 1/7,5 de la hauteur), visage stylisé : yeux ovales, sourcils, nez en ombre douce, bouche en trait. Jamais de caricature.
-- **Ses mains vues de dessus** : avant-bras en manche verte et poignet blanc, main #6E4429 ; elles posent, tamponnent, signent, cochent, attrapent.
+- **Les mains** : silhouettes d'un seul tenant, doigts effilés et accolés, plis fins, pouce placé, aucun liseré autour des doigts. Vues de dessus : le poing fermé sur la poignée du tampon, la pince à trois doigts sur le stylo (index posé le long du stylo, autres doigts repliés). De face : le dossier tenu par ses bords, doigts repliés sur la couverture ; assis, avant-bras et mains posés l'un sur l'autre sur la table.
 - **Les cinq pièces de l'entreprise formelle** : feuilles blanches à bandeau gris, titre et sous-titre : « RCCM · Registre du commerce », « NIF · Identifiant fiscal », « CNSS · Immatriculation », « CNAMGS · Immatriculation », « Impôts · À jour ». Aucun logo d'administration réel.
 - **Tampon « À JOUR »** : cadre arrondi #0A7537 incliné de −8°. **Cadenas** gris foncé sur le dossier fermé.
 - **Le dossier** : chemise vert profond #063D21, bandeau #C2C08E, « DOSSIER D'ADHÉSION » en blanc. Pages intérieures : les vraies pages du dossier 2026 (lettre de demande p. 3, fiche entreprise p. 4, fédération métier p. 6, déclaration d'engagement p. 9), dont le pied de page reste illisible à l'écran.
@@ -28,7 +28,7 @@ TIME: ≈ 88 s (fixé par la voix off) ≈ 2640 images. Musique SoundHill « Fin
 - **La salle des instances** : table vue de face, quatre membres assis, le dossier ouvert. Carte de décision avec les trois cases du vrai dossier : Acceptée, Acceptée sous réserve, Refusée.
 - **Six mois** : six cases de calendrier qui se remplissent.
 - **Cotisation** : un escalier de dix tranches, sans aucun montant, avec le repère « votre chiffre d'affaires » ; un ticket « Droit d'accès · première adhésion ».
-- **Poignée de main** : gros plan, manche verte à gauche, manche gris foncé à droite.
+- **Poignée de main** : en pied, de profil, la dirigeante et un représentant de la FEG devant le logo ; les mains serrées à leur taille naturelle (le gros plan de la v1 faisait trop dessiné).
 - **Carte de membre** : logo FEG, « Membre », liseré bronze.
 - **Table de la fédération** : table ronde, six membres ; une chaise libre que la dirigeante occupe, les autres se tournent vers elle.
 - **Calendrier** : page « 31 mars » et flèche circulaire.
@@ -58,14 +58,14 @@ Temps réels, calés sur la voix off (générés par `tools/build.mjs`) :
 
 Les étapes 1 et 2 sont dans le même plan (s3), le dossier restant à l'écran.
 
-1. **S1 · Le bureau** (L01) : vue de face, la dirigeante à son bureau pose le dossier vert devant elle ; titre « Comment adhérer à la FEG ? ». Poussée lente 1,00 → 1,06 ; fin sur le dossier.
+1. **S1 · Le bureau** (L01) : vue de face, la dirigeante à son bureau tient le dossier vert face à nous, par ses bords ; titre « Comment adhérer à la FEG ? ». Fin : la caméra entre dans la couverture.
 2. **S2 · Entreprise formelle** (L02–L03) : vue de dessus, le dossier fermé par un cadenas ; titre « Condition impérative » / « Être une entreprise formelle ». Ses mains posent les cinq pièces, chacune tamponnée « À JOUR » quand la voix la nomme. Au cinquième tampon, le cadenas s'ouvre.
 3. **S3 · Le dossier** (L04–L05) : le dossier s'ouvre ; les pages arrivent quand la voix les nomme ; la fédération métier est cochée ; la déclaration est signée puis cachetée. Surtitre « Étape 1 ».
 4. **S4 · Les justificatifs** (L06, début) : les justificatifs CNSS et CNAMGS se trombonnent au dossier, qui se ferme ; ses mains le soulèvent. « Étape 2 ».
 5. **S5 · Le dépôt** (L06, fin) : vue de face, rue ; elle marche vers l'Immeuble Odyssée et remet le dossier à l'accueil. « Étape 3 », adresse et info@lafeg.ga.
 6. **S6 · La validation** (L07) : les instances examinent le dossier ; « Acceptée » se coche ; puis « sous réserve » et six mois qui se remplissent. « Étape 4 ».
 7. **S7 · La cotisation** (L08) : l'escalier des tranches, son repère, puis le droit d'accès. « Étape 5 ». Aucun montant.
-8. **S8 · Membre** (L09) : poignée de main en gros plan, carte de membre, puis la table de sa fédération qui l'accueille.
+8. **S8 · Membre** (L09) : poignée de main en pied devant le logo de la FEG, puis la table de sa fédération qui l'accueille.
 9. **S9 · Chaque année** (L10) : le calendrier « 31 mars », la fiche entreprise se met à jour. « Étape 6 ».
 10. **S10 · Fin** (L11) : « S'unir pour être plus fort », puis logo FEG, « Devenez membre · lafeg.ga », info@lafeg.ga, tenus au moins 2,5 s.
 

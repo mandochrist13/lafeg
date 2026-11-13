@@ -9,9 +9,10 @@ const [id, check] = process.argv.slice(2);
 const vi = process.argv.indexOf("--voice");
 const VOICE = vi > 0 ? process.argv[vi + 1] : "Despina";
 const STYLE =
-  "Voix féminine française, naturelle et engageante, comme une dirigeante qui s'adresse à des chefs d'entreprise qu'elle respecte : " +
-  "chaleureuse, un sourire dans la voix, conviction tranquille. Rythme vivant et varié, respirations naturelles, intonation conversationnelle. " +
-  "Articulation nette de chaque mot. Jamais monotone, jamais lue, jamais publicitaire.";
+  "Voix féminine française, naturelle, claire et bienveillante, comme une conseillère qui guide un chef d'entreprise pas à pas : " +
+  "posée, souriante, assurée, jamais lue. Rythme vivant et varié, respirations naturelles, intonation conversationnelle. " +
+  "Prononce CNSS lettre par lettre : cé-èn-èss-èss. Prononce CNAM-GS (ou Knam-GS) comme le mot « knam », avec un K dur au début, suivi de « jé-èss » : knam-jé-èss, jamais lettre par lettre. " +
+  "Jamais monotone, jamais publicitaire.";
 const L = JSON.parse(readFileSync(join(ROOT, "tools/lines.json"), "utf8")).lines.find((x) => x.id === id);
 const { synthesizeGemini } = await import(join(ROOT, "../../.agents/skills/media-use/audio/scripts/lib/gemini-tts.mjs"));
 const tmp = join(ROOT, `assets/voice/raw/${id}-take.wav`);
@@ -22,7 +23,7 @@ async function verify(file) {
     { inline_data: { mime_type: "audio/mpeg", data: readFileSync(mp3).toString("base64") } },
     { text: `Texte attendu : « ${L.text} ». ${check} Réponds en JSON {"conforme": bool, "transcription": str, "detail": str}` },
   ];
-  for (const m of ["gemini-3.5-flash-lite", "gemini-3.1-flash-lite", "gemini-flash-lite-latest"]) {
+  for (const m of ["gemini-3.5-flash", "gemini-3.5-flash-lite", "gemini-3.1-flash-lite"]) {
     const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${m}:generateContent`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },

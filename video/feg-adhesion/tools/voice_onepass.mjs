@@ -20,7 +20,7 @@ const SPLIT_ONLY = args.includes("--split-only");
 const STYLE =
   "Voix féminine française, naturelle, claire et bienveillante, comme une conseillère qui guide un chef d'entreprise pas à pas : " +
   "posée, souriante, assurée, jamais lue. Rythme vivant et varié, respirations naturelles, intonation conversationnelle. " +
-  "Prononce les sigles lettre par lettre (C N S S, C N A M G S). " +
+  "Prononce CNSS lettre par lettre : cé-èn-èss-èss. Prononce CNAM-GS comme le mot « knam » suivi de « jé-èss » (knam-jé-èss), jamais lettre par lettre. " +
   "Marque une vraie pause, d'environ une seconde, entre chaque paragraphe. Jamais monotone, jamais publicitaire.";
 
 const cfg = JSON.parse(readFileSync(join(ROOT, "tools/lines.json"), "utf8"));

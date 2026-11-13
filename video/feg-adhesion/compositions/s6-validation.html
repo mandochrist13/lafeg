@@ -182,17 +182,15 @@
       ];
       document.getElementById("s6-people").innerHTML = ppl
         .map(function (p) {
-          return P.front(p.id, { x: p.x, y: Y, s: S, skin: p.skin, hair: p.hair, hairColor: p.hairColor, top: p.top, tie: p.tie, sex: p.sex, glasses: p.glasses, beard: p.beard, cut: cut });
+          return P.front(p.id, { x: p.x, y: Y, s: S, skin: p.skin, hair: p.hair, hairColor: p.hairColor, top: p.top, tie: p.tie, sex: p.sex, glasses: p.glasses, beard: p.beard, cut: cut, table: true });
         })
         .join("");
       var tl = gsap.timeline({ paused: true });
       ppl.forEach(function (p) {
         P.prep(p.id);
-        // avant-bras posés sur la table, en raccourci
+        // bras : les avant-bras et les mains posés sur la table sont dessinés par l'option table (coudes à 14°)
         gsap.set("#" + p.id + "-uaL", { rotation: 14 });
-        gsap.set("#" + p.id + "-faL", { rotation: -14, scaleY: 0.24 });
         gsap.set("#" + p.id + "-uaR", { rotation: -14 });
-        gsap.set("#" + p.id + "-faR", { rotation: 14, scaleY: 0.24 });
         // tous lisent le dossier
         gsap.set("#" + p.id + "-eyes", { y: 4, scaleY: 0.7 });
       });

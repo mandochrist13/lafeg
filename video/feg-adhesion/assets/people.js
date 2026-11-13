@@ -77,6 +77,291 @@
   }
   P.smooth = smooth;
 
+  // ---------------------------------------------------------------- mains
+  var D2R = Math.PI / 180;
+  function f1(v) {
+    return Math.round(v * 10) / 10;
+  }
+  // doigt effilé : base (x, y), direction a en degrés (0 = droite, 90 = bas), longueur,
+  // largeurs à la base et au bout, flexion de la phalange distale (degrés)
+  function fingerGeo(x, y, a, len, w0, w1, bend) {
+    var a1 = a * D2R,
+      a2 = (a + (bend || 0)) * D2R,
+      am = (a1 + a2) / 2;
+    var l1 = len * 0.56,
+      l2 = len - l1;
+    var p0 = [x, y],
+      p1 = [x + l1 * Math.cos(a1), y + l1 * Math.sin(a1)];
+    var p2 = [p1[0] + l2 * Math.cos(a2), p1[1] + l2 * Math.sin(a2)];
+    var wm = (w0 + w1) / 2;
+    function off(p, an, w, sg) {
+      return [f1(p[0] - Math.sin(an) * (w / 2) * sg), f1(p[1] + Math.cos(an) * (w / 2) * sg)];
+    }
+    function ahead(p, an, dd, side) {
+      return [f1(p[0] + Math.cos(an) * dd - Math.sin(an) * side), f1(p[1] + Math.sin(an) * dd + Math.cos(an) * side)];
+    }
+    var pts = [
+      off(p0, a1, w0, 1), off(p1, am, wm, 1), off(p2, a2, w1, 1),
+      ahead(p2, a2, w1 * 0.3, w1 * 0.4), ahead(p2, a2, w1 * 0.52, 0), ahead(p2, a2, w1 * 0.3, -w1 * 0.4),
+      off(p2, a2, w1, -1), off(p1, am, wm, -1), off(p0, a1, w0, -1),
+    ];
+    return { pts: pts, p1: p1, p2: p2, a1: a1, a2: a2, am: am, wm: wm, w1: w1 };
+  }
+  // opt : { line: liseré, lw, crease: pli de l'articulation, nail: ongle }
+  function finger(x, y, a, len, w0, w1, bend, fill, opt) {
+    opt = opt || {};
+    var g = fingerGeo(x, y, a, len, w0, w1, bend);
+    var s = '<path d="' + smooth(g.pts) + '" fill="' + fill + '"' + (opt.line ? ' stroke="' + opt.line + '" stroke-width="' + (opt.lw || 1.4) + '" stroke-linejoin="round"' : "") + "/>";
+    if (opt.crease) {
+      var w = g.wm * 0.3,
+        q = g.p1,
+        an = g.am;
+      s += stroke("M " + f1(q[0] - Math.sin(an) * w) + "," + f1(q[1] + Math.cos(an) * w) + " L " + f1(q[0] + Math.sin(an) * w) + "," + f1(q[1] - Math.cos(an) * w), opt.crease, opt.cw || 1.3);
+    }
+    if (opt.nail) {
+      var c = [g.p2[0] + Math.cos(g.a2) * g.w1 * 0.16, g.p2[1] + Math.sin(g.a2) * g.w1 * 0.16];
+      s +=
+        '<ellipse cx="' + f1(c[0]) + '" cy="' + f1(c[1]) + '" rx="' + f1(g.w1 * 0.34) + '" ry="' + f1(g.w1 * 0.27) + '" transform="rotate(' + f1(g.a2 / D2R) + " " + f1(c[0]) + " " + f1(c[1]) +
+        ')" fill="' + opt.nail + '"/>';
+    }
+    return s;
+  }
+  P.finger = finger;
+  // pli entre deux doigts voisins : de la base vers le bout, sur une fraction t0..t1 de la longueur
+  function sep(x1, y1, x2, y2, a, len, t0, t1, col, w) {
+    var mx = (x1 + x2) / 2,
+      my = (y1 + y2) / 2,
+      ar = a * D2R;
+    return stroke(
+      "M " + f1(mx + Math.cos(ar) * len * t0) + "," + f1(my + Math.sin(ar) * len * t0) + " L " + f1(mx + Math.cos(ar) * len * t1) + "," + f1(my + Math.sin(ar) * len * t1),
+      col,
+      w || 1.3,
+    );
+  }
+  // stylo : du bout arrière A à la pointe B, largeur w
+  function pen(A, B, w) {
+    var dx = B[0] - A[0],
+      dy = B[1] - A[1],
+      L = Math.sqrt(dx * dx + dy * dy),
+      ux = dx / L,
+      uy = dy / L,
+      nx = -uy * (w / 2),
+      ny = ux * (w / 2);
+    function at(t, k) {
+      return f1(A[0] + dx * t + nx * k) + "," + f1(A[1] + dy * t + ny * k);
+    }
+    return (
+      '<path d="M ' + at(0, 1) + " L " + at(0.84, 1) + " L " + at(0.84, -1) + " L " + at(0, -1) + ' Z" fill="#1A1C19"/>' +
+      '<path d="M ' + at(0.84, 1) + " L " + at(0.95, 0.8) + " L " + at(1, 0) + " L " + at(0.95, -0.8) + " L " + at(0.84, -1) + ' Z" fill="#C9CEC9"/>' +
+      '<path d="M ' + at(0.04, 1.05) + " L " + at(0.3, 1.05) + " L " + at(0.3, 0.55) + " L " + at(0.04, 0.55) + ' Z" fill="#8A9590"/>'
+    );
+  }
+  // main pendante vue de face : poignet en (x, y), doigts vers le bas, pouce du côté t (+1 : vers +x)
+  function handFront(x, y, t, skin) {
+    var d = shade(skin, 0.2);
+    function X(v) {
+      return f1(x + v * t);
+    }
+    var palm = smooth([[X(-11.5), y], [X(-13.5), y + 13], [X(-12.5), y + 26], [X(-9), y + 37], [X(-4), y + 43], [X(2), y + 43.5], [X(7), y + 39], [X(10), y + 30], [X(11.5), y + 17], [X(11.5), y + 5], [X(11), y]]);
+    return (
+      path(palm, skin) +
+      stroke("M " + X(-6.5) + "," + (y + 30) + " L " + X(-6) + "," + (y + 39), d, 1.2) +
+      stroke("M " + X(-1) + "," + (y + 32) + " L " + X(-0.5) + "," + (y + 42), d, 1.2) +
+      stroke("M " + X(4) + "," + (y + 31) + " L " + X(4.5) + "," + (y + 39), d, 1.2) +
+      finger(x + 8.5 * t, y + 7, t > 0 ? 97 : 83, 24, 10.5, 8.5, t > 0 ? 9 : -9, skin) +
+      stroke("M " + X(5) + "," + (y + 9) + " C " + X(5.5) + "," + (y + 17) + " " + X(5) + "," + (y + 24) + " " + X(4) + "," + (y + 30), d, 1.1)
+    );
+  }
+  // main pendante de profil (regarde vers +x) : poignet en (x, y)
+  function handSide(x, y, skin) {
+    var d = shade(skin, 0.2);
+    var palm = smooth([[x - 12, y], [x - 14, y + 14], [x - 13, y + 28], [x - 8, y + 39], [x - 1, y + 44], [x + 5, y + 41], [x + 9, y + 32], [x + 12, y + 18], [x + 13, y + 5], [x + 12, y]]);
+    return (
+      path(palm, skin) +
+      stroke("M " + (x - 4) + "," + (y + 30) + " L " + (x - 3) + "," + (y + 41), d, 1.2) +
+      finger(x + 9, y + 8, 83, 23, 10.5, 8.5, -9, skin) +
+      stroke("M " + (x + 5) + "," + (y + 10) + " C " + (x + 5.5) + "," + (y + 18) + " " + (x + 5) + "," + (y + 25) + " " + (x + 4) + "," + (y + 31), d, 1.1)
+    );
+  }
+  // main droite vue de dessus, paume vers le bas, poignet en (0,0), doigts vers -y : tient un stylo
+  // (pince à trois doigts : l'index posé sur le stylo, les autres doigts repliés)
+  function handTopPen(skin) {
+    var d = shade(skin, 0.16),
+      nail = P.tint(skin, 0.14);
+    var back = smooth([[-40, 2], [-46, -30], [-50, -62], [-44, -90], [-26, -106], [-2, -112], [22, -108], [40, -96], [50, -70], [46, -30], [40, 2]]);
+    return (
+      path(back, skin) +
+      finger(40, -92, -70, 16, 21, 19, 0, skin) +
+      finger(21, -104, -80, 19, 24, 22, 0, skin) +
+      finger(0, -110, -92, 24, 25, 23, 0, skin) +
+      sep(21, -104, 40, -92, -75, 18, 0.35, 1.0, d) +
+      sep(0, -110, 21, -104, -86, 22, 0.35, 1.0, d) +
+      stroke("M -14,-97 C -2,-102 14,-102 30,-96", d, 1.2) +
+      finger(-36, -62, -106, 78, 30, 21, 30, skin, { nail: nail }) +
+      stroke("M -32,-66 C -38,-80 -40,-92 -38,-104", d, 1.2) +
+      pen([8, -40], [-80, -262], 9) +
+      finger(-20, -104, -112, 108, 23, 18, 4, skin, { crease: d, nail: nail }) +
+      sep(-20, -104, 0, -110, -104, 30, 0.1, 0.8, d)
+    );
+  }
+  // main droite vue de dessus, refermée en poing sur la poignée d'un tampon (poignée en 0,-132)
+  function handTopGrip(skin) {
+    var d = shade(skin, 0.16),
+      nail = P.tint(skin, 0.14);
+    var back = smooth([[-40, 2], [-47, -32], [-50, -64], [-44, -94], [-26, -110], [-2, -116], [22, -112], [40, -100], [50, -72], [46, -32], [40, 2]]);
+    return (
+      path(back, skin) +
+      finger(39, -96, -76, 26, 21, 19, 0, skin) +
+      finger(20, -108, -84, 31, 24, 22, 0, skin) +
+      finger(-2, -112, -90, 33, 25, 23, 0, skin) +
+      finger(-24, -104, -96, 31, 24, 22, 0, skin) +
+      sep(20, -108, 39, -96, -80, 28, 0.25, 1.0, d) +
+      sep(-2, -112, 20, -108, -87, 32, 0.25, 1.0, d) +
+      sep(-24, -104, -2, -112, -93, 32, 0.25, 1.0, d) +
+      stroke("M -34,-100 C -14,-110 14,-110 46,-94", d, 1.2) +
+      finger(-38, -62, -112, 66, 28, 22, 28, skin, { nail: nail }) +
+      stroke("M -34,-66 C -40,-80 -42,-90 -38,-100", d, 1.2)
+    );
+  }
+  // poignée de main en gros plan : renvoie { herOpen, hisOpen, clasp } (SVG, repère écran 1920 × 1080)
+  // elle arrive de la gauche (peau a), lui de la droite (peau b) ; une fois serrées, ses doigts à elle
+  // enveloppent le dos de la main de l'autre et son pouce repose dessus
+  P.handshake = function (a, b) {
+    var da = shade(a, 0.2),
+      db = shade(b, 0.22),
+      na = P.tint(a, 0.22),
+      nb = P.tint(b, 0.22);
+    var oa = { line: da, lw: 1.6, crease: da, nail: na },
+      ob = { line: db, lw: 1.6, crease: db, nail: nb };
+    function openHand(skin, o, line) {
+      return (
+        path(smooth([[752, 524], [790, 516], [830, 514], [866, 518], [884, 528], [888, 560], [882, 592], [860, 606], [820, 612], [784, 614], [754, 610]]), skin) +
+        stroke("M 872,532 C 878,552 878,580 870,598", line, 1.4) +
+        finger(870, 596, 6, 62, 20, 16, 6, skin, o) +
+        finger(880, 577, 2, 80, 24, 19, 6, skin, o) +
+        finger(884, 555, 0, 90, 25, 20, 6, skin, o) +
+        finger(878, 532, -3, 86, 24, 19, 6, skin, o) +
+        finger(812, 524, -50, 62, 27, 21, 22, skin, o)
+      );
+    }
+    var herOpen = openHand(a, oa, da);
+    var hisOpen = '<g transform="translate(1920,0) scale(-1,1)">' + openHand(b, ob, db) + "</g>";
+    var clasp =
+      path(smooth([[1166, 514], [1120, 508], [1060, 508], [1000, 514], [964, 528], [958, 560], [968, 588], [1000, 598], [1060, 600], [1120, 602], [1166, 604]]), b) +
+      path(smooth([[752, 524], [790, 516], [830, 513], [868, 516], [892, 528], [898, 560], [892, 594], [866, 610], [820, 614], [784, 614], [754, 610]]), a) +
+      stroke("M 880,536 C 887,556 887,582 878,600", da, 1.4) +
+      finger(880, 600, 26, 58, 20, 16, 40, a, oa) +
+      finger(890, 580, 16, 78, 24, 19, 44, a, oa) +
+      finger(892, 557, 10, 88, 25, 20, 44, a, oa) +
+      finger(888, 534, 5, 90, 24, 19, 42, a, oa) +
+      finger(846, 521, -7, 96, 27, 21, 8, a, oa);
+    return { herOpen: herOpen, hisOpen: hisOpen, clasp: clasp };
+  };
+  // mains tenant un dossier de face par ses bords (repère du dossier, largeur w) :
+  // le dos de la main dépasse du bord, les quatre doigts se replient sur la couverture
+  P.folderHands = function (w, skin, top, shirt) {
+    var d = shade(skin, 0.18),
+      topD = shade(top, 0.12);
+    function arm() {
+      var E = [-94, 228],
+        W = [-46, 182];
+      var dx = W[0] - E[0],
+        dy = W[1] - E[1],
+        L = Math.sqrt(dx * dx + dy * dy),
+        nx = -dy / L,
+        ny = dx / L;
+      function q(t, h) {
+        return f1(E[0] + dx * t + nx * h) + "," + f1(E[1] + dy * t + ny * h);
+      }
+      return (
+        '<circle cx="' + E[0] + '" cy="' + E[1] + '" r="33" fill="' + top + '"/>' +
+        '<path d="M ' + q(0, 34) + " L " + q(0.84, 27) + " L " + q(0.84, -27) + " L " + q(0, -34) + ' Z" fill="' + top + '"/>' +
+        '<path d="M ' + q(0, -34) + " L " + q(0.84, -27) + " L " + q(0.84, -12) + " L " + q(0, -16) + ' Z" fill="' + topD + '"/>' +
+        '<path d="M ' + q(0.8, 28) + " L " + q(0.98, 27) + " L " + q(0.98, -27) + " L " + q(0.8, -28) + ' Z" fill="' + shirt + '"/>' +
+        path(smooth([[-44, 204], [-50, 186], [-48, 164], [-40, 147], [-25, 137], [-8, 134], [2, 138], [4, 196], [-12, 208], [-30, 210]]), skin)
+      );
+    }
+    function fingers() {
+      // quatre doigts repliés sur la face avant, du haut (index) au bas (auriculaire)
+      var f = [
+        [138, 25, 17.5],
+        [155, 27, 18],
+        [172, 25, 17.5],
+        [188, 20, 15.5],
+      ];
+      var s2 = "";
+      f.forEach(function (g) {
+        s2 += finger(-4, g[0], 4, g[1], g[2], g[2] - 2, 10, skin);
+      });
+      s2 += stroke("M 2,146.5 L 16,147.5", d, 1.2) + stroke("M 2,163.5 L 17,164.5", d, 1.2) + stroke("M 2,180 L 15,181", d, 1.2);
+      return s2;
+    }
+    var mir = '<g transform="translate(' + w + ',0) scale(-1,1)">';
+    return { back: arm() + mir + arm() + "</g>", front: fingers() + mir + fingers() + "</g>" };
+  };
+  // mains posées sur la table, vue de face (personnage assis) : avant-bras du coude au poignet, main droite sur la gauche
+  // elbowX : x du coude (négatif, côté gauche) ; repère du personnage
+  function tableArms(elbowX, skin, top, shirt) {
+    var d = shade(skin, 0.2),
+      topD = shade(top, 0.13);
+    function side(k) {
+      var E = [elbowX * k, -103],
+        W = [-28 * k, -86];
+      var dx = W[0] - E[0],
+        dy = W[1] - E[1],
+        Lg = Math.sqrt(dx * dx + dy * dy),
+        nx = -dy / Lg,
+        ny = dx / Lg;
+      function q(t, h) {
+        return f1(E[0] + dx * t + nx * h) + "," + f1(E[1] + dy * t + ny * h);
+      }
+      function X(v) {
+        return f1(v * k);
+      }
+      var sleeve = '<path d="M ' + q(0, 15) + " L " + q(0.9, 13) + " L " + q(0.9, -13) + " L " + q(0, -15) + ' Z" fill="' + (k < 0 ? top : topD) + '"/>';
+      var cuff = '<path d="M ' + q(0.86, 13.4) + " L " + q(1.0, 13) + " L " + q(1.0, -13) + " L " + q(0.86, -13.4) + ' Z" fill="' + shirt + '"/>';
+      var hand =
+        path(smooth([[X(-30), -95], [X(-18), -98], [X(-5), -98], [X(5), -96], [X(13), -93], [X(16), -88.5], [X(13), -84], [X(3), -81], [X(-9), -80], [X(-21), -80], [X(-30), -79.5]]), skin) +
+        stroke("M " + X(1) + ",-93 L " + X(12) + ",-91.5", d, 1.1) +
+        stroke("M " + X(1) + ",-88.5 L " + X(14) + ",-88", d, 1.1) +
+        stroke("M " + X(0) + ",-84.5 L " + X(11) + ",-84.5", d, 1.1) +
+        stroke("M " + X(-21) + ",-81.5 C " + X(-14) + ",-83 " + X(-8) + ",-83 " + X(-3) + ",-81", d, 1.1);
+      return sleeve + cuff + hand;
+    }
+    return side(-1) + side(1);
+  }
+  P.tableArms = tableArms;
+  // deux mains serrées vues de profil, petite échelle (centre 0,0) : elle à gauche (peau a), lui à droite (peau b) ;
+  // ses doigts à elle passent sur le dos de la main de l'autre, son pouce repose dessus
+  P.claspSide = function (a, b) {
+    var da = shade(a, 0.18);
+    return (
+      path(smooth([[-4, -16], [14, -18], [30, -15], [37, -6], [36, 7], [29, 15], [12, 17], [-4, 15]]), b) +
+      path(smooth([[-36, -14], [-18, -18], [0, -18], [8, -14], [10, 2], [6, 15], [-8, 18], [-24, 17], [-36, 15]]), a) +
+      finger(4, -12, 82, 22, 9.5, 8.5, 26, a) +
+      finger(12, -11, 86, 21, 9.5, 8.5, 26, a) +
+      finger(20, -9, 90, 18, 9, 8, 26, a) +
+      stroke("M 8.6,-6 L 7.6,6", da, 1) +
+      stroke("M 16.5,-5 L 15.5,6", da, 1) +
+      finger(-22, -15, -6, 40, 11, 8.5, 6, a, { nail: P.tint(a, 0.14) }) +
+      stroke("M -20,-10 C -10,-12.5 0,-13.5 10,-14", da, 1)
+    );
+  };
+  // pouces posés sur les coins bas d'un dossier tenu de face (repère du dossier, largeur w, hauteur h)
+  P.cornerThumbs = function (w, h, skin) {
+    var d = shade(skin, 0.2),
+      nl = P.tint(skin, 0.2);
+    function one() {
+      return (
+        path(smooth([[-12, h - 46], [-2, h - 52], [4, h - 40], [4, h - 2], [-6, h + 4], [-14, h - 10]]), skin) +
+        finger(-1, h - 30, -68, 40, 19, 15, -6, skin, { line: d, lw: 1.3, crease: d, nail: nl })
+      );
+    }
+    return one() + '<g transform="translate(' + w + ',0) scale(-1,1)">' + one() + "</g>";
+  };
+  P.hands = { front: handFront, side: handSide, topPen: handTopPen, topGrip: handTopGrip, pen: pen };
+
+
   // ---------------------------------------------------------------- cheveux (vue de face, tête centrée en 0,-286)
   function hairFront(style, col) {
     var hl = P.tint(col, 0.1);
@@ -173,11 +458,9 @@
         path("M " + (x - 14) + ",-104 L " + (x + 14) + ",-104 L " + (x + 12) + ",-14 L " + (x - 12) + ",-14 Z", top) +
         path("M " + (x + k * 14) + ",-104 L " + (x + k * 12) + ",-14 L " + (x + k * 6) + ",-14 L " + (x + k * 7) + ",-104 Z", topD) +
         rr(x - 14, -18, 28, 12, 4, shirt);
-      var hand =
-        path("M " + (x - 13) + ",-7 L " + (x + 13) + ",-7 C " + (x + 16) + ",8 " + (x + 14) + ",26 " + (x + 6) + ",34 C " + x + ",38 " + (x - 8) + ",36 " + (x - 12) + ",30 C " + (x - 16) + ",20 " + (x - 16) + ",6 " + (x - 13) + ",-7 Z", skin) +
-        el(x - k * 13, 7, 5.5, 11, skinD, ' transform="rotate(' + -k * 25 + " " + (x - k * 13) + ' 7)"');
+      var hand = handFront(x, -8, -k, skin);
       var grip = '<div id="' + id + "-grip" + side + '" class="pp-grip" style="position:absolute;left:' + x + 'px;top:14px;width:0;height:0"></div>';
-      return joint(id + "-ua" + side, x, -206, svg([x - 30, -232, 60, 150], ua) + joint(id + "-fa" + side, x, -100, svg([x - 30, -110, 60, 150], fa + hand) + grip));
+      return joint(id + "-ua" + side, x, -206, svg([x - 30, -232, 60, 150], ua) + joint(id + "-fa" + side, x, -100, (o.table ? "" : svg([x - 30, -110, 60, 150], fa + hand)) + grip));
     }
     var legs = "";
     if (o.legs) {
@@ -196,7 +479,8 @@
       svg([-110, -262, 220, 290], torso, o.cut != null ? "overflow:hidden;clip-path:inset(0 0 " + Math.max(0, 28 - o.cut) + "px 0)" : "") +
       joint(id + "-head", 0, -244, svg([-60, -380, 120, 145], head)) +
       arm("L") +
-      arm("R");
+      arm("R") +
+      (o.table ? '<div id="' + id + '-table" style="position:absolute;left:0;top:0;width:0;height:0">' + svg([-130, -140, 260, 80], tableArms(-(sx + 106 * Math.sin((14 * Math.PI) / 180)), skin, top, shirt)) + "</div>" : "");
     var s = o.s || 1;
     return (
       '<div id="' + id + '" class="pp" style="position:absolute;left:' + (o.x || 0) + "px;top:" + (o.y || 0) + "px;width:0;height:0;" + (o.z != null ? "z-index:" + o.z + ";" : "") + '">' +
@@ -234,7 +518,7 @@
       var c = far ? topD : top;
       var ua = rr(-16, -220, 32, 124, 16, c);
       var fa = rr(-15, -110, 30, 100, 15, c) + rr(-14, -22, 28, 12, 4, far ? shade(shirt, 0.1) : shirt);
-      var hand = path("M -14,-10 L 14,-10 C 17,6 12,22 2,28 C -10,24 -16,8 -14,-10 Z", far ? skinD : skin);
+      var hand = handSide(0, -12, far ? skinD : skin);
       var grip = '<div id="' + id + "-grip" + side + '" class="pp-grip" style="position:absolute;left:0px;top:10px;width:0;height:0"></div>';
       return joint(id + "-ua" + side, 0, -206, svg([-30, -232, 60, 150], ua) + joint(id + "-fa" + side, 0, -102, svg([-30, -116, 60, 150], fa + hand) + grip));
     }
@@ -327,35 +611,9 @@
     var k = left ? -1 : 1;
     var sleeve = rr(-62, -340, 124, 420, 56, top) + rr(left ? 30 : -62, -330, 32, 400, 16, topD) + rr(-54, -350, 108, 28, 10, shirt);
     var hand = "";
-    if (o.pose === "pen") {
-      hand =
-        rr(-44, -444, 88, 104, 40, skin) +
-        rr(-40 * k - 9, -470, 22, 46, 11, skin, ' transform="rotate(' + -18 * k + " " + -40 * k + ' -440)"') +
-        [-26, -6, 14].map(function (x, i) {
-          return rr(x * k - 10, -468 + i * 4, 20, 34, 10, skinD);
-        }).join("") +
-        rr(-3, -560, 8, 150, 4, "#1A1C19", ' transform="rotate(' + 24 * k + ' 0 -450)"') +
-        rr(-2, -566, 6, 16, 3, "#C9CEC9", ' transform="rotate(' + 24 * k + ' 0 -450)"');
-    } else if (o.pose === "grip") {
-      hand =
-        rr(-48, -450, 96, 112, 44, skin) +
-        [-30, -10, 10, 30].map(function (x) {
-          return rr(x - 10, -470, 20, 40, 10, skinD);
-        }).join("") +
-        rr(-56 * k - 10, -430, 24, 70, 12, skin, ' transform="rotate(' + 20 * k + " " + -56 * k + ' -400)"');
-    } else {
-      hand =
-        rr(-46, -440, 92, 104, 34, skin) +
-        [
-          [-33, 58],
-          [-11, 72],
-          [11, 70],
-          [32, 56],
-        ].map(function (f) {
-          return rr(f[0] * k - 9, -436 - f[1], 18, f[1] + 20, 9, skin) + el(f[0] * k, -432 - f[1], 5, 4, skinL);
-        }).join("") +
-        rr(-58 * k - 11, -428, 22, 72, 11, skin, ' transform="rotate(' + 32 * k + " " + -58 * k + ' -370)"');
-    }
+    var k2 = left ? -1 : 1;
+    if (o.pose === "pen") hand = '<g transform="translate(0,-338) scale(' + k2 + ',1)">' + handTopPen(skin) + "</g>";
+    else if (o.pose === "grip") hand = '<g transform="translate(0,-338) scale(' + k2 + ',1)">' + handTopGrip(skin) + "</g>";
     var grip = '<div id="' + id + '-grip" class="pp-grip" style="position:absolute;left:0px;top:-470px;width:0;height:0"></div>';
     var s = o.s || 1;
     return (

@@ -194,8 +194,9 @@
       document.getElementById("s3-cover").innerHTML = P.folderTop(400, 560);
       // main au stylo (droite) et main au cachet (droite), vues de dessus
       var round =
-        '<div style="position:absolute;left:-46px;top:-46px;width:92px;height:92px;border-radius:50%;background:#3A4540;box-shadow:0 6px 14px rgba(0,0,0,.18)">' +
-        '<div style="position:absolute;left:10px;top:9px;right:10px;bottom:13px;border-radius:50%;background:#46524C"></div></div>';
+        '<div style="position:absolute;left:-48px;top:-48px;width:96px;height:96px;border-radius:50%;background:#3A4540;box-shadow:0 6px 14px rgba(0,0,0,.18)">' +
+        '<div style="position:absolute;left:10px;top:9px;right:10px;bottom:13px;border-radius:50%;background:#46524C"></div></div>' +
+        '<div style="position:absolute;left:-26px;top:-26px;width:52px;height:52px;border-radius:50%;background:#2B3330"></div>';
       document.getElementById("s3-hands").innerHTML =
         P.armTop("s3pen", { pose: "pen", hand: "R", s: 0.9, r: -20 }) + P.armTop("s3st", { pose: "grip", hand: "R", s: 0.9, r: -25, under: round });
       // repères : pointe du stylo en (45,-551), prise en (0,-470) dans le repère du bras
@@ -203,7 +204,7 @@
         var a = (r * Math.PI) / 180;
         return { x: s * (px * Math.cos(a) - py * Math.sin(a)), y: s * (px * Math.sin(a) + py * Math.cos(a)) };
       }
-      var penO = off(45, -551, 0.9, -20),
+      var penO = off(-80, -600, 0.9, -20),
         stO = off(0, -470, 0.9, -25);
       function penAt(x, y) {
         return { x: x - penO.x, y: y - penO.y };

@@ -92,11 +92,11 @@
         <!-- le dossier tenu face à nous ; les pouces passent devant la couverture -->
         <div id="s1-folder">
           <svg class="s1-abs" width="236" height="330" viewBox="0 0 236 330" style="overflow: visible">
-            <g id="s1-arms-back"><circle cx="-94.0" cy="228.0" r="33" fill="#0A7537"/><path d="M -74.4,255.8 L -7.9,200.2 L -39.1,156.1 L -113.6,200.2 Z" fill="#0A7537"/><path d="M -113.6,200.2 L -39.1,156.1 L -30.4,168.3 L -103.2,214.9 Z" fill="#096832"/><path d="M -9.0,202.1 L 1.1,193.8 L -30.1,149.7 L -41.3,156.4 Z" fill="#FFFFFF"/><path d="M -40,150 C -36,136 -14,132 -2,138 L 6,146 L 6,200 C -6,208 -30,206 -38,194 C -44,182 -44,164 -40,150 Z" fill="#6E4429"/><path d="M -38,176 C -30,180 -16,180 -6,176" fill="none" stroke="#5C3A22" stroke-width="2.4" stroke-linecap="round"/><circle cx="330.0" cy="228.0" r="33" fill="#0A7537"/><path d="M 310.4,255.8 L 243.9,200.2 L 275.1,156.1 L 349.6,200.2 Z" fill="#0A7537"/><path d="M 349.6,200.2 L 275.1,156.1 L 266.4,168.3 L 339.2,214.9 Z" fill="#096832"/><path d="M 245.0,202.1 L 234.9,193.8 L 266.1,149.7 L 277.3,156.4 Z" fill="#FFFFFF"/><path d="M 276,150 C 272,136 250,132 238,138 L 230,146 L 230,200 C 242,208 266,206 274,194 C 280,182 280,164 276,150 Z" fill="#6E4429"/><path d="M 274,176 C 266,180 252,180 242,176" fill="none" stroke="#5C3A22" stroke-width="2.4" stroke-linecap="round"/></g>
+            <g id="s1-arms-back"></g>
           </svg>
           <div id="s1-cover" class="s1-abs" style="width: 236px; height: 330px"></div>
           <svg class="s1-abs" width="236" height="330" viewBox="0 0 236 330" style="overflow: visible">
-            <g id="s1-thumbs"><path d="M 2,150 C 10,144 26,146 30,154 C 33,161 28,167 20,166 L 2,166 Z" fill="#6E4429"/><path d="M 22,151 C 27,152 29,157 27,161 C 25,163 22,163 21,161 Z" fill="#7F5236"/><path d="M 234,150 C 226,144 210,146 206,154 C 203,161 208,167 216,166 L 234,166 Z" fill="#6E4429"/><path d="M 214,151 C 209,152 207,157 209,161 C 211,163 214,163 215,161 Z" fill="#7F5236"/></g>
+            <g id="s1-thumbs"></g>
           </svg>
         </div>
 
@@ -119,6 +119,9 @@
       // la dirigeante, assise : bassin à (1250, 1012), échelle 2,3 ; le buste s'arrête au bord arrière du plateau (y écran 773)
       document.getElementById("s1-people").innerHTML = P.front("h1", { x: 1250, y: 1012, s: 2.3, skin: "#6E4429", hair: "afro", top: "#0A7537", sex: "f", cut: -104 });
       document.getElementById("s1-cover").innerHTML = P.folderTop(236, 330);
+      var FH = P.folderHands(236, "#6E4429", "#0A7537", "#FFFFFF");
+      document.getElementById("s1-arms-back").innerHTML = FH.back;
+      document.getElementById("s1-thumbs").innerHTML = FH.front;
       P.prep("h1");
 
       var tl = gsap.timeline({ paused: true });

@@ -62,48 +62,19 @@
     }
   </style>
   <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
-    <!-- A : la poignée de main -->
-    <svg id="s8-a" class="s8-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
-      <g id="s8-shake">
-        <g id="s8-armA">
-          <path d="M -80,598 L 690,526 L 706,616 L -80,704 Z" fill="#0A7537" />
-          <path d="M -80,676 L 703,598 L 706,616 L -80,704 Z" fill="#096832" />
-          <path d="M 688,524 L 736,520 L 752,610 L 704,616 Z" fill="#E6E9E3" />
-          <g id="s8-openA">
-            <path d="M 746,522 C 800,514 860,508 900,510 C 920,512 922,550 904,566 C 878,582 800,598 752,612 Z" fill="#6E4429" />
-            <path d="M 780,520 C 786,500 800,488 816,488 C 832,488 836,500 828,512 C 822,518 808,522 796,524 Z" fill="#6E4429" />
-            <path d="M 872,532 L 908,530 M 870,548 L 910,548" stroke="#5C3A22" stroke-width="2.5" stroke-linecap="round" />
-          </g>
-        </g>
-        <g id="s8-armB">
-          <path d="M 2000,588 L 1232,518 L 1216,608 L 2000,694 Z" fill="#2F3A34" />
-          <path d="M 2000,668 L 1219,590 L 1216,608 L 2000,694 Z" fill="#262F2A" />
-          <path d="M 1234,516 L 1186,512 L 1170,602 L 1218,608 Z" fill="#E6E9E3" />
-          <g id="s8-openB">
-            <path d="M 1174,514 C 1120,506 1060,500 1020,502 C 1000,504 998,542 1016,558 C 1042,574 1120,590 1168,604 Z" fill="#4A2D1C" />
-            <path d="M 1140,512 C 1134,492 1120,480 1104,480 C 1088,480 1084,492 1092,504 C 1098,510 1112,514 1124,516 Z" fill="#4A2D1C" />
-            <path d="M 1048,524 L 1012,522 M 1050,540 L 1010,540" stroke="#3A2416" stroke-width="2.5" stroke-linecap="round" />
-          </g>
-        </g>
-        <g id="s8-clasp" opacity="0">
-          <rect x="734" y="516" width="250" height="96" rx="44" fill="#6E4429" />
-          <rect x="936" y="508" width="250" height="94" rx="44" fill="#4A2D1C" />
-          <g fill="#4A2D1C">
-            <rect x="806" y="508" width="34" height="104" rx="17" />
-            <rect x="842" y="510" width="34" height="104" rx="17" />
-            <rect x="878" y="512" width="34" height="100" rx="17" />
-            <rect x="914" y="514" width="34" height="94" rx="17" />
-          </g>
-          <g stroke="#3A2416" stroke-width="2.5" stroke-linecap="round">
-            <path d="M 841,522 L 841,600" />
-            <path d="M 877,524 L 877,600" />
-            <path d="M 913,526 L 913,596" />
-          </g>
-          <path d="M 930,512 C 960,494 1010,488 1040,494 C 1056,498 1054,516 1038,520 L 960,528 C 944,530 930,524 930,512 Z" fill="#6E4429" />
-          <path d="M 1018,496 C 1030,494 1040,498 1040,505 C 1036,510 1026,510 1018,506 Z" fill="#8A5A3C" />
-        </g>
-      </g>
-    </svg>
+    <!-- A : la poignée de main, en pied, devant le logo de la FEG -->
+    <div id="s8-a" class="s8-abs" style="width: 1920px; height: 1080px">
+      <svg class="s8-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+        <rect x="0" y="0" width="1920" height="1080" fill="#FFFFFF" />
+        <rect x="760" y="110" width="860" height="850" fill="#F4F5F2" />
+        <rect x="760" y="110" width="860" height="8" fill="#E4E6E0" />
+        <image href="assets/img/feg-logo.png" x="998" y="168" width="140" height="129" />
+        <rect x="0" y="960" width="1920" height="120" fill="#EEF0EC" />
+        <rect x="0" y="960" width="1920" height="5" fill="#DADDD6" />
+      </svg>
+      <div id="s8-duo" class="s8-abs"></div>
+      <svg class="s8-abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="overflow: visible"><g id="s8-clasp" opacity="0"></g></svg>
+    </div>
 
     <!-- B : la table de sa fédération -->
     <div id="s8-b">
@@ -148,28 +119,42 @@
       ];
       var html = ppl
         .map(function (p) {
-          return P.front(p.id, { x: p.x, y: Y, s: 1, skin: p.skin, hair: p.hair, hairColor: p.hairColor, top: p.top, tie: p.tie, sex: p.sex, glasses: p.glasses, beard: p.beard, cut: cut });
+          return P.front(p.id, { x: p.x, y: Y, s: 1, skin: p.skin, hair: p.hair, hairColor: p.hairColor, top: p.top, tie: p.tie, sex: p.sex, glasses: p.glasses, beard: p.beard, cut: cut, table: true });
         })
         .join("");
-      html += P.front("h8", { x: 960, y: Y, s: 1, skin: "#6E4429", hair: "afro", top: "#0A7537", sex: "f", cut: cut });
+      html += P.front("h8", { x: 960, y: Y, s: 1, skin: "#6E4429", hair: "afro", top: "#0A7537", sex: "f", cut: cut, table: true });
       document.getElementById("s8-people").innerHTML = html;
       var tl = gsap.timeline({ paused: true });
       ppl.concat([{ id: "h8" }]).forEach(function (p) {
         P.prep(p.id);
         gsap.set("#" + p.id + "-uaL", { rotation: 14 });
-        gsap.set("#" + p.id + "-faL", { rotation: -14, scaleY: 0.24 });
         gsap.set("#" + p.id + "-uaR", { rotation: -14 });
-        gsap.set("#" + p.id + "-faR", { rotation: 14, scaleY: 0.24 });
       });
 
-      // A : les mains se rejoignent sur « effective », se serrent, puis la table
+      // A : elle et le représentant de la FEG, de profil, se serrent la main sur « effective »
+      var XH = 860,
+        XR = XH + 416,
+        YH = 960 - 296;
+      document.getElementById("s8-duo").innerHTML =
+        P.side("h8a", { x: XH, y: YH, s: 1, skin: "#6E4429", top: "#0A7537", bottom: "#1F2A24", sex: "f" }) +
+        '<div style="position:absolute;left:' + XR + 'px;top:0;width:0;height:0;transform:scaleX(-1)">' +
+        P.side("r8a", { x: 0, y: YH, s: 1, skin: "#4A2D1C", top: "#2F3A34", bottom: "#2B3330", sex: "m" }) +
+        "</div>";
+      document.getElementById("s8-clasp").innerHTML = '<g transform="translate(' + (XH + 208) + "," + (YH - 151) + ')">' + P.claspSide("#6E4429", "#4A2D1C") + "</g>";
       var tEff = L(C.at("L09", ["effective"]));
-      gsap.set("#s8-armA", { x: -420 });
-      gsap.set("#s8-armB", { x: 420 });
       gsap.set("#s8-b", { opacity: 0 });
-      tl.to("#s8-armA", { x: 0, duration: 1.0, ease: "power2.inOut" }, tEff - 1.05).to("#s8-armB", { x: 0, duration: 1.0, ease: "power2.inOut" }, tEff - 1.0);
-      tl.set(["#s8-openA", "#s8-openB"], { opacity: 0 }, tEff).set("#s8-clasp", { opacity: 1 }, tEff);
-      tl.to("#s8-shake", { keyframes: [{ y: 12, duration: 0.16 }, { y: -10, duration: 0.2 }, { y: 7, duration: 0.18 }, { y: 0, duration: 0.18 }], ease: "sine.inOut" }, tEff + 0.05);
+      gsap.set(["#h8a-uaF", "#r8a-uaF"], { rotation: 4 });
+      tl.to("#h8a-uaF", { rotation: -70, duration: 0.6, ease: "power2.inOut" }, tEff - 0.7)
+        .to("#h8a-faF", { rotation: -10, duration: 0.6, ease: "power2.inOut" }, tEff - 0.7)
+        .to("#r8a-uaF", { rotation: -70, duration: 0.6, ease: "power2.inOut" }, tEff - 0.64)
+        .to("#r8a-faF", { rotation: -10, duration: 0.6, ease: "power2.inOut" }, tEff - 0.64)
+        .to(["#h8a-head", "#r8a-head"], { rotation: 3, duration: 0.4, ease: "power2.inOut" }, tEff - 0.5);
+      tl.set("#s8-clasp", { opacity: 1 }, tEff - 0.04);
+      // la poignée : deux secousses, avant-bras et mains ensemble
+      tl.to(["#h8a-faF", "#r8a-faF"], { keyframes: [{ rotation: -14, duration: 0.17 }, { rotation: -6, duration: 0.2 }, { rotation: -12, duration: 0.18 }, { rotation: -10, duration: 0.16 }], ease: "sine.inOut" }, tEff + 0.02)
+        .to("#s8-clasp", { keyframes: [{ y: -7, duration: 0.17 }, { y: 6, duration: 0.2 }, { y: -4, duration: 0.18 }, { y: 0, duration: 0.16 }], ease: "sine.inOut" }, tEff + 0.02)
+        .to(["#h8a-head", "#r8a-head"], { y: 3, duration: 0.18, ease: "power2.inOut" }, tEff + 0.15)
+        .to(["#h8a-head", "#r8a-head"], { y: 0, duration: 0.22, ease: "power2.inOut" }, tEff + 0.33);
       var tB = L(C.at("L09", ["vous"]) - 0.25);
       tl.set("#s8-a", { opacity: 0 }, tB).set("#s8-b", { opacity: 1 }, tB);
 
@@ -194,6 +179,8 @@
       ["m0", "m1", "m2", "m3", "m5", "m6", "m7", "m8", "h8"].forEach(function (id, i) {
         P.breathe(tl, id, tB + 0.1 * i, D, 3.2 + 0.25 * (i % 4), 0.007);
       });
+      P.breathe(tl, "h8a", 0, tB, 3.4, 0.007);
+      P.breathe(tl, "r8a", 0.3, tB, 3.8, 0.007);
       P.blink(tl, "m1", [tSit + 1.2]);
       P.blink(tl, "m7", [tSit + 2.0]);
       P.blink(tl, "h8", [tWide + 0.8]);

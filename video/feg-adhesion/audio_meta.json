@@ -160,10 +160,10 @@
       "path": "assets/voice/L03.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 10.419,
+      "duration_s": 9.76,
       "speech": [
         0.12,
-        10.239
+        9.577
       ],
       "pauses": 5,
       "anchored": 3,
@@ -171,112 +171,112 @@
         {
           "text": "Immatriculée",
           "start": 0.12,
-          "end": 1.091
+          "end": 0.925
         },
         {
           "text": "au",
-          "start": 1.091,
-          "end": 1.285
+          "start": 0.925,
+          "end": 1.087
         },
         {
           "text": "registre",
-          "start": 1.285,
-          "end": 1.674
+          "start": 1.087,
+          "end": 1.409
         },
         {
           "text": "du",
-          "start": 1.674,
-          "end": 1.868
+          "start": 1.409,
+          "end": 1.57
         },
         {
           "text": "commerce,",
-          "start": 1.868,
-          "end": 2.257
+          "start": 1.57,
+          "end": 1.892
         },
         {
           "text": "dotée",
-          "start": 2.447,
-          "end": 2.823
+          "start": 2.272,
+          "end": 2.688
         },
         {
           "text": "d'un",
-          "start": 2.823,
-          "end": 3.011
+          "start": 2.688,
+          "end": 2.896
         },
         {
           "text": "numéro",
-          "start": 3.011,
-          "end": 3.576
+          "start": 2.896,
+          "end": 3.521
         },
         {
           "text": "d'identification",
-          "start": 3.576,
-          "end": 4.705
+          "start": 3.521,
+          "end": 4.769
         },
         {
           "text": "fiscale,",
-          "start": 4.705,
-          "end": 5.081
+          "start": 4.769,
+          "end": 5.185
         },
         {
           "text": "et",
-          "start": 5.202,
-          "end": 5.392
+          "start": 5.309,
+          "end": 5.491
         },
         {
           "text": "à",
-          "start": 5.392,
-          "end": 5.581
+          "start": 5.491,
+          "end": 5.672
         },
         {
           "text": "jour",
-          "start": 5.581,
-          "end": 5.77
+          "start": 5.672,
+          "end": 5.854
         },
         {
           "text": "de",
-          "start": 5.77,
-          "end": 5.96
+          "start": 5.854,
+          "end": 6.036
         },
         {
           "text": "ses",
-          "start": 5.96,
-          "end": 6.149
+          "start": 6.036,
+          "end": 6.217
         },
         {
           "text": "cotisations",
-          "start": 6.149,
-          "end": 6.906
+          "start": 6.217,
+          "end": 6.944
         },
         {
           "text": "CNSS,",
-          "start": 6.906,
-          "end": 7.663
+          "start": 6.944,
+          "end": 7.671
         },
         {
-          "text": "CNAMGS",
-          "start": 8.107,
-          "end": 9.27
+          "text": "Knam-GS",
+          "start": 7.973,
+          "end": 8.24
         },
         {
           "text": "et",
-          "start": 9.27,
-          "end": 9.464
+          "start": 8.24,
+          "end": 8.508
         },
         {
           "text": "de",
-          "start": 9.464,
-          "end": 9.658
+          "start": 8.508,
+          "end": 8.775
         },
         {
           "text": "ses",
-          "start": 9.658,
-          "end": 9.852
+          "start": 8.775,
+          "end": 9.042
         },
         {
           "text": "impôts.",
-          "start": 9.852,
-          "end": 10.239
+          "start": 9.042,
+          "end": 9.577
         }
       ]
     },
@@ -485,103 +485,103 @@
       "path": "assets/voice/L06.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 8.783,
+      "duration_s": 8.514,
       "speech": [
         0.12,
-        8.603
+        8.334
       ],
-      "pauses": 5,
+      "pauses": 4,
       "anchored": 3,
       "words": [
         {
           "text": "Joignez",
           "start": 0.12,
-          "end": 0.495
+          "end": 0.46
         },
         {
           "text": "vos",
-          "start": 0.495,
-          "end": 0.682
+          "start": 0.46,
+          "end": 0.63
         },
         {
           "text": "justificatifs",
-          "start": 0.682,
-          "end": 1.618
+          "start": 0.63,
+          "end": 1.48
         },
         {
           "text": "CNSS",
-          "start": 1.618,
-          "end": 2.366
+          "start": 1.48,
+          "end": 2.16
         },
         {
           "text": "et",
-          "start": 2.366,
-          "end": 2.554
+          "start": 2.16,
+          "end": 2.33
         },
         {
-          "text": "CNAMGS,",
-          "start": 2.554,
-          "end": 3.677
+          "text": "CNAM-GS,",
+          "start": 2.33,
+          "end": 2.5
         },
         {
           "text": "et",
-          "start": 4.225,
-          "end": 4.403
+          "start": 2.612,
+          "end": 2.845
         },
         {
           "text": "déposez",
-          "start": 4.403,
-          "end": 4.936
+          "start": 2.845,
+          "end": 3.545
         },
         {
           "text": "le",
-          "start": 4.936,
-          "end": 5.113
+          "start": 3.545,
+          "end": 3.779
         },
         {
           "text": "dossier",
-          "start": 5.113,
-          "end": 5.469
+          "start": 3.779,
+          "end": 4.245
         },
         {
           "text": "complet",
-          "start": 5.469,
-          "end": 5.824
+          "start": 4.245,
+          "end": 4.712
         },
         {
           "text": "à",
-          "start": 5.824,
-          "end": 6.001
+          "start": 4.712,
+          "end": 4.945
         },
         {
           "text": "la",
-          "start": 6.001,
-          "end": 6.179
+          "start": 4.945,
+          "end": 5.179
         },
         {
           "text": "Fédération,",
-          "start": 6.179,
-          "end": 6.89
+          "start": 5.179,
+          "end": 6.112
         },
         {
           "text": "immeuble",
-          "start": 7.067,
-          "end": 7.358
+          "start": 6.566,
+          "end": 6.939
         },
         {
           "text": "Odyssée,",
-          "start": 7.358,
-          "end": 7.795
+          "start": 6.939,
+          "end": 7.498
         },
         {
           "text": "à",
-          "start": 7.983,
-          "end": 8.138
+          "start": 7.765,
+          "end": 7.907
         },
         {
           "text": "Libreville.",
-          "start": 8.138,
-          "end": 8.603
+          "start": 7.907,
+          "end": 8.334
         }
       ]
     },

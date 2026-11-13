@@ -1,8 +1,22 @@
-# REVIEW — « Comment adhérer à la FEG » (v1)
+# REVIEW — « Comment adhérer à la FEG » (v2)
 
-Un fichier : `renders/FEG-comment-adherer.mp4`, 1920 × 1080, 30 i/s, 1 min 33 s (92,6 s), voix off et musique.
+## v2 : demandes de la FEG
 
-Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/FEG-comment-adherer.mp4`.
+- **CNAMGS se prononce « knam-jé-èss »** et non lettre par lettre. Les phrases L03 et L06 ont été régénérées avec la même voix (Despina). Pour la synthèse, le texte écrit « Knam-GS » et « CNAM-GS » ; à l'écran, on lit toujours CNAMGS. Chaque prise a été contrôlée par écoute automatique Gemini : une vérification dirigée, puis une question neutre sur les syllabes entendues. Les deux phrases donnent « knam-jé-ès ». Une première prise de L03 commençait par un son « s » (« snam ») ; elle a été refaite en forçant le « k ». **À confirmer à l'oreille.**
+- **Mains et doigts redessinés, plus sobres** :
+  - chaque main est une silhouette d'un seul tenant, avec des doigts effilés et accolés et des plis fins ; il n'y a plus de contour autour de chaque doigt, ce qui donnait l'effet « boudins » ;
+  - main au tampon fermée sur une vraie poignée ;
+  - main au stylo en pince à trois doigts ;
+  - dossier tenu par ses bords, doigts repliés sur la couverture ;
+  - personnes assises : mains posées sur la table ;
+  - mains pendantes avec un pouce dessiné.
+- **Poignée de main** : le gros plan est remplacé par un plan en pied. La dirigeante et un représentant de la FEG, de profil devant le logo, se serrent la main. Les mains sont à leur taille naturelle, et le plan montre aussi la relation entre les deux personnes.
+- Durée : 91,7 s (la nouvelle prononciation est plus courte).
+
+
+Un fichier : `renders/FEG-comment-adherer-v2.mp4`, 1920 × 1080, 30 i/s, 1 min 32 s (91,7 s), voix off et musique.
+
+Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/FEG-comment-adherer-v2.mp4`.
 
 ## Choix de création
 
