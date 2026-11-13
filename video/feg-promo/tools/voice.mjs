@@ -149,7 +149,8 @@ for (const L of cfg.lines) {
   if (!ALIGN_ONLY) {
     const r = await synthesizeGemini(
       { text: L.text, voiceId: VOICE, model: MODEL, style: STYLE, wavAbs: abs },
-      { authenticate: () => ({ headers: {}, secret: undefined }) },
+      // clé en variable d'environnement si présente, sinon en-tête injecté par le proxy
+      process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY ? {} : { authenticate: () => ({ headers: {}, secret: undefined }) },
     );
     if (!r.ok) {
       console.error(`${L.id}: échec — ${r.error}`);
