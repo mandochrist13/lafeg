@@ -16,6 +16,13 @@ Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans
 - **Version sans voix** : couche de titres `compositions/ov-titres.html`. Elle contient la citation du Président (« L'histoire économique d'un pays s'écrit sur le terrain… », Alain-Claude Kouakoua, site lafeg.ga), « Seule, une entreprise pèse peu », « 13 fédérations métiers », « Porter la voix des entreprises », « Votre préoccupation remonte jusqu'à l'État », « Des services au quotidien » et le thème du GEF 2026 (texte exact de la Déclaration).
 - Cadrages ajustés pour laisser une zone libre à chaque titre : atelier en bas à droite à l'ouverture, en haut à gauche de la fin.
 
+## Thème du GEF 2026 synchronisé (v3, version voix)
+
+- Pendant la phrase finale, le thème officiel « Des entreprises fortes pour une croissance durable et une prospérité partagée » s'affiche en haut à gauche, sur trois lignes, sous le titre « Thème du Gabon Economic Forum 2026 » (`compositions/ov-theme.html`).
+- Le texte apparaît en gris clair, puis chaque mot s'encre au moment exact où la voix le prononce, d'après le calage mot à mot de L10 ; « pour » et « et », absents de la phrase dite, s'encrent avec le mot qui les suit. « fortes », « durable » et « partagée » passent en vert d'accent.
+- Le thème reste à l'écran jusqu'à « rejoignez », puis s'efface pendant que l'atelier passe au vert. Le vol de caméra vers l'atelier part 0,45 s plus tôt, pour que l'image soit posée avant le premier mot.
+- La version sans voix n'a pas changé : elle affichait déjà le thème, en titre fixe.
+
 ## Voix (version voix)
 
 - Google Gemini TTS `gemini-3.8-flash-tts`, voix « Despina ».
