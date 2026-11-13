@@ -13,6 +13,11 @@ Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans
 - **Le dialogue ne passe pas que par le GEF** : nouvelle phrase L06b, avant le Gabon Economic Forum : « Il ne passe pas que par les grands forums : au sortir des travaux rapportés par les fédérations métiers, des réunions se tiennent avec le secteur public. » À l'écran, la caméra s'approche de la table du dialogue : les membres font face aux pouvoirs publics, trois dossiers verts des fédérations se posent, et l'étiquette « Réunions avec le secteur public · au sortir des travaux des fédérations métiers » s'affiche. La version sans voix ajoute le titre « Le dialogue public-privé · Pas seulement les grands forums ».
 - **Voix de L06b** : même voix (Despina) et même modèle que le reste du film, une seule prise. Une transcription neutre, sans le texte attendu, la restitue mot pour mot, sans défaut relevé.
 - Durée : 113,4 s (+ 9,6 s).
+- **Contrôles des rendus v6** :
+  - `check` : 0 erreur dans les deux versions ; restent 2 avertissements déjà présents en v5 (taille du fichier de la scène 3D, message de performance du pilote graphique) ;
+  - son mesuré, pas écouté : version voix −15,7 LUFS, crête −2,3 dBFS ; version sans voix −14,2 LUFS, crête −2,1 dBFS ;
+  - écoute automatique Gemini (modèle d'écoute léger) : le passage L06–L07 est transcrit sans écart, avec la même voix et sans rupture ; film entier : intelligibilité 10/10, aucun défaut ;
+  - images extraites des deux MP4 : provinces teintées et nommées, levée des entreprises sur « rassemble », table du dialogue avec les dossiers et l'étiquette, titre « Pas seulement les grands forums » dans la version sans voix.
 
 ## Version intemporelle (v5, demandes de la FEG)
 
