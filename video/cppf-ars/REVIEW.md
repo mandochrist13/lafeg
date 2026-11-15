@@ -2,7 +2,7 @@
 
 ## Livrable
 
-- `renders/CPPF-ARS-2026-2027-abeille.mp4` : 1920 × 1080, 30 i/s, 1 min 44 s (104,1 s), voix off et musique.
+- `renders/CPPF-ARS-2026-2027-abeille.mp4` : 1920 × 1080, 30 i/s, 1 min 44 s (104,1 s), H.264 + AAC 48 kHz stéréo, 29,8 Mo, voix off et musique.
 
 Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/CPPF-ARS-2026-2027-abeille.mp4`.
 
@@ -41,7 +41,9 @@ Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --qualit
 
 ## Contrôles
 
-- `check` : 0 erreur, 0 avertissement ; contraste : 26 textes sur 26 conformes WCAG AA. Les maquettes d'écran (`.br`) et les illustrations de l'étape 4 sont marquées comme décor : leur petit texte imite le site et ne porte pas le message, que portent la voix et les puces.
+- `check` : 0 erreur, 0 avertissement ; contraste : 26 textes sur 26 conformes WCAG AA.
+  Les maquettes d'écran (`.br`) et les illustrations de l'étape 4 sont marquées comme décor : leur petit texte imite le site et ne porte pas le message, que portent la voix et les puces.
+- Son mesuré, pas écouté : −14,9 LUFS, crête −2,0 dBFS, plage de loudness 3,6 LU.
 - Images extraites du MP4 (logo, accueil, chacune des cinq étapes, carte de fin) : chaque saisie, chaque clic et chaque puce arrive sur le mot de la voix ; rien ne déborde ; l'abeille ne couvre jamais l'écran du site.
 - Écoute automatique Gemini du mixage complet, sans lui donner le texte attendu :
   - transcription identique au script ;
@@ -50,6 +52,9 @@ Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --qualit
   - équilibre voix/musique « très agréable », jugé « optimal » ;
   - aucun défaut.
   Cette écoute a porté sur le premier rendu, dont la bande-son est la même que celle du livrable, à la remontée finale près.
+- Livrable comparé au premier rendu :
+  - les 12 images de contrôle sont identiques, sauf la carte de fin (la devise) ;
+  - bande-son identique à 31 dB près (réencodage de la musique en MP3), sauf la remontée finale, qui n'a plus de creux (niveau mesuré par tranches de 5 ms).
 
 ## À valider par la FEG ou la CPPF
 
