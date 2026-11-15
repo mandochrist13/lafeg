@@ -1,0 +1,88 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c4-page {
+      background: #f7f8fb;
+    }
+    #c4-load {
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, 0.86);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+    }
+    #c4-spin {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 8px solid #dfe5f2;
+      border-top-color: var(--cppf-blue);
+    }
+  </style>
+  <div id="root" data-composition-id="c4" data-width="1920" data-height="1080">
+    <div id="c4-bg" class="k-abs"></div>
+    <div id="c4-step" class="k-step"><span id="c4-hx"></span><span class="tt">Vos enfants éligibles</span></div>
+    <div class="k-list">
+      <div id="c4-l1" class="k-li">La <b>liste de vos enfants</b> éligibles s'affiche</div>
+      <div id="c4-l2" class="k-li">Cliquez sur le bouton vert <b>Traiter</b></div>
+    </div>
+    <div id="c4-br" class="br" data-layout-ignore>
+      <div class="bar">
+        <i></i><i></i><i></i>
+        <div class="addr"><svg class="lock" viewBox="0 0 16 18"><rect x="1" y="7" width="14" height="10" rx="2" fill="#7A869F" /><path d="M 4 7 V 5 A 4 4 0 0 1 12 5 V 7" fill="none" stroke="#7A869F" stroke-width="2" /></svg><span>ars.cppf.ga/#/</span></div>
+      </div>
+      <div id="c4-page" class="page">
+        <div class="pt-top"><img src="assets/img/cppf-logo.png" alt="" /><span>Mon compte</span><span class="out">DÉCONNEXION</span></div>
+        <div class="pt-hero"><div class="t1">ALLOCATION DE RENTRÉE</div><div class="t2">SCOLAIRE 2026-2027</div></div>
+        <div class="pt-card"><div class="nm"></div>Matricule : 123456<br />N° CPPF : 0012345<br />Nombre d'enfants : 3</div>
+        <div class="tbl">
+          <div class="tr th"><span class="c1">Nom</span><span class="c2">Prénom</span><span class="c3">Sexe</span><span class="c4">Âge</span><span class="c5">Document</span><span class="c6"></span></div>
+          <div class="tr" id="c4-r1"><span class="c1"><div class="bar" style="width: 170px"></div></span><span class="c2"><div class="bar" style="width: 120px"></div></span><span class="c3">F</span><span class="c4">11 ans</span><span class="c5"><span class="b-choisir">⇪ CHOISIR</span></span><span class="c6"><span class="b-traiter" id="c4-t1">TRAITER</span></span></div>
+          <div class="tr" id="c4-r2"><span class="c1"><div class="bar" style="width: 150px"></div></span><span class="c2"><div class="bar" style="width: 100px"></div></span><span class="c3">M</span><span class="c4">8 ans</span><span class="c5"><span class="b-choisir">⇪ CHOISIR</span></span><span class="c6"><span class="b-traiter" id="c4-t2">TRAITER</span></span></div>
+          <div class="tr" id="c4-r3"><span class="c1"><div class="bar" style="width: 180px"></div></span><span class="c2"><div class="bar" style="width: 130px"></div></span><span class="c3">F</span><span class="c4">15 ans</span><span class="c5"><span class="b-choisir">⇪ CHOISIR</span></span><span class="c6"><span class="b-traiter" id="c4-t3">TRAITER</span></span></div>
+        </div>
+        <div id="c4-load"><div id="c4-spin"></div></div>
+      </div>
+      <div id="c4-cur" class="k-cursor"><span id="c4-rip" class="k-ripple"></span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var L = C.local("c4");
+      var D = C.sc.c4.dur;
+      var at = function (id, w) {
+        return L(C.at(id, w));
+      };
+      document.getElementById("c4-bg").innerHTML = K.honey();
+      document.getElementById("c4-hx").outerHTML = K.stepHex(2);
+      document.getElementById("c4-cur").insertAdjacentHTML("beforeend", K.cursorSVG);
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c4-step", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.15);
+      tl.fromTo("#c4-page", { opacity: 0, x: 60 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, 0.05);
+      // la liste se remplit
+      K.li(tl, "#c4-l1", at("L05", "liste"));
+      tl.fromTo(["#c4-r1", "#c4-r2", "#c4-r3"], { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.4, stagger: 0.18, ease: "power3.out" }, at("L05", "liste") - 0.1);
+      // le bouton vert « Traiter »
+      K.li(tl, "#c4-l2", at("L05", "Cliquez"));
+      tl.to(["#c4-t1", "#c4-t2", "#c4-t3"], { scale: 1.12, duration: 0.2, yoyo: true, repeat: 1, stagger: 0.1, ease: "power2.inOut" }, at("L05", "vert") - 0.1);
+      gsap.set("#c4-cur", { x: 1140, y: 800 });
+      K.move(tl, "#c4-cur", 1046, 619, at("L05", "Traiter") - 0.75, 0.65);
+      K.click(tl, "#c4-cur", "#c4-rip", at("L05", "Traiter"));
+      K.press(tl, "#c4-t1", at("L05", "Traiter"));
+      // le formulaire se prépare
+      tl.to("#c4-load", { opacity: 1, duration: 0.3 }, at("L05", "generer"));
+      tl.to("#c4-spin", { rotation: 720, duration: 1.6, ease: "none" }, at("L05", "generer"));
+      window.__timelines["c4"] = tl;
+    })();
+  </script>
+</template>

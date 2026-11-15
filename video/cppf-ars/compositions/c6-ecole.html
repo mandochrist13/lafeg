@@ -1,0 +1,171 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c6-doc {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 300px;
+      height: 400px;
+      border-radius: 8px;
+      background: #ffffff;
+      box-shadow: 0 16px 40px rgba(28, 43, 74, 0.2);
+      overflow: hidden;
+      transform-origin: 50% 50%;
+    }
+    #c6-doc .hd {
+      margin: 22px 22px 0;
+      height: 26px;
+      border-radius: 4px;
+      background: #24a148;
+      color: #fff;
+      font-weight: 800;
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #c6-doc .ln {
+      margin: 14px 22px 0;
+      height: 9px;
+      border-radius: 4px;
+      background: #e3e6ee;
+    }
+    #c6-doc .ln.y {
+      background: #ffe598;
+    }
+    #c6-scan {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 6px;
+      background: linear-gradient(90deg, rgba(58, 117, 188, 0), #3a75bc, rgba(58, 117, 188, 0));
+      box-shadow: 0 0 18px rgba(58, 117, 188, 0.8);
+      opacity: 0;
+    }
+    #c6-badge {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      padding: 6px 12px;
+      border-radius: 6px;
+      background: #22b566;
+      color: #fff;
+      font-weight: 800;
+      font-size: 15px;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="c6" data-width="1920" data-height="1080">
+    <div id="c6-bg" class="k-abs"></div>
+    <div id="c6-step" class="k-step"><span id="c6-hx"></span><span class="tt">Signature et cachet de l'école</span></div>
+    <div class="k-list">
+      <div id="c6-l1" class="k-li"><b>Imprimez</b> le certificat</div>
+      <div id="c6-l2" class="k-li">Allez à l'<b>établissement scolaire</b> de votre enfant</div>
+      <div id="c6-l3" class="k-li"><b>Signature</b> et <b>cachet</b> de l'école</div>
+      <div id="c6-l4" class="k-li">Puis <b>scannez</b>-le</div>
+    </div>
+    <!-- imprimante, école (drapeau du Gabon), téléphone -->
+    <svg id="c6-art" data-layout-ignore class="k-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <g id="c6-printer">
+        <rect x="690" y="610" width="330" height="150" rx="22" fill="#C9D3E3" />
+        <rect x="690" y="610" width="330" height="40" rx="18" fill="#DCE3EE" />
+        <rect x="740" y="590" width="230" height="30" rx="8" fill="#9DABC2" />
+        <rect x="730" y="700" width="250" height="16" rx="8" fill="#7E8CA6" />
+        <circle cx="985" cy="680" r="9" fill="#22B566" />
+      </g>
+      <g id="c6-school">
+        <rect x="1300" y="380" width="480" height="380" fill="#F4EBDD" />
+        <polygon points="1270,390 1540,250 1810,390" fill="#3A75BC" />
+        <rect x="1300" y="380" width="480" height="14" fill="#E3D6C1" />
+        <rect x="1490" y="600" width="100" height="160" rx="8" fill="#8A5A3B" />
+        <circle cx="1572" cy="684" r="6" fill="#F6CF2A" />
+        <rect x="1340" y="470" width="90" height="80" rx="6" fill="#BFD6EF" />
+        <rect x="1650" y="470" width="90" height="80" rx="6" fill="#BFD6EF" />
+        <rect x="1340" y="620" width="90" height="80" rx="6" fill="#BFD6EF" />
+        <rect x="1650" y="620" width="90" height="80" rx="6" fill="#BFD6EF" />
+        <rect x="1460" y="410" width="160" height="46" rx="8" fill="#FFFFFF" />
+        <text x="1540" y="442" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="26" fill="#1F4F8C">ÉCOLE</text>
+        <rect x="1795" y="250" width="8" height="510" fill="#9AA3B5" />
+        <g id="c6-flag"><rect x="1803" y="256" width="96" height="22" fill="#1FA05A" /><rect x="1803" y="278" width="96" height="22" fill="#F6CF2A" /><rect x="1803" y="300" width="96" height="22" fill="#3A75BC" /></g>
+        <rect x="1250" y="760" width="620" height="16" rx="8" fill="#E2E7EF" />
+      </g>
+      <g id="c6-phone">
+        <rect x="0" y="0" width="190" height="360" rx="30" fill="#24314F" />
+        <rect x="12" y="44" width="166" height="272" rx="10" fill="#EAF2FB" />
+        <rect x="70" y="16" width="50" height="10" rx="5" fill="#3B4A6B" />
+        <circle cx="95" cy="338" r="11" fill="#3B4A6B" />
+      </g>
+    </svg>
+    <div id="c6-doc" data-layout-ignore>
+      <div class="hd">CERTIFICAT DE SCOLARITÉ</div>
+      <div class="ln" style="width: 70%"></div>
+      <div class="ln y" style="width: 84%"></div>
+      <div class="ln" style="width: 76%"></div>
+      <div class="ln y" style="width: 62%"></div>
+      <div class="ln" style="width: 80%"></div>
+      <div class="ln y" style="width: 70%"></div>
+      <div class="ln" style="width: 52%"></div>
+      <svg class="k-abs" width="300" height="400" viewBox="0 0 300 400">
+        <path id="c6-sign" d="M 40 330 C 52 300 64 296 66 316 C 68 336 58 344 62 326 C 68 304 82 300 84 318 C 86 334 92 334 98 318 C 104 302 112 304 112 320 C 112 334 120 332 128 316 L 150 310" fill="none" stroke="#1C2B4A" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round" />
+        <g id="c6-stamp" opacity="0">
+          <circle cx="222" cy="318" r="50" fill="none" stroke="#3A75BC" stroke-width="5" />
+          <circle cx="222" cy="318" r="38" fill="none" stroke="#3A75BC" stroke-width="2.5" />
+          <text x="222" y="314" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="13" fill="#3A75BC">CACHET</text>
+          <text x="222" y="331" text-anchor="middle" font-family="Montserrat" font-weight="700" font-size="10" fill="#3A75BC">ÉCOLE</text>
+        </g>
+      </svg>
+      <div id="c6-scan"></div>
+      <div id="c6-badge">✓ SCANNÉ</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var L = C.local("c6");
+      var at = function (id, w) {
+        return L(C.at(id, w));
+      };
+      document.getElementById("c6-bg").innerHTML = K.honey();
+      document.getElementById("c6-hx").outerHTML = K.stepHex(4);
+      var len = document.getElementById("c6-sign").getTotalLength();
+      gsap.set("#c6-sign", { strokeDasharray: len, strokeDashoffset: len });
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c6-step", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.15);
+      // imprimer : la feuille sort de l'imprimante
+      tl.fromTo("#c6-printer", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+      K.li(tl, "#c6-l1", at("L09", "Imprimez"));
+      gsap.set("#c6-doc", { x: 705, y: 300, scale: 0.6, opacity: 0 });
+      tl.fromTo("#c6-doc", { opacity: 1, y: 500, scale: 0.6 }, { opacity: 1, y: 250, duration: 0.9, ease: "power2.out" }, at("L09", "Imprimez") + 0.1);
+      // à l'école
+      K.li(tl, "#c6-l2", at("L09", "rendez"));
+      tl.fromTo("#c6-school", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, at("L09", "rendez") - 0.2);
+      tl.fromTo("#c6-flag", { scaleY: 0.85, transformOrigin: "0% 50%" }, { scaleY: 1, duration: 0.5, ease: "sine.inOut", yoyo: true, repeat: 7 }, at("L09", "rendez"));
+      tl.to("#c6-printer", { opacity: 0, x: -60, duration: 0.45, ease: "power2.in" }, at("L09", "letablissement"));
+      tl.to("#c6-doc", { x: 860, y: 230, scale: 1.25, duration: 0.8, ease: "power2.inOut" }, at("L09", "letablissement"));
+      // signature puis cachet
+      K.li(tl, "#c6-l3", at("L09", "signer") - 0.2);
+      tl.to("#c6-sign", { strokeDashoffset: 0, duration: 0.7, ease: "power1.inOut" }, at("L09", "signer"));
+      tl.fromTo("#c6-stamp", { opacity: 0, scale: 1.6, svgOrigin: "222 318" }, { opacity: 1, scale: 1, duration: 0.18, ease: "power4.in" }, at("L09", "cachet") - 0.1);
+      tl.to("#c6-doc", { scale: 1.22, duration: 0.06, yoyo: true, repeat: 1 }, at("L09", "cachet") + 0.08);
+      // scanner
+      K.li(tl, "#c6-l4", at("L10", "document"));
+      gsap.set("#c6-phone", { x: 1450, y: 1240 });
+      tl.to("#c6-school", { opacity: 0.25, duration: 0.4 }, at("L10", "Une"));
+      tl.to("#c6-phone", { x: 1160, y: 330, rotation: -6, svgOrigin: "95 180", duration: 0.6, ease: "power3.out" }, at("L10", "Une"));
+      tl.fromTo("#c6-scan", { opacity: 1, y: 0 }, { y: 394, duration: 0.6, ease: "sine.inOut" }, at("L10", "signe") - 0.1);
+      tl.to("#c6-scan", { opacity: 0, duration: 0.1 }, at("L10", "signe") + 0.5);
+      tl.fromTo("#c6-badge", { opacity: 0, scale: 0.5 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)" }, at("L10", "signe") + 0.5);
+      window.__timelines["c6"] = tl;
+    })();
+  </script>
+</template>

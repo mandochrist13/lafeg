@@ -1,0 +1,120 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c3-br .lg .blob.b1 {
+      left: -90px;
+      top: 420px;
+      width: 300px;
+      height: 300px;
+    }
+    #c3-br .lg .blob.b2 {
+      left: 1030px;
+      top: 80px;
+      width: 220px;
+      height: 220px;
+    }
+    #c3-br .lg .blob.b3 {
+      left: 960px;
+      top: 560px;
+      width: 160px;
+      height: 160px;
+    }
+    #c3-ck {
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="c3" data-width="1920" data-height="1080">
+    <div id="c3-bg" class="k-abs"></div>
+    <div id="c3-step" class="k-step"><span id="c3-hx"></span><span class="tt">Connectez-vous</span></div>
+    <div class="k-list">
+      <div id="c3-l1" class="k-li">Allez sur <b>ars.cppf.ga</b></div>
+      <div id="c3-l2" class="k-li">Votre <b>matricule solde</b> et votre <b>date de naissance</b></div>
+      <div id="c3-l3" class="k-li">Cochez les <b>conditions générales</b></div>
+      <div id="c3-l4" class="k-li">Cliquez sur <b>Se connecter</b></div>
+    </div>
+    <div id="c3-br" class="br" data-layout-ignore>
+      <div class="bar">
+        <i></i><i></i><i></i>
+        <div class="addr">
+          <svg class="lock" viewBox="0 0 16 18"><rect x="1" y="7" width="14" height="10" rx="2" fill="#7A869F" /><path d="M 4 7 V 5 A 4 4 0 0 1 12 5 V 7" fill="none" stroke="#7A869F" stroke-width="2" /></svg>
+          <span id="c3-url"></span>
+        </div>
+      </div>
+      <div class="page">
+        <div class="lg">
+          <i class="blob b1"></i><i class="blob b2"></i><i class="blob b3"></i>
+          <div id="c3-card" class="card">
+            <div class="head"><img src="assets/img/cppf-logo.png" alt="" /></div>
+            <div class="body">
+              <label>Matricule soldes / N° pension</label>
+              <div class="in" id="c3-in1"><svg width="22" height="22" viewBox="0 0 22 22"><circle cx="11" cy="11" r="10" fill="#A7AABD" /><circle cx="11" cy="8.5" r="3.6" fill="#fff" /><path d="M 4.8 17 Q 11 11 17.2 17" fill="#fff" /></svg><span id="c3-ph1" class="ph">identifiant</span><span id="c3-v1"></span></div>
+              <label>Date de naissance</label>
+              <div class="in" id="c3-in2"><span id="c3-ph2" class="ph">jj/mm/aaaa</span><span id="c3-v2"></span></div>
+              <div class="chk">
+                <span class="box" id="c3-box"><svg id="c3-ck" width="22" height="22" viewBox="0 0 22 22"><path d="M 4 11 L 9 16 L 18 5" fill="none" stroke="#3A75BC" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" /></svg></span>
+                <span>J'accepte les <a>conditions générales d'utilisation</a></span>
+              </div>
+              <div class="btn" id="c3-btn">SE CONNECTER</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="c3-cur" class="k-cursor"><span id="c3-rip" class="k-ripple"></span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var L = C.local("c3");
+      var at = function (id, w) {
+        return L(C.at(id, w));
+      };
+      document.getElementById("c3-bg").innerHTML = K.honey();
+      document.getElementById("c3-hx").outerHTML = K.stepHex(1);
+      document.getElementById("c3-url").innerHTML = K.typeHTML("ars.cppf.ga/#/");
+      document.getElementById("c3-v1").innerHTML = K.typeHTML("123456");
+      document.getElementById("c3-v2").innerHTML = K.typeHTML("15/03/1985");
+      document.getElementById("c3-cur").insertAdjacentHTML("beforeend", K.cursorSVG);
+      var tl = gsap.timeline({ paused: true });
+      // entrée de l'écran
+      tl.fromTo("#c3-step", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.25);
+      tl.fromTo("#c3-br", { opacity: 0, y: 60, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.7, ease: "power3.out" }, 0.1);
+      tl.fromTo("#c3-card", { opacity: 0, y: 30 }, { opacity: 0, y: 30 }, 0);
+      // l'adresse se tape, la page s'ouvre
+      var tUrl = at("L03", "A-R-S") - 0.2;
+      K.li(tl, "#c3-l1", at("L03", "Rendez"));
+      K.type(tl, "#c3-url", tUrl, 16);
+      tl.to("#c3-card", { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, tUrl + 1.0);
+      // matricule, date de naissance
+      gsap.set("#c3-cur", { x: 1160, y: 820 });
+      K.li(tl, "#c3-l2", at("L03", "Saisissez"));
+      K.move(tl, "#c3-cur", 516, 445, at("L03", "Saisissez") - 0.3, 0.6);
+      K.click(tl, "#c3-cur", "#c3-rip", at("L03", "Saisissez") + 0.35);
+      tl.set("#c3-ph1", { display: "none" }, at("L03", "matricule") - 0.05);
+      K.type(tl, "#c3-v1", at("L03", "matricule"), 9);
+      K.move(tl, "#c3-cur", 516, 552, at("L03", "date") - 0.45, 0.45);
+      K.click(tl, "#c3-cur", "#c3-rip", at("L03", "date"));
+      tl.set("#c3-ph2", { display: "none" }, at("L03", "date") + 0.1);
+      K.type(tl, "#c3-v2", at("L03", "date") + 0.1, 13);
+      // conditions générales
+      K.li(tl, "#c3-l3", at("L04", "cocher"));
+      K.move(tl, "#c3-cur", 429, 630, at("L04", "cocher") - 0.5, 0.5);
+      K.click(tl, "#c3-cur", "#c3-rip", at("L04", "cocher") + 0.05);
+      tl.fromTo("#c3-ck", { opacity: 0, scale: 0.4, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2.5)" }, at("L04", "cocher") + 0.08);
+      // se connecter
+      K.li(tl, "#c3-l4", at("L04", "cliquez"));
+      K.move(tl, "#c3-cur", 532, 711, at("L04", "cliquez") - 0.2, 0.6);
+      K.click(tl, "#c3-cur", "#c3-rip", at("L04", "connecter"));
+      K.press(tl, "#c3-btn", at("L04", "connecter"));
+      tl.to("#c3-btn", { backgroundColor: "#5157C6", duration: 0.15 }, at("L04", "connecter"));
+      window.__timelines["c3"] = tl;
+    })();
+  </script>
+</template>

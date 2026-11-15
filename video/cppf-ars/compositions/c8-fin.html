@@ -1,0 +1,97 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c8-logo {
+      position: absolute;
+      left: 1040px;
+      top: 70px;
+      width: 470px;
+      height: 470px;
+    }
+    #c8-txt {
+      position: absolute;
+      left: 900px;
+      top: 548px;
+      width: 760px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 40px;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+    #c8-txt span {
+      display: inline-block;
+    }
+    #c8-url {
+      left: 1065px;
+      top: 668px;
+    }
+    #c8-url .pill {
+      font-size: 48px;
+      padding: 14px 38px 14px 30px;
+    }
+    #c8-url .lens {
+      width: 84px;
+      height: 84px;
+    }
+    #c8-tag {
+      position: absolute;
+      left: 860px;
+      top: 800px;
+      width: 840px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 44px;
+      line-height: 1.16;
+      color: var(--cppf-blue);
+    }
+    #c8-tag span {
+      display: inline-block;
+    }
+    #c8-rule {
+      position: absolute;
+      left: 1000px;
+      top: 924px;
+      width: 560px;
+      height: 9px;
+      border-radius: 5px;
+      background: linear-gradient(90deg, var(--cppf-green) 0 33.3%, var(--cppf-yellow) 33.3% 66.6%, var(--cppf-blue) 66.6% 100%);
+      transform-origin: 50% 50%;
+    }
+  </style>
+  <div id="root" data-composition-id="c8" data-width="1920" data-height="1080">
+    <div id="c8-bg" class="k-abs"></div>
+    <img id="c8-logo" src="assets/img/cppf-logo.png" alt="Caisse des Pensions et des Prestations Familiales des agents de l'Etat" />
+    <div id="c8-txt"><span>Vos</span> <span>démarches</span> <span>en</span> <span>ligne,</span><br /><span>en</span> <span>toute</span> <span>simplicité</span></div>
+    <div id="c8-url" class="k-url">
+      <span class="pill">ars.cppf.ga</span>
+      <span class="lens"><svg width="40" height="40" viewBox="0 0 46 46"><circle cx="19" cy="19" r="13" fill="none" stroke="#fff" stroke-width="6" /><path d="M 29 29 L 41 41" stroke="#fff" stroke-width="7" stroke-linecap="round" /></svg></span>
+    </div>
+    <div id="c8-tag"><span>Solidaires</span> <span>aujourd'hui,</span><br /><span>pour</span> <span>un</span> <span>Avenir</span> <span>Prospère</span></div>
+    <div id="c8-rule"></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var L = C.local("c8");
+      var at = function (id, w) {
+        return L(C.at(id, w));
+      };
+      document.getElementById("c8-bg").innerHTML = K.honey();
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c8-logo", { opacity: 0, scale: 0.7, rotation: -6 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.8, ease: "back.out(1.5)" }, 0.35);
+      K.words(tl, "#c8-txt span", at("L13", "faites"), 0.08);
+      tl.fromTo("#c8-url", { opacity: 0, scale: 0.86, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, at("L13", "ligne"));
+      K.words(tl, "#c8-tag span", at("L13", "Solidaires") - 0.1, 0.1);
+      tl.fromTo("#c8-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.7, ease: "power3.out" }, at("L13", "avenir"));
+      window.__timelines["c8"] = tl;
+    })();
+  </script>
+</template>

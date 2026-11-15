@@ -1,0 +1,71 @@
+{
+  "lead": 3.6,
+  "tail": 6.5,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0.0,
+      "text": "Bonjour à tous ! Bienvenue sur A-R-S point C-P-P-F point G-A, le service en ligne de la C-P-P-F."
+    },
+    {
+      "id": "L02",
+      "gap": 0.9,
+      "text": "Aujourd'hui, je vous montre comment imprimer et téléverser le certificat de scolarité de vos enfants, pour l'Allocation de Rentrée Scolaire deux mille vingt-six, deux mille vingt-sept."
+    },
+    {
+      "id": "L03",
+      "gap": 1.4,
+      "text": "Rendez-vous sur A-R-S point C-P-P-F point G-A. Saisissez votre matricule solde et votre date de naissance."
+    },
+    {
+      "id": "L04",
+      "gap": 0.8,
+      "text": "N'oubliez pas de cocher les conditions générales, puis cliquez sur « Se connecter »."
+    },
+    {
+      "id": "L05",
+      "gap": 1.1,
+      "text": "Une fois connecté, vous verrez la liste de vos enfants éligibles. Cliquez sur le bouton vert « Traiter » pour générer le formulaire."
+    },
+    {
+      "id": "L06",
+      "gap": 1.1,
+      "text": "Remplissez le formulaire avec précision : le matricule du second parent, le sexe de l'enfant, son établissement et sa classe."
+    },
+    {
+      "id": "L07",
+      "gap": 0.9,
+      "text": "Vérifiez bien chaque champ : si les champs sur fond jaune ne sont pas tous renseignés, vous ne pourrez pas télécharger le formulaire."
+    },
+    {
+      "id": "L08",
+      "gap": 1.0,
+      "text": "Cliquez maintenant sur « Exporter en PDF » : le document se télécharge automatiquement."
+    },
+    {
+      "id": "L09",
+      "gap": 1.1,
+      "text": "Imprimez-le, puis rendez-vous à l'établissement scolaire de votre enfant, pour le faire signer et apposer le cachet."
+    },
+    {
+      "id": "L10",
+      "gap": 1.0,
+      "text": "Une fois le document signé, scannez-le, et connectez-vous à nouveau sur A-R-S point C-P-P-F point G-A."
+    },
+    {
+      "id": "L11",
+      "gap": 0.9,
+      "text": "Cliquez sur « Choisir » sur la ligne de l'enfant concerné, puis validez le téléversement."
+    },
+    {
+      "id": "L12",
+      "gap": 1.0,
+      "text": "Répétez l'opération pour chaque enfant. Et assurez-vous que votre scan est bien lisible avant l'envoi !"
+    },
+    {
+      "id": "L13",
+      "gap": 1.3,
+      "text": "Avec la C-P-P-F, faites vos démarches en ligne, en toute simplicité. Solidaires aujourd'hui, pour un avenir prospère !"
+    }
+  ]
+}

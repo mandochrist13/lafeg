@@ -1,0 +1,94 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c2-kick {
+      position: absolute;
+      left: 930px;
+      top: 300px;
+      font-weight: 700;
+      font-size: 36px;
+      color: var(--muted);
+    }
+    #c2-url {
+      left: 930px;
+      top: 368px;
+    }
+    #c2-ban {
+      left: 930px;
+      top: 214px;
+      max-width: 860px;
+      font-size: 42px;
+      line-height: 1.16;
+    }
+    #c2-year {
+      position: absolute;
+      left: 930px;
+      top: 404px;
+      font-weight: 800;
+      font-size: 128px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: var(--cppf-blue);
+    }
+    #c2-year span {
+      display: inline-block;
+    }
+    #c2-year .y {
+      color: var(--cppf-yellow);
+      -webkit-text-stroke: 0;
+      text-shadow: 0 4px 0 rgba(217, 169, 14, 0.25);
+    }
+    #c2-list {
+      left: 940px;
+      top: 596px;
+      width: 860px;
+    }
+    #c2-list .k-li {
+      font-size: 36px;
+    }
+  </style>
+  <div id="root" data-composition-id="c2" data-width="1920" data-height="1080">
+    <div id="c2-bg" class="k-abs"></div>
+    <div id="c2-kick">Le service en ligne de la CPPF</div>
+    <div id="c2-url" class="k-url">
+      <span class="pill">ars.cppf.ga</span>
+      <span class="lens"><svg width="46" height="46" viewBox="0 0 46 46"><circle cx="19" cy="19" r="13" fill="none" stroke="#fff" stroke-width="6" /><path d="M 29 29 L 41 41" stroke="#fff" stroke-width="7" stroke-linecap="round" /></svg></span>
+    </div>
+    <div id="c2-ban" class="k-banner">Allocation de Rentrée Scolaire</div>
+    <div id="c2-year"><span>2026</span><span class="y">-</span><span>2027</span></div>
+    <div id="c2-list" class="k-list">
+      <div id="c2-l1" class="k-li"><b>Imprimer</b> le certificat de scolarité</div>
+      <div id="c2-l2" class="k-li">Le <b>téléverser</b> en ligne, pour chaque enfant</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var L = C.local("c2");
+      var at = function (id, w) {
+        return L(C.at(id, w));
+      };
+      document.getElementById("c2-bg").innerHTML = K.honey();
+      var tl = gsap.timeline({ paused: true });
+      // L01 : le service en ligne, l'adresse
+      tl.fromTo("#c2-kick", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, at("L01", "Bienvenue"));
+      tl.fromTo("#c2-url", { opacity: 0, scale: 0.86, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.55, ease: "back.out(1.7)" }, at("L01", "A-R-S") - 0.15);
+      tl.fromTo("#c2-url .lens", { rotation: -30 }, { rotation: 0, duration: 0.5, ease: "back.out(2)" }, at("L01", "A-R-S") + 0.1);
+      // L02 : le sujet du jour
+      var t2 = at("L02", "Aujourd");
+      tl.to(["#c2-kick", "#c2-url"], { opacity: 0, y: -24, duration: 0.35, ease: "power2.in" }, t2 - 0.1);
+      tl.fromTo("#c2-l1", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at("L02", "imprimer"));
+      tl.fromTo("#c2-l2", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, at("L02", "televerser"));
+      tl.fromTo("#c2-ban", { opacity: 0, scaleX: 0.6, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power3.out" }, t2 + 0.3);
+      tl.fromTo("#c2-year span", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.12, ease: "back.out(1.6)" }, at("L02", "deux"));
+      window.__timelines["c2"] = tl;
+    })();
+  </script>
+</template>

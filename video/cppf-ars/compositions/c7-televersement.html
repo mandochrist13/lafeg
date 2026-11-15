@@ -1,0 +1,247 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c7-page {
+      background: #f7f8fb;
+    }
+    #c7-modal {
+      position: absolute;
+      inset: 0;
+      background: rgba(26, 29, 78, 0.45);
+      opacity: 0;
+    }
+    #c7-dlg {
+      position: absolute;
+      left: 330px;
+      top: 230px;
+      width: 580px;
+      padding: 30px 34px;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+    }
+    #c7-dlg h4 {
+      font-weight: 800;
+      font-size: 26px;
+      color: #1c2b4a;
+      margin-bottom: 20px;
+    }
+    #c7-file {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 18px;
+      border: 2px dashed #8b8fe8;
+      border-radius: 10px;
+      font-size: 21px;
+      font-weight: 600;
+      color: #2a3048;
+    }
+    #c7-prog {
+      margin-top: 18px;
+      height: 12px;
+      border-radius: 6px;
+      background: #e6e9f2;
+      overflow: hidden;
+    }
+    #c7-prog i {
+      display: block;
+      height: 100%;
+      width: 100%;
+      background: #22b566;
+      transform-origin: 0 50%;
+      transform: scaleX(0);
+    }
+    #c7-dlg .act {
+      margin-top: 24px;
+      display: flex;
+      justify-content: flex-end;
+      gap: 14px;
+    }
+    #c7-dlg .act span {
+      padding: 12px 22px;
+      border-radius: 8px;
+      font-weight: 800;
+      font-size: 17px;
+      letter-spacing: 0.04em;
+    }
+    #c7-cancel {
+      background: #eef0f5;
+      color: #5b6785;
+    }
+    #c7-ok {
+      background: #22b566;
+      color: #ffffff;
+    }
+    .c7-done {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      opacity: 0;
+    }
+    .c7-chg {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 12px;
+      border: 2px solid #8b8fe8;
+      border-radius: 6px;
+      color: #6b70d8;
+      font-weight: 800;
+      font-size: 13px;
+    }
+    #c7-zoom {
+      position: absolute;
+      left: 760px;
+      top: 300px;
+      width: 330px;
+      height: 330px;
+      border-radius: 50%;
+      border: 10px solid #3a75bc;
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(28, 43, 74, 0.3);
+      overflow: hidden;
+      opacity: 0;
+      z-index: 12;
+    }
+    #c7-zoom .zt {
+      position: absolute;
+      left: 30px;
+      top: 64px;
+      width: 260px;
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.6;
+      color: #2a3048;
+    }
+    #c7-zoom .zt b {
+      display: block;
+      height: 26px;
+      border-radius: 4px;
+      background: #24a148;
+      color: #fff;
+      font-size: 13px;
+      letter-spacing: 0.06em;
+      text-align: center;
+      line-height: 26px;
+      margin-bottom: 10px;
+    }
+    #c7-ok2 {
+      position: absolute;
+      left: 1010px;
+      top: 300px;
+      padding: 10px 18px;
+      border-radius: 10px;
+      background: #22b566;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 30px;
+      opacity: 0;
+      z-index: 13;
+    }
+  </style>
+  <div id="root" data-composition-id="c7" data-width="1920" data-height="1080">
+    <div id="c7-bg" class="k-abs"></div>
+    <div id="c7-step" class="k-step"><span id="c7-hx"></span><span class="tt">Téléversez le certificat</span></div>
+    <div id="c7-list1" class="k-list">
+      <div id="c7-a1" class="k-li">Reconnectez-vous sur <b>ars.cppf.ga</b></div>
+      <div id="c7-a2" class="k-li"><b>Choisir</b>, sur la ligne de l'enfant</div>
+      <div id="c7-a3" class="k-li"><b>Validez</b> le téléversement</div>
+    </div>
+    <div id="c7-list2" class="k-list">
+      <div id="c7-b1" class="k-li"><b>Répétez</b> pour chaque enfant</div>
+      <div id="c7-b2" class="k-li">Un scan <b>bien lisible</b>, avant l'envoi</div>
+    </div>
+    <div id="c7-br" class="br" data-layout-ignore>
+      <div class="bar">
+        <i></i><i></i><i></i>
+        <div class="addr"><svg class="lock" viewBox="0 0 16 18"><rect x="1" y="7" width="14" height="10" rx="2" fill="#7A869F" /><path d="M 4 7 V 5 A 4 4 0 0 1 12 5 V 7" fill="none" stroke="#7A869F" stroke-width="2" /></svg><span id="c7-url"></span></div>
+      </div>
+      <div id="c7-page" class="page">
+        <div class="pt-top"><img src="assets/img/cppf-logo.png" alt="" /><span>Mon compte</span><span class="out">DÉCONNEXION</span></div>
+        <div class="pt-hero"><div class="t1">ALLOCATION DE RENTRÉE</div><div class="t2">SCOLAIRE 2026-2027</div></div>
+        <div class="pt-card"><div class="nm"></div>Matricule : 123456<br />N° CPPF : 0012345<br />Nombre d'enfants : 3</div>
+        <div class="tbl">
+          <div class="tr th"><span class="c1">Nom</span><span class="c2">Prénom</span><span class="c3">Sexe</span><span class="c4">Âge</span><span class="c5">Document</span><span class="c6"></span></div>
+          <div class="tr"><span class="c1"><div class="bar" style="width: 170px"></div></span><span class="c2"><div class="bar" style="width: 120px"></div></span><span class="c3">F</span><span class="c4">11 ans</span><span class="c5"><span class="b-choisir" id="c7-ch1">⇪ CHOISIR</span><span class="c7-done" id="c7-d1"><span class="c7-chg">⇪ CHANGER</span><span class="chip">✓ CERTIFICAT</span></span></span><span class="c6"><span class="b-traiter">TRAITER</span></span></div>
+          <div class="tr"><span class="c1"><div class="bar" style="width: 150px"></div></span><span class="c2"><div class="bar" style="width: 100px"></div></span><span class="c3">M</span><span class="c4">8 ans</span><span class="c5"><span class="b-choisir" id="c7-ch2">⇪ CHOISIR</span><span class="c7-done" id="c7-d2"><span class="c7-chg">⇪ CHANGER</span><span class="chip">✓ CERTIFICAT</span></span></span><span class="c6"><span class="b-traiter">TRAITER</span></span></div>
+          <div class="tr"><span class="c1"><div class="bar" style="width: 180px"></div></span><span class="c2"><div class="bar" style="width: 130px"></div></span><span class="c3">F</span><span class="c4">15 ans</span><span class="c5"><span class="b-choisir" id="c7-ch3">⇪ CHOISIR</span><span class="c7-done" id="c7-d3"><span class="c7-chg">⇪ CHANGER</span><span class="chip">✓ CERTIFICAT</span></span></span><span class="c6"><span class="b-traiter">TRAITER</span></span></div>
+        </div>
+        <div id="c7-modal">
+          <div id="c7-dlg">
+            <h4>Téléverser le certificat</h4>
+            <div id="c7-file"><svg width="34" height="42" viewBox="0 0 46 56"><path d="M 4 2 H 30 L 42 14 V 54 H 4 Z" fill="#E8394D" /><path d="M 30 2 V 14 H 42" fill="#F7A4AF" /><text x="23" y="40" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="12" fill="#fff">PDF</text></svg>certificat-signe.pdf</div>
+            <div id="c7-prog"><i id="c7-bar"></i></div>
+            <div class="act"><span id="c7-cancel">ANNULER</span><span id="c7-ok">VALIDER</span></div>
+          </div>
+        </div>
+      </div>
+      <div id="c7-zoom"><div class="zt"><b>CERTIFICAT DE SCOLARITÉ</b>Établissement : École Les Abeilles<br />Classe : CM2<br />Signature et cachet ✓</div></div>
+      <div id="c7-ok2">✓ Scan lisible</div>
+      <div id="c7-cur" class="k-cursor"><span id="c7-rip" class="k-ripple"></span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var L = C.local("c7");
+      var at = function (id, w) {
+        return L(C.at(id, w));
+      };
+      document.getElementById("c7-bg").innerHTML = K.honey();
+      document.getElementById("c7-hx").outerHTML = K.stepHex(5);
+      document.getElementById("c7-url").innerHTML = K.typeHTML("ars.cppf.ga/#/");
+      document.getElementById("c7-cur").insertAdjacentHTML("beforeend", K.cursorSVG);
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c7-step", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.15);
+      tl.fromTo("#c7-br", { opacity: 0, y: 50 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, 0.05);
+      gsap.set(["#c7-b1", "#c7-b2"], { opacity: 0 });
+      // reconnexion : l'adresse, puis la liste
+      K.li(tl, "#c7-a1", at("L10", "connectez"));
+      K.type(tl, "#c7-url", at("L10", "A-R-S") - 0.2, 14);
+      tl.fromTo("#c7-page", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, at("L10", "G-A"));
+      // « Choisir » sur la ligne de l'enfant
+      gsap.set("#c7-cur", { x: 1100, y: 800 });
+      K.li(tl, "#c7-a2", at("L11", "Choisir") - 0.2);
+      K.move(tl, "#c7-cur", 752, 617, at("L11", "Cliquez"), 0.7);
+      K.click(tl, "#c7-cur", "#c7-rip", at("L11", "Choisir"));
+      K.press(tl, "#c7-ch1", at("L11", "Choisir"));
+      tl.to("#c7-modal", { opacity: 1, duration: 0.3 }, at("L11", "Choisir") + 0.3);
+      tl.fromTo("#c7-dlg", { y: 30, scale: 0.94 }, { y: 0, scale: 1, duration: 0.4, ease: "back.out(1.6)" }, at("L11", "Choisir") + 0.3);
+      // valider le téléversement
+      K.li(tl, "#c7-a3", at("L11", "validez"));
+      K.move(tl, "#c7-cur", 863, 562, at("L11", "validez") - 0.55, 0.5);
+      K.click(tl, "#c7-cur", "#c7-rip", at("L11", "validez"));
+      K.press(tl, "#c7-ok", at("L11", "validez"));
+      tl.to("#c7-bar", { scaleX: 1, duration: 0.7, ease: "power1.inOut" }, at("L11", "validez") + 0.1);
+      tl.to("#c7-modal", { opacity: 0, duration: 0.3 }, at("L11", "validez") + 0.9);
+      tl.set("#c7-ch1", { display: "none" }, at("L11", "validez") + 1.0);
+      tl.fromTo("#c7-d1", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(2)" }, at("L11", "validez") + 1.0);
+      // répéter pour chaque enfant
+      var t12 = at("L12", "Repetez");
+      tl.to("#c7-list1", { opacity: 0, duration: 0.3 }, t12 - 0.4);
+      K.li(tl, "#c7-b1", t12);
+      K.move(tl, "#c7-cur", 752, 689, t12 - 0.1, 0.4);
+      K.click(tl, "#c7-cur", "#c7-rip", t12 + 0.35);
+      tl.set("#c7-ch2", { display: "none" }, t12 + 0.5);
+      tl.fromTo("#c7-d2", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(2)" }, t12 + 0.5);
+      K.move(tl, "#c7-cur", 752, 761, t12 + 0.7, 0.4);
+      K.click(tl, "#c7-cur", "#c7-rip", t12 + 1.15);
+      tl.set("#c7-ch3", { display: "none" }, t12 + 1.3);
+      tl.fromTo("#c7-d3", { opacity: 0, x: -10 }, { opacity: 1, x: 0, duration: 0.35, ease: "back.out(2)" }, t12 + 1.3);
+      // un scan bien lisible
+      K.li(tl, "#c7-b2", at("L12", "assurez"));
+      tl.to("#c7-cur", { opacity: 0, duration: 0.2 }, at("L12", "assurez"));
+      tl.fromTo("#c7-zoom", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.6)" }, at("L12", "scan") - 0.2);
+      tl.fromTo("#c7-ok2", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(2.4)" }, at("L12", "lisible"));
+      window.__timelines["c7"] = tl;
+    })();
+  </script>
+</template>

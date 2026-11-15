@@ -1,0 +1,1385 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.51,
+      "speech": [
+        0.12,
+        6.333
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Bonjour",
+          "start": 0.12,
+          "end": 0.464
+        },
+        {
+          "text": "à",
+          "start": 0.464,
+          "end": 0.636
+        },
+        {
+          "text": "tous",
+          "start": 0.636,
+          "end": 0.808
+        },
+        {
+          "text": "!",
+          "start": 0.808,
+          "end": 0.981
+        },
+        {
+          "text": "Bienvenue",
+          "start": 1.225,
+          "end": 2.259
+        },
+        {
+          "text": "sur",
+          "start": 2.259,
+          "end": 2.603
+        },
+        {
+          "text": "A-R-S",
+          "start": 2.603,
+          "end": 2.948
+        },
+        {
+          "text": "point",
+          "start": 2.948,
+          "end": 3.293
+        },
+        {
+          "text": "C-P-P-F",
+          "start": 3.293,
+          "end": 3.637
+        },
+        {
+          "text": "point",
+          "start": 3.637,
+          "end": 3.982
+        },
+        {
+          "text": "G-A,",
+          "start": 3.982,
+          "end": 4.327
+        },
+        {
+          "text": "le",
+          "start": 4.599,
+          "end": 4.816
+        },
+        {
+          "text": "service",
+          "start": 4.816,
+          "end": 5.249
+        },
+        {
+          "text": "en",
+          "start": 5.249,
+          "end": 5.466
+        },
+        {
+          "text": "ligne",
+          "start": 5.466,
+          "end": 5.683
+        },
+        {
+          "text": "de",
+          "start": 5.683,
+          "end": 5.899
+        },
+        {
+          "text": "la",
+          "start": 5.899,
+          "end": 6.116
+        },
+        {
+          "text": "C-P-P-F.",
+          "start": 6.116,
+          "end": 6.333
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.85,
+      "speech": [
+        0.122,
+        8.667
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Aujourd'hui,",
+          "start": 0.122,
+          "end": 0.364
+        },
+        {
+          "text": "je",
+          "start": 0.506,
+          "end": 0.681
+        },
+        {
+          "text": "vous",
+          "start": 0.681,
+          "end": 0.857
+        },
+        {
+          "text": "montre",
+          "start": 0.857,
+          "end": 1.032
+        },
+        {
+          "text": "comment",
+          "start": 1.032,
+          "end": 1.383
+        },
+        {
+          "text": "imprimer",
+          "start": 1.383,
+          "end": 1.909
+        },
+        {
+          "text": "et",
+          "start": 1.909,
+          "end": 2.084
+        },
+        {
+          "text": "téléverser",
+          "start": 2.084,
+          "end": 2.786
+        },
+        {
+          "text": "le",
+          "start": 2.786,
+          "end": 2.961
+        },
+        {
+          "text": "certificat",
+          "start": 2.961,
+          "end": 3.663
+        },
+        {
+          "text": "de",
+          "start": 3.663,
+          "end": 3.838
+        },
+        {
+          "text": "scolarité",
+          "start": 3.838,
+          "end": 4.539
+        },
+        {
+          "text": "de",
+          "start": 4.539,
+          "end": 4.715
+        },
+        {
+          "text": "vos",
+          "start": 4.715,
+          "end": 4.89
+        },
+        {
+          "text": "enfants,",
+          "start": 4.89,
+          "end": 5.241
+        },
+        {
+          "text": "pour",
+          "start": 5.511,
+          "end": 5.686
+        },
+        {
+          "text": "l'Allocation",
+          "start": 5.686,
+          "end": 6.388
+        },
+        {
+          "text": "de",
+          "start": 6.388,
+          "end": 6.563
+        },
+        {
+          "text": "Rentrée",
+          "start": 6.563,
+          "end": 6.914
+        },
+        {
+          "text": "Scolaire",
+          "start": 6.914,
+          "end": 7.264
+        },
+        {
+          "text": "deux",
+          "start": 7.264,
+          "end": 7.44
+        },
+        {
+          "text": "mille",
+          "start": 7.44,
+          "end": 7.615
+        },
+        {
+          "text": "vingt-six,",
+          "start": 7.615,
+          "end": 7.966
+        },
+        {
+          "text": "deux",
+          "start": 7.966,
+          "end": 8.141
+        },
+        {
+          "text": "mille",
+          "start": 8.141,
+          "end": 8.317
+        },
+        {
+          "text": "vingt-sept.",
+          "start": 8.317,
+          "end": 8.667
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.95,
+      "speech": [
+        0.117,
+        6.766
+      ],
+      "pauses": 4,
+      "anchored": 0,
+      "words": [
+        {
+          "text": "Rendez-vous",
+          "start": 0.117,
+          "end": 0.984
+        },
+        {
+          "text": "sur",
+          "start": 0.984,
+          "end": 1.274
+        },
+        {
+          "text": "A-R-S",
+          "start": 1.274,
+          "end": 1.563
+        },
+        {
+          "text": "point",
+          "start": 1.563,
+          "end": 1.852
+        },
+        {
+          "text": "C-P-P-F",
+          "start": 1.852,
+          "end": 2.141
+        },
+        {
+          "text": "point",
+          "start": 2.141,
+          "end": 2.43
+        },
+        {
+          "text": "G-A.",
+          "start": 2.43,
+          "end": 2.719
+        },
+        {
+          "text": "Saisissez",
+          "start": 2.719,
+          "end": 3.586
+        },
+        {
+          "text": "votre",
+          "start": 3.586,
+          "end": 3.875
+        },
+        {
+          "text": "matricule",
+          "start": 3.875,
+          "end": 4.743
+        },
+        {
+          "text": "solde",
+          "start": 4.743,
+          "end": 5.032
+        },
+        {
+          "text": "et",
+          "start": 5.032,
+          "end": 5.321
+        },
+        {
+          "text": "votre",
+          "start": 5.321,
+          "end": 5.61
+        },
+        {
+          "text": "date",
+          "start": 5.61,
+          "end": 5.899
+        },
+        {
+          "text": "de",
+          "start": 5.899,
+          "end": 6.188
+        },
+        {
+          "text": "naissance.",
+          "start": 6.188,
+          "end": 6.766
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.72,
+      "speech": [
+        0.116,
+        4.543
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "N'oubliez",
+          "start": 0.116,
+          "end": 0.428
+        },
+        {
+          "text": "pas",
+          "start": 0.428,
+          "end": 0.585
+        },
+        {
+          "text": "de",
+          "start": 0.585,
+          "end": 0.741
+        },
+        {
+          "text": "cocher",
+          "start": 0.741,
+          "end": 1.054
+        },
+        {
+          "text": "les",
+          "start": 1.054,
+          "end": 1.211
+        },
+        {
+          "text": "conditions",
+          "start": 1.211,
+          "end": 1.68
+        },
+        {
+          "text": "générales,",
+          "start": 1.68,
+          "end": 2.306
+        },
+        {
+          "text": "puis",
+          "start": 2.76,
+          "end": 2.938
+        },
+        {
+          "text": "cliquez",
+          "start": 2.938,
+          "end": 3.295
+        },
+        {
+          "text": "sur",
+          "start": 3.295,
+          "end": 3.473
+        },
+        {
+          "text": "«",
+          "start": 3.473,
+          "end": 3.652
+        },
+        {
+          "text": "Se",
+          "start": 3.652,
+          "end": 3.83
+        },
+        {
+          "text": "connecter",
+          "start": 3.83,
+          "end": 4.365
+        },
+        {
+          "text": "».",
+          "start": 4.365,
+          "end": 4.543
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.95,
+      "speech": [
+        0.124,
+        6.774
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Une",
+          "start": 0.124,
+          "end": 0.192
+        },
+        {
+          "text": "fois",
+          "start": 0.192,
+          "end": 0.259
+        },
+        {
+          "text": "connecté,",
+          "start": 0.259,
+          "end": 0.461
+        },
+        {
+          "text": "vous",
+          "start": 0.636,
+          "end": 0.852
+        },
+        {
+          "text": "verrez",
+          "start": 0.852,
+          "end": 1.284
+        },
+        {
+          "text": "la",
+          "start": 1.284,
+          "end": 1.5
+        },
+        {
+          "text": "liste",
+          "start": 1.5,
+          "end": 1.716
+        },
+        {
+          "text": "de",
+          "start": 1.716,
+          "end": 1.932
+        },
+        {
+          "text": "vos",
+          "start": 1.932,
+          "end": 2.148
+        },
+        {
+          "text": "enfants",
+          "start": 2.148,
+          "end": 2.58
+        },
+        {
+          "text": "éligibles.",
+          "start": 2.58,
+          "end": 3.444
+        },
+        {
+          "text": "Cliquez",
+          "start": 3.782,
+          "end": 4.093
+        },
+        {
+          "text": "sur",
+          "start": 4.093,
+          "end": 4.248
+        },
+        {
+          "text": "le",
+          "start": 4.248,
+          "end": 4.404
+        },
+        {
+          "text": "bouton",
+          "start": 4.404,
+          "end": 4.714
+        },
+        {
+          "text": "vert",
+          "start": 4.714,
+          "end": 4.87
+        },
+        {
+          "text": "«",
+          "start": 4.87,
+          "end": 5.025
+        },
+        {
+          "text": "Traiter",
+          "start": 5.025,
+          "end": 5.336
+        },
+        {
+          "text": "»",
+          "start": 5.336,
+          "end": 5.492
+        },
+        {
+          "text": "pour",
+          "start": 5.669,
+          "end": 5.807
+        },
+        {
+          "text": "générer",
+          "start": 5.807,
+          "end": 6.221
+        },
+        {
+          "text": "le",
+          "start": 6.221,
+          "end": 6.36
+        },
+        {
+          "text": "formulaire.",
+          "start": 6.36,
+          "end": 6.774
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.39,
+      "speech": [
+        0.124,
+        7.206
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Remplissez",
+          "start": 0.124,
+          "end": 0.607
+        },
+        {
+          "text": "le",
+          "start": 0.607,
+          "end": 0.768
+        },
+        {
+          "text": "formulaire",
+          "start": 0.768,
+          "end": 1.251
+        },
+        {
+          "text": "avec",
+          "start": 1.251,
+          "end": 1.573
+        },
+        {
+          "text": "précision",
+          "start": 1.573,
+          "end": 2.056
+        },
+        {
+          "text": ":",
+          "start": 2.056,
+          "end": 2.217
+        },
+        {
+          "text": "le",
+          "start": 2.803,
+          "end": 2.948
+        },
+        {
+          "text": "matricule",
+          "start": 2.948,
+          "end": 3.385
+        },
+        {
+          "text": "du",
+          "start": 3.385,
+          "end": 3.53
+        },
+        {
+          "text": "second",
+          "start": 3.53,
+          "end": 3.821
+        },
+        {
+          "text": "parent,",
+          "start": 3.821,
+          "end": 4.112
+        },
+        {
+          "text": "le",
+          "start": 4.464,
+          "end": 4.623
+        },
+        {
+          "text": "sexe",
+          "start": 4.623,
+          "end": 4.782
+        },
+        {
+          "text": "de",
+          "start": 4.782,
+          "end": 4.94
+        },
+        {
+          "text": "l'enfant,",
+          "start": 4.94,
+          "end": 5.258
+        },
+        {
+          "text": "son",
+          "start": 5.6,
+          "end": 5.778
+        },
+        {
+          "text": "établissement",
+          "start": 5.778,
+          "end": 6.67
+        },
+        {
+          "text": "et",
+          "start": 6.67,
+          "end": 6.849
+        },
+        {
+          "text": "sa",
+          "start": 6.849,
+          "end": 7.027
+        },
+        {
+          "text": "classe.",
+          "start": 7.027,
+          "end": 7.206
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.71,
+      "speech": [
+        0.115,
+        6.531
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Vérifiez",
+          "start": 0.115,
+          "end": 0.693
+        },
+        {
+          "text": "bien",
+          "start": 0.693,
+          "end": 0.885
+        },
+        {
+          "text": "chaque",
+          "start": 0.885,
+          "end": 1.27
+        },
+        {
+          "text": "champ",
+          "start": 1.27,
+          "end": 1.463
+        },
+        {
+          "text": ":",
+          "start": 1.463,
+          "end": 1.655
+        },
+        {
+          "text": "si",
+          "start": 2.172,
+          "end": 2.286
+        },
+        {
+          "text": "les",
+          "start": 2.286,
+          "end": 2.399
+        },
+        {
+          "text": "champs",
+          "start": 2.399,
+          "end": 2.512
+        },
+        {
+          "text": "sur",
+          "start": 2.512,
+          "end": 2.625
+        },
+        {
+          "text": "fond",
+          "start": 2.625,
+          "end": 2.739
+        },
+        {
+          "text": "jaune",
+          "start": 2.739,
+          "end": 2.852
+        },
+        {
+          "text": "ne",
+          "start": 2.852,
+          "end": 2.965
+        },
+        {
+          "text": "sont",
+          "start": 2.965,
+          "end": 3.078
+        },
+        {
+          "text": "pas",
+          "start": 3.078,
+          "end": 3.192
+        },
+        {
+          "text": "tous",
+          "start": 3.192,
+          "end": 3.305
+        },
+        {
+          "text": "renseignés,",
+          "start": 3.305,
+          "end": 3.645
+        },
+        {
+          "text": "vous",
+          "start": 3.771,
+          "end": 3.983
+        },
+        {
+          "text": "ne",
+          "start": 3.983,
+          "end": 4.196
+        },
+        {
+          "text": "pourrez",
+          "start": 4.196,
+          "end": 4.62
+        },
+        {
+          "text": "pas",
+          "start": 4.62,
+          "end": 4.832
+        },
+        {
+          "text": "télécharger",
+          "start": 4.832,
+          "end": 5.681
+        },
+        {
+          "text": "le",
+          "start": 5.681,
+          "end": 5.894
+        },
+        {
+          "text": "formulaire.",
+          "start": 5.894,
+          "end": 6.531
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.02,
+      "speech": [
+        0.117,
+        4.835
+      ],
+      "pauses": 3,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Cliquez",
+          "start": 0.117,
+          "end": 0.448
+        },
+        {
+          "text": "maintenant",
+          "start": 0.448,
+          "end": 0.945
+        },
+        {
+          "text": "sur",
+          "start": 0.945,
+          "end": 1.111
+        },
+        {
+          "text": "«",
+          "start": 1.111,
+          "end": 1.277
+        },
+        {
+          "text": "Exporter",
+          "start": 1.277,
+          "end": 1.774
+        },
+        {
+          "text": "en",
+          "start": 1.774,
+          "end": 1.94
+        },
+        {
+          "text": "PDF",
+          "start": 1.94,
+          "end": 2.437
+        },
+        {
+          "text": "»",
+          "start": 2.437,
+          "end": 2.603
+        },
+        {
+          "text": ":",
+          "start": 3.034,
+          "end": 3.154
+        },
+        {
+          "text": "le",
+          "start": 3.154,
+          "end": 3.274
+        },
+        {
+          "text": "document",
+          "start": 3.274,
+          "end": 3.634
+        },
+        {
+          "text": "se",
+          "start": 3.634,
+          "end": 3.754
+        },
+        {
+          "text": "télécharge",
+          "start": 3.754,
+          "end": 4.115
+        },
+        {
+          "text": "automatiquement.",
+          "start": 4.115,
+          "end": 4.835
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.23,
+      "speech": [
+        0.115,
+        5.052
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Imprimez-le,",
+          "start": 0.115,
+          "end": 0.701
+        },
+        {
+          "text": "puis",
+          "start": 1.06,
+          "end": 1.203
+        },
+        {
+          "text": "rendez-vous",
+          "start": 1.203,
+          "end": 1.63
+        },
+        {
+          "text": "à",
+          "start": 1.63,
+          "end": 1.773
+        },
+        {
+          "text": "l'établissement",
+          "start": 1.773,
+          "end": 2.486
+        },
+        {
+          "text": "scolaire",
+          "start": 2.486,
+          "end": 2.771
+        },
+        {
+          "text": "de",
+          "start": 2.771,
+          "end": 2.913
+        },
+        {
+          "text": "votre",
+          "start": 2.913,
+          "end": 3.056
+        },
+        {
+          "text": "enfant,",
+          "start": 3.056,
+          "end": 3.341
+        },
+        {
+          "text": "pour",
+          "start": 3.341,
+          "end": 3.483
+        },
+        {
+          "text": "le",
+          "start": 3.483,
+          "end": 3.626
+        },
+        {
+          "text": "faire",
+          "start": 3.626,
+          "end": 3.769
+        },
+        {
+          "text": "signer",
+          "start": 3.769,
+          "end": 4.054
+        },
+        {
+          "text": "et",
+          "start": 4.054,
+          "end": 4.196
+        },
+        {
+          "text": "apposer",
+          "start": 4.196,
+          "end": 4.624
+        },
+        {
+          "text": "le",
+          "start": 4.624,
+          "end": 4.766
+        },
+        {
+          "text": "cachet.",
+          "start": 4.766,
+          "end": 5.052
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.84,
+      "speech": [
+        0.123,
+        5.661
+      ],
+      "pauses": 3,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Une",
+          "start": 0.123,
+          "end": 0.346
+        },
+        {
+          "text": "fois",
+          "start": 0.346,
+          "end": 0.57
+        },
+        {
+          "text": "le",
+          "start": 0.57,
+          "end": 0.794
+        },
+        {
+          "text": "document",
+          "start": 0.794,
+          "end": 1.466
+        },
+        {
+          "text": "signé,",
+          "start": 1.466,
+          "end": 1.913
+        },
+        {
+          "text": "scannez-le,",
+          "start": 2.04,
+          "end": 2.493
+        },
+        {
+          "text": "et",
+          "start": 2.493,
+          "end": 2.719
+        },
+        {
+          "text": "connectez-vous",
+          "start": 2.719,
+          "end": 3.624
+        },
+        {
+          "text": "à",
+          "start": 3.624,
+          "end": 3.851
+        },
+        {
+          "text": "nouveau",
+          "start": 3.851,
+          "end": 4.303
+        },
+        {
+          "text": "sur",
+          "start": 4.303,
+          "end": 4.53
+        },
+        {
+          "text": "A-R-S",
+          "start": 4.53,
+          "end": 4.756
+        },
+        {
+          "text": "point",
+          "start": 4.756,
+          "end": 4.982
+        },
+        {
+          "text": "C-P-P-F",
+          "start": 4.982,
+          "end": 5.209
+        },
+        {
+          "text": "point",
+          "start": 5.209,
+          "end": 5.435
+        },
+        {
+          "text": "G-A.",
+          "start": 5.435,
+          "end": 5.661
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "path": "assets/voice/L11.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.03,
+      "speech": [
+        0.121,
+        4.853
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Cliquez",
+          "start": 0.121,
+          "end": 0.595
+        },
+        {
+          "text": "sur",
+          "start": 0.595,
+          "end": 0.832
+        },
+        {
+          "text": "«",
+          "start": 0.832,
+          "end": 1.069
+        },
+        {
+          "text": "Choisir",
+          "start": 1.069,
+          "end": 1.544
+        },
+        {
+          "text": "»",
+          "start": 1.544,
+          "end": 1.781
+        },
+        {
+          "text": "sur",
+          "start": 2.004,
+          "end": 2.149
+        },
+        {
+          "text": "la",
+          "start": 2.149,
+          "end": 2.294
+        },
+        {
+          "text": "ligne",
+          "start": 2.294,
+          "end": 2.438
+        },
+        {
+          "text": "de",
+          "start": 2.438,
+          "end": 2.583
+        },
+        {
+          "text": "l'enfant",
+          "start": 2.583,
+          "end": 2.872
+        },
+        {
+          "text": "concerné,",
+          "start": 2.872,
+          "end": 3.306
+        },
+        {
+          "text": "puis",
+          "start": 3.589,
+          "end": 3.715
+        },
+        {
+          "text": "validez",
+          "start": 3.715,
+          "end": 4.094
+        },
+        {
+          "text": "le",
+          "start": 4.094,
+          "end": 4.221
+        },
+        {
+          "text": "téléversement.",
+          "start": 4.221,
+          "end": 4.853
+        }
+      ]
+    },
+    {
+      "id": "L12",
+      "path": "assets/voice/L12.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.42,
+      "speech": [
+        0.123,
+        5.241
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Répétez",
+          "start": 0.123,
+          "end": 0.58
+        },
+        {
+          "text": "l'opération",
+          "start": 0.58,
+          "end": 1.188
+        },
+        {
+          "text": "pour",
+          "start": 1.188,
+          "end": 1.34
+        },
+        {
+          "text": "chaque",
+          "start": 1.34,
+          "end": 1.644
+        },
+        {
+          "text": "enfant.",
+          "start": 1.644,
+          "end": 1.948
+        },
+        {
+          "text": "Et",
+          "start": 2.614,
+          "end": 2.768
+        },
+        {
+          "text": "assurez-vous",
+          "start": 2.768,
+          "end": 3.386
+        },
+        {
+          "text": "que",
+          "start": 3.386,
+          "end": 3.541
+        },
+        {
+          "text": "votre",
+          "start": 3.541,
+          "end": 3.696
+        },
+        {
+          "text": "scan",
+          "start": 3.696,
+          "end": 3.85
+        },
+        {
+          "text": "est",
+          "start": 3.85,
+          "end": 4.005
+        },
+        {
+          "text": "bien",
+          "start": 4.005,
+          "end": 4.159
+        },
+        {
+          "text": "lisible",
+          "start": 4.159,
+          "end": 4.468
+        },
+        {
+          "text": "avant",
+          "start": 4.468,
+          "end": 4.778
+        },
+        {
+          "text": "l'envoi",
+          "start": 4.778,
+          "end": 5.087
+        },
+        {
+          "text": "!",
+          "start": 5.087,
+          "end": 5.241
+        }
+      ]
+    },
+    {
+      "id": "L13",
+      "path": "assets/voice/L13.wav",
+      "voice": "Leda",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.889,
+      "speech": [
+        0.123,
+        6.708
+      ],
+      "pauses": 5,
+      "anchored": 4,
+      "words": [
+        {
+          "text": "Avec",
+          "start": 0.123,
+          "end": 0.278
+        },
+        {
+          "text": "la",
+          "start": 0.278,
+          "end": 0.355
+        },
+        {
+          "text": "C-P-P-F,",
+          "start": 0.355,
+          "end": 0.432
+        },
+        {
+          "text": "faites",
+          "start": 0.559,
+          "end": 1.118
+        },
+        {
+          "text": "vos",
+          "start": 1.118,
+          "end": 1.397
+        },
+        {
+          "text": "démarches",
+          "start": 1.397,
+          "end": 2.235
+        },
+        {
+          "text": "en",
+          "start": 2.235,
+          "end": 2.514
+        },
+        {
+          "text": "ligne,",
+          "start": 2.514,
+          "end": 2.793
+        },
+        {
+          "text": "en",
+          "start": 2.905,
+          "end": 3.06
+        },
+        {
+          "text": "toute",
+          "start": 3.06,
+          "end": 3.215
+        },
+        {
+          "text": "simplicité.",
+          "start": 3.215,
+          "end": 3.834
+        },
+        {
+          "text": "Solidaires",
+          "start": 4.508,
+          "end": 4.996
+        },
+        {
+          "text": "aujourd'hui,",
+          "start": 4.996,
+          "end": 5.361
+        },
+        {
+          "text": "pour",
+          "start": 5.696,
+          "end": 5.823
+        },
+        {
+          "text": "un",
+          "start": 5.823,
+          "end": 5.949
+        },
+        {
+          "text": "avenir",
+          "start": 5.949,
+          "end": 6.329
+        },
+        {
+          "text": "prospère",
+          "start": 6.329,
+          "end": 6.582
+        },
+        {
+          "text": "!",
+          "start": 6.582,
+          "end": 6.708
+        }
+      ]
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Leda)",
+  "onepass": {
+    "voice": "Leda",
+    "model": "gemini-3.8-flash-tts"
+  },
+  "tts_provider": "gemini"
+}

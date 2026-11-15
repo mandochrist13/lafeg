@@ -1,0 +1,36 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    #c1-logo {
+      position: absolute;
+      left: 660px;
+      top: 240px;
+      width: 600px;
+      height: 600px;
+    }
+  </style>
+  <div id="root" data-composition-id="c1" data-width="1920" data-height="1080">
+    <div id="c1-bg" class="k-abs"></div>
+    <img id="c1-logo" src="assets/img/cppf-logo.png" alt="Caisse des Pensions et des Prestations Familiales des agents de l'Etat" />
+  </div>
+  <script>
+    (function () {
+      var C = window.__CPPF_CUES;
+      var K = window.KIT;
+      var D = C.sc.c1.dur;
+      document.getElementById("c1-bg").innerHTML = K.honey();
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#c1-bg .k-hex", { scale: 0.4, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.5, stagger: { each: 0.004, from: "random" }, ease: "back.out(1.6)" }, 0);
+      tl.fromTo("#c1-logo", { opacity: 0, scale: 0.72, rotation: -6 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.9, ease: "back.out(1.5)" }, 0.2);
+      tl.to("#c1-logo", { scale: 1.04, duration: 1.2, ease: "sine.inOut" }, 1.1);
+      tl.to("#c1-logo", { opacity: 0, scale: 0.9, duration: 0.45, ease: "power2.in" }, D - 0.5);
+      window.__timelines["c1"] = tl;
+    })();
+  </script>
+</template>
