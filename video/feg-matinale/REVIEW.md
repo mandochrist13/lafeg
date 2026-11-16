@@ -3,6 +3,7 @@
 ## Livrable
 
 - `renders/FEG-La-Matinale-9x16.mp4` : 1080 × 1920, 30 i/s, 44,4 s, musique seule (pas de voix).
+- `renders/FEG-La-Matinale-9x16-partage.mp4` : la même vidéo en 13,7 Mo au lieu de 47 Mo, pour WhatsApp et les réseaux. Elle est réencodée depuis la version maître, sans différence visible (PSNR 41,6 dB).
 
 ## La demande
 
@@ -34,3 +35,11 @@
 
 - `check` : 0 erreur, 0 avertissement ; contraste : 16 textes sur 16 conformes WCAG AA.
 - Étalonnage comparé avant et après sur trois instants (2,6 s, 12 s et 29 s) : saturation moyenne +8 à +11 %, contraste égal ou un peu plus fort, peaux naturelles.
+- Rendu : 1080 × 1920, 30 i/s, 44,4 s, H.264 + AAC.
+- Son mesuré, pas écouté : −14,2 LUFS, crête −1,4 dBFS, plage de loudness 8,3 LU. La musique reste calée exactement comme dans l'original.
+- 22 images extraites du MP4, de 0,5 à 43,5 s :
+  - l'accroche se construit et le nom du rendez-vous n'entre dans le pied de page qu'après elle ;
+  - chaque message arrive ligne par ligne au bon endroit ;
+  - aucun titre ne couvre le portrait officiel ni les visages ;
+  - les flashs tombent sur les coupes, le pied de page devient la carte de fin ;
+  - aucun des anciens textes incrustés n'est visible.
