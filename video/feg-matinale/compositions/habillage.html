@@ -323,7 +323,7 @@
         tl.to(sels, { xPercent: -8, opacity: 0, duration: 0.3, stagger: 0.05, ease: "power2.in" }, t);
       }
       function flash(t, pic) {
-        tl.fromTo("#hb-flash", { opacity: 0 }, { opacity: pic || 0.85, duration: 0.06, ease: "none" }, t - 0.03);
+        tl.fromTo("#hb-flash", { opacity: 0 }, { opacity: pic || 0.6, duration: 0.06, ease: "none" }, t - 0.03);
         tl.to("#hb-flash", { opacity: 0, duration: 0.26, ease: "power2.out" }, t + 0.03);
       }
 
@@ -363,27 +363,24 @@
       entre("#hb-m3b", 25.2);
       entre("#hb-m3c", 26.0);
       sort(["#hb-m3a", "#hb-m3b", "#hb-m3c"], 30.8);
-      // la FEG, au service de ses entreprises membres ; l'impact de 36 s la souligne
+      // la FEG, au service de ses entreprises membres
       entre("#hb-m4a", 32.0);
       entre("#hb-m4b", 32.8);
       entre("#hb-m4c", 33.6);
-      tl.to(["#hb-m4a", "#hb-m4b", "#hb-m4c"], { scale: 1.06, duration: 0.12, ease: "power2.out" }, 36);
-      tl.to(["#hb-m4a", "#hb-m4b", "#hb-m4c"], { scale: 1, duration: 0.6, ease: "power3.out" }, 36.12);
-      flash(36, 0.55);
       sort(["#hb-m4a", "#hb-m4b", "#hb-m4c"], 37.0);
 
-      // carte de fin : le pied de page monte sur tout l'écran
+      // carte de fin : le pied de page monte sur tout l'écran ; le logo arrive sur le dernier accord (38,3 s)
       tl.to("#hb-marque", { opacity: 0, y: 20, duration: 0.3, ease: "power2.in" }, 37.2);
       tl.to("#hb-barre", { opacity: 0, duration: 0.3 }, 37.2);
       tl.to("#hb-fondu", { opacity: 0, duration: 0.3 }, 37.3);
       tl.to("#hb-fond", { scaleY: 1, duration: 0.75, ease: "power3.inOut" }, 37.3);
       tl.to("#hb-motif-pied", { opacity: 0, duration: 0.3 }, 37.3);
       tl.to("#hb-motif-fin", { opacity: 1, duration: 0.6 }, 37.9);
-      tl.fromTo("#hb-fin img", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 38.1);
-      tl.fromTo("#hb-fin .devise", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 38.8);
-      tl.fromTo("#hb-fin .filet", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 39.2);
-      tl.fromTo("#hb-fin .site", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 39.5);
-      tl.fromTo("#hb-fin .prog", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 40.2);
+      tl.fromTo("#hb-fin img", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 38.3);
+      tl.fromTo("#hb-fin .devise", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 39.0);
+      tl.fromTo("#hb-fin .filet", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 39.4);
+      tl.fromTo("#hb-fin .site", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 39.7);
+      tl.fromTo("#hb-fin .prog", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 40.4);
       // état initial des éléments qui entrent plus tard
       gsap.set(["#hb-fin img", "#hb-fin .devise", "#hb-fin .site", "#hb-fin .prog"], { opacity: 0 });
       window.__timelines["habillage"] = tl;

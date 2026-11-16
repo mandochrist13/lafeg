@@ -1,15 +1,38 @@
-# REVIEW — FEG · « La Matinale », version réseaux sociaux (v1)
+# REVIEW — FEG · « La Matinale », version réseaux sociaux (v2, musique SoundHill)
 
-## Livrable
+## Livrables
 
-- `renders/FEG-La-Matinale-9x16.mp4` : 1080 × 1920, 30 i/s, 44,4 s, musique seule (pas de voix).
-- `renders/FEG-La-Matinale-9x16-partage.mp4` : la même vidéo en 13,7 Mo au lieu de 47 Mo, pour WhatsApp et les réseaux. Elle est réencodée depuis la version maître, sans différence visible (PSNR 41,6 dB).
+- `renders/FEG-La-Matinale-9x16-soundhill.mp4` : 1080 × 1920, 30 i/s, 44,4 s, musique SoundHill, pas de voix. C'est la version maître.
+- `renders/FEG-La-Matinale-9x16-soundhill-partage.mp4` : la même, plus légère, pour WhatsApp et les réseaux.
+- La v1, avec la musique d'origine : `renders/FEG-La-Matinale-9x16.mp4` et `renders/FEG-La-Matinale-9x16-partage.mp4`.
 
-## La demande
+## v2 : musique SoundHill (demande de la FEG)
+
+« Remplace la musique par celle de SoundHill. »
+
+- **La piste** : « Find Yourself » de SoundHill, celle des autres vidéos de la FEG (libre de droits). Elle remplace le morceau épique de la vidéo d'origine, dont la provenance n'était pas connue.
+- **Le calage** : la piste est prise à partir de 92,16 s du morceau.
+  - Ses temps forts tombent sur les coupes (14, 22 et 24 s).
+  - Une phrase musicale commence avec le premier message (6 s).
+  - Le dernier accord du morceau frappe à 38,3 s, juste quand le logo apparaît sur la carte de fin, puis s'éteint seul : la musique a une vraie fin, sans fondu forcé.
+  - La piste commence en cours de phrase, d'où une montée de 0,8 s au début.
+- **L'image s'adapte à la musique** :
+  - le sursaut et le flash prévus pour l'impact de 36 s de l'ancienne musique sont retirés ;
+  - les flashs des coupes sont adoucis (60 % au lieu de 85 %), pour cette musique plus douce ;
+  - le logo de la carte de fin arrive sur le dernier accord.
+- **Écoute automatique** (Gemini, musique seule, sans indication de ce qu'on attend) :
+  - entrée « fluide et naturelle » ;
+  - « vraie fin musicale complète, avec un dernier accord qui résonne et s'éteint naturellement » ;
+  - aucun défaut ;
+  - ambiance « moderne, dynamique, professionnelle et entraînante » ; énergie 7/10, note 10/10.
+- **Son mesuré** sur la piste préparée : −14,0 LUFS, crête −2,0 dBFS. Le dernier accord est mesuré à 38,30 s (maximum à 38,45 s) ; le son passe sous −38 dB à 42 s.
+- **Inchangés** : montage, textes, étalonnage, pied de page et carte de fin (seul le moment où le logo apparaît a bougé).
+
+## v1 : la demande
 
 « Améliore mais toujours sans voix, donne envie de regarder », à propos de la vidéo WhatsApp de la Matinale (`VID-20261116-WA0021.mp4`).
 
-## Ce qui change par rapport à la vidéo d'origine
+## v1 : ce qui change par rapport à la vidéo d'origine
 
 - **Une accroche dès la première seconde** : « LA MATINALE » en très grand, avec un petit soleil qui se lève, sur le plan du Secrétaire général et de la vue sur la mer. Dans l'original, le titre s'écrivait lettre à lettre en bas de l'image.
 - **Du rythme** :
@@ -27,11 +50,11 @@
 
 ## À valider par la FEG
 
-- **Droits de la musique** : c'est celle de la vidéo d'origine, dont la provenance n'est pas connue. Si elle vient de la bibliothèque d'une application de montage, vérifier qu'elle peut être publiée ailleurs. Sinon, elle peut être remplacée par la piste SoundHill déjà utilisée par la FEG.
+- **Musique** : réglé en v2, la piste SoundHill remplace la musique d'origine. Si la licence SoundHill demande une mention, l'ajouter dans le texte de la publication.
 - **Rushes** : les textes d'origine sont incrustés dans l'image, d'où le pied de page qui les masque. Avec les vidéos brutes du téléphone, sans texte, l'image pourrait occuper tout l'écran et être plus nette.
 - **« La Matinale · chaque semaine »** sur la carte de fin : déduit de « réunion hebdomadaire ». « Excellent lundi » réserve la vidéo à une publication un lundi.
 
-## Contrôles
+## v1 : contrôles
 
 - `check` : 0 erreur, 0 avertissement ; contraste : 16 textes sur 16 conformes WCAG AA.
 - Étalonnage comparé avant et après sur trois instants (2,6 s, 12 s et 29 s) : saturation moyenne +8 à +11 %, contraste égal ou un peu plus fort, peaux naturelles.
