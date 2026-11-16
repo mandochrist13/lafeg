@@ -1,0 +1,392 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    /* ---------------- pied de page : il masque les anciens textes incrustés (entre 74 et 89 % de la hauteur)
+       et devient la carte de fin en montant sur tout l'écran */
+    #hb-fondu {
+      position: absolute;
+      left: 0;
+      top: 1240px;
+      width: 1080px;
+      height: 170px;
+      background: linear-gradient(180deg, rgba(6, 61, 33, 0) 0%, rgba(6, 61, 33, 0.55) 55%, #063d21 100%);
+    }
+    #hb-fond {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      background-color: #063d21;
+      transform-origin: 50% 100%;
+    }
+    .motif {
+      position: absolute;
+      left: 0;
+      width: 1080px;
+      background-image: radial-gradient(rgba(174, 174, 125, 0.13) 2.2px, transparent 2.6px);
+      background-size: 26px 26px;
+    }
+    #hb-motif-pied {
+      top: 1400px;
+      height: 520px;
+    }
+    #hb-motif-fin {
+      top: 0;
+      height: 1920px;
+      opacity: 0;
+    }
+    #hb-barre {
+      position: absolute;
+      left: 0;
+      top: 1404px;
+      width: 1080px;
+      height: 7px;
+      background: rgba(255, 255, 255, 0.12);
+    }
+    #hb-barre i {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, #0a7537, #aeae7d);
+      transform-origin: 0 50%;
+    }
+    #hb-marque {
+      position: absolute;
+      left: 72px;
+      top: 1508px;
+      width: 936px;
+      height: 184px;
+    }
+    #hb-marque img {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 199px;
+      height: 184px;
+    }
+    #hb-marque .sep {
+      position: absolute;
+      left: 232px;
+      top: 18px;
+      width: 3px;
+      height: 148px;
+      background: #aeae7d;
+      opacity: 0.7;
+    }
+    #hb-marque .nom {
+      position: absolute;
+      left: 266px;
+      top: 14px;
+      font-weight: 700;
+      font-size: 64px;
+      letter-spacing: 0.06em;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+    #hb-marque .sous {
+      position: absolute;
+      left: 268px;
+      top: 96px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-weight: 500;
+      font-size: 34px;
+      line-height: 1.2;
+      color: #d6d4a6;
+      white-space: nowrap;
+    }
+    /* ---------------- titres : étiquettes vertes (et une étiquette bronze pour le mot clé) */
+    .bloc {
+      position: absolute;
+      left: 64px;
+      width: 952px;
+    }
+    .bloc.haut {
+      top: 232px;
+    }
+    .bloc.bas {
+      bottom: 548px;
+    }
+    .ligne {
+      display: block;
+      width: max-content;
+      margin: 0 0 14px 0;
+      overflow: hidden;
+      border-radius: 12px;
+      transform-origin: 0 50%;
+    }
+    .ligne span {
+      display: block;
+      padding: 10px 26px 16px 24px;
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 1.08;
+      color: #ffffff;
+      background: #0a7537;
+      white-space: nowrap;
+    }
+    .ligne.or span {
+      background: #aeae7d;
+      color: #063d21;
+    }
+    .ligne.sombre span {
+      background: rgba(6, 61, 33, 0.94);
+    }
+    /* accroche « LA MATINALE » */
+    #hb-accroche .soleil {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 112px;
+      height: 76px;
+      padding: 0;
+      border-radius: 10px;
+      background: rgba(6, 61, 33, 0.94);
+    }
+    #hb-accroche .la {
+      position: absolute;
+      left: 128px;
+      top: 0;
+      padding: 4px 18px 8px 18px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 56px;
+      letter-spacing: 0.08em;
+      color: #063d21;
+      background: #aeae7d;
+    }
+    #hb-accroche .titre {
+      position: absolute;
+      left: 0;
+      top: 88px;
+      overflow: hidden;
+      border-radius: 14px;
+      transform-origin: 0 50%;
+    }
+    #hb-accroche .titre span {
+      display: block;
+      padding: 6px 30px 18px 26px;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 1.04;
+      letter-spacing: 0.01em;
+      color: #ffffff;
+      background: rgba(6, 61, 33, 0.94);
+      white-space: nowrap;
+    }
+    #hb-accroche .kick {
+      position: absolute;
+      left: 0;
+      top: 300px;
+    }
+    #hb-accroche .kick .ligne span {
+      font-weight: 500;
+      font-size: 46px;
+      padding: 8px 22px 12px 20px;
+    }
+    /* flash blanc sur les coupes */
+    #hb-flash {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      opacity: 0;
+    }
+    /* carte de fin */
+    #hb-fin {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1080px;
+      height: 1920px;
+      text-align: center;
+    }
+    #hb-fin img {
+      position: absolute;
+      left: 330px;
+      top: 470px;
+      width: 420px;
+      height: 388px;
+    }
+    #hb-fin .devise {
+      position: absolute;
+      left: 0;
+      top: 950px;
+      width: 1080px;
+      font-weight: 500;
+      font-size: 44px;
+      letter-spacing: 0.16em;
+      color: #d6d4a6;
+    }
+    #hb-fin .filet {
+      position: absolute;
+      left: 440px;
+      top: 1036px;
+      width: 200px;
+      height: 4px;
+      background: #aeae7d;
+      transform-origin: 50% 50%;
+    }
+    #hb-fin .site {
+      position: absolute;
+      left: 0;
+      top: 1076px;
+      width: 1080px;
+      font-weight: 700;
+      font-size: 60px;
+      color: #ffffff;
+    }
+    #hb-fin .prog {
+      position: absolute;
+      left: 0;
+      top: 1210px;
+      width: 1080px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-weight: 500;
+      font-size: 34px;
+      color: rgba(255, 255, 255, 0.82);
+    }
+  </style>
+  <div id="root" data-composition-id="habillage" data-width="1080" data-height="1920">
+    <!-- pied de page, puis carte de fin -->
+    <div id="hb-fondu"></div>
+    <div id="hb-fond"></div>
+    <div id="hb-motif-pied" class="motif"></div>
+    <div id="hb-motif-fin" class="motif"></div>
+    <div id="hb-barre"><i id="hb-progres"></i></div>
+    <div id="hb-marque">
+      <img src="assets/img/feg-logo-white.png" alt="FEG, Fédération des Entreprises du Gabon" />
+      <div class="sep"></div>
+      <div class="nom">LA MATINALE</div>
+      <div class="sous">Réunion hebdomadaire<br />du Secrétariat général</div>
+    </div>
+    <!-- titres posés sur l'image -->
+    <div id="hb-accroche" class="bloc haut">
+      <svg class="soleil" viewBox="0 0 112 70" aria-hidden="true">
+        <g id="hb-rayons" fill="none" stroke="#AEAE7D" stroke-width="6" stroke-linecap="round">
+          <path d="M 56 10 L 56 -2" /><path d="M 30 18 L 23 9" /><path d="M 82 18 L 89 9" /><path d="M 13 38 L 2 34" /><path d="M 99 38 L 110 34" />
+        </g>
+        <path id="hb-astre" d="M 22 62 A 34 34 0 0 1 90 62 Z" fill="#AEAE7D" />
+        <rect x="0" y="62" width="112" height="6" rx="3" fill="#FFFFFF" />
+      </svg>
+      <div class="la">LA</div>
+      <div class="titre"><span>MATINALE</span></div>
+      <div class="kick">
+        <div class="ligne or" id="hb-k1"><span>Réunion hebdomadaire</span></div>
+        <div class="ligne or" id="hb-k2"><span>du Secrétariat général</span></div>
+      </div>
+    </div>
+    <div id="hb-m1" class="bloc haut">
+      <div class="ligne" id="hb-m1a"><span>Temps d'échange,</span></div>
+      <div class="ligne or" id="hb-m1b"><span>de coordination</span></div>
+      <div class="ligne" id="hb-m1c"><span>et de suivi de dossiers</span></div>
+    </div>
+    <div id="hb-m2" class="bloc bas">
+      <div class="ligne" id="hb-m2a"><span>Pour un accompagnement</span></div>
+      <div class="ligne or" id="hb-m2b"><span>plus efficace</span></div>
+      <div class="ligne" id="hb-m2c"><span>de vos entreprises</span></div>
+    </div>
+    <div id="hb-m3" class="bloc bas">
+      <div class="ligne or" id="hb-m3a"><span>Excellent lundi</span></div>
+      <div class="ligne" id="hb-m3b"><span>et bonne semaine</span></div>
+      <div class="ligne" id="hb-m3c"><span>productive à tous !</span></div>
+    </div>
+    <div id="hb-m4" class="bloc haut">
+      <div class="ligne sombre" id="hb-m4a"><span>La FEG, au service</span></div>
+      <div class="ligne or" id="hb-m4b"><span>de ses entreprises</span></div>
+      <div class="ligne or" id="hb-m4c"><span>membres</span></div>
+    </div>
+
+    <div id="hb-fin">
+      <img src="assets/img/feg-logo-blanc-fin.png" alt="FEG, Fédération des Entreprises du Gabon" />
+      <div class="devise">LA VOIX DU SECTEUR PRIVÉ</div>
+      <div class="filet"></div>
+      <div class="site">lafeg.ga</div>
+      <div class="prog">La Matinale · chaque semaine</div>
+    </div>
+    <div id="hb-flash"></div>
+  </div>
+  <script>
+    (function () {
+      var tl = gsap.timeline({ paused: true });
+      var FOOT = 520 / 1920; // hauteur du pied de page rapportée à l'écran
+
+      // une ligne d'étiquette : la bande se déroule depuis la gauche, le texte monte
+      function entre(sel, t) {
+        tl.fromTo(sel, { scaleX: 0, opacity: 1 }, { scaleX: 1, duration: 0.34, ease: "power3.out" }, t);
+        tl.fromTo(sel + " span", { yPercent: 60, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.32, ease: "power3.out" }, t + 0.1);
+      }
+      function sort(sels, t) {
+        tl.to(sels, { xPercent: -8, opacity: 0, duration: 0.3, stagger: 0.05, ease: "power2.in" }, t);
+      }
+      function flash(t, pic) {
+        tl.fromTo("#hb-flash", { opacity: 0 }, { opacity: pic || 0.85, duration: 0.06, ease: "none" }, t - 0.03);
+        tl.to("#hb-flash", { opacity: 0, duration: 0.26, ease: "power2.out" }, t + 0.03);
+      }
+
+      // pied de page : présent dès la première image ; barre de progression jusqu'à la carte de fin
+      gsap.set("#hb-fond", { scaleY: FOOT });
+      tl.fromTo("#hb-progres", { scaleX: 0 }, { scaleX: 1, duration: 37.3, ease: "none" }, 0);
+      // le logo dès le début ; le nom du rendez-vous seulement quand l'accroche s'efface (pas de doublon)
+      tl.fromTo("#hb-marque img", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, 0.4);
+      tl.fromTo(["#hb-marque .sep", "#hb-marque .nom", "#hb-marque .sous"], { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.5, stagger: 0.08, ease: "power3.out" }, 5.85);
+
+      // accroche : le soleil se lève, « LA MATINALE », puis la réunion
+      tl.fromTo("#hb-astre", { y: 40 }, { y: 0, duration: 0.7, ease: "power3.out" }, 0.15);
+      tl.fromTo("#hb-rayons", { opacity: 0, scale: 0.6, svgOrigin: "56 62" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, 0.55);
+      tl.fromTo("#hb-accroche .la", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.35);
+      tl.fromTo("#hb-accroche .titre", { scaleX: 0 }, { scaleX: 1, duration: 0.45, ease: "power4.out" }, 0.45);
+      tl.fromTo("#hb-accroche .titre span", { yPercent: 70, opacity: 0 }, { yPercent: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 0.58);
+      entre("#hb-k1", 1.5);
+      entre("#hb-k2", 1.75);
+      tl.to("#hb-accroche", { opacity: 0, y: -40, duration: 0.35, ease: "power2.in" }, 5.6);
+
+      // 6 s, la musique part : temps d'échange, de coordination et de suivi de dossiers
+      entre("#hb-m1a", 6.0);
+      entre("#hb-m1b", 6.8);
+      entre("#hb-m1c", 7.6);
+      sort(["#hb-m1a", "#hb-m1b", "#hb-m1c"], 13.4);
+
+      flash(14);
+      // pour un accompagnement plus efficace de vos entreprises (en bas : le portrait et le kakémono restent visibles)
+      entre("#hb-m2a", 16.0);
+      entre("#hb-m2b", 16.8);
+      entre("#hb-m2c", 17.6);
+      sort(["#hb-m2a", "#hb-m2b", "#hb-m2c"], 21.5);
+      flash(22);
+      flash(24);
+      // excellent lundi et bonne semaine productive à tous
+      entre("#hb-m3a", 24.4);
+      entre("#hb-m3b", 25.2);
+      entre("#hb-m3c", 26.0);
+      sort(["#hb-m3a", "#hb-m3b", "#hb-m3c"], 30.8);
+      // la FEG, au service de ses entreprises membres ; l'impact de 36 s la souligne
+      entre("#hb-m4a", 32.0);
+      entre("#hb-m4b", 32.8);
+      entre("#hb-m4c", 33.6);
+      tl.to(["#hb-m4a", "#hb-m4b", "#hb-m4c"], { scale: 1.06, duration: 0.12, ease: "power2.out" }, 36);
+      tl.to(["#hb-m4a", "#hb-m4b", "#hb-m4c"], { scale: 1, duration: 0.6, ease: "power3.out" }, 36.12);
+      flash(36, 0.55);
+      sort(["#hb-m4a", "#hb-m4b", "#hb-m4c"], 37.0);
+
+      // carte de fin : le pied de page monte sur tout l'écran
+      tl.to("#hb-marque", { opacity: 0, y: 20, duration: 0.3, ease: "power2.in" }, 37.2);
+      tl.to("#hb-barre", { opacity: 0, duration: 0.3 }, 37.2);
+      tl.to("#hb-fondu", { opacity: 0, duration: 0.3 }, 37.3);
+      tl.to("#hb-fond", { scaleY: 1, duration: 0.75, ease: "power3.inOut" }, 37.3);
+      tl.to("#hb-motif-pied", { opacity: 0, duration: 0.3 }, 37.3);
+      tl.to("#hb-motif-fin", { opacity: 1, duration: 0.6 }, 37.9);
+      tl.fromTo("#hb-fin img", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.4)" }, 38.1);
+      tl.fromTo("#hb-fin .devise", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 38.8);
+      tl.fromTo("#hb-fin .filet", { scaleX: 0 }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, 39.2);
+      tl.fromTo("#hb-fin .site", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 39.5);
+      tl.fromTo("#hb-fin .prog", { opacity: 0 }, { opacity: 1, duration: 0.6, ease: "power2.out" }, 40.2);
+      // état initial des éléments qui entrent plus tard
+      gsap.set(["#hb-fin img", "#hb-fin .devise", "#hb-fin .site", "#hb-fin .prog"], { opacity: 0 });
+      window.__timelines["habillage"] = tl;
+    })();
+  </script>
+</template>
