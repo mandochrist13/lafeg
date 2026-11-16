@@ -1,12 +1,33 @@
-# REVIEW — CPPF · « Allocation de Rentrée Scolaire 2026-2027 », présentée par une abeille (v1)
+# REVIEW — CPPF · « Allocation de Rentrée Scolaire 2026-2027 », présentée par une abeille (v2, abeille adulte)
 
-## Livrable
+## Livrables
 
-- `renders/CPPF-ARS-2026-2027-abeille.mp4` : 1920 × 1080, 30 i/s, 1 min 44 s (104,1 s), H.264 + AAC 48 kHz stéréo, 29,8 Mo, voix off et musique.
+- `renders/CPPF-ARS-2026-2027-abeille-v2.mp4` : 1920 × 1080, 30 i/s, 1 min 44 s (104,1 s), voix off et musique, avec l'abeille adulte.
+- `renders/CPPF-ARS-2026-2027-abeille.mp4` : la v1, avec l'abeille mascotte.
 
-Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/CPPF-ARS-2026-2027-abeille.mp4`.
+Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --quality delivery -o renders/CPPF-ARS-2026-2027-abeille-v2.mp4`. Le dépôt contient la v2 ; la v1 est dans l'historique git.
 
-## La demande
+## v2 : une abeille adulte (demande de la FEG)
+
+« Je trouve l'abeille trop enfantine. Essaie de la rendre plus adulte ou plus mature. Elle ne doit pas trop ressembler à un programme scolaire pour enfants. »
+
+- **Nouveau personnage**, voir SPEC :
+  - une présentatrice en buste, coupée par le bas de l'image comme l'avatar de la vidéo e.cnss ;
+  - tailleur bleu CPPF cintré, ouvert sur les rayures de l'abeille ;
+  - tête de fourrure miel avec une marque sombre en pointe sur le front, collerette de duvet ;
+  - yeux en amande, antennes coudées, mains fines et sombres.
+  Elle n'a plus de grosse tête ronde, de joues roses ni de grands yeux ronds.
+- **Gestes posés** : mains jointes au repos ; elle présente l'écran coude plié, paume ouverte ; elle salue la main levée ; elle ouvre les bras paumes vers le haut. Elle entre en montant dans le cadre au lieu de traverser l'écran en volant.
+- **Comment le dessin a été jugé** : trois versions successives, chacune soumise à une critique d'image automatique, sans complaisance.
+  - Première version : pas enfantine (7/10), mais « une femme au teint jaune déguisée en abeille ».
+  - Deuxième version : visage « style emoji », collerette « pop-corn ».
+  - Version retenue : au classement, première devant les deux autres. Maturité 8/10, élégance 9, beauté 8, identité « abeille » 8 ; l'abeille de la v1 avait 2 en maturité.
+  - Remarques restantes du critique : le visage rappelle encore un peu les emoji, et les mains sont un peu massives.
+  - Variante écartée : des yeux entièrement sombres, façon abeille, qui donnaient un effet de lunettes noires.
+- **Voix gardée** : une écoute automatique de la voix seule la situe vers 20-25 ans : « dynamique, clair, professionnel et accueillant », ni enfantine ni « dessin animé », maturité 8/10.
+- **Inchangés** : texte, voix, musique, écrans du site, minutage, carte de fin.
+
+## v1 : la demande
 
 « Conformément à la vidéo de la CNSS, la vidéo de la CPPF pareil, mais avec comme avatar une très jolie abeille. »
 
@@ -19,7 +40,7 @@ Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --qualit
   - recommencer pour chaque enfant, avec un scan lisible.
   - La devise de fin est celle de la CPPF, écrite comme sur sa carte de fin : « Solidaires aujourd'hui, pour un Avenir Prospère ».
 - **La forme** vient de la vidéo e.cnss de la CNSS : un avatar qui présente et s'adresse au spectateur, des étapes numérotées avec leurs puces, les écrans du site à côté, une fin sur le logo, l'adresse du site et la devise.
-- **L'abeille** : une mascotte vectorielle dessinée pour ce film (voir SPEC). Grosse tête ronde, grands yeux brillants à cils, joues roses, ailes translucides, nœud papillon aux couleurs de la CPPF. Elle vole sur place, cligne des yeux et parle : sa bouche suit la voix. Elle salue, ouvre les bras, montre l'écran sur les mots de la voix, et suit l'action du regard.
+- **L'abeille de la v1** (remplacée en v2) : une mascotte vectorielle dessinée pour ce film. Grosse tête ronde, grands yeux brillants à cils, joues roses, ailes translucides, nœud papillon aux couleurs de la CPPF. Elle vole sur place, cligne des yeux et parle : sa bouche suit la voix. Elle salue, ouvre les bras, montre l'écran sur les mots de la voix, et suit l'action du regard.
 
 ## Fabrication
 
@@ -33,13 +54,13 @@ Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --qualit
 - Les écrans sont dans une fenêtre de navigateur sur fond blanc à nid d'abeilles, au lieu de la tablette sur fond bleu. L'abeille garde ainsi un fond clair et le film reste lisible.
 - Au moment du téléchargement, la notification « certificat-scolarite.pdf ✓ Téléchargé » couvre pendant 3 s la fin du titre « CERTIFICAT DE SCOLARITÉ », comme la bulle de téléchargement d'un navigateur.
 
-## Corrections avant livraison
+## v1 : corrections avant livraison
 
 - **Fin de la musique** : quand la musique remontait après la dernière phrase, deux consignes de volume se suivaient à 10 ms d'écart, ce qui creusait le son d'environ 6 dB pendant 30 ms. La remontée est maintenant continue, de 0,17 à 0,7 en 0,55 s.
 - **Devise** : « Avenir Prospère » prend ses majuscules, comme sur la carte de fin de la CPPF.
 - **Dépôt** : la musique est versionnée en MP3 à 320 kbit/s (4,2 Mo) au lieu du WAV (20 Mo), qui reste reproductible avec `tools/music_synth.py`.
 
-## Contrôles
+## v1 : contrôles
 
 - `check` : 0 erreur, 0 avertissement ; contraste : 26 textes sur 26 conformes WCAG AA.
   Les maquettes d'écran (`.br`) et les illustrations de l'étape 4 sont marquées comme décor : leur petit texte imite le site et ne porte pas le message, que portent la voix et les puces.

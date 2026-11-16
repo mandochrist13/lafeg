@@ -9,7 +9,7 @@ TIME: 104,1 s (fixé par la voix off : 3,6 s d'entrée, 13 phrases, 6,5 s de que
 ## Sources
 
 - **Contenu** : la vidéo tutorielle de la CPPF sur ars.cppf.ga, transmise par la FEG. Les étapes, les libellés des boutons (« Se connecter », « Traiter », « Exporter en PDF », « Choisir ») et la mise en page des écrans viennent de cette vidéo. Le texte de la voix est réécrit pour l'abeille, à la première personne, sans rien ajouter à la procédure.
-- **Forme** : la vidéo e.cnss de la CNSS, transmise en même temps. On reprend sa construction : un avatar présentateur, des bandeaux de titre, des puces qui s'écrivent avec la voix, les écrans du site, une fin sur le logo et la devise.
+- **Forme** : la vidéo e.cnss de la CNSS, transmise en même temps. On reprend sa construction : un avatar présentateur en buste et en costume aux couleurs de l'institution, des bandeaux de titre, des puces qui s'écrivent avec la voix, les écrans du site, une fin sur le logo et la devise.
 - **Marque** : le logo de la CPPF transmis par la FEG (`assets/img/cppf-logo.png`, fond rendu transparent). La devise de fin, « Solidaires aujourd'hui, pour un Avenir Prospère », est écrite comme sur la carte de fin de la vidéo de la CPPF, majuscules comprises.
 
 ## LOOK
@@ -23,16 +23,33 @@ TIME: 104,1 s (fixé par la voix off : 3,6 s d'entrée, 13 phrases, 6,5 s de que
 
 ## L'ABEILLE (`assets/bee.js`, `compositions/bee.html`)
 
-- **Dessin** : SVG 600 × 720, tout en vectoriel, style mascotte. Grosse tête ronde jaune en dégradé (#FFE27A → #FFC52E → #EE9F12), grands yeux brun-noir à deux reflets blancs et cils, joues roses #FF7E9C avec une petite étincelle, sourire. Corps rayé jaune et brun #3A2616, deux paires d'ailes translucides bleu pâle (#B9D6EE), deux antennes à boule, gants blancs, petites jambes. Un nœud papillon aux trois couleurs de la CPPF.
-- **Mouvement permanent** : vol sur place (houle verticale et légère rotation), battement d'ailes rapide (4 images par battement), antennes qui balancent, clignement des yeux toutes les 3,1 à 3,7 s.
-- **Parole** : la bouche s'ouvre et se ferme 15 fois par seconde, selon l'énergie de la voix (`assets/talk.js`, calculé par `tools/build.mjs` à partir de chaque WAV).
-- **Gestes calés sur les mots** : salut de la main sur « Bonjour » et « Solidaires » ; bras ouverts sur « Aujourd'hui », « Imprimez », « Répétez », « Avec » ; elle montre l'écran sur « certificat », « Rendez-vous », « Saisissez », « cocher », « liste », « Traiter », « Remplissez », « établissement », « jaune », « Exporter », « signer », « scannez », « Choisir » ; hochements et inclinaisons de tête ; regard vers l'écran pendant les étapes.
-- **Places** : grande, à gauche, quand elle se présente (L01–L02) ; petite, en bas à gauche, pendant les étapes ; grande à gauche sur la carte de fin. Elle entre en volant depuis la droite.
+Une présentatrice adulte, pas une mascotte d'enfant (demande de la FEG, v2). Elle est cadrée en buste et coupée par le bas de l'image, comme l'avatar en costume vert de la vidéo e.cnss.
+
+- **Tête** : fourrure dorée couleur miel (#F7C766 → #ECAD48 → #DE9A3C), bords duveteux (filtre `feTurbulence` + `feDisplacementMap`, graine fixe). Sur le dessus, une marque sombre (#2E1D12) qui descend en pointe au milieu du front, à la place de cheveux. Museau un peu plus clair. Ombre franche sur la joue droite, lumière à gauche : un modelé d'illustration, pas une boule en dégradé.
+- **Visage** : yeux en amande à iris brun-ambre, trait de paupière fin et trois cils au coin externe, pli de paupière, sourcils en fines marques ambrées. Pas de nez. Lèvres baie (#A5424E, #BF5D69), sourire discret. Ni joues roses ni grands yeux ronds.
+- **Antennes** : coudées comme celles d'une vraie abeille, fines, terminées par une petite massue.
+- **Collerette** : col rond de duvet doré sous le menton, le thorax de l'abeille ; il cache le cou.
+- **Tailleur** : veste bleu CPPF (#4A84C8 → #3368AC → #244F88) cintrée à la taille, revers à cran avec surpiqûre, coutures princesse, un bouton, poche poitrine. L'encolure profonde montre les rayures de l'abeille (miel et brun #2A1A10). Sur le revers, une épingle hexagonale aux trois couleurs de la CPPF.
+- **Mains** : fines et sombres, comme des gants (#6A4A30 → #25160C), poignets de chemise blancs. Au repos, mains jointes à la taille.
+- **Ailes** : deux paires translucides aux nervures fines, avec un léger reflet irisé, derrière les épaules.
+- **Bras articulés** : épaule, coude, poignet, en groupes imbriqués. Une main au repos et une main ouverte, échangées au milieu de chaque geste. L'avant-bras se raccourcit à mi-geste, comme s'il pointait vers la caméra, pour que la main ne décrive pas un arc sous le coude.
+- **Mouvement permanent** : respiration (±3 px, 3,4 s), léger balancement de la tête (±1,2°), frémissement des ailes, antennes qui bougent à peine, clignement toutes les 3,1 à 3,7 s.
+- **Parole** : la bouche s'ouvre selon l'énergie de la voix, 15 fois par seconde (`assets/talk.js`, calculé par `tools/build.mjs` à partir de chaque WAV).
+- **Gestes posés, sans rebond** :
+  - salut de la main levée sur « Bonjour » et « Solidaires » ;
+  - bras ouverts, paumes vers le haut, sur « Aujourd'hui », « Imprimez », « Répétez » et « Avec » ;
+  - présentation de l'écran, coude plié et paume ouverte, sur « certificat », « Rendez-vous », « Saisissez », « cocher », « liste », « Traiter », « Remplissez », « établissement », « jaune », « Exporter », « signer », « scannez » et « Choisir » ;
+  - hochements et légères inclinaisons de tête ; sourcils levés sur « Bienvenue » ; regard vers l'écran pendant les étapes.
+- **Places** (boîte 640 × 800) :
+  - grande, à gauche, quand elle se présente (échelle 1,2) ;
+  - en bas à gauche pendant les étapes (échelle 0,7), la main tendue vers le navigateur ;
+  - de nouveau grande sur la carte de fin.
+  Elle entre en montant dans le cadre.
 
 ## VOIX
 
 - Gemini TTS, voix **Leda**, une seule prise de tout le texte (`assets/voice/raw/full-Leda.wav`, 84,7 s), découpée en 13 phrases aux silences (`tools/voice_onepass.mjs --split-only`, coupes forcées `CUTS=` vérifiées une à une), puis calée mot à mot (`tools/voice.mjs --align-only`).
-- Consigne de jeu : jeune voix féminine souriante de mascotte, sigles épelés, pauses d'environ une seconde.
+- Consigne de jeu (prise d'origine, inchangée) : jeune voix féminine souriante de mascotte, sigles épelés, pauses d'environ une seconde. Une écoute automatique la situe vers 20-25 ans, « dynamique, claire, professionnelle et accueillante », non enfantine (maturité 8/10) ; elle est gardée pour l'abeille adulte.
 - Graphies pour la synthèse (`tools/lines.json`) : « A-R-S point C-P-P-F point G-A », « C-P-P-F », « deux mille vingt-six, deux mille vingt-sept ».
 
 ## MUSIQUE
@@ -57,7 +74,7 @@ Temps réels, calés sur la voix (générés par `tools/build.mjs`) :
 | c8 · Fin | L13 | 90,22 s | 104,11 s |
 
 1. **c1 · Logo** : le nid d'abeilles apparaît, le logo CPPF grandit puis s'efface.
-2. **c2 · Accueil** (L01–L02) : l'abeille entre en volant et salue. « Le service en ligne de la CPPF », l'adresse ars.cppf.ga dans une pastille avec loupe. Puis le bandeau « Allocation de Rentrée Scolaire », « 2026-2027 » en grand, et deux puces : imprimer le certificat de scolarité, le téléverser en ligne pour chaque enfant.
+2. **c2 · Accueil** (L01–L02) : l'abeille monte dans le cadre et salue. « Le service en ligne de la CPPF », l'adresse ars.cppf.ga dans une pastille avec loupe. Puis le bandeau « Allocation de Rentrée Scolaire », « 2026-2027 » en grand, et deux puces : imprimer le certificat de scolarité, le téléverser en ligne pour chaque enfant.
 3. **c3 · Connexion** (L03–L04) : l'adresse se tape, la page de connexion s'ouvre ; le curseur saisit le matricule solde et la date de naissance, coche les conditions générales, clique « SE CONNECTER ».
 4. **c4 · Liste** (L05) : la liste des enfants éligibles se remplit ; les trois boutons « TRAITER » pulsent ; clic sur le premier, le formulaire se prépare.
 5. **c5 · Formulaire** (L06–L08) : le matricule du second parent se tape, « Féminin » se coche, l'établissement et la classe s'écrivent ; sur « jaune », les champs obligatoires s'illuminent et le bandeau rouge clignote ; clic sur « EXPORTER EN PDF », l'icône PDF part vers le coin et la notification « certificat-scolarite.pdf ✓ Téléchargé » apparaît.
