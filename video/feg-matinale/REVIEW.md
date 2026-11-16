@@ -29,7 +29,7 @@
 - **Inchangés** : montage, textes, étalonnage, pied de page et carte de fin (seul le moment où le logo apparaît a bougé).
 - **Contrôles du rendu v2** :
   - `check` : 0 erreur, 0 avertissement ; contraste : 16 textes sur 16 conformes WCAG AA ;
-  - fichiers : 1080 × 1920, 30 i/s, 44,4 s ; version maître 47 Mo, version partage 13,2 Mo ;
+  - fichiers : 1080 × 1920, 30 i/s, 44,4 s ; version maître 47 Mo, version partage 13,6 Mo ;
   - son mesuré, pas écouté : −14,0 LUFS, crête −1,9 dBFS, plage de loudness 2,7 LU. La musique du fichier rendu est calée à 0,0 ms près sur la piste préparée ;
   - 16 images extraites du MP4 : l'accroche, les messages, les flashs sur les coupes de 14 et 22 s, plus de flash à 36 s, le pied de page qui monte, le logo qui apparaît à 38,3 s, puis la carte de fin complète.
 
