@@ -26,6 +26,12 @@ Pour regénérer : `node tools/build.mjs`, puis `npx hyperframes render --qualit
   - Variante écartée : des yeux entièrement sombres, façon abeille, qui donnaient un effet de lunettes noires.
 - **Voix gardée** : une écoute automatique de la voix seule la situe vers 20-25 ans : « dynamique, clair, professionnel et accueillant », ni enfantine ni « dessin animé », maturité 8/10.
 - **Inchangés** : texte, voix, musique, écrans du site, minutage, carte de fin.
+- **Contrôles du rendu v2** :
+  - `check` : 0 erreur, 0 avertissement ; contraste : 26 textes sur 26 conformes WCAG AA ;
+  - fichier : 1920 × 1080, 30 i/s, 104,1 s, H.264 + AAC, 37,8 Mo. Le duvet en relief alourdit un peu le fichier ;
+  - son mesuré, pas écouté : −14,9 LUFS, crête −2,0 dBFS, plage de loudness 3,6 LU. La bande-son est identique, échantillon par échantillon, à celle de la v1 ;
+  - 20 images extraites du MP4 : l'entrée, le salut, chaque présentation de l'écran, les cinq étapes et la carte de fin. L'abeille ne recouvre ni texte ni écran du site, à part sa main au bord du navigateur quand elle le montre ;
+  - images prises au milieu des gestes : la main reste dans le cadre grâce au raccourci de l'avant-bras. Au tout début d'un geste, en position d'étape, elle frôle le bas de l'image pendant une ou deux images.
 
 ## v1 : la demande
 
