@@ -72,6 +72,18 @@ Temps réels, calés sur la voix off Despina (générés par `tools/build.mjs`, 
 9. **L09, les services** : retour à la tour ; quatre tiroirs sortent un par un avec leur objet et leur étiquette.
 10. **L10, l'adhésion** : retour à l'atelier, désormais vert et relié ; le thème du Gabon Economic Forum s'encre mot à mot avec la voix (version voix) ; sur « rejoignez », grand recul ; la caméra bascule à la verticale ; les quartiers se resserrent en 71 disques bronze = les points du logo ; les arcs et « FEG » apparaissent ; « Devenez membre · lafeg.ga », tenu 3 s.
 
+## VERSION LINKEDIN (sous-titres)
+
+LinkedIn lance les vidéos sans le son dans le fil. La version LinkedIn reprend donc la version voix (même image, même son, 16:9) et y ajoute des sous-titres incrustés. Elle se construit avec `node tools/build.mjs --linkedin`.
+
+- **Groupes** écrits à la main dans `tools/captions.json`, une ligne à la fois, calés sur les mots de la voix (`audio_meta.json`). Graphies d'écran : 1959, 1 100, 13, 80 %, 90 % ; « : » et « % » restent collés au mot (espace insécable).
+- **Style** : Hyundai Sans Text Medium 42 px, encre #1A1C19, sur un cartouche blanc arrondi (94 %), centré, haut à 956 px (marge de 54 px en bas de l'image). Le cartouche se place sous les étiquettes du film : chiffres du GEF, étiquettes de la tour, source des pourcentages.
+- **Temps** :
+  - un groupe entre 0,08 s avant son premier mot et sort 0,3 s après son dernier mot ;
+  - il s'arrête avant le groupe suivant ;
+  - jamais au-delà de « Devenez membre » sur la carte de fin.
+- **Fichier `.srt`** : `sous-titres/FEG-presentation-voix-v6.srt`, mêmes groupes et mêmes temps, à joindre à la publication LinkedIn si l'on préfère les sous-titres de la plateforme.
+
 ## BANNED
 
 Fond sombre vide ; lueurs, bloom, particules ; dégradés violet/bleu, cartes en verre ; papier crème + serif italique ; étiquettes en capitales monospace, pastilles ; tout centré ; tout qui apparaît en fondu-glissé vers le haut ; titres qui dérivent après s'être posés ; coins, cadres, HUD décoratifs ; trois cartes en rang, grilles de KPI ; logo collé dans un coin ; motifs folkloriques ; rebonds de dessin animé (amortissement < 0,6) ; tout chiffre ou réforme absent des sources ; toute date d'événement ou mention de la Semaine mondiale de l'entrepreneuriat (film intemporel).

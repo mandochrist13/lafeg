@@ -1,7 +1,7 @@
 // Calage du film : lit tools/lines.json (+ audio_meta.json quand la voix existe),
 // écrit assets/cues.js (temps de chaque phrase et de chaque mot) et index.html (hôtes + pistes audio).
 // Usage : node tools/build.mjs
-import { readFileSync, writeFileSync, existsSync } from "node:fs";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
 
@@ -89,6 +89,8 @@ const S = (id) => C.lines[id].start;
 const E = (id) => C.lines[id].end;
 
 const VARIANT = process.argv.includes("--sans-voix") ? "sans-voix" : "voix";
+// --linkedin : version voix avec sous-titres incrustés (LinkedIn lance les vidéos sans le son) et fichier .srt
+const LINKEDIN = VARIANT === "voix" && process.argv.includes("--linkedin");
 // Fenêtres des couches de titres (secondes absolues).
 const overlays = [
   { id: "ov-feg", src: "compositions/ov-feg.html", start: S("L03") - 0.3, end: at("L03", ["13", "treize"]) + 0.35 },
@@ -208,11 +210,132 @@ for (const s of sfxPlan) {
   }
 }
 
+// ----- sous-titres (version LinkedIn) : groupes écrits à la main (tools/captions.json), calés sur les mots de la voix
+const capHosts = [];
+if (LINKEDIN) {
+  const CAPS = JSON.parse(readFileSync(join(ROOT, "tools/captions.json"), "utf8"));
+  const NB = " ";
+  const groups = [];
+  for (const id of order) {
+    const ws = C.lines[id].words;
+    // graphies d'écran : les nombres dits en lettres s'écrivent en chiffres ; « : », « % »… restent collés au mot
+    const out = [];
+    for (let i = 0; i < ws.length; i++) {
+      const n = norm(ws[i].w);
+      if (n === "mille" && ws[i + 3] && norm(ws[i + 1].w) === "neuf" && norm(ws[i + 2].w) === "cent" && norm(ws[i + 3].w).startsWith("cinquanteneuf")) {
+        out.push({ t: "1959" + ws[i + 3].w.replace(/^cinquante-neuf/i, ""), s: ws[i].s, e: ws[i + 3].e });
+        i += 3;
+        continue;
+      }
+      if (n === "mille" && ws[i + 1] && norm(ws[i + 1].w).startsWith("cent")) {
+        out.push({ t: "1" + NB + "100" + ws[i + 1].w.replace(/^cent/i, ""), s: ws[i].s, e: ws[i + 1].e });
+        i += 1;
+        continue;
+      }
+      if (n === "treize") {
+        out.push({ t: "13", s: ws[i].s, e: ws[i].e });
+        continue;
+      }
+      if (/^[:;!?»%]$/.test(ws[i].w) && out.length) {
+        out[out.length - 1].t += NB + ws[i].w;
+        out[out.length - 1].e = ws[i].e;
+        continue;
+      }
+      out.push({ t: ws[i].w, s: ws[i].s, e: ws[i].e });
+    }
+    const phrases = CAPS[id] || [];
+    let k = 0;
+    for (const ph0 of phrases) {
+      const ph = ph0.replace(/ ([:;!?»%])/g, NB + "$1").replace(/(\d) (\d{3})/g, "$1" + NB + "$2");
+      const toks = ph.split(" ");
+      const take = out.slice(k, k + toks.length);
+      const ok = take.length === toks.length && take.every((w, j) => norm(w.t) === norm(toks[j]));
+      if (!ok) console.warn(`sous-titres ${id} : « ${ph} » ne correspond pas à « ${take.map((w) => w.t).join(" ")} »`);
+      if (take.length) groups.push({ text: ph, s: take[0].s, e: take[take.length - 1].e });
+      k += toks.length;
+    }
+    if (k !== out.length) console.warn(`sous-titres ${id} : ${out.length - k} mot(s) non couverts`);
+  }
+  // un groupe à la fois : entrée un peu avant le premier mot, sortie peu après le dernier ;
+  // jamais au-delà de l'arrivée de « Devenez membre » sur la carte de fin
+  const capEnd = r3(cues.ov["ov-end"].start + 1.1);
+  groups.forEach((g, i) => {
+    g.s = r3(Math.max(0.15, g.s - 0.08));
+    const nextS = groups[i + 1] ? groups[i + 1].s - 0.08 : total;
+    g.e = r3(Math.min(g.e + 0.3, nextS - 0.02, capEnd));
+  });
+  const esc = (t) => t.replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  const capHtml = `<template>
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansText-Medium.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Text", sans-serif;
+    }
+    .cg {
+      position: absolute;
+      left: 0;
+      top: 956px;
+      width: 1920px;
+      text-align: center;
+      opacity: 0;
+    }
+    .cg span {
+      display: inline-block;
+      max-width: 1560px;
+      padding: 8px 28px 11px;
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.94);
+      box-shadow: 0 4px 18px rgba(0, 0, 0, 0.1);
+      font-weight: 500;
+      font-size: 42px;
+      line-height: 1.22;
+      color: #1a1c19;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-sous-titres" data-width="1920" data-height="1080">
+${groups.map((g, i) => `    <div id="st${i}" class="cg"><span>${esc(g.text)}</span></div>`).join("\n")}
+  </div>
+  <script>
+    (function () {
+      // sous-titres : un groupe à la fois, entrée 0,1 s, effacement net à la fin du groupe
+      var G = ${JSON.stringify(groups.map((g) => [g.s, g.e]))};
+      var tl = gsap.timeline({ paused: true });
+      G.forEach(function (g, i) {
+        tl.fromTo("#st" + i, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, g[0]);
+        tl.to("#st" + i, { opacity: 0, duration: 0.08, ease: "power2.in" }, g[1] - 0.08);
+        tl.set("#st" + i, { opacity: 0, visibility: "hidden" }, g[1]);
+      });
+      window.__timelines["ov-sous-titres"] = tl;
+    })();
+  </script>
+</template>
+`;
+  writeFileSync(join(ROOT, "compositions/ov-sous-titres.html"), capHtml);
+  capHosts.push(`    <div id="ov-sous-titres" data-composition-id="ov-sous-titres" data-composition-src="compositions/ov-sous-titres.html" data-start="0" data-duration="${total}" data-track-index="19" data-track-kind="captions" data-width="1920" data-height="1080"></div>`);
+  // fichier .srt pour la publication (mêmes groupes, mêmes temps)
+  const ts = (t) => {
+    const ms = Math.round(t * 1000);
+    const p2 = (v) => String(v).padStart(2, "0");
+    return `${p2(Math.floor(ms / 3600000))}:${p2(Math.floor(ms / 60000) % 60)}:${p2(Math.floor(ms / 1000) % 60)},${String(ms % 1000).padStart(3, "0")}`;
+  };
+  mkdirSync(join(ROOT, "sous-titres"), { recursive: true });
+  const srt = groups.map((g, i) => `${i + 1}\n${ts(g.s)} --> ${ts(g.e)}\n${g.text.replace(/ /g, " ")}\n`).join("\n");
+  writeFileSync(join(ROOT, "sous-titres/FEG-presentation-voix-v6.srt"), srt);
+  console.log(`sous-titres : ${groups.length} groupes (compositions/ov-sous-titres.html, sous-titres/FEG-presentation-voix-v6.srt)`);
+}
+
 const hosts = (WORLD_ONLY ? [] : overlays.filter((o) => !o.only || o.only === VARIANT))
   .map(
     (o, i) =>
       `    <div id="${o.id}" data-composition-id="${o.id}" data-composition-src="${o.src}" data-start="${o.start}" data-duration="${r3(o.end - o.start)}" data-track-index="${i + 2}" data-track-kind="graphics" data-width="1920" data-height="1080"></div>`,
   )
+  .concat(capHosts)
   .join("\n");
 
 const html = `<!doctype html>
@@ -230,7 +353,7 @@ const html = `<!doctype html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>FEG — Fédération des Entreprises du Gabon${VARIANT === "voix" ? "" : " (sans voix)"}</title>
+    <title>FEG — Fédération des Entreprises du Gabon${VARIANT === "voix" ? (LINKEDIN ? " (LinkedIn, sous-titres)" : "") : " (sans voix)"}</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <style>
@@ -276,7 +399,7 @@ ${audio.join("\n")}
 </html>
 `;
 // Une seule racine (index.html) : la variante choisie y est écrite.
-// Version voix : node tools/build.mjs · version sans voix : node tools/build.mjs --sans-voix
+// Version voix : node tools/build.mjs · sans voix : --sans-voix · LinkedIn (voix + sous-titres) : --linkedin
 writeFileSync(join(ROOT, "index.html"), html);
 console.log(`total ${total}s  estimated=${!meta}  lines=${order.length}  audio=${audio.length}`);
 for (const id of order) console.log(id, C.lines[id].start, "→", C.lines[id].end);

@@ -1,4 +1,4 @@
-# REVIEW — film FEG « De la voix à la réforme » (v6)
+# REVIEW — film FEG « De la voix à la réforme » (v6, et sa version LinkedIn)
 
 Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 53 s (113,4 s) :
 
@@ -6,6 +6,21 @@ Deux fichiers, même image, 1920 × 1080, 30 i/s, 1 min 53 s (113,4 s) :
 - `renders/FEG-presentation-sans-voix-v6.mp4` : musique seule, les titres portent le récit.
 
 Pour regénérer : `node tools/build.mjs` (voix) ou `node tools/build.mjs --sans-voix`, puis `npx hyperframes render`. Une seule racine, `index.html`, reçoit la variante choisie. Le dépôt garde la version voix par défaut.
+
+## v6 LinkedIn : version sous-titrée (demande de la FEG)
+
+« Fais aussi une version 16:9 pour LinkedIn de la vidéo FEG-presentation-voix-v6. »
+
+La vidéo était déjà en 16:9 (1920 × 1080). Ce qui manquait pour LinkedIn, ce sont les sous-titres : la plateforme lance les vidéos sans le son dans le fil, et tout le récit passe par la voix.
+
+- `renders/FEG-presentation-voix-v6-linkedin.mp4` : la version voix v6, même image et même son, avec des sous-titres incrustés.
+- `sous-titres/FEG-presentation-voix-v6.srt` : les mêmes sous-titres en fichier, pour la publication LinkedIn. Il sert aussi pour la version sans sous-titres incrustés.
+- `renders/FEG-presentation-linkedin-vignette.jpg` : vignette de couverture 1920 × 1080, tirée de la vidéo à 25,3 s (« Depuis 1959 · Fédération des Entreprises du Gabon · plus de 1 100 entreprises », sur la carte des entreprises).
+- **Sous-titres** :
+  - 58 groupes d'une ligne, écrits à la main et calés sur les mots de la voix. Les 58 correspondent mot pour mot à la voix ;
+  - les nombres sont en chiffres : 1959, 1 100, 13, 80 %, 90 % ;
+  - placés en bas, sous les étiquettes du film : à 84,7 s, ils laissent un espace sous « 8 axes · 24 recommandations · 1 comité paritaire de suivi ».
+- **Outil** : le projet était épinglé sur HyperFrames 0.9.40, qui ne s'installe plus (une dépendance a disparu du registre npm). Les scripts passent à 0.9.41, la version des autres vidéos.
 
 ## v6 : demandes de la FEG
 
