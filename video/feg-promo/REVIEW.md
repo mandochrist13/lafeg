@@ -21,6 +21,13 @@ La vidéo était déjà en 16:9 (1920 × 1080). Ce qui manquait pour LinkedIn, c
   - les nombres sont en chiffres : 1959, 1 100, 13, 80 %, 90 % ;
   - placés en bas, sous les étiquettes du film : à 84,7 s, ils laissent un espace sous « 8 axes · 24 recommandations · 1 comité paritaire de suivi ».
 - **Outil** : le projet était épinglé sur HyperFrames 0.9.40, qui ne s'installe plus (une dépendance a disparu du registre npm). Les scripts passent à 0.9.41, la version des autres vidéos.
+- **Contrôles du rendu LinkedIn** :
+  - `check` : 0 erreur ; restent les avertissements déjà présents en v6 (taille du fichier de la scène 3D, messages de performance du pilote graphique) ;
+  - fichier : 1920 × 1080, 30 i/s, 113,4 s, H.264 + AAC, 35,7 Mo ;
+  - son identique à la v6, échantillon par échantillon : −15,7 LUFS, crête −2,3 dBFS ;
+  - fichier `.srt` : 58 sous-titres dans l'ordre, sans chevauchement, 38 caractères au plus par ligne, UTF-8 ;
+  - 20 images extraites du MP4, de 1,8 à 113,2 s. Chaque sous-titre tient sur une ligne, sous les étiquettes du film, et reste lisible sur les fonds verts. Le dernier, « des Entreprises du Gabon. », s'efface avant « Devenez membre ».
+- Après le rendu, `index.html` est revenu à la version voix par défaut, identique à la v6.
 
 ## v6 : demandes de la FEG
 
