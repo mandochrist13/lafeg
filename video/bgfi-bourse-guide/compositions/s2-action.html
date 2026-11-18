@@ -1,0 +1,168 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s2-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s2-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s2-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 1000px;
+      font-family: "Tenor Sans", serif;
+      font-size: 72px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s2-title span {
+      display: inline-block;
+    }
+    .s2-tag {
+      position: absolute;
+      left: 700px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 30px 14px 20px;
+      border-radius: 999px;
+      background: #eef3e4;
+      font-weight: 700;
+      font-size: 36px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    .s2-tag b {
+      font-weight: 900;
+    }
+    #s2-card {
+      position: absolute;
+      left: 600px;
+      top: 430px;
+      width: 230px;
+      height: 160px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 10px 26px rgba(11, 38, 119, 0.18);
+      overflow: hidden;
+    }
+    #s2-card .hd {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 230px;
+      height: 54px;
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      line-height: 54px;
+      padding-left: 18px;
+    }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1920" data-height="1080">
+    <svg class="s2-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+      <ellipse cx="460" cy="1000" rx="180" ry="9" fill="#000" opacity="0.05" />
+      <ellipse cx="1550" cy="1000" rx="230" ry="10" fill="#000" opacity="0.05" />
+    </svg>
+    <div class="s2-kick"><span id="s2-mk"></span><span>Les actions</span></div>
+    <div id="s2-title"><span>Une</span> <span>action,</span> <span>c'est</span> <span>une</span> <span>part</span> <span>d'une</span> <span>entreprise</span></div>
+    <div id="s2-bld" class="s2-abs" style="left: 1360px; top: 413px"></div>
+    <div id="s2-nadia" class="s2-abs"></div>
+    <!-- le titre de propriété : une action -->
+    <div id="s2-card">
+      <div class="hd">ACTION</div>
+      <div class="s2-abs" style="left: 18px; top: 74px; width: 120px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div class="s2-abs" style="left: 18px; top: 98px; width: 150px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div class="s2-abs" style="left: 18px; top: 122px; width: 96px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div id="s2-cmk" class="s2-abs" style="left: 168px; top: 86px"></div>
+    </div>
+    <div id="s2-coins" class="s2-abs"></div>
+    <div id="s2-t1" class="s2-tag" style="top: 700px"><span id="s2-i1"></span><span>Vous devenez <b>actionnaire</b></span></div>
+    <div id="s2-t2" class="s2-tag" style="top: 800px"><span id="s2-i2"></span><span><b>Le dividende</b> · une part des bénéfices</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s2");
+      var D = C.sc.s2.dur;
+      document.getElementById("s2-mk").innerHTML = B.mark(40);
+      document.getElementById("s2-cmk").innerHTML = B.mark(44);
+      document.getElementById("s2-bld").innerHTML = B.company(380, "s2p");
+      document.getElementById("s2-i1").innerHTML = B.check(40);
+      document.getElementById("s2-i2").innerHTML = B.coin(40);
+      var S = 0.9,
+        FEET = 1004;
+      document.getElementById("s2-nadia").innerHTML = P.front("n2", K.with("nadia", { x: 440, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("n2");
+      var coins = "";
+      for (var i = 0; i < 3; i++) coins += '<div id="s2-c' + i + '" class="s2-abs" style="left:1500px;top:600px">' + B.coin(54) + "</div>";
+      document.getElementById("s2-coins").innerHTML = coins;
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s2-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s2-bld", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s2-nadia", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s2-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.16, ease: "power4.out" }, L(C.at("L03", ["une"])) - 0.1);
+      P.breathe(tl, "n2", 0, D, 3.3, 0.009);
+      P.blink(tl, "n2", [1.8, 5.6]);
+
+      // « une part » : une part de l'immeuble s'allume, puis le titre d'action rejoint Nadia
+      var tP = L(C.at("L03", ["part"])) - 0.05;
+      tl.to("#s2p-4 rect:first-child", { fill: "#879A6D", duration: 0.3, ease: "power2.out" }, tP);
+      tl.fromTo("#s2-card", { opacity: 0, x: 880, y: 70, scale: 0.32 }, { opacity: 1, x: 880, y: 70, scale: 0.32, duration: 0.2 }, tP + 0.3);
+      tl.to("#s2-card", { x: 0, y: 0, scale: 1, duration: 0.9, ease: "power3.inOut" }, tP + 0.5);
+      tl.to("#s2p-4 rect:first-child", { fill: "#E3EAF1", duration: 0.5, ease: "power2.inOut" }, tP + 1.2);
+      // Nadia lève la main vers son titre
+      tl.to("#n2-uaR", { rotation: -32, duration: 0.6, ease: "power2.inOut" }, tP + 0.8);
+      tl.to("#n2-faR", { rotation: -70, duration: 0.6, ease: "power2.inOut" }, tP + 0.8);
+      tl.to("#n2-head", { rotation: 5, duration: 0.6, ease: "power2.inOut" }, tP + 0.8);
+      // « actionnaire »
+      tl.fromTo("#s2-t1", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L03", ["actionnaire"])) - 0.15);
+      tl.to("#n2-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, L(C.at("L03", ["actionnaire"])) + 0.2);
+      // « une part de ses bénéfices » : trois pièces vont de l'entreprise vers Nadia
+      var tC = L(C.at("L03", ["benefices"])) - 0.35;
+      for (var k = 0; k < 3; k++) {
+        var t0 = tC + k * 0.2;
+        tl.fromTo("#s2-c" + k, { opacity: 0, x: 0, y: 0 }, { opacity: 1, duration: 0.1 }, t0);
+        tl.to("#s2-c" + k, { x: -880 + k * 34, duration: 0.95, ease: "power2.inOut" }, t0);
+        tl.to("#s2-c" + k, { y: -170, duration: 0.47, ease: "power2.out" }, t0);
+        tl.to("#s2-c" + k, { y: 170 + k * 8, duration: 0.48, ease: "power2.in" }, t0 + 0.47);
+      }
+      // « le dividende »
+      tl.fromTo("#s2-t2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L03", ["dividende"])) - 0.15);
+
+      tl.to(["#s2-title", ".s2-kick", ".s2-tag", "#s2-card", "#s2-coins"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to(["#s2-bld", "#s2-nadia"], { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>

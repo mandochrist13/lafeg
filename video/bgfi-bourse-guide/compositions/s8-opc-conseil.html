@@ -1,0 +1,239 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s8-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s8-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    .s8-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 1100px;
+      font-family: "Tenor Sans", serif;
+      font-size: 72px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    .s8-title span {
+      display: inline-block;
+    }
+    .s8-pill {
+      position: absolute;
+      left: 120px;
+      top: 350px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 32px 14px 20px;
+      border-radius: 999px;
+      background: #eef3e4;
+      color: #0b2677;
+      font-weight: 700;
+      font-size: 36px;
+      white-space: nowrap;
+    }
+    .s8-pill.dark {
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 40px;
+    }
+    #s8-jar-name {
+      position: absolute;
+      left: 1170px;
+      top: 668px;
+      width: 300px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 48px;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+    }
+    #s8-bubble {
+      position: absolute;
+      left: 1120px;
+      top: 300px;
+      width: 560px;
+      height: 200px;
+      border-radius: 28px;
+      background: #eef3e4;
+      border: 4px solid #cfdbac;
+    }
+    #s8-bubble span {
+      position: absolute;
+      left: 190px;
+      top: 64px;
+      font-weight: 900;
+      font-size: 46px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+  </style>
+  <div id="root" data-composition-id="s8" data-width="1920" data-height="1080">
+    <svg class="s8-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+    </svg>
+    <!-- 1. les OPC -->
+    <div id="s8-A">
+      <div class="s8-kick"><span id="s8-mk1"></span><span>Les OPC</span></div>
+      <div id="s8-tA" class="s8-title"><span>Une</span> <span>épargne</span> <span>mise</span> <span>en</span> <span>commun</span></div>
+      <div id="s8-pA" class="s8-pill"><span id="s8-pi"></span><span>Gérée par des professionnels</span></div>
+      <!-- le pot commun -->
+      <div id="s8-jar" class="s8-abs" style="left: 1120px; top: 430px">
+        <svg width="400" height="566" viewBox="0 0 400 566" aria-hidden="true">
+          <defs><clipPath id="s8-jclip"><path d="M 60,90 L 340,90 C 372,90 380,120 380,150 L 380,496 C 380,532 352,560 316,560 L 84,560 C 48,560 20,532 20,496 L 20,150 C 20,120 28,90 60,90 Z" /></clipPath></defs>
+          <path d="M 60,90 L 340,90 C 372,90 380,120 380,150 L 380,496 C 380,532 352,560 316,560 L 84,560 C 48,560 20,532 20,496 L 20,150 C 20,120 28,90 60,90 Z" fill="#F4F7F0" />
+          <g clip-path="url(#s8-jclip)"><rect id="s8-fill" x="0" y="560" width="400" height="480" fill="#D3AE55" opacity="0.55" /></g>
+          <path d="M 60,90 L 340,90 C 372,90 380,120 380,150 L 380,496 C 380,532 352,560 316,560 L 84,560 C 48,560 20,532 20,496 L 20,150 C 20,120 28,90 60,90 Z" fill="none" stroke="#879A6D" stroke-width="10" />
+          <rect x="40" y="40" width="320" height="56" rx="14" fill="#879A6D" />
+          <rect x="20" y="222" width="360" height="86" fill="#0B2677" />
+        </svg>
+      </div>
+      <div id="s8-jar-name">OPC</div>
+      <div id="s8-savers" class="s8-abs"></div>
+      <div id="s8-coins" class="s8-abs"></div>
+      <div id="s8-gerante" class="s8-abs"></div>
+      <div id="s8-board" class="s8-abs" style="left: 1560px; top: 470px">
+        <svg width="300" height="220" viewBox="0 0 300 220" aria-hidden="true">
+          <rect x="4" y="4" width="292" height="200" rx="14" fill="#FFFFFF" stroke="#0B2677" stroke-width="6" />
+          <path d="M 30,170 L 30,40 M 30,170 L 270,170" stroke="#CFDBAC" stroke-width="6" stroke-linecap="round" />
+          <path id="s8-line" d="M 40,150 L 90,120 L 130,132 L 180,88 L 220,100 L 262,58" fill="none" stroke="#3A77A1" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </div>
+    </div>
+    <!-- 2. le conseil -->
+    <div id="s8-B">
+      <div class="s8-kick"><span id="s8-mk2"></span><span>Le conseil</span></div>
+      <div id="s8-tB" class="s8-title"><span>Selon</span> <span>vos</span> <span>objectifs</span></div>
+      <div id="s8-pB" class="s8-pill dark"><span id="s8-pmk"></span><span>BGFIBourse vous conseille</span></div>
+      <div id="s8-duo" class="s8-abs"></div>
+      <div id="s8-bubble">
+        <svg class="s8-abs" style="left: 44px; top: 34px" width="128" height="128" viewBox="0 0 128 128" aria-hidden="true">
+          <circle cx="64" cy="64" r="58" fill="#FFFFFF" stroke="#0B2677" stroke-width="8" />
+          <circle cx="64" cy="64" r="38" fill="none" stroke="#879A6D" stroke-width="8" />
+          <circle cx="64" cy="64" r="16" fill="#0B2677" />
+          <path d="M 64,64 L 112,16" stroke="#3A77A1" stroke-width="8" stroke-linecap="round" />
+          <path d="M 100,12 L 118,10 L 116,28" fill="none" stroke="#3A77A1" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Vos objectifs</span>
+        <svg class="s8-abs" style="left: 210px; top: 192px" width="70" height="60" viewBox="0 0 70 60" aria-hidden="true"><path d="M 0,0 L 70,0 L 18,56 Z" fill="#CFDBAC" /><path d="M 6,0 L 62,0 L 20,44 Z" fill="#EEF3E4" /></svg>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s8");
+      var D = C.sc.s8.dur;
+      document.getElementById("s8-mk1").innerHTML = B.mark(40);
+      document.getElementById("s8-mk2").innerHTML = B.mark(40);
+      document.getElementById("s8-pmk").innerHTML = B.mark(36);
+      document.getElementById("s8-pi").innerHTML = B.check(40);
+      var S = 0.58,
+        FEET = 1004;
+      var savers = [
+        { id: "a8", n: "nadia", x: 200 },
+        { id: "b8", n: "paul", x: 420 },
+        { id: "c8", n: "aline", x: 640 },
+        { id: "d8", n: "michel", x: 860 },
+      ];
+      document.getElementById("s8-savers").innerHTML = savers
+        .map(function (p) {
+          return P.front(p.id, K.with(p.n, { x: p.x, y: FEET - 304 * S, s: S, legs: true }));
+        })
+        .join("");
+      var cs = "";
+      savers.forEach(function (p, i) {
+        cs += '<div id="s8-c' + i + '" class="s8-abs" style="left:' + (p.x + 30) + 'px;top:600px">' + B.coin(56) + "</div>";
+      });
+      document.getElementById("s8-coins").innerHTML = cs;
+      var S2 = 0.66;
+      document.getElementById("s8-gerante").innerHTML = P.front("g8", K.with("gerante", { x: 1720, y: FEET - 304 * S2, s: S2, legs: true }));
+      document.getElementById("s8-duo").innerHTML =
+        P.front("e8", K.with("conseiller", { x: 1200, y: FEET - 304 * 0.8, s: 0.8, legs: true })) + P.front("f8", K.with("nadia", { x: 1560, y: FEET - 304 * 0.8, s: 0.8, legs: true }));
+      ["a8", "b8", "c8", "d8", "g8", "e8", "f8"].forEach(function (id) {
+        P.prep(id);
+      });
+      var ln = document.getElementById("s8-line"),
+        len = ln.getTotalLength();
+      ln.style.strokeDasharray = len + " " + len;
+      ln.style.strokeDashoffset = len;
+
+      var tl = gsap.timeline({ paused: true });
+      // 1. les OPC
+      tl.fromTo("#s8-A .s8-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s8-savers .pp", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" }, 0.05);
+      tl.fromTo(["#s8-jar", "#s8-jar-name"], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, L(C.at("L09", ["opc"])) - 0.35);
+      tl.fromTo("#s8-tA span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L09", ["votre"])) - 0.1);
+      savers.forEach(function (p, i) {
+        P.breathe(tl, p.id, 0.1 * i, D, 3.1 + 0.2 * i, 0.009);
+        P.blink(tl, p.id, [1.1 + 0.4 * i]);
+      });
+      // « mise en commun » : chacun verse sa pièce dans le pot commun
+      var tM = L(C.at("L09", ["mise"])) - 0.3;
+      savers.forEach(function (p, i) {
+        var t0 = tM + i * 0.16;
+        var dx = 1290 - (p.x + 30);
+        tl.fromTo("#s8-c" + i, { opacity: 0, x: 0, y: 0 }, { opacity: 1, duration: 0.1 }, t0);
+        tl.to("#s8-c" + i, { x: dx, duration: 0.8, ease: "power2.inOut" }, t0);
+        tl.to("#s8-c" + i, { y: -160, duration: 0.4, ease: "power2.out" }, t0);
+        tl.to("#s8-c" + i, { y: 40, duration: 0.4, ease: "power2.in" }, t0 + 0.4);
+        tl.to("#s8-c" + i, { opacity: 0, duration: 0.12 }, t0 + 0.78);
+        tl.to("#" + p.id + "-uaR", { rotation: -28, duration: 0.35, ease: "power2.out", yoyo: true, repeat: 1 }, t0 - 0.1);
+      });
+      tl.to("#s8-fill", { attr: { y: 330 }, duration: 1.3, ease: "power2.out" }, tM + 0.6);
+      // « gérée par des professionnels »
+      var tG = L(C.at("L09", ["geree"])) - 0.25;
+      tl.fromTo("#s8-gerante", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, tG);
+      tl.fromTo("#s8-board", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tG + 0.1);
+      tl.to("#s8-line", { strokeDashoffset: 0, duration: 0.8, ease: "power2.inOut" }, tG + 0.3);
+      tl.fromTo("#s8-pA", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L09", ["professionnels"])) - 0.2);
+      // 2. le conseil
+      var tC = L(C.atK("L09", "et", 1)) - 0.25;
+      tl.to("#s8-A", { opacity: 0, filter: "blur(6px)", duration: 0.35, ease: "power3.in" }, tC);
+      tl.fromTo("#s8-B .s8-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, tC + 0.3);
+      tl.fromTo("#s8-duo .pp", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "power3.out" }, tC + 0.25);
+      tl.fromTo("#s8-pB", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L09", ["conseille"])) - 0.25);
+      tl.fromTo("#s8-tB span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L09", ["selon"])) - 0.1);
+      tl.fromTo("#s8-bubble", { opacity: 0, scale: 0.7, transformOrigin: "40% 100%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, L(C.at("L09", ["objectifs"])) - 0.25);
+      gsap.set("#e8-head", { rotation: 5 });
+      gsap.set("#f8-head", { rotation: -5 });
+      tl.to("#e8-uaR", { rotation: -30, duration: 0.45, ease: "power2.inOut" }, L(C.at("L09", ["conseille"])) - 0.1);
+      tl.to("#e8-faR", { rotation: -40, duration: 0.45, ease: "power2.inOut" }, L(C.at("L09", ["conseille"])) - 0.1);
+      tl.to("#f8-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, L(C.at("L09", ["objectifs"])) + 0.1);
+      P.breathe(tl, "e8", tC, D, 3.3, 0.008);
+      P.blink(tl, "f8", [tC + 1.0]);
+
+      tl.to(["#s8-B .s8-kick", "#s8-tB", "#s8-pB", "#s8-bubble"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to("#s8-duo", { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>

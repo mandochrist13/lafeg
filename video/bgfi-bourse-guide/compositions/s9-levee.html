@@ -1,0 +1,237 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s9-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s9-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s9-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 700px;
+      font-family: "Tenor Sans", serif;
+      font-size: 70px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s9-title span {
+      display: inline-block;
+    }
+    #s9-card {
+      position: absolute;
+      left: 880px;
+      top: 120px;
+      width: 920px;
+      height: 820px;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 16px 40px rgba(11, 38, 119, 0.16);
+      border: 3px solid #e4e9dc;
+      overflow: hidden;
+    }
+    #s9-card .hd {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 920px;
+      height: 92px;
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 36px;
+      letter-spacing: 0.06em;
+      line-height: 92px;
+      padding-left: 48px;
+      text-transform: uppercase;
+    }
+    #s9-name {
+      position: absolute;
+      left: 48px;
+      top: 138px;
+      font-family: "Tenor Sans", serif;
+      font-size: 60px;
+      line-height: 1.06;
+      color: #0b2677;
+    }
+    #s9-cote {
+      position: absolute;
+      left: 48px;
+      top: 290px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-weight: 700;
+      font-size: 32px;
+      color: #33415c;
+      white-space: nowrap;
+    }
+    #s9-cote b {
+      font-weight: 900;
+      padding: 4px 14px;
+      border-radius: 8px;
+      background: #eef3e4;
+      color: #0b2677;
+    }
+    #s9-num {
+      position: absolute;
+      left: 48px;
+      top: 372px;
+      display: flex;
+      align-items: baseline;
+      gap: 22px;
+      white-space: nowrap;
+    }
+    #s9-n {
+      font-weight: 900;
+      font-size: 150px;
+      line-height: 1;
+      letter-spacing: -0.02em;
+      color: #0b2677;
+      font-variant-numeric: tabular-nums;
+    }
+    #s9-unit {
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.15;
+      color: #1c2430;
+    }
+    #s9-unit b {
+      display: block;
+      font-weight: 900;
+      color: #56683f;
+    }
+    #s9-arr {
+      position: absolute;
+      left: 0;
+      top: 620px;
+      width: 920px;
+      height: 200px;
+      background: #f3f5f0;
+    }
+    #s9-arr span {
+      position: absolute;
+      left: 48px;
+      top: 30px;
+      font-weight: 700;
+      font-size: 32px;
+      color: #33415c;
+      white-space: nowrap;
+    }
+    #s9-arr img {
+      position: absolute;
+      left: 44px;
+      top: 84px;
+      width: 330px;
+    }
+  </style>
+  <div id="root" data-composition-id="s9" data-width="1920" data-height="1080">
+    <svg class="s9-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+      <ellipse cx="380" cy="1000" rx="260" ry="10" fill="#000" opacity="0.05" />
+    </svg>
+    <div class="s9-kick"><span id="s9-mk"></span><span>Lever des fonds</span></div>
+    <div id="s9-title"><span>Les</span> <span>entreprises</span> <span>y</span> <span>lèvent</span> <span>des</span> <span>fonds</span></div>
+    <!-- une entreprise et son chantier -->
+    <div id="s9-site" class="s9-abs">
+      <svg class="s9-abs" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true">
+        <rect x="560" y="430" width="14" height="566" fill="#33415C" />
+        <rect x="380" y="430" width="380" height="16" rx="4" fill="#33415C" />
+        <rect x="700" y="446" width="4" height="140" fill="#33415C" />
+        <rect x="684" y="586" width="36" height="28" rx="4" fill="#879A6D" />
+        <rect x="380" y="446" width="44" height="40" rx="4" fill="#0B2677" />
+      </svg>
+      <div id="s9-co" class="s9-abs" style="left: 150px; top: 596px"></div>
+    </div>
+    <div id="s9-coins" class="s9-abs"></div>
+
+    <!-- l'exemple : l'entrée en Bourse de BGFI Holding Corporation -->
+    <div id="s9-card">
+      <div class="hd">2026 · Introduction en Bourse</div>
+      <div id="s9-name">BGFI Holding<br />Corporation</div>
+      <div id="s9-cote"><span>Cotée à la BVMAC depuis le 7&nbsp;mai&nbsp;2026</span><b>BGFI HC</b></div>
+      <div id="s9-num"><div id="s9-n">0,00</div><div id="s9-unit">milliards de FCFA<b>levés</b></div></div>
+      <div id="s9-arr"><span>Arrangeur et chef de file</span><img src="assets/img/bgfibourse-logo.svg" alt="BGFIBourse" /></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var B = window.BG;
+      var L = C.local("s9");
+      var D = C.sc.s9.dur;
+      document.getElementById("s9-mk").innerHTML = B.mark(40);
+      document.getElementById("s9-co").innerHTML = B.company(260);
+      var cs = "";
+      for (var i = 0; i < 5; i++) cs += '<div id="s9-c' + i + '" class="s9-abs" style="left:' + (860 + i * 20) + 'px;top:' + (560 + (i % 2) * 40) + 'px">' + B.coin(52) + "</div>";
+      document.getElementById("s9-coins").innerHTML = cs;
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s9-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s9-site", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s9-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L10", ["les"])) - 0.1);
+      // « y lèvent des fonds » : l'argent des investisseurs rejoint l'entreprise
+      var tF = L(C.at("L10", ["levent"])) - 0.4;
+      for (var k = 0; k < 5; k++) {
+        var t0 = tF + k * 0.12;
+        tl.fromTo("#s9-c" + k, { opacity: 0, x: 0, y: 0 }, { opacity: 1, duration: 0.1 }, t0);
+        tl.to("#s9-c" + k, { x: -560 - k * 26, y: 170 + (k % 3) * 30, duration: 0.75, ease: "power2.in" }, t0);
+        tl.to("#s9-c" + k, { opacity: 0, duration: 0.12 }, t0 + 0.7);
+      }
+      tl.fromTo("#s9-co", { scale: 1 }, { scale: 1.04, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, tF + 0.9);
+      // « en 2026, BGFI Bourse a conduit l'entrée en Bourse de BGFI Holding Corporation »
+      var t26 = L(C.at("L10", ["deux"])) - 0.3;
+      tl.fromTo("#s9-card", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, t26);
+      tl.fromTo("#s9-arr", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, L(C.at("L10", ["conduit"])) - 0.3);
+      tl.fromTo("#s9-name", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, L(C.atK("L10", "bgfi", 1)) - 0.15);
+      tl.fromTo("#s9-cote", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L10", ["corporation"])) + 0.2);
+      // « plus de quarante-cinq milliards de francs CFA levés » : le compteur monte jusqu'à 45,32
+      var tN = L(C.at("L10", ["quarantecinq"])) - 0.25;
+      var nEl = document.getElementById("s9-n");
+      var cnt = { v: 0 };
+      nEl.textContent = "0,00";
+      tl.fromTo("#s9-num", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, tN - 0.1);
+      tl.fromTo(
+        cnt,
+        { v: 0 },
+        {
+          v: 45.32,
+          duration: 1.3,
+          ease: "power3.out",
+          onUpdate: function () {
+            nEl.textContent = cnt.v.toFixed(2).replace(".", ",");
+          },
+        },
+        tN,
+      );
+      tl.fromTo("#s9-unit b", { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, L(C.at("L10", ["leves"])) - 0.2);
+
+      tl.to(["#s9-title", ".s9-kick", "#s9-card"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to("#s9-site", { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s9"] = tl;
+    })();
+  </script>
+</template>

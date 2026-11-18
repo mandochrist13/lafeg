@@ -1,0 +1,169 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s4-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s4-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s4-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 1240px;
+      font-family: "Tenor Sans", serif;
+      font-size: 66px;
+      line-height: 1.12;
+      color: #0b2677;
+    }
+    #s4-title span {
+      display: inline-block;
+    }
+    .s4-pill {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 28px 12px 18px;
+      border-radius: 999px;
+      background: #eef3e4;
+      font-weight: 700;
+      font-size: 34px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    .s4-pill b {
+      font-weight: 900;
+    }
+    #s4-bvmac-name {
+      position: absolute;
+      left: 1240px;
+      top: 676px;
+      width: 560px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 46px;
+      line-height: 56px;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+    }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+    <svg class="s4-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+    </svg>
+    <div class="s4-kick"><span id="s4-mk"></span><span>Le marché</span></div>
+    <div id="s4-title"><span>Actions</span> <span>et</span> <span>obligations</span> <span>se</span> <span>négocient</span> <span>à</span> <span>la</span> <span>BVMAC</span></div>
+
+    <!-- la surveillance de la COSUMAF : un cadre en pointillés autour du marché -->
+    <svg id="s4-watch" class="s4-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="520" y="548" width="1330" height="440" rx="28" fill="none" stroke="#3A77A1" stroke-width="5" stroke-dasharray="18 14" />
+    </svg>
+    <div id="s4-cosumaf" class="s4-pill" style="left: 1268px; top: 446px">
+      <svg width="40" height="46" viewBox="0 0 40 46" aria-hidden="true">
+        <path d="M 20,2 L 37,8 L 37,22 C 37,33 29,40 20,44 C 11,40 3,33 3,22 L 3,8 Z" fill="#3A77A1" />
+        <path d="M 12,23 L 18,29 L 29,16" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <span><b>COSUMAF</b> · le régulateur</span>
+    </div>
+
+    <div id="s4-bvmac" class="s4-abs" style="left: 1240px; top: 557px"></div>
+    <div id="s4-bvmac-name">BVMAC</div>
+    <div id="s4-douala" class="s4-pill" style="left: 1268px; top: 360px">
+      <svg width="34" height="44" viewBox="0 0 34 44" aria-hidden="true"><path d="M 17,2 C 8,2 2,9 2,17 C 2,28 17,42 17,42 C 17,42 32,28 32,17 C 32,9 26,2 17,2 Z" fill="#0B2677" /><circle cx="17" cy="17" r="6" fill="#FFFFFF" /></svg>
+      <span>Douala · <b>6 pays de la CEMAC</b></span>
+    </div>
+
+    <div id="s4-office" class="s4-abs" style="left: 570px; top: 614px"></div>
+    <div id="s4-sdb" class="s4-pill" style="left: 470px; top: 456px">Société de bourse agréée</div>
+    <div id="s4-sdb2" class="s4-pill" style="left: 470px; top: 456px"><span id="s4-sdbmk"></span><span><b>BGFIBourse</b> · agréée depuis 2006</span></div>
+
+    <svg id="s4-arrows" class="s4-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <defs>
+        <marker id="s4-ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M 0,0 L 10,5 L 0,10 Z" fill="#0B2677" /></marker>
+      </defs>
+      <path id="s4-a1" d="M 360,800 C 420,740 470,740 552,760" fill="none" stroke="#0B2677" stroke-width="6" stroke-linecap="round" marker-end="url(#s4-ah)" />
+      <path id="s4-a2" d="M 892,770 C 990,700 1110,700 1222,742" fill="none" stroke="#0B2677" stroke-width="6" stroke-linecap="round" marker-end="url(#s4-ah)" />
+    </svg>
+    <div id="s4-nadia" class="s4-abs"></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s4");
+      var D = C.sc.s4.dur;
+      document.getElementById("s4-mk").innerHTML = B.mark(40);
+      document.getElementById("s4-sdbmk").innerHTML = B.mark(34);
+      document.getElementById("s4-bvmac").innerHTML = B.bourse(560);
+      document.getElementById("s4-office").innerHTML = B.office(300);
+      var S = 0.66,
+        FEET = 1004;
+      document.getElementById("s4-nadia").innerHTML = P.front("n4", K.with("nadia", { x: 250, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("n4");
+      ["#s4-a1", "#s4-a2"].forEach(function (s) {
+        var el = document.querySelector(s),
+          len = el.getTotalLength();
+        el.style.strokeDasharray = len + " " + len;
+        el.style.strokeDashoffset = len;
+      });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s4-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s4-nadia", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s4-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L05", ["actions"])) - 0.1);
+      P.breathe(tl, "n4", 0, D, 3.2, 0.009);
+      P.blink(tl, "n4", [1.5, 6.1, 9.4]);
+      // « en Afrique centrale … à la BVMAC »
+      var tV = L(C.at("L05", ["bvmac"])) - 0.35;
+      tl.fromTo(["#s4-bvmac", "#s4-bvmac-name"], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, tV);
+      tl.fromTo("#s4-douala", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tV + 0.35);
+      // « sous le contrôle de la Cosumaf »
+      var tC = L(C.at("L05", ["cosumaf"])) - 0.25;
+      tl.fromTo("#s4-cosumaf", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tC);
+      tl.fromTo("#s4-watch", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, tC + 0.15);
+      // « pour y accéder, passez par une société de bourse agréée »
+      var tA = L(C.at("L05", ["acceder"])) - 0.2;
+      tl.to("#s4-a1", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, tA);
+      tl.to("#n4-head", { rotation: 6, duration: 0.5, ease: "power2.inOut" }, tA);
+      var tS = L(C.at("L05", ["societe"])) - 0.3;
+      tl.fromTo("#s4-office", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, tS - 0.2);
+      tl.fromTo("#s4-sdb", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tS);
+      tl.to("#s4-a2", { strokeDashoffset: 0, duration: 0.7, ease: "power2.inOut" }, tS + 0.3);
+      // « comme BGFI Bourse »
+      var tG = L(C.at("L05", ["bgfi"])) - 0.15;
+      tl.to("#s4-sdb", { opacity: 0, y: -10, duration: 0.25, ease: "power2.in" }, tG);
+      tl.fromTo("#s4-sdb2", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tG + 0.15);
+      tl.fromTo("#s4-office", { scale: 1 }, { scale: 1.05, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, tG + 0.1);
+      tl.to("#n4-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, tG + 0.4);
+
+      tl.to(["#s4-title", ".s4-kick", ".s4-pill", "#s4-arrows", "#s4-watch"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to(["#s4-nadia", "#s4-office", "#s4-bvmac", "#s4-bvmac-name"], { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

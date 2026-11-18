@@ -1,0 +1,275 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s1-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s1-kick {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s1-open-title {
+      position: absolute;
+      left: 1010px;
+      top: 330px;
+      font-family: "Tenor Sans", serif;
+      font-size: 112px;
+      line-height: 1.04;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    #s1-open-sub {
+      position: absolute;
+      left: 1016px;
+      top: 586px;
+      font-weight: 700;
+      font-size: 42px;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s1-q {
+      position: absolute;
+      left: 1010px;
+      top: 330px;
+      width: 820px;
+      font-family: "Tenor Sans", serif;
+      font-size: 70px;
+      line-height: 1.14;
+      color: #0b2677;
+    }
+    #s1-q span {
+      display: inline-block;
+    }
+    #s1-doors-title {
+      position: absolute;
+      left: 1010px;
+      top: 148px;
+      width: 840px;
+      font-family: "Tenor Sans", serif;
+      font-size: 64px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s1-doors-title span {
+      display: inline-block;
+    }
+    .s1-door {
+      position: absolute;
+      top: 340px;
+      width: 330px;
+      height: 470px;
+    }
+    .s1-frame {
+      position: absolute;
+      inset: 0;
+      border-radius: 165px 165px 10px 10px;
+      background: #0b2677;
+    }
+    .s1-inside {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: 294px;
+      height: 452px;
+      border-radius: 147px 147px 4px 4px;
+      background: linear-gradient(180deg, #fbfcf7 0%, #eef3e4 100%);
+      overflow: hidden;
+    }
+    .s1-leaf {
+      position: absolute;
+      left: 18px;
+      top: 18px;
+      width: 294px;
+      height: 452px;
+      border-radius: 147px 147px 4px 4px;
+      background: #879a6d;
+      transform-origin: 0% 50%;
+    }
+    .s1-leaf::before {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: 70px;
+      width: 214px;
+      height: 150px;
+      border-radius: 107px 107px 6px 6px;
+      border: 6px solid #9cae80;
+    }
+    .s1-leaf::after {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: 250px;
+      width: 214px;
+      height: 150px;
+      border-radius: 6px;
+      border: 6px solid #9cae80;
+    }
+    .s1-knob {
+      position: absolute;
+      right: 26px;
+      top: 248px;
+      width: 22px;
+      height: 22px;
+      border-radius: 11px;
+      background: #cfdbac;
+      z-index: 2;
+    }
+    .s1-label {
+      position: absolute;
+      top: 836px;
+      width: 330px;
+      text-align: center;
+      font-weight: 900;
+      font-size: 44px;
+      color: #0b2677;
+    }
+  </style>
+  <div id="root" data-composition-id="s1" data-width="1920" data-height="1080">
+    <!-- sol -->
+    <svg class="s1-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+      <ellipse cx="560" cy="1000" rx="300" ry="10" fill="#000" opacity="0.05" />
+    </svg>
+    <!-- Nadia, sa tirelire -->
+    <div id="s1-nadia" class="s1-abs"></div>
+    <div id="s1-table" class="s1-abs" style="left: 640px; top: 820px">
+      <svg width="200" height="180" viewBox="0 0 200 180">
+        <rect x="10" y="0" width="180" height="16" rx="8" fill="#0B2677" />
+        <rect x="90" y="16" width="20" height="160" fill="#33415C" />
+        <rect x="50" y="166" width="100" height="12" rx="6" fill="#33415C" />
+      </svg>
+    </div>
+    <div id="s1-piggy" class="s1-abs" style="left: 648px; top: 690px"></div>
+    <div id="s1-coins" class="s1-abs"></div>
+
+    <!-- ouverture : le titre du film -->
+    <div id="s1-open">
+      <div class="s1-kick" style="left: 1014px; top: 268px"><span id="s1-mk0"></span><span>Mode d'emploi</span></div>
+      <div id="s1-open-title">Investir<br />en Bourse</div>
+      <div id="s1-open-sub">avec BGFIBourse</div>
+    </div>
+    <!-- la question -->
+    <div id="s1-q"><span>Vous</span> <span>avez</span> <span>de</span> <span>l'épargne</span> <span>et</span> <span>vous</span> <span>voulez</span> <span>la</span> <span>faire</span> <span>travailler&nbsp;?</span></div>
+    <!-- deux portes -->
+    <div id="s1-doors">
+      <div class="s1-kick" style="left: 1014px; top: 92px"><span id="s1-mk1"></span><span>La Bourse</span></div>
+      <div id="s1-doors-title"><span>vous</span> <span>ouvre</span> <span>deux</span> <span>portes</span></div>
+      <div id="s1-d1" class="s1-door" style="left: 1050px">
+        <div class="s1-frame"></div>
+        <div class="s1-inside">
+          <!-- une part d'entreprise -->
+          <svg class="s1-abs" style="left: 47px; top: 150px" width="200" height="200" viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="86" fill="#CFDBAC" />
+            <path d="M 100,100 L 100,14 A 86,86 0 0,1 174.5,57 Z" fill="#0B2677" />
+            <circle cx="100" cy="100" r="86" fill="none" stroke="#879A6D" stroke-width="6" />
+          </svg>
+        </div>
+        <div id="s1-leaf1" class="s1-leaf"><div class="s1-knob"></div></div>
+      </div>
+      <div id="s1-d2" class="s1-door" style="left: 1450px">
+        <div class="s1-frame"></div>
+        <div class="s1-inside">
+          <!-- un titre de créance, scellé -->
+          <svg class="s1-abs" style="left: 57px; top: 132px" width="180" height="230" viewBox="0 0 180 230">
+            <rect x="10" y="6" width="160" height="210" rx="10" fill="#FFFFFF" stroke="#0B2677" stroke-width="6" />
+            <rect x="34" y="40" width="112" height="12" rx="6" fill="#0B2677" />
+            <rect x="34" y="70" width="112" height="9" rx="4" fill="#CFDBAC" />
+            <rect x="34" y="92" width="90" height="9" rx="4" fill="#CFDBAC" />
+            <rect x="34" y="114" width="104" height="9" rx="4" fill="#CFDBAC" />
+            <circle cx="122" cy="170" r="26" fill="#3A77A1" />
+            <path d="M 110,190 L 106,222 L 122,212 L 138,222 L 134,190 Z" fill="#3A77A1" />
+            <circle cx="122" cy="170" r="14" fill="none" stroke="#FFFFFF" stroke-width="4" />
+          </svg>
+        </div>
+        <div id="s1-leaf2" class="s1-leaf"><div class="s1-knob"></div></div>
+      </div>
+      <div id="s1-l1" class="s1-label" style="left: 1050px">Actions</div>
+      <div id="s1-l2" class="s1-label" style="left: 1450px">Obligations</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s1");
+      var D = C.sc.s1.dur;
+      document.getElementById("s1-mk0").innerHTML = B.mark(40);
+      document.getElementById("s1-mk1").innerHTML = B.mark(40);
+      document.getElementById("s1-piggy").innerHTML = B.piggy(184);
+      var S = 0.94,
+        FEET = 1004;
+      document.getElementById("s1-nadia").innerHTML = P.front("n1", K.with("nadia", { x: 452, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("n1");
+      var coins = "";
+      for (var i = 0; i < 3; i++) coins += '<div id="s1-c' + i + '" class="s1-abs" style="left:716px;top:520px">' + B.coin(48) + "</div>";
+      document.getElementById("s1-coins").innerHTML = coins;
+
+      var tl = gsap.timeline({ paused: true });
+      // première image : Nadia, la tirelire et le titre du film sont déjà là
+      gsap.set("#n1-uaR", { rotation: -14 });
+      gsap.set("#n1-faR", { rotation: -62 });
+      tl.fromTo("#s1-open-title", { opacity: 0.85, x: 0 }, { opacity: 1, x: 0, duration: 0.3 }, 0);
+      tl.fromTo("#s1-open-sub", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.5);
+      // trois pièces tombent dans la tirelire
+      for (var k = 0; k < 3; k++) {
+        var t0 = 0.45 + k * 0.62;
+        tl.fromTo("#s1-c" + k, { y: 0, opacity: 0, scale: 1 }, { y: 0, opacity: 1, duration: 0.12, ease: "none" }, t0);
+        tl.to("#s1-c" + k, { y: 186, duration: 0.42, ease: "power2.in" }, t0 + 0.1);
+        tl.to("#s1-c" + k, { scaleY: 0.2, opacity: 0, duration: 0.1, ease: "power1.in" }, t0 + 0.5);
+      }
+      tl.to("#s1-piggy", { y: -6, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 1.05);
+      tl.to("#s1-piggy", { y: -6, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 1.67);
+      tl.to("#s1-piggy", { y: -6, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, 2.29);
+      P.breathe(tl, "n1", 0, D, 3.2, 0.009);
+      P.blink(tl, "n1", [1.6, 5.2, 9.6]);
+      // Nadia regarde vers le texte
+      tl.to("#n1-head", { rotation: 4, duration: 0.6, ease: "power2.inOut" }, 2.6);
+
+      // la question
+      var tQ = L(C.at("L01", ["vous"])) - 0.12;
+      tl.to("#s1-open", { opacity: 0, y: -30, filter: "blur(6px)", duration: 0.35, ease: "power3.in" }, tQ - 0.3);
+      tl.fromTo("#s1-q span", { opacity: 0, filter: "blur(6px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.16, stagger: 0.17, ease: "power4.out" }, tQ);
+      tl.to("#n1-uaR", { rotation: -4, duration: 0.5, ease: "power2.inOut" }, tQ + 0.6);
+      tl.to("#n1-faR", { rotation: -8, duration: 0.5, ease: "power2.inOut" }, tQ + 0.6);
+
+      // « La Bourse vous ouvre deux portes »
+      var tB = L(C.at("L02", ["la"])) - 0.2;
+      tl.to("#s1-q", { opacity: 0, y: -40, filter: "blur(6px)", duration: 0.35, ease: "power3.in" }, tB - 0.1);
+      tl.fromTo("#s1-doors .s1-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, tB + 0.1);
+      tl.fromTo("#s1-doors-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.15, ease: "power4.out" }, L(C.at("L02", ["vous"])) - 0.08);
+      tl.fromTo(["#s1-d1", "#s1-d2"], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: "power3.out" }, L(C.at("L02", ["deux"])) - 0.25);
+      // les portes s'ouvrent sur leur mot
+      var tA = L(C.at("L02", ["actions"])) - 0.12,
+        tO = L(C.at("L02", ["obligations"])) - 0.12;
+      tl.to("#s1-leaf1", { scaleX: 0.14, duration: 0.6, ease: "power3.inOut" }, tA);
+      tl.fromTo("#s1-l1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tA + 0.15);
+      tl.to("#s1-leaf2", { scaleX: 0.14, duration: 0.6, ease: "power3.inOut" }, tO);
+      tl.fromTo("#s1-l2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tO + 0.15);
+      tl.to("#n1-head", { rotation: 7, duration: 0.6, ease: "power2.inOut" }, tA - 0.3);
+
+      tl.to(["#s1-doors", "#s1-nadia", "#s1-piggy", "#s1-table"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      window.__timelines["s1"] = tl;
+    })();
+  </script>
+</template>

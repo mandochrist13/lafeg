@@ -1,0 +1,154 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s11-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s11-logo {
+      position: absolute;
+      left: 540px;
+      top: 96px;
+      width: 840px;
+    }
+    #s11-bigmk {
+      position: absolute;
+      left: 900px;
+      top: 150px;
+    }
+    #s11-txt {
+      position: absolute;
+      left: 0;
+      top: 300px;
+      width: 1920px;
+      height: 420px;
+    }
+    .s11-c {
+      position: absolute;
+      left: 0;
+      width: 1920px;
+      text-align: center;
+      white-space: nowrap;
+    }
+    .s11-c span {
+      display: inline-block;
+    }
+    #s11-l1 {
+      top: 0;
+      font-family: "Tenor Sans", serif;
+      font-size: 64px;
+      color: #0b2677;
+    }
+    #s11-pills {
+      top: 122px;
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+    }
+    .s11-p {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 30px 14px 18px;
+      border-radius: 999px;
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 38px;
+    }
+    .s11-p i {
+      display: block;
+      width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      background: #cfdbac;
+    }
+    #s11-slo {
+      top: 248px;
+      font-weight: 900;
+      font-size: 58px;
+      letter-spacing: -0.01em;
+      color: #56683f;
+    }
+  </style>
+  <div id="root" data-composition-id="s11" data-width="1920" data-height="1080">
+    <svg class="s11-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+      <ellipse cx="300" cy="1000" rx="150" ry="9" fill="#000" opacity="0.05" />
+      <ellipse cx="1620" cy="1000" rx="150" ry="9" fill="#000" opacity="0.05" />
+    </svg>
+    <div id="s11-people" class="s11-abs"></div>
+    <div id="s11-bigmk"></div>
+    <img id="s11-logo" src="assets/img/bgfibourse-logo.svg" alt="BGFIBourse" />
+    <div id="s11-txt">
+      <div id="s11-l1" class="s11-c"><span>La</span> <span>société</span> <span>de</span> <span>bourse</span> <span>du</span> <span>groupe</span> <span>BGFIBank</span></div>
+      <div id="s11-pills" class="s11-c">
+        <div id="s11-p0" class="s11-p"><i></i>Courtage</div>
+        <div id="s11-p1" class="s11-p"><i></i>OPC</div>
+        <div id="s11-p2" class="s11-p"><i></i>Conservation</div>
+        <div id="s11-p3" class="s11-p"><i></i>Conseil</div>
+      </div>
+      <div id="s11-slo" class="s11-c"><span>Faites</span> <span>fructifier</span> <span>votre</span> <span>épargne</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s11");
+      var D = C.sc.s11.dur;
+      document.getElementById("s11-bigmk").innerHTML = B.mark(120);
+      var S = 0.7,
+        FEET = 1004;
+      document.getElementById("s11-people").innerHTML =
+        P.front("n11", K.with("nadia", { x: 300, y: FEET - 304 * S, s: S, legs: true })) + P.front("c11", K.with("conseiller", { x: 1620, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("n11");
+      P.prep("c11");
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s11-people .pp", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.12, ease: "power3.out" }, 0.05);
+      gsap.set("#n11-head", { rotation: 4 });
+      gsap.set("#c11-head", { rotation: -4 });
+      P.breathe(tl, "n11", 0, D, 3.2, 0.009);
+      P.breathe(tl, "c11", 0.4, D, 3.5, 0.008);
+      P.blink(tl, "n11", [1.4, 6.2, 12.4]);
+      P.blink(tl, "c11", [2.6, 8.1, 14.0]);
+      // « BGFI Bourse » : le carré bicolore apparaît, en attendant le logo
+      tl.fromTo("#s11-bigmk", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2)" }, L(C.at("L12", ["bgfi"])) - 0.15);
+      // « la société de bourse du groupe BGFI Bank »
+      tl.fromTo("#s11-l1 span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.12, ease: "power4.out" }, L(C.at("L12", ["la"])) - 0.1);
+      // les quatre métiers, sur leur mot
+      [
+        ["#s11-p0", "courtage"],
+        ["#s11-p1", "opc"],
+        ["#s11-p2", "conservation"],
+        ["#s11-p3", "conseil"],
+      ].forEach(function (p) {
+        tl.fromTo(p[0], { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, L(C.at("L12", [p[1]])) - 0.15);
+      });
+      // « faites fructifier votre épargne »
+      tl.fromTo("#s11-slo span", { opacity: 0, filter: "blur(6px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.18, stagger: 0.14, ease: "power4.out" }, L(C.at("L12", ["faites"])) - 0.1);
+      tl.to("#n11-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, L(C.at("L12", ["faites"])));
+      tl.to("#c11-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, L(C.at("L12", ["faites"])) + 0.1);
+      // le logo se pose sur l'accord final de la musique ; le texte descend lui faire place
+      var tLogo = C.logo - C.sc.s11.start;
+      gsap.set("#s11-logo", { clipPath: "inset(0% 100% 0% 0%)" });
+      tl.to("#s11-bigmk", { opacity: 0, scale: 0.8, duration: 0.35, ease: "power2.in" }, tLogo - 0.4);
+      tl.to("#s11-txt", { y: 190, duration: 0.7, ease: "power3.inOut" }, tLogo - 0.45);
+      tl.fromTo("#s11-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo);
+      tl.to(["#n11-head", "#c11-head"], { y: -3, duration: 0.6, ease: "power2.inOut" }, tLogo + 0.2);
+      window.__timelines["s11"] = tl;
+    })();
+  </script>
+</template>

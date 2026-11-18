@@ -1,0 +1,160 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s3-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s3-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s3-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 1240px;
+      font-family: "Tenor Sans", serif;
+      font-size: 72px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s3-title span {
+      display: inline-block;
+    }
+    .s3-name {
+      position: absolute;
+      text-align: center;
+      font-weight: 900;
+      font-size: 36px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    .s3-mark {
+      position: absolute;
+      font-weight: 700;
+      font-size: 32px;
+      color: #33415c;
+      white-space: nowrap;
+    }
+    .s3-pill {
+      position: absolute;
+      padding: 10px 26px 12px;
+      border-radius: 999px;
+      background: #eef3e4;
+      font-weight: 900;
+      font-size: 34px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+      <ellipse cx="300" cy="1000" rx="170" ry="9" fill="#000" opacity="0.05" />
+      <ellipse cx="1560" cy="1000" rx="300" ry="10" fill="#000" opacity="0.05" />
+    </svg>
+    <div class="s3-kick"><span id="s3-mk"></span><span>Les obligations</span></div>
+    <div id="s3-title"><span>Un</span> <span>prêt</span> <span>à</span> <span>une</span> <span>entreprise</span> <span>ou</span> <span>à</span> <span>un</span> <span>État</span></div>
+
+    <!-- la frise du prêt -->
+    <div id="s3-frise">
+      <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+        <rect id="s3-line" x="330" y="514" width="1340" height="8" rx="4" fill="#CFDBAC" />
+        <circle cx="334" cy="518" r="16" fill="#0B2677" />
+        <circle id="s3-endDot" cx="1666" cy="518" r="16" fill="#0B2677" />
+      </svg>
+      <div class="s3-mark" style="left: 300px; top: 548px">Prêt</div>
+      <div id="s3-ic" class="s3-abs"></div>
+      <div id="s3-p1" class="s3-pill" style="left: 862px; top: 560px">Intérêts</div>
+      <div id="s3-p2" class="s3-pill" style="left: 1250px; top: 560px">Remboursement à l'échéance</div>
+      <div id="s3-endStack" class="s3-abs" style="left: 1630px; top: 420px"></div>
+    </div>
+
+    <div id="s3-nadia" class="s3-abs"></div>
+    <div id="s3-stack" class="s3-abs" style="left: 420px; top: 880px"></div>
+    <div id="s3-co" class="s3-abs" style="left: 1300px; top: 686px"></div>
+    <div id="s3-st" class="s3-abs" style="left: 1560px; top: 736px"></div>
+    <div id="s3-n1" class="s3-name" style="left: 1300px; top: 636px; width: 200px">Entreprise</div>
+    <div id="s3-n2" class="s3-name" style="left: 1560px; top: 686px; width: 260px">État</div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s3");
+      var D = C.sc.s3.dur;
+      document.getElementById("s3-mk").innerHTML = B.mark(40);
+      document.getElementById("s3-co").innerHTML = B.company(200);
+      document.getElementById("s3-st").innerHTML = B.state(260);
+      document.getElementById("s3-stack").innerHTML = B.stack(110, 4);
+      document.getElementById("s3-endStack").innerHTML = B.stack(72, 4);
+      var ic = "";
+      [700, 1000, 1300].forEach(function (x, i) {
+        ic += '<div id="s3-i' + i + '" class="s3-abs" style="left:' + (x - 24) + 'px;top:452px">' + B.coin(48) + "</div>";
+      });
+      document.getElementById("s3-ic").innerHTML = ic;
+      var S = 0.78,
+        FEET = 1004;
+      document.getElementById("s3-nadia").innerHTML = P.front("n3", K.with("nadia", { x: 300, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("n3");
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s3-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s3-nadia", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s3-stack", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.25);
+      tl.fromTo("#s3-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L04", ["une"])) - 0.1);
+      P.breathe(tl, "n3", 0, D, 3.1, 0.009);
+      P.blink(tl, "n3", [1.4, 5.9]);
+      // l'entreprise et l'État, sur leur mot
+      var tE = L(C.at("L04", ["entreprise"])) - 0.2,
+        tS = L(C.at("L04", ["etat"])) - 0.2;
+      tl.fromTo(["#s3-co", "#s3-n1"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, tE);
+      tl.fromTo(["#s3-st", "#s3-n2"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, tS);
+      // « un prêt » : la pile de pièces part vers les emprunteurs
+      var tP = L(C.at("L04", ["pret"])) - 0.1;
+      tl.fromTo("#s3-frise", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, tP - 0.1);
+      tl.fromTo("#s3-line", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 1.6, ease: "power2.inOut" }, tP);
+      tl.to("#s3-stack", { x: 1090, duration: 1.2, ease: "power2.inOut" }, tP + 0.1);
+      tl.to("#s3-stack", { y: -150, duration: 0.6, ease: "power2.out" }, tP + 0.1);
+      tl.to("#s3-stack", { y: 30, duration: 0.6, ease: "power2.in" }, tP + 0.7);
+      tl.to("#s3-stack", { opacity: 0, scale: 0.6, duration: 0.3, ease: "power2.in" }, tP + 1.15);
+      tl.to("#n3-uaR", { rotation: -24, duration: 0.45, ease: "power2.inOut" }, tP);
+      tl.to("#n3-uaR", { rotation: 0, duration: 0.6, ease: "power2.inOut" }, tP + 1.2);
+      // « des intérêts » : trois pièces se posent sur la frise
+      var tI = L(C.at("L04", ["interets"])) - 0.25;
+      for (var k = 0; k < 3; k++) tl.fromTo("#s3-i" + k, { opacity: 0, y: -40, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, tI + k * 0.16);
+      tl.fromTo("#s3-p1", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tI + 0.1);
+      // « puis vous rembourse à l'échéance »
+      var tR = L(C.at("L04", ["rembourse"])) - 0.2;
+      tl.fromTo("#s3-endStack", { opacity: 0, y: -30, scale: 0.6 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(2)" }, tR);
+      tl.fromTo("#s3-p2", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, L(C.at("L04", ["lecheance"])) - 0.2);
+      tl.to("#n3-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, tR + 0.3);
+
+      tl.to(["#s3-title", ".s3-kick", "#s3-frise", ".s3-name"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to(["#s3-nadia", "#s3-co", "#s3-st"], { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

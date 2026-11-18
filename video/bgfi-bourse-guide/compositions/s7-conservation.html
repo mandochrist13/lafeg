@@ -1,0 +1,183 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s7-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s7-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s7-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 1200px;
+      font-family: "Tenor Sans", serif;
+      font-size: 72px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s7-title span {
+      display: inline-block;
+    }
+    .s7-card {
+      position: absolute;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(11, 38, 119, 0.14);
+      border: 3px solid #e4e9dc;
+    }
+    .s7-card .hd {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 74px;
+      border-radius: 15px 15px 0 0;
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 74px;
+      padding-left: 28px;
+    }
+    .s7-row {
+      position: absolute;
+      left: 28px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-weight: 700;
+      font-size: 36px;
+      color: #1c2430;
+      white-space: nowrap;
+    }
+    .s7-pill {
+      position: absolute;
+      left: 120px;
+      top: 372px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 12px 32px 14px 20px;
+      border-radius: 999px;
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 40px;
+      white-space: nowrap;
+    }
+    .s7-lab {
+      position: absolute;
+      top: 214px;
+      width: 180px;
+      text-align: center;
+      font-weight: 700;
+      font-size: 30px;
+      color: #33415c;
+    }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+    <svg class="s7-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+      <ellipse cx="1550" cy="1000" rx="220" ry="10" fill="#000" opacity="0.06" />
+    </svg>
+    <div class="s7-kick"><span id="s7-mk"></span><span>Étape 3 · La conservation</span></div>
+    <div id="s7-title"><span>Vos</span> <span>titres,</span> <span>conservés</span> <span>en</span> <span>sécurité</span></div>
+    <div id="s7-pill" class="s7-pill"><span id="s7-pmk"></span><span>La conservation</span></div>
+
+    <div id="s7-ledger" class="s7-card" style="left: 720px; top: 330px; width: 540px; height: 380px">
+      <div class="hd">Compte titres</div>
+      <div id="s7-r1" class="s7-row" style="top: 116px"><span id="s7-d1"></span><span>Actions</span></div>
+      <div id="s7-r2" class="s7-row" style="top: 214px"><span id="s7-d2"></span><span>Obligations</span></div>
+      <div class="s7-abs" style="left: 28px; top: 300px; width: 480px; height: 4px; background: #e4e9dc"></div>
+    </div>
+    <div id="s7-fly" class="s7-abs"></div>
+    <div id="s7-safe" class="s7-abs" style="left: 1360px; top: 616px"></div>
+
+    <div id="s7-cash" class="s7-card" style="left: 120px; top: 600px; width: 500px; height: 300px">
+      <div class="hd">Compte espèces</div>
+      <div id="s7-cc" class="s7-abs" style="left: 0; top: 0"></div>
+      <div id="s7-l1" class="s7-lab" style="left: 40px">Dividendes</div>
+      <div id="s7-l2" class="s7-lab" style="left: 270px">Intérêts</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var B = window.BG;
+      var L = C.local("s7");
+      var D = C.sc.s7.dur;
+      document.getElementById("s7-mk").innerHTML = B.mark(40);
+      document.getElementById("s7-pmk").innerHTML = B.mark(36);
+      document.getElementById("s7-safe").innerHTML = B.safe(380, "s7");
+      function cert(col) {
+        return (
+          '<svg width="64" height="76" viewBox="0 0 64 76" style="display:block" aria-hidden="true"><rect x="3" y="3" width="58" height="70" rx="6" fill="#FFFFFF" stroke="' + col + '" stroke-width="4"/>' +
+          '<rect x="13" y="15" width="36" height="7" rx="3" fill="' + col + '"/><rect x="13" y="30" width="38" height="6" rx="3" fill="#CFDBAC"/><rect x="13" y="43" width="30" height="6" rx="3" fill="#CFDBAC"/></svg>'
+        );
+      }
+      document.getElementById("s7-d1").innerHTML = cert("#0B2677");
+      document.getElementById("s7-d2").innerHTML = cert("#3A77A1");
+      document.getElementById("s7-fly").innerHTML =
+        '<div id="s7-f1" class="s7-abs" style="left:748px;top:446px">' + cert("#0B2677") + "</div>" + '<div id="s7-f2" class="s7-abs" style="left:748px;top:544px">' + cert("#3A77A1") + "</div>";
+      var cc = "";
+      for (var i = 0; i < 3; i++) cc += '<div id="s7-cd' + i + '" class="s7-abs" style="left:' + (70 + i * 40) + 'px;top:110px">' + B.coin(64) + "</div>";
+      for (var j = 0; j < 3; j++) cc += '<div id="s7-ci' + j + '" class="s7-abs" style="left:' + (300 + j * 40) + 'px;top:110px">' + B.coin(64) + "</div>";
+      document.getElementById("s7-cc").innerHTML = cc;
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s7-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L08", ["troisieme"])) - 0.25);
+      tl.fromTo("#s7-ledger", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s7-safe", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.2);
+      tl.fromTo("#s7-cash", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.35);
+      tl.fromTo("#s7-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L08", ["vos"])) - 0.1);
+      // « vos titres sont inscrits sur votre compte »
+      var tI = L(C.at("L08", ["inscrits"])) - 0.2;
+      tl.fromTo("#s7-r1", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, tI);
+      tl.fromTo("#s7-r2", { opacity: 0, x: -24 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, tI + 0.25);
+      // « et conservés en sécurité » : deux copies des titres entrent dans le coffre, la roue tourne
+      var tC = L(C.at("L08", ["conserves"])) - 0.15;
+      tl.fromTo("#s7-pill", { opacity: 0, y: 16, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: "back.out(1.8)" }, tC);
+      tl.fromTo(["#s7-f1", "#s7-f2"], { opacity: 0 }, { opacity: 1, duration: 0.1 }, tC);
+      tl.to("#s7-f1", { x: 790, y: 330, scale: 0.7, duration: 0.8, ease: "power2.inOut" }, tC + 0.05);
+      tl.to("#s7-f2", { x: 790, y: 232, scale: 0.7, duration: 0.8, ease: "power2.inOut" }, tC + 0.2);
+      tl.to(["#s7-f1", "#s7-f2"], { opacity: 0, scale: 0.3, duration: 0.2, ease: "power2.in" }, tC + 0.95);
+      tl.to("#s7-wheel", { rotation: 180, transformOrigin: "50% 50%", duration: 0.9, ease: "power2.inOut" }, L(C.at("L08", ["securite"])) - 0.1);
+      // « dividendes et intérêts vous y sont versés »
+      var tD = L(C.at("L08", ["dividendes"])) - 0.2,
+        tN = L(C.at("L08", ["interets"])) - 0.2;
+      for (var k = 0; k < 3; k++) {
+        tl.fromTo("#s7-cd" + k, { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.4, ease: "bounce.out" }, tD + k * 0.1);
+        tl.fromTo("#s7-ci" + k, { opacity: 0, y: -90 }, { opacity: 1, y: 0, duration: 0.4, ease: "bounce.out" }, tN + k * 0.1);
+      }
+      tl.fromTo("#s7-l1", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tD + 0.2);
+      tl.fromTo("#s7-l2", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tN + 0.2);
+
+      tl.to(["#s7-title", ".s7-kick", "#s7-pill", ".s7-card"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to("#s7-safe", { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>

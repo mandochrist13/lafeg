@@ -1,0 +1,528 @@
+[
+ {
+  "id": "sfx-pig0",
+  "src": "assets/sfx/pat.wav",
+  "dur": 0.16,
+  "volume": 0.24,
+  "abs": 0.96
+ },
+ {
+  "id": "sfx-pig1",
+  "src": "assets/sfx/pat.wav",
+  "dur": 0.16,
+  "volume": 0.24,
+  "abs": 1.58
+ },
+ {
+  "id": "sfx-pig2",
+  "src": "assets/sfx/pat.wav",
+  "dur": 0.16,
+  "volume": 0.24,
+  "abs": 2.2
+ },
+ {
+  "id": "sfx-door1",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.11,
+  "line": "L02",
+  "word": "actions",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-door2",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.11,
+  "line": "L02",
+  "word": "obligations",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-part",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.09,
+  "line": "L03",
+  "word": "part",
+  "offset": 0.45
+ },
+ {
+  "id": "sfx-act",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L03",
+  "word": "actionnaire",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-div0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.13,
+  "line": "L03",
+  "word": "benefices",
+  "offset": 0.55
+ },
+ {
+  "id": "sfx-div1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.13,
+  "line": "L03",
+  "word": "benefices",
+  "offset": 0.75
+ },
+ {
+  "id": "sfx-div2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.13,
+  "line": "L03",
+  "word": "benefices",
+  "offset": 0.9500000000000001
+ },
+ {
+  "id": "sfx-divt",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L03",
+  "word": "dividende",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-pret",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.09,
+  "line": "L04",
+  "word": "pret",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-int0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.13,
+  "line": "L04",
+  "word": "interets",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-int1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.13,
+  "line": "L04",
+  "word": "interets",
+  "offset": 0.06
+ },
+ {
+  "id": "sfx-int2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.13,
+  "line": "L04",
+  "word": "interets",
+  "offset": 0.22
+ },
+ {
+  "id": "sfx-rmb",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L04",
+  "word": "lecheance",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-bvmac",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L05",
+  "word": "bvmac",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-cosu",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L05",
+  "word": "cosumaf",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-sdb",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L05",
+  "word": "societe",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-bgfi4",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.18,
+  "line": "L05",
+  "word": "bgfi",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-ct",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L06",
+  "word": "titres",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-ce",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L06",
+  "word": "especes",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-tarif",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L06",
+  "word": "renseignezvous",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-pen0",
+  "src": "assets/sfx/pen.wav",
+  "dur": 0.6,
+  "volume": 0.12,
+  "line": "L07",
+  "word": "titre",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-pen1",
+  "src": "assets/sfx/pen.wav",
+  "dur": 0.6,
+  "volume": 0.1,
+  "line": "L07",
+  "word": "combien",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-pen2",
+  "src": "assets/sfx/pen.wav",
+  "dur": 0.6,
+  "volume": 0.1,
+  "line": "L07",
+  "word": "quel",
+  "k": 1,
+  "offset": -0.05
+ },
+ {
+  "id": "sfx-send",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.11,
+  "line": "L07",
+  "word": "bgfi",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-exec",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.08,
+  "line": "L07",
+  "word": "lexecute",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-done",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L07",
+  "word": "marche",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-court",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L07",
+  "word": "courtage",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-ins",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L08",
+  "word": "inscrits",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-cons",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.09,
+  "line": "L08",
+  "word": "conserves",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-lock",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.3,
+  "line": "L08",
+  "word": "securite",
+  "offset": 0.4
+ },
+ {
+  "id": "sfx-dv0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L08",
+  "word": "dividendes",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-dv1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L08",
+  "word": "dividendes",
+  "offset": 0.1
+ },
+ {
+  "id": "sfx-dv2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L08",
+  "word": "dividendes",
+  "offset": 0.2
+ },
+ {
+  "id": "sfx-in0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L08",
+  "word": "interets",
+  "offset": 0.0
+ },
+ {
+  "id": "sfx-in1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L08",
+  "word": "interets",
+  "offset": 0.1
+ },
+ {
+  "id": "sfx-in2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L08",
+  "word": "interets",
+  "offset": 0.2
+ },
+ {
+  "id": "sfx-opc0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "mise",
+  "offset": 0.5
+ },
+ {
+  "id": "sfx-opc1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "mise",
+  "offset": 0.66
+ },
+ {
+  "id": "sfx-opc2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "mise",
+  "offset": 0.8200000000000001
+ },
+ {
+  "id": "sfx-opc3",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "mise",
+  "offset": 0.98
+ },
+ {
+  "id": "sfx-pro",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L09",
+  "word": "professionnels",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-cons2",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L09",
+  "word": "conseille",
+  "offset": -0.25
+ },
+ {
+  "id": "sfx-obj",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L09",
+  "word": "objectifs",
+  "offset": -0.25
+ },
+ {
+  "id": "sfx-lev0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L10",
+  "word": "levent",
+  "offset": 0.3
+ },
+ {
+  "id": "sfx-lev1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L10",
+  "word": "levent",
+  "offset": 0.42
+ },
+ {
+  "id": "sfx-lev2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L10",
+  "word": "levent",
+  "offset": 0.54
+ },
+ {
+  "id": "sfx-card",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L10",
+  "word": "deux",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-hold",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L10",
+  "word": "bgfi",
+  "k": 1,
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-num",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L10",
+  "word": "leves",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-moy",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L11",
+  "word": "moyens",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-hor",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L11",
+  "word": "horizon",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-m-courtage",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L12",
+  "word": "courtage",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-m-opc",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L12",
+  "word": "opc",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-m-conservation",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L12",
+  "word": "conservation",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-m-conseil",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.15,
+  "line": "L12",
+  "word": "conseil",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-logo",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.1,
+  "anchor": "logo",
+  "offset": -0.05
+ }
+]

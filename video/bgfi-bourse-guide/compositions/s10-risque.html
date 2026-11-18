@@ -1,0 +1,159 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s10-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s10-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s10-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 1500px;
+      font-family: "Tenor Sans", serif;
+      font-size: 68px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s10-title span {
+      display: inline-block;
+    }
+    #s10-inv {
+      position: absolute;
+      left: 120px;
+      top: 470px;
+      font-family: "Tenor Sans", serif;
+      font-size: 60px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    .s10-tag {
+      position: absolute;
+      left: 120px;
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      padding: 12px 32px 14px 20px;
+      border-radius: 999px;
+      background: #eef3e4;
+      font-weight: 700;
+      font-size: 38px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    .s10-tag b {
+      font-weight: 900;
+    }
+    .s10-ax {
+      position: absolute;
+      font-weight: 700;
+      font-size: 30px;
+      color: #33415c;
+      white-space: nowrap;
+    }
+  </style>
+  <div id="root" data-composition-id="s10" data-width="1920" data-height="1080">
+    <div class="s10-kick"><span id="s10-mk"></span><span>À savoir</span></div>
+    <div id="s10-title"><span>La</span> <span>valeur</span> <span>des</span> <span>titres</span> <span>peut</span> <span>monter,</span> <span>mais</span> <span>aussi</span> <span>baisser</span></div>
+
+    <!-- la courbe de la valeur d'un titre (illustration, sans chiffres) -->
+    <div id="s10-chart" class="s10-abs">
+      <svg class="s10-abs" width="1920" height="1080" viewBox="0 0 1920 1080" aria-hidden="true">
+        <rect x="980" y="390" width="820" height="520" rx="22" fill="#F7F9F3" />
+        <path d="M 1040,850 L 1760,850" stroke="#CFDBAC" stroke-width="5" stroke-linecap="round" />
+        <path d="M 1040,850 L 1040,440" stroke="#CFDBAC" stroke-width="5" stroke-linecap="round" />
+        <path d="M 1040,750 L 1760,750 M 1040,650 L 1760,650 M 1040,550 L 1760,550" stroke="#E7ECDD" stroke-width="3" stroke-dasharray="10 10" />
+        <path id="s10-l1" d="M 1060,780 C 1110,760 1150,720 1190,700 C 1240,676 1280,610 1330,560 C 1360,532 1380,520 1400,516" fill="none" stroke="#0B2677" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path id="s10-l2" d="M 1400,516 C 1430,520 1450,560 1480,610 C 1510,660 1540,700 1580,712" fill="none" stroke="#3A77A1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+        <path id="s10-l3" d="M 1580,712 C 1620,720 1650,690 1680,660 C 1700,640 1720,640 1740,630" fill="none" stroke="#0B2677" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
+        <circle id="s10-dot" cx="1060" cy="780" r="14" fill="#0B2677" />
+      </svg>
+      <div class="s10-ax" style="left: 1040px; top: 868px">Temps</div>
+      <div class="s10-ax" style="left: 1040px; top: 398px">Valeur</div>
+    </div>
+
+    <div id="s10-inv">Investissez</div>
+    <div id="s10-t1" class="s10-tag" style="top: 572px">
+      <svg width="46" height="40" viewBox="0 0 46 40" aria-hidden="true"><rect x="2" y="6" width="42" height="32" rx="7" fill="#0B2677" /><rect x="26" y="15" width="20" height="14" rx="4" fill="#879A6D" /><circle cx="33" cy="22" r="3" fill="#FFFFFF" /><rect x="6" y="2" width="28" height="8" rx="3" fill="#3A77A1" /></svg>
+      <span>selon <b>vos moyens</b></span>
+    </div>
+    <div id="s10-t2" class="s10-tag" style="top: 672px">
+      <svg width="36" height="44" viewBox="0 0 36 44" aria-hidden="true"><rect x="2" y="1" width="32" height="6" rx="3" fill="#0B2677" /><rect x="2" y="37" width="32" height="6" rx="3" fill="#0B2677" /><path d="M 6,7 L 30,7 C 30,16 20,19 20,22 C 20,25 30,28 30,37 L 6,37 C 6,28 16,25 16,22 C 16,19 6,16 6,7 Z" fill="#CFDBAC" /><path d="M 11,33 L 25,33 C 24,29 19,27 18,25 C 17,27 12,29 11,33 Z" fill="#879A6D" /></svg>
+      <span>selon <b>votre horizon</b></span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var B = window.BG;
+      var L = C.local("s10");
+      var D = C.sc.s10.dur;
+      document.getElementById("s10-mk").innerHTML = B.mark(40);
+      var segs = ["#s10-l1", "#s10-l2", "#s10-l3"].map(function (s) {
+        var el = document.querySelector(s),
+          len = el.getTotalLength();
+        el.style.strokeDasharray = len + " " + len;
+        el.style.strokeDashoffset = len;
+        return el;
+      });
+      // point qui suit la courbe : positions sur les trois segments
+      function pts(el) {
+        var out = [],
+          len = el.getTotalLength();
+        for (var i = 0; i <= 20; i++) {
+          var p = el.getPointAtLength((len * i) / 20);
+          out.push({ x: p.x - 1060, y: p.y - 780 });
+        }
+        return out;
+      }
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s10-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L11", ["a"])) - 0.25);
+      tl.fromTo("#s10-chart", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s10-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.13, ease: "power4.out" }, L(C.at("L11", ["la"])) - 0.1);
+      // « peut monter, mais aussi baisser » : la courbe monte, puis redescend, puis repart
+      var tU = L(C.at("L11", ["monter"])) - 0.35,
+        tDn = L(C.at("L11", ["baisser"])) - 0.3,
+        tR = L(C.at("L11", ["investissez"])) - 0.1;
+      var plan = [
+        [segs[0], tU, 0.75],
+        [segs[1], tDn, 0.7],
+        [segs[2], tR, 0.9],
+      ];
+      plan.forEach(function (p) {
+        tl.to(p[0], { strokeDashoffset: 0, duration: p[2], ease: "power1.inOut" }, p[1]);
+        var path = pts(p[0]);
+        var step = p[2] / 20;
+        for (var i = 1; i <= 20; i++) tl.to("#s10-dot", { x: path[i].x, y: path[i].y, duration: step, ease: "none" }, p[1] + (i - 1) * step);
+      });
+      // « investissez selon vos moyens et votre horizon »
+      tl.fromTo("#s10-inv", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L11", ["investissez"])) - 0.15);
+      tl.fromTo("#s10-t1", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L11", ["moyens"])) - 0.3);
+      tl.fromTo("#s10-t2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L11", ["horizon"])) - 0.3);
+
+      tl.to(["#s10-title", ".s10-kick", "#s10-inv", ".s10-tag", "#s10-chart"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      window.__timelines["s10"] = tl;
+    })();
+  </script>
+</template>

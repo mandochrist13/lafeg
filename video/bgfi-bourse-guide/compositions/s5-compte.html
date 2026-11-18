@@ -1,0 +1,206 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Lato", sans-serif;
+      color: #1c2430;
+    }
+    .s5-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s5-kick {
+      position: absolute;
+      left: 120px;
+      top: 92px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      font-weight: 900;
+      font-size: 30px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a77a1;
+      white-space: nowrap;
+    }
+    #s5-title {
+      position: absolute;
+      left: 120px;
+      top: 146px;
+      width: 860px;
+      font-family: "Tenor Sans", serif;
+      font-size: 70px;
+      line-height: 1.1;
+      color: #0b2677;
+    }
+    #s5-title span {
+      display: inline-block;
+    }
+    .s5-acc {
+      position: absolute;
+      top: 420px;
+      width: 380px;
+      height: 230px;
+      border-radius: 18px;
+      background: #ffffff;
+      box-shadow: 0 10px 28px rgba(11, 38, 119, 0.14);
+      border: 3px solid #e4e9dc;
+    }
+    .s5-acc .hd {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 70px;
+      border-radius: 15px 15px 0 0;
+      background: #0b2677;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 36px;
+      line-height: 70px;
+      padding-left: 26px;
+    }
+    .s5-pill {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 10px 28px 12px 18px;
+      border-radius: 999px;
+      background: #eef3e4;
+      font-weight: 700;
+      font-size: 34px;
+      color: #0b2677;
+      white-space: nowrap;
+    }
+    #s5-doc {
+      position: absolute;
+      left: 1070px;
+      top: 96px;
+      width: 300px;
+      height: 380px;
+      border-radius: 12px;
+      background: #ffffff;
+      box-shadow: 0 12px 30px rgba(11, 38, 119, 0.2);
+      overflow: hidden;
+      transform: rotate(-4deg);
+    }
+    #s5-doc .hd {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 300px;
+      height: 96px;
+      background: #879a6d;
+      color: #ffffff;
+      font-weight: 900;
+      font-size: 32px;
+      line-height: 1.12;
+      padding: 12px 20px;
+    }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1920" data-height="1080">
+    <svg class="s5-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="996" width="1920" height="84" fill="#F3F5F0" />
+      <rect x="0" y="996" width="1920" height="6" fill="#E4E9DC" />
+    </svg>
+    <div class="s5-kick"><span id="s5-mk"></span><span>Étape 1 · Le compte</span></div>
+    <div id="s5-title"><span>Ouvrez</span> <span>un</span> <span>compte</span> <span>titres</span> <span>et</span> <span>espèces</span></div>
+
+    <div id="s5-a1" class="s5-acc" style="left: 120px">
+      <div class="hd">Compte titres</div>
+      <svg class="s5-abs" style="left: 26px; top: 96px" width="330" height="110" viewBox="0 0 330 110" aria-hidden="true">
+        <rect x="6" y="14" width="96" height="84" rx="8" fill="#FFFFFF" stroke="#0B2677" stroke-width="4" />
+        <rect x="20" y="30" width="60" height="9" rx="4" fill="#0B2677" />
+        <rect x="20" y="50" width="66" height="7" rx="3" fill="#CFDBAC" />
+        <rect x="20" y="66" width="50" height="7" rx="3" fill="#CFDBAC" />
+        <rect x="120" y="4" width="96" height="84" rx="8" fill="#FFFFFF" stroke="#3A77A1" stroke-width="4" />
+        <rect x="134" y="20" width="60" height="9" rx="4" fill="#3A77A1" />
+        <rect x="134" y="40" width="66" height="7" rx="3" fill="#CFDBAC" />
+        <rect x="134" y="56" width="50" height="7" rx="3" fill="#CFDBAC" />
+        <text x="236" y="72" font-family="Lato" font-weight="900" font-size="34" fill="#33415C">Actions</text>
+      </svg>
+    </div>
+    <div id="s5-a2" class="s5-acc" style="left: 540px">
+      <div class="hd">Compte espèces</div>
+      <div id="s5-coins" class="s5-abs" style="left: 30px; top: 100px"></div>
+    </div>
+
+    <div id="s5-desk" class="s5-abs"></div>
+    <div id="s5-people" class="s5-abs"></div>
+    <div id="s5-deskfront" class="s5-abs" style="left: 1250px; top: 742px">
+      <svg width="620" height="258" viewBox="0 0 620 258" aria-hidden="true">
+        <rect x="0" y="0" width="620" height="30" rx="6" fill="#33415C" />
+        <rect x="16" y="30" width="588" height="228" fill="#0B2677" />
+        <rect x="16" y="30" width="588" height="10" fill="#879A6D" />
+      </svg>
+      <div id="s5-plate" class="s5-abs" style="left: 150px; top: 86px; width: 320px; height: 106px; border-radius: 10px; background: #ffffff"></div>
+    </div>
+    <div id="s5-doc">
+      <div class="hd">Conditions<br />tarifaires</div>
+      <div class="s5-abs" style="left: 24px; top: 128px; width: 220px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div class="s5-abs" style="left: 24px; top: 160px; width: 250px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div class="s5-abs" style="left: 24px; top: 192px; width: 190px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div class="s5-abs" style="left: 24px; top: 224px; width: 240px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div class="s5-abs" style="left: 24px; top: 256px; width: 170px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
+      <div id="s5-docmk" class="s5-abs" style="left: 226px; top: 300px"></div>
+    </div>
+    <div id="s5-tarifs" class="s5-pill" style="left: 120px; top: 712px"><span id="s5-ti"></span><span>Renseignez-vous sur ses tarifs</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BG_CUES;
+      var P = window.BGP;
+      var K = window.CAST;
+      var B = window.BG;
+      var L = C.local("s5");
+      var D = C.sc.s5.dur;
+      document.getElementById("s5-mk").innerHTML = B.mark(40);
+      document.getElementById("s5-docmk").innerHTML = B.mark(52);
+      document.getElementById("s5-ti").innerHTML = B.check(40);
+      document.getElementById("s5-plate").innerHTML = '<img src="' + B.LOGO + '" alt="BGFIBourse" style="position:absolute;left:14px;top:12px;width:292px" />';
+      var cs = "";
+      for (var i = 0; i < 4; i++) cs += '<div class="s5-abs" style="left:' + i * 74 + 'px;top:0px">' + B.coin(64) + "</div>";
+      document.getElementById("s5-coins").innerHTML = cs;
+      // le conseiller derrière son bureau, Nadia face à lui
+      var S = 0.82,
+        FEET = 1004;
+      document.getElementById("s5-people").innerHTML =
+        P.front("c5", K.with("conseiller", { x: 1580, y: FEET - 304 * S - 40, s: S, legs: false })) + P.front("n5", K.with("nadia", { x: 1090, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("c5");
+      P.prep("n5");
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s5-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L06", ["premiere"])) - 0.2);
+      tl.fromTo(["#s5-people", "#s5-deskfront"], { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.5, stagger: 0.08, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s5-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.12, ease: "power4.out" }, L(C.at("L06", ["ouvrez"])) - 0.1);
+      P.breathe(tl, "c5", 0, D, 3.4, 0.008);
+      P.breathe(tl, "n5", 0.3, D, 3.1, 0.009);
+      P.blink(tl, "c5", [1.2, 4.6]);
+      P.blink(tl, "n5", [2.1, 5.4]);
+      gsap.set("#n5-head", { rotation: 4 });
+      gsap.set("#c5-head", { rotation: -4 });
+      // les deux comptes, sur leur mot
+      tl.fromTo("#s5-a1", { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, L(C.at("L06", ["titres"])) - 0.15);
+      tl.fromTo("#s5-a2", { opacity: 0, y: 30, scale: 0.96 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "power3.out" }, L(C.at("L06", ["especes"])) - 0.15);
+      // « chez BGFI Bourse » : la plaque du bureau s'anime, le conseiller tend la main
+      var tG = L(C.at("L06", ["bgfi"])) - 0.1;
+      tl.fromTo("#s5-plate", { scale: 1 }, { scale: 1.08, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1 }, tG);
+      tl.to("#c5-uaL", { rotation: 38, duration: 0.5, ease: "power2.inOut" }, tG);
+      tl.to("#c5-faL", { rotation: 46, duration: 0.5, ease: "power2.inOut" }, tG);
+      tl.to("#c5-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out" }, tG + 0.2);
+      // « renseignez-vous sur ses tarifs »
+      var tT = L(C.at("L06", ["renseignezvous"])) - 0.2;
+      tl.fromTo("#s5-doc", { opacity: 0, y: 60, rotation: 4 }, { opacity: 1, y: 0, rotation: -4, duration: 0.55, ease: "power3.out" }, tT);
+      tl.fromTo("#s5-tarifs", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L06", ["tarifs"])) - 0.25);
+
+      tl.to(["#s5-title", ".s5-kick", ".s5-acc", ".s5-pill", "#s5-doc"], { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power3.in" }, D - 0.34);
+      tl.to(["#s5-people", "#s5-deskfront"], { opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,66 @@
+{
+ "lead": 3.0,
+ "tail": 6.0,
+ "lines": [
+  {
+   "id": "L01",
+   "gap": 0,
+   "text": "Vous avez de l'épargne et vous voulez la faire travailler ?"
+  },
+  {
+   "id": "L02",
+   "gap": 0.45,
+   "text": "La Bourse vous ouvre deux portes : les actions et les obligations."
+  },
+  {
+   "id": "L03",
+   "gap": 1.0,
+   "text": "Une action, c'est une part d'une entreprise. Vous devenez actionnaire, et vous pouvez recevoir une part de ses bénéfices : le dividende."
+  },
+  {
+   "id": "L04",
+   "gap": 0.9,
+   "text": "Une obligation, c'est un prêt à une entreprise ou à un État. L'emprunteur vous verse des intérêts, puis vous rembourse à l'échéance."
+  },
+  {
+   "id": "L05",
+   "gap": 1.0,
+   "text": "En Afrique centrale, actions et obligations se négocient à la BVMAC, sous le contrôle de la Cosumaf. Pour y accéder, passez par une société de bourse agréée, comme BGFI Bourse."
+  },
+  {
+   "id": "L06",
+   "gap": 1.1,
+   "text": "Première étape : ouvrez un compte titres et espèces chez BGFI Bourse, et renseignez-vous sur ses tarifs."
+  },
+  {
+   "id": "L07",
+   "gap": 1.0,
+   "text": "Deuxième étape : passez votre ordre. Quel titre, combien, à quel prix : BGFI Bourse le transmet et l'exécute sur le marché. C'est le courtage."
+  },
+  {
+   "id": "L08",
+   "gap": 1.0,
+   "text": "Troisième étape : vos titres sont inscrits sur votre compte, et conservés en sécurité. Dividendes et intérêts vous y sont versés."
+  },
+  {
+   "id": "L09",
+   "gap": 1.1,
+   "text": "Vous préférez déléguer ? Avec les OPC, votre épargne est mise en commun et gérée par des professionnels. Et BGFI Bourse vous conseille selon vos objectifs."
+  },
+  {
+   "id": "L10",
+   "gap": 1.1,
+   "text": "Les entreprises, elles, y lèvent des fonds. En deux mille vingt-six, BGFI Bourse a conduit l'entrée en Bourse de BGFI Holding Corporation : plus de quarante-cinq milliards de francs CFA levés."
+  },
+  {
+   "id": "L11",
+   "gap": 1.1,
+   "text": "À savoir : la valeur des titres peut monter, mais aussi baisser. Investissez selon vos moyens et votre horizon."
+  },
+  {
+   "id": "L12",
+   "gap": 1.1,
+   "text": "BGFI Bourse, la société de bourse du groupe BGFI Bank : courtage, OPC, conservation et conseil. Faites fructifier votre épargne."
+  }
+ ]
+}
