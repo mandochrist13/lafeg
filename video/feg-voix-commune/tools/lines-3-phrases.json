@@ -1,0 +1,21 @@
+{
+  "lead": 0.5,
+  "tail": 1,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0,
+      "text": "Chaque entreprise compte : un atelier, un commerce, un chantier qui fait vivre le pays."
+    },
+    {
+      "id": "L02",
+      "gap": 0,
+      "text": "Mais seule, une entreprise pèse peu, et sa voix se perd."
+    },
+    {
+      "id": "L10",
+      "gap": 0,
+      "text": "Des entreprises fortes, une prospérité partagée. Votre entreprise a sa place à nos côtés : rejoignez la Fédération des Entreprises du Gabon."
+    }
+  ]
+}

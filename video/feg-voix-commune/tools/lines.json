@@ -1,0 +1,56 @@
+{
+  "lead": 2.6,
+  "tail": 6.5,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0,
+      "text": "Chaque entreprise compte : un atelier, un commerce, un chantier qui fait vivre le pays."
+    },
+    {
+      "id": "L02",
+      "gap": 0.8,
+      "text": "Mais seule, une entreprise pèse peu, et sa voix se perd."
+    },
+    {
+      "id": "L03",
+      "gap": 1.2,
+      "text": "Depuis mille neuf cent cinquante-neuf, la Fédération des Entreprises du Gabon rassemble ceux qui font l'économie du pays : plus de mille cent entreprises."
+    },
+    {
+      "id": "L04",
+      "gap": 0.9,
+      "text": "Ensemble, elles représentent près de 80 % du PIB, et plus de 90 % de la main-d'œuvre formelle."
+    },
+    {
+      "id": "L05",
+      "gap": 1.0,
+      "text": "Réunies en treize fédérations métiers, elles parlent d'une seule voix."
+    },
+    {
+      "id": "L06",
+      "gap": 0.9,
+      "text": "Leurs préoccupations remontent jusqu'au Bureau exécutif, puis à la table du dialogue public-privé."
+    },
+    {
+      "id": "L07",
+      "gap": 1.0,
+      "text": "Ce dialogue a son grand rendez-vous : le Gabon Economic Forum. Lors de sa dernière édition, ses huit ateliers ont abouti à la Déclaration de Libreville."
+    },
+    {
+      "id": "L08",
+      "gap": 1.0,
+      "text": "Dette intérieure, fiscalité, commande publique, financement des PME : ensemble, les entreprises pèsent sur les réformes du pays."
+    },
+    {
+      "id": "L09",
+      "gap": 1.0,
+      "text": "Et au quotidien : une veille sur les réformes, des formations, un réseau d'affaires, la médiation et l'arbitrage."
+    },
+    {
+      "id": "L10",
+      "gap": 1.2,
+      "text": "Des entreprises fortes, une prospérité partagée. Votre entreprise a sa place à nos côtés : rejoignez la Fédération des Entreprises du Gabon."
+    }
+  ]
+}
