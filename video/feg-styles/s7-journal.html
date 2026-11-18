@@ -1,0 +1,225 @@
+<!doctype html>
+<!-- Aperçu 7 — journal économique : mise en page de presse, chiffres clés et classement des 13 fédérations. -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aperçu — journal économique</title>
+    <link rel="stylesheet" href="fonts.css" />
+    <script src="geo.js"></script>
+    <style>
+      :root {
+        --paper: #f6f3ec;
+        --ink: #1a1c19;
+        --ink2: #4f554d;
+        --muted: #7b8077;
+        --rule: #cfcabc;
+        --green: #0a5a33;
+        --green2: #7fae8f;
+        --bronze: #aeae7d;
+      }
+      body {
+        background: var(--paper);
+        color: var(--ink);
+        font-family: "Hyundai Sans Text", sans-serif;
+        position: relative;
+      }
+      .abs {
+        position: absolute;
+      }
+      #mast {
+        left: 120px;
+        top: 70px;
+        width: 1680px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 2px solid var(--ink);
+        padding-bottom: 16px;
+      }
+      #mast .k {
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-weight: 500;
+        font-size: 26px;
+        letter-spacing: 0.16em;
+        color: var(--green);
+      }
+      #mast img {
+        height: 64px;
+      }
+      #head {
+        left: 120px;
+        top: 168px;
+        width: 760px;
+        font-family: "Source Serif 4", serif;
+        font-weight: 700;
+        font-size: 66px;
+        line-height: 1.07;
+        letter-spacing: -0.01em;
+      }
+      #stand {
+        left: 120px;
+        top: 428px;
+        width: 740px;
+        font-family: "Source Serif 4", serif;
+        font-style: italic;
+        font-size: 33px;
+        line-height: 1.32;
+        color: var(--ink2);
+      }
+      .tile {
+        top: 640px;
+        width: 350px;
+        border-top: 2px solid var(--ink);
+        padding-top: 18px;
+      }
+      .tile .lb {
+        font-size: 28px;
+        color: var(--ink2);
+      }
+      .tile .v {
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 112px;
+        line-height: 1;
+        letter-spacing: -0.02em;
+        margin: 8px 0 6px;
+      }
+      .tile .q {
+        margin-top: 10px;
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 500;
+        font-size: 36px;
+        color: var(--ink2);
+      }
+      .tile .v {
+        white-space: nowrap;
+      }
+      .tile .sw {
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        border-radius: 3px;
+        margin-right: 10px;
+        vertical-align: 2px;
+      }
+      #chart {
+        left: 980px;
+        top: 168px;
+        width: 820px;
+      }
+      #chart h3 {
+        margin: 0 0 4px;
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+      }
+      #chart .sub {
+        font-size: 26px;
+        color: var(--ink2);
+        margin-bottom: 22px;
+      }
+      .row {
+        display: flex;
+        align-items: center;
+        height: 47px;
+      }
+      .row .nm {
+        width: 300px;
+        text-align: right;
+        padding-right: 18px;
+        font-size: 26px;
+        color: var(--ink);
+        white-space: nowrap;
+      }
+      .row .bar {
+        height: 22px;
+        border-radius: 0 4px 4px 0;
+        background: var(--green2);
+      }
+      .row.top .bar {
+        background: var(--green);
+      }
+      .row .val {
+        padding-left: 12px;
+        font-size: 26px;
+        font-weight: 500;
+        color: var(--ink);
+        font-variant-numeric: tabular-nums;
+      }
+      .row.top .nm,
+      .row.top .val {
+        font-weight: 500;
+      }
+      #base {
+        left: 1298px;
+        top: 318px;
+        width: 2px;
+        height: 612px;
+        background: var(--ink);
+        opacity: 0.55;
+      }
+      #foot {
+        left: 120px;
+        top: 984px;
+        width: 1680px;
+        border-top: 1px solid var(--rule);
+        padding-top: 14px;
+        display: flex;
+        justify-content: space-between;
+        font-size: 24px;
+        color: var(--muted);
+      }
+    </style>
+  </head>
+  <body>
+    <div id="mast" class="abs"><span class="k">ÉCONOMIE · GABON</span><img src="assets/img/feg-logo.png" alt="FEG" /></div>
+    <div id="head" class="abs">Les entreprises de la FEG pèsent près de 80 % du PIB</div>
+    <div id="stand" class="abs">Plus de 1 100 entreprises membres, réunies depuis 1959 en 13 fédérations métiers.</div>
+    <div class="abs tile" style="left: 120px">
+      <div class="lb">Part du PIB</div>
+      <div class="q">près de</div>
+      <div class="v">80&#8239;%</div>
+    </div>
+    <div class="abs tile" style="left: 510px">
+      <div class="lb">Main-d'œuvre formelle</div>
+      <div class="q">plus de</div>
+      <div class="v">90&#8239;%</div>
+    </div>
+    <div id="chart" class="abs">
+      <h3>Entreprises membres par fédération</h3>
+      <div class="sub">13 fédérations métiers, plus de 1 100 entreprises</div>
+      <div id="rows"></div>
+    </div>
+    <div id="base" class="abs"></div>
+    <div id="foot" class="abs"><span>Source : Fédération des Entreprises du Gabon (lafeg.ga)</span><span>lafeg.ga</span></div>
+    <script>
+      const FEDS = [
+        ["Construction", 337],
+        ["Services divers", 118],
+        ["Commerce", 110],
+        ["Conseil", 83],
+        ["Logistique et manutention", 83],
+        ["Industries extractives", 67],
+        ["Numérique", 67],
+        ["Industrie", 61],
+        ["Finance", 50],
+        ["Santé", 43],
+        ["Bois", 30],
+        ["Tourisme", 29],
+        ["Agriculture et pêche", 22],
+      ];
+      const max = 337,
+        L = 430;
+      document.getElementById("rows").innerHTML = FEDS.map(([n, v], i) => `<div class="row${i === 0 ? " top" : ""}"><div class="nm">${n}</div><div class="bar" style="width:${((v / max) * L).toFixed(1)}px"></div><div class="val">${v}</div></div>`).join("");
+      document.fonts.ready.then(() => {
+        // ligne de base : du haut de la première barre au bas de la dernière
+        const bars = [...document.querySelectorAll(".row .bar")].map((b) => b.getBoundingClientRect());
+        const base = document.getElementById("base");
+        base.style.top = bars[0].top - 10 + "px";
+        base.style.height = bars[bars.length - 1].bottom - bars[0].top + 20 + "px";
+        base.style.left = bars[0].left - 2 + "px";
+        window.__ready = true;
+      });
+    </script>
+  </body>
+</html>

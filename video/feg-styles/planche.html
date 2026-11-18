@@ -1,0 +1,118 @@
+<!doctype html>
+<!-- Planche comparative des sept aperçus de style. -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Sept styles pour la FEG</title>
+    <link rel="stylesheet" href="fonts.css" />
+    <style>
+      html,
+      body {
+        height: auto;
+        overflow: visible;
+        background: #f6f3ec;
+        color: #1a1c19;
+        font-family: "Hyundai Sans Text", sans-serif;
+      }
+      #wrap {
+        width: 1800px;
+        margin: 0 auto;
+        padding: 56px 0 64px;
+      }
+      h1 {
+        margin: 0;
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 58px;
+        letter-spacing: -0.01em;
+        color: #063d21;
+      }
+      .lede {
+        margin: 10px 0 40px;
+        font-size: 28px;
+        color: #4f554d;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 44px 40px;
+      }
+      .card img {
+        display: block;
+        width: 880px;
+        height: 495px;
+        border-radius: 10px;
+        box-shadow: 0 2px 0 #e2dccd, 0 10px 26px rgba(40, 40, 20, 0.12);
+      }
+      .card .t {
+        margin-top: 16px;
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 32px;
+      }
+      .card .t b {
+        color: #0a7537;
+        margin-right: 10px;
+      }
+      .card .d {
+        margin-top: 4px;
+        font-size: 24px;
+        line-height: 1.35;
+        color: #4f554d;
+      }
+      .note {
+        width: 880px;
+        height: 495px;
+        box-sizing: border-box;
+        border-radius: 10px;
+        background: #063d21;
+        color: #fff;
+        padding: 54px 56px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .note .big {
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1.1;
+      }
+      .note .sm {
+        margin-top: 22px;
+        font-size: 26px;
+        line-height: 1.4;
+        color: #d9e6dc;
+      }
+      .note .sm b {
+        color: #aeae7d;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrap">
+      <h1>Sept styles pour la vidéo de la FEG</h1>
+      <div class="lede">Une image par style, prise à un moment du film, pour choisir sur pièce.</div>
+      <div class="grid">
+        <div class="card"><img src="apercus/s1-titre-officiel.jpg" /><div class="t"><b>1</b>Titre officiel</div><div class="d">Gravure et guillochis à l'encre vert et bronze : prestige, institution.</div></div>
+        <div class="card"><img src="apercus/s2-typo-animee.jpg" /><div class="t"><b>2</b>Typographie animée</div><div class="d">Les mots et les chiffres deviennent l'image ; se comprend sans le son.</div></div>
+        <div class="card"><img src="apercus/s3-collage.jpg" /><div class="t"><b>3</b>Collage photo</div><div class="d">Photos découpées, papiers déchirés, tampons et feutre : humain, chaleureux.</div></div>
+        <div class="card"><img src="apercus/s4-pate-a-modeler.jpg" /><div class="t"><b>4</b>Pâte à modeler</div><div class="d">Miniature 3D aux formes rondes, lumière chaude : tendre et mémorable.</div></div>
+        <div class="card"><img src="apercus/s5-carnet.jpg" /><div class="t"><b>5</b>Carnet de croquis</div><div class="d">Schéma tracé à l'encre en direct, lavis vert : pédagogique.</div></div>
+        <div class="card"><img src="apercus/s6-point-bronze.jpg" /><div class="t"><b>6</b>Le point bronze</div><div class="d">Un point du logo prend vie et trouve sa place : minimaliste, attachant.</div></div>
+        <div class="card"><img src="apercus/s7-journal.jpg" /><div class="t"><b>7</b>Journal économique</div><div class="d">Mise en page de presse, chiffres clés et classement : crédible.</div></div>
+        <div class="card">
+          <div class="note">
+            <div class="big">Quel numéro préférez-vous&#8239;?</div>
+            <div class="sm">Chaque style peut aussi se décliner <b>en vertical 9:16</b>, <b>en teaser de 20 s</b> ou <b>sans le son</b>, avec sous-titres.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      window.__fullPage = true;
+      Promise.all([...document.images].map((i) => (i.complete ? 1 : new Promise((r) => (i.onload = r))))).then(() => document.fonts.ready).then(() => (window.__ready = true));
+    </script>
+  </body>
+</html>

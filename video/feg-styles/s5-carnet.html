@@ -1,0 +1,255 @@
+<!doctype html>
+<!-- Aperçu 5 — carnet de croquis : schéma tracé à l'encre en direct, lavis vert, écriture manuscrite. -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aperçu — carnet de croquis</title>
+    <link rel="stylesheet" href="fonts.css" />
+    <script src="geo.js"></script>
+    <style>
+      body {
+        background: #f4eee0;
+      }
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c" width="3840" height="2160"></canvas>
+    <script type="module">
+      import rough from "./lib/rough.esm.js";
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let r = Math.imul(a ^ (a >>> 15), 1 | a);
+          r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(2026);
+      const INK = "#1e2a3a",
+        GREEN = "#2f8f57",
+        BRONZE = "#9a8f4e";
+      const cv = document.getElementById("c");
+      const c = cv.getContext("2d");
+      c.scale(2, 2);
+      const rc = rough.canvas(cv);
+      let seed = 3;
+      const o = (extra = {}) => ({ roughness: 1.35, bowing: 1.2, stroke: INK, strokeWidth: 2.6, seed: seed++, ...extra });
+      await Promise.all([document.fonts.load("700 80px Caveat"), document.fonts.load("600 40px Caveat"), document.fonts.load("400 40px Caveat")]);
+      const logo = await new Promise((r) => {
+        const i = new Image();
+        i.onload = () => r(i);
+        i.src = "assets/img/feg-logo.png";
+      });
+
+      // papier de carnet : grain + quadrillage de points
+      c.fillStyle = "#f4eee0";
+      c.fillRect(0, 0, 1920, 1080);
+      for (let k = 0; k < 26000; k++) {
+        c.fillStyle = rnd() < 0.5 ? "rgba(255,255,255,0.09)" : "rgba(90,70,30,0.05)";
+        c.fillRect(rnd() * 1920, rnd() * 1080, 1.4, 1.4);
+      }
+      c.fillStyle = "rgba(120, 105, 70, 0.22)";
+      for (let x = 32; x < 1920; x += 34) for (let y = 30; y < 1080; y += 34) c.fillRect(x, y, 2, 2);
+
+      // lavis : couches translucides aux bords irréguliers
+      function wash(drawShape, col, layers = 7, spread = 7) {
+        for (let l = 0; l < layers; l++) {
+          c.save();
+          c.globalAlpha = 0.09;
+          c.fillStyle = col;
+          c.translate((rnd() - 0.5) * spread, (rnd() - 0.5) * spread);
+          drawShape(l);
+          c.fill();
+          c.restore();
+        }
+      }
+      const blob = (cx, cy, r, ry = r) => () => {
+        c.beginPath();
+        for (let i = 0; i <= 40; i++) {
+          const a = (i / 40) * Math.PI * 2,
+            k = 1 + (rnd() - 0.5) * 0.14;
+          const x = cx + Math.cos(a) * r * k,
+            y = cy + Math.sin(a) * ry * k;
+          i ? c.lineTo(x, y) : c.moveTo(x, y);
+        }
+        c.closePath();
+      };
+      const hand = (txt, x, y, size, col = INK, w = 600, rot = 0, align = "center") => {
+        c.save();
+        c.translate(x, y);
+        c.rotate(rot);
+        c.fillStyle = col;
+        c.font = `${w} ${size}px Caveat`;
+        c.textAlign = align;
+        c.fillText(txt, 0, 0);
+        c.restore();
+      };
+      const arrow = (pts, extra = {}) => {
+        rc.curve(pts, o({ strokeWidth: 2.4, ...extra }));
+        const [x1, y1] = pts[pts.length - 2],
+          [x2, y2] = pts[pts.length - 1];
+        const a = Math.atan2(y2 - y1, x2 - x1);
+        rc.line(x2, y2, x2 - 20 * Math.cos(a - 0.45), y2 - 20 * Math.sin(a - 0.45), o({ strokeWidth: 2.4, ...extra }));
+        rc.line(x2, y2, x2 - 20 * Math.cos(a + 0.45), y2 - 20 * Math.sin(a + 0.45), o({ strokeWidth: 2.4, ...extra }));
+      };
+
+      // en-tête : titre manuscrit souligné, logo en étiquette
+      hand("De la voix à la réforme", 128, 168, 92, INK, 700, -0.015, "left");
+      rc.curve(
+        [
+          [130, 196],
+          [400, 190],
+          [700, 199],
+          [905, 186],
+        ],
+        o({ stroke: GREEN, strokeWidth: 5, roughness: 1.8 }),
+      );
+      c.drawImage(logo, 1700, 70, 120, 111);
+
+      // 1. une entreprise (boutique)
+      wash(blob(275, 520, 120), GREEN);
+      rc.circle(275, 520, 236, o());
+      rc.rectangle(205, 505, 140, 90, o());
+      rc.polygon(
+        [
+          [192, 505],
+          [358, 505],
+          [340, 455],
+          [210, 455],
+        ],
+        o({ fill: "rgba(47,143,87,0.5)", fillStyle: "hachure", hachureGap: 7, fillWeight: 1.6 }),
+      );
+      rc.rectangle(255, 535, 40, 60, o({ strokeWidth: 2 }));
+      rc.rectangle(310, 525, 26, 22, o({ strokeWidth: 1.8 }));
+      hand("une entreprise", 275, 690, 50);
+
+      // 2. sa fédération (13 petits cercles)
+      wash(blob(640, 640, 128, 110), GREEN);
+      for (let k = 0; k < 13; k++) {
+        const a = (k / 13) * Math.PI * 2,
+          r = k % 2 ? 72 : 52;
+        rc.circle(640 + Math.cos(a) * r, 640 + Math.sin(a) * r * 0.85, 30 + (k % 3) * 6, o({ strokeWidth: 2, fill: k === 4 ? "rgba(47,143,87,0.9)" : undefined, fillStyle: "solid" }));
+      }
+      rc.circle(640, 640, 40, o({ fill: "rgba(154,143,78,0.9)", fillStyle: "zigzag", fillWeight: 1.4 }));
+      hand("sa fédération", 640, 810, 50);
+      hand("(13 fédérations)", 640, 856, 38, GREEN, 600);
+
+      // 3. le Bureau exécutif (table de réunion)
+      wash(blob(990, 500, 140, 100), GREEN);
+      rc.ellipse(990, 520, 230, 90, o({ fill: "rgba(154,143,78,0.55)", fillStyle: "hachure", hachureGap: 8 }));
+      for (let k = 0; k < 7; k++) {
+        const a = (k / 7) * Math.PI * 2;
+        rc.circle(990 + Math.cos(a) * 140, 520 + Math.sin(a) * 66, 26, o({ strokeWidth: 2 }));
+      }
+      hand("le Bureau exécutif", 990, 650, 50);
+
+      // 4. le dialogue public-privé (deux bulles)
+      wash(blob(1335, 640, 150, 105), GREEN);
+      rc.path("M1220 600 q0 -70 95 -70 q95 0 95 60 q0 60 -95 60 l-55 0 l-30 30 l5 -34 q-15 -10 -15 -46 z", o());
+      rc.path("M1300 690 q0 -60 90 -60 q90 0 90 55 q0 55 -60 58 l10 34 l-35 -32 q-85 0 -85 -55 z", o({ fill: "rgba(47,143,87,0.55)", fillStyle: "cross-hatch", hachureGap: 9 }));
+      hand("public", 1310, 612, 38, INK, 700);
+      hand("privé", 1392, 706, 38, INK, 700);
+      hand("le dialogue public-privé", 1345, 810, 50);
+
+      // 5. les réformes (document, coche) — en cours de tracé
+      wash(blob(1690, 470, 120, 130), GREEN);
+      rc.rectangle(1620, 375, 140, 185, o());
+      for (let k = 0; k < 5; k++) rc.line(1640, 410 + k * 24, 1740 - (k % 2) * 22, 410 + k * 24, o({ strokeWidth: 1.6, roughness: 1.1 }));
+      rc.linearPath(
+        [
+          [1650, 525],
+          [1670, 545],
+          [1708, 500],
+        ],
+        o({ stroke: GREEN, strokeWidth: 5 }),
+      );
+      hand("les réformes", 1690, 612, 50);
+
+      // flèches entre les étapes ; la dernière est en train d'être tracée
+      arrow([
+        [400, 520],
+        [470, 560],
+        [510, 600],
+      ]);
+      arrow([
+        [770, 620],
+        [830, 560],
+        [870, 530],
+      ]);
+      arrow([
+        [1110, 560],
+        [1165, 600],
+        [1205, 625],
+      ]);
+      rc.curve(
+        [
+          [1490, 610],
+          [1540, 560],
+          [1572, 528],
+        ],
+        o({ strokeWidth: 2.4 }),
+      );
+      // stylo plume qui trace
+      c.save();
+      c.translate(1574, 526);
+      c.rotate(-0.78);
+      c.fillStyle = "#2b2f36";
+      c.beginPath();
+      c.moveTo(0, 0);
+      c.lineTo(-11, -40);
+      c.lineTo(11, -40);
+      c.closePath();
+      c.fill();
+      c.fillStyle = "#c9a548";
+      c.fillRect(-12, -52, 24, 12);
+      c.fillStyle = "#1f3b2a";
+      c.beginPath();
+      c.roundRect(-14, -330, 28, 280, 12);
+      c.fill();
+      c.fillStyle = "rgba(255,255,255,0.18)";
+      c.fillRect(-8, -320, 5, 250);
+      c.restore();
+
+      // notes dans la marge : la carte du Gabon au lavis vert
+      {
+        const S = 0.4,
+          OX = 250,
+          OY = 925;
+        const pts = window.GABON_OUTLINE.map(([x, y]) => [OX + (x - 340) * S, OY + (y - 218) * S]);
+        wash(
+          () => {
+            c.beginPath();
+            pts.forEach(([x, y], i) => (i ? c.lineTo(x + (rnd() - 0.5) * 4, y + (rnd() - 0.5) * 4) : c.moveTo(x, y)));
+            c.closePath();
+          },
+          GREEN,
+          9,
+          5,
+        );
+        rc.polygon(
+          pts.filter((_, i) => i % 3 === 0),
+          o({ strokeWidth: 2.2, roughness: 1.1 }),
+        );
+        hand("plus de 1 100 entreprises", 372, 968, 46, GREEN, 700, -0.03, "left");
+        hand("depuis 1959", 392, 1016, 40, INK, 600, -0.03, "left");
+        arrow(
+          [
+            [340, 880],
+            [300, 790],
+            [278, 712],
+          ],
+          { stroke: GREEN, strokeWidth: 2 },
+        );
+      }
+      window.__ready = true;
+    </script>
+  </body>
+</html>

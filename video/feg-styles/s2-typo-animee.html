@@ -1,0 +1,192 @@
+<!doctype html>
+<!-- Aperçu 2 — typographie animée : les mots de la voix deviennent l'image (image saisie en plein mouvement). -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aperçu — typographie animée</title>
+    <link rel="stylesheet" href="fonts.css" />
+    <script src="geo.js"></script>
+    <style>
+      body {
+        background: #063d21;
+        font-family: "Hyundai Sans Head", sans-serif;
+        color: #fff;
+        position: relative;
+      }
+      .abs {
+        position: absolute;
+        white-space: nowrap;
+      }
+      /* mot répété en fond, contour seul, qui défile */
+      #bgwords {
+        left: -200px;
+        top: -120px;
+        width: 2600px;
+        transform: rotate(-7deg);
+        transform-origin: 0 0;
+      }
+      #bgwords div {
+        font-weight: 700;
+        font-size: 190px;
+        line-height: 0.98;
+        letter-spacing: -0.02em;
+        color: transparent;
+        -webkit-text-stroke: 2px rgba(255, 255, 255, 0.09);
+      }
+      #bgwords div:nth-child(2n) {
+        margin-left: -420px;
+      }
+      #kick {
+        left: 124px;
+        top: 168px;
+        font-weight: 500;
+        font-size: 76px;
+        color: #aeae7d;
+        letter-spacing: -0.01em;
+      }
+      #big {
+        left: 96px;
+        top: 250px;
+        font-weight: 700;
+        font-size: 480px;
+        line-height: 1;
+        letter-spacing: -0.055em;
+      }
+      #big .ghost {
+        position: absolute;
+        top: 0;
+        filter: blur(6px);
+      }
+      #ribbon {
+        left: 0;
+        top: 792px;
+        width: 1265px;
+        height: 118px;
+        background: #aeae7d;
+      }
+      #ribbon span {
+        position: absolute;
+        left: 126px;
+        top: 22px;
+        font-weight: 700;
+        font-size: 70px;
+        letter-spacing: 0.09em;
+        color: #063d21;
+      }
+      /* la bande arrive par la droite : bord flou */
+      #ribbon::after {
+        content: "";
+        position: absolute;
+        right: -90px;
+        top: 0;
+        width: 90px;
+        height: 118px;
+        background: linear-gradient(90deg, rgba(174, 174, 125, 0.85), rgba(174, 174, 125, 0));
+      }
+      #side {
+        left: 1490px;
+        top: 150px;
+      }
+      #side div {
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1.17;
+        color: transparent;
+        -webkit-text-stroke: 1.6px rgba(255, 255, 255, 0.55);
+      }
+      #side div.on {
+        color: #fff;
+        -webkit-text-stroke: 0;
+      }
+      #side div.mid {
+        -webkit-text-stroke: 1.6px rgba(255, 255, 255, 0.85);
+      }
+      #voice {
+        left: 1490px;
+        top: 826px;
+        font-weight: 700;
+        font-size: 50px;
+        line-height: 1.12;
+        letter-spacing: -0.01em;
+      }
+      #voice b {
+        color: #aeae7d;
+      }
+      #mark {
+        left: 1726px;
+        top: 950px;
+      }
+      #url {
+        left: 1490px;
+        top: 968px;
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-size: 30px;
+        color: rgba(255, 255, 255, 0.7);
+        letter-spacing: 0.04em;
+      }
+      #bar {
+        left: 1490px;
+        top: 800px;
+        width: 360px;
+        height: 6px;
+        background: rgba(255, 255, 255, 0.18);
+      }
+      #bar i {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 6px;
+        width: 62%;
+        background: #aeae7d;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="bgwords" class="abs">
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+      <div>ENSEMBLE ENSEMBLE ENSEMBLE ENSEMBLE</div>
+    </div>
+    <div id="kick" class="abs">plus de</div>
+    <div id="big" class="abs">
+      <span>1&#8239;10</span><span id="z" style="position: relative">0<span class="ghost" style="left: 60px; opacity: 0.3">0</span><span class="ghost" style="left: 125px; opacity: 0.14">0</span><span class="ghost" style="left: 195px; opacity: 0.06">0</span></span>
+    </div>
+    <div id="ribbon" class="abs"><span>ENTREPRISES MEMBRES</span></div>
+    <div id="side" class="abs">
+      <div class="on">Construction</div>
+      <div class="mid">Services divers</div>
+      <div class="mid">Commerce</div>
+      <div>Conseil</div>
+      <div>Logistique</div>
+      <div>Numérique</div>
+      <div>Industrie</div>
+      <div>Finance</div>
+      <div>Santé</div>
+      <div style="opacity: 0.6">Bois</div>
+      <div style="opacity: 0.35">Tourisme</div>
+    </div>
+    <div id="bar" class="abs"><i></i></div>
+    <div id="voice" class="abs">13 fédérations<br /><b>une seule voix</b></div>
+    <div id="url" class="abs">lafeg.ga</div>
+    <canvas id="mark" class="abs" width="320" height="200" style="width: 160px; height: 100px"></canvas>
+    <script>
+      // les 71 points du logo en petit, comme signature
+      (async () => {
+        const c = document.getElementById("mark").getContext("2d");
+        c.fillStyle = "#aeae7d";
+        const s = 0.5;
+        for (const [x, y] of window.FEG_DOTS) {
+          c.beginPath();
+          c.arc((x - 140) * s, (y - 10) * s, 16.5 * s * 0.9, 0, Math.PI * 2);
+          c.fill();
+        }
+        await document.fonts.ready;
+        window.__ready = true;
+      })();
+    </script>
+  </body>
+</html>

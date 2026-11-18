@@ -1,0 +1,228 @@
+<!doctype html>
+<!-- Aperçu 6 — le point bronze : un des 71 points du logo prend vie et rejoint sa place sur la carte. -->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Aperçu — le point bronze</title>
+    <link rel="stylesheet" href="fonts.css" />
+    <script src="geo.js"></script>
+    <style>
+      body {
+        background: #faf7f0;
+      }
+      canvas {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      #txt {
+        position: absolute;
+        left: 132px;
+        top: 330px;
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 82px;
+        line-height: 1.06;
+        letter-spacing: -0.015em;
+        color: #063d21;
+      }
+      #txt em {
+        font-style: normal;
+        color: #8f8a52;
+      }
+      #txt small {
+        display: block;
+        margin-top: 34px;
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-weight: 400;
+        font-size: 32px;
+        letter-spacing: 0;
+        color: #5c6259;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="c" width="3840" height="2160"></canvas>
+    <div id="txt">Votre entreprise<br /><em>a sa place</em><br />à nos côtés.<small>Fédération des Entreprises du Gabon · lafeg.ga</small></div>
+    <script>
+      (async () => {
+        const c = document.getElementById("c").getContext("2d");
+        c.scale(2, 2);
+        const bgG = c.createRadialGradient(1300, 480, 100, 1100, 540, 1300);
+        bgG.addColorStop(0, "#fffdf8");
+        bgG.addColorStop(1, "#f1ece0");
+        c.fillStyle = bgG;
+        c.fillRect(0, 0, 1920, 1080);
+
+        const S = 1.42,
+          OX = 1012,
+          OY = 210;
+        const P = window.FEG_DOTS.map(([x, y]) => [OX + (x - 140) * S, OY + y * S]);
+        const R = 16.5 * S;
+        const TARGET = 24; // la place qui attend (côte, près de Libreville)
+        const HERO = [930, 300]; // le point en plein saut
+        const awake = new Set([3, 7, 10, 16, 19, 22, 25, 28, 34, 36, 41, 45, 48, 52, 57, 63]);
+
+        // trajectoire pointillée du saut
+        c.save();
+        c.strokeStyle = "#c9c294";
+        c.lineWidth = 4;
+        c.setLineDash([2, 16]);
+        c.lineCap = "round";
+        c.beginPath();
+        c.moveTo(800, 905);
+        c.quadraticCurveTo(820, 160, HERO[0] - 40, HERO[1] + 26);
+        c.stroke();
+        c.beginPath();
+        c.moveTo(HERO[0] + 50, HERO[1] + 30);
+        c.quadraticCurveTo(1150, 300, P[TARGET][0] - 6, P[TARGET][1] - R - 16);
+        c.globalAlpha = 0.5;
+        c.stroke();
+        c.restore();
+        // petits rebonds au départ
+        c.fillStyle = "rgba(143,138,82,0.18)";
+        c.beginPath();
+        c.ellipse(800, 917, 34, 8, 0, 0, Math.PI * 2);
+        c.fill();
+
+        // la carte : points endormis (contour), points éveillés (pleins, avec des yeux)
+        const eyes = (x, y, r, lookX, lookY, blink = false) => {
+          const dx = lookX - x,
+            dy = lookY - y,
+            d = Math.hypot(dx, dy) || 1;
+          for (const sx of [-0.32, 0.32]) {
+            const ex = x + sx * r,
+              ey = y - 0.1 * r;
+            c.fillStyle = "#ffffff";
+            c.beginPath();
+            c.ellipse(ex, ey, r * 0.2, blink ? r * 0.04 : r * 0.26, 0, 0, Math.PI * 2);
+            c.fill();
+            if (!blink) {
+              c.fillStyle = "#1d2a22";
+              c.beginPath();
+              c.arc(ex + (dx / d) * r * 0.08, ey + (dy / d) * r * 0.1, r * 0.11, 0, Math.PI * 2);
+              c.fill();
+            }
+          }
+        };
+        P.forEach(([x, y], i) => {
+          if (i === TARGET) {
+            // la place libre : cercle pointillé qui attend
+            c.save();
+            c.strokeStyle = "#8f8a52";
+            c.lineWidth = 3;
+            c.setLineDash([6, 7]);
+            c.beginPath();
+            c.arc(x, y, R - 1, 0, Math.PI * 2);
+            c.stroke();
+            c.restore();
+            c.fillStyle = "rgba(174,174,125,0.14)";
+            c.beginPath();
+            c.arc(x, y, R + 12, 0, Math.PI * 2);
+            c.fill();
+            return;
+          }
+          if (awake.has(i)) {
+            const g = c.createRadialGradient(x - R * 0.35, y - R * 0.4, R * 0.1, x, y, R);
+            g.addColorStop(0, "#c8c495");
+            g.addColorStop(1, "#a6a370");
+            c.fillStyle = g;
+            c.beginPath();
+            c.arc(x, y, R, 0, Math.PI * 2);
+            c.fill();
+            eyes(x, y, R, HERO[0], HERO[1], i === 41);
+          } else {
+            c.fillStyle = "#e9e5d2";
+            c.beginPath();
+            c.arc(x, y, R, 0, Math.PI * 2);
+            c.fill();
+            c.strokeStyle = "#d3cdaa";
+            c.lineWidth = 2;
+            c.stroke();
+          }
+        });
+
+        // le héros : point bronze étiré par le saut, avec reflet, yeux, joues
+        {
+          const [x, y] = HERO,
+            r = 46;
+          c.save();
+          c.translate(x, y);
+          c.rotate(0.45);
+          c.scale(0.9, 1.12);
+          const g = c.createRadialGradient(-r * 0.35, -r * 0.45, r * 0.1, 0, 0, r);
+          g.addColorStop(0, "#d6d2a2");
+          g.addColorStop(0.6, "#b3af7a");
+          g.addColorStop(1, "#8f8a52");
+          c.fillStyle = g;
+          c.beginPath();
+          c.arc(0, 0, r, 0, Math.PI * 2);
+          c.fill();
+          c.fillStyle = "rgba(255,255,255,0.55)";
+          c.beginPath();
+          c.ellipse(-r * 0.38, -r * 0.48, r * 0.2, r * 0.12, -0.6, 0, Math.PI * 2);
+          c.fill();
+          c.restore();
+          // yeux qui regardent la place libre
+          const [tx, ty] = P[TARGET];
+          const dx = tx - x,
+            dy = ty - y,
+            d = Math.hypot(dx, dy);
+          for (const sx of [-15, 13]) {
+            c.fillStyle = "#fff";
+            c.beginPath();
+            c.ellipse(x + sx + 6, y - 6, 10, 13, 0.45, 0, Math.PI * 2);
+            c.fill();
+            c.fillStyle = "#1d2a22";
+            c.beginPath();
+            c.arc(x + sx + 6 + (dx / d) * 4.5, y - 6 + (dy / d) * 5, 5.6, 0, Math.PI * 2);
+            c.fill();
+          }
+          c.strokeStyle = "#3b3416";
+          c.lineWidth = 3;
+          c.lineCap = "round";
+          c.beginPath();
+          c.arc(x + 9, y + 14, 9, 0.25, Math.PI - 0.6);
+          c.stroke();
+          c.fillStyle = "rgba(214,120,90,0.35)";
+          for (const sx of [-26, 30]) {
+            c.beginPath();
+            c.ellipse(x + sx, y + 10, 7, 4, 0.4, 0, Math.PI * 2);
+            c.fill();
+          }
+          // traits de vitesse
+          c.strokeStyle = "rgba(143,138,82,0.45)";
+          c.lineWidth = 3.5;
+          for (const [ox, oy, l] of [
+            [-70, 40, 34],
+            [-62, 62, 22],
+            [-80, 18, 18],
+          ]) {
+            c.beginPath();
+            c.moveTo(x + ox, y + oy);
+            c.lineTo(x + ox - l * 0.7, y + oy + l * 0.7);
+            c.stroke();
+          }
+        }
+        // étincelles autour de la place libre
+        {
+          const [x, y] = P[TARGET];
+          c.strokeStyle = "#b3ae78";
+          c.lineWidth = 3;
+          c.lineCap = "round";
+          for (let k = 0; k < 6; k++) {
+            const a = (k / 6) * Math.PI * 2 + 0.3;
+            c.beginPath();
+            c.moveTo(x + Math.cos(a) * (R + 16), y + Math.sin(a) * (R + 16));
+            c.lineTo(x + Math.cos(a) * (R + 30), y + Math.sin(a) * (R + 30));
+            c.stroke();
+          }
+        }
+        await document.fonts.ready;
+        window.__ready = true;
+      })();
+    </script>
+  </body>
+</html>
