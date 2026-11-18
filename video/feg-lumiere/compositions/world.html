@@ -639,7 +639,7 @@
       const TR = pointsSystem(N * 5, 2); // traînées
       const PS = pointsSystem(N, 3); // entreprises
       const FX = pointsSystem(9000, 4); // anneaux, ponts, faisceaux, orbites
-      const STARS = Array.from({ length: 1500 }, () => ({ x: (rnd() - 0.5) * 300, y: (rnd() - 0.5) * 170, z: -150 + rnd() * 80, s: 2.6 + rnd() * 3.6, a: 0.12 + rnd() * 0.42, w: 0.4 + rnd() * 1.6, ph: rnd() * 6.28 }));
+      const STARS = Array.from({ length: 1500 }, () => ({ x: (rnd() - 0.5) * 300, y: (rnd() - 0.5) * 170, z: -150 + rnd() * 80, s: 3.2 + rnd() * 4.2, a: 0.2 + rnd() * 0.5, w: 0.4 + rnd() * 1.6, ph: rnd() * 6.28 }));
 
       // étoiles à aigrettes : les lumières principales (première lumière, nœuds, nouvelle lumière)
       const flareFS = `varying vec2 vUv; uniform vec3 uColor; uniform float uAlpha; uniform float uSpike; uniform float uCore;
@@ -892,7 +892,7 @@
           size *= 1 + 0.5 * pulseVoice + 0.4 * pulseRef + 0.25 * mapGlow + 0.35 * bump(t, T.lumiere + 0.2, 0.35) * (p === FIRST ? 1 : 0);
           const tw = 0.85 + 0.15 * Math.sin(t * 1.7 + p.tw);
           // dans le cœur (Bureau exécutif), les lumières se serrent : on les atténue pour garder la sphère lisible
-          const coreDim = prog(t, p.tCore + 0.5, 0.7) * (1 - prog(t, p.tBack, 0.4));
+          const coreDim = prog(t, p.tCore + 0.5, 0.7) * (1 - prog(t, p.tBack + 0.3, 1.1));
           size *= 1 - 0.25 * coreDim;
           const aa = a * tw * (1 - 0.62 * coreDim);
           PS.push(o[0], o[1], o[2], col, size, aa);
