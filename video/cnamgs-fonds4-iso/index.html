@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>CNAMGS — Le Fonds 4</title>
+    <script src="lib/gsap.min.js"></script>
+    <script src="assets/cues.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="89.759" data-width="1920" data-height="1080">
+    <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="0" data-duration="89.759" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-fonds4" data-composition-id="ov-fonds4" data-composition-src="compositions/ov-fonds4.html" data-start="29.762" data-duration="5.264" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-cotisation" data-composition-id="ov-cotisation" data-composition-src="compositions/ov-cotisation.html" data-start="57.137" data-duration="5.938" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-end" data-composition-id="ov-end" data-composition-src="compositions/ov-end.html" data-start="81.659" data-duration="8.1" data-track-index="4" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <audio id="vo-L01" src="assets/voice/L01.wav" data-start="3.4" data-duration="8.422" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L02" src="assets/voice/L02.wav" data-start="12.822" data-duration="5.786" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L03" src="assets/voice/L03.wav" data-start="19.708" data-duration="9.454" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L04" src="assets/voice/L04.wav" data-start="30.062" data-duration="4.464" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L05" src="assets/voice/L05.wav" data-start="35.626" data-duration="12.266" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L06" src="assets/voice/L06.wav" data-start="48.992" data-duration="7.545" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L07" src="assets/voice/L07.wav" data-start="57.537" data-duration="4.938" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L08" src="assets/voice/L08.wav" data-start="63.575" data-duration="8.486" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L09" src="assets/voice/L09.wav" data-start="73.261" data-duration="8.098" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="bgm" src="assets/bgm/soundhill-find-yourself.mp3" data-start="0" data-duration="89.759" data-media-start="47.901" data-track-index="21" data-volume="1" data-fade-in="1.2" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.52},{"t":3,"v":0.52},{"t":3.35,"v":0.19},{"t":12.422,"v":0.19},{"t":12.772,"v":0.19},{"t":18.708,"v":0.19},{"t":19.158,"v":0.36},{"t":19.308,"v":0.36},{"t":19.658,"v":0.19},{"t":29.662,"v":0.19},{"t":30.012,"v":0.19},{"t":34.626,"v":0.19},{"t":35.076,"v":0.36},{"t":35.226,"v":0.36},{"t":35.576,"v":0.19},{"t":47.992,"v":0.19},{"t":48.442,"v":0.36},{"t":48.592,"v":0.36},{"t":48.942,"v":0.19},{"t":57.137,"v":0.19},{"t":57.487,"v":0.19},{"t":62.575,"v":0.19},{"t":63.025,"v":0.36},{"t":63.175,"v":0.36},{"t":63.525,"v":0.19},{"t":72.161,"v":0.19},{"t":72.611,"v":0.36},{"t":72.861,"v":0.36},{"t":73.211,"v":0.19},{"t":81.509,"v":0.19},{"t":82.209,"v":0.85}]}]}'></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

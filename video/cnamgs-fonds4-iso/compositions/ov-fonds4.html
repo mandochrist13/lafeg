@@ -1,0 +1,117 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 600;
+      src: url("assets/fonts/Montserrat-600.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 700;
+      src: url("assets/fonts/Montserrat-700.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 800;
+      src: url("assets/fonts/Montserrat-800.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Montserrat", sans-serif;
+      color: #16202a;
+    }
+    /* voile blanc à gauche : le titre reste lisible devant la maquette */
+    #f4-veil {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1180px;
+      height: 1080px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.92) 55%, rgba(255, 255, 255, 0) 100%);
+    }
+    #f4-col {
+      position: absolute;
+      left: 132px;
+      top: 290px;
+      width: 820px;
+    }
+    #f4-kick {
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3d7f29;
+    }
+    #f4-title {
+      margin-top: 6px;
+      font-weight: 800;
+      font-size: 172px;
+      line-height: 1;
+      letter-spacing: -0.025em;
+      color: #0b3f63;
+      white-space: nowrap;
+    }
+    #f4-title b {
+      font-weight: 800;
+      color: #0067a3;
+    }
+    #f4-bar {
+      display: flex;
+      width: 312px;
+      height: 14px;
+      margin: 30px 0 36px;
+      border-radius: 7px;
+      overflow: hidden;
+      transform-origin: 0 50%;
+    }
+    #f4-bar span {
+      flex: 1;
+    }
+    #f4-l1,
+    #f4-l2 {
+      font-weight: 700;
+      font-size: 54px;
+      line-height: 1.16;
+      letter-spacing: -0.01em;
+      white-space: nowrap;
+    }
+    #f4-l2 {
+      color: #0067a3;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-fonds4" data-width="1920" data-height="1080">
+    <div id="f4-veil"></div>
+    <div id="f4-col">
+      <div id="f4-kick">Assurance maladie</div>
+      <div id="f4-title">Fonds <b>4</b></div>
+      <div id="f4-bar"><span style="background: #4f9a36"></span><span style="background: #f3cf1b"></span><span style="background: #0067a3"></span></div>
+      <div id="f4-l1">Travailleurs indépendants</div>
+      <div id="f4-l2">et assurés volontaires</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__F4_CUES;
+      var W = (C.ov && C.ov["ov-fonds4"]) || { start: 0, dur: 5 };
+      var L = function (abs) {
+        return Math.max(0, abs - W.start);
+      };
+      var tKick = L(C.at("L04", "Avec") - 0.05);
+      var tTitle = L(C.at("L04", "Fonds") - 0.12);
+      var tL1 = L(C.at("L04", "travailleurs") - 0.12);
+      var tL2 = L(C.at("L04", "assurés") - 0.3);
+      var tOut = W.dur - 0.42;
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#f4-veil", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
+      tl.fromTo("#f4-kick", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, tKick);
+      tl.fromTo("#f4-title", { opacity: 0, y: 26, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, tTitle);
+      tl.fromTo("#f4-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.6, ease: "power3.inOut" }, tTitle + 0.25);
+      tl.fromTo("#f4-l1", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, tL1);
+      tl.fromTo("#f4-l2", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, tL2);
+      tl.to("#f4-col", { opacity: 0, filter: "blur(8px)", duration: 0.3, ease: "power3.in" }, tOut);
+      tl.to("#f4-veil", { opacity: 0, duration: 0.4, ease: "power2.in" }, tOut + 0.05);
+      window.__timelines["ov-fonds4"] = tl;
+    })();
+  </script>
+</template>

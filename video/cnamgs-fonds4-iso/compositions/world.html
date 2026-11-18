@@ -1,0 +1,1932 @@
+<!doctype html>
+<!--
+  Fonds 4 de la CNAMGS — la maquette : une seule prise continue à travers une maquette isométrique.
+  La rue des travailleurs indépendants, la ville et ses quatre « couvertures » (une coupole par fonds),
+  le pôle de soins, le paiement trimestriel, puis la carte du Gabon et ses bureaux.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire).
+  Les temps viennent de assets/cues.js (window.__F4_CUES), recalculés par tools/build.mjs.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Maquette Fonds 4</title>
+    <style>
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 500;
+        src: url("assets/fonts/Montserrat-500.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 600;
+        src: url("assets/fonts/Montserrat-600.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 700;
+        src: url("assets/fonts/Montserrat-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 800;
+        src: url("assets/fonts/Montserrat-800.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #world-cv,
+      #world-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Montserrat", sans-serif;
+        color: #16202a;
+      }
+      .wl .ti {
+        display: block;
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: -0.01em;
+        color: #0b3f63;
+      }
+      .wl .ds {
+        display: block;
+        margin-top: 2px;
+        font-weight: 600;
+        font-size: 28px;
+        color: #3a4651;
+      }
+      .wl .ds i {
+        font-style: normal;
+      }
+      /* fonds 1 à 3 : posés au-dessus de leur coupole */
+      .wl.fund {
+        text-align: center;
+      }
+      .wl.fund .no {
+        display: block;
+        font-weight: 800;
+        font-size: 40px;
+        letter-spacing: -0.01em;
+        color: #0067a3;
+      }
+      .wl.fund .ds {
+        font-size: 30px;
+        color: #16202a;
+      }
+      /* légende de la carte */
+      .wl.leg {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        font-weight: 600;
+        font-size: 32px;
+        color: #16202a;
+      }
+      .wl.leg svg {
+        flex: none;
+      }
+      #world-svg .ld {
+        fill: none;
+        stroke: #16202a;
+        stroke-width: 2;
+        stroke-opacity: 0.55;
+      }
+      #world-svg .dt {
+        fill: #16202a;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="89.759"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="89.759"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+      <svg id="world-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+        <polyline id="wk-lot-commerce" class="ld" points="" /><circle id="wd-lot-commerce" class="dt" r="5" />
+        <polyline id="wk-lot-atelier" class="ld" points="" /><circle id="wd-lot-atelier" class="dt" r="5" />
+        <polyline id="wk-lot-cabinet" class="ld" points="" /><circle id="wd-lot-cabinet" class="dt" r="5" />
+        <polyline id="wk-lot-maison" class="ld" points="" /><circle id="wd-lot-maison" class="dt" r="5" />
+        <polyline id="wk-p-prof" class="ld" points="" /><circle id="wd-p-prof" class="dt" r="5" />
+        <polyline id="wk-p-comm" class="ld" points="" /><circle id="wd-p-comm" class="dt" r="5" />
+        <polyline id="wk-p-arti" class="ld" points="" /><circle id="wd-p-arti" class="dt" r="5" />
+        <polyline id="wk-p-artis" class="ld" points="" /><circle id="wd-p-artis" class="dt" r="5" />
+        <polyline id="wk-p-empl" class="ld" points="" /><circle id="wd-p-empl" class="dt" r="5" />
+        <polyline id="wk-p-etr" class="ld" points="" /><circle id="wd-p-etr" class="dt" r="5" />
+        <polyline id="wk-s-cons" class="ld" points="" /><circle id="wd-s-cons" class="dt" r="5" />
+        <polyline id="wk-s-exam" class="ld" points="" /><circle id="wd-s-exam" class="dt" r="5" />
+        <polyline id="wk-s-hosp" class="ld" points="" /><circle id="wd-s-hosp" class="dt" r="5" />
+        <polyline id="wk-s-med" class="ld" points="" /><circle id="wd-s-med" class="dt" r="5" />
+        <polyline id="wk-s-evac" class="ld" points="" /><circle id="wd-s-evac" class="dt" r="5" />
+        <polyline id="wk-imm" class="ld" points="" /><circle id="wd-imm" class="dt" r="5" />
+      </svg>
+      <div id="world-labels">
+        <div id="wl-lot-commerce" class="wl"><span class="ti">Commerce</span></div>
+        <div id="wl-lot-atelier" class="wl"><span class="ti">Atelier</span></div>
+        <div id="wl-lot-cabinet" class="wl"><span class="ti">Cabinet</span></div>
+        <div id="wl-lot-maison" class="wl"><span class="ti">Maison</span></div>
+
+        <div id="wl-f1" class="wl fund"><span id="wn-f1" class="no">Fonds 1</span><span class="ds">Salariés du privé</span></div>
+        <div id="wl-f2" class="wl fund"><span id="wn-f2" class="no">Fonds 2</span><span class="ds">Agents de l'État</span></div>
+        <div id="wl-f3" class="wl fund"><span id="wn-f3" class="no">Fonds 3</span><span class="ds">Gabonais économiquement faibles</span></div>
+
+        <div id="wl-p-prof" class="wl">
+          <span class="ti">Professions libérales</span><span class="ds"><i id="wp-0">Santé</i> · <i id="wp-1">Droit</i> · <i id="wp-2">Conseil</i></span>
+        </div>
+        <div id="wl-p-comm" class="wl"><span class="ti">Commerçants</span></div>
+        <div id="wl-p-arti" class="wl"><span class="ti">Artisans</span></div>
+        <div id="wl-p-artis" class="wl"><span class="ti">Artistes</span></div>
+        <div id="wl-p-empl" class="wl"><span class="ti">Employés de maison</span></div>
+        <div id="wl-p-etr" class="wl"><span class="ti">Étrangers</span><span class="ds">résidant régulièrement au Gabon</span></div>
+
+        <div id="wl-s-cons" class="wl"><span class="ti">Consultations</span></div>
+        <div id="wl-s-exam" class="wl"><span class="ti">Examens</span></div>
+        <div id="wl-s-hosp" class="wl"><span class="ti">Hospitalisations</span></div>
+        <div id="wl-s-med" class="wl"><span class="ti">Médicaments</span></div>
+        <div id="wl-s-evac" class="wl"><span class="ti">Évacuations sanitaires</span></div>
+
+        <div id="wl-imm" class="wl"><span class="ti">Immatriculation</span></div>
+        <div id="wl-leg-0" class="wl leg">
+          <svg width="44" height="62" viewBox="0 0 44 62" aria-hidden="true">
+            <path d="M22 60 L9 30 A15 15 0 1 1 35 30 Z" fill="#0067a3" />
+            <circle cx="22" cy="20" r="6.5" fill="#ffffff" />
+          </svg>
+          <span>Délégation provinciale</span>
+        </div>
+        <div id="wl-leg-1" class="wl leg">
+          <svg width="44" height="62" viewBox="0 0 44 62" aria-hidden="true">
+            <path d="M22 54 L13 33 A10.5 10.5 0 1 1 31 33 Z" fill="#4f9a36" />
+            <circle cx="22" cy="26" r="4.5" fill="#ffffff" />
+          </svg>
+          <span>Unité départementale ou communale</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__F4_CUES;
+        var total = C ? C.total : 89.759;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+      import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
+
+      const host = window.__worldHost;
+      const C = window.__F4_CUES;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+      const norm = (s) =>
+        String(s)
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[̀-ͯ]/g, "")
+          .replace(/[^a-z0-9%]+/g, "");
+      // k-ième occurrence d'un mot dans une phrase
+      const atK = (id, needle, k, which = "s") => {
+        const n = norm(needle);
+        const ws = C.lines[id].words.filter((w) => w.n && (w.n === n || w.n.indexOf(n) === 0));
+        return ws.length ? ws[Math.min(k, ws.length - 1)][which] : C.lines[id].start;
+      };
+
+      // ------------------------------------------------------------------ outils
+      const DEG = Math.PI / 180;
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const expoOut = (u) => ((u = clamp01(u)), u >= 1 ? 1 : 1 - Math.pow(2, -10 * u));
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      // ressort amorti 0,8 (dépassement ~1,5 %), stabilisé à u = 1
+      const spring = (u) => {
+        u = clamp01(u);
+        if (u >= 1) return 1;
+        const z = 0.8,
+          w = 9,
+          wd = w * Math.sqrt(1 - z * z);
+        return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + ((z * w) / wd) * Math.sin(wd * u));
+      };
+      // fenêtre visible : monte sur [a, a+fi], descend sur [b, b+fo]
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      const tiny = 1e-4;
+
+      // ------------------------------------------------------------------ temps clés (depuis la voix)
+      const T = {};
+      T.fem = at("L01", "femmes");
+      T.hom = at("L01", "d'hommes");
+      T.work = at("L01", "travaillent");
+      T.pull1 = T.work + 0.15;
+      T.lot = { commerce: at("L01", "commerce"), atelier: at("L01", "atelier"), cabinet: at("L01", "cabinet"), maison: at("L01", "maison") };
+      T.pull2 = S("L02") - 0.55;
+      T.city = S("L02") + 0.05; // la ville se lève pendant le recul
+      T.wave = at("L02", "s'étend") - 0.1; // la couverture s'étend
+      T.pers = at("L02", "personnes") - 0.1;
+      T.logo = at("L03", "CNAMGS") - 0.12;
+      T.pop = [at("L03", "salariés"), at("L03", "agents"), at("L03", "Gabonais")];
+      T.fund = [atK("L03", "Fonds", 0), atK("L03", "Fonds", 1), atK("L03", "Fonds", 2), at("L04", "Fonds")];
+      T.vol = at("L04", "assurés");
+      T.prof = at("L05", "professions");
+      T.lib = [at("L05", "santé"), at("L05", "droit"), at("L05", "conseil")];
+      T.comm = at("L05", "commerçants");
+      T.arti = at("L05", "artisans");
+      T.artis = at("L05", "artistes");
+      T.empl = at("L05", "employés");
+      T.etr = at("L05", "étrangers");
+      T.toCampus = S("L06") - 0.95;
+      T.campus = S("L06") - 0.75;
+      T.care = [at("L06", "consultations"), at("L06", "examens"), at("L06", "hospitalisations"), at("L06", "médicaments"), at("L06", "évacuations")];
+      T.toPhone = S("L07") - 0.85;
+      T.cotis = at("L07", "cotisation");
+      T.trim = at("L07", "trimestre");
+      T.elec = at("L07", "électronique");
+      T.toHQ = S("L08") - 0.9;
+      T.imm = at("L08", "immatriculer");
+      T.bureau = at("L08", "bureau");
+      T.out = at("L08", "CNAMGS") - 0.35; // grand recul vers la carte
+      T.tiles = T.out + 0.25;
+      T.deleg = at("L08", "délégation");
+      T.unite = at("L08", "unité");
+      T.communale = at("L08", "communale");
+      T.partout = at("L08", "partout");
+      T.l9 = S("L09");
+      T.soli = at("L09", "solidarité");
+      T.pinsOut = T.soli - 0.75;
+      T.pers9 = at("L09", "personne");
+      T.cote = at("L09", "côté");
+      T.end = C.ov["ov-end"].start;
+
+      // ------------------------------------------------------------------ rendu
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xffffff);
+
+      // Lumière : ciel + soleil haut gauche. FACE = éclairement d'une face horizontale.
+      const HEMI = 2.9,
+        SUN = 1.9;
+      const SUN_DIR = new THREE.Vector3(-0.35, 1.0, 0.75).normalize();
+      const FACE = (HEMI + SUN * SUN_DIR.y) / Math.PI;
+      // Couleur d'albédo telle qu'une face horizontale au soleil rende exactement `hex` (× k).
+      const lit = (hex, k = 1) => new THREE.Color(hex).multiplyScalar(k / FACE);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xe2e5df, HEMI));
+      const sun = new THREE.DirectionalLight(0xffffff, SUN);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(2048, 2048);
+      sun.shadow.radius = 3;
+      sun.shadow.bias = -0.0002;
+      scene.add(sun, sun.target);
+
+      const mat = (hex, opts = {}) => new THREE.MeshStandardMaterial({ color: lit(hex, opts.k || 1), roughness: opts.r ?? 0.86, metalness: opts.m ?? 0 });
+      // Couleurs CNAMGS (logo) : bleu, vert, jaune — les couleurs du drapeau
+      const COL = {
+        ground: 0xffffff,
+        white: 0xf6f6f1,
+        roof: 0xdedfd9,
+        glass: 0x7f8c86,
+        door: 0xa8ada6,
+        walk: 0xefefeb,
+        road: 0xe1e3df,
+        blue: 0x0067a3,
+        green: 0x4f9a36,
+        yellow: 0xf3cf1b,
+        deep: 0x0b3f63,
+        figure: 0xe9e9e4,
+        dark: 0x2a333c,
+        wood: 0xcdb58e,
+        leaf: 0x86b56c,
+        lawn: 0xc9dfb6,
+        orange: 0xe39033,
+        coin: 0xe8c22c,
+      };
+      const M = {
+        ground: mat(COL.ground, { r: 1 }),
+        white: mat(COL.white),
+        roof: mat(COL.roof),
+        glass: mat(COL.glass, { r: 0.35, m: 0.1 }),
+        door: mat(COL.door),
+        walk: mat(COL.walk, { r: 1 }),
+        road: mat(COL.road, { r: 1 }),
+        dash: mat(0xffffff, { r: 1 }),
+        blue: mat(COL.blue, { r: 0.6 }),
+        green: mat(COL.green, { r: 0.7 }),
+        yellow: mat(COL.yellow, { r: 0.6 }),
+        deep: mat(COL.deep, { r: 0.5, m: 0.1 }),
+        figure: mat(COL.figure),
+        dark: mat(COL.dark, { r: 0.45, m: 0.15 }),
+        wood: mat(COL.wood),
+        leaf: mat(COL.leaf),
+        lawn: mat(COL.lawn, { r: 1 }),
+        orange: mat(COL.orange),
+        metal: mat(0xd5d6d0, { r: 0.4, m: 0.3 }),
+        coin: mat(COL.coin, { r: 0.35, m: 0.35 }),
+        figBlue: mat(0x2f7fb8),
+        figGreen: mat(0x6aa84f),
+        figYellow: mat(0xe9c52a),
+      };
+
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(4000, 4000), M.ground);
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // aides de construction
+      const BOX = new THREE.BoxGeometry(1, 1, 1);
+      BOX.translate(0, 0.5, 0);
+      const RBOX = new RoundedBoxGeometry(1, 1, 1, 2, 0.04);
+      RBOX.translate(0, 0.5, 0);
+      function box(parent, w, h, d, x, y, z, material, rounded = false) {
+        const m = new THREE.Mesh(rounded ? RBOX : BOX, material);
+        m.scale.set(w, h, d);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function cyl(parent, r, h, x, y, z, material, seg = 32) {
+        const g = new THREE.CylinderGeometry(r, r, h, seg);
+        g.translate(0, h / 2, 0);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function prism(parent, w, h, d, x, y, z, material) {
+        // prisme triangulaire (toit, fronton) : section dans le plan XY, extrudé sur Z
+        const sh = new THREE.Shape();
+        sh.moveTo(-w / 2, 0);
+        sh.lineTo(w / 2, 0);
+        sh.lineTo(0, h);
+        sh.closePath();
+        const g = new THREE.ExtrudeGeometry(sh, { depth: d, bevelEnabled: false });
+        g.translate(0, 0, -d / 2);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function sphere(parent, r, x, y, z, material) {
+        const m = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 16), material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function tooth(parent, w, h, d, x0, y, material) {
+        // dent de shed : triangle rectangle (pente vers +x), extrudé sur Z
+        const sh = new THREE.Shape();
+        sh.moveTo(0, 0);
+        sh.lineTo(w, 0);
+        sh.lineTo(w, h);
+        sh.closePath();
+        const g = new THREE.ExtrudeGeometry(sh, { depth: d, bevelEnabled: false });
+        g.translate(0, 0, -d / 2);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x0, y, 0);
+        m.castShadow = m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ textures (pictogrammes)
+      function canvasTex(w, h, draw) {
+        const c = document.createElement("canvas");
+        c.width = w;
+        c.height = h;
+        draw(c.getContext("2d"), w, h);
+        const tx = new THREE.CanvasTexture(c);
+        tx.colorSpace = THREE.SRGBColorSpace;
+        tx.anisotropy = 8;
+        return tx;
+      }
+      function rr(g, x, y, w, h, r) {
+        g.beginPath();
+        g.moveTo(x + r, y);
+        g.arcTo(x + w, y, x + w, y + h, r);
+        g.arcTo(x + w, y + h, x, y + h, r);
+        g.arcTo(x, y + h, x, y, r);
+        g.arcTo(x, y, x + w, y, r);
+        g.closePath();
+      }
+      // panneau carré arrondi, fond blanc, liseré coloré, pictogramme
+      function signTex(draw, edge = "#0067a3") {
+        return canvasTex(256, 256, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          rr(g, 4, 4, w - 8, h - 8, 40);
+          g.fill();
+          g.lineWidth = 12;
+          g.strokeStyle = edge;
+          rr(g, 10, 10, w - 20, h - 20, 34);
+          g.stroke();
+          draw(g, w, h);
+        });
+      }
+      const ICON = {
+        cross(col) {
+          return (g) => {
+            g.fillStyle = col;
+            rr(g, 100, 52, 56, 152, 14);
+            g.fill();
+            rr(g, 52, 100, 152, 56, 14);
+            g.fill();
+          };
+        },
+        scales(g) {
+          g.strokeStyle = "#0067a3";
+          g.fillStyle = "#0067a3";
+          g.lineWidth = 12;
+          g.lineCap = "round";
+          g.beginPath();
+          g.moveTo(128, 58);
+          g.lineTo(128, 190);
+          g.moveTo(66, 82);
+          g.lineTo(190, 82);
+          g.moveTo(92, 200);
+          g.lineTo(164, 200);
+          g.stroke();
+          g.lineWidth = 6;
+          for (const cx of [72, 184]) {
+            g.beginPath();
+            g.moveTo(cx, 84);
+            g.lineTo(cx - 26, 140);
+            g.moveTo(cx, 84);
+            g.lineTo(cx + 26, 140);
+            g.stroke();
+            g.beginPath();
+            g.arc(cx, 140, 30, 0, Math.PI);
+            g.closePath();
+            g.fill();
+          }
+          g.beginPath();
+          g.arc(128, 56, 12, 0, Math.PI * 2);
+          g.fill();
+        },
+        chart(g) {
+          g.fillStyle = "#0067a3";
+          [
+            [64, 150, 34, 50],
+            [112, 118, 34, 82],
+            [160, 86, 34, 114],
+          ].forEach(([x, y, w, h]) => {
+            rr(g, x, y, w, h, 6);
+            g.fill();
+          });
+          g.strokeStyle = "#4f9a36";
+          g.lineWidth = 12;
+          g.lineCap = "round";
+          g.lineJoin = "round";
+          g.beginPath();
+          g.moveTo(60, 120);
+          g.lineTo(108, 86);
+          g.lineTo(140, 100);
+          g.lineTo(192, 56);
+          g.stroke();
+          g.fillStyle = "#4f9a36";
+          g.beginPath();
+          g.moveTo(200, 46);
+          g.lineTo(172, 54);
+          g.lineTo(196, 76);
+          g.closePath();
+          g.fill();
+        },
+        stetho(g) {
+          g.strokeStyle = "#0067a3";
+          g.lineWidth = 13;
+          g.lineCap = "round";
+          g.beginPath();
+          g.moveTo(80, 52);
+          g.lineTo(80, 110);
+          g.arc(112, 110, 32, Math.PI, 0, true);
+          g.lineTo(144, 52);
+          g.moveTo(112, 142);
+          g.lineTo(112, 170);
+          g.arc(150, 170, 38, Math.PI, Math.PI * 0.05, true);
+          g.lineTo(188, 140);
+          g.stroke();
+          g.fillStyle = "#0067a3";
+          g.beginPath();
+          g.arc(188, 128, 22, 0, Math.PI * 2);
+          g.fill();
+          g.fillStyle = "#ffffff";
+          g.beginPath();
+          g.arc(188, 128, 9, 0, Math.PI * 2);
+          g.fill();
+        },
+        flask(g) {
+          g.fillStyle = "#4f9a36";
+          g.beginPath();
+          g.moveTo(104, 120);
+          g.lineTo(62, 196);
+          g.quadraticCurveTo(58, 206, 70, 206);
+          g.lineTo(186, 206);
+          g.quadraticCurveTo(198, 206, 194, 196);
+          g.lineTo(152, 120);
+          g.closePath();
+          g.fill();
+          g.strokeStyle = "#0067a3";
+          g.lineWidth = 11;
+          g.lineJoin = "round";
+          g.beginPath();
+          g.moveTo(106, 50);
+          g.lineTo(106, 108);
+          g.lineTo(56, 200);
+          g.lineTo(200, 200);
+          g.lineTo(150, 108);
+          g.lineTo(150, 50);
+          g.stroke();
+          g.beginPath();
+          g.moveTo(92, 50);
+          g.lineTo(164, 50);
+          g.stroke();
+        },
+        H(g) {
+          g.fillStyle = "#0067a3";
+          rr(g, 30, 30, 196, 196, 26);
+          g.fill();
+          g.fillStyle = "#ffffff";
+          g.fillRect(76, 64, 30, 128);
+          g.fillRect(150, 64, 30, 128);
+          g.fillRect(100, 114, 56, 28);
+        },
+      };
+      // badge rond : coche blanche sur bleu
+      const checkTex = () =>
+        canvasTex(256, 256, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          g.beginPath();
+          g.arc(128, 128, 124, 0, Math.PI * 2);
+          g.fill();
+          g.fillStyle = "#4f9a36";
+          g.beginPath();
+          g.arc(128, 128, 110, 0, Math.PI * 2);
+          g.fill();
+          g.strokeStyle = "#ffffff";
+          g.lineWidth = 26;
+          g.lineCap = "round";
+          g.lineJoin = "round";
+          g.beginPath();
+          g.moveTo(76, 132);
+          g.lineTo(112, 168);
+          g.lineTo(182, 94);
+          g.stroke();
+        });
+      // carte de séjour stylisée (pas de texte)
+      const idTex = () =>
+        canvasTex(320, 210, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          rr(g, 4, 4, w - 8, h - 8, 22);
+          g.fill();
+          g.strokeStyle = "#0067a3";
+          g.lineWidth = 6;
+          rr(g, 7, 7, w - 14, h - 14, 19);
+          g.stroke();
+          g.fillStyle = "#0067a3";
+          g.fillRect(10, 10, w - 20, 40);
+          g.fillStyle = "#cfd8df";
+          rr(g, 28, 72, 84, 104, 10);
+          g.fill();
+          g.fillStyle = "#9aa7b2";
+          g.beginPath();
+          g.arc(70, 108, 20, 0, Math.PI * 2);
+          g.fill();
+          g.fillRect(44, 136, 52, 36);
+          g.fillStyle = "#b9c3cb";
+          [84, 112, 140].forEach((y, k) => g.fillRect(134, y, k === 2 ? 100 : 150, 14));
+        });
+      const helipadTex = () =>
+        canvasTex(256, 256, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#e6e8e4";
+          g.beginPath();
+          g.arc(128, 128, 126, 0, Math.PI * 2);
+          g.fill();
+          g.strokeStyle = "#ffffff";
+          g.lineWidth = 12;
+          g.beginPath();
+          g.arc(128, 128, 104, 0, Math.PI * 2);
+          g.stroke();
+          g.fillStyle = "#0067a3";
+          g.fillRect(84, 66, 24, 124);
+          g.fillRect(148, 66, 24, 124);
+          g.fillRect(100, 116, 56, 24);
+        });
+      // toile du peintre (aplats aux couleurs du logo)
+      const paintTex = () =>
+        canvasTex(256, 208, (g, w, h) => {
+          g.fillStyle = "#fbfaf4";
+          g.fillRect(0, 0, w, h);
+          g.fillStyle = "#4f9a36";
+          g.beginPath();
+          g.arc(84, 82, 46, 0, Math.PI * 2);
+          g.fill();
+          g.fillStyle = "#f3cf1b";
+          g.beginPath();
+          g.moveTo(20, 150);
+          g.quadraticCurveTo(120, 90, 236, 120);
+          g.lineTo(236, 160);
+          g.quadraticCurveTo(120, 128, 20, 186);
+          g.closePath();
+          g.fill();
+          g.fillStyle = "#0067a3";
+          g.beginPath();
+          g.moveTo(20, 196);
+          g.quadraticCurveTo(128, 150, 236, 176);
+          g.lineTo(236, 204);
+          g.lineTo(20, 204);
+          g.closePath();
+          g.fill();
+          g.strokeStyle = "#8a6b3f";
+          g.lineWidth = 10;
+          g.strokeRect(5, 5, w - 10, h - 10);
+        });
+      function plane(parent, w, h, tex, x, y, z, opts = {}) {
+        const m = new THREE.Mesh(new THREE.PlaneGeometry(w, h), new THREE.MeshBasicMaterial({ map: tex || null, color: opts.color ?? 0xffffff, transparent: true, side: opts.side ?? THREE.FrontSide, depthWrite: opts.depthWrite ?? true }));
+        m.position.set(x, y, z);
+        if (opts.ry !== undefined) m.rotation.y = opts.ry;
+        if (opts.rx !== undefined) m.rotation.x = opts.rx;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ animations génériques
+      const risers = []; // se lèvent (échelle verticale, ressort)
+      function riser(g, t0, d = 0.75) {
+        risers.push({ g, t0, d });
+        g.scale.y = tiny;
+        g.visible = false;
+        return g;
+      }
+      const tints = []; // couleur d'un matériau qui change sur un mot
+      function tint(m, a, b, t0, d = 0.5, basic = false) {
+        const ca = basic ? new THREE.Color(a) : lit(a);
+        const cb = basic ? new THREE.Color(b) : lit(b);
+        tints.push({ m, a: ca, b: cb, t0, d });
+        m.color.copy(ca);
+        return m;
+      }
+      const pops = []; // apparaissent (échelle uniforme, ressort)
+      function pop(g, t0, s = 1, d = 0.5, out = null) {
+        pops.push({ g, t0, s, d, out });
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        return g;
+      }
+
+      // personnages : homme (cylindre), femme (évasé), tête
+      const FIG_BODY_M = new THREE.CylinderGeometry(0.075, 0.09, 0.3, 14);
+      FIG_BODY_M.translate(0, 0.15, 0);
+      const FIG_BODY_F = new THREE.CylinderGeometry(0.052, 0.118, 0.3, 14);
+      FIG_BODY_F.translate(0, 0.15, 0);
+      const FIG_HEAD = new THREE.SphereGeometry(0.075, 16, 12);
+      FIG_HEAD.translate(0, 0.38, 0);
+      const figs = [];
+      function figure(parent, x, z, o = {}) {
+        const g = new THREE.Group();
+        const mtl = o.m || M.figure;
+        const b = new THREE.Mesh(o.f ? FIG_BODY_F : FIG_BODY_M, mtl);
+        const h = new THREE.Mesh(FIG_HEAD, o.hm || mtl);
+        b.castShadow = h.castShadow = true;
+        g.add(b, h);
+        g.position.set(x, o.y || 0, z);
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        parent.add(g);
+        const f = { g, s: o.s || 1.2, t0: o.t0 ?? 0, d: o.d || 0.5, bob: o.bob || 0, w: o.w || 9, ph: o.ph || 0, walk: o.walk || null, y0: o.y || 0, out: o.out || null };
+        figs.push(f);
+        return f;
+      }
+
+      // ------------------------------------------------------------------ plan de la ville
+      // (r, u) : r vers la droite de l'écran, u vers le haut de l'écran, au sol (azimut 45°)
+      const RU = (r, u, y = 0) => new THREE.Vector3(0.70711 * (r - u), y, -0.70711 * (r + u));
+      const TILE_H = 2.0; // la ville est posée sur la dalle de Libreville (carte du Gabon, plus tard)
+      const city = new THREE.Group();
+      city.position.y = TILE_H;
+      scene.add(city);
+      // Plan en étoile : le siège de la CNAMGS au centre, quatre avenues, un quartier (un fonds) au bout de chacune.
+      // À l'écran : fonds 1 en haut à gauche, fonds 2 en haut à droite, fonds 3 en bas à gauche, fonds 4 en bas à droite.
+      const AV = 11;
+      const P_HQ = new THREE.Vector3(0, 0, 0),
+        P_D1 = new THREE.Vector3(-AV, 0, 0),
+        P_D2 = new THREE.Vector3(0, 0, -AV),
+        P_D3 = new THREE.Vector3(0, 0, AV),
+        P_D4 = new THREE.Vector3(12.4, 0, -1.33),
+        P_H = new THREE.Vector3(15.5, 0, -14.5);
+      const W = (p, x, y, z) => new THREE.Vector3(p.x + x, TILE_H + y, p.z + z);
+      // avenues, place du siège, arbres
+      {
+        const gr = riser(new THREE.Group(), T.city - 0.1, 0.6);
+        city.add(gr);
+        const flat = (w, d, x, z, m, y = 0, h = 0.02) => {
+          const b = box(gr, w, h, d, x, y, z, m);
+          b.castShadow = false;
+          return b;
+        };
+        flat(6.0, 6.0, 0, 0, M.walk, 0, 0.025);
+        flat(4.2, 1.3, -4.8, 0, M.road);
+        flat(1.3, 4.1, 0, -4.75, M.road);
+        flat(1.3, 4.3, 0, 4.85, M.road);
+        flat(3.9, 1.3, 4.95, 0, M.road);
+        for (const [x, z, along] of [
+          [-3.9, 0, "x"],
+          [-5.7, 0, "x"],
+          [0, -3.9, "z"],
+          [0, -5.6, "z"],
+          [0, 3.9, "z"],
+          [0, 5.75, "z"],
+          [3.95, 0, "x"],
+          [5.75, 0, "x"],
+        ])
+          flat(along === "x" ? 0.42 : 0.05, along === "x" ? 0.05 : 0.42, x, z, M.dash, 0.02, 0.006);
+      }
+      function tree(parent, x, z, r, t0) {
+        const tr = riser(new THREE.Group(), t0, 0.7);
+        tr.position.set(x, 0, z);
+        parent.add(tr);
+        cyl(tr, 0.045, r + 0.14, 0, 0, 0, M.wood, 10);
+        sphere(tr, r, 0, r + 0.34, 0, M.leaf);
+        return tr;
+      }
+      {
+        // bosquets entre les quartiers (gauche, droite, haut, bas de l'écran), étalés en largeur
+        const groves = [
+          [-9.0, 0.2],
+          [9.9, 1.9],
+          [0.2, 9.0],
+          [0.3, -9.3],
+        ];
+        const offs = [
+          [-1.3, 0.3, 0.32],
+          [0.05, -0.3, 0.36],
+          [1.3, 0.35, 0.28],
+        ];
+        let i = 0;
+        groves.forEach(([gr, gu]) =>
+          offs.forEach(([dr, du, r]) => {
+            const p = RU(gr + dr, gu + du);
+            tree(city, p.x, p.z, r, T.city + 0.5 + i++ * 0.05);
+          }),
+        );
+        [
+          [-2.6, -2.6],
+          [2.6, 2.6],
+          [-2.6, 2.6],
+          [2.6, -2.6],
+        ].forEach(([x, z]) => tree(city, x, z, 0.3, T.city + 0.5 + i++ * 0.05));
+      }
+
+      // ================================================================== 4. la rue des indépendants
+      const g4 = new THREE.Group();
+      g4.position.copy(P_D4);
+      city.add(g4);
+      const LOTX = [-4.2, -2.1, 0, 2.1, 4.2];
+      const ROWZ = -0.75;
+      const W4 = (x, y, z) => W(P_D4, x, y, z);
+      {
+        const gs = riser(new THREE.Group(), -0.6, 0.5);
+        g4.add(gs);
+        const sw = box(gs, 11.4, 0.03, 0.78, 0, 0, 0.29, M.walk);
+        const rd = box(gs, 11.4, 0.02, 1.3, 0, 0, 1.33, M.road);
+        sw.castShadow = rd.castShadow = false;
+        for (let k = 0; k < 11; k++) box(gs, 0.42, 0.006, 0.05, -5.2 + k * 1.04, 0.02, 1.33, M.dash).castShadow = false;
+      }
+      const LOT_T = [-0.35, -0.12, 0.12, 0.36, 0.6];
+      function lot(k) {
+        const g = new THREE.Group();
+        g.position.set(LOTX[k], 0, ROWZ);
+        g4.add(g);
+        return riser(g, LOT_T[k], 0.8);
+      }
+      // 1. cabinet (professions libérales : santé, droit, conseil)
+      const accCab = tint(mat(COL.roof), COL.roof, COL.blue, T.lot.cabinet);
+      const plaques = [];
+      {
+        const g = lot(0);
+        box(g, 1.8, 1.45, 1.3, 0, 0, 0, M.white, true);
+        box(g, 1.84, 0.07, 1.34, 0, 0.7, 0, accCab);
+        box(g, 1.86, 0.08, 1.36, 0, 1.45, 0, M.roof);
+        box(g, 0.56, 0.38, 0.012, -0.5, 0.16, 0.656, M.glass);
+        box(g, 0.34, 0.58, 0.014, 0.48, 0, 0.656, M.door);
+        for (const y of [0.22, 0.94]) box(g, 0.012, 0.34, 0.86, 0.906, y, 0, M.glass);
+        const icons = [signTex(ICON.cross("#4f9a36"), "#4f9a36"), signTex(ICON.scales), signTex(ICON.chart)];
+        [-0.56, 0, 0.56].forEach((x, j) => {
+          const m = plane(g, 0.44, 0.44, icons[j], x, 1.08, 0.659, { color: 0x8e959c });
+          plaques.push(m);
+          tint(m.material, 0x8e959c, 0xffffff, T.lib[j] - 0.05, 0.35, true);
+        });
+      }
+      // 2. commerce
+      const accAwn = tint(mat(COL.white), COL.white, COL.yellow, T.lot.commerce);
+      const shopkeeperPos = new THREE.Vector3(LOTX[1] + 0.34, 0, ROWZ + 0.86);
+      {
+        const g = lot(1);
+        box(g, 1.6, 1.0, 1.2, 0, 0, 0, M.white, true);
+        box(g, 1.64, 0.07, 1.24, 0, 1.0, 0, M.roof);
+        box(g, 1.04, 0.44, 0.012, -0.2, 0.14, 0.606, M.glass);
+        box(g, 0.3, 0.6, 0.014, 0.55, 0, 0.606, M.door);
+        const aw = box(g, 1.72, 0.03, 0.46, 0, 0.66, 0.8, accAwn);
+        aw.rotation.x = 0.36;
+        // étal
+        [
+          [-0.55, M.leaf],
+          [-0.25, M.yellow],
+          [0.05, M.orange],
+        ].forEach(([x, pm]) => {
+          box(g, 0.26, 0.14, 0.22, x, 0, 0.98, M.wood);
+          box(g, 0.21, 0.05, 0.17, x, 0.14, 0.98, pm);
+        });
+      }
+      // 3. atelier
+      const accTeeth = tint(mat(COL.roof), COL.roof, COL.green, T.lot.atelier);
+      const benchPos = new THREE.Vector3(0.28, 0, ROWZ + 1.0);
+      {
+        const g = lot(2);
+        box(g, 1.8, 0.72, 1.3, 0, 0, 0, M.white, true);
+        for (let k = 0; k < 3; k++) {
+          const w = 0.6;
+          const x0 = -0.9 + k * w;
+          tooth(g, w, 0.24, 1.3, x0, 0.72, accTeeth);
+          box(g, 0.012, 0.18, 1.2, x0 + w + 0.004, 0.73, 0, M.glass);
+        }
+        box(g, 0.72, 0.52, 0.014, -0.38, 0, 0.656, M.dark);
+        box(g, 0.3, 0.2, 0.012, 0.45, 0.3, 0.656, M.glass);
+        // établi et planches
+        box(g, 0.64, 0.04, 0.3, 0.28, 0.3, 1.0, M.wood);
+        for (const [x, z] of [
+          [0.0, 0.88],
+          [0.56, 0.88],
+          [0.0, 1.12],
+          [0.56, 1.12],
+        ])
+          box(g, 0.03, 0.3, 0.03, x, 0, z, M.door);
+        box(g, 0.14, 0.06, 0.1, 0.16, 0.34, 0.98, M.metal);
+        for (let k = 0; k < 4; k++) box(g, 0.56, 0.03, 0.14, -0.62, k * 0.032, 1.05, M.wood);
+      }
+      // 4. studio d'artiste
+      const accStudio = tint(mat(COL.roof), COL.roof, COL.yellow, T.artis);
+      {
+        const g = lot(3);
+        box(g, 1.5, 1.2, 1.25, 0, 0, 0, M.white, true);
+        box(g, 1.54, 0.08, 1.29, 0, 1.2, 0, accStudio);
+        box(g, 1.0, 0.7, 0.012, -0.14, 0.3, 0.631, M.glass);
+        box(g, 0.3, 0.6, 0.014, 0.5, 0, 0.631, M.door);
+        // chevalet + toile
+        const easel = new THREE.Group();
+        easel.position.set(-0.32, 0, 1.0);
+        easel.rotation.y = Math.PI / 4;
+        g.add(easel);
+        for (const x of [-0.16, 0.16]) {
+          const l = box(easel, 0.025, 0.62, 0.025, x, 0, 0, M.wood);
+          l.rotation.z = x > 0 ? -0.08 : 0.08;
+        }
+        const back = box(easel, 0.025, 0.6, 0.025, 0, 0, -0.18, M.wood);
+        back.rotation.x = 0.3;
+        box(easel, 0.38, 0.025, 0.04, 0, 0.26, 0.02, M.wood);
+        plane(easel, 0.44, 0.36, paintTex(), 0, 0.46, 0.035);
+        // tambour
+        cyl(g, 0.11, 0.2, 0.52, 0, 1.08, M.orange, 24);
+        cyl(g, 0.106, 0.012, 0.52, 0.2, 1.08, M.white, 24);
+      }
+      // 5. maison (employés de maison : ménage, jardin, chauffeur, gardien)
+      const accHouse = tint(mat(COL.roof), COL.roof, COL.blue, T.lot.maison);
+      {
+        const g = lot(4);
+        box(g, 1.5, 0.78, 1.15, 0, 0, -0.05, M.white, true);
+        const roof = prism(g, 1.36, 0.5, 1.66, 0, 0.78, -0.05, accHouse);
+        roof.rotation.y = Math.PI / 2;
+        box(g, 0.28, 0.5, 0.014, -0.1, 0, 0.531, M.door);
+        box(g, 0.32, 0.24, 0.012, -0.52, 0.28, 0.531, M.glass);
+        box(g, 0.32, 0.24, 0.012, 0.38, 0.28, 0.531, M.glass);
+        // jardin
+        box(g, 0.78, 0.02, 0.6, 0.42, 0, 0.98, M.lawn).castShadow = false;
+        box(g, 0.78, 0.15, 0.08, 0.42, 0, 1.3, M.leaf);
+        cyl(g, 0.035, 0.32, 0.92, 0, -0.62, M.wood, 10);
+        sphere(g, 0.24, 0.92, 0.48, -0.62, M.leaf);
+        // voiture
+        const car = new THREE.Group();
+        car.position.set(-0.55, 0, 1.92);
+        g.add(car);
+        box(car, 0.64, 0.15, 0.3, 0, 0.05, 0, M.blue, true);
+        box(car, 0.34, 0.13, 0.27, -0.04, 0.2, 0, M.glass, true);
+        for (const [x, z] of [
+          [0.2, 0.15],
+          [-0.2, 0.15],
+          [0.2, -0.15],
+          [-0.2, -0.15],
+        ])
+          cyl(car, 0.055, 0.04, x, 0.055, z - 0.02, M.dark, 14).rotation.set(Math.PI / 2, 0, 0);
+        // arrosoir
+        box(g, 0.09, 0.08, 0.06, 0.74, 0, 0.92, M.green);
+      }
+      // habitants de la rue (femmes d'abord, puis hommes), au travail
+      const L4 = (k, dx, dz) => [LOTX[k] + dx, ROWZ + dz];
+      const streetPeople = [
+        // [x, z, femme, bob]
+        [...L4(1, 0.34, 0.86), true, 0], // commerçante derrière l'étal
+        [...L4(3, 0.02, 1.16), true, 0.03], // artiste devant sa toile
+        [...L4(4, -0.06, 0.86), true, 0], // employée de maison
+        [...L4(0, 0.48, 0.9), true, 0], // professionnelle devant le cabinet
+        [-3.4, 1.62, true, 0],
+        [3.15, 1.55, true, 0],
+        [...L4(2, 0.28, 1.32), false, 0.05], // artisan à l'établi
+        [...L4(4, 0.74, 1.0), false, 0], // jardinier
+        [...L4(4, -0.12, 1.66), false, 0], // chauffeur
+        [...L4(4, -0.86, 1.02), false, 0], // gardien
+        [...L4(1, -0.45, 1.36), false, 0], // client
+        [...L4(0, -0.3, 1.05), false, 0],
+        [-1.25, 1.75, false, 0],
+      ];
+      const streetCol = [M.figYellow, M.figGreen, M.figBlue, M.figBlue, null, null, M.figGreen, M.figGreen, M.figBlue, null, null, null, null];
+      streetPeople.forEach(([x, z, f, bob], i) => {
+        const nF = streetPeople.filter((p) => p[2]).length;
+        const j = f ? i : i - nF;
+        const m = streetCol[i];
+        figure(g4, x, z, { f, s: 1.2, t0: (f ? T.fem : T.hom) - 0.05 + j * 0.07, bob, w: 10 + (i % 3), ph: i, m: m || M.figure, hm: M.figure });
+      });
+      // étrangers résidant au Gabon : deux passants, carte de séjour au-dessus (L05)
+      const etr = [
+        [0.62, 1.58, false],
+        [0.95, 1.7, true],
+      ].map(([x, z, f], i) => figure(g4, x, z, { f, s: 1.2, t0: T.hom + 0.5 + i * 0.08 }));
+      const idCards = etr.map((p) => {
+        const m = plane(g4, 0.36, 0.236, idTex(), p.g.position.x, 0.9, p.g.position.z, { depthWrite: false });
+        m.renderOrder = 8;
+        return pop(m, T.etr + 0.05 + etr.indexOf(p) * 0.12, 1, 0.45, E("L05") + 0.3);
+      });
+      // assurés volontaires : entrent sous la coupole (L04)
+      [
+        [7.9, 1.15, 5.2, 1.15, false],
+        [8.35, 1.55, 5.65, 1.55, true],
+      ].forEach(([ax, az, bx, bz, f], i) => figure(g4, ax, az, { f, s: 1.2, t0: T.vol - 0.75 + i * 0.1, walk: [ax, az, bx, bz, T.vol - 0.35 + i * 0.12, T.vol + 1.7 + i * 0.12] }));
+
+      // ================================================================== 1. salariés du privé
+      const accD1 = tint(mat(COL.glass, { r: 0.35, m: 0.1 }), COL.glass, COL.blue, T.pop[0], 0.6);
+      const g1 = new THREE.Group();
+      g1.position.copy(P_D1);
+      city.add(g1);
+      {
+        const towers = [
+          [-0.95, -0.95, 1.2, 2.5],
+          [0.75, -0.55, 1.3, 2.85],
+          [-0.35, 0.95, 1.1, 2.05],
+        ];
+        towers.forEach(([x, z, w, h], k) => {
+          const g = riser(new THREE.Group(), T.city + 0.85 + k * 0.12);
+          g.position.set(x, 0, z);
+          g1.add(g);
+          box(g, w, h, w, 0, 0, 0, M.white, true);
+          for (let f = 0; f < Math.floor((h - 0.3) / 0.38); f++) box(g, w + 0.03, 0.12, w + 0.03, 0, 0.26 + f * 0.38, 0, accD1);
+          box(g, w * 0.6, 0.12, w * 0.6, 0, h, 0, M.roof);
+        });
+        const fac = riser(new THREE.Group(), T.city + 1.25);
+        fac.position.set(1.55, 0, 1.45);
+        g1.add(fac);
+        box(fac, 1.8, 0.62, 1.2, 0, 0, 0, M.white, true);
+        for (let k = 0; k < 3; k++) tooth(fac, 0.6, 0.22, 1.2, -0.9 + k * 0.6, 0.62, M.roof);
+        cyl(fac, 0.11, 1.35, 0.62, 0, -0.32, M.roof, 16);
+        [
+          [-1.9, 0.4, true],
+          [-1.55, 1.85, false],
+          [0.3, 2.5, true],
+          [1.9, -1.9, false],
+          [2.55, 0.25, true],
+          [-2.4, -1.4, false],
+          [0.6, 0.55, false],
+          [-0.15, 2.1, false],
+        ].forEach(([x, z, f], i) => figure(g1, x, z, { f, s: 1.2, t0: T.pers + 0.05 + i * 0.05 }));
+      }
+
+      // ================================================================== 2. agents de l'État
+      const accD2 = tint(mat(COL.white), COL.white, COL.blue, T.pop[1], 0.6);
+      const g2 = new THREE.Group();
+      g2.position.copy(P_D2);
+      city.add(g2);
+      {
+        const mi = riser(new THREE.Group(), T.city + 0.6);
+        mi.position.set(0, 0, -0.2);
+        g2.add(mi);
+        box(mi, 3.7, 0.1, 2.5, 0, 0, 0, M.white);
+        box(mi, 3.5, 0.1, 2.3, 0, 0.1, 0, M.white);
+        box(mi, 3.3, 0.1, 2.1, 0, 0.2, 0, M.white);
+        box(mi, 3.0, 1.32, 1.3, 0, 0.3, -0.35, M.white, true);
+        for (let k = 0; k < 6; k++) cyl(mi, 0.085, 1.26, -1.25 + k * 0.5, 0.3, 0.62, M.white, 18);
+        box(mi, 3.16, 0.18, 0.62, 0, 1.56, 0.52, accD2);
+        prism(mi, 3.16, 0.46, 0.62, 0, 1.74, 0.52, accD2);
+        box(mi, 3.1, 0.14, 1.42, 0, 1.6, -0.35, M.roof);
+        for (let k = 0; k < 3; k++) box(mi, 0.42, 0.6, 0.012, -0.9 + k * 0.9, 0.48, 0.306, M.glass);
+        const an = riser(new THREE.Group(), T.city + 0.75);
+        an.position.set(1.15, 0, -1.75);
+        g2.add(an);
+        box(an, 1.2, 1.7, 1.0, 0, 0, 0, M.white, true);
+        for (let f = 0; f < 4; f++) box(an, 1.23, 0.1, 1.03, 0, 0.25 + f * 0.36, 0, M.glass);
+        // mât et drapeau du Gabon (vert, jaune, bleu)
+        const fl = riser(new THREE.Group(), T.city + 0.9);
+        fl.position.set(-2.05, 0, 1.05);
+        g2.add(fl);
+        cyl(fl, 0.022, 2.05, 0, 0, 0, M.metal, 10);
+        [M.green, M.yellow, M.blue].forEach((m, k) => box(fl, 0.56, 0.11, 0.012, 0.3, 1.86 - k * 0.11, 0, m).castShadow = true);
+        [
+          [-1.7, 1.75, false],
+          [-0.9, 1.6, true],
+          [0.2, 1.85, false],
+          [0.95, 1.45, true],
+          [2.3, 0.4, false],
+          [1.95, 1.2, false],
+          [-2.5, -0.6, true],
+        ].forEach(([x, z, f], i) => figure(g2, x, z, { f, s: 1.2, t0: T.pers + 0.12 + i * 0.05 }));
+      }
+
+      // ================================================================== 3. Gabonais économiquement faibles
+      const accD3 = tint(mat(COL.roof), COL.roof, COL.blue, T.pop[2], 0.6);
+      const g3 = new THREE.Group();
+      g3.position.copy(P_D3);
+      city.add(g3);
+      {
+        [
+          [-1.35, -1.25],
+          [0.45, -1.7],
+          [1.75, -0.35],
+          [-1.85, 0.55],
+          [1.05, 1.5],
+        ].forEach(([x, z], k) => {
+          const h = riser(new THREE.Group(), T.city + 0.35 + k * 0.08);
+          h.position.set(x, 0, z);
+          g3.add(h);
+          box(h, 1.0, 0.56, 0.82, 0, 0, 0, M.white, true);
+          const rf = prism(h, 0.98, 0.38, 1.12, 0, 0.56, 0, accD3);
+          rf.rotation.y = Math.PI / 2;
+          box(h, 0.22, 0.4, 0.012, 0.18, 0, 0.416, M.door);
+          box(h, 0.22, 0.18, 0.012, -0.24, 0.22, 0.416, M.glass);
+        });
+        for (const [x, z, r] of [
+          [-0.2, -0.1, 0.34],
+          [2.4, 1.3, 0.28],
+        ]) {
+          const tr = riser(new THREE.Group(), T.city + 0.6);
+          tr.position.set(x, 0, z);
+          g3.add(tr);
+          cyl(tr, 0.04, r + 0.12, 0, 0, 0, M.wood, 10);
+          sphere(tr, r, 0, r + 0.32, 0, M.leaf);
+        }
+        // familles : adultes et enfants
+        [
+          [-0.75, 0.55, true, 1.2],
+          [-0.5, 0.75, false, 0.75],
+          [-1.0, 1.15, false, 1.2],
+          [0.6, 0.35, true, 1.2],
+          [0.85, 0.6, true, 0.72],
+          [1.2, 0.15, false, 1.2],
+          [0.2, 2.4, true, 1.2],
+          [-0.15, -1.15, false, 0.8],
+          [-2.4, -0.7, true, 1.2],
+        ].forEach(([x, z, f, s], i) => figure(g3, x, z, { f, s, t0: T.pers + 0.2 + i * 0.05 }));
+      }
+
+      // ================================================================== siège de la CNAMGS
+      const gQ = new THREE.Group();
+      gQ.position.copy(P_HQ);
+      city.add(gQ);
+      const WQ = (x, y, z) => W(P_HQ, x, y, z);
+      let logoSign;
+      {
+        const b = riser(new THREE.Group(), T.city + 0.25, 0.9);
+        gQ.add(b);
+        box(b, 4.4, 0.12, 3.6, 0, 0, 0, M.white);
+        box(b, 3.9, 1.3, 2.8, 0.15, 0.12, 0.1, M.white, true);
+        box(b, 3.94, 0.1, 2.84, 0.15, 0.7, 0.1, M.blue);
+        box(b, 1.7, 2.9, 1.7, -0.95, 0.12, -0.55, M.white, true);
+        for (let f = 0; f < 6; f++) box(b, 1.73, 0.12, 1.73, -0.95, 0.42 + f * 0.42, -0.55, M.glass);
+        box(b, 1.78, 0.12, 1.78, -0.95, 3.02, -0.55, M.blue);
+        // façades vitrées
+        box(b, 2.2, 0.32, 0.012, 0.75, 0.24, 1.506, M.glass);
+        box(b, 2.2, 0.32, 0.012, 0.75, 0.88, 1.506, M.glass);
+        box(b, 0.012, 0.32, 1.6, 2.106, 0.24, 0.4, M.glass);
+        box(b, 0.012, 0.32, 1.6, 2.106, 0.88, 0.4, M.glass);
+        // entrée
+        box(b, 0.6, 0.5, 0.014, -0.55, 0.12, 1.506, M.glass);
+        box(b, 1.0, 0.05, 0.55, -0.55, 0.62, 1.78, M.white);
+        // enseigne CNAMGS sur le toit, face à la caméra
+        logoSign = new THREE.Group();
+        logoSign.position.set(0.75, 1.42, 0.45);
+        logoSign.rotation.y = Math.PI / 4;
+        gQ.add(logoSign);
+        box(logoSign, 0.06, 0.34, 0.06, -1.3, 0, -0.05, M.metal);
+        box(logoSign, 0.06, 0.34, 0.06, 1.3, 0, -0.05, M.metal);
+        box(logoSign, 3.62, 1.12, 0.07, 0, 0.3, -0.09, M.white);
+        pop(logoSign, T.logo, 1, 0.6);
+      }
+      const logoPlane = plane(logoSign, 3.46, 1.025, null, 0, 0.86, -0.05);
+
+      // ================================================================== coupoles (une par fonds)
+      const DOME_GEO = new THREE.SphereGeometry(1, 96, 40, 0, Math.PI * 2, 0, Math.PI / 2);
+      const domeVS = `varying vec3 vN; void main(){ vN = normalize(normalMatrix * normal); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`;
+      const domeFS = `uniform vec3 uColor; uniform float uAlpha; varying vec3 vN;
+        void main(){ float f = 1.0 - abs(normalize(vN).z); float a = uAlpha * (0.26 + 0.74 * pow(f, 1.7)); gl_FragColor = vec4(uColor, a); }`;
+      const srgb = (hex) => new THREE.Vector3(((hex >> 16) & 255) / 255, ((hex >> 8) & 255) / 255, (hex & 255) / 255);
+      const domes = [];
+      function dome(p, rx, ry, rz, t0, o = {}) {
+        const m = new THREE.Mesh(
+          DOME_GEO,
+          new THREE.ShaderMaterial({
+            uniforms: { uColor: { value: srgb(o.color || COL.blue) }, uAlpha: { value: 0 } },
+            vertexShader: domeVS,
+            fragmentShader: domeFS,
+            transparent: true,
+            depthWrite: false,
+          }),
+        );
+        m.position.set(p.x, 0.004, p.z);
+        m.renderOrder = 6;
+        m.frustumCulled = false;
+        city.add(m);
+        const ring = new THREE.Mesh(new THREE.RingGeometry(0.975, 1.0, 192), new THREE.MeshBasicMaterial({ color: o.rim || COL.blue, transparent: true, depthWrite: false }));
+        ring.rotation.x = -Math.PI / 2;
+        ring.position.set(p.x, 0.03, p.z);
+        ring.renderOrder = 5;
+        city.add(ring);
+        const disc = new THREE.Mesh(new THREE.CircleGeometry(1, 192), new THREE.MeshBasicMaterial({ color: COL.blue, transparent: true, opacity: 0, depthWrite: false }));
+        disc.rotation.x = -Math.PI / 2;
+        disc.position.set(p.x, 0.012, p.z);
+        disc.renderOrder = 4;
+        city.add(disc);
+        const d = { m, ring, disc, rx, ry, rz, t0, alpha: o.alpha || 0.3, p };
+        domes.push(d);
+        return d;
+      }
+      const DOMES = [
+        dome(P_D1, 4.25, 3.35, 4.25, T.fund[0]),
+        dome(P_D2, 4.35, 2.95, 4.35, T.fund[1]),
+        dome(new THREE.Vector3(P_D3.x, 0, P_D3.z), 4.05, 2.45, 4.05, T.fund[2]),
+        dome(new THREE.Vector3(P_D4.x, 0, P_D4.z + 0.29), 7.2, 3.2, 3.4, T.fund[3], { rim: COL.green, alpha: 0.36 }),
+      ];
+      // liaisons siège → coupoles (tracées sur « Fonds k ») : elles touchent la coupole sur le flanc tourné vers le siège
+      const arcMat = new THREE.MeshBasicMaterial({ color: COL.blue, transparent: true });
+      const arcs = DOMES.map((d, k) => {
+        const a = WQ(0.15, 1.75, 0.1);
+        const dir = new THREE.Vector3(P_HQ.x - d.p.x, 0, P_HQ.z - d.p.z).normalize();
+        const e = 0.8;
+        const b = new THREE.Vector3(d.p.x + dir.x * d.rx * Math.cos(e), TILE_H + d.ry * Math.sin(e), d.p.z + dir.z * d.rz * Math.cos(e));
+        const mid = a.clone().add(b).multiplyScalar(0.5);
+        mid.y = Math.max(a.y, b.y) + 1.8;
+        const curve = new THREE.QuadraticBezierCurve3(a, mid, b);
+        const g = new THREE.TubeGeometry(curve, 120, 0.075, 8, false);
+        const m = new THREE.Mesh(g, arcMat);
+        m.frustumCulled = false;
+        m.renderOrder = 7;
+        scene.add(m);
+        const dot = new THREE.Mesh(new THREE.SphereGeometry(0.2, 20, 14), new THREE.MeshBasicMaterial({ color: k === 3 ? COL.green : COL.blue }));
+        scene.add(dot);
+        return { m, n: g.index.count, curve, dot, t0: T.fund[k] - 0.75, d: 0.85 };
+      });
+      // la couverture s'étend (L02) : onde au sol depuis le siège
+      const waveDisc = new THREE.Mesh(new THREE.CircleGeometry(1, 220), new THREE.MeshBasicMaterial({ color: COL.blue, transparent: true, opacity: 0, depthWrite: false }));
+      waveDisc.rotation.x = -Math.PI / 2;
+      waveDisc.position.set(P_HQ.x, 0.01, P_HQ.z);
+      waveDisc.renderOrder = 3;
+      city.add(waveDisc);
+      const waveRing = new THREE.Mesh(new THREE.RingGeometry(0.985, 1.0, 220), new THREE.MeshBasicMaterial({ color: COL.blue, transparent: true, opacity: 0, depthWrite: false }));
+      waveRing.rotation.x = -Math.PI / 2;
+      waveRing.position.set(P_HQ.x, 0.035, P_HQ.z);
+      waveRing.renderOrder = 3;
+      city.add(waveRing);
+
+      // ================================================================== pôle de soins (L06)
+      const gH = new THREE.Group();
+      gH.position.copy(P_H);
+      city.add(gH);
+      const RUl = (r, u) => RU(r, u);
+      const WH = (v, y) => W(P_H, v.x, y, v.z);
+      const careSigns = [];
+      const careTop = [];
+      function careSign(parent, tex, y, k) {
+        const s = new THREE.Group();
+        s.position.set(0, y, 0);
+        s.rotation.y = Math.PI / 4;
+        parent.add(s);
+        box(s, 0.04, 0.22, 0.04, -0.2, 0, 0, M.metal);
+        box(s, 0.04, 0.22, 0.04, 0.2, 0, 0, M.metal);
+        const m = plane(s, 0.66, 0.66, tex, 0, 0.53, 0.02, { color: 0x8e959c });
+        tint(m.material, 0x8e959c, 0xffffff, T.care[k] - 0.05, 0.35, true);
+        careSigns.push(m);
+        return s;
+      }
+      const P_CLI = RUl(-4.3, 0.9),
+        P_LAB = RUl(-2.1, -1.5),
+        P_HOS = RUl(0.9, 1.1),
+        P_PHA = RUl(3.7, -1.6),
+        P_AMB = RUl(3.4, 1.75);
+      {
+        // centre de consultations
+        const c = riser(new THREE.Group(), T.campus);
+        c.position.copy(P_CLI);
+        gH.add(c);
+        box(c, 1.45, 0.9, 1.2, 0, 0, 0, M.white, true);
+        box(c, 1.48, 0.08, 1.23, 0, 0.9, 0, tint(mat(COL.roof), COL.roof, COL.blue, T.care[0]));
+        box(c, 0.3, 0.55, 0.014, 0.4, 0, 0.606, M.glass);
+        box(c, 0.5, 0.26, 0.012, -0.3, 0.32, 0.606, M.glass);
+        careSign(c, signTex(ICON.stetho), 0.98, 0);
+        careTop.push(new THREE.Vector3(P_CLI.x, 2.0, P_CLI.z));
+        // laboratoire d'examens
+        const l = riser(new THREE.Group(), T.campus + 0.12);
+        l.position.copy(P_LAB);
+        gH.add(l);
+        box(l, 1.5, 1.05, 1.25, 0, 0, 0, M.white, true);
+        box(l, 1.53, 0.08, 1.28, 0, 1.05, 0, tint(mat(COL.roof), COL.roof, COL.green, T.care[1]));
+        for (const y of [0.22, 0.62]) box(l, 1.1, 0.22, 0.012, -0.05, y, 0.631, M.glass);
+        careSign(l, signTex(ICON.flask, "#4f9a36"), 1.13, 1);
+        careTop.push(new THREE.Vector3(P_LAB.x, 2.15, P_LAB.z));
+        // hôpital, héliport sur le toit
+        const h = riser(new THREE.Group(), T.campus + 0.24, 0.9);
+        h.position.copy(P_HOS);
+        gH.add(h);
+        box(h, 3.2, 2.1, 2.2, 0, 0, 0, M.white, true);
+        for (let f = 0; f < 3; f++) {
+          box(h, 2.6, 0.24, 0.012, -0.1, 0.3 + f * 0.62, 1.106, M.glass);
+          box(h, 0.012, 0.24, 1.7, 1.606, 0.3 + f * 0.62, 0, M.glass);
+        }
+        box(h, 3.24, 0.1, 2.24, 0, 2.1, 0, tint(mat(COL.roof), COL.roof, COL.blue, T.care[2]));
+        box(h, 0.9, 0.06, 0.7, -0.9, 0.62, 1.45, M.white);
+        box(h, 0.7, 0.55, 0.014, -0.9, 0, 1.106, M.glass);
+        const pad = plane(h, 1.25, 1.25, helipadTex(), 0.55, 2.205, 0, { rx: -Math.PI / 2 });
+        pad.receiveShadow = true;
+        const hs = careSign(h, signTex(ICON.H), 2.2, 2);
+        hs.position.set(-0.95, 2.2, 0.45);
+        careTop.push(new THREE.Vector3(P_HOS.x - 0.95, 3.25, P_HOS.z + 0.45));
+        // pharmacie
+        const p = riser(new THREE.Group(), T.campus + 0.36);
+        p.position.copy(P_PHA);
+        gH.add(p);
+        box(p, 1.25, 0.82, 1.1, 0, 0, 0, M.white, true);
+        box(p, 1.28, 0.08, 1.13, 0, 0.82, 0, tint(mat(COL.roof), COL.roof, COL.green, T.care[3]));
+        box(p, 0.8, 0.34, 0.012, -0.12, 0.16, 0.556, M.glass);
+        careSign(p, signTex(ICON.cross("#4f9a36"), "#4f9a36"), 0.9, 3);
+        careTop.push(new THREE.Vector3(P_PHA.x, 1.95, P_PHA.z));
+        // ambulance
+        const a = riser(new THREE.Group(), T.campus + 0.48);
+        a.position.copy(P_AMB);
+        a.rotation.y = Math.PI / 2;
+        gH.add(a);
+        box(a, 0.78, 0.36, 0.36, 0, 0.05, 0, M.white, true);
+        box(a, 0.24, 0.2, 0.34, 0.42, 0.05, 0, M.white, true);
+        box(a, 0.8, 0.05, 0.37, 0, 0.2, 0, M.blue);
+        box(a, 0.12, 0.05, 0.14, -0.1, 0.41, 0, M.blue);
+        for (const [x, z] of [
+          [0.3, 0.16],
+          [-0.25, 0.16],
+          [0.3, -0.16],
+          [-0.25, -0.16],
+        ])
+          cyl(a, 0.06, 0.04, x, 0.06, z - 0.02, M.dark, 14).rotation.set(Math.PI / 2, 0, 0);
+        // patients et soignants
+        [
+          [P_CLI, 0.95, 0.9, true],
+          [P_CLI, 0.6, 1.15, false],
+          [P_LAB, 0.95, 0.95, true],
+          [P_HOS, 1.8, 1.6, false],
+          [P_HOS, 0.2, 1.75, true],
+          [P_PHA, -0.2, 0.95, true],
+          [P_PHA, 0.35, 1.0, false],
+        ].forEach(([pp, dx, dz, f], i) => figure(gH, pp.x + dx, pp.z + dz, { f, s: 1.2, t0: T.campus + 0.6 + i * 0.06 }));
+      }
+      // hélicoptère d'évacuation sanitaire
+      const heli = new THREE.Group();
+      gH.add(heli);
+      const rotor = new THREE.Group();
+      {
+        const body = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 18), M.white);
+        body.scale.set(0.42, 0.21, 0.2);
+        body.position.y = 0.26;
+        body.castShadow = true;
+        heli.add(body);
+        box(heli, 0.5, 0.05, 0.05, 0.55, 0.26, 0, M.white);
+        box(heli, 0.06, 0.2, 0.03, 0.8, 0.24, 0, M.blue);
+        box(heli, 0.3, 0.035, 0.36, -0.05, 0.12, 0, M.blue);
+        box(heli, 0.6, 0.02, 0.025, 0, 0, 0.14, M.metal);
+        box(heli, 0.6, 0.02, 0.025, 0, 0, -0.14, M.metal);
+        box(heli, 0.025, 0.06, 0.025, 0.1, 0.02, 0.14, M.metal);
+        box(heli, 0.025, 0.06, 0.025, -0.1, 0.02, -0.14, M.metal);
+        rotor.position.y = 0.5;
+        heli.add(rotor);
+        cyl(rotor, 0.025, 0.06, 0, -0.06, 0, M.metal, 10);
+        box(rotor, 1.3, 0.012, 0.06, 0, 0, 0, M.dark);
+        box(rotor, 0.06, 0.012, 1.3, 0, 0, 0, M.dark);
+      }
+      heli.scale.setScalar(1.5);
+      const HELI0 = new THREE.Vector3(P_HOS.x + 0.55, 2.21, P_HOS.z);
+      const HELI1 = new THREE.Vector3(P_HOS.x + 0.55, 0, P_HOS.z).add(RU(3.2, 1.6)).setY(4.6);
+
+      // ================================================================== téléphone et cotisation (L07)
+      const PH_POS = new THREE.Vector3(-1.05, 0, 1.28);
+      const phone = new THREE.Group();
+      phone.position.copy(PH_POS);
+      phone.rotation.y = Math.PI / 4;
+      g4.add(phone);
+      box(phone, 0.92, 1.78, 0.08, 0, 0.02, 0, M.dark, true);
+      box(phone, 0.3, 0.02, 0.3, 0, 0, 0, M.dark);
+      const screen = plane(phone, 0.82, 1.6, null, 0, 0.91, 0.042);
+      riser(phone, T.cotis - 0.55, 0.8);
+      const check = plane(phone, 0.44, 0.44, checkTex(), 0, 0.72, 0.1, { depthWrite: false });
+      check.renderOrder = 9;
+      pop(check, T.elec + 0.1, 1, 0.5);
+      const coinGeo = new THREE.CylinderGeometry(0.085, 0.085, 0.022, 28);
+      coinGeo.rotateX(Math.PI / 2);
+      const coins = [0, 1, 2, 3].map(() => {
+        const m = new THREE.Mesh(coinGeo, M.coin);
+        m.castShadow = true;
+        g4.add(m);
+        return m;
+      });
+      const COIN_A = new THREE.Vector3(shopkeeperPos.x, 0.42, shopkeeperPos.z + 0.08);
+      const COIN_B = PH_POS.clone().add(new THREE.Vector3(0.05, 0.95, 0.05));
+
+      // ================================================================== immatriculation au siège (L08)
+      const regFig = figure(gQ, 2.6, 3.05, { f: true, s: 1.2, t0: T.toHQ + 0.3, walk: [2.6, 3.05, -0.4, 2.05, T.toHQ + 0.45, T.imm - 0.1] });
+      const regCheck = plane(gQ, 0.5, 0.5, checkTex(), -0.4, 0.95, 2.05, { depthWrite: false });
+      regCheck.renderOrder = 9;
+      pop(regCheck, T.imm + 0.05, 1, 0.5, T.out + 0.5);
+
+      // ================================================================== carte du Gabon (dalles par province)
+      // 71 points de la silhouette du pays (même trame que la maquette FEG), rendus en dalles carrées.
+      const DOTS = [[337.05,18.92],[377.5,18.89],[419.06,18.93],[337.06,58.14],[375.82,58.92],[419.06,58.96],[337.1,97.43],[375.82,98.13],[419.06,98.17],[222.19,98.91],[260.56,98.84],[297.83,98.88],[460.9,99.34],[499.0,100.12],[538.23,101.86],[184.12,136.65],[222.22,136.62],[260.56,136.59],[297.83,136.64],[337.06,140.12],[375.81,140.91],[419.06,140.91],[460.92,142.03],[499.02,142.84],[184.08,180.14],[222.18,180.11],[260.58,180.13],[297.84,180.14],[337.06,180.14],[375.81,180.91],[419.06,180.94],[460.92,182.05],[499.03,182.85],[145.7,220.5],[184.12,220.54],[222.27,220.52],[260.58,220.55],[297.83,220.53],[337.12,220.54],[375.76,221.3],[419.09,221.25],[460.92,222.44],[499.01,223.18],[538.31,222.49],[184.09,259.81],[222.18,259.82],[260.58,259.74],[297.85,259.8],[337.08,259.82],[375.82,259.82],[419.06,259.83],[460.92,260.95],[499.01,261.75],[538.2,263.1],[184.08,298.99],[222.2,300.15],[260.56,300.16],[297.84,300.16],[337.06,300.17],[375.84,300.16],[460.9,299.41],[499.03,299.41],[499.0,337.14],[222.25,338.52],[260.58,338.55],[297.81,338.54],[260.57,376.9],[297.83,376.94],[337.07,376.93],[297.83,415.27],[337.09,415.25]];
+      const PROV = [1,1,1,1,1,1,1,6,6,0,0,1,6,6,6,0,0,0,1,6,6,7,6,6,0,2,2,2,6,6,7,7,8,3,2,2,4,4,7,7,7,7,8,8,3,4,4,4,4,7,7,8,8,8,3,4,4,4,4,4,8,8,8,3,5,4,5,5,5,5,5];
+      const PROV_TINT = [1,3,0,2,4,1,2,1,0];
+      const LBV_I = 24; // Libreville : la dalle qui porte la ville
+      const SC = 48 / 38.9;
+      const TS = 43.2;
+      const tiles = DOTS.map(([px, py], i) => ({ i, x: (px - DOTS[LBV_I][0]) * SC, z: (py - DOTS[LBV_I][1]) * SC, prov: PROV[i] }));
+      tiles.forEach((p) => (p.d = Math.hypot(p.x, p.z)));
+      const MAXD = Math.max(...tiles.map((p) => p.d));
+      const ZMIN = Math.min(...tiles.map((p) => p.z)),
+        ZMAX = Math.max(...tiles.map((p) => p.z));
+      const XMIN = Math.min(...tiles.map((p) => p.x)),
+        XMAX = Math.max(...tiles.map((p) => p.x));
+      const MAPC = new THREE.Vector3((XMIN + XMAX) / 2, TILE_H, (ZMIN + ZMAX) / 2);
+      const tileGeo = new RoundedBoxGeometry(TS, TILE_H, TS, 3, 0.8);
+      tileGeo.translate(0, TILE_H / 2, 0);
+      const tileInst = new THREE.InstancedMesh(tileGeo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.92 }), tiles.length);
+      tileInst.castShadow = true;
+      tileInst.receiveShadow = true;
+      tileInst.frustumCulled = false;
+      scene.add(tileInst);
+      // teintes pâles des provinces (bleu, vert, jaune, gris, sarcelle), puis le drapeau
+      const cBase = lit(0xffffff);
+      const cProv = [0xd2e4f1, 0xd9ebcb, 0xf6ebb4, 0xe3e5e8, 0xd2e9e4].map((h) => lit(h));
+      const cG = lit(0x58a33d),
+        cY = lit(0xf3d02a),
+        cB = lit(0x1a74ad);
+      tiles.forEach((p) => {
+        const u = (p.z - ZMIN) / (ZMAX - ZMIN);
+        p.flag = u < 0.34 ? cG : u < 0.66 ? cY : cB;
+      });
+
+      // repères des bureaux : délégation provinciale (grand, bleu) ; unité départementale ou communale (petit, vert)
+      const pinCone = new THREE.ConeGeometry(4.2, 22, 32);
+      pinCone.rotateX(Math.PI);
+      pinCone.translate(0, 11, 0);
+      const pinHead = new THREE.SphereGeometry(6.6, 32, 20);
+      pinHead.translate(0, 24, 0);
+      const pinDot = new THREE.CircleGeometry(2.7, 32);
+      const pins = [];
+      function pin(x, y, z, big, t0) {
+        const g = new THREE.Group();
+        g.position.set(x, y, z);
+        const m = big ? M.blue : M.green;
+        const a = new THREE.Mesh(pinCone, m);
+        const b = new THREE.Mesh(pinHead, m);
+        a.castShadow = b.castShadow = true;
+        g.add(a, b);
+        const dot = new THREE.Mesh(pinDot, new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        g.add(dot);
+        scene.add(g);
+        const P = { g, dot, big, t0, s: big ? 2.0 : 1.3 };
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        pins.push(P);
+        return P;
+      }
+      {
+        const byProv = Array.from({ length: 9 }, (_, k) => tiles.filter((p) => p.prov === k));
+        byProv.forEach((list, k) => {
+          const cx = list.reduce((a, p) => a + p.x, 0) / list.length;
+          const cz = list.reduce((a, p) => a + p.z, 0) / list.length;
+          const main = k === 0 ? tiles[LBV_I] : list.reduce((b, p) => (Math.hypot(p.x - cx, p.z - cz) < Math.hypot(b.x - cx, b.z - cz) ? p : b));
+          const tDel = T.deleg - 0.1 + (main.d / MAXD) * 0.9;
+          if (k === 0) pin(P_HQ.x, TILE_H + 3.4, P_HQ.z, true, tDel);
+          else pin(main.x, TILE_H, main.z, true, tDel);
+          const rest = list.filter((p) => p !== main && p.i !== LBV_I).sort((a, b) => Math.hypot(b.x - main.x, b.z - main.z) - Math.hypot(a.x - main.x, a.z - main.z));
+          const picks = rest.length >= 2 ? [rest[0], rest[Math.floor(rest.length / 2)]] : rest;
+          picks.forEach((p, j) => pin(p.x + (j ? -6 : 6), TILE_H, p.z + (j ? 5 : -5), false, (j === 0 ? T.unite : T.communale) - 0.1 + (p.d / MAXD) * 0.5));
+        });
+      }
+      const ripples = pins.map((P) => {
+        const m = new THREE.Mesh(new THREE.RingGeometry(0.86, 1.0, 96), new THREE.MeshBasicMaterial({ color: P.big ? COL.blue : COL.green, transparent: true, opacity: 0, depthWrite: false }));
+        m.rotation.x = -Math.PI / 2;
+        m.position.set(P.g.position.x, TILE_H + 0.06, P.g.position.z);
+        m.renderOrder = 4;
+        scene.add(m);
+        return m;
+      });
+      // « personne de côté » : un habitant sur chaque dalle, les plus éloignées en dernier
+      const mapFigs = tiles
+        .filter((p) => p.i !== LBV_I)
+        .map((p, k) =>
+          figure(scene, p.x + (k % 2 ? 6 : -6), p.z + (k % 3 ? 5 : -4), {
+            f: k % 2 === 0,
+            s: 50,
+            y: TILE_H,
+            t0: T.pers9 - 0.25 + (p.d / MAXD) * (T.cote + 0.45 - T.pers9),
+            d: 0.55,
+          }),
+        );
+
+      // ------------------------------------------------------------------ caméra
+      const camera = new THREE.OrthographicCamera(-16, 16, 9, -9, 1, 2400);
+      const ISO = 35.264;
+      // Décalage écran : déplace la cible pour que le sujet tombe à (fx, fy) du cadre (0 = centre, ±1 = bords).
+      function framed(p, V, fx, fy, el = ISO, az = 45) {
+        const A = 16 / 9;
+        const right = new THREE.Vector3(Math.cos(az * DEG), 0, -Math.sin(az * DEG));
+        const upG = new THREE.Vector3(-Math.sin(az * DEG), 0, -Math.cos(az * DEG));
+        const dx = -fx * V * A;
+        const dy = (-fy * V) / Math.max(0.2, Math.sin(el * DEG));
+        return { x: p.x + right.x * dx + upG.x * dy, y: p.y || 0, z: p.z + right.z * dx + upG.z * dy, V, el, az };
+      }
+      const moves = [];
+      const mv = (t0, dur, to, mode = "lin", ease = inOut) => moves.push({ t0, dur, to, mode, ease });
+      // Mouvements enchaînés : un mouvement qui commence avant la fin du précédent repart de l'état interrompu.
+      function camAt(t) {
+        let s = { ...CAM0 };
+        for (let i = 0; i < moves.length; i++) {
+          const m = moves[i];
+          if (t <= m.t0) break;
+          const next = moves[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const u = prog(cut, m.t0, m.dur);
+          const to = { ...s, ...m.to };
+          const e = m.ease(u);
+          const V = Math.exp(lerp(Math.log(s.V), Math.log(to.V), e));
+          let w = e;
+          if (m.mode === "pivot" && Math.abs(to.V - s.V) > 1e-6) w = (V - s.V) / (to.V - s.V);
+          s = u >= 1 ? to : { x: lerp(s.x, to.x, w), y: lerp(s.y, to.y, w), z: lerp(s.z, to.z, w), V, az: lerp(s.az, to.az, e), el: lerp(s.el, to.el, e) };
+          if (!(next && next.t0 < t)) break;
+        }
+        return s;
+      }
+      const CAM0 = framed(W4(-1.9, 0.45, 0.35), 2.55, 0.0, -0.02);
+      // L01 : lente poussée sur la rue, puis recul qui découvre toute la rue
+      mv(0, T.pull1, framed(W4(-1.5, 0.45, 0.35), 2.45, 0.0, -0.02), "lin", inOutQ);
+      mv(T.pull1, 2.4, framed(W4(0.1, 0.5, 0.25), 4.75, 0.0, 0.02), "pivot", inOutQ);
+      // L02 : grand recul : la ville se lève, la couverture s'étend
+      const CITY = RU(1.6, 0.3, TILE_H);
+      mv(T.pull2, 3.1, framed(CITY, 10.0, 0, 0), "pivot", inOut);
+      // L03 : très lente poussée pendant les trois fonds
+      mv(S("L03") - 0.3, E("L03") - S("L03"), framed(RU(1.5, 0.4, TILE_H), 9.75, 0, 0), "lin", inOutQ);
+      // L04 : vers la rue des indépendants (à droite), le titre à gauche
+      mv(T.fund[3] - 0.95, 2.6, framed(W4(0.3, 0.8, 0.4), 6.1, 0.34, -0.02), "pivot", inOut);
+      // L05 : la rue, de près
+      mv(S("L05") - 0.65, 1.8, framed(W4(-0.3, 0.5, 0.3), 4.5, 0.08, -0.1), "lin", inOut);
+      mv(T.prof + 0.3, T.etr - T.prof + 0.4, framed(W4(0.6, 0.5, 0.35), 4.4, 0.05, -0.1), "lin", inOutQ);
+      // L06 : le pôle de soins
+      mv(T.toCampus, 1.8, framed(W(P_H, 0.2, 0.9, 0), 4.5, 0.0, -0.04), "lin", inOut);
+      mv(T.care[0], E("L06") - T.care[0], framed(W(P_H, 0.5, 0.9, -0.2), 4.3, 0.0, -0.04), "lin", inOutQ);
+      // L07 : le téléphone à droite, le texte à gauche
+      mv(T.toPhone, 1.7, framed(W4(PH_POS.x - 0.2, 0.9, PH_POS.z), 3.35, 0.32, 0.0), "lin", inOut);
+      // L08 : le bureau de la CNAMGS, puis tout le pays
+      mv(T.toHQ, 1.75, framed(WQ(0.5, 0.7, 1.6), 3.3, 0.06, 0.0), "lin", inOut);
+      mv(T.out, 2.9, framed(MAPC, 262, 0.08, 0.02, 58, 0), "pivot", inOut);
+      // L09 : lente montée au-dessus du pays
+      mv(T.l9 + 0.2, T.end - T.l9 + 2, framed(MAPC, 244, 0.0, 0.02, 64, 0), "lin", inOutQ);
+
+      // ------------------------------------------------------------------ étiquettes
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (p) => {
+        v3.copy(p).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080];
+      };
+      // ancre monde → point écran ; étiquette posée à (dx, dy) ; filet de rappel
+      function label(name, anchor, dx, dy, a, align = "left") {
+        const el = $("wl-" + name);
+        const ld = $("wk-" + name);
+        const dt = $("wd-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          if (ld) ld.setAttribute("points", "");
+          if (dt) dt.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        const lx = ax + dx,
+          ly = ay + dy;
+        const left = align === "left" ? lx + 12 : align === "right" ? lx - w - 12 : lx - w / 2;
+        const top = ly - h / 2;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(left)}px, ${Math.round(top + (1 - a) * 8)}px)`;
+        if (ld) {
+          const k = Math.min(1, a * 1.4);
+          const mx = ax + (lx - ax) * k,
+            my = ay + (ly - ay) * k;
+          ld.setAttribute("points", `${ax.toFixed(1)},${ay.toFixed(1)} ${mx.toFixed(1)},${my.toFixed(1)}`);
+          ld.style.strokeOpacity = (0.55 * a).toFixed(3);
+        }
+        if (dt) {
+          dt.setAttribute("cx", ax.toFixed(1));
+          dt.setAttribute("cy", ay.toFixed(1));
+          dt.style.opacity = (0.8 * a).toFixed(3);
+        }
+      }
+      // étiquette centrée au-dessus d'un point (sans filet)
+      function labelAbove(name, anchor, gap, a) {
+        const el = $("wl-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(ax - w / 2)}px, ${Math.round(ay - gap - h + (1 - a) * 8)}px)`;
+      }
+      function labelBelow(name, anchor, gap, a) {
+        const el = $("wl-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(ax - w / 2)}px, ${Math.round(ay + gap + (1 - a) * 8)}px)`;
+      }
+      function fixedLabel(name, x, y, a) {
+        const el = $("wl-" + name);
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(x)}px, ${Math.round(y + (1 - a) * 8)}px)`;
+      }
+      const lotTop = (k, h, dx = 0) => W4(LOTX[k] + dx, h, ROWZ + 0.1);
+
+      // ------------------------------------------------------------------ état des objets à t
+      const mtx = new THREE.Matrix4();
+      const q = new THREE.Quaternion();
+      const scv = new THREE.Vector3();
+      const pos = new THREE.Vector3();
+      const cTmp = new THREE.Color();
+      const camFwd = new THREE.Vector3();
+
+      function render(t) {
+        // --- caméra
+        const s = camAt(t);
+        const top = clamp01((s.el - 50) / 40);
+        const drift = (1 - top) * 0.9 * Math.sin(t * 0.11);
+        const az = (s.az + drift) * DEG,
+          el = s.el * DEG,
+          D = 600;
+        camera.position.set(s.x + Math.sin(az) * Math.cos(el) * D, s.y + Math.sin(el) * D, s.z + Math.cos(az) * Math.cos(el) * D);
+        camera.rotation.set(-el, az, 0, "YXZ");
+        const A = 16 / 9;
+        camera.left = -s.V * A;
+        camera.right = s.V * A;
+        camera.top = s.V;
+        camera.bottom = -s.V;
+        camera.near = 1;
+        camera.far = 2400;
+        camera.updateProjectionMatrix();
+        camera.updateMatrixWorld();
+        camera.getWorldDirection(camFwd);
+        // ombre recadrée sur la vue
+        const tgt = new THREE.Vector3(s.x, 0, s.z);
+        sun.target.position.copy(tgt);
+        sun.position.copy(tgt).addScaledVector(SUN_DIR, 700);
+        const ext = Math.max(4, s.V * 2.3);
+        const shc = sun.shadow.camera;
+        shc.left = -ext;
+        shc.right = ext;
+        shc.top = ext;
+        shc.bottom = -ext;
+        shc.near = 1;
+        shc.far = 1600;
+        shc.updateProjectionMatrix();
+        sun.shadow.normalBias = 0.0016 * s.V + 0.002;
+
+        // --- levées, couleurs, apparitions
+        for (const r of risers) {
+          const k = spring(prog(t, r.t0, r.d));
+          r.g.scale.y = Math.max(tiny, k);
+          r.g.visible = k > 0.003;
+        }
+        for (const c of tints) c.m.color.copy(c.a).lerp(c.b, out3(prog(t, c.t0, c.d)));
+        for (const p of pops) {
+          let k = spring(prog(t, p.t0, p.d));
+          if (p.out !== null) k *= 1 - inOut(prog(t, p.out, 0.45));
+          p.g.scale.setScalar(Math.max(tiny, k * p.s));
+          p.g.visible = k > 0.003;
+        }
+        for (const f of figs) {
+          let k = spring(prog(t, f.t0, f.d));
+          if (f.out) k *= 1 - inOut(prog(t, f.out, 0.45));
+          f.g.visible = k > 0.003;
+          f.g.scale.setScalar(Math.max(tiny, f.s * k));
+          let y = f.y0;
+          if (f.bob) y += f.bob * Math.max(0, Math.sin(t * f.w + f.ph));
+          if (f.walk) {
+            const [ax, az2, bx, bz, t1, t2] = f.walk;
+            const u = inOutQ(prog(t, t1, t2 - t1));
+            f.g.position.x = lerp(ax, bx, u);
+            f.g.position.z = lerp(az2, bz, u);
+            if (u > 0 && u < 1) y += 0.022 * Math.abs(Math.sin(t * 11));
+          }
+          f.g.position.y = y;
+        }
+
+        // --- la couverture s'étend (L02)
+        {
+          const u = prog(t, T.wave, 3.0);
+          const on = u > 0 && u < 1;
+          waveDisc.visible = waveRing.visible = on;
+          if (on) {
+            const R = lerp(0.6, 31, out3(u));
+            waveDisc.scale.set(R, R, 1);
+            waveRing.scale.set(R, R, 1);
+            waveDisc.material.opacity = 0.13 * (1 - in3(u));
+            waveRing.material.opacity = 0.75 * (1 - in3(u));
+          }
+        }
+
+        // --- coupoles et liaisons
+        const fadeCity = 1 - inOut(prog(t, S("L05") - 0.9, 0.8)); // les liaisons s'effacent une fois les quatre fonds présentés
+        DOMES.forEach((d, k) => {
+          const g = spring(prog(t, d.t0, 1.0));
+          const sc = Math.max(tiny, g);
+          d.m.scale.set(d.rx * sc, d.ry * sc, d.rz * sc);
+          d.m.material.uniforms.uAlpha.value = d.alpha * clamp01(g * 1.4);
+          d.m.visible = g > 0.003;
+          d.ring.scale.set(d.rx * sc, d.rz * sc, 1);
+          d.ring.material.opacity = clamp01(g * 1.4);
+          d.ring.visible = g > 0.003;
+          d.disc.scale.set(d.rx * sc, d.rz * sc, 1);
+          d.disc.material.opacity = 0.07 * clamp01(g);
+          d.disc.visible = g > 0.003;
+        });
+        arcs.forEach((a) => {
+          const u = inOut(prog(t, a.t0, a.d));
+          const n = Math.floor((a.n * u) / 3) * 3;
+          a.m.geometry.setDrawRange(0, n);
+          a.m.visible = n > 0 && fadeCity > 0.01;
+          a.dot.visible = u > 0.01 && u < 0.999;
+          if (a.dot.visible) a.dot.position.copy(a.curve.getPoint(u));
+        });
+        arcMat.opacity = 0.85 * fadeCity;
+
+        // --- hélicoptère (évacuation sanitaire)
+        {
+          const u = inOutQ(prog(t, T.care[4] + 0.15, 2.6));
+          heli.position.copy(HELI0).lerp(HELI1, u);
+          heli.position.y = lerp(HELI0.y, HELI1.y, Math.min(1, u * 1.6));
+          heli.rotation.y = -Math.PI / 4 + u * 0.4;
+          rotor.rotation.y = t > T.care[4] - 0.7 ? (t - T.care[4]) * 26 : 0.4;
+          const k = spring(prog(t, T.campus + 0.5, 0.6));
+          heli.scale.setScalar(Math.max(tiny, 1.5 * k));
+          heli.visible = k > 0.003 && u < 0.999;
+        }
+
+        // --- cotisation : pièces vers le téléphone (une par trimestre), puis paiement validé
+        {
+          const sink = 1 - inOut(prog(t, T.toHQ + 0.6, 0.6));
+          phone.scale.y *= sink;
+          phone.visible = phone.visible && sink > 0.003;
+          coins.forEach((m, k) => {
+            const u = prog(t, T.trim - 0.25 + k * 0.17, 0.75);
+            m.visible = u > 0 && u < 1 && sink > 0.5;
+            if (!m.visible) return;
+            const e = inOutQ(u);
+            m.position.copy(COIN_A).lerp(COIN_B, e);
+            m.position.y += Math.sin(e * Math.PI) * 0.75;
+            m.rotation.y = Math.PI / 4;
+            m.rotation.z = u * 6;
+            m.scale.setScalar(Math.max(tiny, 1 - in3(prog(u, 0.82, 0.18))));
+          });
+        }
+
+        // --- carte : dalles qui se lèvent, provinces, puis drapeau
+        {
+          const provMix = inOut(prog(t, T.deleg - 0.35, 0.8));
+          for (const p of tiles) {
+            const r = p.i === LBV_I ? 1 : spring(prog(t, T.tiles + (p.d / MAXD) * 1.3, 0.7));
+            const rw = r > 0.01 ? 1 : tiny;
+            mtx.compose(pos.set(p.x, 0, p.z), q.identity(), scv.set(rw, Math.max(tiny, r), rw));
+            tileInst.setMatrixAt(p.i, mtx);
+            const fm = out3(prog(t, T.soli - 0.1 + (p.d / MAXD) * 1.5, 0.7));
+            cTmp.copy(cBase).lerp(cProv[PROV_TINT[p.prov]], provMix).lerp(p.flag, fm);
+            tileInst.setColorAt(p.i, cTmp);
+          }
+          tileInst.instanceMatrix.needsUpdate = true;
+          tileInst.instanceColor.needsUpdate = true;
+        }
+        // repères des bureaux
+        pins.forEach((P, k) => {
+          let g = spring(prog(t, P.t0, 0.6));
+          const b = Math.sin(Math.PI * prog(t, T.partout + (k % 9) * 0.04, 0.5)) * 0.22;
+          g *= 1 - inOut(prog(t, T.pinsOut + (k % 7) * 0.04, 0.6));
+          const sc = Math.max(tiny, P.s * g * (1 + b));
+          P.g.scale.setScalar(sc);
+          P.g.visible = g > 0.003;
+          // pastille blanche, face caméra, devant la tête
+          P.dot.position.set(0, 24, 0).addScaledVector(camFwd, -6.8);
+          P.dot.quaternion.copy(camera.quaternion);
+          const rp = prog(t, T.partout + (k % 9) * 0.04, 1.2);
+          const rg = ripples[k];
+          rg.visible = rp > 0 && rp < 1 && g > 0.5;
+          if (rg.visible) {
+            const R = lerp(6, 34, out3(rp)) * P.s;
+            rg.scale.set(R, R, 1);
+            rg.material.opacity = 0.8 * (1 - rp);
+          }
+        });
+
+        // --- étiquettes
+        // L01 : les lieux de travail
+        const l1out = T.pull2 - 0.05;
+        label("lot-commerce", lotTop(1, 1.05), 70, -120, win(t, T.lot.commerce - 0.05, 0.4, l1out, 0.35));
+        label("lot-atelier", lotTop(2, 0.98), 70, -120, win(t, T.lot.atelier - 0.05, 0.4, l1out, 0.35));
+        label("lot-cabinet", lotTop(0, 1.66), 70, -120, win(t, T.lot.cabinet - 0.05, 0.4, l1out, 0.35));
+        label("lot-maison", lotTop(4, 1.28), 70, -120, win(t, T.lot.maison - 0.05, 0.4, l1out, 0.35));
+        // L03 : les fonds au-dessus des coupoles du haut, sous celle du bas
+        ["f1", "f2", "f3"].forEach((n, k) => {
+          const d = DOMES[k];
+          const a = win(t, T.pop[k] - 0.1, 0.45, T.fund[3] - 1.0, 0.4);
+          if (k < 2) labelAbove(n, new THREE.Vector3(d.p.x, TILE_H + d.ry, d.p.z), 20, a);
+          else labelBelow(n, new THREE.Vector3(d.p.x + 0.70711 * d.rx, TILE_H, d.p.z + 0.70711 * d.rz), 18, a);
+          $("wn-" + n).style.opacity = out3(prog(t, T.fund[k] - 0.05, 0.35)).toFixed(3);
+        });
+        // L05 : qui est concerné
+        const l5out = E("L05") + 0.35;
+        label("p-prof", lotTop(0, 1.5, -0.3), -80, -80, win(t, T.prof - 0.05, 0.4, l5out, 0.35), "right");
+        T.lib.forEach((tt, j) => ($("wp-" + j).style.opacity = (0.28 + 0.72 * out3(prog(t, tt - 0.05, 0.3))).toFixed(3)));
+        label("p-comm", lotTop(1, 1.05), 80, -150, win(t, T.comm - 0.05, 0.4, l5out, 0.35));
+        label("p-arti", lotTop(2, 0.98), 80, -150, win(t, T.arti - 0.05, 0.4, l5out, 0.35));
+        label("p-artis", lotTop(3, 1.28), 80, -150, win(t, T.artis - 0.05, 0.4, l5out, 0.35));
+        label("p-empl", lotTop(4, 1.28), 80, -150, win(t, T.empl - 0.05, 0.4, l5out, 0.35));
+        label("p-etr", W4(0.78, 0.55, 1.64), -150, 150, win(t, T.etr - 0.05, 0.4, l5out, 0.35), "right");
+        // L06 : les soins
+        const l6out = E("L06") + 0.3;
+        ["s-cons", "s-exam", "s-hosp", "s-med", "s-evac"].forEach((n, k) => {
+          const anchor = k === 4 ? W(P_H, HELI0.x + 0.5, HELI0.y + 0.7, HELI0.z) : W(P_H, careTop[k].x, careTop[k].y, careTop[k].z);
+          const [dx, dy, al] = [
+            [-70, -100, "right"],
+            [-80, 185, "right"],
+            [60, -120, "left"],
+            [90, -40, "left"],
+            [130, -20, "left"],
+          ][k];
+          label(n, anchor, dx, dy, win(t, T.care[k] - 0.05, 0.4, l6out, 0.35), al);
+        });
+        // L08 : immatriculation, puis légende de la carte
+        label("imm", WQ(-0.4, 1.0, 2.05), -70, 120, win(t, T.imm + 0.05, 0.4, T.out + 0.25, 0.3), "right");
+        fixedLabel("leg-0", 120, 800, win(t, T.deleg + 0.1, 0.45, T.pinsOut, 0.4));
+        fixedLabel("leg-1", 120, 880, win(t, T.unite + 0.1, 0.45, T.pinsOut, 0.4));
+
+        // badges face caméra
+        regCheck.quaternion.copy(camera.quaternion);
+        idCards.forEach((m) => m.quaternion.copy(camera.quaternion));
+        renderer.render(scene, camera);
+      }
+
+      // ------------------------------------------------------------------ chargement
+      const loadImg = (src) =>
+        new Promise((res, rej) => {
+          const im = new Image();
+          im.onload = () => res(im);
+          im.onerror = rej;
+          im.src = src;
+        });
+      (async function init() {
+        await Promise.all([
+          document.fonts.load('700 36px "Montserrat"'),
+          document.fonts.load('600 28px "Montserrat"'),
+          document.fonts.load('800 40px "Montserrat"'),
+        ]).catch(() => {});
+        const logo = await loadImg("assets/img/cnamgs-logo.png");
+        // enseigne du siège
+        const lt = canvasTex(1560, 462, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          g.fillRect(0, 0, w, h);
+          g.drawImage(logo, 17, 5, 1526, 452);
+        });
+        logoPlane.material.map = lt;
+        logoPlane.material.needsUpdate = true;
+        // écran du téléphone : logo, « Fonds 4 », bouton de paiement
+        const st = canvasTex(410, 800, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          rr(g, 0, 0, w, h, 34);
+          g.fill();
+          g.drawImage(logo, 0, 0, 340, 302, 22, 40, 120, 106);
+          g.fillStyle = "#0b3f63";
+          g.font = '800 64px "Montserrat"';
+          g.fillText("Fonds 4", 22, 232);
+          g.fillStyle = "#3a4651";
+          g.font = '600 30px "Montserrat"';
+          g.fillText("Cotisation", 24, 290);
+          g.fillText("trimestrielle", 24, 328);
+          ["T1", "T2", "T3", "T4"].forEach((s, k) => {
+            g.fillStyle = "#e7eef4";
+            rr(g, 24 + k * 92, 372, 80, 64, 14);
+            g.fill();
+            g.fillStyle = "#0067a3";
+            g.font = '700 30px "Montserrat"';
+            g.fillText(s, 44 + k * 92, 414);
+          });
+          g.fillStyle = "#0067a3";
+          rr(g, 24, 640, w - 48, 96, 48);
+          g.fill();
+          g.fillStyle = "#ffffff";
+          g.font = '700 36px "Montserrat"';
+          const lbl = "Payer";
+          g.fillText(lbl, (w - g.measureText(lbl).width) / 2, 700);
+        });
+        screen.material.map = st;
+        screen.material.needsUpdate = true;
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>
