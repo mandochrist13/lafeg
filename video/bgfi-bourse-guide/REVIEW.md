@@ -43,7 +43,17 @@ Chaque scène a été vue en images fixes à ses moments clés, avant le rendu.
 
 ## Rendu
 
-`renders/BGFIBourse-guide.mp4`, en qualité « delivery ». Durée, poids et volume sonore : voir le rapport de livraison.
+`renders/BGFIBourse-guide.mp4`, en qualité « delivery ».
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo, 48 kHz |
+| Durée | 109,5 s |
+| Poids | 11,2 Mo |
+| Volume | −16,0 LUFS intégré, plage 3,7 LU, crête vraie −2,3 dBFS |
+
+Une planche de 16 images extraites du MP4 (de 1 s à 104 s) montre les mêmes plans que les images de contrôle. Les apparitions tombent sur les mots de la voix, et le compteur atteint 45,32 avant la fin de la scène.
 
 ## À valider par BGFIBourse
 
