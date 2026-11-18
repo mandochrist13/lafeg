@@ -135,7 +135,7 @@
         ["#s11-p2", "conservation"],
         ["#s11-p3", "conseil"],
       ].forEach(function (p) {
-        tl.fromTo(p[0], { opacity: 0, y: 16, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.35, ease: "back.out(2)" }, L(C.at("L12", [p[1]])) - 0.15);
+        tl.fromTo(p[0], { scale: 0 }, { scale: 1, duration: 0.35, ease: "back.out(2)" }, L(C.at("L12", [p[1]])) - 0.15);
       });
       // « faites fructifier votre épargne »
       tl.fromTo("#s11-slo span", { opacity: 0, filter: "blur(6px)", y: 12 }, { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.18, stagger: 0.14, ease: "power4.out" }, L(C.at("L12", ["faites"])) - 0.1);

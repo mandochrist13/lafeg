@@ -102,6 +102,7 @@
       <div class="s2-abs" style="left: 18px; top: 122px; width: 96px; height: 12px; border-radius: 6px; background: #cfdbac"></div>
       <div id="s2-cmk" class="s2-abs" style="left: 168px; top: 86px"></div>
     </div>
+    <div id="s2-tile" class="s2-abs" style="left: 1507px; top: 613px; width: 86px; height: 96px; border-radius: 6px; background: #879a6d"></div>
     <div id="s2-coins" class="s2-abs"></div>
     <div id="s2-t1" class="s2-tag" style="top: 700px"><span id="s2-i1"></span><span>Vous devenez <b>actionnaire</b></span></div>
     <div id="s2-t2" class="s2-tag" style="top: 800px"><span id="s2-i2"></span><span><b>Le dividende</b> · une part des bénéfices</span></div>
@@ -138,8 +139,11 @@
       // « une part » : une part de l'immeuble s'allume, puis le titre d'action rejoint Nadia
       var tP = L(C.at("L03", ["part"])) - 0.05;
       tl.to("#s2p-4 rect:first-child", { fill: "#879A6D", duration: 0.3, ease: "power2.out" }, tP);
-      tl.fromTo("#s2-card", { opacity: 0, x: 880, y: 70, scale: 0.32 }, { opacity: 1, x: 880, y: 70, scale: 0.32, duration: 0.2 }, tP + 0.3);
-      tl.to("#s2-card", { x: 0, y: 0, scale: 1, duration: 0.9, ease: "power3.inOut" }, tP + 0.5);
+      // la part (sans texte) quitte l'immeuble et grandit jusqu'à la place du titre, qui se révèle alors
+      tl.fromTo("#s2-tile", { opacity: 0, x: 0, y: 0, scale: 1 }, { opacity: 1, duration: 0.15 }, tP + 0.25);
+      tl.to("#s2-tile", { x: -864, y: -153, scaleX: 2.67, scaleY: 1.67, transformOrigin: "0% 0%", duration: 0.85, ease: "power3.inOut" }, tP + 0.4);
+      tl.fromTo("#s2-card", { clipPath: "inset(0% 0% 100% 0% round 12px)" }, { clipPath: "inset(0% 0% 0% 0% round 12px)", duration: 0.4, ease: "power2.out" }, tP + 1.2);
+      tl.to("#s2-tile", { opacity: 0, duration: 0.2 }, tP + 1.5);
       tl.to("#s2p-4 rect:first-child", { fill: "#E3EAF1", duration: 0.5, ease: "power2.inOut" }, tP + 1.2);
       // Nadia lève la main vers son titre
       tl.to("#n2-uaR", { rotation: -32, duration: 0.6, ease: "power2.inOut" }, tP + 0.8);
@@ -158,9 +162,9 @@
         tl.to("#s2-c" + k, { y: 170 + k * 8, duration: 0.48, ease: "power2.in" }, t0 + 0.47);
       }
       // « le dividende »
-      tl.fromTo("#s2-t2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L03", ["dividende"])) - 0.15);
+      tl.fromTo("#s2-t2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L03", ["benefices"])) - 0.1);
 
-      tl.to(["#s2-title", ".s2-kick", ".s2-tag", "#s2-card", "#s2-coins"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      tl.to(["#s2-title", ".s2-kick", ".s2-tag", "#s2-card", "#s2-coins", "#s2-tile"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
       tl.to(["#s2-bld", "#s2-nadia"], { opacity: 0, duration: 0.32, ease: "power2.in" }, D - 0.34);
       window.__timelines["s2"] = tl;
     })();

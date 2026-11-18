@@ -56,7 +56,7 @@
       position: absolute;
       left: 0;
       top: 0;
-      width: 920px;
+      width: 100%;
       height: 92px;
       background: #0b2677;
       color: #ffffff;
@@ -127,8 +127,8 @@
       position: absolute;
       left: 0;
       top: 620px;
-      width: 920px;
-      height: 200px;
+      width: 100%;
+      height: 194px;
       background: #f3f5f0;
     }
     #s9-arr span {
@@ -204,7 +204,7 @@
       tl.fromTo("#s9-co", { scale: 1 }, { scale: 1.04, duration: 0.25, ease: "power2.out", yoyo: true, repeat: 1, transformOrigin: "50% 100%" }, tF + 0.9);
       // « en 2026, BGFI Bourse a conduit l'entrée en Bourse de BGFI Holding Corporation »
       var t26 = L(C.at("L10", ["deux"])) - 0.3;
-      tl.fromTo("#s9-card", { opacity: 0, x: 80 }, { opacity: 1, x: 0, duration: 0.55, ease: "power3.out" }, t26);
+      tl.fromTo("#s9-card", { x: 1100 }, { x: 0, duration: 0.6, ease: "power3.out" }, t26);
       tl.fromTo("#s9-arr", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, L(C.at("L10", ["conduit"])) - 0.3);
       tl.fromTo("#s9-name", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.4, ease: "power3.out" }, L(C.atK("L10", "bgfi", 1)) - 0.15);
       tl.fromTo("#s9-cote", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L10", ["corporation"])) + 0.2);

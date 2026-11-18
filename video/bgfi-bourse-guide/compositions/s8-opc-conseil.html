@@ -190,7 +190,8 @@
       // 1. les OPC
       tl.fromTo("#s8-A .s8-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
       tl.fromTo("#s8-savers .pp", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.08, ease: "power3.out" }, 0.05);
-      tl.fromTo(["#s8-jar", "#s8-jar-name"], { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, L(C.at("L09", ["opc"])) - 0.35);
+      tl.fromTo("#s8-jar", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, L(C.at("L09", ["opc"])) - 0.45);
+      tl.fromTo("#s8-jar-name", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, L(C.at("L09", ["opc"])) + 0.1);
       tl.fromTo("#s8-tA span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L09", ["votre"])) - 0.1);
       savers.forEach(function (p, i) {
         P.breathe(tl, p.id, 0.1 * i, D, 3.1 + 0.2 * i, 0.009);
@@ -220,7 +221,7 @@
       tl.to("#s8-A", { opacity: 0, filter: "blur(6px)", duration: 0.35, ease: "power3.in" }, tC);
       tl.fromTo("#s8-B .s8-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, tC + 0.3);
       tl.fromTo("#s8-duo .pp", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.1, ease: "power3.out" }, tC + 0.25);
-      tl.fromTo("#s8-pB", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L09", ["conseille"])) - 0.25);
+      tl.fromTo("#s8-pB", { clipPath: "inset(0% 100% 0% 0% round 999px)" }, { clipPath: "inset(0% 0% 0% 0% round 999px)", duration: 0.45, ease: "power2.out" }, L(C.at("L09", ["conseille"])) - 0.25);
       tl.fromTo("#s8-tB span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.14, ease: "power4.out" }, L(C.at("L09", ["selon"])) - 0.1);
       tl.fromTo("#s8-bubble", { opacity: 0, scale: 0.7, transformOrigin: "40% 100%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(1.8)" }, L(C.at("L09", ["objectifs"])) - 0.25);
       gsap.set("#e8-head", { rotation: 5 });
