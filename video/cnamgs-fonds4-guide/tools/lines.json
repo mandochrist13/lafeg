@@ -1,0 +1,61 @@
+{
+  "lead": 3.2,
+  "tail": 6.0,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0,
+      "text": "Vous travaillez à votre compte ? Commerçant, artisan, avocat, infirmière, chauffeur ou jardinier : le Fonds 4 de la Knam-GS est fait pour vous."
+    },
+    {
+      "id": "L02",
+      "gap": 1.0,
+      "text": "Conformément à l'article 15 de la loi du 17 juillet 2023, le Fonds 4 est dédié aux travailleurs indépendants et aux assurés volontaires."
+    },
+    {
+      "id": "L03",
+      "gap": 1.0,
+      "text": "Sont concernés : les métiers de la santé, comme les médecins, les pharmaciens, les infirmiers ou les sages-femmes ; les métiers techniques et juridiques, comme les experts-comptables, les avocats ou les notaires ;"
+    },
+    {
+      "id": "L04",
+      "gap": 0.6,
+      "text": "les commerçants, les artisans et les artistes ; et les employés de maison : femmes de ménage, jardiniers, chauffeurs et gardiens."
+    },
+    {
+      "id": "L05",
+      "gap": 1.0,
+      "text": "Une fois assuré, vous avez accès aux consultations, aux examens, aux hospitalisations, aux médicaments et aux évacuations sanitaires."
+    },
+    {
+      "id": "L06",
+      "gap": 1.0,
+      "text": "Pour vous faire immatriculer, rendez-vous dans un bureau de la Knam-GS : délégation provinciale, unité départementale ou communale."
+    },
+    {
+      "id": "L07",
+      "gap": 1.0,
+      "text": "Apportez votre acte de naissance légalisé, une pièce d'identité, votre avis de patente ou d'impôt synthétique libératoire, et la fiche circuit."
+    },
+    {
+      "id": "L08",
+      "gap": 0.9,
+      "text": "Si vous êtes marié, ajoutez une copie de l'acte de mariage pour votre conjoint ; si vous êtes étranger, votre carte de séjour."
+    },
+    {
+      "id": "L09",
+      "gap": 1.0,
+      "text": "Votre cotisation est forfaitaire. Elle se paie chaque trimestre, par voie électronique."
+    },
+    {
+      "id": "L10",
+      "gap": 0.9,
+      "text": "À jour de vos cotisations, vos soins sont pris en charge."
+    },
+    {
+      "id": "L11",
+      "gap": 1.1,
+      "text": "Ne restez pas sans couverture : faites-vous immatriculer au Fonds 4. La solidarité a un sens."
+    }
+  ]
+}

@@ -1,0 +1,1275 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.725,
+      "speech": [
+        0.12,
+        9.545
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Vous",
+          "start": 0.12,
+          "end": 0.277
+        },
+        {
+          "text": "travaillez",
+          "start": 0.277,
+          "end": 0.749
+        },
+        {
+          "text": "à",
+          "start": 0.749,
+          "end": 0.906
+        },
+        {
+          "text": "votre",
+          "start": 0.906,
+          "end": 1.064
+        },
+        {
+          "text": "compte",
+          "start": 1.064,
+          "end": 1.221
+        },
+        {
+          "text": "?",
+          "start": 1.221,
+          "end": 1.378
+        },
+        {
+          "text": "Commerçant,",
+          "start": 1.978,
+          "end": 2.833
+        },
+        {
+          "text": "artisan,",
+          "start": 2.833,
+          "end": 3.687
+        },
+        {
+          "text": "avocat,",
+          "start": 3.687,
+          "end": 4.541
+        },
+        {
+          "text": "infirmière,",
+          "start": 4.711,
+          "end": 5.561
+        },
+        {
+          "text": "chauffeur",
+          "start": 5.561,
+          "end": 6.128
+        },
+        {
+          "text": "ou",
+          "start": 6.128,
+          "end": 6.411
+        },
+        {
+          "text": "jardinier",
+          "start": 6.411,
+          "end": 7.261
+        },
+        {
+          "text": ":",
+          "start": 7.261,
+          "end": 7.545
+        },
+        {
+          "text": "le",
+          "start": 7.67,
+          "end": 7.84
+        },
+        {
+          "text": "Fonds",
+          "start": 7.84,
+          "end": 8.011
+        },
+        {
+          "text": "4",
+          "start": 8.011,
+          "end": 8.352
+        },
+        {
+          "text": "de",
+          "start": 8.352,
+          "end": 8.522
+        },
+        {
+          "text": "la",
+          "start": 8.522,
+          "end": 8.693
+        },
+        {
+          "text": "Knam-GS",
+          "start": 8.693,
+          "end": 8.863
+        },
+        {
+          "text": "est",
+          "start": 8.863,
+          "end": 9.034
+        },
+        {
+          "text": "fait",
+          "start": 9.034,
+          "end": 9.204
+        },
+        {
+          "text": "pour",
+          "start": 9.204,
+          "end": 9.375
+        },
+        {
+          "text": "vous.",
+          "start": 9.375,
+          "end": 9.545
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.936,
+      "speech": [
+        0.12,
+        7.756
+      ],
+      "pauses": 1,
+      "anchored": 0,
+      "words": [
+        {
+          "text": "Conformément",
+          "start": 0.12,
+          "end": 0.799
+        },
+        {
+          "text": "à",
+          "start": 0.799,
+          "end": 0.969
+        },
+        {
+          "text": "l'article",
+          "start": 0.969,
+          "end": 1.308
+        },
+        {
+          "text": "15",
+          "start": 1.308,
+          "end": 1.647
+        },
+        {
+          "text": "de",
+          "start": 1.647,
+          "end": 1.817
+        },
+        {
+          "text": "la",
+          "start": 1.817,
+          "end": 1.987
+        },
+        {
+          "text": "loi",
+          "start": 1.987,
+          "end": 2.156
+        },
+        {
+          "text": "du",
+          "start": 2.156,
+          "end": 2.326
+        },
+        {
+          "text": "17",
+          "start": 2.326,
+          "end": 2.665
+        },
+        {
+          "text": "juillet",
+          "start": 2.665,
+          "end": 3.005
+        },
+        {
+          "text": "2023,",
+          "start": 3.005,
+          "end": 3.684
+        },
+        {
+          "text": "le",
+          "start": 3.684,
+          "end": 3.853
+        },
+        {
+          "text": "Fonds",
+          "start": 3.853,
+          "end": 4.023
+        },
+        {
+          "text": "4",
+          "start": 4.023,
+          "end": 4.362
+        },
+        {
+          "text": "est",
+          "start": 4.362,
+          "end": 4.532
+        },
+        {
+          "text": "dédié",
+          "start": 4.532,
+          "end": 4.871
+        },
+        {
+          "text": "aux",
+          "start": 4.871,
+          "end": 5.041
+        },
+        {
+          "text": "travailleurs",
+          "start": 5.041,
+          "end": 5.55
+        },
+        {
+          "text": "indépendants",
+          "start": 5.55,
+          "end": 6.229
+        },
+        {
+          "text": "et",
+          "start": 6.229,
+          "end": 6.398
+        },
+        {
+          "text": "aux",
+          "start": 6.398,
+          "end": 6.568
+        },
+        {
+          "text": "assurés",
+          "start": 6.568,
+          "end": 7.077
+        },
+        {
+          "text": "volontaires.",
+          "start": 7.077,
+          "end": 7.756
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 11.226,
+      "speech": [
+        0.12,
+        11.047
+      ],
+      "pauses": 5,
+      "anchored": 4,
+      "words": [
+        {
+          "text": "Sont",
+          "start": 0.12,
+          "end": 0.328
+        },
+        {
+          "text": "concernés",
+          "start": 0.328,
+          "end": 0.951
+        },
+        {
+          "text": ":",
+          "start": 0.951,
+          "end": 1.158
+        },
+        {
+          "text": "les",
+          "start": 1.344,
+          "end": 1.483
+        },
+        {
+          "text": "métiers",
+          "start": 1.483,
+          "end": 1.76
+        },
+        {
+          "text": "de",
+          "start": 1.76,
+          "end": 1.898
+        },
+        {
+          "text": "la",
+          "start": 1.898,
+          "end": 2.037
+        },
+        {
+          "text": "santé,",
+          "start": 2.037,
+          "end": 2.314
+        },
+        {
+          "text": "comme",
+          "start": 2.578,
+          "end": 2.708
+        },
+        {
+          "text": "les",
+          "start": 2.708,
+          "end": 2.839
+        },
+        {
+          "text": "médecins,",
+          "start": 2.839,
+          "end": 3.23
+        },
+        {
+          "text": "les",
+          "start": 3.474,
+          "end": 3.624
+        },
+        {
+          "text": "pharmaciens,",
+          "start": 3.624,
+          "end": 4.075
+        },
+        {
+          "text": "les",
+          "start": 4.075,
+          "end": 4.225
+        },
+        {
+          "text": "infirmiers",
+          "start": 4.225,
+          "end": 4.676
+        },
+        {
+          "text": "ou",
+          "start": 4.676,
+          "end": 4.827
+        },
+        {
+          "text": "les",
+          "start": 4.827,
+          "end": 4.977
+        },
+        {
+          "text": "sages-femmes",
+          "start": 4.977,
+          "end": 5.578
+        },
+        {
+          "text": ";",
+          "start": 5.578,
+          "end": 5.729
+        },
+        {
+          "text": "les",
+          "start": 6.169,
+          "end": 6.344
+        },
+        {
+          "text": "métiers",
+          "start": 6.344,
+          "end": 6.692
+        },
+        {
+          "text": "techniques",
+          "start": 6.692,
+          "end": 7.215
+        },
+        {
+          "text": "et",
+          "start": 7.215,
+          "end": 7.389
+        },
+        {
+          "text": "juridiques,",
+          "start": 7.389,
+          "end": 8.086
+        },
+        {
+          "text": "comme",
+          "start": 8.086,
+          "end": 8.26
+        },
+        {
+          "text": "les",
+          "start": 8.26,
+          "end": 8.434
+        },
+        {
+          "text": "experts-comptables,",
+          "start": 8.434,
+          "end": 9.305
+        },
+        {
+          "text": "les",
+          "start": 9.305,
+          "end": 9.479
+        },
+        {
+          "text": "avocats",
+          "start": 9.479,
+          "end": 10.002
+        },
+        {
+          "text": "ou",
+          "start": 10.002,
+          "end": 10.176
+        },
+        {
+          "text": "les",
+          "start": 10.176,
+          "end": 10.35
+        },
+        {
+          "text": "notaires",
+          "start": 10.35,
+          "end": 10.873
+        },
+        {
+          "text": ";",
+          "start": 10.873,
+          "end": 11.047
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.003,
+      "speech": [
+        0.12,
+        7.823
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "les",
+          "start": 0.12,
+          "end": 0.308
+        },
+        {
+          "text": "commerçants,",
+          "start": 0.308,
+          "end": 0.871
+        },
+        {
+          "text": "les",
+          "start": 0.871,
+          "end": 1.059
+        },
+        {
+          "text": "artisans",
+          "start": 1.059,
+          "end": 1.622
+        },
+        {
+          "text": "et",
+          "start": 1.622,
+          "end": 1.809
+        },
+        {
+          "text": "les",
+          "start": 1.809,
+          "end": 1.997
+        },
+        {
+          "text": "artistes",
+          "start": 1.997,
+          "end": 2.56
+        },
+        {
+          "text": ";",
+          "start": 2.56,
+          "end": 2.748
+        },
+        {
+          "text": "et",
+          "start": 3.464,
+          "end": 3.608
+        },
+        {
+          "text": "les",
+          "start": 3.608,
+          "end": 3.751
+        },
+        {
+          "text": "employés",
+          "start": 3.751,
+          "end": 4.037
+        },
+        {
+          "text": "de",
+          "start": 4.037,
+          "end": 4.18
+        },
+        {
+          "text": "maison",
+          "start": 4.18,
+          "end": 4.466
+        },
+        {
+          "text": ":",
+          "start": 4.466,
+          "end": 4.609
+        },
+        {
+          "text": "femmes",
+          "start": 4.992,
+          "end": 5.428
+        },
+        {
+          "text": "de",
+          "start": 5.428,
+          "end": 5.645
+        },
+        {
+          "text": "ménage,",
+          "start": 5.645,
+          "end": 6.081
+        },
+        {
+          "text": "jardiniers,",
+          "start": 6.081,
+          "end": 6.734
+        },
+        {
+          "text": "chauffeurs",
+          "start": 6.734,
+          "end": 7.169
+        },
+        {
+          "text": "et",
+          "start": 7.169,
+          "end": 7.387
+        },
+        {
+          "text": "gardiens.",
+          "start": 7.387,
+          "end": 7.823
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.993,
+      "speech": [
+        0.12,
+        7.813
+      ],
+      "pauses": 4,
+      "anchored": 4,
+      "words": [
+        {
+          "text": "Une",
+          "start": 0.12,
+          "end": 0.187
+        },
+        {
+          "text": "fois",
+          "start": 0.187,
+          "end": 0.254
+        },
+        {
+          "text": "assuré,",
+          "start": 0.254,
+          "end": 0.454
+        },
+        {
+          "text": "vous",
+          "start": 0.615,
+          "end": 0.856
+        },
+        {
+          "text": "avez",
+          "start": 0.856,
+          "end": 1.338
+        },
+        {
+          "text": "accès",
+          "start": 1.338,
+          "end": 1.82
+        },
+        {
+          "text": "aux",
+          "start": 1.82,
+          "end": 2.061
+        },
+        {
+          "text": "consultations,",
+          "start": 2.061,
+          "end": 3.025
+        },
+        {
+          "text": "aux",
+          "start": 3.258,
+          "end": 3.42
+        },
+        {
+          "text": "examens,",
+          "start": 3.42,
+          "end": 3.905
+        },
+        {
+          "text": "aux",
+          "start": 4.111,
+          "end": 4.26
+        },
+        {
+          "text": "hospitalisations,",
+          "start": 4.26,
+          "end": 5.156
+        },
+        {
+          "text": "aux",
+          "start": 5.402,
+          "end": 5.562
+        },
+        {
+          "text": "médicaments",
+          "start": 5.562,
+          "end": 6.205
+        },
+        {
+          "text": "et",
+          "start": 6.205,
+          "end": 6.366
+        },
+        {
+          "text": "aux",
+          "start": 6.366,
+          "end": 6.527
+        },
+        {
+          "text": "évacuations",
+          "start": 6.527,
+          "end": 7.17
+        },
+        {
+          "text": "sanitaires.",
+          "start": 7.17,
+          "end": 7.813
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.106,
+      "speech": [
+        0.12,
+        6.926
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Pour",
+          "start": 0.12,
+          "end": 0.294
+        },
+        {
+          "text": "vous",
+          "start": 0.294,
+          "end": 0.469
+        },
+        {
+          "text": "faire",
+          "start": 0.469,
+          "end": 0.643
+        },
+        {
+          "text": "immatriculer,",
+          "start": 0.643,
+          "end": 1.516
+        },
+        {
+          "text": "rendez-vous",
+          "start": 1.516,
+          "end": 2.039
+        },
+        {
+          "text": "dans",
+          "start": 2.039,
+          "end": 2.214
+        },
+        {
+          "text": "un",
+          "start": 2.214,
+          "end": 2.388
+        },
+        {
+          "text": "bureau",
+          "start": 2.388,
+          "end": 2.737
+        },
+        {
+          "text": "de",
+          "start": 2.737,
+          "end": 2.912
+        },
+        {
+          "text": "la",
+          "start": 2.912,
+          "end": 3.086
+        },
+        {
+          "text": "Knam-GS",
+          "start": 3.086,
+          "end": 3.261
+        },
+        {
+          "text": ":",
+          "start": 3.261,
+          "end": 3.435
+        },
+        {
+          "text": "délégation",
+          "start": 3.837,
+          "end": 4.519
+        },
+        {
+          "text": "provinciale,",
+          "start": 4.519,
+          "end": 5.031
+        },
+        {
+          "text": "unité",
+          "start": 5.227,
+          "end": 5.651
+        },
+        {
+          "text": "départementale",
+          "start": 5.651,
+          "end": 6.359
+        },
+        {
+          "text": "ou",
+          "start": 6.359,
+          "end": 6.501
+        },
+        {
+          "text": "communale.",
+          "start": 6.501,
+          "end": 6.926
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.298,
+      "speech": [
+        0.12,
+        8.118
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Apportez",
+          "start": 0.12,
+          "end": 0.676
+        },
+        {
+          "text": "votre",
+          "start": 0.676,
+          "end": 0.861
+        },
+        {
+          "text": "acte",
+          "start": 0.861,
+          "end": 1.046
+        },
+        {
+          "text": "de",
+          "start": 1.046,
+          "end": 1.231
+        },
+        {
+          "text": "naissance",
+          "start": 1.231,
+          "end": 1.602
+        },
+        {
+          "text": "légalisé,",
+          "start": 1.602,
+          "end": 2.342
+        },
+        {
+          "text": "une",
+          "start": 2.655,
+          "end": 2.827
+        },
+        {
+          "text": "pièce",
+          "start": 2.827,
+          "end": 2.999
+        },
+        {
+          "text": "d'identité,",
+          "start": 2.999,
+          "end": 3.688
+        },
+        {
+          "text": "votre",
+          "start": 4.106,
+          "end": 4.283
+        },
+        {
+          "text": "avis",
+          "start": 4.283,
+          "end": 4.639
+        },
+        {
+          "text": "de",
+          "start": 4.639,
+          "end": 4.817
+        },
+        {
+          "text": "patente",
+          "start": 4.817,
+          "end": 5.172
+        },
+        {
+          "text": "ou",
+          "start": 5.172,
+          "end": 5.35
+        },
+        {
+          "text": "d'impôt",
+          "start": 5.35,
+          "end": 5.705
+        },
+        {
+          "text": "synthétique",
+          "start": 5.705,
+          "end": 6.416
+        },
+        {
+          "text": "libératoire,",
+          "start": 6.416,
+          "end": 7.127
+        },
+        {
+          "text": "et",
+          "start": 7.28,
+          "end": 7.448
+        },
+        {
+          "text": "la",
+          "start": 7.448,
+          "end": 7.615
+        },
+        {
+          "text": "fiche",
+          "start": 7.615,
+          "end": 7.783
+        },
+        {
+          "text": "circuit.",
+          "start": 7.783,
+          "end": 8.118
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.527,
+      "speech": [
+        0.12,
+        6.347
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Si",
+          "start": 0.12,
+          "end": 0.283
+        },
+        {
+          "text": "vous",
+          "start": 0.283,
+          "end": 0.446
+        },
+        {
+          "text": "êtes",
+          "start": 0.446,
+          "end": 0.772
+        },
+        {
+          "text": "marié,",
+          "start": 0.772,
+          "end": 1.097
+        },
+        {
+          "text": "ajoutez",
+          "start": 1.097,
+          "end": 1.586
+        },
+        {
+          "text": "une",
+          "start": 1.586,
+          "end": 1.749
+        },
+        {
+          "text": "copie",
+          "start": 1.749,
+          "end": 2.075
+        },
+        {
+          "text": "de",
+          "start": 2.075,
+          "end": 2.238
+        },
+        {
+          "text": "l'acte",
+          "start": 2.238,
+          "end": 2.401
+        },
+        {
+          "text": "de",
+          "start": 2.401,
+          "end": 2.564
+        },
+        {
+          "text": "mariage",
+          "start": 2.564,
+          "end": 2.889
+        },
+        {
+          "text": "pour",
+          "start": 2.889,
+          "end": 3.052
+        },
+        {
+          "text": "votre",
+          "start": 3.052,
+          "end": 3.215
+        },
+        {
+          "text": "conjoint",
+          "start": 3.215,
+          "end": 3.541
+        },
+        {
+          "text": ";",
+          "start": 3.541,
+          "end": 3.704
+        },
+        {
+          "text": "si",
+          "start": 4.132,
+          "end": 4.316
+        },
+        {
+          "text": "vous",
+          "start": 4.316,
+          "end": 4.501
+        },
+        {
+          "text": "êtes",
+          "start": 4.501,
+          "end": 4.87
+        },
+        {
+          "text": "étranger,",
+          "start": 4.87,
+          "end": 5.424
+        },
+        {
+          "text": "votre",
+          "start": 5.424,
+          "end": 5.608
+        },
+        {
+          "text": "carte",
+          "start": 5.608,
+          "end": 5.793
+        },
+        {
+          "text": "de",
+          "start": 5.793,
+          "end": 5.978
+        },
+        {
+          "text": "séjour.",
+          "start": 5.978,
+          "end": 6.347
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.852,
+      "speech": [
+        0.118,
+        4.739
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Votre",
+          "start": 0.118,
+          "end": 0.326
+        },
+        {
+          "text": "cotisation",
+          "start": 0.326,
+          "end": 1.157
+        },
+        {
+          "text": "est",
+          "start": 1.157,
+          "end": 1.365
+        },
+        {
+          "text": "forfaitaire.",
+          "start": 1.365,
+          "end": 1.988
+        },
+        {
+          "text": "Elle",
+          "start": 2.401,
+          "end": 2.579
+        },
+        {
+          "text": "se",
+          "start": 2.579,
+          "end": 2.757
+        },
+        {
+          "text": "paie",
+          "start": 2.757,
+          "end": 2.935
+        },
+        {
+          "text": "chaque",
+          "start": 2.935,
+          "end": 3.29
+        },
+        {
+          "text": "trimestre,",
+          "start": 3.29,
+          "end": 3.646
+        },
+        {
+          "text": "par",
+          "start": 3.817,
+          "end": 3.949
+        },
+        {
+          "text": "voie",
+          "start": 3.949,
+          "end": 4.08
+        },
+        {
+          "text": "électronique.",
+          "start": 4.08,
+          "end": 4.739
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 2.858,
+      "speech": [
+        0.12,
+        2.678
+      ],
+      "pauses": 0,
+      "anchored": 0,
+      "words": [
+        {
+          "text": "À",
+          "start": 0.12,
+          "end": 0.303
+        },
+        {
+          "text": "jour",
+          "start": 0.303,
+          "end": 0.486
+        },
+        {
+          "text": "de",
+          "start": 0.486,
+          "end": 0.668
+        },
+        {
+          "text": "vos",
+          "start": 0.668,
+          "end": 0.851
+        },
+        {
+          "text": "cotisations,",
+          "start": 0.851,
+          "end": 1.582
+        },
+        {
+          "text": "vos",
+          "start": 1.582,
+          "end": 1.765
+        },
+        {
+          "text": "soins",
+          "start": 1.765,
+          "end": 1.947
+        },
+        {
+          "text": "sont",
+          "start": 1.947,
+          "end": 2.13
+        },
+        {
+          "text": "pris",
+          "start": 2.13,
+          "end": 2.313
+        },
+        {
+          "text": "en",
+          "start": 2.313,
+          "end": 2.496
+        },
+        {
+          "text": "charge.",
+          "start": 2.496,
+          "end": 2.678
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "path": "assets/voice/L11.wav",
+      "voice": "Sulafat",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.396,
+      "speech": [
+        0.119,
+        5.216
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Ne",
+          "start": 0.119,
+          "end": 0.25
+        },
+        {
+          "text": "restez",
+          "start": 0.25,
+          "end": 0.511
+        },
+        {
+          "text": "pas",
+          "start": 0.511,
+          "end": 0.641
+        },
+        {
+          "text": "sans",
+          "start": 0.641,
+          "end": 0.772
+        },
+        {
+          "text": "couverture",
+          "start": 0.772,
+          "end": 1.163
+        },
+        {
+          "text": ":",
+          "start": 1.163,
+          "end": 1.294
+        },
+        {
+          "text": "faites-vous",
+          "start": 1.598,
+          "end": 1.969
+        },
+        {
+          "text": "immatriculer",
+          "start": 1.969,
+          "end": 2.588
+        },
+        {
+          "text": "au",
+          "start": 2.588,
+          "end": 2.711
+        },
+        {
+          "text": "Fonds",
+          "start": 2.711,
+          "end": 2.835
+        },
+        {
+          "text": "4.",
+          "start": 2.835,
+          "end": 3.082
+        },
+        {
+          "text": "La",
+          "start": 3.475,
+          "end": 3.669
+        },
+        {
+          "text": "solidarité",
+          "start": 3.669,
+          "end": 4.636
+        },
+        {
+          "text": "a",
+          "start": 4.636,
+          "end": 4.829
+        },
+        {
+          "text": "un",
+          "start": 4.829,
+          "end": 5.023
+        },
+        {
+          "text": "sens.",
+          "start": 5.023,
+          "end": 5.216
+        }
+      ]
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Sulafat)",
+  "onepass": {
+    "voice": "Sulafat",
+    "model": "gemini-3.8-flash-tts"
+  },
+  "tts_provider": "gemini"
+}

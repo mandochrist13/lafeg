@@ -1,0 +1,51 @@
+{
+  "lead": 3.4,
+  "tail": 6.0,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0,
+      "text": "Au Gabon, beaucoup de femmes et d'hommes travaillent à leur compte : dans un commerce, un atelier, un cabinet, ou au service d'une maison."
+    },
+    {
+      "id": "L02",
+      "gap": 1.0,
+      "text": "La couverture maladie s'étend désormais à toutes les personnes qui exercent une activité génératrice de revenus."
+    },
+    {
+      "id": "L03",
+      "gap": 1.1,
+      "text": "La Knam-GS couvre déjà les salariés du privé, avec le Fonds 1, les agents de l'État, avec le Fonds 2, et les Gabonais économiquement faibles, avec le Fonds 3."
+    },
+    {
+      "id": "L04",
+      "gap": 0.9,
+      "text": "Avec le Fonds 4, elle s'ouvre aux travailleurs indépendants et aux assurés volontaires."
+    },
+    {
+      "id": "L05",
+      "gap": 1.1,
+      "text": "Sont concernés : les professions libérales de la santé, du droit et du conseil, les commerçants, les artisans, les artistes, les employés de maison, et les étrangers qui résident régulièrement au Gabon."
+    },
+    {
+      "id": "L06",
+      "gap": 1.1,
+      "text": "Le Fonds 4 donne accès aux consultations, aux examens, aux hospitalisations, aux médicaments et aux évacuations sanitaires."
+    },
+    {
+      "id": "L07",
+      "gap": 1.0,
+      "text": "Il est financé par une cotisation forfaitaire, payée chaque trimestre, par voie électronique."
+    },
+    {
+      "id": "L08",
+      "gap": 1.1,
+      "text": "Pour en bénéficier, faites-vous immatriculer dans un bureau de la Knam-GS : délégation provinciale, unité départementale ou communale, partout dans le pays."
+    },
+    {
+      "id": "L09",
+      "gap": 1.2,
+      "text": "Avec le Fonds 4, la Knam-GS renforce la solidarité nationale, pour ne laisser personne de côté. La solidarité a un sens."
+    }
+  ]
+}
