@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>BGFIBourse — la société de bourse du groupe BGFIBank</title>
+    <script src="lib/gsap.min.js"></script>
+    <script src="assets/cues.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="84.191" data-width="1920" data-height="1080">
+    <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="0" data-duration="84.191" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-bgfi" data-composition-id="ov-bgfi" data-composition-src="compositions/ov-bgfi.html" data-start="31.923" data-duration="8.989" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-ipo" data-composition-id="ov-ipo" data-composition-src="compositions/ov-ipo.html" data-start="60.322" data-duration="9.259" data-track-index="3" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-end" data-composition-id="ov-end" data-composition-src="compositions/ov-end.html" data-start="76.091" data-duration="8.1" data-track-index="4" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <audio id="vo-L01" src="assets/voice/L01.wav" data-start="3.2" data-duration="5.124" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L02" src="assets/voice/L02.wav" data-start="9.324" data-duration="5.63" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L03" src="assets/voice/L03.wav" data-start="15.954" data-duration="5.059" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L04" src="assets/voice/L04.wav" data-start="22.013" data-duration="9.11" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L05" src="assets/voice/L05.wav" data-start="32.223" data-duration="7.539" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L06" src="assets/voice/L06.wav" data-start="40.762" data-duration="4.373" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L07" src="assets/voice/L07.wav" data-start="46.135" data-duration="6.751" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L08" src="assets/voice/L08.wav" data-start="53.886" data-duration="5.736" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L09" src="assets/voice/L09.wav" data-start="60.722" data-duration="8.259" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L10" src="assets/voice/L10.wav" data-start="70.181" data-duration="5.61" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="bgm" src="assets/bgm/soundhill-find-yourself.mp3" data-start="0" data-duration="84.191" data-media-start="53.469" data-track-index="21" data-volume="1" data-fade-in="1.2" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.52},{"t":2.8,"v":0.52},{"t":3.15,"v":0.19},{"t":8.924,"v":0.19},{"t":9.274,"v":0.19},{"t":15.554,"v":0.19},{"t":15.904,"v":0.19},{"t":21.613,"v":0.19},{"t":21.963,"v":0.19},{"t":31.223,"v":0.19},{"t":31.673,"v":0.36},{"t":31.823,"v":0.36},{"t":32.173,"v":0.19},{"t":40.362,"v":0.19},{"t":40.712,"v":0.19},{"t":45.735,"v":0.19},{"t":46.085,"v":0.19},{"t":53.486,"v":0.19},{"t":53.836,"v":0.19},{"t":59.722,"v":0.19},{"t":60.172,"v":0.36},{"t":60.322,"v":0.36},{"t":60.672,"v":0.19},{"t":69.081,"v":0.19},{"t":69.531,"v":0.36},{"t":69.781,"v":0.36},{"t":70.131,"v":0.19},{"t":75.941,"v":0.19},{"t":76.641,"v":0.85}]}]}'></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

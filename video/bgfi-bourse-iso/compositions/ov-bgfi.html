@@ -1,0 +1,114 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Lato";
+      font-weight: 700;
+      src: url("assets/fonts/Lato-700.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-weight: 900;
+      src: url("assets/fonts/Lato-900.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Tenor Sans";
+      font-weight: 400;
+      src: url("assets/fonts/TenorSans-400.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Lato", sans-serif;
+      color: #16202a;
+    }
+    /* voile blanc à gauche : le titre reste lisible devant la maquette */
+    #bg-veil {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1150px;
+      height: 1080px;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 0.96) 0%, rgba(255, 255, 255, 0.92) 55%, rgba(255, 255, 255, 0) 100%);
+    }
+    #bg-col {
+      position: absolute;
+      left: 128px;
+      top: 300px;
+      width: 820px;
+    }
+    #bg-logo {
+      display: block;
+      width: 640px;
+      height: 185px;
+      clip-path: inset(0 0 0 0);
+    }
+    #bg-tag {
+      margin-top: 34px;
+      font-family: "Tenor Sans", "Lato", sans-serif;
+      font-size: 50px;
+      line-height: 1.18;
+      color: #0b2677;
+    }
+    #bg-rule {
+      width: 300px;
+      height: 6px;
+      margin: 34px 0 30px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #0b2677 0 50%, #879a6d 50% 100%);
+      transform-origin: 0 50%;
+    }
+    #bg-ok {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-weight: 700;
+      font-size: 38px;
+      color: #16202a;
+      white-space: nowrap;
+    }
+    #bg-ok b {
+      font-weight: 900;
+      color: #0b2677;
+    }
+    #bg-ok svg {
+      flex: none;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-bgfi" data-width="1920" data-height="1080">
+    <div id="bg-veil"></div>
+    <div id="bg-col">
+      <img id="bg-logo" src="assets/img/bgfibourse-logo.svg" alt="BGFIBourse" />
+      <div id="bg-tag">La société de bourse<br />du groupe BGFIBank</div>
+      <div id="bg-rule"></div>
+      <div id="bg-ok">
+        <svg width="52" height="52" viewBox="0 0 52 52" aria-hidden="true">
+          <circle cx="26" cy="26" r="24" fill="#5f7247" />
+          <path d="M15 27 L23 35 L38 18" fill="none" stroke="#ffffff" stroke-width="5.5" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span>Agréée par la <b>COSUMAF</b> depuis 2006</span>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BB_CUES;
+      var W = (C.ov && C.ov["ov-bgfi"]) || { start: 0, dur: 8 };
+      var L = function (abs) {
+        return Math.max(0, abs - W.start);
+      };
+      var tLogo = L(C.at("L05", "BGFI") - 0.05);
+      var tTag = L(C.at("L05", "société") - 0.15);
+      var tOk = L(C.at("L05", "agréée") - 0.1);
+      var tOut = W.dur - 0.42;
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#bg-veil", { opacity: 0 }, { opacity: 1, duration: 0.45, ease: "power2.out" }, 0);
+      tl.fromTo("#bg-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.8, ease: "power2.inOut" }, tLogo);
+      tl.fromTo("#bg-tag", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, tTag);
+      tl.fromTo("#bg-rule", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, tTag + 0.3);
+      tl.fromTo("#bg-ok", { opacity: 0, x: -18 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, tOk);
+      tl.to("#bg-col", { opacity: 0, filter: "blur(8px)", duration: 0.3, ease: "power3.in" }, tOut);
+      tl.to("#bg-veil", { opacity: 0, duration: 0.4, ease: "power2.in" }, tOut + 0.05);
+      window.__timelines["ov-bgfi"] = tl;
+    })();
+  </script>
+</template>

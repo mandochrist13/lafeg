@@ -1,0 +1,1599 @@
+<!doctype html>
+<!--
+  BGFIBourse — la maquette : une seule prise continue à travers une maquette isométrique du marché financier
+  de l'Afrique centrale. À gauche les épargnants, au centre BGFIBourse et la BVMAC (sous le regard de la COSUMAF),
+  à droite les entreprises et les États. Les ordres, les titres et l'argent circulent entre eux.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire).
+  Les temps viennent de assets/cues.js (window.__BB_CUES), recalculés par tools/build.mjs.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Maquette BGFIBourse</title>
+    <style>
+      @font-face {
+        font-family: "Lato";
+        font-weight: 400;
+        src: url("assets/fonts/Lato-400.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lato";
+        font-weight: 700;
+        src: url("assets/fonts/Lato-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lato";
+        font-weight: 900;
+        src: url("assets/fonts/Lato-900.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Tenor Sans";
+        font-weight: 400;
+        src: url("assets/fonts/TenorSans-400.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #world-cv,
+      #world-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Lato", sans-serif;
+        color: #16202a;
+      }
+      .wl .ti {
+        display: block;
+        font-family: "Tenor Sans", "Lato", sans-serif;
+        font-weight: 400;
+        font-size: 40px;
+        letter-spacing: 0.01em;
+        color: #0b2677;
+      }
+      .wl .ds {
+        display: block;
+        margin-top: 2px;
+        font-weight: 700;
+        font-size: 28px;
+        color: #3d4752;
+      }
+      .wl .ds i {
+        font-style: normal;
+      }
+      .wl.c {
+        text-align: center;
+      }
+      #world-svg .ld {
+        fill: none;
+        stroke: #16202a;
+        stroke-width: 2;
+        stroke-opacity: 0.55;
+      }
+      #world-svg .dt {
+        fill: #16202a;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="84.191"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="84.191"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+      <svg id="world-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+        <polyline id="wk-epar" class="ld" points="" /><circle id="wd-epar" class="dt" r="5" />
+        <polyline id="wk-ent" class="ld" points="" /><circle id="wd-ent" class="dt" r="5" />
+        <polyline id="wk-etats" class="ld" points="" /><circle id="wd-etats" class="dt" r="5" />
+        <polyline id="wk-proj" class="ld" points="" /><circle id="wd-proj" class="dt" r="5" />
+        <polyline id="wk-bvmac" class="ld" points="" /><circle id="wd-bvmac" class="dt" r="5" />
+        <polyline id="wk-sdb" class="ld" points="" /><circle id="wd-sdb" class="dt" r="5" />
+        <polyline id="wk-cosu" class="ld" points="" /><circle id="wd-cosu" class="dt" r="5" />
+        <polyline id="wk-groupe" class="ld" points="" /><circle id="wd-groupe" class="dt" r="5" />
+        <polyline id="wk-court" class="ld" points="" /><circle id="wd-court" class="dt" r="5" />
+        <polyline id="wk-cons" class="ld" points="" /><circle id="wd-cons" class="dt" r="5" />
+        <polyline id="wk-opc" class="ld" points="" /><circle id="wd-opc" class="dt" r="5" />
+        <polyline id="wk-conseil" class="ld" points="" /><circle id="wd-conseil" class="dt" r="5" />
+        <polyline id="wk-levee" class="ld" points="" /><circle id="wd-levee" class="dt" r="5" />
+      </svg>
+      <div id="world-labels">
+        <div id="wl-epar" class="wl"><span class="ti">Épargnants</span></div>
+        <div id="wl-ent" class="wl"><span class="ti">Entreprises</span></div>
+        <div id="wl-etats" class="wl"><span class="ti">États</span></div>
+        <div id="wl-proj" class="wl"><span class="ti">Leurs projets</span><span class="ds"><i id="wp-0">Usines</i> · <i id="wp-1">Routes</i> · <i id="wp-2">Logements</i></span></div>
+        <div id="wl-bvmac" class="wl"><span class="ti">BVMAC</span><span class="ds">Bourse des valeurs mobilières de l'Afrique centrale</span><span id="wx-bvmac" class="ds">Douala · 6 pays de la CEMAC</span></div>
+        <div id="wl-sdb" class="wl"><span id="wn-sdb" class="ti">Société de bourse</span><span class="ds">Intermédiaire agréé</span></div>
+        <div id="wl-cosu" class="wl"><span id="wn-cosu" class="ti">COSUMAF</span><span class="ds">Le régulateur du marché</span></div>
+        <div id="wl-groupe" class="wl"><span class="ti">Groupe BGFIBank</span><span id="wx-groupe" class="ds">Né à Libreville en 1971</span></div>
+        <div id="wl-court" class="wl"><span id="wn-court" class="ti">Courtage</span><span class="ds">Vos ordres d'achat et de vente</span></div>
+        <div id="wl-cons" class="wl"><span class="ti">Conservation</span><span class="ds">Vos titres en sécurité</span></div>
+        <div id="wl-opc" class="wl"><span id="wn-opc" class="ti">OPC</span><span class="ds">Une épargne mise en commun,</span><span class="ds">gérée par des professionnels</span></div>
+        <div id="wl-conseil" class="wl"><span class="ti">Conseil</span><span id="wx-conseil" class="ds">Selon vos objectifs</span></div>
+        <div id="wl-levee" class="wl"><span class="ti">Levée de fonds</span><span class="ds">Entreprises et États</span></div>
+        <div id="wl-r0" class="wl c"><span class="ti">Épargnants</span></div>
+        <div id="wl-r1" class="wl c"><span class="ti">BGFIBourse</span></div>
+        <div id="wl-r2" class="wl c"><span class="ti">BVMAC</span></div>
+        <div id="wl-r3" class="wl c"><span class="ti">Entreprises et États</span></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__BB_CUES;
+        var total = C ? C.total : 84.191;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+      import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
+
+      const host = window.__worldHost;
+      const C = window.__BB_CUES;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+      const norm = (s) =>
+        String(s)
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[̀-ͯ]/g, "")
+          .replace(/[^a-z0-9%]+/g, "");
+      const atK = (id, needle, k, which = "s") => {
+        const n = norm(needle);
+        const ws = C.lines[id].words.filter((w) => w.n && (w.n === n || w.n.indexOf(n) === 0));
+        return ws.length ? ws[Math.min(k, ws.length - 1)][which] : C.lines[id].start;
+      };
+
+      // ------------------------------------------------------------------ outils
+      const DEG = Math.PI / 180;
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      const spring = (u) => {
+        u = clamp01(u);
+        if (u >= 1) return 1;
+        const z = 0.8,
+          w = 9,
+          wd = w * Math.sqrt(1 - z * z);
+        return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + ((z * w) / wd) * Math.sin(wd * u));
+      };
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      const tiny = 1e-4;
+
+      // ------------------------------------------------------------------ temps clés (depuis la voix)
+      const T = {};
+      T.fem = at("L01", "femmes");
+      T.hom = at("L01", "d'hommes");
+      T.epar = at("L01", "épargnent");
+      T.fruct = at("L01", "fructifier");
+      T.toE = S("L02") - 0.45;
+      T.ent = at("L02", "entreprises");
+      T.etats = at("L02", "États");
+      T.proj = [at("L02", "usines"), at("L02", "routes"), at("L02", "logements")];
+      T.wide = S("L03") - 0.55;
+      T.bourse = at("L03", "Bourse");
+      T.six = at("L03", "six");
+      T.bvmac = at("L03", "BVMAC");
+      T.douala = at("L03", "Douala");
+      T.acheter = at("L04", "acheter");
+      T.actions = at("L04", "actions");
+      T.oblig = at("L04", "obligations");
+      T.inter = at("L04", "intermédiaire");
+      T.regul = at("L04", "régulateur");
+      T.cosu = at("L04", "Cosumaf");
+      T.sdb = at("L04", "société");
+      T.bb = at("L05", "BGFI");
+      T.groupe = atK("L05", "BGFI", 1);
+      T.lbv = at("L05", "Libreville");
+      T.agree = at("L05", "agréée");
+      T.achat = at("L06", "d'achat");
+      T.vente = at("L06", "vente");
+      T.exec = at("L06", "exécute");
+      T.court = at("L06", "courtage");
+      T.conserve = at("L07", "conserve");
+      T.secu = at("L07", "sécurité");
+      T.opc = at("L07", "OPC");
+      T.commun = at("L07", "commun");
+      T.pros = at("L07", "professionnels");
+      T.conseil = at("L08", "conseille");
+      T.obj = at("L08", "objectifs");
+      T.entr8 = at("L08", "entreprises");
+      T.levent = at("L08", "lèvent");
+      T.y2026 = at("L09", "deux");
+      T.mere = at("L09", "maison");
+      T.milliards = at("L09", "quarante-cinq");
+      T.leves = at("L09", "levés");
+      T.l10 = S("L10");
+      T.end = C.ov["ov-end"].start;
+
+      // ------------------------------------------------------------------ rendu
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xffffff);
+
+      const HEMI = 2.9,
+        SUN = 1.9;
+      const SUN_DIR = new THREE.Vector3(-0.35, 1.0, 0.75).normalize();
+      const FACE = (HEMI + SUN * SUN_DIR.y) / Math.PI;
+      const lit = (hex, k = 1) => new THREE.Color(hex).multiplyScalar(k / FACE);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xe2e5df, HEMI));
+      const sun = new THREE.DirectionalLight(0xffffff, SUN);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(2048, 2048);
+      sun.shadow.radius = 3;
+      sun.shadow.bias = -0.0002;
+      scene.add(sun, sun.target);
+
+      const mat = (hex, opts = {}) => new THREE.MeshStandardMaterial({ color: lit(hex, opts.k || 1), roughness: opts.r ?? 0.86, metalness: opts.m ?? 0 });
+      // Couleurs BGFIBourse (logo) : bleu marine BGFI, vert sauge « Bourse », sauge clair, bleu du carré
+      const COL = {
+        ground: 0xffffff,
+        white: 0xf6f6f1,
+        roof: 0xdedfd9,
+        glass: 0x7f8c86,
+        door: 0xa8ada6,
+        plaza: 0xefefea,
+        navy: 0x0b2677,
+        blue: 0x3a77a1,
+        sage: 0x879a6d,
+        sageLight: 0xcfdbac,
+        figure: 0xe9e9e4,
+        dark: 0x2a333c,
+        wood: 0xcdb58e,
+        leaf: 0x8fae6a,
+        coin: 0xe3b62c,
+        metal: 0xc9ccc6,
+      };
+      const M = {
+        ground: mat(COL.ground, { r: 1 }),
+        white: mat(COL.white),
+        roof: mat(COL.roof),
+        glass: mat(COL.glass, { r: 0.35, m: 0.1 }),
+        door: mat(COL.door),
+        plaza: mat(COL.plaza, { r: 1 }),
+        navy: mat(COL.navy, { r: 0.45, m: 0.15 }),
+        navyGlass: mat(0x173b86, { r: 0.3, m: 0.25 }),
+        blue: mat(COL.blue, { r: 0.5, m: 0.1 }),
+        sage: mat(COL.sage, { r: 0.75 }),
+        sageLight: mat(COL.sageLight, { r: 0.8 }),
+        figure: mat(COL.figure),
+        figNavy: mat(0x2b4590),
+        figSage: mat(0x8ea274),
+        dark: mat(COL.dark, { r: 0.45, m: 0.15 }),
+        wood: mat(COL.wood),
+        leaf: mat(COL.leaf),
+        coin: mat(COL.coin, { r: 0.35, m: 0.4 }),
+        metal: mat(COL.metal, { r: 0.4, m: 0.35 }),
+        road: mat(0xdcded9, { r: 1 }),
+      };
+
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(800, 800), M.ground);
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      const BOX = new THREE.BoxGeometry(1, 1, 1);
+      BOX.translate(0, 0.5, 0);
+      const RBOX = new RoundedBoxGeometry(1, 1, 1, 2, 0.04);
+      RBOX.translate(0, 0.5, 0);
+      function box(parent, w, h, d, x, y, z, material, rounded = false) {
+        const m = new THREE.Mesh(rounded ? RBOX : BOX, material);
+        m.scale.set(w, h, d);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function cyl(parent, r, h, x, y, z, material, seg = 32, r2 = null) {
+        const g = new THREE.CylinderGeometry(r2 ?? r, r, h, seg);
+        g.translate(0, h / 2, 0);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function prism(parent, w, h, d, x, y, z, material) {
+        const sh = new THREE.Shape();
+        sh.moveTo(-w / 2, 0);
+        sh.lineTo(w / 2, 0);
+        sh.lineTo(0, h);
+        sh.closePath();
+        const g = new THREE.ExtrudeGeometry(sh, { depth: d, bevelEnabled: false });
+        g.translate(0, 0, -d / 2);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function sphere(parent, r, x, y, z, material) {
+        const m = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 16), material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function tooth(parent, w, h, d, x0, y, material) {
+        const sh = new THREE.Shape();
+        sh.moveTo(0, 0);
+        sh.lineTo(w, 0);
+        sh.lineTo(w, h);
+        sh.closePath();
+        const g = new THREE.ExtrudeGeometry(sh, { depth: d, bevelEnabled: false });
+        g.translate(0, 0, -d / 2);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x0, y, 0);
+        m.castShadow = m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ textures
+      function canvasTex(w, h, draw) {
+        const c = document.createElement("canvas");
+        c.width = w;
+        c.height = h;
+        draw(c.getContext("2d"), w, h);
+        const tx = new THREE.CanvasTexture(c);
+        tx.colorSpace = THREE.SRGBColorSpace;
+        tx.anisotropy = 8;
+        return tx;
+      }
+      function rr(g, x, y, w, h, r) {
+        g.beginPath();
+        g.moveTo(x + r, y);
+        g.arcTo(x + w, y, x + w, y + h, r);
+        g.arcTo(x + w, y + h, x, y + h, r);
+        g.arcTo(x, y + h, x, y, r);
+        g.arcTo(x, y, x + w, y, r);
+        g.closePath();
+      }
+      const coinTex = () =>
+        canvasTex(128, 128, (g) => {
+          g.clearRect(0, 0, 128, 128);
+          const gr = g.createRadialGradient(52, 48, 6, 64, 64, 62);
+          gr.addColorStop(0, "#fbe39a");
+          gr.addColorStop(0.65, "#e7bd3a");
+          gr.addColorStop(1, "#b98d1c");
+          g.fillStyle = gr;
+          g.beginPath();
+          g.arc(64, 64, 60, 0, Math.PI * 2);
+          g.fill();
+          g.strokeStyle = "rgba(255,248,214,0.85)";
+          g.lineWidth = 6;
+          g.beginPath();
+          g.arc(64, 64, 44, 0, Math.PI * 2);
+          g.stroke();
+        });
+      const starTex = () =>
+        canvasTex(256, 256, (g) => {
+          g.clearRect(0, 0, 256, 256);
+          const gr = g.createRadialGradient(128, 128, 0, 128, 128, 120);
+          gr.addColorStop(0, "rgba(255,255,255,1)");
+          gr.addColorStop(0.18, "rgba(255,255,255,0.8)");
+          gr.addColorStop(1, "rgba(255,255,255,0)");
+          g.fillStyle = gr;
+          g.fillRect(0, 0, 256, 256);
+          g.fillStyle = "#ffffff";
+          g.beginPath();
+          g.moveTo(128, 18);
+          g.lineTo(138, 118);
+          g.lineTo(238, 128);
+          g.lineTo(138, 138);
+          g.lineTo(128, 238);
+          g.lineTo(118, 138);
+          g.lineTo(18, 128);
+          g.lineTo(118, 118);
+          g.closePath();
+          g.fill();
+        });
+      // badge rond (coche ou croix)
+      const badgeTex = (fill, kind) =>
+        canvasTex(256, 256, (g) => {
+          g.clearRect(0, 0, 256, 256);
+          g.fillStyle = "#ffffff";
+          g.beginPath();
+          g.arc(128, 128, 124, 0, Math.PI * 2);
+          g.fill();
+          g.fillStyle = fill;
+          g.beginPath();
+          g.arc(128, 128, 110, 0, Math.PI * 2);
+          g.fill();
+          g.strokeStyle = "#ffffff";
+          g.lineWidth = 26;
+          g.lineCap = "round";
+          g.lineJoin = "round";
+          g.beginPath();
+          if (kind === "check") {
+            g.moveTo(76, 132);
+            g.lineTo(112, 168);
+            g.lineTo(182, 94);
+          } else {
+            g.moveTo(86, 86);
+            g.lineTo(170, 170);
+            g.moveTo(170, 86);
+            g.lineTo(86, 170);
+          }
+          g.stroke();
+        });
+      // titre (action ou obligation) : petite carte à bandeau
+      const paperTex = (band) =>
+        canvasTex(256, 180, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          rr(g, 4, 4, w - 8, h - 8, 18);
+          g.fill();
+          g.strokeStyle = band;
+          g.lineWidth = 6;
+          rr(g, 7, 7, w - 14, h - 14, 15);
+          g.stroke();
+          g.fillStyle = band;
+          g.fillRect(10, 10, w - 20, 34);
+          g.fillStyle = "#c8cfd6";
+          [70, 98, 126].forEach((y, k) => g.fillRect(28, y, k === 2 ? 120 : 196, 12));
+          g.fillStyle = band;
+          g.beginPath();
+          g.arc(210, 140, 18, 0, Math.PI * 2);
+          g.fill();
+        });
+      // bulle de conseil : une cible (les objectifs)
+      const bubbleTex = () =>
+        canvasTex(320, 280, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          rr(g, 8, 8, w - 16, 210, 46);
+          g.fill();
+          g.beginPath();
+          g.moveTo(90, 214);
+          g.lineTo(70, 272);
+          g.lineTo(140, 214);
+          g.closePath();
+          g.fill();
+          g.strokeStyle = "#0b2677";
+          g.lineWidth = 8;
+          rr(g, 12, 12, w - 24, 202, 42);
+          g.stroke();
+          const cx = 160,
+            cy = 113;
+          [76, 52, 28].forEach((r, k) => {
+            g.fillStyle = k % 2 ? "#ffffff" : k === 0 ? "#879a6d" : "#0b2677";
+            g.beginPath();
+            g.arc(cx, cy, r, 0, Math.PI * 2);
+            g.fill();
+          });
+          g.fillStyle = "#0b2677";
+          g.beginPath();
+          g.arc(cx, cy, 10, 0, Math.PI * 2);
+          g.fill();
+        });
+      function plane(parent, w, h, tex, x, y, z, opts = {}) {
+        const m = new THREE.Mesh(
+          new THREE.PlaneGeometry(w, h),
+          new THREE.MeshBasicMaterial({ map: tex || null, color: opts.color ?? 0xffffff, transparent: true, side: opts.side ?? THREE.FrontSide, depthWrite: opts.depthWrite ?? true }),
+        );
+        m.position.set(x, y, z);
+        if (opts.ry !== undefined) m.rotation.y = opts.ry;
+        if (opts.rx !== undefined) m.rotation.x = opts.rx;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ animations génériques
+      const risers = [];
+      function riser(g, t0, d = 0.75) {
+        risers.push({ g, t0, d, k: 1 });
+        g.scale.y = tiny;
+        g.visible = false;
+        return g;
+      }
+      const tints = [];
+      function tint(m, a, b, t0, d = 0.5, basic = false) {
+        const ca = basic ? new THREE.Color(a) : lit(a);
+        const cb = basic ? new THREE.Color(b) : lit(b);
+        tints.push({ m, a: ca, b: cb, t0, d });
+        m.color.copy(ca);
+        return m;
+      }
+      const pops = [];
+      function pop(g, t0, s = 1, d = 0.5, out = null) {
+        pops.push({ g, t0, s, d, out });
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        return g;
+      }
+      const bills = []; // panneaux toujours face caméra
+      const FIG_BODY_M = new THREE.CylinderGeometry(0.075, 0.09, 0.3, 14);
+      FIG_BODY_M.translate(0, 0.15, 0);
+      const FIG_BODY_F = new THREE.CylinderGeometry(0.052, 0.118, 0.3, 14);
+      FIG_BODY_F.translate(0, 0.15, 0);
+      const FIG_HEAD = new THREE.SphereGeometry(0.075, 16, 12);
+      FIG_HEAD.translate(0, 0.38, 0);
+      const figs = [];
+      function figure(parent, x, z, o = {}) {
+        const g = new THREE.Group();
+        const mtl = o.m || M.figure;
+        const b = new THREE.Mesh(o.f ? FIG_BODY_F : FIG_BODY_M, mtl);
+        const h = new THREE.Mesh(FIG_HEAD, o.hm || M.figure);
+        b.castShadow = h.castShadow = true;
+        g.add(b, h);
+        g.position.set(x, o.y || 0, z);
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        parent.add(g);
+        const f = { g, s: o.s || 1.2, t0: o.t0 ?? 0, d: o.d || 0.5, bob: o.bob || 0, w: o.w || 9, ph: o.ph || 0, walk: o.walk || null, y0: o.y || 0, out: o.out || null };
+        figs.push(f);
+        return f;
+      }
+
+      // ------------------------------------------------------------------ plan
+      // (r, u) : r vers la droite de l'écran, u vers le haut de l'écran, au sol (azimut 45°)
+      const RU = (r, u, y = 0) => new THREE.Vector3(0.70711 * (r - u), y, -0.70711 * (r + u));
+      const P_S = RU(-11.8, -1.0), // épargnants
+        P_B = RU(-4, 1.0), // BGFIBourse
+        P_G = RU(-1.3, 4.7), // groupe BGFIBank
+        P_X = RU(4.6, 1.6), // BVMAC
+        P_R = RU(-0.4, 9.6), // COSUMAF
+        P_E = RU(12.8, -1.2), // entreprises et États
+        P_O = RU(-0.6, -2.7); // OPC
+      const W = (p, x, y, z) => new THREE.Vector3(p.x + x, y, p.z + z);
+      function slab(parent, w, d, x, z, t0, color = M.plaza) {
+        const g = riser(new THREE.Group(), t0, 0.5);
+        g.position.set(x, 0, z);
+        parent.add(g);
+        const b = box(g, w, 0.06, d, 0, 0, 0, color, true);
+        b.castShadow = false;
+        return g;
+      }
+      function tree(parent, x, z, r, t0) {
+        const tr = riser(new THREE.Group(), t0, 0.7);
+        tr.position.set(x, 0, z);
+        parent.add(tr);
+        cyl(tr, 0.04, r + 0.14, 0, 0, 0, M.wood, 10);
+        sphere(tr, r, 0, r + 0.32, 0, M.leaf);
+        return tr;
+      }
+
+      // ================================================================== les épargnants
+      const gS = new THREE.Group();
+      gS.position.copy(P_S);
+      scene.add(gS);
+      slab(gS, 7.2, 7.2, 0, 0, -0.5);
+      const HOUSES = [
+        [-2.3, -1.6],
+        [-0.3, -2.5],
+        [1.9, -1.7],
+        [-2.7, 0.9],
+        [2.4, 0.8],
+        [-0.9, 2.3],
+        [1.4, 2.5],
+      ];
+      const accHouse = [mat(COL.roof), mat(COL.roof)];
+      HOUSES.forEach(([x, z], k) => {
+        const h = riser(new THREE.Group(), -0.35 + k * 0.17, 0.75);
+        h.position.set(x, 0, z);
+        gS.add(h);
+        box(h, 1.05, 0.6, 0.86, 0, 0, 0, M.white, true);
+        const rf = prism(h, 1.0, 0.4, 1.18, 0, 0.6, 0, k % 2 ? M.sageLight : M.roof);
+        rf.rotation.y = Math.PI / 2;
+        box(h, 0.22, 0.42, 0.012, 0.2, 0, 0.436, M.door);
+        box(h, 0.22, 0.18, 0.012, -0.24, 0.24, 0.436, M.glass);
+        box(h, 0.012, 0.18, 0.3, 0.531, 0.24, 0, M.glass);
+      });
+      tree(gS, -3.1, -2.9, 0.3, 0.4);
+      tree(gS, 3.0, 2.9, 0.28, 0.6);
+      tree(gS, 3.1, -2.7, 0.26, 0.7);
+      // l'arbre à pièces (« faire fructifier »)
+      const moneyTree = pop(new THREE.Group(), T.fruct - 0.35, 1, 0.9);
+      gS.add(moneyTree);
+      cyl(moneyTree, 0.08, 0.75, 0, 0, 0, M.wood, 12, 0.05);
+      sphere(moneyTree, 0.42, 0, 0.95, 0, M.leaf);
+      sphere(moneyTree, 0.3, -0.32, 0.78, 0.12, M.leaf);
+      sphere(moneyTree, 0.3, 0.3, 0.8, -0.1, M.leaf);
+      const treeCoins = [];
+      const treeCoinPos = [
+        [-0.35, 1.05, 0.3],
+        [0.3, 1.18, 0.28],
+        [0.05, 1.38, 0.25],
+        [-0.5, 0.78, 0.32],
+        [0.48, 0.86, 0.26],
+        [0.12, 0.72, 0.42],
+        [-0.16, 1.25, 0.36],
+      ];
+      // habitants : femmes puis hommes, chacun avec son épargne
+      const SAVERS = [
+        [-1.2, -0.7, true],
+        [0.9, -0.5, true],
+        [-1.6, 1.4, true],
+        [1.0, 1.4, true],
+        [-0.2, -1.2, true],
+        [2.7, -0.4, true],
+        [-1.0, 0.4, false],
+        [1.5, 0.4, false],
+        [0.3, 1.8, false],
+        [-2.0, -0.2, false],
+        [0.6, -1.4, false],
+        [2.6, 1.9, false],
+      ];
+      const saverFigs = [];
+      const stacks = [];
+      SAVERS.forEach(([x, z, f], i) => {
+        const nF = SAVERS.filter((p) => p[2]).length;
+        const j = f ? i : i - nF;
+        saverFigs.push(figure(gS, x, z, { f, s: 1.25, t0: (f ? T.fem : T.hom) - 0.05 + j * 0.07, m: i % 4 === 0 ? M.figSage : i % 4 === 2 ? M.figNavy : M.figure }));
+        const st = pop(new THREE.Group(), T.epar - 0.05 + i * 0.05, 1, 0.45);
+        st.position.set(x + 0.2, 0, z + 0.12);
+        gS.add(st);
+        for (let k = 0; k < 2 + (i % 3); k++) cyl(st, 0.07, 0.028, 0, 0.004 + k * 0.03, 0, M.coin, 18);
+        stacks.push(st);
+      });
+      const saverAt = (i, y = 0.55) => W(P_S, SAVERS[i][0], y, SAVERS[i][1]);
+
+      // ================================================================== entreprises et États
+      const gE = new THREE.Group();
+      gE.position.copy(P_E);
+      scene.add(gE);
+      slab(gE, 7.6, 7.6, 0, 0, T.toE + 0.1);
+      const WE = (x, y, z) => W(P_E, x, y, z);
+      // usine
+      const accFactory = tint(mat(COL.roof), COL.roof, COL.sage, T.proj[0]);
+      {
+        const g = riser(new THREE.Group(), T.ent - 0.2, 0.8);
+        g.position.set(-2.0, 0, -1.4);
+        gE.add(g);
+        box(g, 1.9, 0.72, 1.3, 0, 0, 0, M.white, true);
+        for (let k = 0; k < 3; k++) tooth(g, 0.633, 0.26, 1.3, -0.95 + k * 0.633, 0.72, accFactory);
+        cyl(g, 0.13, 1.6, 0.7, 0, -0.42, M.roof, 16);
+        box(g, 0.6, 0.45, 0.014, -0.4, 0, 0.656, M.dark);
+      }
+      // bureaux (entreprises)
+      {
+        const g = riser(new THREE.Group(), T.ent - 0.05, 0.8);
+        g.position.set(0.5, 0, -2.3);
+        gE.add(g);
+        box(g, 1.15, 2.5, 1.15, 0, 0, 0, M.white, true);
+        for (let f = 0; f < 5; f++) box(g, 1.18, 0.12, 1.18, 0, 0.3 + f * 0.42, 0, M.navyGlass);
+        box(g, 0.7, 0.12, 0.7, 0, 2.5, 0, M.roof);
+      }
+      // bâtiment public (États)
+      const accState = tint(mat(COL.white), COL.white, COL.navy, T.etats + 0.1, 0.6);
+      {
+        const g = riser(new THREE.Group(), T.etats - 0.2, 0.8);
+        g.position.set(2.4, 0, -0.3);
+        gE.add(g);
+        box(g, 2.2, 0.1, 1.8, 0, 0, 0, M.white);
+        box(g, 2.0, 0.1, 1.6, 0, 0.1, 0, M.white);
+        box(g, 1.8, 1.0, 1.0, 0, 0.2, -0.25, M.white, true);
+        for (let k = 0; k < 4; k++) cyl(g, 0.07, 0.95, -0.66 + k * 0.44, 0.2, 0.45, M.white, 16);
+        box(g, 1.96, 0.14, 0.5, 0, 1.15, 0.35, accState);
+        prism(g, 1.96, 0.36, 0.5, 0, 1.29, 0.35, accState);
+        box(g, 1.9, 0.12, 1.1, 0, 1.2, -0.25, M.roof);
+      }
+      // logements : chantier sur « logements », achevés quand les fonds arrivent (L08)
+      const homes = [];
+      [
+        [-1.0, 1.5],
+        [0.75, 1.95],
+      ].forEach(([x, z], k) => {
+        const g = new THREE.Group();
+        g.position.set(x, 0, z);
+        gE.add(g);
+        box(g, 1.15, 1.6, 1.0, 0, 0, 0, M.white, true);
+        for (let f = 0; f < 4; f++) {
+          box(g, 0.9, 0.16, 0.012, -0.05, 0.22 + f * 0.36, 0.506, M.glass);
+          box(g, 0.012, 0.16, 0.7, 0.581, 0.22 + f * 0.36, 0, M.glass);
+        }
+        box(g, 1.19, 0.08, 1.04, 0, 1.6, 0, M.sageLight);
+        g.scale.y = tiny;
+        g.visible = false;
+        homes.push({ g, t0: T.proj[2] - 0.1 + k * 0.12 });
+      });
+      // grue
+      const crane = new THREE.Group();
+      crane.position.set(2.1, 0, 2.8);
+      gE.add(crane);
+      const craneMat = mat(0xe9eae5);
+      box(crane, 0.06, 2.6, 0.06, 0, 0, 0, craneMat);
+      const jib = new THREE.Group();
+      jib.position.set(0, 2.6, 0);
+      crane.add(jib);
+      box(jib, 2.2, 0.05, 0.06, 0.6, 0, 0, craneMat);
+      box(jib, 0.22, 0.14, 0.12, -0.45, -0.03, 0, M.door, true);
+      box(jib, 0.007, 0.7, 0.007, 1.3, -0.7, 0, M.door);
+      box(jib, 0.1, 0.08, 0.1, 1.3, -0.78, 0, M.sage, true);
+      pop(crane, T.proj[2] - 0.2, 1, 0.6);
+      // route : s'étire sur « routes », s'achève avec les fonds
+      const road = new THREE.Group();
+      road.position.set(-3.2, 0, 3.15);
+      gE.add(road);
+      const roadStrip = box(road, 1, 0.025, 0.9, 0.5, 0, 0, M.road);
+      roadStrip.castShadow = false;
+      const roadDash = box(road, 1, 0.006, 0.05, 0.5, 0.026, 0, M.white);
+      roadDash.castShadow = false;
+      const roller = new THREE.Group();
+      road.add(roller);
+      box(roller, 0.36, 0.2, 0.3, 0, 0.12, 0, M.sage, true);
+      box(roller, 0.18, 0.16, 0.24, -0.06, 0.32, 0, M.glass, true);
+      cyl(roller, 0.12, 0.32, 0.24, 0.12, -0.16, M.dark, 18).rotation.set(Math.PI / 2, 0, 0);
+      const ROAD_LEN = 6.2;
+      // ouvriers et agents
+      [
+        [-1.0, -0.2, false],
+        [-0.2, 0.5, true],
+        [1.1, -1.0, false],
+        [3.1, 0.9, true],
+        [1.7, 0.9, false],
+        [-2.6, 0.3, true],
+      ].forEach(([x, z, f], i) => figure(gE, x, z, { f, s: 1.25, t0: T.ent + 0.3 + i * 0.07 }));
+
+      // ================================================================== BVMAC
+      const gX = new THREE.Group();
+      gX.position.copy(P_X);
+      scene.add(gX);
+      const WX = (x, y, z) => W(P_X, x, y, z);
+      const colRings = [];
+      let boardPlane, bvmacSign;
+      {
+        const g = riser(new THREE.Group(), T.bourse - 0.25, 0.9);
+        gX.add(g);
+        box(g, 4.8, 0.1, 3.6, 0, 0, 0, M.white);
+        box(g, 4.6, 0.1, 3.4, 0, 0.1, 0, M.white);
+        box(g, 4.4, 0.1, 3.2, 0, 0.2, 0, M.white);
+        box(g, 3.9, 1.7, 2.0, 0, 0.3, -0.45, M.white, true);
+        for (let k = 0; k < 6; k++) {
+          const x = -1.65 + k * 0.66;
+          cyl(g, 0.11, 1.55, x, 0.3, 0.95, M.white, 20);
+          const ring = cyl(g, 0.16, 0.07, x, 1.78, 0.95, tint(mat(COL.roof), COL.roof, k % 2 ? COL.sage : COL.navy, T.six - 0.05 + k * 0.13, 0.35), 20);
+          colRings.push(ring);
+        }
+        box(g, 4.1, 0.22, 0.56, 0, 1.85, 0.9, M.white);
+        prism(g, 4.1, 0.55, 0.56, 0, 2.07, 0.9, M.white);
+        box(g, 4.0, 0.14, 2.1, 0, 2.0, -0.45, M.roof);
+        bvmacSign = plane(g, 1.7, 0.2, null, 0, 1.96, 1.183);
+        // tableau des cours, face à la caméra
+        const bd = new THREE.Group();
+        bd.position.set(0.1, 2.14, -0.55);
+        bd.rotation.y = Math.PI / 4;
+        g.add(bd);
+        box(bd, 0.06, 0.5, 0.06, -1.2, 0, -0.04, M.metal);
+        box(bd, 0.06, 0.5, 0.06, 1.2, 0, -0.04, M.metal);
+        box(bd, 3.0, 1.12, 0.1, 0, 0.42, -0.1, M.navy);
+        boardPlane = plane(bd, 2.86, 0.98, null, 0, 0.98, -0.045);
+      }
+      // « Actions » et « Obligations » : deux titres au-dessus de la Bourse (L04)
+      const cards = [];
+      ["actions", "obligations"].forEach((k, i) => {
+        const g = new THREE.Group();
+        g.position.copy(WX(i ? 2.3 : -2.3, i ? 5.0 : 6.4, 0.2));
+        scene.add(g);
+        const m = plane(g, 4.6, 1.89, null, 0, 0, 0, { depthWrite: false });
+        m.renderOrder = 8;
+        bills.push(g);
+        pop(g, i ? T.oblig - 0.1 : T.actions - 0.1, 1, 0.5, T.inter + 0.6);
+        cards.push(m);
+      });
+
+      // ================================================================== COSUMAF (le régulateur)
+      const gR = new THREE.Group();
+      gR.position.copy(P_R);
+      scene.add(gR);
+      let cosuSign;
+      {
+        const g = riser(new THREE.Group(), T.regul - 0.35, 0.9);
+        gR.add(g);
+        box(g, 3.6, 0.1, 3.0, 0, 0, 0, M.white);
+        cyl(g, 1.05, 1.9, 0, 0.1, 0, M.white, 48);
+        cyl(g, 1.08, 0.12, 0, 1.15, 0, M.navy, 48);
+        const dome = new THREE.Mesh(new THREE.SphereGeometry(1.05, 40, 20, 0, Math.PI * 2, 0, Math.PI / 2), M.sageLight);
+        dome.position.y = 2.0;
+        dome.castShadow = true;
+        g.add(dome);
+        cyl(g, 0.04, 0.5, 0, 3.0, 0, M.metal, 10);
+        box(g, 1.3, 1.1, 1.6, -1.55, 0.1, 0.1, M.white, true);
+        box(g, 1.3, 1.1, 1.6, 1.55, 0.1, 0.1, M.white, true);
+        for (const x of [-1.55, 1.55]) box(g, 1.0, 0.18, 0.012, x, 0.6, 0.906, M.glass);
+        cosuSign = plane(g, 1.5, 0.28, null, 0.75, 1.42, 0.8, { ry: Math.PI / 4 });
+      }
+      // le périmètre du marché régulé (anneau tracé au sol autour de BGFIBourse, du groupe et de la BVMAC)
+      const perim = (() => {
+        const pts = [];
+        const c = [0.3, 2.7],
+          ar = 8.3,
+          au = 4.4;
+        for (let k = 0; k <= 160; k++) {
+          const a = Math.PI * 0.62 + (k / 160) * Math.PI * 2;
+          pts.push(RU(c[0] + ar * Math.cos(a), c[1] + au * Math.sin(a), 0.05));
+        }
+        const curve = new THREE.CatmullRomCurve3(pts, false);
+        const geo = new THREE.TubeGeometry(curve, 320, 0.06, 6, false);
+        const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: COL.navy, transparent: true, opacity: 0.6, depthWrite: false }));
+        m.frustumCulled = false;
+        m.renderOrder = 3;
+        scene.add(m);
+        return { m, n: geo.index.count };
+      })();
+
+      // ================================================================== l'intermédiaire : la place, puis BGFIBourse
+      // tentative directe épargnants → Bourse, refusée (L04)
+      const directCurve = new THREE.QuadraticBezierCurve3(W(P_S, 1.5, 1.2, -0.6), W(new THREE.Vector3().addVectors(P_S, P_X).multiplyScalar(0.5), 0, 5.0, 0), WX(-1.6, 1.6, 0.6));
+      const directArc = (() => {
+        const geo = new THREE.TubeGeometry(directCurve, 120, 0.06, 6, false);
+        const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: 0x9aa1a8, transparent: true, depthWrite: false }));
+        m.frustumCulled = false;
+        m.renderOrder = 7;
+        scene.add(m);
+        return { m, n: geo.index.count };
+      })();
+      const noBadge = new THREE.Group();
+      noBadge.position.copy(directCurve.getPoint(0.5));
+      scene.add(noBadge);
+      const noBadgeM = plane(noBadge, 0.62, 0.62, null, 0, 0, 0, { depthWrite: false });
+      noBadgeM.renderOrder = 9;
+      bills.push(noBadge);
+      pop(noBadge, T.inter - 0.35, 1, 0.45, T.inter + 1.4);
+      // emplacement vide de la société de bourse (contour pointillé)
+      const ghost = new THREE.Group();
+      ghost.position.copy(P_B);
+      scene.add(ghost);
+      const ghostFill = box(ghost, 2.3, 4.3, 2.3, 0, 0, 0, new THREE.MeshBasicMaterial({ color: COL.navy, transparent: true, opacity: 0.06, depthWrite: false }));
+      ghostFill.castShadow = ghostFill.receiveShadow = false;
+      const ghostEdges = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(2.3, 4.3, 2.3).translate(0, 2.15, 0)), new THREE.LineDashedMaterial({ color: COL.navy, dashSize: 0.22, gapSize: 0.14, transparent: true }));
+      ghostEdges.computeLineDistances();
+      ghost.add(ghostEdges);
+      // la tour BGFIBourse : deux volumes, bleu marine et sauge, comme le carré du logo
+      const gB = new THREE.Group();
+      gB.position.copy(P_B);
+      scene.add(gB);
+      const WB = (x, y, z) => W(P_B, x, y, z);
+      let logoPlane, star;
+      {
+        const g = riser(new THREE.Group(), T.bb - 0.3, 1.0);
+        gB.add(g);
+        box(g, 2.9, 0.1, 2.9, 0, 0, 0, M.white);
+        box(g, 1.02, 4.1, 2.0, -0.52, 0.1, 0, M.navyGlass, true);
+        box(g, 1.02, 4.45, 2.0, 0.52, 0.1, 0, M.sage, true);
+        for (let f = 0; f < 9; f++) {
+          box(g, 1.05, 0.05, 2.03, -0.52, 0.45 + f * 0.42, 0, M.blue);
+          box(g, 1.05, 0.05, 2.03, 0.52, 0.45 + f * 0.44, 0, M.sageLight);
+        }
+        box(g, 0.5, 0.62, 0.014, -0.52, 0.1, 1.007, M.glass);
+        box(g, 1.1, 0.06, 0.5, -0.52, 0.72, 1.2, M.white);
+      }
+      // l'étoile du logo, à la jonction des deux volumes
+      star = new THREE.Group();
+      star.position.copy(WB(0, 4.15, 1.02));
+      scene.add(star);
+      const starM = plane(star, 0.9, 0.9, null, 0, 0, 0, { depthWrite: false });
+      starM.renderOrder = 9;
+      bills.push(star);
+      pop(star, T.bb + 0.6, 1, 0.6);
+      // enseigne sur le toit, face à la caméra
+      const signB = new THREE.Group();
+      signB.position.copy(WB(0.25, 4.55, -0.2));
+      signB.rotation.y = Math.PI / 4;
+      scene.add(signB);
+      box(signB, 0.06, 0.4, 0.06, -1.3, 0, -0.05, M.metal);
+      box(signB, 0.06, 0.4, 0.06, 1.3, 0, -0.05, M.metal);
+      box(signB, 3.3, 1.08, 0.07, 0, 0.36, -0.09, M.white);
+      logoPlane = plane(signB, 3.16, 0.91, null, 0, 0.9, -0.05);
+      pop(signB, T.bb + 0.55, 1, 0.6);
+      // agrément : coche de la COSUMAF au-dessus de la tour (L05)
+      const okBadge = new THREE.Group();
+      okBadge.position.copy(WB(2.2, 4.75, 1.6));
+      scene.add(okBadge);
+      const okM = plane(okBadge, 0.72, 0.72, null, 0, 0, 0, { depthWrite: false });
+      okM.renderOrder = 9;
+      bills.push(okBadge);
+      pop(okBadge, T.agree + 0.05, 1, 0.5);
+      const agreeCurve = new THREE.QuadraticBezierCurve3(W(P_R, 0, 3.2, 0), W(new THREE.Vector3().addVectors(P_R, P_B).multiplyScalar(0.5), 0, 7.5, 0), WB(2.15, 4.7, 1.55));
+      const agreeArc = (() => {
+        const geo = new THREE.TubeGeometry(agreeCurve, 120, 0.06, 6, false);
+        const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: COL.sage, transparent: true, depthWrite: false }));
+        m.frustumCulled = false;
+        m.renderOrder = 7;
+        scene.add(m);
+        return { m, n: geo.index.count };
+      })();
+      // coffre (conservation des titres)
+      const vault = new THREE.Group();
+      vault.position.copy(WB(1.95, 0, 1.25));
+      scene.add(vault);
+      const vaultDoor = new THREE.Group();
+      {
+        const g = riser(new THREE.Group(), T.bb + 0.4, 0.6);
+        vault.add(g);
+        box(g, 0.95, 0.82, 0.8, 0, 0, 0, M.metal, true);
+        vaultDoor.position.set(-0.34, 0.41, 0.41);
+        vault.add(vaultDoor);
+        const d = cyl(vaultDoor, 0.3, 0.05, 0.34, 0, 0, M.navy, 32);
+        d.rotation.set(Math.PI / 2, 0, 0);
+        const wheel = cyl(vaultDoor, 0.1, 0.06, 0.34, 0, 0.03, M.metal, 16);
+        wheel.rotation.set(Math.PI / 2, 0, 0);
+        vaultDoor.scale.setScalar(tiny);
+      }
+      // OPC : une cuve de verre où l'épargne se met en commun
+      const gO = new THREE.Group();
+      gO.position.copy(P_O);
+      scene.add(gO);
+      const OPC_N = 46;
+      const opcCoins = new THREE.InstancedMesh(new THREE.CylinderGeometry(0.075, 0.075, 0.026, 18), M.coin, OPC_N);
+      opcCoins.castShadow = true;
+      opcCoins.frustumCulled = false;
+      gO.add(opcCoins);
+      const opcJit = Array.from({ length: OPC_N }, (_, k) => [((k * 37) % 11) / 11 - 0.5, ((k * 53) % 7) / 7 - 0.5, ((k * 29) % 13) / 13]);
+      const opcGlass = new THREE.Mesh(
+        new THREE.CylinderGeometry(0.55, 0.55, 1.35, 40, 1, true).translate(0, 0.79, 0),
+        new THREE.MeshStandardMaterial({ color: lit(0xbfd2de), roughness: 0.15, metalness: 0.1, transparent: true, opacity: 0.32, depthWrite: false, side: THREE.DoubleSide }),
+      );
+      opcGlass.renderOrder = 6;
+      const opcBase = new THREE.Group();
+      gO.add(opcBase);
+      cyl(opcBase, 0.62, 0.12, 0, 0, 0, M.navy, 40);
+      cyl(opcBase, 0.6, 0.06, 0, 1.47, 0, M.sage, 40);
+      opcBase.add(opcGlass);
+      pop(opcBase, T.opc - 0.35, 1, 0.6);
+      const pros = [
+        [0.95, 0.15],
+        [0.75, 0.75],
+      ].map(([x, z], i) => figure(gO, x, z, { s: 1.3, t0: T.pros - 0.15 + i * 0.1, m: M.figNavy }));
+
+      // ================================================================== groupe BGFIBank
+      const gG = new THREE.Group();
+      gG.position.copy(P_G);
+      scene.add(gG);
+      const groupGlow = mat(COL.white);
+      {
+        const g = riser(new THREE.Group(), T.groupe - 0.2, 1.0);
+        gG.add(g);
+        box(g, 2.4, 0.1, 2.4, 0, 0, 0, M.white);
+        box(g, 1.6, 6.0, 1.6, 0, 0.1, 0, groupGlow, true);
+        for (let f = 0; f < 9; f++) box(g, 1.63, 0.08, 1.63, 0, 0.55 + f * 0.6, 0, M.navy);
+        box(g, 1.2, 0.3, 1.2, 0, 6.1, 0, M.navy);
+      }
+
+      // ================================================================== plazas, arbres de la place du marché
+      tree(scene, RU(-0.6, -0.8).x, RU(-0.6, -0.8).z, 0.3, T.bourse);
+      tree(scene, RU(9.2, 2.4).x, RU(9.2, 2.4).z, 0.3, T.bourse + 0.1);
+      tree(scene, RU(-9.0, 4.2).x, RU(-9.0, 4.2).z, 0.28, T.groupe);
+
+      // ================================================================== flux (ordres, titres, pièces)
+      const COIN_GEO = new THREE.CylinderGeometry(0.085, 0.085, 0.024, 20);
+      COIN_GEO.rotateX(Math.PI / 2);
+      const TOKEN_GEO = new RoundedBoxGeometry(0.4, 0.4, 0.4, 2, 0.08);
+      const flows = [];
+      // chemin en arc (Bézier quadratique) de a à b, sommet h au-dessus du plus haut
+      const arcPath = (a, b, h) => {
+        const m = a.clone().add(b).multiplyScalar(0.5);
+        m.y = Math.max(a.y, b.y) + h;
+        return new THREE.QuadraticBezierCurve3(a, m, b);
+      };
+      function flow(mesh, curve, t0, d, o = {}) {
+        mesh.visible = false;
+        scene.add(mesh);
+        flows.push({ mesh, curve, t0, d, s: o.s || 1, spin: o.spin || 0, face: o.face || false, fade: o.fade ?? 0.18 });
+      }
+      const coinMesh = () => {
+        const m = new THREE.Mesh(COIN_GEO, M.coin);
+        m.castShadow = true;
+        return m;
+      };
+      // L06 : ordres d'achat (bleu) puis de vente (sauge) → BGFIBourse → BVMAC
+      const tokMat = [mat(COL.blue, { r: 0.5 }), mat(COL.sage, { r: 0.6 })];
+      const B_TOP = WB(0, 3.0, 0.4);
+      const X_IN = WX(-1.0, 2.2, 0.6);
+      for (let k = 0; k < 8; k++) {
+        const sell = k >= 4;
+        const i = [0, 3, 6, 8, 1, 7, 2, 9][k];
+        const t0 = (sell ? T.vente - 0.55 : T.achat - 0.75) + (k % 4) * 0.17;
+        const m1 = new THREE.Mesh(TOKEN_GEO, tokMat[sell ? 1 : 0]);
+        m1.castShadow = true;
+        flow(m1, arcPath(saverAt(i, 0.75), B_TOP, 2.2), t0, 0.95);
+        const m2 = new THREE.Mesh(TOKEN_GEO, tokMat[sell ? 1 : 0]);
+        m2.castShadow = true;
+        flow(m2, arcPath(B_TOP, X_IN, 1.6), T.exec - 0.55 + k * 0.07, 0.85);
+      }
+      // L07 : les titres reviennent au coffre
+      const VAULT_IN = WB(1.95, 0.55, 1.4);
+      const titleCards = [];
+      for (let k = 0; k < 4; k++) {
+        const g = new THREE.Group();
+        const m = plane(g, 0.5, 0.35, null, 0, 0, 0, { depthWrite: false });
+        m.renderOrder = 9;
+        titleCards.push(m);
+        flow(g, arcPath(WX(-0.6, 2.3, 0.7), VAULT_IN, 2.0), T.conserve - 0.35 + k * 0.2, 1.05, { face: true });
+      }
+      // L07 : l'épargne de plusieurs épargnants mise en commun dans l'OPC
+      const OPC_IN = W(P_O, 0, 1.75, 0);
+      const OPC_T = [];
+      for (let k = 0; k < 14; k++) {
+        const i = [0, 2, 4, 6, 8, 10, 1, 3, 5, 7, 9, 11, 0, 6][k];
+        const t0 = T.opc - 0.2 + k * 0.12;
+        OPC_T.push(t0 + 1.0);
+        flow(coinMesh(), arcPath(saverAt(i, 0.6), OPC_IN, 2.4), t0, 1.0, { spin: 7 });
+      }
+      // L08 : un conseiller BGFIBourse va vers les épargnants
+      const advStart = WB(1.0, 0, 1.6),
+        advEnd = W(P_S, 3.9, 0, 0.6);
+      const advisor = figure(scene, advStart.x, advStart.z, { s: 1.3, m: M.figNavy, t0: T.conseil - 0.9, walk: [advStart.x, advStart.z, advEnd.x, advEnd.z, T.conseil - 0.6, T.obj - 0.2], out: T.entr8 + 0.4 });
+      const bubble = new THREE.Group();
+      scene.add(bubble);
+      const bubbleM = plane(bubble, 0.9, 0.79, null, 0, 0, 0, { depthWrite: false });
+      bubbleM.renderOrder = 9;
+      bills.push(bubble);
+      pop(bubble, T.obj - 0.05, 1, 0.5, T.entr8 + 0.3);
+      // L08 : les fonds levés vont aux entreprises et aux États
+      const E_TARGETS = [WE(-2.0, 1.0, -1.4), WE(-0.9, 1.4, 1.5), WE(0.75, 1.4, 1.95), WE(2.4, 1.3, -0.3), WE(1.6, 0.3, 3.15), WE(0.5, 2.0, -2.3)];
+      for (let k = 0; k < 18; k++) flow(coinMesh(), arcPath(WX(0.9, 2.4, 0.2), E_TARGETS[k % E_TARGETS.length], 2.6), T.entr8 - 0.5 + k * 0.1, 1.15, { spin: 6 });
+      // L09 : l'entrée en Bourse de BGFI Holding Corporation — liaison groupe ↔ BVMAC, puis souscriptions
+      const ipoCurve = arcPath(W(P_G, 0.4, 6.3, 0.4), WX(0.2, 3.3, -0.4), 2.6);
+      const ipoArc = (() => {
+        const geo = new THREE.TubeGeometry(ipoCurve, 140, 0.075, 8, false);
+        const m = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({ color: COL.navy, transparent: true, depthWrite: false }));
+        m.frustumCulled = false;
+        m.renderOrder = 7;
+        scene.add(m);
+        return { m, n: geo.index.count };
+      })();
+      for (let k = 0; k < 24; k++) {
+        const i = k % SAVERS.length;
+        const t0 = T.milliards - 0.75 + k * 0.055;
+        flow(coinMesh(), arcPath(saverAt(i, 0.6), B_TOP, 2.2), t0, 0.9, { spin: 7 });
+        flow(coinMesh(), arcPath(WB(-0.3, 3.4, 0), W(P_G, 0, 5.6, 0.6), 1.4), t0 + 0.92, 0.75, { spin: 7 });
+      }
+
+      // ------------------------------------------------------------------ caméra
+      const camera = new THREE.OrthographicCamera(-16, 16, 9, -9, 1, 2000);
+      const ISO = 35.264;
+      function framed(p, V, fx, fy, el = ISO, az = 45) {
+        const A = 16 / 9;
+        const right = new THREE.Vector3(Math.cos(az * DEG), 0, -Math.sin(az * DEG));
+        const upG = new THREE.Vector3(-Math.sin(az * DEG), 0, -Math.cos(az * DEG));
+        const dx = -fx * V * A;
+        const dy = (-fy * V) / Math.max(0.2, Math.sin(el * DEG));
+        return { x: p.x + right.x * dx + upG.x * dy, y: p.y || 0, z: p.z + right.z * dx + upG.z * dy, V, el, az };
+      }
+      const moves = [];
+      const mv = (t0, dur, to, mode = "lin", ease = inOut) => moves.push({ t0, dur, to, mode, ease });
+      function camAt(t) {
+        let s = { ...CAM0 };
+        for (let i = 0; i < moves.length; i++) {
+          const m = moves[i];
+          if (t <= m.t0) break;
+          const next = moves[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const u = prog(cut, m.t0, m.dur);
+          const to = { ...s, ...m.to };
+          const e = m.ease(u);
+          const V = Math.exp(lerp(Math.log(s.V), Math.log(to.V), e));
+          let w = e;
+          if (m.mode === "pivot" && Math.abs(to.V - s.V) > 1e-6) w = (V - s.V) / (to.V - s.V);
+          s = u >= 1 ? to : { x: lerp(s.x, to.x, w), y: lerp(s.y, to.y, w), z: lerp(s.z, to.z, w), V, az: lerp(s.az, to.az, e), el: lerp(s.el, to.el, e) };
+          if (!(next && next.t0 < t)) break;
+        }
+        return s;
+      }
+      const CAM0 = framed(W(P_S, 0.2, 0.5, 0.2), 3.0, 0.0, -0.02);
+      // L01 : les épargnants, lente poussée
+      mv(0, T.fruct - 0.4, framed(W(P_S, 0.1, 0.55, 0.1), 2.75, 0.0, -0.02), "lin", inOutQ);
+      mv(T.fruct - 0.4, 1.6, framed(W(P_S, 0.0, 0.8, 0.0), 3.3, 0.0, -0.05), "lin", inOut);
+      // L02 : vers les entreprises et les États
+      mv(T.toE, 1.9, framed(W(P_E, 0.4, 0.9, 0.3), 4.7, 0.02, -0.04), "lin", inOut);
+      // L03 : grand recul, la Bourse se lève au centre
+      const WIDE = RU(0.2, 2.4, 0);
+      mv(T.wide, 2.6, framed(WIDE, 9.9, 0, 0.02), "pivot", inOut);
+      // L04 : le cœur du marché (épargnants, place vide, Bourse, régulateur)
+      mv(T.inter - 0.6, 2.4, framed(RU(-3.6, 3.2, 1.5), 8.4, 0.0, 0.0), "lin", inOut);
+      // L05 : BGFIBourse, à droite ; le titre à gauche
+      mv(T.bb - 0.55, 2.2, framed(RU(-2.7, 2.6, 2.8), 5.9, 0.28, -0.03), "lin", inOut);
+      // L06 : épargnants → BGFIBourse → BVMAC
+      mv(S("L06") - 0.25, 1.7, framed(RU(-4.2, 1.0, 1.2), 7.6, 0.0, -0.02), "lin", inOut);
+      // L07 : coffre et OPC, de près
+      mv(T.conserve - 0.9, 1.6, framed(RU(-2.4, 0.0, 1.4), 4.4, 0.04, 0.0), "lin", inOut);
+      // L08 : le conseiller, puis les fonds vers les entreprises et les États
+      mv(T.conseil - 0.9, 1.6, framed(RU(-8.0, -0.4, 0.8), 5.6, 0.0, 0.0), "lin", inOut);
+      mv(T.entr8 - 0.9, 1.8, framed(RU(8.4, 0.6, 1.0), 8.0, 0.0, 0.0), "lin", inOut);
+      // L09 : le groupe, BGFIBourse et la BVMAC à droite ; le titre à gauche
+      mv(S("L09") - 0.4, 2.2, framed(RU(-1.6, 3.2, 2.2), 7.4, 0.3, -0.02), "lin", inOut);
+      // L10 : tout le marché, de haut
+      mv(T.l10 - 0.4, 3.2, framed(RU(0.3, 2.3, 0.5), 10.9, 0, 0.02, 40, 45), "pivot", inOut);
+      mv(T.l10 + 2.8, T.end - T.l10, framed(RU(0.3, 2.3, 0.5), 10.4, 0, 0.02, 42, 45), "lin", inOutQ);
+
+      // ------------------------------------------------------------------ étiquettes
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (p) => {
+        v3.copy(p).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080];
+      };
+      function label(name, anchor, dx, dy, a, align = "left") {
+        const el = $("wl-" + name);
+        const ld = $("wk-" + name);
+        const dt = $("wd-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          if (ld) ld.setAttribute("points", "");
+          if (dt) dt.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        const lx = ax + dx,
+          ly = ay + dy;
+        const left = align === "left" ? lx + 12 : align === "right" ? lx - w - 12 : lx - w / 2;
+        const top = ly - h / 2;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(left)}px, ${Math.round(top + (1 - a) * 8)}px)`;
+        if (ld) {
+          const k = Math.min(1, a * 1.4);
+          const mx = ax + (lx - ax) * k,
+            my = ay + (ly - ay) * k;
+          ld.setAttribute("points", `${ax.toFixed(1)},${ay.toFixed(1)} ${mx.toFixed(1)},${my.toFixed(1)}`);
+          ld.style.strokeOpacity = (0.55 * a).toFixed(3);
+        }
+        if (dt) {
+          dt.setAttribute("cx", ax.toFixed(1));
+          dt.setAttribute("cy", ay.toFixed(1));
+          dt.style.opacity = (0.8 * a).toFixed(3);
+        }
+      }
+      function labelAbove(name, anchor, gap, a) {
+        const el = $("wl-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(ax - w / 2)}px, ${Math.round(ay - gap - h + (1 - a) * 8)}px)`;
+      }
+      const reveal = (id, t, t0) => ($(id).style.opacity = out3(prog(t, t0 - 0.05, 0.35)).toFixed(3));
+
+      // ------------------------------------------------------------------ état des objets à t
+      const mtx = new THREE.Matrix4();
+      const q = new THREE.Quaternion();
+      const scv = new THREE.Vector3();
+      const pos = new THREE.Vector3();
+
+      function drawArc(a, u, op = 1) {
+        const n = Math.floor((a.n * clamp01(u)) / 3) * 3;
+        a.m.geometry.setDrawRange(0, n);
+        a.m.visible = n > 0 && op > 0.01;
+        a.m.material.opacity = op;
+      }
+
+      function render(t) {
+        // --- caméra
+        const s = camAt(t);
+        const drift = 0.9 * Math.sin(t * 0.11);
+        const az = (s.az + drift) * DEG,
+          el = s.el * DEG,
+          D = 400;
+        camera.position.set(s.x + Math.sin(az) * Math.cos(el) * D, s.y + Math.sin(el) * D, s.z + Math.cos(az) * Math.cos(el) * D);
+        camera.rotation.set(-el, az, 0, "YXZ");
+        const A = 16 / 9;
+        camera.left = -s.V * A;
+        camera.right = s.V * A;
+        camera.top = s.V;
+        camera.bottom = -s.V;
+        camera.near = 1;
+        camera.far = 2000;
+        camera.updateProjectionMatrix();
+        camera.updateMatrixWorld();
+        const tgt = new THREE.Vector3(s.x, 0, s.z);
+        sun.target.position.copy(tgt);
+        sun.position.copy(tgt).addScaledVector(SUN_DIR, 300);
+        const ext = Math.max(4, s.V * 2.3);
+        const shc = sun.shadow.camera;
+        shc.left = -ext;
+        shc.right = ext;
+        shc.top = ext;
+        shc.bottom = -ext;
+        shc.near = 1;
+        shc.far = 800;
+        shc.updateProjectionMatrix();
+        sun.shadow.normalBias = 0.0016 * s.V + 0.002;
+
+        // --- levées, couleurs, apparitions, personnages
+        for (const r of risers) {
+          const k = spring(prog(t, r.t0, r.d));
+          r.g.scale.y = Math.max(tiny, k);
+          r.g.visible = k > 0.003;
+        }
+        for (const c of tints) c.m.color.copy(c.a).lerp(c.b, out3(prog(t, c.t0, c.d)));
+        for (const p of pops) {
+          let k = spring(prog(t, p.t0, p.d));
+          if (p.out !== null) k *= 1 - inOut(prog(t, p.out, 0.45));
+          p.g.scale.setScalar(Math.max(tiny, k * p.s));
+          p.g.visible = k > 0.003;
+        }
+        for (const f of figs) {
+          let k = spring(prog(t, f.t0, f.d));
+          if (f.out) k *= 1 - inOut(prog(t, f.out, 0.45));
+          f.g.visible = k > 0.003;
+          f.g.scale.setScalar(Math.max(tiny, f.s * k));
+          let y = f.y0;
+          if (f.bob) y += f.bob * Math.max(0, Math.sin(t * f.w + f.ph));
+          if (f.walk) {
+            const [ax, az2, bx, bz, t1, t2] = f.walk;
+            const u = inOutQ(prog(t, t1, t2 - t1));
+            f.g.position.x = lerp(ax, bx, u);
+            f.g.position.z = lerp(az2, bz, u);
+            if (u > 0 && u < 1) y += 0.022 * Math.abs(Math.sin(t * 11));
+          }
+          f.g.position.y = y;
+        }
+        for (const b of bills) b.quaternion.copy(camera.quaternion);
+
+        // --- arbre à pièces : les pièces mûrissent une à une
+        treeCoins.forEach((c, k) => {
+          const g = spring(prog(t, T.fruct + 0.25 + k * 0.1, 0.5));
+          c.scale.setScalar(Math.max(tiny, g));
+          c.visible = g > 0.003;
+          c.quaternion.copy(camera.quaternion);
+        });
+
+        // --- logements, route, grue
+        homes.forEach((h) => {
+          const a = spring(prog(t, h.t0, 0.7)) * 0.42;
+          const b = spring(prog(t, T.levent - 0.2, 1.1)) * 0.58;
+          h.g.scale.y = Math.max(tiny, a + b);
+          h.g.visible = a + b > 0.003;
+        });
+        {
+          const a = inOut(prog(t, T.proj[1] - 0.15, 1.1)) * 0.48;
+          const b = inOut(prog(t, T.levent, 1.6)) * 0.52;
+          const L = Math.max(tiny, (a + b) * ROAD_LEN);
+          roadStrip.scale.x = L;
+          roadStrip.position.x = L / 2;
+          roadDash.scale.x = L * 0.92;
+          roadDash.position.x = L / 2;
+          road.visible = a + b > 0.002;
+          roller.position.x = L + 0.22;
+          roller.visible = a + b > 0.002 && a + b < 0.999;
+        }
+        jib.rotation.y = 0.4 + 0.25 * Math.sin(t * 0.35) + inOut(prog(t, T.levent - 0.4, 2.0)) * 1.1;
+
+        // --- tableau des cours : il s'allume quand la Bourse exécute ; BGFI HC en 2026
+        boardPlane.material.map = t >= T.y2026 - 0.1 ? TX.boardHC : TX.board;
+        {
+          const f = Math.exp(-Math.pow((t - (T.exec + 0.55)) / 0.35, 2)) + 0.8 * Math.exp(-Math.pow((t - (T.y2026 + 0.1)) / 0.4, 2));
+          const sc = 1 + 0.06 * f;
+          boardPlane.scale.set(sc, sc, 1);
+        }
+        // anneaux des colonnes : déjà teintés par tints ; légère pulsation sur « six pays »
+        // --- tentative directe refusée, emplacement vide, périmètre régulé, agrément
+        drawArc(directArc, inOut(prog(t, T.acheter - 0.1, 1.0)), 0.9 * (1 - inOut(prog(t, T.inter + 0.5, 0.6))));
+        {
+          const a = win(t, T.inter + 0.15, 0.5, T.bb - 0.2, 0.5);
+          ghost.visible = a > 0.002;
+          ghostFill.material.opacity = 0.07 * a;
+          ghostEdges.material.opacity = 0.85 * a;
+        }
+        drawArc(perim, inOut(prog(t, T.cosu - 0.1, 1.6)), 0.55 * (1 - inOut(prog(t, T.l10 + 1.5, 1.0)) * 0.5));
+        drawArc(agreeArc, inOut(prog(t, T.agree - 0.7, 0.7)), 0.9 * (1 - inOut(prog(t, S("L06") - 0.2, 0.6))));
+        // étoile du logo : scintillement lent
+        {
+          const k = spring(prog(t, T.bb + 0.6, 0.6));
+          star.scale.setScalar(Math.max(tiny, k * (1 + 0.08 * Math.sin(t * 2.4))));
+        }
+        // coffre : la porte s'ouvre pour recevoir les titres, puis se referme
+        {
+          const k = spring(prog(t, T.bb + 0.6, 0.5));
+          vaultDoor.scale.setScalar(Math.max(tiny, k));
+          const open = inOut(prog(t, T.conserve - 0.7, 0.5)) * (1 - inOut(prog(t, T.secu + 0.15, 0.5)));
+          vaultDoor.rotation.y = -open * 1.6;
+        }
+        // OPC : les pièces s'empilent dans la cuve
+        {
+          let n = 0;
+          for (const t1 of OPC_T) if (t >= t1) n++;
+          const shown = Math.min(OPC_N, Math.round(n * 2.6) + (t >= OPC_T[0] ? 6 : 0));
+          for (let k = 0; k < OPC_N; k++) {
+            const j = opcJit[k];
+            const layer = Math.floor(k / 6);
+            const vis = k < shown;
+            mtx.compose(pos.set(j[0] * 0.55, 0.14 + layer * 0.07 + j[2] * 0.03, j[1] * 0.55), q.setFromEuler(new THREE.Euler(j[2] * 0.5, k, j[0] * 0.4)), scv.setScalar(vis ? 1 : tiny));
+            opcCoins.setMatrixAt(k, mtx);
+          }
+          opcCoins.instanceMatrix.needsUpdate = true;
+          opcCoins.visible = t > T.opc - 0.4;
+          opcCoins.scale.setScalar(opcBase.scale.x > 0.5 ? 1 : tiny);
+        }
+        // liaison d'introduction en Bourse
+        drawArc(ipoArc, inOut(prog(t, T.mere - 0.2, 0.9)), 0.85 * (1 - inOut(prog(t, T.l10 + 0.8, 0.8))));
+        // tour du groupe : elle s'éclaire quand les fonds arrivent
+        groupGlow.color.copy(lit(COL.white)).lerp(lit(COL.sageLight), Math.exp(-Math.pow((t - (T.leves + 0.2)) / 0.6, 2)));
+
+        // --- flux
+        for (const f of flows) {
+          const u = prog(t, f.t0, f.d);
+          const on = u > 0 && u < 1;
+          f.mesh.visible = on;
+          if (!on) continue;
+          const e = inOutQ(u);
+          f.mesh.position.copy(f.curve.getPoint(e));
+          const sc = f.s * Math.min(1, u / 0.12) * (1 - in3(prog(u, 1 - f.fade, f.fade)));
+          f.mesh.scale.setScalar(Math.max(tiny, sc));
+          if (f.face) f.mesh.quaternion.copy(camera.quaternion);
+          else if (f.spin) {
+            f.mesh.rotation.set(0, Math.PI / 4, u * f.spin);
+          }
+        }
+
+        // --- étiquettes
+        label("epar", W(P_S, -0.9, 1.0, 0.4), -130, -170, win(t, T.epar + 0.1, 0.45, T.toE + 0.2, 0.4), "right");
+        label("ent", WE(0.5, 2.6, -2.3), -110, -120, win(t, T.ent + 0.05, 0.45, T.wide, 0.4), "right");
+        label("etats", WE(2.9, 1.5, 0.1), 150, -40, win(t, T.etats + 0.05, 0.45, T.wide, 0.4), "left");
+        label("proj", WE(0.6, 0.9, 3.3), 150, 150, win(t, T.proj[0] - 0.1, 0.45, T.wide + 0.2, 0.4), "left");
+        T.proj.forEach((tt, j) => reveal("wp-" + j, t, tt));
+        label("bvmac", WX(-0.6, 3.5, -0.6), -90, -150, win(t, T.bvmac - 0.05, 0.45, T.acheter + 0.4, 0.4), "right");
+        reveal("wx-bvmac", t, T.douala);
+        label("sdb", WB(-1.2, 4.3, -1.1), -100, -110, win(t, T.inter + 0.2, 0.45, T.bb - 0.4, 0.35), "right");
+        reveal("wn-sdb", t, T.sdb);
+        label("cosu", W(P_R, -1.0, 2.6, 0.4), -110, -60, win(t, T.regul, 0.45, T.bb - 0.5, 0.35), "right");
+        reveal("wn-cosu", t, T.cosu);
+        label("groupe", W(P_G, 0.8, 5.9, 0.8), 110, -40, win(t, T.groupe + 0.2, 0.45, S("L06") - 0.3, 0.35), "left");
+        reveal("wx-groupe", t, T.lbv);
+        label("court", WB(-1.0, 4.0, 0.0), -130, -60, win(t, T.achat - 0.1, 0.45, E("L06") + 0.45, 0.35), "right");
+        reveal("wn-court", t, T.court);
+        label("cons", WB(1.7, 0.8, 1.4), -150, 90, win(t, T.conserve, 0.45, T.opc + 0.35, 0.35), "right");
+        label("opc", W(P_O, 0.4, 1.4, 0.2), 120, 90, win(t, T.opc + 0.05, 0.45, E("L07") + 0.4, 0.35), "left");
+        reveal("wn-opc", t, T.opc);
+        label("conseil", W(advisor.g.position, 0, 0.9, 0), 90, -140, win(t, T.conseil + 0.1, 0.45, T.entr8 - 0.5, 0.35), "left");
+        reveal("wx-conseil", t, T.obj);
+        label("levee", WE(0.2, 0.4, 3.0), 120, 110, win(t, T.levent - 0.1, 0.45, E("L08") + 0.5, 0.35), "left");
+        // L10 : récapitulatif des acteurs
+        const recA = (k) => win(t, T.l10 + 0.9 + k * 0.35, 0.5, T.end - 0.1, 0.4);
+        labelAbove("r0", W(P_S, 0, 1.6, 0), 30, recA(0));
+        labelAbove("r1", WB(0.2, 6.2, 0), 18, recA(1));
+        labelAbove("r2", WX(0.2, 3.9, -0.5), 18, recA(2));
+        labelAbove("r3", WE(0.4, 3.0, -1.6), 26, recA(3));
+
+        renderer.render(scene, camera);
+      }
+
+      // ------------------------------------------------------------------ chargement
+      const TX = {};
+      const loadImg = (src) =>
+        new Promise((res, rej) => {
+          const im = new Image();
+          im.onload = () => res(im);
+          im.onerror = rej;
+          im.src = src;
+        });
+      (async function init() {
+        await Promise.all([
+          document.fonts.load('900 40px "Lato"'),
+          document.fonts.load('700 28px "Lato"'),
+          document.fonts.load('400 40px "Tenor Sans"'),
+        ]).catch(() => {});
+        const logo = await loadImg("assets/img/bgfibourse-logo.png");
+        logoPlane.material.map = canvasTex(1600, 462, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          g.fillRect(0, 0, w, h);
+          g.drawImage(logo, 0, 0, logo.width, logo.height, 30, 14, 1540, 434);
+        });
+        logoPlane.material.needsUpdate = true;
+        // fronton « BVMAC »
+        bvmacSign.material.map = canvasTex(1024, 120, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          g.fillRect(0, 0, w, h);
+          g.fillStyle = "#0b2677";
+          g.font = '900 92px "Lato"';
+          g.textAlign = "center";
+          g.textBaseline = "middle";
+          g.fillText("BVMAC", w / 2, h / 2 + 4);
+        });
+        bvmacSign.material.needsUpdate = true;
+        cosuSign.material.map = canvasTex(1024, 190, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          g.fillRect(0, 0, w, h);
+          g.fillStyle = "#0b2677";
+          g.font = '900 120px "Lato"';
+          g.textAlign = "center";
+          g.textBaseline = "middle";
+          g.fillText("COSUMAF", w / 2, h / 2 + 6);
+        });
+        cosuSign.material.needsUpdate = true;
+        // tableau des cours : courbes et flèches sans nom de valeur ; puis BGFI HC
+        TX.board = canvasTex(1144, 392, (g, w, h) => {
+          g.fillStyle = "#0b2677";
+          g.fillRect(0, 0, w, h);
+          g.strokeStyle = "rgba(255,255,255,0.18)";
+          g.lineWidth = 2;
+          for (let y = 70; y < h; y += 80) {
+            g.beginPath();
+            g.moveTo(30, y);
+            g.lineTo(w - 30, y);
+            g.stroke();
+          }
+          g.strokeStyle = "#cfdbac";
+          g.lineWidth = 9;
+          g.lineJoin = "round";
+          g.beginPath();
+          [40, 230, 150, 210, 120, 160, 70, 110, 60].forEach((y, k) => (k ? g.lineTo(40 + k * 75, 80 + y) : g.moveTo(40, 80 + y)));
+          g.stroke();
+          for (let r = 0; r < 4; r++) {
+            const y = 66 + r * 80;
+            g.fillStyle = "rgba(255,255,255,0.85)";
+            rr(g, 700, y - 14, 220 - r * 24, 26, 8);
+            g.fill();
+            const up = r % 3 !== 1;
+            g.fillStyle = up ? "#cfdbac" : "#8fb4d4";
+            g.beginPath();
+            if (up) {
+              g.moveTo(1010, y + 14);
+              g.lineTo(1040, y - 18);
+              g.lineTo(1070, y + 14);
+            } else {
+              g.moveTo(1010, y - 14);
+              g.lineTo(1040, y + 18);
+              g.lineTo(1070, y - 14);
+            }
+            g.closePath();
+            g.fill();
+          }
+        });
+        TX.boardHC = canvasTex(1144, 392, (g, w, h) => {
+          g.fillStyle = "#0b2677";
+          g.fillRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          g.font = '900 150px "Lato"';
+          g.textBaseline = "alphabetic";
+          g.fillText("BGFI HC", 60, 200);
+          g.fillStyle = "#cfdbac";
+          g.font = '700 64px "Lato"';
+          g.fillText("Nouvelle cotation", 64, 310);
+          g.fillStyle = "#cfdbac";
+          g.beginPath();
+          g.moveTo(930, 260);
+          g.lineTo(1010, 120);
+          g.lineTo(1090, 260);
+          g.closePath();
+          g.fill();
+        });
+        boardPlane.material.map = TX.board;
+        boardPlane.material.needsUpdate = true;
+        // cartes « Actions » et « Obligations »
+        ["Actions", "Obligations"].forEach((s, i) => {
+          cards[i].material.map = canvasTex(760, 312, (g, w, h) => {
+            g.clearRect(0, 0, w, h);
+            g.fillStyle = "#ffffff";
+            rr(g, 6, 6, w - 12, h - 12, 40);
+            g.fill();
+            g.strokeStyle = i ? "#879a6d" : "#3a77a1";
+            g.lineWidth = 12;
+            rr(g, 12, 12, w - 24, h - 24, 34);
+            g.stroke();
+            // pictogramme : parts (actions) ou coupon (obligations)
+            g.save();
+            g.translate(150, h / 2);
+            if (!i) {
+              g.fillStyle = "#3a77a1";
+              g.beginPath();
+              g.moveTo(0, 0);
+              g.arc(0, 0, 82, -Math.PI / 2, Math.PI * 1.1);
+              g.closePath();
+              g.fill();
+              g.fillStyle = "#0b2677";
+              g.beginPath();
+              g.moveTo(10, -10);
+              g.arc(10, -10, 82, -Math.PI / 2, -Math.PI * 0.9, true);
+              g.closePath();
+              g.fill();
+            } else {
+              g.fillStyle = "#879a6d";
+              rr(g, -80, -64, 160, 128, 14);
+              g.fill();
+              g.fillStyle = "#ffffff";
+              [-34, 0, 34].forEach((y) => g.fillRect(-56, y - 7, 112, 14));
+            }
+            g.restore();
+            g.fillStyle = "#0b2677";
+            let fs = 96;
+            g.font = `900 ${fs}px "Lato"`;
+            while (g.measureText(s).width > w - 268 - 40 && fs > 40) {
+              fs -= 2;
+              g.font = `900 ${fs}px "Lato"`;
+            }
+            g.textBaseline = "middle";
+            g.fillText(s, 268, h / 2 + 4);
+          });
+          cards[i].material.needsUpdate = true;
+        });
+        noBadgeM.material.map = badgeTex("#8b939b", "cross");
+        okM.material.map = badgeTex("#5f7247", "check");
+        starM.material.map = starTex();
+        bubbleM.material.map = bubbleTex();
+        const ct = coinTex();
+        treeCoinPos.forEach(([x, y, z]) => {
+          const g = new THREE.Group();
+          g.position.set(x, y, z);
+          moneyTree.add(g);
+          const m = plane(g, 0.2, 0.2, ct, 0, 0, 0, { depthWrite: false });
+          m.renderOrder = 8;
+          treeCoins.push(g);
+        });
+        titleCards.forEach((m, k) => (m.material.map = paperTex(k % 2 ? "#879a6d" : "#0b2677")));
+        [noBadgeM, okM, starM, bubbleM, ...titleCards].forEach((m) => (m.material.needsUpdate = true));
+        bubble.position.copy(W(advEnd, 0.2, 1.25, 0.1));
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>

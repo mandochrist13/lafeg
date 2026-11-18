@@ -1,0 +1,56 @@
+{
+ "lead": 3.2,
+ "tail": 6.0,
+ "lines": [
+  {
+   "id": "L01",
+   "gap": 0,
+   "text": "En Afrique centrale, beaucoup de femmes et d'hommes épargnent, et aimeraient faire fructifier leur argent."
+  },
+  {
+   "id": "L02",
+   "gap": 1.0,
+   "text": "De leur côté, des entreprises et des États doivent financer leurs projets : des usines, des routes, des logements."
+  },
+  {
+   "id": "L03",
+   "gap": 1.0,
+   "text": "Tous se retrouvent sur la Bourse commune aux six pays de la Cémac : la BVMAC, à Douala."
+  },
+  {
+   "id": "L04",
+   "gap": 1.0,
+   "text": "Pour y acheter ou y vendre des actions et des obligations, il faut un intermédiaire agréé par le régulateur, la Cosumaf : une société de bourse."
+  },
+  {
+   "id": "L05",
+   "gap": 1.1,
+   "text": "BGFI Bourse est la société de bourse du groupe BGFI Bank, né à Libreville en mille neuf cent soixante et onze. Elle est agréée depuis deux mille six."
+  },
+  {
+   "id": "L06",
+   "gap": 1.0,
+   "text": "Elle transmet vos ordres d'achat et de vente, et les exécute sur le marché : c'est le courtage."
+  },
+  {
+   "id": "L07",
+   "gap": 1.0,
+   "text": "Elle conserve vos titres en toute sécurité, et vous propose des OPC : une épargne mise en commun, gérée par des professionnels."
+  },
+  {
+   "id": "L08",
+   "gap": 1.0,
+   "text": "Elle vous conseille selon vos objectifs, et accompagne les entreprises et les États qui lèvent des fonds en Bourse."
+  },
+  {
+   "id": "L09",
+   "gap": 1.1,
+   "text": "En deux mille vingt-six, elle a ainsi conduit l'entrée en Bourse de la maison mère du groupe, BGFI Holding Corporation : plus de quarante-cinq milliards de francs CFA levés."
+  },
+  {
+   "id": "L10",
+   "gap": 1.2,
+   "text": "BGFI Bourse : la société de bourse du groupe BGFI Bank, pour investir en Afrique centrale."
+  }
+ ]
+}

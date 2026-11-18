@@ -1,0 +1,1210 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.124,
+      "speech": [
+        0.134,
+        4.944
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "En",
+          "start": 0.134,
+          "end": 0.291
+        },
+        {
+          "text": "Afrique",
+          "start": 0.291,
+          "end": 0.764
+        },
+        {
+          "text": "centrale,",
+          "start": 0.764,
+          "end": 1.08
+        },
+        {
+          "text": "beaucoup",
+          "start": 1.248,
+          "end": 1.557
+        },
+        {
+          "text": "de",
+          "start": 1.557,
+          "end": 1.711
+        },
+        {
+          "text": "femmes",
+          "start": 1.711,
+          "end": 2.019
+        },
+        {
+          "text": "et",
+          "start": 2.019,
+          "end": 2.174
+        },
+        {
+          "text": "d'hommes",
+          "start": 2.174,
+          "end": 2.482
+        },
+        {
+          "text": "épargnent,",
+          "start": 2.482,
+          "end": 2.945
+        },
+        {
+          "text": "et",
+          "start": 3.364,
+          "end": 3.508
+        },
+        {
+          "text": "aimeraient",
+          "start": 3.508,
+          "end": 3.938
+        },
+        {
+          "text": "faire",
+          "start": 3.938,
+          "end": 4.082
+        },
+        {
+          "text": "fructifier",
+          "start": 4.082,
+          "end": 4.513
+        },
+        {
+          "text": "leur",
+          "start": 4.513,
+          "end": 4.657
+        },
+        {
+          "text": "argent.",
+          "start": 4.657,
+          "end": 4.944
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.63,
+      "speech": [
+        0.12,
+        5.452
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "De",
+          "start": 0.12,
+          "end": 0.26
+        },
+        {
+          "text": "leur",
+          "start": 0.26,
+          "end": 0.4
+        },
+        {
+          "text": "côté,",
+          "start": 0.4,
+          "end": 0.681
+        },
+        {
+          "text": "des",
+          "start": 0.681,
+          "end": 0.822
+        },
+        {
+          "text": "entreprises",
+          "start": 0.822,
+          "end": 1.383
+        },
+        {
+          "text": "et",
+          "start": 1.383,
+          "end": 1.524
+        },
+        {
+          "text": "des",
+          "start": 1.524,
+          "end": 1.664
+        },
+        {
+          "text": "États",
+          "start": 1.664,
+          "end": 1.945
+        },
+        {
+          "text": "doivent",
+          "start": 1.945,
+          "end": 2.226
+        },
+        {
+          "text": "financer",
+          "start": 2.226,
+          "end": 2.647
+        },
+        {
+          "text": "leurs",
+          "start": 2.647,
+          "end": 2.787
+        },
+        {
+          "text": "projets",
+          "start": 2.787,
+          "end": 3.068
+        },
+        {
+          "text": ":",
+          "start": 3.068,
+          "end": 3.209
+        },
+        {
+          "text": "des",
+          "start": 3.661,
+          "end": 3.824
+        },
+        {
+          "text": "usines,",
+          "start": 3.824,
+          "end": 4.312
+        },
+        {
+          "text": "des",
+          "start": 4.312,
+          "end": 4.475
+        },
+        {
+          "text": "routes,",
+          "start": 4.475,
+          "end": 4.801
+        },
+        {
+          "text": "des",
+          "start": 4.801,
+          "end": 4.964
+        },
+        {
+          "text": "logements.",
+          "start": 4.964,
+          "end": 5.452
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.059,
+      "speech": [
+        0.12,
+        4.881
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Tous",
+          "start": 0.12,
+          "end": 0.274
+        },
+        {
+          "text": "se",
+          "start": 0.274,
+          "end": 0.428
+        },
+        {
+          "text": "retrouvent",
+          "start": 0.428,
+          "end": 0.89
+        },
+        {
+          "text": "sur",
+          "start": 0.89,
+          "end": 1.044
+        },
+        {
+          "text": "la",
+          "start": 1.044,
+          "end": 1.198
+        },
+        {
+          "text": "Bourse",
+          "start": 1.198,
+          "end": 1.352
+        },
+        {
+          "text": "commune",
+          "start": 1.352,
+          "end": 1.66
+        },
+        {
+          "text": "aux",
+          "start": 1.66,
+          "end": 1.814
+        },
+        {
+          "text": "six",
+          "start": 1.814,
+          "end": 1.968
+        },
+        {
+          "text": "pays",
+          "start": 1.968,
+          "end": 2.122
+        },
+        {
+          "text": "de",
+          "start": 2.122,
+          "end": 2.276
+        },
+        {
+          "text": "la",
+          "start": 2.276,
+          "end": 2.43
+        },
+        {
+          "text": "Cémac",
+          "start": 2.43,
+          "end": 2.738
+        },
+        {
+          "text": ":",
+          "start": 2.738,
+          "end": 2.892
+        },
+        {
+          "text": "la",
+          "start": 3.295,
+          "end": 3.46
+        },
+        {
+          "text": "BVMAC,",
+          "start": 3.46,
+          "end": 4.284
+        },
+        {
+          "text": "à",
+          "start": 4.424,
+          "end": 4.576
+        },
+        {
+          "text": "Douala.",
+          "start": 4.576,
+          "end": 4.881
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.11,
+      "speech": [
+        0.12,
+        8.93
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Pour",
+          "start": 0.12,
+          "end": 0.305
+        },
+        {
+          "text": "y",
+          "start": 0.305,
+          "end": 0.489
+        },
+        {
+          "text": "acheter",
+          "start": 0.489,
+          "end": 1.043
+        },
+        {
+          "text": "ou",
+          "start": 1.043,
+          "end": 1.228
+        },
+        {
+          "text": "y",
+          "start": 1.228,
+          "end": 1.413
+        },
+        {
+          "text": "vendre",
+          "start": 1.413,
+          "end": 1.598
+        },
+        {
+          "text": "des",
+          "start": 1.598,
+          "end": 1.782
+        },
+        {
+          "text": "actions",
+          "start": 1.782,
+          "end": 2.152
+        },
+        {
+          "text": "et",
+          "start": 2.152,
+          "end": 2.336
+        },
+        {
+          "text": "des",
+          "start": 2.336,
+          "end": 2.521
+        },
+        {
+          "text": "obligations,",
+          "start": 2.521,
+          "end": 3.26
+        },
+        {
+          "text": "il",
+          "start": 3.389,
+          "end": 3.553
+        },
+        {
+          "text": "faut",
+          "start": 3.553,
+          "end": 3.716
+        },
+        {
+          "text": "un",
+          "start": 3.716,
+          "end": 3.88
+        },
+        {
+          "text": "intermédiaire",
+          "start": 3.88,
+          "end": 4.534
+        },
+        {
+          "text": "agréé",
+          "start": 4.534,
+          "end": 4.862
+        },
+        {
+          "text": "par",
+          "start": 4.862,
+          "end": 5.025
+        },
+        {
+          "text": "le",
+          "start": 5.025,
+          "end": 5.189
+        },
+        {
+          "text": "régulateur,",
+          "start": 5.189,
+          "end": 5.843
+        },
+        {
+          "text": "la",
+          "start": 5.958,
+          "end": 6.133
+        },
+        {
+          "text": "Cosumaf",
+          "start": 6.133,
+          "end": 6.66
+        },
+        {
+          "text": ":",
+          "start": 6.66,
+          "end": 6.835
+        },
+        {
+          "text": "une",
+          "start": 7.394,
+          "end": 7.65
+        },
+        {
+          "text": "société",
+          "start": 7.65,
+          "end": 8.418
+        },
+        {
+          "text": "de",
+          "start": 8.418,
+          "end": 8.674
+        },
+        {
+          "text": "bourse.",
+          "start": 8.674,
+          "end": 8.93
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.539,
+      "speech": [
+        0.12,
+        7.359
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "BGFI",
+          "start": 0.12,
+          "end": 0.789
+        },
+        {
+          "text": "Bourse",
+          "start": 0.789,
+          "end": 0.957
+        },
+        {
+          "text": "est",
+          "start": 0.957,
+          "end": 1.124
+        },
+        {
+          "text": "la",
+          "start": 1.124,
+          "end": 1.292
+        },
+        {
+          "text": "société",
+          "start": 1.292,
+          "end": 1.794
+        },
+        {
+          "text": "de",
+          "start": 1.794,
+          "end": 1.961
+        },
+        {
+          "text": "bourse",
+          "start": 1.961,
+          "end": 2.129
+        },
+        {
+          "text": "du",
+          "start": 2.129,
+          "end": 2.296
+        },
+        {
+          "text": "groupe",
+          "start": 2.296,
+          "end": 2.464
+        },
+        {
+          "text": "BGFI",
+          "start": 2.464,
+          "end": 3.133
+        },
+        {
+          "text": "Bank,",
+          "start": 3.133,
+          "end": 3.301
+        },
+        {
+          "text": "né",
+          "start": 3.673,
+          "end": 3.807
+        },
+        {
+          "text": "à",
+          "start": 3.807,
+          "end": 3.941
+        },
+        {
+          "text": "Libreville",
+          "start": 3.941,
+          "end": 4.343
+        },
+        {
+          "text": "en",
+          "start": 4.343,
+          "end": 4.477
+        },
+        {
+          "text": "mille",
+          "start": 4.477,
+          "end": 4.611
+        },
+        {
+          "text": "neuf",
+          "start": 4.611,
+          "end": 4.745
+        },
+        {
+          "text": "cent",
+          "start": 4.745,
+          "end": 4.879
+        },
+        {
+          "text": "soixante",
+          "start": 4.879,
+          "end": 5.147
+        },
+        {
+          "text": "et",
+          "start": 5.147,
+          "end": 5.282
+        },
+        {
+          "text": "onze.",
+          "start": 5.282,
+          "end": 5.416
+        },
+        {
+          "text": "Elle",
+          "start": 5.997,
+          "end": 6.148
+        },
+        {
+          "text": "est",
+          "start": 6.148,
+          "end": 6.3
+        },
+        {
+          "text": "agréée",
+          "start": 6.3,
+          "end": 6.602
+        },
+        {
+          "text": "depuis",
+          "start": 6.602,
+          "end": 6.905
+        },
+        {
+          "text": "deux",
+          "start": 6.905,
+          "end": 7.057
+        },
+        {
+          "text": "mille",
+          "start": 7.057,
+          "end": 7.208
+        },
+        {
+          "text": "six.",
+          "start": 7.208,
+          "end": 7.359
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.373,
+      "speech": [
+        0.119,
+        4.193
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.119,
+          "end": 0.308
+        },
+        {
+          "text": "transmet",
+          "start": 0.308,
+          "end": 0.686
+        },
+        {
+          "text": "vos",
+          "start": 0.686,
+          "end": 0.875
+        },
+        {
+          "text": "ordres",
+          "start": 0.875,
+          "end": 1.253
+        },
+        {
+          "text": "d'achat",
+          "start": 1.253,
+          "end": 1.631
+        },
+        {
+          "text": "et",
+          "start": 1.631,
+          "end": 1.82
+        },
+        {
+          "text": "de",
+          "start": 1.82,
+          "end": 2.009
+        },
+        {
+          "text": "vente,",
+          "start": 2.009,
+          "end": 2.198
+        },
+        {
+          "text": "et",
+          "start": 2.359,
+          "end": 2.49
+        },
+        {
+          "text": "les",
+          "start": 2.49,
+          "end": 2.621
+        },
+        {
+          "text": "exécute",
+          "start": 2.621,
+          "end": 3.014
+        },
+        {
+          "text": "sur",
+          "start": 3.014,
+          "end": 3.145
+        },
+        {
+          "text": "le",
+          "start": 3.145,
+          "end": 3.276
+        },
+        {
+          "text": "marché",
+          "start": 3.276,
+          "end": 3.538
+        },
+        {
+          "text": ":",
+          "start": 3.538,
+          "end": 3.669
+        },
+        {
+          "text": "c'est",
+          "start": 3.669,
+          "end": 3.8
+        },
+        {
+          "text": "le",
+          "start": 3.8,
+          "end": 3.931
+        },
+        {
+          "text": "courtage.",
+          "start": 3.931,
+          "end": 4.193
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.751,
+      "speech": [
+        0.12,
+        6.571
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.12,
+          "end": 0.275
+        },
+        {
+          "text": "conserve",
+          "start": 0.275,
+          "end": 0.584
+        },
+        {
+          "text": "vos",
+          "start": 0.584,
+          "end": 0.739
+        },
+        {
+          "text": "titres",
+          "start": 0.739,
+          "end": 1.048
+        },
+        {
+          "text": "en",
+          "start": 1.048,
+          "end": 1.202
+        },
+        {
+          "text": "toute",
+          "start": 1.202,
+          "end": 1.357
+        },
+        {
+          "text": "sécurité,",
+          "start": 1.357,
+          "end": 1.975
+        },
+        {
+          "text": "et",
+          "start": 2.087,
+          "end": 2.255
+        },
+        {
+          "text": "vous",
+          "start": 2.255,
+          "end": 2.423
+        },
+        {
+          "text": "propose",
+          "start": 2.423,
+          "end": 2.758
+        },
+        {
+          "text": "des",
+          "start": 2.758,
+          "end": 2.926
+        },
+        {
+          "text": "OPC",
+          "start": 2.926,
+          "end": 3.43
+        },
+        {
+          "text": ":",
+          "start": 3.43,
+          "end": 3.598
+        },
+        {
+          "text": "une",
+          "start": 4.144,
+          "end": 4.306
+        },
+        {
+          "text": "épargne",
+          "start": 4.306,
+          "end": 4.629
+        },
+        {
+          "text": "mise",
+          "start": 4.629,
+          "end": 4.791
+        },
+        {
+          "text": "en",
+          "start": 4.791,
+          "end": 4.953
+        },
+        {
+          "text": "commun,",
+          "start": 4.953,
+          "end": 5.277
+        },
+        {
+          "text": "gérée",
+          "start": 5.277,
+          "end": 5.6
+        },
+        {
+          "text": "par",
+          "start": 5.6,
+          "end": 5.762
+        },
+        {
+          "text": "des",
+          "start": 5.762,
+          "end": 5.924
+        },
+        {
+          "text": "professionnels.",
+          "start": 5.924,
+          "end": 6.571
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.736,
+      "speech": [
+        0.12,
+        5.556
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.12,
+          "end": 0.309
+        },
+        {
+          "text": "vous",
+          "start": 0.309,
+          "end": 0.498
+        },
+        {
+          "text": "conseille",
+          "start": 0.498,
+          "end": 0.876
+        },
+        {
+          "text": "selon",
+          "start": 0.876,
+          "end": 1.253
+        },
+        {
+          "text": "vos",
+          "start": 1.253,
+          "end": 1.442
+        },
+        {
+          "text": "objectifs,",
+          "start": 1.442,
+          "end": 2.009
+        },
+        {
+          "text": "et",
+          "start": 2.508,
+          "end": 2.661
+        },
+        {
+          "text": "accompagne",
+          "start": 2.661,
+          "end": 3.118
+        },
+        {
+          "text": "les",
+          "start": 3.118,
+          "end": 3.27
+        },
+        {
+          "text": "entreprises",
+          "start": 3.27,
+          "end": 3.88
+        },
+        {
+          "text": "et",
+          "start": 3.88,
+          "end": 4.032
+        },
+        {
+          "text": "les",
+          "start": 4.032,
+          "end": 4.184
+        },
+        {
+          "text": "États",
+          "start": 4.184,
+          "end": 4.489
+        },
+        {
+          "text": "qui",
+          "start": 4.489,
+          "end": 4.642
+        },
+        {
+          "text": "lèvent",
+          "start": 4.642,
+          "end": 4.946
+        },
+        {
+          "text": "des",
+          "start": 4.946,
+          "end": 5.099
+        },
+        {
+          "text": "fonds",
+          "start": 5.099,
+          "end": 5.251
+        },
+        {
+          "text": "en",
+          "start": 5.251,
+          "end": 5.403
+        },
+        {
+          "text": "Bourse.",
+          "start": 5.403,
+          "end": 5.556
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.259,
+      "speech": [
+        0.12,
+        8.079
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "En",
+          "start": 0.12,
+          "end": 0.322
+        },
+        {
+          "text": "deux",
+          "start": 0.322,
+          "end": 0.525
+        },
+        {
+          "text": "mille",
+          "start": 0.525,
+          "end": 0.727
+        },
+        {
+          "text": "vingt-six,",
+          "start": 0.727,
+          "end": 1.131
+        },
+        {
+          "text": "elle",
+          "start": 1.254,
+          "end": 1.386
+        },
+        {
+          "text": "a",
+          "start": 1.386,
+          "end": 1.519
+        },
+        {
+          "text": "ainsi",
+          "start": 1.519,
+          "end": 1.783
+        },
+        {
+          "text": "conduit",
+          "start": 1.783,
+          "end": 2.048
+        },
+        {
+          "text": "l'entrée",
+          "start": 2.048,
+          "end": 2.313
+        },
+        {
+          "text": "en",
+          "start": 2.313,
+          "end": 2.445
+        },
+        {
+          "text": "Bourse",
+          "start": 2.445,
+          "end": 2.577
+        },
+        {
+          "text": "de",
+          "start": 2.577,
+          "end": 2.71
+        },
+        {
+          "text": "la",
+          "start": 2.71,
+          "end": 2.842
+        },
+        {
+          "text": "maison",
+          "start": 2.842,
+          "end": 3.107
+        },
+        {
+          "text": "mère",
+          "start": 3.107,
+          "end": 3.239
+        },
+        {
+          "text": "du",
+          "start": 3.239,
+          "end": 3.371
+        },
+        {
+          "text": "groupe,",
+          "start": 3.371,
+          "end": 3.504
+        },
+        {
+          "text": "BGFI",
+          "start": 3.815,
+          "end": 4.357
+        },
+        {
+          "text": "Holding",
+          "start": 4.357,
+          "end": 4.629
+        },
+        {
+          "text": "Corporation",
+          "start": 4.629,
+          "end": 5.171
+        },
+        {
+          "text": ":",
+          "start": 5.171,
+          "end": 5.307
+        },
+        {
+          "text": "plus",
+          "start": 5.998,
+          "end": 6.137
+        },
+        {
+          "text": "de",
+          "start": 6.137,
+          "end": 6.275
+        },
+        {
+          "text": "quarante-cinq",
+          "start": 6.275,
+          "end": 6.83
+        },
+        {
+          "text": "milliards",
+          "start": 6.83,
+          "end": 7.108
+        },
+        {
+          "text": "de",
+          "start": 7.108,
+          "end": 7.247
+        },
+        {
+          "text": "francs",
+          "start": 7.247,
+          "end": 7.385
+        },
+        {
+          "text": "CFA",
+          "start": 7.385,
+          "end": 7.802
+        },
+        {
+          "text": "levés.",
+          "start": 7.802,
+          "end": 8.079
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.61,
+      "speech": [
+        0.12,
+        5.43
+      ],
+      "pauses": 4,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "BGFI",
+          "start": 0.12,
+          "end": 1.101
+        },
+        {
+          "text": "Bourse",
+          "start": 1.101,
+          "end": 1.346
+        },
+        {
+          "text": ":",
+          "start": 1.346,
+          "end": 1.592
+        },
+        {
+          "text": "la",
+          "start": 1.732,
+          "end": 1.897
+        },
+        {
+          "text": "société",
+          "start": 1.897,
+          "end": 2.391
+        },
+        {
+          "text": "de",
+          "start": 2.391,
+          "end": 2.556
+        },
+        {
+          "text": "bourse",
+          "start": 2.556,
+          "end": 2.721
+        },
+        {
+          "text": "du",
+          "start": 2.721,
+          "end": 2.885
+        },
+        {
+          "text": "groupe",
+          "start": 2.885,
+          "end": 3.05
+        },
+        {
+          "text": "BGFI",
+          "start": 3.05,
+          "end": 3.709
+        },
+        {
+          "text": "Bank,",
+          "start": 3.709,
+          "end": 3.874
+        },
+        {
+          "text": "pour",
+          "start": 4.179,
+          "end": 4.304
+        },
+        {
+          "text": "investir",
+          "start": 4.304,
+          "end": 4.68
+        },
+        {
+          "text": "en",
+          "start": 4.68,
+          "end": 4.805
+        },
+        {
+          "text": "Afrique",
+          "start": 4.805,
+          "end": 5.18
+        },
+        {
+          "text": "centrale.",
+          "start": 5.18,
+          "end": 5.43
+        }
+      ]
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Kore)",
+  "onepass": {
+    "voice": "Charon",
+    "model": "gemini-3.8-flash-tts"
+  },
+  "tts_provider": "gemini"
+}
