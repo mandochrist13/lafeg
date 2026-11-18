@@ -74,20 +74,20 @@
       <ellipse cx="1560" cy="1000" rx="300" ry="10" fill="#000" opacity="0.05" />
     </svg>
     <div class="s3-kick"><span id="s3-mk"></span><span>Les obligations</span></div>
-    <div id="s3-title"><span>Un</span> <span>prêt</span> <span>à</span> <span>une</span> <span>entreprise</span> <span>ou</span> <span>à</span> <span>un</span> <span>État</span></div>
+    <div id="s3-title"><span>Un</span> <span>prêt</span> <span>à</span> <span>une</span> <span>entreprise</span><br /><span>ou</span> <span>à</span> <span>un</span> <span>État</span></div>
 
     <!-- la frise du prêt -->
     <div id="s3-frise">
       <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
-        <rect id="s3-line" x="330" y="514" width="1340" height="8" rx="4" fill="#CFDBAC" />
-        <circle cx="334" cy="518" r="16" fill="#0B2677" />
-        <circle id="s3-endDot" cx="1666" cy="518" r="16" fill="#0B2677" />
+        <rect id="s3-line" x="560" y="414" width="1110" height="8" rx="4" fill="#CFDBAC" />
+        <circle cx="564" cy="418" r="16" fill="#0B2677" />
+        <circle id="s3-endDot" cx="1666" cy="418" r="16" fill="#0B2677" />
       </svg>
-      <div class="s3-mark" style="left: 300px; top: 548px">Prêt</div>
+      <div class="s3-mark" style="left: 528px; top: 446px">Prêt</div>
       <div id="s3-ic" class="s3-abs"></div>
-      <div id="s3-p1" class="s3-pill" style="left: 862px; top: 560px">Intérêts</div>
-      <div id="s3-p2" class="s3-pill" style="left: 1250px; top: 560px">Remboursement à l'échéance</div>
-      <div id="s3-endStack" class="s3-abs" style="left: 1630px; top: 420px"></div>
+      <div id="s3-p1" class="s3-pill" style="left: 900px; top: 456px">Intérêts</div>
+      <div id="s3-p2" class="s3-pill" style="left: 1250px; top: 536px">Remboursement à l'échéance</div>
+      <div id="s3-endStack" class="s3-abs" style="left: 1630px; top: 318px"></div>
     </div>
 
     <div id="s3-nadia" class="s3-abs"></div>
@@ -111,8 +111,8 @@
       document.getElementById("s3-stack").innerHTML = B.stack(110, 4);
       document.getElementById("s3-endStack").innerHTML = B.stack(72, 4);
       var ic = "";
-      [700, 1000, 1300].forEach(function (x, i) {
-        ic += '<div id="s3-i' + i + '" class="s3-abs" style="left:' + (x - 24) + 'px;top:452px">' + B.coin(48) + "</div>";
+      [860, 1110, 1360].forEach(function (x, i) {
+        ic += '<div id="s3-i' + i + '" class="s3-abs" style="left:' + (x - 24) + 'px;top:352px">' + B.coin(48) + "</div>";
       });
       document.getElementById("s3-ic").innerHTML = ic;
       var S = 0.78,

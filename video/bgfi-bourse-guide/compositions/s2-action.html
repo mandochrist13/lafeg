@@ -157,9 +157,9 @@
       for (var k = 0; k < 3; k++) {
         var t0 = tC + k * 0.2;
         tl.fromTo("#s2-c" + k, { opacity: 0, x: 0, y: 0 }, { opacity: 1, duration: 0.1 }, t0);
-        tl.to("#s2-c" + k, { x: -880 + k * 34, duration: 0.95, ease: "power2.inOut" }, t0);
+        tl.to("#s2-c" + k, { x: -950 + k * 40, duration: 0.95, ease: "power2.inOut" }, t0);
         tl.to("#s2-c" + k, { y: -170, duration: 0.47, ease: "power2.out" }, t0);
-        tl.to("#s2-c" + k, { y: 170 + k * 8, duration: 0.48, ease: "power2.in" }, t0 + 0.47);
+        tl.to("#s2-c" + k, { y: 330 - k * 6, duration: 0.48, ease: "power2.in" }, t0 + 0.47);
       }
       // « le dividende »
       tl.fromTo("#s2-t2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L03", ["benefices"])) - 0.1);
