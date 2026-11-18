@@ -1,0 +1,252 @@
+<template>
+  <!-- Titres lumineux : les chiffres et les noms que la voix prononce, posés là où la scène laisse la place. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #f6f1dc;
+    }
+    .tt {
+      position: absolute;
+      opacity: 0;
+      text-shadow:
+        0 0 28px rgba(243, 210, 122, 0.28),
+        0 0 3px rgba(0, 0, 0, 0.6);
+    }
+    .k {
+      display: block;
+      font-weight: 500;
+      font-size: 38px;
+      letter-spacing: 0.01em;
+      color: #e9dfb8;
+    }
+    .big {
+      display: block;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      color: #f3d27a;
+      font-variant-numeric: tabular-nums;
+    }
+    .big.v {
+      color: #6be3a6;
+    }
+    .h {
+      display: block;
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+    }
+    .s {
+      display: block;
+      margin-top: 6px;
+      font-weight: 500;
+      font-size: 42px;
+      line-height: 1.12;
+    }
+    .row {
+      display: flex;
+      align-items: baseline;
+      gap: 22px;
+    }
+    #t-1959 {
+      left: 140px;
+      top: 196px;
+    }
+    #t-feg {
+      left: 140px;
+      top: 418px;
+      width: 720px;
+    }
+    #t-1100 {
+      left: 140px;
+      top: 610px;
+    }
+    #t-80 {
+      left: 140px;
+      top: 232px;
+      width: 660px;
+    }
+    #t-90 {
+      left: 140px;
+      top: 560px;
+      width: 660px;
+    }
+    #t-13,
+    #t-voix {
+      left: 560px;
+      width: 800px;
+      text-align: center;
+    }
+    #t-13 {
+      top: 446px;
+    }
+    #t-voix {
+      top: 500px;
+    }
+    #t-voix .h {
+      color: #f3d27a;
+    }
+    #t-gef {
+      left: 360px;
+      top: 104px;
+      width: 1200px;
+      text-align: center;
+    }
+    #t-gef .h {
+      font-size: 72px;
+    }
+    #t-8 {
+      left: 660px;
+      top: 296px;
+      width: 600px;
+      text-align: center;
+    }
+    #t-8 .s {
+      color: #6be3a6;
+    }
+    #t-decl {
+      left: 360px;
+      top: 118px;
+      width: 1200px;
+      text-align: center;
+    }
+    #t-quot {
+      left: 560px;
+      top: 96px;
+      width: 800px;
+      text-align: center;
+    }
+    #t-fort {
+      left: 140px;
+      top: 330px;
+      width: 700px;
+    }
+    #t-fort .h {
+      font-size: 54px;
+      line-height: 1.16;
+    }
+    #t-fort .h span {
+      display: block;
+    }
+    #t-ajout {
+      left: 140px;
+      top: 560px;
+      width: 700px;
+    }
+    #t-ajout .h {
+      font-size: 54px;
+      color: #f3d27a;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-titles" data-width="1920" data-height="1080">
+    <div id="t-1959" class="tt"><span class="k">Depuis</span><span class="big">1959</span></div>
+    <div id="t-feg" class="tt"><span class="h">Fédération des Entreprises du Gabon</span></div>
+    <div id="t-1100" class="tt">
+      <span class="k">plus de</span>
+      <div class="row"><span id="n-1100" class="big">1 100</span><span class="s">entreprises</span></div>
+    </div>
+
+    <div id="t-80" class="tt">
+      <span class="k">près de</span>
+      <div class="row"><span id="n-80" class="big">80 %</span><span class="s">du PIB</span></div>
+    </div>
+    <div id="t-90" class="tt">
+      <span class="k">plus de</span>
+      <span id="n-90" class="big v">90 %</span>
+      <span class="s">de la main-d'œuvre formelle</span>
+    </div>
+
+    <div id="t-13" class="tt"><span class="big">13</span><span class="s">fédérations métiers</span></div>
+    <div id="t-voix" class="tt"><span class="h">une seule voix</span></div>
+
+    <div id="t-gef" class="tt"><span class="k">Le grand rendez-vous du dialogue</span><span class="h">Gabon Economic Forum</span></div>
+    <div id="t-8" class="tt"><span class="s">8 ateliers</span></div>
+    <div id="t-decl" class="tt"><span class="h">Déclaration de Libreville</span></div>
+
+    <div id="t-quot" class="tt"><span class="h">Au quotidien</span></div>
+
+    <div id="t-fort" class="tt">
+      <span class="h"><span id="f-1">Des entreprises fortes,</span><span id="f-2">une prospérité partagée.</span></span>
+    </div>
+    <div id="t-ajout" class="tt"><span class="h">Ajoutez votre lumière.</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var at = function (id, w) {
+        return C.at(id, w);
+      };
+      var tl = gsap.timeline({ paused: true });
+      function show(sel, tIn, tOut) {
+        tl.fromTo(sel, { opacity: 0, y: 18, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power3.out" }, tIn);
+        tl.to(sel, { opacity: 0, y: -10, filter: "blur(6px)", duration: 0.45, ease: "power2.in" }, tOut);
+      }
+      function count(sel, to, t0, dur, suffix) {
+        var o = { v: 0 };
+        tl.fromTo(
+          o,
+          { v: 0 },
+          {
+            v: to,
+            duration: dur,
+            ease: "power2.out",
+            onUpdate: function () {
+              var n = Math.round(o.v);
+              var txt = n >= 1000 ? Math.floor(n / 1000) + " " + String(n % 1000).padStart(3, "0") : String(n);
+              document.querySelector(sel).textContent = txt + (suffix || "");
+            },
+          },
+          t0,
+        );
+      }
+      var L3out = C.lines.L04.start - 0.45;
+      // L03 : depuis 1959, la FEG, plus de 1 100 entreprises
+      show("#t-1959", at("L03", "mille") - 0.15, L3out);
+      show("#t-feg", at("L03", "Fédération") - 0.1, L3out);
+      show("#t-1100", at("L03", "plus") - 0.15, L3out);
+      // le compteur arrive à 1 100 sur « mille cent » (second « cent » de la phrase, après « mille neuf cent »)
+      var cents = C.lines.L03.words.filter(function (w) {
+        return w.n === "cent";
+      });
+      var tCent = cents.length ? cents[cents.length - 1].s : at("L03", "plus") + 0.6;
+      count("#n-1100", 1100, at("L03", "plus") - 0.1, tCent + 0.4 - (at("L03", "plus") - 0.1));
+      // L04 : près de 80 % du PIB, plus de 90 % de la main-d'œuvre formelle
+      var L4out = at("L05", "Réunies") - 0.55;
+      show("#t-80", at("L04", "80") - 0.15, L4out);
+      count("#n-80", 80, at("L04", "80") - 0.1, 1.3, " %");
+      show("#t-90", at("L04", "90") - 0.15, L4out);
+      count("#n-90", 90, at("L04", "90") - 0.1, 1.3, " %");
+      // L05 : 13 fédérations métiers, une seule voix
+      show("#t-13", at("L05", "treize") - 0.1, at("L05", "parlent") - 0.45);
+      show("#t-voix", at("L05", "parlent") + 0.05, at("L06", "préoccupations") - 0.05);
+      // L07 : le Gabon Economic Forum et ses 8 ateliers
+      show("#t-gef", at("L07", "rendez") - 0.1, at("L07", "Déclaration") - 0.45);
+      show("#t-8", at("L07", "huit") - 0.1, at("L07", "Déclaration") - 0.45);
+      show("#t-decl", at("L07", "Déclaration") - 0.05, at("L08", "Dette") - 0.75);
+      // L09 : au quotidien
+      show("#t-quot", at("L09", "quotidien") - 0.15, C.lines.L10.start - 0.6);
+      // L10 : des entreprises fortes, une prospérité partagée ; ajoutez votre lumière
+      var L10out = at("L10", "rejoignez") - 0.05;
+      tl.set("#t-fort", { opacity: 1 }, at("L10", "entreprises") - 0.2);
+      tl.fromTo("#f-1", { opacity: 0, y: 18, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power3.out" }, at("L10", "entreprises") - 0.15);
+      tl.fromTo("#f-2", { opacity: 0, y: 18, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, ease: "power3.out" }, at("L10", "prospérité") - 0.15);
+      tl.to("#t-fort", { opacity: 0, y: -10, filter: "blur(6px)", duration: 0.45, ease: "power2.in" }, L10out);
+      show("#t-ajout", at("L10", "Ajoutez") - 0.1, L10out);
+      window.__timelines["ov-titles"] = tl;
+    })();
+  </script>
+</template>

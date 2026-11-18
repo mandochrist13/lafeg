@@ -1,0 +1,75 @@
+<template>
+  <!-- Carte de fin : le jour s'est levé, les 71 points bronze sont déjà là ; le logo complet se dessine par-dessus. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    /* Logo calé au pixel sur les points de la scène : 0,62 px écran par px du logo. */
+    #en-logo {
+      position: absolute;
+      left: 691.54px;
+      top: 222px;
+      width: 536.92px;
+      height: 496px;
+      clip-path: inset(0 0 0 0);
+    }
+    #en-cta {
+      position: absolute;
+      left: 0;
+      top: 770px;
+      width: 1920px;
+      text-align: center;
+    }
+    #en-line {
+      font-weight: 700;
+      font-size: 58px;
+      letter-spacing: -0.01em;
+      color: #063d21;
+    }
+    #en-line span {
+      display: inline-block;
+    }
+    #en-url {
+      color: #0a7537;
+    }
+    #en-contact {
+      margin-top: 18px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #5c6259;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080">
+    <img id="en-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
+    <div id="en-cta">
+      <div id="en-line"><span>Devenez</span> <span>membre</span> <span>·</span> <span id="en-url">lafeg.ga</span></div>
+      <div id="en-contact">info@lafeg.ga · +241 11 77 55 95</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var W = (C.ov && C.ov["ov-end"]) || { start: 0, dur: 8 };
+      var tLogo = Math.max(0.1, C.logo - W.start);
+      var tl = gsap.timeline({ paused: true });
+      // le balayage dessine les arcs et « FEG » ; les points bronze sont déjà là
+      tl.fromTo("#en-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo - 0.5);
+      tl.fromTo("#en-line span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.08, ease: "power4.out" }, tLogo + 0.55);
+      tl.fromTo("#en-contact", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tLogo + 1.2);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>

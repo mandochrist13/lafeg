@@ -57,7 +57,7 @@ if (offset < 0) {
 total = r3(Math.max(total, Math.min(startAt + MUSIC.length - offset, LOGO_T + 7.5)));
 
 const overlays = [
-  { id: "ov-titles", src: "compositions/ov-titles.html", start: 0, end: E("L09") + 0.9 },
+  { id: "ov-titles", src: "compositions/ov-titles.html", start: 0, end: LOGO_T - 0.3 },
   { id: "ov-end", src: "compositions/ov-end.html", start: LOGO_T - 0.6, end: total },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 
