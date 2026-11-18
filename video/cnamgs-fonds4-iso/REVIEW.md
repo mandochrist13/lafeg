@@ -37,7 +37,25 @@ Le film a été vu en images fixes à plus de 60 moments avant le rendu : chaque
 
 ## Rendu
 
-`renders/CNAMGS-Fonds4-3D.mp4`, en qualité « delivery ». Durée, poids et volume sonore : voir le rapport de livraison.
+`renders/CNAMGS-Fonds4-3D.mp4`, en qualité « delivery » (19 min de rendu).
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz |
+| Durée | 89,77 s |
+| Poids | 47,5 Mo |
+| Volume | −15,5 LUFS intégré, plage 3,5 LU, crête vraie −1,8 dBFS |
+
+Seize images extraites du MP4, de 1 s à 86 s, montrent les mêmes plans que les images de contrôle :
+
+- la rue et ses étiquettes ;
+- la ville en étoile et ses trois coupoles ;
+- le titre « Fonds 4 » ;
+- les six catégories ;
+- les soins et le téléphone ;
+- le siège, puis la carte et ses repères ;
+- le drapeau, puis la carte de fin.
 
 ## À valider par la CNAMGS
 
