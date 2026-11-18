@@ -43,7 +43,28 @@ Le film a été vu en images fixes à plus de 80 moments avant le rendu (toutes 
 
 ## Rendu
 
-À compléter après le rendu.
+`renders/FEG-lumiere.mp4`, en qualité « delivery », rendu en 22 min.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz |
+| Durée | 85,5 s |
+| Poids | 52,8 Mo |
+| Volume | −15,3 LUFS intégré, plage 3,4 LU, crête vraie −2,1 dBFS |
+
+Vingt-six images extraites du MP4, de 1,5 s à 84 s, montrent les mêmes plans que les images de contrôle :
+
+- la première lumière, l'atelier, le commerce et le chantier ;
+- la lumière seule et ses ondes ;
+- la carte, « Depuis 1959 » et « plus de 1 100 entreprises » ;
+- les jauges 80 % et 90 % ;
+- les 13 galaxies et « une seule voix » ;
+- le Bureau exécutif, les pouvoirs publics et le pont du dialogue ;
+- le Gabon Economic Forum, ses 8 ateliers et la Déclaration de Libreville ;
+- les réformes, puis les services ;
+- le slogan et la nouvelle lumière ;
+- l'aube et la carte de fin, logo calé sur les points.
 
 ## À valider par la FEG
 
