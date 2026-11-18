@@ -1,0 +1,538 @@
+[
+ {
+  "id": "sfx-job0",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L01",
+  "word": "commercant",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-job1",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L01",
+  "word": "artisan",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-job2",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L01",
+  "word": "avocat",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-job3",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L01",
+  "word": "infirmiere",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-job4",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L01",
+  "word": "chauffeur",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-job5",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L01",
+  "word": "jardinier",
+  "offset": -0.12
+ },
+ {
+  "id": "sfx-title",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.13,
+  "line": "L01",
+  "word": "fonds",
+  "offset": -0.5
+ },
+ {
+  "id": "sfx-page",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "abs": 13.78
+ },
+ {
+  "id": "sfx-hl1",
+  "src": "assets/sfx/pen.wav",
+  "dur": 1.15,
+  "volume": 0.13,
+  "line": "L02",
+  "word": "fonds",
+  "offset": -0.05
+ },
+ {
+  "id": "sfx-hl2",
+  "src": "assets/sfx/pen.wav",
+  "dur": 1.15,
+  "volume": 0.13,
+  "line": "L02",
+  "word": "independants",
+  "offset": -0.05
+ },
+ {
+  "id": "sfx-hl3",
+  "src": "assets/sfx/pen.wav",
+  "dur": 1.15,
+  "volume": 0.11,
+  "line": "L02",
+  "word": "volontaires",
+  "offset": -0.05
+ },
+ {
+  "id": "sfx-card1",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.17,
+  "line": "L03",
+  "word": "metiers",
+  "offset": -0.2
+ },
+ {
+  "id": "sfx-card2",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.17,
+  "line": "L03",
+  "word": "techniques",
+  "offset": -0.5
+ },
+ {
+  "id": "sfx-card3",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.17,
+  "line": "L04",
+  "word": "commercants",
+  "offset": -0.25
+ },
+ {
+  "id": "sfx-card4",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.17,
+  "line": "L04",
+  "word": "employes",
+  "offset": -0.25
+ },
+ {
+  "id": "sfx-chip0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "medecins",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "pharmaciens",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "infirmiers",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip3",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "sagesfemmes",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip4",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "expertscomptables",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip5",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "avocats",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip6",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L03",
+  "word": "notaires",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip7",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "commercants",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip8",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "artisans",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip9",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "artistes",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip10",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "femmes",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip11",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "jardiniers",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip12",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "chauffeurs",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-chip13",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.11,
+  "line": "L04",
+  "word": "gardiens",
+  "offset": 0.02
+ },
+ {
+  "id": "sfx-care0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L05",
+  "word": "consultations",
+  "offset": 0.32
+ },
+ {
+  "id": "sfx-care1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L05",
+  "word": "examens",
+  "offset": 0.32
+ },
+ {
+  "id": "sfx-care2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L05",
+  "word": "hospitalisations",
+  "offset": 0.32
+ },
+ {
+  "id": "sfx-care3",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L05",
+  "word": "medicaments",
+  "offset": 0.32
+ },
+ {
+  "id": "sfx-care4",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.2,
+  "line": "L05",
+  "word": "evacuations",
+  "offset": 0.32
+ },
+ {
+  "id": "sfx-tag1",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L06",
+  "word": "delegation",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-tag2",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.16,
+  "line": "L06",
+  "word": "unite",
+  "offset": -0.15
+ },
+ {
+  "id": "sfx-door",
+  "src": "assets/sfx/whoosh-short.mp3",
+  "dur": 0.575,
+  "volume": 0.08,
+  "abs": 56.183
+ },
+ {
+  "id": "sfx-open",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.22,
+  "line": "L07",
+  "word": "apportez",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-doc0",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L07",
+  "word": "acte",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-ok0",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L07",
+  "word": "acte",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-doc1",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L07",
+  "word": "piece",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-ok1",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L07",
+  "word": "piece",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-doc2",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L07",
+  "word": "avis",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-ok2",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L07",
+  "word": "avis",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-doc3",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L07",
+  "word": "fiche",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-ok3",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L07",
+  "word": "fiche",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-doc4",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L08",
+  "word": "copie",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-ok4",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L08",
+  "word": "copie",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-doc5",
+  "src": "assets/sfx/paper.wav",
+  "dur": 0.42,
+  "volume": 0.2,
+  "line": "L08",
+  "word": "carte",
+  "offset": -0.3
+ },
+ {
+  "id": "sfx-ok5",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.12,
+  "line": "L08",
+  "word": "carte",
+  "offset": 0.05
+ },
+ {
+  "id": "sfx-stamp",
+  "src": "assets/sfx/stamp.wav",
+  "dur": 0.32,
+  "volume": 0.45,
+  "line": "L07",
+  "word": "legalise",
+  "offset": 0.26
+ },
+ {
+  "id": "sfx-q0",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "chaque",
+  "offset": 0.2
+ },
+ {
+  "id": "sfx-q1",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "chaque",
+  "offset": 0.35
+ },
+ {
+  "id": "sfx-q2",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "chaque",
+  "offset": 0.5
+ },
+ {
+  "id": "sfx-q3",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.12,
+  "line": "L09",
+  "word": "chaque",
+  "offset": 0.65
+ },
+ {
+  "id": "sfx-pay",
+  "src": "assets/sfx/click.mp3",
+  "dur": 0.366,
+  "volume": 0.24,
+  "line": "L09",
+  "word": "electronique",
+  "offset": -0.1
+ },
+ {
+  "id": "sfx-paid",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.3,
+  "line": "L09",
+  "word": "electronique",
+  "offset": 0.18
+ },
+ {
+  "id": "sfx-quarters",
+  "src": "assets/sfx/click-soft.mp3",
+  "dur": 0.366,
+  "volume": 0.14,
+  "line": "L10",
+  "word": "jour",
+  "offset": 0.15
+ },
+ {
+  "id": "sfx-badge",
+  "src": "assets/sfx/tick.wav",
+  "dur": 0.26,
+  "volume": 0.3,
+  "line": "L10",
+  "word": "pris",
+  "offset": 0.15
+ },
+ {
+  "id": "sfx-hands",
+  "src": "assets/sfx/pat.wav",
+  "dur": 0.16,
+  "volume": 0.32,
+  "line": "L11",
+  "word": "solidarite",
+  "offset": 0.42
+ }
+]

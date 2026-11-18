@@ -1,0 +1,262 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    .s7-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s7-bar3 {
+      position: absolute;
+      left: 120px;
+      top: 84px;
+      width: 96px;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #5aa137 0 33.4%, #f7d21e 33.4% 66.7%, #0066a8 66.7% 100%);
+    }
+    #s7-kick {
+      position: absolute;
+      left: 120px;
+      top: 106px;
+      font-weight: 700;
+      font-size: 34px;
+      color: #0066a8;
+    }
+    #s7-title {
+      position: absolute;
+      left: 120px;
+      top: 156px;
+      width: 900px;
+      font-weight: 800;
+      font-size: 84px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: #084e86;
+    }
+    #s7-title span {
+      display: inline-block;
+    }
+    #s7-forf {
+      position: relative;
+    }
+    #s7-ul {
+      position: absolute;
+      left: 0;
+      bottom: -6px;
+      width: 100%;
+      height: 14px;
+      border-radius: 7px;
+      background: #f7d21e;
+      transform-origin: 0 50%;
+    }
+    #s7-forf b {
+      position: relative;
+      font-weight: 800;
+    }
+    .s7-fact {
+      position: absolute;
+      left: 120px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      font-weight: 700;
+      font-size: 44px;
+      color: #1c2430;
+      white-space: nowrap;
+    }
+    .s7-q {
+      position: absolute;
+      top: 518px;
+      width: 170px;
+      height: 116px;
+      border-radius: 22px;
+      background: #f0f4f8;
+      text-align: center;
+      font-weight: 800;
+      font-size: 52px;
+      line-height: 116px;
+      color: #5b6573;
+    }
+    #s7-disc {
+      position: absolute;
+      left: 1170px;
+      top: 200px;
+      width: 680px;
+      height: 680px;
+      border-radius: 50%;
+      background: #e8f2fa;
+    }
+    #s7-phone {
+      position: absolute;
+      left: 1320px;
+      top: 166px;
+      width: 380px;
+      height: 748px;
+      border-radius: 56px;
+      background: #1c2430;
+      box-shadow: 0 30px 60px rgba(8, 78, 134, 0.22);
+    }
+    #s7-screen {
+      position: absolute;
+      left: 16px;
+      top: 16px;
+      width: 348px;
+      height: 716px;
+      border-radius: 42px;
+      background: #ffffff;
+      overflow: hidden;
+    }
+    #s7-screen .notch {
+      position: absolute;
+      left: 119px;
+      top: 14px;
+      width: 110px;
+      height: 26px;
+      border-radius: 13px;
+      background: #1c2430;
+    }
+    #s7-screen .k {
+      position: absolute;
+      left: 30px;
+      top: 70px;
+      font-weight: 700;
+      font-size: 28px;
+      color: #0066a8;
+    }
+    #s7-screen .kb {
+      position: absolute;
+      left: 30px;
+      top: 112px;
+      width: 72px;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #5aa137 0 33.4%, #f7d21e 33.4% 66.7%, #0066a8 66.7% 100%);
+    }
+    #s7-screen .h {
+      position: absolute;
+      left: 30px;
+      top: 140px;
+      font-weight: 800;
+      font-size: 40px;
+      color: #1c2430;
+    }
+    #s7-screen .h2 {
+      position: absolute;
+      left: 30px;
+      top: 192px;
+      font-weight: 600;
+      font-size: 30px;
+      color: #5b6573;
+    }
+    #s7-ring {
+      position: absolute;
+      left: 94px;
+      top: 270px;
+      width: 160px;
+      height: 160px;
+    }
+    #s7-done {
+      position: absolute;
+      left: 0;
+      top: 458px;
+      width: 348px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 32px;
+      color: #3f8526;
+    }
+    #s7-pay {
+      position: absolute;
+      left: 30px;
+      top: 590px;
+      width: 288px;
+      height: 76px;
+      border-radius: 20px;
+      background: #0066a8;
+      text-align: center;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 76px;
+      color: #ffffff;
+    }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1920" data-height="1080">
+    <div id="s7-disc"></div>
+    <div id="s7-phone">
+      <div id="s7-screen">
+        <div class="notch"></div>
+        <div class="k">Fonds 4</div>
+        <div class="kb"></div>
+        <div class="h">Cotisation</div>
+        <div class="h2">trimestrielle</div>
+        <svg id="s7-ring" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="70" fill="none" stroke="#E3E8EE" stroke-width="10" />
+          <circle id="s7-okc" cx="80" cy="80" r="76" fill="#5AA137" />
+          <path id="s7-okp" d="M 46,82 L 70,106 L 116,58" fill="none" stroke="#FFFFFF" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <div id="s7-done">Paiement effectué</div>
+        <div id="s7-pay">Payer</div>
+      </div>
+    </div>
+
+    <div class="s7-bar3"></div>
+    <div id="s7-kick">Étape 3 · La cotisation</div>
+    <div id="s7-title"><span>Une</span> <span>cotisation</span><br /><span id="s7-forf"><i id="s7-ul"></i><b>forfaitaire</b></span></div>
+    <div id="s7-f1" class="s7-fact" style="top: 432px">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#0066A8" stroke-width="5" stroke-linejoin="round"><rect x="5" y="10" width="46" height="40" rx="7" /><path d="M 5,22 L 51,22 M 17,5 L 17,14 M 39,5 L 39,14" stroke-linecap="round" /></svg>
+      <span>Chaque trimestre</span>
+    </div>
+    <div id="s7-q0" class="s7-q" style="left: 120px">T1</div>
+    <div id="s7-q1" class="s7-q" style="left: 312px">T2</div>
+    <div id="s7-q2" class="s7-q" style="left: 504px">T3</div>
+    <div id="s7-q3" class="s7-q" style="left: 696px">T4</div>
+    <div id="s7-f2" class="s7-fact" style="top: 694px">
+      <svg width="56" height="56" viewBox="0 0 56 56" fill="none" stroke="#0066A8" stroke-width="5" stroke-linejoin="round"><rect x="14" y="3" width="28" height="50" rx="6" /><path d="M 24,44 L 32,44" stroke-linecap="round" /></svg>
+      <span>Par voie électronique</span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CN_CUES;
+      var L = C.local("s7");
+      var D = C.sc.s7.dur;
+      gsap.set("#s7-ul", { scaleX: 0 });
+      gsap.set(["#s7-okc", "#s7-okp", "#s7-done"], { opacity: 0 });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s7-disc", { scale: 0.8, opacity: 0, transformOrigin: "50% 50%" }, { scale: 1, opacity: 1, duration: 0.6, ease: "power3.out" }, 0.0);
+      tl.fromTo("#s7-phone", { opacity: 0, y: 90, rotation: 0 }, { opacity: 1, y: 0, rotation: -4, duration: 0.6, ease: "power3.out" }, 0.08);
+      tl.fromTo(".s7-bar3", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s7-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.15);
+      tl.fromTo("#s7-title > span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.1, ease: "power4.out" }, L(C.at("L09", ["votre"])) - 0.1);
+      // « forfaitaire » : soulignement jaune
+      tl.to("#s7-ul", { scaleX: 1, duration: 0.45, ease: "power2.out" }, L(C.at("L09", ["forfaitaire"])) + 0.05);
+      // « chaque trimestre » : les quatre trimestres
+      var tQ = L(C.at("L09", ["chaque"])) - 0.15;
+      tl.fromTo("#s7-f1", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, tQ - 0.25);
+      for (var q = 0; q < 4; q++) {
+        tl.fromTo("#s7-q" + q, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.3, ease: "power3.out" }, tQ + q * 0.07);
+        tl.to("#s7-q" + q, { backgroundColor: "#0066A8", color: "#FFFFFF", duration: 0.18, ease: "power2.out" }, tQ + 0.35 + q * 0.15);
+      }
+      // « par voie électronique » : le paiement est confirmé sur le téléphone (aucun montant)
+      var tE = L(C.at("L09", ["electronique"])) - 0.2;
+      tl.fromTo("#s7-f2", { opacity: 0, x: -20 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, tE - 0.2);
+      tl.to("#s7-pay", { scale: 0.93, duration: 0.1, ease: "power2.out", yoyo: true, repeat: 1 }, tE + 0.1);
+      tl.to("#s7-pay", { opacity: 0, y: 12, duration: 0.2, ease: "power2.in" }, tE + 0.35);
+      tl.fromTo("#s7-okc", { opacity: 0, scale: 0.3, transformOrigin: "80px 80px" }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, tE + 0.35);
+      tl.fromTo("#s7-okp", { opacity: 1, strokeDasharray: 110, strokeDashoffset: 110 }, { strokeDashoffset: 0, duration: 0.3, ease: "power1.inOut" }, tE + 0.55);
+      tl.fromTo("#s7-done", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, ease: "power2.out" }, tE + 0.6);
+
+      tl.to(["#s7-kick", ".s7-bar3", "#s7-title", ".s7-fact", ".s7-q"], { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power3.in" }, D - 0.34);
+      tl.to(["#s7-phone", "#s7-disc"], { opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>
