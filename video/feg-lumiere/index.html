@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — La lumière des entreprises</title>
+    <script src="lib/gsap.min.js"></script>
+    <script src="assets/cues.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #03100a;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #03100a;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="85.528" data-width="1920" data-height="1080">
+    <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="0" data-duration="85.528" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+
+    <audio id="vo-L01" src="assets/voice/L01.wav" data-start="2.6" data-duration="6.26" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L02" src="assets/voice/L02.wav" data-start="9.66" data-duration="4.188" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L03" src="assets/voice/L03.wav" data-start="15.048" data-duration="8.66" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L04" src="assets/voice/L04.wav" data-start="24.608" data-duration="6.02" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L05" src="assets/voice/L05.wav" data-start="31.628" data-duration="3.757" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L06" src="assets/voice/L06.wav" data-start="36.285" data-duration="4.898" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L07" src="assets/voice/L07.wav" data-start="42.183" data-duration="8.699" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L08" src="assets/voice/L08.wav" data-start="51.882" data-duration="7.667" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L09" src="assets/voice/L09.wav" data-start="60.549" data-duration="7.396" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L10" src="assets/voice/L10.wav" data-start="69.145" data-duration="7.983" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="bgm" src="assets/bgm/soundhill-find-yourself.mp3" data-start="0" data-duration="85.528" data-media-start="52.132" data-track-index="21" data-volume="1" data-fade-in="1.2" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.52},{"t":2.2,"v":0.52},{"t":2.55,"v":0.19},{"t":9.26,"v":0.19},{"t":9.61,"v":0.19},{"t":13.948,"v":0.19},{"t":14.398,"v":0.36},{"t":14.648,"v":0.36},{"t":14.998,"v":0.19},{"t":24.208,"v":0.19},{"t":24.558,"v":0.19},{"t":31.228,"v":0.19},{"t":31.578,"v":0.19},{"t":35.885,"v":0.19},{"t":36.235,"v":0.19},{"t":41.783,"v":0.19},{"t":42.133,"v":0.19},{"t":51.482,"v":0.19},{"t":51.832,"v":0.19},{"t":60.149,"v":0.19},{"t":60.499,"v":0.19},{"t":68.045,"v":0.19},{"t":68.495,"v":0.36},{"t":68.745,"v":0.36},{"t":69.095,"v":0.19},{"t":77.278,"v":0.19},{"t":77.978,"v":0.85}]}]}'></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

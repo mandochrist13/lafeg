@@ -1,0 +1,920 @@
+<!doctype html>
+<!--
+  FEG — « La lumière des entreprises ». Data-art : 1 100 particules lumineuses, une par entreprise membre.
+  Elles s'allument dans la nuit, dessinent la carte du Gabon (la trame du logo FEG), se regroupent en 13 essaims
+  (les fédérations métiers, à leur vrai poids), remontent vers le Bureau exécutif, rejoignent le dialogue avec les
+  pouvoirs publics et le Gabon Economic Forum, puis reviennent sur le pays. À la fin, le jour se lève et elles
+  deviennent les 71 points du logo.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire) ; temps : assets/cues.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — La lumière des entreprises</title>
+    <style>
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 500;
+        src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 700;
+        src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Text";
+        font-weight: 400;
+        src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #03100a;
+      }
+      #world-cv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Hyundai Sans Head", sans-serif;
+        color: #f6f1dc;
+        text-shadow:
+          0 0 18px rgba(255, 228, 150, 0.35),
+          0 0 2px rgba(0, 0, 0, 0.6);
+      }
+      .wl .nm {
+        font-weight: 500;
+        font-size: 30px;
+        letter-spacing: 0.01em;
+      }
+      .wl .ct {
+        font-weight: 700;
+        font-size: 30px;
+        margin-left: 12px;
+        color: #e7dc9c;
+        font-variant-numeric: tabular-nums;
+      }
+      .wl .ti {
+        display: block;
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: 0.01em;
+      }
+      .wl .ds {
+        display: block;
+        margin-top: 2px;
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-size: 28px;
+        color: #d8d2b4;
+      }
+      .wl.sm .nm {
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-size: 28px;
+        letter-spacing: 0.06em;
+        text-transform: lowercase;
+        color: #efe7c2;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="85.528"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="85.528"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+      <div id="world-labels">
+        <div id="wl-a0" class="wl sm"><span class="nm">un atelier</span></div>
+        <div id="wl-a1" class="wl sm"><span class="nm">un commerce</span></div>
+        <div id="wl-a2" class="wl sm"><span class="nm">un chantier</span></div>
+
+        <div id="wl-f0" class="wl"><span class="nm">Construction</span><span class="ct">337</span></div>
+        <div id="wl-f1" class="wl"><span class="nm">Services divers</span><span class="ct">118</span></div>
+        <div id="wl-f2" class="wl"><span class="nm">Commerce</span><span class="ct">110</span></div>
+        <div id="wl-f3" class="wl"><span class="nm">Conseil</span><span class="ct">83</span></div>
+        <div id="wl-f4" class="wl"><span class="nm">Logistique et manutention</span><span class="ct">83</span></div>
+        <div id="wl-f5" class="wl"><span class="nm">Industries extractives</span><span class="ct">67</span></div>
+        <div id="wl-f6" class="wl"><span class="nm">Numérique</span><span class="ct">67</span></div>
+        <div id="wl-f7" class="wl"><span class="nm">Industrie</span><span class="ct">61</span></div>
+        <div id="wl-f8" class="wl"><span class="nm">Finance</span><span class="ct">50</span></div>
+        <div id="wl-f9" class="wl"><span class="nm">Santé</span><span class="ct">43</span></div>
+        <div id="wl-f10" class="wl"><span class="nm">Bois</span><span class="ct">30</span></div>
+        <div id="wl-f11" class="wl"><span class="nm">Tourisme</span><span class="ct">29</span></div>
+        <div id="wl-f12" class="wl"><span class="nm">Agriculture et pêche</span><span class="ct">22</span></div>
+
+        <div id="wl-core" class="wl"><span class="ti">Bureau exécutif</span><span class="ds">la voix des fédérations</span></div>
+        <div id="wl-etat" class="wl"><span class="ti">Pouvoirs publics</span></div>
+        <div id="wl-bridge" class="wl"><span class="ti">Dialogue public-privé</span></div>
+        <div id="wl-decl" class="wl"><span class="ti">Déclaration de Libreville</span></div>
+
+        <div id="wl-r0" class="wl"><span class="ti">Dette intérieure</span></div>
+        <div id="wl-r1" class="wl"><span class="ti">Fiscalité</span></div>
+        <div id="wl-r2" class="wl"><span class="ti">Commande publique</span></div>
+        <div id="wl-r3" class="wl"><span class="ti">Financement des PME</span></div>
+
+        <div id="wl-s0" class="wl"><span class="ti">Veille sur les réformes</span></div>
+        <div id="wl-s1" class="wl"><span class="ti">Formations</span></div>
+        <div id="wl-s2" class="wl"><span class="ti">Réseau d'affaires</span></div>
+        <div id="wl-s3" class="wl"><span class="ti">Médiation et arbitrage</span></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FL_CUES;
+        var total = C ? C.total : 85.528;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+
+      const host = window.__worldHost;
+      const C = window.__FL_CUES;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+
+      // ------------------------------------------------------------------ outils
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      const bump = (t, c, w) => Math.exp(-Math.pow((t - c) / w, 2));
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let r = Math.imul(a ^ (a >>> 15), 1 | a);
+          r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(1959);
+
+      // ------------------------------------------------------------------ temps clés (depuis la voix)
+      const T = {};
+      T.first = 0.7;
+      T.lumiere = at("L01", "lumière");
+      T.trio = [at("L01", "atelier"), at("L01", "commerce"), at("L01", "chantier")];
+      T.vivre = at("L01", "vivre");
+      T.seule = at("L02", "seule");
+      T.perd = at("L02", "voix");
+      T.y1959 = at("L03", "mille");
+      T.fed = at("L03", "Fédération");
+      T.rass = at("L03", "rassemble");
+      T.mille = atK("L03", "mille", 1);
+      T.p80 = at("L04", "80");
+      T.p90 = at("L04", "90");
+      T.treize = at("L05", "treize");
+      T.voix = at("L05", "seule");
+      T.remont = at("L06", "remontent");
+      T.bureau = at("L06", "Bureau");
+      T.table = at("L06", "table");
+      T.pp = at("L06", "public-privé");
+      T.gef = at("L07", "Gabon");
+      T.huit = at("L07", "huit");
+      T.decl = at("L07", "Déclaration");
+      T.ref = [at("L08", "Dette"), at("L08", "fiscalité"), at("L08", "commande"), at("L08", "financement")];
+      T.pesent = at("L08", "pèsent");
+      T.quot = at("L09", "quotidien");
+      T.svc = [at("L09", "veille"), at("L09", "formations"), at("L09", "réseau"), at("L09", "médiation")];
+      T.fortes = at("L10", "fortes");
+      T.prosp = at("L10", "prospérité");
+      T.ajoutez = at("L10", "Ajoutez");
+      T.rejoignez = at("L10", "rejoignez");
+      T.dawn = T.rejoignez + 0.75;
+      T.logo = C.logo;
+      function atK(id, needle, k) {
+        const norm = (s) =>
+          String(s)
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[̀-ͯ]/g, "")
+            .replace(/[^a-z0-9%]+/g, "");
+        const n = norm(needle);
+        const ws = C.lines[id].words.filter((w) => w.n && (w.n === n || w.n.indexOf(n) === 0));
+        return ws.length ? ws[Math.min(k, ws.length - 1)].s : C.lines[id].start;
+      }
+
+      // ------------------------------------------------------------------ rendu
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.autoClear = true;
+      const scene = new THREE.Scene();
+      const FOV = 30;
+      const camera = new THREE.PerspectiveCamera(FOV, 16 / 9, 0.5, 3000);
+
+      // fond : nuit verte profonde, vignette, puis le jour se lève (blanc) à la fin
+      const bgMat = new THREE.ShaderMaterial({
+        uniforms: { uDawn: { value: 0 }, uWarm: { value: 0 }, uPulse: { value: 0 } },
+        vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.9999, 1.0); }`,
+        fragmentShader: `varying vec2 vUv; uniform float uDawn; uniform float uWarm; uniform float uPulse;
+          void main(){
+            vec2 p = (vUv - vec2(0.5, 0.52)) * vec2(1.7778, 1.0);
+            float r = length(p);
+            vec3 inner = vec3(0.043, 0.125, 0.082);
+            vec3 outer = vec3(0.008, 0.031, 0.020);
+            vec3 c = mix(inner, outer, smoothstep(0.05, 1.05, r));
+            c += vec3(0.10, 0.08, 0.03) * uWarm * (1.0 - smoothstep(0.0, 0.9, r));
+            c += vec3(0.05, 0.06, 0.035) * uPulse * (1.0 - smoothstep(0.0, 0.7, r));
+            gl_FragColor = vec4(mix(c, vec3(1.0), uDawn), 1.0);
+          }`,
+        depthTest: false,
+        depthWrite: false,
+      });
+      const bg = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), bgMat);
+      bg.frustumCulled = false;
+      bg.renderOrder = -10;
+      scene.add(bg);
+
+      // particules lumineuses : point doux (cœur + halo), mélange additif ; version « jour » en aplat bronze
+      const vs = `attribute vec3 aColor; attribute float aSize; attribute float aAlpha;
+        varying vec3 vColor; varying float vAlpha; uniform float uRef;
+        void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
+          gl_PointSize = clamp(aSize * uRef / max(1.0, -mv.z), 0.0, 320.0); vColor = aColor; vAlpha = aAlpha; }`;
+      const fsGlow = `uniform float uOpacity; varying vec3 vColor; varying float vAlpha;
+        void main(){ vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 > 1.0) discard;
+          float a = (exp(-r2 * 12.0) + 0.28 * exp(-r2 * 3.2)) * vAlpha * uOpacity; gl_FragColor = vec4(vColor * a, a); }`;
+      const fsDay = `uniform float uOpacity; uniform vec3 uDay; varying float vAlpha;
+        void main(){ vec2 p = gl_PointCoord * 2.0 - 1.0; float r = length(p); float a = (1.0 - smoothstep(0.55, 0.8, r)) * vAlpha * uOpacity;
+          if (a < 0.01) discard; gl_FragColor = vec4(uDay, a); }`;
+      const REF = 70; // distance de référence des tailles (px à 70 unités)
+      function glowMat() {
+        return new THREE.ShaderMaterial({
+          uniforms: { uOpacity: { value: 1 }, uRef: { value: REF } },
+          vertexShader: vs,
+          fragmentShader: fsGlow,
+          transparent: true,
+          depthWrite: false,
+          depthTest: false,
+          blending: THREE.CustomBlending,
+          blendEquation: THREE.AddEquation,
+          blendSrc: THREE.OneFactor,
+          blendDst: THREE.OneFactor,
+        });
+      }
+      function pointsSystem(n) {
+        const g = new THREE.BufferGeometry();
+        const pos = new Float32Array(n * 3),
+          col = new Float32Array(n * 3),
+          size = new Float32Array(n),
+          alpha = new Float32Array(n);
+        g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        g.setAttribute("aColor", new THREE.BufferAttribute(col, 3));
+        g.setAttribute("aSize", new THREE.BufferAttribute(size, 1));
+        g.setAttribute("aAlpha", new THREE.BufferAttribute(alpha, 1));
+        const m = glowMat();
+        const p = new THREE.Points(g, m);
+        p.frustumCulled = false;
+        scene.add(p);
+        let k = 0;
+        return {
+          g,
+          m,
+          p,
+          n,
+          pos,
+          col,
+          size,
+          alpha,
+          reset() {
+            k = 0;
+          },
+          push(x, y, z, c, s, a) {
+            if (k >= n || a <= 0.002) return;
+            pos[3 * k] = x;
+            pos[3 * k + 1] = y;
+            pos[3 * k + 2] = z;
+            col[3 * k] = c[0];
+            col[3 * k + 1] = c[1];
+            col[3 * k + 2] = c[2];
+            size[k] = s;
+            alpha[k] = a;
+            k++;
+          },
+          commit() {
+            g.setDrawRange(0, k);
+            for (const nm of ["position", "aColor", "aSize", "aAlpha"]) g.attributes[nm].needsUpdate = true;
+          },
+        };
+      }
+      const hex = (h) => [((h >> 16) & 255) / 255, ((h >> 8) & 255) / 255, (h & 255) / 255];
+      const mixc = (a, b, u) => [lerp(a[0], b[0], u), lerp(a[1], b[1], u), lerp(a[2], b[2], u)];
+      const CW = hex(0xfff3cf), // blanc chaud
+        CG = hex(0xf3d27a), // or
+        CB = hex(0xd9d6a0), // bronze clair
+        CV = hex(0x5fe0a0), // vert FEG lumineux
+        CS = hex(0xbcd8ff); // pouvoirs publics (froid)
+
+      // ------------------------------------------------------------------ la carte : trame du logo FEG (71 points)
+      const DOTS = [[337.05,18.92],[377.5,18.89],[419.06,18.93],[337.06,58.14],[375.82,58.92],[419.06,58.96],[337.1,97.43],[375.82,98.13],[419.06,98.17],[222.19,98.91],[260.56,98.84],[297.83,98.88],[460.9,99.34],[499.0,100.12],[538.23,101.86],[184.12,136.65],[222.22,136.62],[260.56,136.59],[297.83,136.64],[337.06,140.12],[375.81,140.91],[419.06,140.91],[460.92,142.03],[499.02,142.84],[184.08,180.14],[222.18,180.11],[260.58,180.13],[297.84,180.14],[337.06,180.14],[375.81,180.91],[419.06,180.94],[460.92,182.05],[499.03,182.85],[145.7,220.5],[184.12,220.54],[222.27,220.52],[260.58,220.55],[297.83,220.53],[337.12,220.54],[375.76,221.3],[419.09,221.25],[460.92,222.44],[499.01,223.18],[538.31,222.49],[184.09,259.81],[222.18,259.82],[260.58,259.74],[297.85,259.8],[337.08,259.82],[375.82,259.82],[419.06,259.83],[460.92,260.95],[499.01,261.75],[538.2,263.1],[184.08,298.99],[222.2,300.15],[260.56,300.16],[297.84,300.16],[337.06,300.17],[375.84,300.16],[460.9,299.41],[499.03,299.41],[499.0,337.14],[222.25,338.52],[260.58,338.55],[297.81,338.54],[260.57,376.9],[297.83,376.94],[337.07,376.93],[297.83,415.27],[337.09,415.25]];
+      const SC = 0.05; // unités monde par pixel du logo
+      const LCX = 342,
+        LCY = 218;
+      const cellXY = DOTS.map(([px, py]) => [(px - LCX) * SC, -(py - LCY) * SC]);
+      const LBV = 24; // Libreville
+      const cellD = cellXY.map(([x, y]) => Math.hypot(x - cellXY[LBV][0], y - cellXY[LBV][1]));
+      const MAXD = Math.max(...cellD);
+      const DOT_R = 16.5 * SC; // rayon d'un point du logo
+
+      // ------------------------------------------------------------------ 13 fédérations (effectifs réels, 1 100 au total)
+      const FEDS = [337, 118, 110, 83, 83, 67, 67, 61, 50, 43, 30, 29, 22];
+      const N = FEDS.reduce((a, b) => a + b, 0);
+      const SW_RX = 27,
+        SW_RY = 13;
+      const swarms = FEDS.map((n, k) => {
+        const a = Math.PI / 2 - (k / FEDS.length) * Math.PI * 2;
+        return { n, k, cx: SW_RX * Math.cos(a), cy: SW_RY * Math.sin(a), R: 0.2 * Math.sqrt(n), w: (k % 2 ? -1 : 1) * (0.16 + 0.02 * (k % 4)), a };
+      });
+      // nœuds : FEG (Bureau exécutif) et pouvoirs publics
+      const CORE = new THREE.Vector3(-7, 0.4, 0),
+        ETAT = new THREE.Vector3(7.5, 0.4, 0);
+      const FORUM_C = new THREE.Vector3(0.2, 0.4, -1.5),
+        FORUM_R = 13.5;
+
+      // ------------------------------------------------------------------ les 1 100 entreprises
+      const P = [];
+      {
+        // fédération de chaque particule, entrelacée pour mêler les points sur la carte
+        const fedOf = [];
+        FEDS.forEach((n, k) => {
+          for (let j = 0; j < n; j++) fedOf.push(k);
+        });
+        const order = fedOf.map((f, i) => ({ f, key: rnd() }));
+        order.sort((a, b) => a.key - b.key);
+        const per = DOTS.map((_, c) => 15 + (c < N - 15 * DOTS.length ? 1 : 0));
+        let c = 0,
+          used = 0;
+        const fedCount = FEDS.map(() => 0);
+        for (let i = 0; i < N; i++) {
+          if (used >= per[c]) {
+            c++;
+            used = 0;
+          }
+          used++;
+          const f = order[i].f;
+          const idxInFed = fedCount[f]++;
+          const [cx, cy] = cellXY[c];
+          const ang = rnd() * Math.PI * 2,
+            rr = Math.sqrt(rnd());
+          const sw = swarms[f];
+          // galaxie : deux bras, épaisseur
+          const ga = (idxInFed / FEDS[f]) * Math.PI * 4 + (idxInFed % 2) * Math.PI + rnd() * 0.6;
+          const gr = sw.R * Math.pow((idxInFed + 1) / FEDS[f], 0.55) * (0.85 + 0.3 * rnd());
+          P.push({
+            i,
+            f,
+            c,
+            map: [cx + Math.cos(ang) * rr * DOT_R * 0.95, cy + Math.sin(ang) * rr * DOT_R * 0.95, (rnd() - 0.5) * 0.5],
+            logo: [cx + Math.cos(ang) * rr * DOT_R * 0.42, cy + Math.sin(ang) * rr * DOT_R * 0.42, 0],
+            scat: [(rnd() - 0.5) * 92, (rnd() - 0.5) * 52, -28 + rnd() * 36],
+            ga,
+            gr,
+            gz: (rnd() - 0.5) * 0.7,
+            core: [rnd() * Math.PI * 2, Math.acos(2 * rnd() - 1), 0.6 + 1.4 * Math.cbrt(rnd())],
+            jit: rnd(),
+            tw: rnd() * Math.PI * 2,
+          });
+        }
+      }
+      // la première lumière, puis l'atelier, le commerce, le chantier
+      const FIRST = P.find((p) => p.c === LBV);
+      FIRST.scat = [0, 0, 2];
+      const TRIO = [P[400], P[700], P[950]];
+      TRIO[0].scat = [-13, 4.5, -2];
+      TRIO[1].scat = [12, 6, -4];
+      TRIO[2].scat = [7, -7.5, 0];
+      P.forEach((p) => {
+        // instants de passage d'une formation à l'autre
+        p.tIgn = p === FIRST ? T.first : TRIO.includes(p) ? T.trio[TRIO.indexOf(p)] - 0.1 : p.i % 9 === 0 ? T.vivre - 0.1 + p.jit * 0.9 : Infinity;
+        p.tMap = p === FIRST ? T.fed - 0.6 : T.fed - 0.25 + (cellD[p.c] / MAXD) * 1.6 + p.jit * 0.5;
+        p.tSw = T.treize - 0.25 + (p.f / 12) * 0.45 + p.jit * 0.35;
+        p.tCore = T.remont - 0.15 + (p.f / 12) * 1.1 + p.jit * 0.45;
+        p.tBack = T.ref[0] - 0.45 + (cellD[p.c] / MAXD) * 1.0 + p.jit * 0.5;
+        p.tLogo = T.rejoignez + 0.05 + (cellD[p.c] / MAXD) * 0.6 + p.jit * 0.35;
+      });
+
+      const swarmPos = (p, t, o) => {
+        const sw = swarms[p.f];
+        const a = p.ga + sw.w * t;
+        o[0] = sw.cx + Math.cos(a) * p.gr;
+        o[1] = sw.cy + Math.sin(a) * p.gr * 0.82;
+        o[2] = p.gz + Math.sin(a) * p.gr * 0.25;
+        return o;
+      };
+      const corePos = (p, t, o) => {
+        const [th, ph, r] = p.core;
+        const a = th + t * 0.55;
+        o[0] = CORE.x + r * Math.sin(ph) * Math.cos(a);
+        o[1] = CORE.y + r * Math.cos(ph);
+        o[2] = CORE.z + r * Math.sin(ph) * Math.sin(a);
+        return o;
+      };
+      const tmpA = [0, 0, 0],
+        tmpB = [0, 0, 0];
+      // position d'une entreprise à l'instant tau (fonction pure)
+      function posAt(p, tau, o) {
+        let x = p.scat[0],
+          y = p.scat[1],
+          z = p.scat[2];
+        // L01 : légère dérive des lumières dans la nuit
+        x += Math.sin(tau * 0.21 + p.tw) * 0.35;
+        y += Math.cos(tau * 0.17 + p.tw) * 0.25;
+        if (tau > p.tMap) {
+          const e = inOut(prog(tau, p.tMap, 1.7));
+          x = lerp(x, p.map[0], e);
+          y = lerp(y, p.map[1], e);
+          z = lerp(z, p.map[2], e);
+        }
+        if (tau > p.tSw) {
+          swarmPos(p, tau, tmpA);
+          const e = inOut(prog(tau, p.tSw, 1.35));
+          x = lerp(x, tmpA[0], e);
+          y = lerp(y, tmpA[1], e);
+          z = lerp(z, tmpA[2], e);
+        }
+        if (tau > p.tCore) {
+          corePos(p, tau, tmpB);
+          const u = prog(tau, p.tCore, 1.15);
+          const e = inOutQ(u);
+          // arc : la trajectoire se soulève vers la caméra
+          const lift = Math.sin(u * Math.PI);
+          x = lerp(x, tmpB[0], e);
+          y = lerp(y, tmpB[1], e) + lift * 2.2;
+          z = lerp(z, tmpB[2], e) + lift * 4.0;
+        }
+        if (tau > p.tBack) {
+          const e = inOut(prog(tau, p.tBack, 1.6));
+          x = lerp(x, p.map[0], e);
+          y = lerp(y, p.map[1], e);
+          z = lerp(z, p.map[2], e);
+        }
+        if (tau > p.tLogo) {
+          const e = inOut(prog(tau, p.tLogo, 1.5));
+          x = lerp(x, p.logo[0], e);
+          y = lerp(y, p.logo[1], e);
+          z = lerp(z, p.logo[2], e);
+        }
+        o[0] = x;
+        o[1] = y;
+        o[2] = z;
+        return o;
+      }
+      // intensité d'une entreprise à l'instant t
+      function alphaAt(p, t) {
+        let a = out3(prog(t, p.tIgn, 0.9));
+        // L02 : « seule » : les autres lumières s'éteignent
+        if (p !== FIRST) a *= 1 - inOut(prog(t, T.seule - 0.1, 0.9));
+        // elles reviennent en rejoignant la carte
+        a = Math.max(a, out3(prog(t, p.tMap - 0.1, 0.8)));
+        if (p === FIRST && t > T.seule && t < T.fed) a *= 0.78 + 0.22 * Math.sin(t * 7.0);
+        return a;
+      }
+
+      const PS = pointsSystem(N); // entreprises
+      const TR = pointsSystem(N * 5); // traînées
+      const FX = pointsSystem(9000); // anneaux, ponts, faisceaux, orbites
+      const ST = pointsSystem(1500); // étoiles
+      // version « jour » des entreprises (aplats bronze) pour le lever du jour final
+      const dayMat = new THREE.ShaderMaterial({
+        uniforms: { uOpacity: { value: 0 }, uRef: { value: REF }, uDay: { value: new THREE.Vector3(0.682, 0.682, 0.49) } },
+        vertexShader: vs,
+        fragmentShader: fsDay,
+        transparent: true,
+        depthWrite: false,
+        depthTest: false,
+      });
+      const PD = new THREE.Points(PS.g, dayMat);
+      PD.frustumCulled = false;
+      scene.add(PD);
+      PD.renderOrder = 1;
+      ST.p.renderOrder = 0;
+      TR.p.renderOrder = 2;
+      PS.p.renderOrder = 3;
+      FX.p.renderOrder = 4;
+      const STARS = Array.from({ length: 1500 }, () => ({ x: (rnd() - 0.5) * 260, y: (rnd() - 0.5) * 150, z: -140 + rnd() * 70, s: 2.5 + rnd() * 3.5, a: 0.15 + rnd() * 0.45, w: 0.4 + rnd() * 1.6, ph: rnd() * 6.28 }));
+
+      // la Déclaration de Libreville : une page lumineuse
+      const declGroup = new THREE.Group();
+      scene.add(declGroup);
+      const declPage = new THREE.Mesh(new THREE.PlaneGeometry(7.0, 9.9), new THREE.MeshBasicMaterial({ color: 0xffffff, transparent: true, opacity: 0, depthTest: false }));
+      declPage.renderOrder = 6;
+      declGroup.add(declPage);
+      const declGlow = new THREE.Mesh(
+        new THREE.PlaneGeometry(10.5, 13.4),
+        new THREE.ShaderMaterial({
+          uniforms: { uA: { value: 0 } },
+          vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+          fragmentShader: `varying vec2 vUv; uniform float uA; void main(){ vec2 p = (vUv - 0.5) * 2.0; float d = max(abs(p.x) / 0.72, abs(p.y) / 0.77);
+            float g = exp(-pow(max(d - 0.86, 0.0) * 4.0, 2.0)) * (1.0 - smoothstep(0.86, 1.0, 1.0 - d + 0.86 - 0.86)); float a = uA * 0.55 * exp(-max(d - 0.9, 0.0) * 6.0);
+            gl_FragColor = vec4(vec3(1.0, 0.92, 0.65) * a, a); }`,
+          transparent: true,
+          depthWrite: false,
+          depthTest: false,
+          blending: THREE.CustomBlending,
+          blendEquation: THREE.AddEquation,
+          blendSrc: THREE.OneFactor,
+          blendDst: THREE.OneFactor,
+        }),
+      );
+      declGlow.renderOrder = 5;
+      declGlow.position.z = -0.05;
+      declGroup.add(declGlow);
+
+      // ------------------------------------------------------------------ caméra (perspective, plan final exact)
+      // Plan final : la carte de face, 0,62 px écran par px du logo, logo posé à (691,5 ; 200) comme sur la carte de fin.
+      const K_LOGO = 0.62,
+        LOGO_LEFT = 960 - (866 * K_LOGO) / 2,
+        LOGO_TOP = 200;
+      const S_FIN = K_LOGO / SC; // px par unité
+      const D_FIN = 540 / (S_FIN * Math.tan((FOV / 2) * (Math.PI / 180)));
+      const FIN = { x: (960 - LCX * K_LOGO - LOGO_LEFT) / S_FIN, y: (LOGO_TOP - 540 + LCY * K_LOGO) / S_FIN, d: D_FIN, yaw: 0, pitch: 0 };
+      // états de caméra : cible (x, y), distance d, lacet et tangage en degrés
+      const keys = [];
+      const key = (t0, dur, to, ease = inOut) => keys.push({ t0, dur, to, ease });
+      const CAM0 = { x: 0, y: 0, d: 26, yaw: 0, pitch: 0 };
+      key(0, T.lumiere + 0.8, { x: 0, y: 0, d: 22, yaw: 2, pitch: -1 }, inOutQ);
+      key(T.trio[0] - 0.4, 2.6, { x: -0.5, y: 0.2, d: 48, yaw: 4, pitch: -2 });
+      key(T.vivre - 0.2, 1.6, { x: 0, y: 0, d: 72, yaw: 3, pitch: -3 });
+      key(T.seule - 0.3, 2.2, { x: FIRST.scat[0], y: FIRST.scat[1], d: 15, yaw: -2, pitch: 1 });
+      key(T.y1959 - 0.2, 4.8, { x: -8.5, y: -0.6, d: 58, yaw: 9, pitch: -6 }, inOutQ);
+      key(T.p80 - 0.6, 5.0, { x: -9.5, y: -0.4, d: 55, yaw: 6, pitch: -4 }, inOutQ);
+      key(T.treize - 0.45, 1.6, { x: 0, y: 0, d: 74, yaw: 0, pitch: -6 });
+      key(T.remont + 0.3, 2.4, { x: 0.3, y: 0.3, d: 46, yaw: -4, pitch: -3 });
+      key(T.gef - 0.5, 1.8, { x: 0.2, y: 0.4, d: 66, yaw: 0, pitch: -8 });
+      key(T.decl - 0.35, 1.3, { x: 0.2, y: 0.4, d: 40, yaw: 0, pitch: -2 });
+      key(T.ref[0] - 0.5, 2.0, { x: -6.5, y: 0.5, d: 62, yaw: 6, pitch: -5 });
+      key(T.quot - 0.4, 2.0, { x: 0, y: 0.4, d: 70, yaw: -4, pitch: -6 });
+      key(T.fortes - 0.4, T.rejoignez - T.fortes + 0.2, { x: -1.5, y: -0.6, d: 52, yaw: 3, pitch: -3 }, inOutQ);
+      key(T.rejoignez - 0.15, T.dawn - T.rejoignez + 1.0, FIN, inOut);
+      function camAt(t) {
+        let s = { ...CAM0 };
+        for (let i = 0; i < keys.length; i++) {
+          const k = keys[i];
+          if (t <= k.t0) break;
+          const next = keys[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const e = k.ease(prog(cut, k.t0, k.dur));
+          const to = k.to;
+          s = { x: lerp(s.x, to.x, e), y: lerp(s.y, to.y, e), d: Math.exp(lerp(Math.log(s.d), Math.log(to.d), e)), yaw: lerp(s.yaw, to.yaw, e), pitch: lerp(s.pitch, to.pitch, e) };
+          if (!(next && next.t0 < t)) break;
+        }
+        return s;
+      }
+
+      // ------------------------------------------------------------------ étiquettes
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (x, y, z) => {
+        v3.set(x, y, z).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080];
+      };
+      function place(name, x, y, z, dx, dy, a, align = "left") {
+        const el = $("wl-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [sx, sy] = toScreen(x, y, z);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        const left = align === "left" ? sx + dx : align === "right" ? sx + dx - w : sx + dx - w / 2;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(left)}px, ${Math.round(sy + dy - h / 2 + (1 - a) * 8)}px)`;
+      }
+
+      // ------------------------------------------------------------------ effets (anneaux, ponts, faisceaux, orbites)
+      function ringFx(cx, cy, cz, r, n, reveal, col, size, alpha, t, spin = 0, flat = 0.35) {
+        const m = Math.floor(n * clamp01(reveal));
+        for (let k = 0; k < m; k++) {
+          const a = (k / n) * Math.PI * 2 + spin * t;
+          const tw = 0.75 + 0.25 * Math.sin(t * 2.0 + k * 1.7);
+          FX.push(cx + Math.cos(a) * r, cy + Math.sin(a) * r * flat * 2.8 * 0.36 + Math.sin(a) * 0, cz + Math.sin(a) * r * flat, col, size, alpha * tw);
+        }
+      }
+      function arcGauge(cx, cy, cz, r, frac, n, col, size, alpha, t) {
+        // arc de 0 à frac (sens horaire depuis le haut)
+        const m = Math.floor(n * clamp01(frac));
+        for (let k = 0; k < m; k++) {
+          const a = Math.PI / 2 - (k / n) * Math.PI * 2;
+          FX.push(cx + Math.cos(a) * r, cy + Math.sin(a) * r, cz, col, size, alpha * (0.8 + 0.2 * Math.sin(t * 3 + k)));
+        }
+        // trace grise du cercle complet
+        for (let k = m; k < n; k += 3) {
+          const a = Math.PI / 2 - (k / n) * Math.PI * 2;
+          FX.push(cx + Math.cos(a) * r, cy + Math.sin(a) * r, cz, CB, size * 0.55, alpha * 0.18);
+        }
+      }
+      // flux de points le long d'une courbe de Bézier quadratique (a → b, sommet m)
+      function streamFx(a, m, b, n, reveal, speed, col, size, alpha, t, both = false) {
+        const rev = clamp01(reveal);
+        for (let k = 0; k < n; k++) {
+          let u = (k / n + t * speed) % 1;
+          if (both && k % 2) u = 1 - u;
+          if (u > rev) continue;
+          const iu = 1 - u;
+          const x = iu * iu * a[0] + 2 * iu * u * m[0] + u * u * b[0];
+          const y = iu * iu * a[1] + 2 * iu * u * m[1] + u * u * b[1];
+          const z = iu * iu * a[2] + 2 * iu * u * m[2] + u * u * b[2];
+          FX.push(x, y, z, col, size, alpha * Math.sin(Math.PI * Math.min(1, u / Math.max(rev, 0.001))) ** 0.3);
+        }
+      }
+
+      // ------------------------------------------------------------------ rendu d'une image
+      const o = [0, 0, 0],
+        o2 = [0, 0, 0];
+      function render(t) {
+        // --- caméra
+        const s = camAt(t);
+        const drift = 1 - prog(t, T.rejoignez - 0.2, 1.0); // la dérive s'éteint pour le plan final exact
+        const yaw = (s.yaw + 1.2 * Math.sin(t * 0.13) * drift) * (Math.PI / 180);
+        const pitch = (s.pitch + 0.8 * Math.sin(t * 0.11 + 1.3) * drift) * (Math.PI / 180);
+        camera.position.set(s.x + Math.sin(yaw) * Math.cos(pitch) * s.d, s.y + Math.sin(pitch) * s.d, Math.cos(yaw) * Math.cos(pitch) * s.d);
+        camera.lookAt(s.x, s.y, 0);
+        camera.updateMatrixWorld();
+        camera.updateProjectionMatrix();
+
+        const dawn = inOut(prog(t, T.dawn, 1.9));
+        bgMat.uniforms.uDawn.value = dawn;
+        bgMat.uniforms.uWarm.value = win(t, T.fortes - 0.3, 1.5, T.dawn, 1.0) * 0.9 + bump(t, T.p80 + 0.4, 0.9) * 0.3;
+        bgMat.uniforms.uPulse.value = bump(t, T.voix + 0.35, 0.35) + bump(t, T.pesent + 0.3, 0.5) * 0.8;
+
+        // --- étoiles
+        ST.reset();
+        for (const st of STARS) ST.push(st.x, st.y, st.z, CW, st.s, st.a * (0.7 + 0.3 * Math.sin(t * st.w + st.ph)) * (1 - dawn));
+        ST.commit();
+
+        // --- entreprises (+ traînées)
+        PS.reset();
+        TR.reset();
+        const pulseVoice = bump(t, T.voix + 0.3, 0.3);
+        const pulseRef = bump(t, T.pesent + 0.35, 0.45);
+        const mapGlow = win(t, T.mille - 0.3, 0.6, T.mille + 1.6, 0.8);
+        for (const p of P) {
+          const a = alphaAt(p, t);
+          if (a <= 0.002) continue;
+          posAt(p, t, o);
+          // couleur : blanc chaud dans la nuit, or sur la carte, teinte de fédération en essaim
+          let col = CW;
+          const inMap = prog(t, p.tMap + 0.8, 0.8) * (1 - prog(t, p.tSw, 0.6));
+          const inSw = prog(t, p.tSw + 0.4, 0.8) * (1 - prog(t, p.tCore, 0.5));
+          const inCore = prog(t, p.tCore + 0.6, 0.6) * (1 - prog(t, p.tBack, 0.8));
+          const inBack = prog(t, p.tBack + 0.8, 0.8);
+          if (inMap > 0) col = mixc(col, CG, inMap);
+          if (inSw > 0) col = mixc(col, mixc(CV, CG, p.f / 12), inSw);
+          if (inCore > 0) col = mixc(col, CW, inCore);
+          if (inBack > 0) col = mixc(col, CG, inBack);
+          let size = p === FIRST ? lerp(15, 9, prog(t, T.fed, 1.5)) : TRIO.includes(p) && t < T.fed ? 11 : 7.2;
+          size *= 1 + 0.45 * pulseVoice + 0.4 * pulseRef + 0.25 * mapGlow;
+          const tw = 0.85 + 0.15 * Math.sin(t * 1.7 + p.tw);
+          PS.push(o[0], o[1], o[2], col, size, a * tw);
+          // traînée : quelques positions passées, quand la particule se déplace vite
+          posAt(p, t - 0.06, o2);
+          const sp = Math.hypot(o[0] - o2[0], o[1] - o2[1], o[2] - o2[2]);
+          if (sp > 0.05) {
+            const k = Math.min(1, sp / 0.9);
+            for (let j = 1; j <= 5; j++) {
+              posAt(p, t - j * 0.035, o2);
+              TR.push(o2[0], o2[1], o2[2], col, size * (1 - j * 0.13), a * k * 0.5 * (1 - j / 6));
+            }
+          }
+        }
+        PS.commit();
+        TR.commit();
+
+        // --- effets
+        FX.reset();
+        // L02 : l'onde qui se perd autour de la lumière seule
+        for (let r = 0; r < 3; r++) {
+          const u = prog(t, T.perd - 0.3 + r * 0.4, 1.6);
+          if (u > 0 && u < 1) ringFx(FIRST.scat[0], FIRST.scat[1], FIRST.scat[2], 0.6 + u * 4.5, 90, 1, CW, 3.2, 0.5 * (1 - u), t, 0, 0);
+        }
+        // L04 : deux jauges autour de la carte (80 % du PIB, 90 % de la main-d'œuvre formelle)
+        {
+          const a = win(t, T.p80 - 0.3, 0.5, T.treize - 0.5, 0.5);
+          if (a > 0.01) {
+            arcGauge(0, 0, 0, 13.0, 0.8 * out3(prog(t, T.p80 - 0.1, 1.4)), 240, CG, 4.2, a, t);
+            arcGauge(0, 0, 0, 14.6, 0.9 * out3(prog(t, T.p90 - 0.1, 1.4)), 260, CV, 4.2, a * out3(prog(t, T.p90 - 0.3, 0.4)), t);
+          }
+        }
+        // L05 : « une seule voix » : une onde part du centre
+        {
+          const u = prog(t, T.voix + 0.15, 1.6);
+          if (u > 0 && u < 1) ringFx(0, 0, 0, 3 + u * 34, 260, 1, CG, 3.6, 0.55 * (1 - u), t, 0, 0.0);
+        }
+        // L06 : pouvoirs publics, pont du dialogue public-privé
+        const nodesA = win(t, T.table - 0.5, 0.7, T.ref[0] - 0.2, 0.8);
+        if (nodesA > 0.01) {
+          for (let k = 0; k < 220; k++) {
+            const th = k * 2.399963,
+              ph = Math.acos(1 - (2 * (k + 0.5)) / 220);
+            const r = 1.7 + 0.25 * Math.sin(k * 1.3 + t);
+            const a2 = th + t * -0.45;
+            FX.push(ETAT.x + r * Math.sin(ph) * Math.cos(a2), ETAT.y + r * Math.cos(ph), ETAT.z + r * Math.sin(ph) * Math.sin(a2), CS, 5.5, nodesA * 0.85);
+          }
+          const rev = out3(prog(t, T.pp - 0.35, 0.9));
+          streamFx([CORE.x + 2.0, CORE.y, 0], [0.2, 3.2, 2.5], [ETAT.x - 2.0, ETAT.y, 0], 90, rev, 0.22, CW, 5.0, nodesA, t, true);
+          streamFx([CORE.x + 2.0, CORE.y - 0.4, 0], [0.2, -2.0, 2.0], [ETAT.x - 2.0, ETAT.y - 0.4, 0], 70, rev, 0.18, CG, 4.2, nodesA * 0.8, t, true);
+        }
+        // L07 : le Gabon Economic Forum, ses 8 ateliers, la Déclaration de Libreville
+        const forumA = win(t, T.gef - 0.3, 0.6, T.ref[0] + 0.4, 1.0);
+        if (forumA > 0.01) {
+          const rev = out3(prog(t, T.gef - 0.25, 1.4));
+          ringFx(FORUM_C.x, FORUM_C.y, FORUM_C.z, FORUM_R, 420, rev, CG, 4.6, forumA, t, 0.05, 0.34);
+          for (let k = 0; k < 8; k++) {
+            const a = Math.PI / 2 - (k / 8) * Math.PI * 2 + 0.05 * t;
+            const ax = FORUM_C.x + Math.cos(a) * FORUM_R,
+              ay = FORUM_C.y + Math.sin(a) * FORUM_R * 0.34 * 2.8 * 0.36,
+              az = FORUM_C.z + Math.sin(a) * FORUM_R * 0.34;
+            const on = out3(prog(t, T.huit - 0.1 + k * 0.09, 0.5));
+            if (on > 0.01) ringFx(ax, ay, az, 1.15, 36, 1, CV, 4.4, forumA * on, t, 0.8, 0);
+            const beam = out3(prog(t, T.decl - 0.5 + k * 0.04, 0.7)) * (1 - prog(t, T.decl + 1.6, 0.8));
+            if (beam > 0.01) streamFx([ax, ay, az], [(ax + 0.2) / 2, (ay + 0.4) / 2 + 2.5, 3], [0.2, 0.4, 3.5], 26, beam, 0.6, CW, 3.6, forumA * 0.8, t);
+          }
+        }
+        // L08 : quatre faisceaux de réformes, de la Déclaration vers le pays
+        const REF_CELLS = [9, 19, 44, 51];
+        T.ref.forEach((tt, k) => {
+          const a = win(t, tt - 0.1, 0.6, T.quot - 0.3, 0.6);
+          if (a < 0.01) return;
+          const [cx, cy] = cellXY[REF_CELLS[k]];
+          streamFx([-15.2, 7.2, 2.5], [(-15.2 + cx) / 2 - 1, (7.2 + cy) / 2 + 4, 4], [cx, cy, 0.3], 60, out3(prog(t, tt - 0.05, 0.8)), 0.5, k % 2 ? CV : CG, 4.6, a, t);
+          ringFx(cx, cy, 0.2, 0.9 + 0.25 * Math.sin(t * 3 + k), 28, 1, CW, 3.4, a * 0.8, t, 1.2, 0);
+        });
+        // L09 : les services, quatre lumières en orbite autour de la carte
+        const SVC = [
+          [-16.5, 7.5],
+          [16.5, 7.5],
+          [16.5, -7.5],
+          [-16.5, -7.5],
+        ];
+        T.svc.forEach((tt, k) => {
+          const a = win(t, tt - 0.1, 0.5, T.ajoutez - 0.3, 0.7);
+          if (a < 0.01) return;
+          const [sx, sy] = SVC[k];
+          FX.push(sx, sy, 1, CW, 14, a);
+          ringFx(sx, sy, 1, 1.6, 40, 1, k % 2 ? CV : CG, 3.4, a * 0.7, t, 1.0, 0);
+          const m = Math.atan2(sy, sx) + t * 1.4;
+          FX.push(sx + Math.cos(m) * 1.6, sy + Math.sin(m) * 1.6, 1, CW, 6.5, a);
+          streamFx([sx * 0.94, sy * 0.94, 1], [sx * 0.55, sy * 0.4, 1.5], [sx * 0.25, sy * 0.25, 0.5], 22, out3(prog(t, tt, 0.8)), 0.35, CB, 3.0, a * 0.6, t);
+        });
+        // L10 : « Ajoutez votre lumière » : une nouvelle lumière vient rejoindre la carte
+        {
+          const u = prog(t, T.ajoutez - 0.2, 1.5);
+          if (u > 0) {
+            const [cx, cy] = cellXY[LBV];
+            const e = inOutQ(u);
+            const x = lerp(1.5, cx, e),
+              y = lerp(-6, cy, e) + Math.sin(u * Math.PI) * 3,
+              z = lerp(36, 0.4, e);
+            const fade = 1 - prog(t, T.dawn - 0.2, 0.8);
+            if (u < 1) {
+              FX.push(x, y, z, CW, 22, fade);
+              for (let j = 1; j < 8; j++) {
+                const uj = Math.max(0, u - j * 0.02),
+                  ej = inOutQ(uj);
+                FX.push(lerp(1.5, cx, ej), lerp(-6, cy, ej) + Math.sin(uj * Math.PI) * 3, lerp(36, 0.4, ej), CG, 22 - j * 2.4, fade * 0.5 * (1 - j / 8));
+              }
+            } else {
+              const fl = 1 - prog(t, T.ajoutez + 1.3, 0.9);
+              if (fl > 0) ringFx(cx, cy, 0.4, 0.4 + (1 - fl) * 3.5, 60, 1, CW, 3.2, fl * fade, t, 0, 0);
+              FX.push(cx, cy, 0.3, CW, 12, fade);
+            }
+          }
+        }
+        FX.commit();
+
+        // --- la Déclaration de Libreville
+        {
+          const up = out3(prog(t, T.decl - 0.15, 0.6));
+          const away = inOut(prog(t, T.ref[0] - 0.5, 1.4));
+          const gone = 1 - inOut(prog(t, T.quot - 0.5, 0.8));
+          const a = up * gone;
+          declGroup.visible = a > 0.01;
+          declGroup.position.set(lerp(0.2, -15.2, away), lerp(0.4, 7.2, away), lerp(3.5, 2.5, away));
+          declGroup.scale.setScalar(Math.max(1e-4, lerp(0.85 + 0.15 * up, 0.42, away)));
+          declGroup.quaternion.copy(camera.quaternion);
+          declPage.material.opacity = a;
+          declGlow.material.uniforms.uA.value = a;
+        }
+
+        // --- lever du jour : les lumières deviennent les points bronze du logo
+        PS.m.uniforms.uOpacity.value = 1 - dawn;
+        TR.m.uniforms.uOpacity.value = 1 - dawn;
+        FX.m.uniforms.uOpacity.value = 1 - dawn;
+        dayMat.uniforms.uOpacity.value = dawn * (1 - prog(t, T.logo + 1.1, 0.5));
+
+        // --- étiquettes
+        T.trio.forEach((tt, k) => {
+          const p = TRIO[k];
+          place("a" + k, p.scat[0], p.scat[1], p.scat[2], k === 0 ? -26 : 26, -34, win(t, tt, 0.4, T.seule - 0.2, 0.4), k === 0 ? "right" : "left");
+        });
+        const fedA = win(t, T.treize + 0.35, 0.5, T.remont - 0.1, 0.4);
+        swarms.forEach((sw, k) => {
+          const out = Math.cos(sw.a) < -0.2 ? "right" : Math.cos(sw.a) > 0.2 ? "left" : "center";
+          const dx = out === "right" ? -(sw.R * 8 + 22) : out === "left" ? sw.R * 8 + 22 : 0;
+          const dy = out === "center" ? (Math.sin(sw.a) > 0 ? -(sw.R * 9 + 30) : sw.R * 9 + 30) : 0;
+          place("f" + k, sw.cx, sw.cy, 0, dx, dy, fedA * out3(prog(t, T.treize + 0.35 + k * 0.045, 0.45)), out);
+        });
+        place("core", CORE.x, CORE.y - 2.4, 0, 0, 34, win(t, T.bureau - 0.05, 0.45, T.gef - 0.4, 0.4), "center");
+        place("etat", ETAT.x, ETAT.y - 2.4, 0, 0, 34, win(t, T.table - 0.05, 0.45, T.gef - 0.4, 0.4), "center");
+        place("bridge", 0.2, 3.6, 2.5, 0, -40, win(t, T.pp - 0.1, 0.45, T.gef - 0.4, 0.4), "center");
+        {
+          const away = inOut(prog(t, T.ref[0] - 0.5, 1.4));
+          place("decl", lerp(0.2, -15.2, away), lerp(0.4, 7.2, away) - lerp(5.3, 2.4, away), 3.5, 0, 34, win(t, T.decl + 0.1, 0.45, T.quot - 0.5, 0.5), "center");
+        }
+        T.ref.forEach((tt, k) => {
+          const [cx, cy] = cellXY[REF_CELLS[k]];
+          const right = cx > 0;
+          place("r" + k, cx, cy, 0.3, right ? 40 : -40, -6, win(t, tt - 0.05, 0.4, T.quot - 0.3, 0.5), right ? "left" : "right");
+        });
+        T.svc.forEach((tt, k) => {
+          const [sx, sy] = SVC[k];
+          place("s" + k, sx, sy, 1, sx > 0 ? 44 : -44, 0, win(t, tt, 0.45, T.ajoutez - 0.4, 0.5), sx > 0 ? "left" : "right");
+        });
+
+        renderer.render(scene, camera);
+      }
+
+      (async function init() {
+        await Promise.all([
+          document.fonts.load('500 30px "Hyundai Sans Head"'),
+          document.fonts.load('700 36px "Hyundai Sans Head"'),
+          document.fonts.load('400 28px "Hyundai Sans Text"'),
+        ]).catch(() => {});
+        await new Promise((res) => {
+          new THREE.TextureLoader().load("assets/img/declaration-p1.jpg", (tx) => {
+            tx.colorSpace = THREE.SRGBColorSpace;
+            tx.anisotropy = 8;
+            declPage.material.map = tx;
+            declPage.material.needsUpdate = true;
+            res();
+          });
+        });
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>
