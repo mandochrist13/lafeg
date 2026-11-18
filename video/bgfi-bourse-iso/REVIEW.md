@@ -39,7 +39,29 @@ Le film a été vu en images fixes à une cinquantaine de moments avant le rendu
 
 ## Rendu
 
-`renders/BGFIBourse-3D.mp4`, en qualité « delivery ». Durée, poids et volume sonore : voir le rapport de livraison.
+`renders/BGFIBourse-3D.mp4`, en qualité « delivery ».
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz |
+| Durée | 84,2 s |
+| Poids | 34,1 Mo |
+| Volume | −15,9 LUFS intégré, plage 4,3 LU, crête vraie −1,8 dBFS |
+
+Dix-huit images extraites du MP4, de 1 s à 83,5 s, montrent les mêmes plans que les images de contrôle :
+
+- les épargnants ;
+- les entreprises et les États ;
+- la BVMAC ;
+- les cartes « Actions » et « Obligations » ;
+- la place vide et la COSUMAF ;
+- la tour BGFIBourse et son titre ;
+- le courtage, la conservation, les OPC et le conseil ;
+- la levée de fonds ;
+- l'entrée en Bourse ;
+- le récapitulatif ;
+- la carte de fin.
 
 ## À valider par BGFIBourse
 
