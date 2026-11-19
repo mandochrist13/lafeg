@@ -37,7 +37,29 @@ Le film a été vu en images fixes toutes les 1,5 s, puis à chaque moment retou
 
 ## Rendu
 
-À compléter après le rendu.
+Le rendu en qualité « delivery » pesait 157 Mo : le grain du papier, qui bouge avec la caméra, se compresse mal. Il est gardé tel quel dans `renders/FEG-collage-master.mp4`. Pour l'envoi, `renders/FEG-collage.mp4` est réencodé en H.264 (CRF 20, preset slow). Il pèse 61 Mo et reste très proche du rendu d'origine (SSIM 0,983).
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz, repris tel quel |
+| Durée | 86,7 s |
+| Poids | 61 Mo (rendu d'origine : 157 Mo) |
+| Volume | −15,4 LUFS intégré, plage 3,3 LU, crête vraie −2,1 dBFS |
+
+Vingt-quatre images extraites du MP4, de 1,5 s à 80,5 s, montrent les mêmes plans que les images de contrôle :
+
+- la table et les trois métiers ;
+- la boutique seule ;
+- la carte et ses 71 confettis ;
+- les deux disques ;
+- les 13 étiquettes et leurs fils ;
+- le dialogue ;
+- le Forum et la Déclaration ;
+- les rubans des réformes ;
+- les post-it ;
+- le slogan et le siège ;
+- la carte de fin.
 
 ## À valider par la FEG
 
