@@ -1,0 +1,1319 @@
+<!doctype html>
+<!--
+  FEG — « Le point bronze ». Un des 71 points du logo prend vie : seul, sa voix se perd ; il découvre la carte des
+  entreprises, les 13 fédérations qui parlent d'une seule voix, le Bureau exécutif, la table du dialogue public-privé,
+  le Gabon Economic Forum et la Déclaration de Libreville, les réformes, les services ; puis il saute dans sa place
+  vide. Au recul final, les 71 points se posent exactement sur ceux du logo de la carte de fin.
+  Monde 2D en px : à zoom 1, caméra au centre, le monde est l'écran final (logo à 691,54 ; 222 ; 0,62 px par px du logo).
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire) ; temps : assets/cues.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — Votre place à nos côtés</title>
+    <style>
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 500;
+        src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 700;
+        src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Text";
+        font-weight: 400;
+        src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #faf7f0;
+      }
+      #world-cv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Hyundai Sans Head", sans-serif;
+        color: #063d21;
+      }
+      .wl.sm {
+        font-family: "Hyundai Sans Text", sans-serif;
+        font-size: 32px;
+        color: #4d5249;
+      }
+      .wl .ti {
+        display: block;
+        font-weight: 700;
+        font-size: 36px;
+      }
+      .wl.fed {
+        white-space: normal;
+        max-width: 250px;
+        line-height: 1.1;
+      }
+      .wl.fed .nm {
+        display: block;
+        font-weight: 500;
+        font-size: 28px;
+        color: #1f2a22;
+      }
+      .wl.fed .ct {
+        display: block;
+        margin-top: 2px;
+        font-weight: 700;
+        font-size: 30px;
+        color: #8a8450;
+        font-variant-numeric: tabular-nums;
+      }
+      .wl.gauge .k {
+        font-weight: 500;
+        font-size: 36px;
+        color: #5c6259;
+        margin-right: 14px;
+      }
+      .wl.gauge .n {
+        font-weight: 700;
+        font-size: 92px;
+        letter-spacing: -0.02em;
+        line-height: 1;
+      }
+      .wl.gauge.b .n {
+        color: #8a8450;
+      }
+      .wl.gauge.g .n {
+        color: #0b6a3a;
+      }
+      .wl.gsub {
+        font-weight: 500;
+        font-size: 36px;
+        color: #1f2a22;
+      }
+      .wl.bub {
+        font-weight: 700;
+        font-size: 46px;
+        color: #8a8450;
+      }
+      .wl.panel {
+        font-weight: 700;
+        font-size: 36px;
+        color: #063d21;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="86.731"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="86.731"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+        width="1920"
+        height="1080"
+      ></canvas>
+      <div id="world-labels">
+        <div id="wl-a0" class="wl sm">un atelier</div>
+        <div id="wl-a1" class="wl sm">un commerce</div>
+        <div id="wl-a2" class="wl sm">un chantier</div>
+
+        <div id="wl-g1" class="wl gauge b"><span class="k">près de</span><span class="n">80&#8239;%</span></div>
+        <div id="wl-g1b" class="wl gsub">du PIB</div>
+        <div id="wl-g2" class="wl gauge g"><span class="k">plus de</span><span class="n">90&#8239;%</span></div>
+        <div id="wl-g2b" class="wl gsub">de la main-d'œuvre formelle</div>
+
+        <div id="wl-f0" class="wl fed"><span class="nm">Construction</span><span class="ct">337</span></div>
+        <div id="wl-f1" class="wl fed"><span class="nm">Services divers</span><span class="ct">118</span></div>
+        <div id="wl-f2" class="wl fed"><span class="nm">Commerce</span><span class="ct">110</span></div>
+        <div id="wl-f3" class="wl fed"><span class="nm">Conseil</span><span class="ct">83</span></div>
+        <div id="wl-f4" class="wl fed"><span class="nm">Logistique et manutention</span><span class="ct">83</span></div>
+        <div id="wl-f5" class="wl fed"><span class="nm">Industries extractives</span><span class="ct">67</span></div>
+        <div id="wl-f6" class="wl fed"><span class="nm">Numérique</span><span class="ct">67</span></div>
+        <div id="wl-f7" class="wl fed"><span class="nm">Industrie</span><span class="ct">61</span></div>
+        <div id="wl-f8" class="wl fed"><span class="nm">Finance</span><span class="ct">50</span></div>
+        <div id="wl-f9" class="wl fed"><span class="nm">Santé</span><span class="ct">43</span></div>
+        <div id="wl-f10" class="wl fed"><span class="nm">Bois</span><span class="ct">30</span></div>
+        <div id="wl-f11" class="wl fed"><span class="nm">Tourisme</span><span class="ct">29</span></div>
+        <div id="wl-f12" class="wl fed"><span class="nm">Agriculture et pêche</span><span class="ct">22</span></div>
+
+        <div id="wl-bub" class="wl bub">une seule voix</div>
+        <div id="wl-bureau" class="wl"><span class="ti">Bureau exécutif</span></div>
+        <div id="wl-dlg" class="wl"><span class="ti">Dialogue public-privé</span></div>
+        <div id="wl-pub" class="wl sm">Pouvoirs publics</div>
+        <div id="wl-feg" class="wl sm">FEG</div>
+
+        <div id="wl-decl" class="wl"><span class="ti">Déclaration de Libreville</span></div>
+        <div id="wl-r0" class="wl panel">Dette intérieure</div>
+        <div id="wl-r1" class="wl panel">Fiscalité</div>
+        <div id="wl-r2" class="wl panel">Commande publique</div>
+        <div id="wl-r3" class="wl panel">Financement des PME</div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FL_CUES;
+        var total = C ? C.total : 86.731;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const host = window.__worldHost;
+        const C = window.__FL_CUES;
+        const at = (id, w) => C.at(id, w);
+        const S = (id) => C.lines[id].start;
+
+        // ---------------------------------------------------------------- outils
+        const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+        const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
+        const lerp = (a, b, u) => a + (b - a) * u;
+        const prog = (t, t0, d) => clamp01((t - t0) / d);
+        const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+        const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+        const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+        const in3 = (u) => Math.pow(clamp01(u), 3);
+        const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+        const bump = (t, c, w) => Math.exp(-Math.pow((t - c) / w, 2));
+        // apparition élastique (dépassement puis retour)
+        const pop = (t, t0, d = 0.5) => {
+          const u = prog(t, t0, d);
+          if (u <= 0) return 0;
+          if (u >= 1) return 1;
+          const v = u - 1;
+          return 1 + 2.9 * v * v * v + 1.9 * v * v;
+        };
+        function mulberry32(a) {
+          return function () {
+            a |= 0;
+            a = (a + 0x6d2b79f5) | 0;
+            let r = Math.imul(a ^ (a >>> 15), 1 | a);
+            r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+            return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        const rnd = mulberry32(71);
+        const norm = (s) =>
+          String(s)
+            .toLowerCase()
+            .normalize("NFD")
+            .replace(/[̀-ͯ]/g, "")
+            .replace(/[^a-z0-9%]+/g, "");
+        function atK(id, needle, k) {
+          const n = norm(needle);
+          const ws = C.lines[id].words.filter((w) => w.n && (w.n === n || w.n.indexOf(n) === 0));
+          return ws.length ? ws[Math.min(k, ws.length - 1)].s : C.lines[id].start;
+        }
+
+        // ---------------------------------------------------------------- temps (calés sur la voix)
+        const T = {
+          chaque: at("L01", "Chaque"),
+          compte: at("L01", "compte"),
+          trio: [at("L01", "atelier"), at("L01", "commerce"), at("L01", "chantier")],
+          vivre: at("L01", "vivre"),
+          seule: at("L02", "seule"),
+          pese: at("L02", "pèse"),
+          voix2: at("L02", "voix"),
+          perd: at("L02", "perd"),
+          depuis: at("L03", "Depuis"),
+          fed: at("L03", "Fédération"),
+          rass: at("L03", "rassemble"),
+          ens: at("L04", "Ensemble"),
+          p80: at("L04", "80"),
+          p90: at("L04", "90"),
+          reunies: at("L05", "Réunies"),
+          treize: at("L05", "treize"),
+          parlent: at("L05", "parlent"),
+          seuleV: at("L05", "seule"),
+          preocc: at("L06", "préoccupations"),
+          remont: at("L06", "remontent"),
+          bureau: at("L06", "Bureau"),
+          puis: at("L06", "puis"),
+          table: at("L06", "table"),
+          pp: at("L06", "public"),
+          dial: at("L07", "dialogue"),
+          gef: at("L07", "Gabon"),
+          huit: at("L07", "huit"),
+          decl: at("L07", "Déclaration"),
+          ref: [at("L08", "Dette"), at("L08", "fiscalité"), at("L08", "commande"), at("L08", "financement")],
+          pesent: at("L08", "pèsent"),
+          quot: at("L09", "quotidien"),
+          svc: [at("L09", "veille"), at("L09", "formations"), at("L09", "réseau"), at("L09", "médiation")],
+          fortes: at("L10", "fortes"),
+          votre: at("L10", "Votre"),
+          place: at("L10", "place"),
+          rejoignez: at("L10", "rejoignez"),
+          logo: C.logo,
+        };
+        T.jump = T.votre + 0.2; // saut dans la place
+        T.land = T.jump + 0.62;
+        T.close = T.rejoignez + 0.35; // les yeux se ferment
+        T.flat = T.rejoignez + 0.7; // aplat bronze du logo
+
+        // ---------------------------------------------------------------- géographie du monde (px ; à zoom 1 = écran final)
+        const DOTS = [[337.05,18.92],[377.5,18.89],[419.06,18.93],[337.06,58.14],[375.82,58.92],[419.06,58.96],[337.1,97.43],[375.82,98.13],[419.06,98.17],[222.19,98.91],[260.56,98.84],[297.83,98.88],[460.9,99.34],[499.0,100.12],[538.23,101.86],[184.12,136.65],[222.22,136.62],[260.56,136.59],[297.83,136.64],[337.06,140.12],[375.81,140.91],[419.06,140.91],[460.92,142.03],[499.02,142.84],[184.08,180.14],[222.18,180.11],[260.58,180.13],[297.84,180.14],[337.06,180.14],[375.81,180.91],[419.06,180.94],[460.92,182.05],[499.03,182.85],[145.7,220.5],[184.12,220.54],[222.27,220.52],[260.58,220.55],[297.83,220.53],[337.12,220.54],[375.76,221.3],[419.09,221.25],[460.92,222.44],[499.01,223.18],[538.31,222.49],[184.09,259.81],[222.18,259.82],[260.58,259.74],[297.85,259.8],[337.08,259.82],[375.82,259.82],[419.06,259.83],[460.92,260.95],[499.01,261.75],[538.2,263.1],[184.08,298.99],[222.2,300.15],[260.56,300.16],[297.84,300.16],[337.06,300.17],[375.84,300.16],[460.9,299.41],[499.03,299.41],[499.0,337.14],[222.25,338.52],[260.58,338.55],[297.81,338.54],[260.57,376.9],[297.83,376.94],[337.07,376.93],[297.83,415.27],[337.09,415.25]];
+        const K = 0.62,
+          LOGO_L = 691.54,
+          LOGO_T = 222;
+        const WP = ([px, py]) => [LOGO_L + px * K, LOGO_T + py * K];
+        const DW = DOTS.map(WP);
+        const RD = 16.5 * K; // rayon d'un point du logo à l'écran final
+        const HR = 16; // rayon du héros tant qu'il n'a pas sa place
+        const HOME = 33; // la place qui attend le héros (pointe de la côte)
+        const LBV = 24; // Libreville
+        const dLBV = DW.map(([x, y]) => Math.hypot(x - DW[LBV][0], y - DW[LBV][1]));
+        const MAXD = Math.max(...dLBV);
+        const I0 = [200, 900]; // l'espace blanc du début
+        const WAIT = [720, 395]; // le héros attend au bord de la carte
+        const RING = [1520, 1000],
+          RA = 290,
+          RB = 135;
+        const BUREAU = [1520, 700],
+          DIALOG = [1840, 700];
+        const GA = { x0: 1076, step: 15, y: [290, 440] };
+        const PANELS = [
+          [535, 217],
+          [535, 297],
+          [535, 377],
+          [535, 457],
+        ];
+
+        // ---------------------------------------------------------------- caméra 2D (centre x, y ; zoom z)
+        const keys = [];
+        const key = (t0, dur, to, ease = inOut) => keys.push({ t0, dur, to, ease });
+        const CAM0 = { x: I0[0], y: I0[1] - 20, z: 4.6 };
+        key(0, 2.6, { x: I0[0], y: I0[1] - 20, z: 5.2 }, inOutQ);
+        key(T.trio[0] - 0.6, 2.8, { x: I0[0], y: I0[1] - 40, z: 4.05 });
+        key(T.seule - 0.2, 2.6, { x: I0[0] + 30, y: I0[1] - 18, z: 1.9 });
+        key(T.depuis - 0.3, 4.4, { x: 720, y: 357, z: 2.0 }, inOutQ);
+        key(T.ens - 0.25, 1.9, { x: 1060, y: 365, z: 2.0 });
+        key(T.reunies - 0.3, 2.0, { x: RING[0], y: RING[1], z: 2.0 });
+        key(T.preocc + 0.05, 1.7, { x: RING[0], y: 805, z: 2.0 });
+        key(T.puis - 0.15, 1.3, { x: 1680, y: 790, z: 2.0 });
+        key(T.dial - 0.25, 2.3, { x: 1560, y: 955, z: 1.55 });
+        key(T.decl - 0.3, 1.3, { x: RING[0], y: RING[1] - 8, z: 2.35 });
+        key(T.ref[0] - 0.85, 1.75, { x: 720, y: 357, z: 2.0 });
+        key(T.quot - 0.5, 1.4, { x: 640, y: 380, z: 2.6 });
+        key(S("L10") - 0.3, 1.5, { x: 720, y: 357, z: 2.0 });
+        key(T.rejoignez - 0.05, 1.65, { x: 960, y: 540, z: 1 });
+        function camAt(t) {
+          let s = { ...CAM0 };
+          for (let i = 0; i < keys.length; i++) {
+            const k = keys[i];
+            if (t <= k.t0) break;
+            const next = keys[i + 1];
+            const cut = next && next.t0 < t ? next.t0 : t;
+            const e = k.ease(prog(cut, k.t0, k.dur));
+            s = { x: lerp(s.x, k.to.x, e), y: lerp(s.y, k.to.y, e), z: Math.exp(lerp(Math.log(s.z), Math.log(k.to.z), e)) };
+            if (!(next && next.t0 < t)) break;
+          }
+          return s;
+        }
+
+        // ---------------------------------------------------------------- moteur de sauts (anticipation, étirement, écrasement)
+        const mkChar = (p0) => ({ p0, hops: [] });
+        function hop(ch, ta, dur, p1, h) {
+          const pa = ch.hops.length ? ch.hops[ch.hops.length - 1].pb : ch.p0;
+          ch.hops.push({ ta, tb: ta + dur, pa, pb: p1, h });
+        }
+        // une suite de n sauts réguliers de a vers b
+        function journey(ch, t0, p1, n, dur, gap, hMul = 0.32, wobble = 0) {
+          const pa = ch.hops.length ? ch.hops[ch.hops.length - 1].pb : ch.p0;
+          for (let k = 1; k <= n; k++) {
+            const u = k / n;
+            const j = k < n ? (rnd() - 0.5) * wobble : 0;
+            const q = [lerp(pa[0], p1[0], u) + j, lerp(pa[1], p1[1], u) + j * 0.6];
+            const d = Math.hypot(p1[0] - pa[0], p1[1] - pa[1]) / n;
+            hop(ch, t0 + (k - 1) * (dur + gap), dur, q, 10 + d * hMul);
+          }
+          return t0 + n * (dur + gap);
+        }
+        function hopState(ch, t) {
+          let last = null,
+            next = null;
+          for (const hp of ch.hops) {
+            if (hp.ta <= t) last = hp;
+            else {
+              next = hp;
+              break;
+            }
+          }
+          if (last && t < last.tb) {
+            const u = (t - last.ta) / (last.tb - last.ta);
+            const x = lerp(last.pa[0], last.pb[0], u),
+              y = lerp(last.pa[1], last.pb[1], u) - last.h * 4 * u * (1 - u);
+            const vx = last.pb[0] - last.pa[0],
+              vy = last.pb[1] - last.pa[1] - last.h * 4 * (1 - 2 * u);
+            const s = 1 + 0.22 * Math.min(1, Math.abs(1 - 2 * u) * 1.25);
+            return { x, y, sx: s, sy: 1 / s, ang: Math.atan2(vy, vx), air: true, q: 0 };
+          }
+          const p = last ? last.pb : ch.p0;
+          let q = 0;
+          if (last) {
+            const d = t - last.tb;
+            q += 0.3 * Math.exp(-d * 9) * Math.cos(d * 23);
+          }
+          if (next) {
+            const d = next.ta - t;
+            if (d < 0.15) q += 0.27 * Math.sin(Math.PI * (1 - d / 0.15));
+          }
+          q = clamp(q, -0.3, 0.34);
+          return { x: p[0], y: p[1], sx: 1 + q * 0.85, sy: 1 - q, ang: 0, air: false, q };
+        }
+
+        // ---------------------------------------------------------------- les personnages
+        // 13 fédérations : 70 points (le héros est le 71e) en proportion des effectifs réels
+        const FEDS = [337, 118, 110, 83, 83, 67, 67, 61, 50, 43, 30, 29, 22];
+        const FED_N = [22, 8, 7, 5, 5, 4, 4, 4, 3, 3, 2, 2, 1];
+        const fams = FEDS.map((n, k) => {
+          const a = Math.PI / 2 - (k / FEDS.length) * Math.PI * 2;
+          const cx = RING[0] + RA * Math.cos(a),
+            cy = RING[1] - RB * Math.sin(a);
+          const nx0 = Math.cos(a) / (RA * RA),
+            ny0 = Math.sin(a) / (RB * RB);
+          const nl = Math.hypot(nx0, ny0);
+          const R = 11.6 * Math.sqrt(FED_N[k]) + 4;
+          return { k, cx, cy, nx: nx0 / nl, ny: ny0 / nl, R };
+        });
+        const mapIdx = DOTS.map((_, i) => i).filter((i) => i !== HOME);
+        const order = mapIdx.map((i) => ({ i, key: rnd() })).sort((a, b) => a.key - b.key);
+        const famOf = [];
+        FED_N.forEach((n, k) => {
+          for (let j = 0; j < n; j++) famOf.push(k);
+        });
+        const famCount = FED_N.map(() => 0);
+        const TRIO_IDX = [44, 54, 63];
+        const ACC = ["hammer", "awning", "helmet"];
+        const dots = order.map(({ i }, n) => {
+          const f = famOf[n];
+          const j = famCount[f]++;
+          const fm = fams[f];
+          const ang = j * 2.399963,
+            rr = 11.6 * Math.sqrt(j + 0.5);
+          const slot = [fm.cx + Math.cos(ang) * rr, fm.cy + Math.sin(ang) * rr * 0.92];
+          const home = DW[i];
+          const tri = TRIO_IDX.indexOf(i);
+          const d = {
+            i,
+            f,
+            home,
+            slot,
+            tri,
+            acc: tri >= 0 ? ACC[tri] : null,
+            jit: rnd(),
+            ph: rnd() * 20,
+            per: 3.2 + rnd() * 2.4,
+            wake: tri >= 0 ? T.trio[tri] : T.fed - 0.4 + (dLBV[i] / MAXD) * 2.6 + rnd() * 0.35,
+          };
+          if (tri >= 0) {
+            // les trois premiers : posés autour du héros, puis partis rejoindre la carte
+            const off = [
+              [-100, 8],
+              [100, 8],
+              [0, -95],
+            ][tri];
+            d.ch = mkChar([I0[0] + off[0], I0[1] + off[1]]);
+            hop(d.ch, T.vivre + 0.05 + tri * 0.09, 0.34, d.ch.p0, 16);
+            journey(d.ch, T.seule - 0.25 + tri * 0.12, home, 6, 0.42, 0.1, 0.25, 30);
+          } else {
+            d.ch = mkChar(home);
+            hop(d.ch, d.wake + 0.08, 0.3, home, 7); // petit saut de réveil
+          }
+          // en 13 fédérations (L05)
+          journey(d.ch, T.reunies - 0.35 + (f / 12) * 0.45 + d.jit * 0.35, slot, 3, 0.42, 0.07, 0.3, 50);
+          // retour sur la carte (L08)
+          journey(d.ch, T.ref[0] - 0.85 + d.jit * 0.6, home, 3, 0.45, 0.07, 0.3, 50);
+          // la vague (L10)
+          hop(d.ch, T.fortes + 0.05 + (dLBV[i] / MAXD) * 1.5, 0.36, home, 11);
+          return d;
+        });
+        // le héros
+        const hero = { ch: mkChar(I0), ph: 3.3, per: 4.1 };
+        hop(hero.ch, T.compte + 0.05, 0.36, I0, 14);
+        journey(hero.ch, T.rass - 1.9, WAIT, 5, 0.46, 0.15, 0.3, 26);
+        T.svc.forEach((tt) => hop(hero.ch, tt + 1.25, 0.3, WAIT, 9));
+        hop(hero.ch, T.jump, T.land - T.jump, DW[HOME], 58);
+        // points des jauges (L04) : ils sautent de la carte dans les cases
+        const gaugeDots = [];
+        [16, 18].forEach((n, g) => {
+          for (let k = 0; k < n; k++) {
+            const src = DW[mapIdx[Math.floor(rnd() * mapIdx.length)]];
+            const t0 = (g ? T.p90 : T.p80) - 0.25 + k * 0.075;
+            const ch = mkChar(src);
+            hop(ch, t0, 0.5, [GA.x0 + k * GA.step, GA.y[g]], 70 + rnd() * 30);
+            gaugeDots.push({ g, k, last: k === n - 1, ch, t0, ph: rnd() * 10, per: 3.5 + rnd() * 2 });
+          }
+        });
+        // Bureau exécutif (7) et table du dialogue (3 FEG, 3 pouvoirs publics)
+        const bureauDots = [
+          [-58, -34],
+          [0, -36],
+          [58, -34],
+          [-58, 34],
+          [0, 36],
+          [58, 34],
+          [96, 0],
+        ].map(([dx, dy], k) => ({ p: [BUREAU[0] + dx, BUREAU[1] + dy], t0: T.remont + 0.05 + k * 0.07, ph: rnd() * 10, per: 3.4 + rnd() * 2 }));
+        const dialogDots = [
+          [-92, -34, 0],
+          [-46, -36, 0],
+          [-70, 34, 0],
+          [46, -36, 1],
+          [92, -34, 1],
+          [70, 34, 1],
+        ].map(([dx, dy, pub], k) => ({ p: [DIALOG[0] + dx, DIALOG[1] + dy], pub, t0: T.puis + 0.15 + k * 0.07, ph: rnd() * 10, per: 3.4 + rnd() * 2 }));
+
+        // ---------------------------------------------------------------- dessin
+        const canvas = document.getElementById("world-cv");
+        const c = canvas.getContext("2d");
+        let Z = 1; // zoom courant (épaisseurs de trait en px écran)
+        const BR0 = "#d0cc9d",
+          BR1 = "#aaa673",
+          BR2 = "#8f8a52",
+          FLAT = "#aeae7d",
+          INK = "#3b3416";
+        const blinkAt = (t, ph, per) => {
+          const v = (((t + ph) % per) + per) % per;
+          return v < 0.16 ? Math.sin((Math.PI * v) / 0.16) : 0;
+        };
+        // un point-personnage. o : awake, flat, look [x,y], blink, closed, mouth ("smile" | "open" | "sad" | "o"), open, hero, acc, lean, alpha, pal
+        function drawChar(x, y, r, st, o) {
+          const a = o.alpha ?? 1;
+          if (a <= 0.003) return;
+          if (!isFinite(x) || !isFinite(y) || !isFinite(r) || !isFinite(st.sx) || !isFinite(st.sy)) throw new Error("NONFINITE " + JSON.stringify({ x, y, r, st, hero: !!o.hero, acc: o.acc || null }));
+          c.save();
+          c.globalAlpha = a;
+          c.translate(x, y);
+          if (st.ang) {
+            c.rotate(st.ang);
+            c.scale(st.sx, st.sy);
+            c.rotate(-st.ang);
+          } else {
+            c.translate(0, r * (1 - st.sy));
+            c.scale(st.sx, st.sy);
+          }
+          if (o.lean) {
+            c.translate(0, r);
+            c.transform(1, 0, o.lean, 1, 0, 0);
+            c.translate(0, -r);
+          }
+          const aw = clamp01(o.awake ?? 1),
+            fl = clamp01(o.flat ?? 0);
+          // corps endormi : disque clair cerclé
+          if (aw < 1) {
+            c.globalAlpha = a * (1 - aw);
+            c.fillStyle = "#ebe6d4";
+            c.beginPath();
+            c.arc(0, 0, r, 0, Math.PI * 2);
+            c.fill();
+            c.lineWidth = 1.6 / Z;
+            c.strokeStyle = "#d3cdaa";
+            c.stroke();
+            c.globalAlpha = a;
+          }
+          if (aw > 0) {
+            c.globalAlpha = a * aw;
+            const pal = o.pal || [BR0, BR1, BR2];
+            const g = c.createRadialGradient(-r * 0.35, -r * 0.42, r * 0.1, 0, 0, r);
+            g.addColorStop(0, pal[0]);
+            g.addColorStop(0.62, pal[1]);
+            g.addColorStop(1, pal[2]);
+            c.fillStyle = g;
+            c.beginPath();
+            c.arc(0, 0, r, 0, Math.PI * 2);
+            c.fill();
+            if (fl > 0) {
+              c.globalAlpha = a * aw * fl;
+              c.fillStyle = FLAT;
+              c.fill();
+            }
+            const face = (1 - fl) * aw;
+            if (face > 0.01) {
+              c.globalAlpha = a * face;
+              // reflet
+              c.fillStyle = `rgba(255,255,255,${o.hero ? 0.55 : 0.38})`;
+              c.beginPath();
+              c.ellipse(-r * 0.4, -r * 0.5, r * 0.2, r * 0.11, -0.6, 0, Math.PI * 2);
+              c.fill();
+              // le visage tourne vers ce qu'il regarde
+              let fx = 0,
+                fy = 0,
+                lx = 0,
+                ly = 0;
+              if (o.look) {
+                const dx = o.look[0] - x,
+                  dy = o.look[1] - y,
+                  d = Math.hypot(dx, dy) || 1;
+                lx = dx / d;
+                ly = dy / d;
+                fx = lx * r * 0.12;
+                fy = ly * r * 0.08;
+              }
+              if (o.sad) fy += r * 0.08 * o.sad;
+              const closed = clamp01(o.closed ?? 0),
+                bl = Math.max(clamp01(o.blink ?? 0), closed);
+              const ew = o.hero ? 0.22 : 0.2,
+                eh = o.hero ? 0.29 : 0.26;
+              for (const sx of [-0.33, 0.33]) {
+                const ex = fx + sx * r,
+                  ey = fy - 0.1 * r;
+                const h = r * eh * (1 - bl * 0.92);
+                c.fillStyle = "#ffffff";
+                c.beginPath();
+                c.ellipse(ex, ey, r * ew, Math.max(h, r * 0.02), 0, 0, Math.PI * 2);
+                c.fill();
+                if (bl < 0.7) {
+                  c.save();
+                  c.beginPath();
+                  c.ellipse(ex, ey, r * ew, Math.max(h, r * 0.02), 0, 0, Math.PI * 2);
+                  c.clip();
+                  c.fillStyle = "#1d2a22";
+                  c.beginPath();
+                  c.arc(ex + lx * r * 0.085, ey + ly * r * 0.1 + (o.sad ? r * 0.06 * o.sad : 0), r * (o.hero ? 0.12 : 0.11), 0, Math.PI * 2);
+                  c.fill();
+                  c.fillStyle = "#ffffff";
+                  c.beginPath();
+                  c.arc(ex + lx * r * 0.085 + r * 0.04, ey + ly * r * 0.1 - r * 0.045, r * 0.035, 0, Math.PI * 2);
+                  c.fill();
+                  c.restore();
+                }
+                if (closed > 0.05) {
+                  // paupière fermée : petit arc
+                  c.strokeStyle = INK;
+                  c.lineWidth = Math.max(1.2 / Z, r * 0.06);
+                  c.lineCap = "round";
+                  c.beginPath();
+                  c.arc(ex, ey - r * 0.05, r * 0.14, 0.25 * Math.PI, 0.75 * Math.PI);
+                  c.stroke();
+                }
+              }
+              // bouche
+              c.strokeStyle = INK;
+              c.fillStyle = "#4a2a16";
+              c.lineWidth = Math.max(1.1 / Z, r * 0.065);
+              c.lineCap = "round";
+              const mx = fx + (o.hero ? r * 0.1 : 0),
+                my = fy + r * 0.3;
+              const mouth = o.mouth || "smile";
+              if (mouth === "open" && (o.open ?? 1) > 0.05) {
+                c.beginPath();
+                c.ellipse(mx, my + r * 0.04, r * 0.19, r * 0.26 * (o.open ?? 1), 0, 0, Math.PI * 2);
+                c.fill();
+              } else if (mouth === "sad") {
+                c.beginPath();
+                c.arc(mx, my + r * 0.2, r * 0.15, 1.2 * Math.PI, 1.8 * Math.PI);
+                c.stroke();
+              } else if (mouth === "o") {
+                c.beginPath();
+                c.ellipse(mx, my, r * 0.07, r * 0.09, 0, 0, Math.PI * 2);
+                c.fill();
+              } else {
+                c.beginPath();
+                c.arc(mx, my - r * 0.12, r * (o.hero ? 0.2 : 0.17), 0.22 * Math.PI, 0.78 * Math.PI);
+                c.stroke();
+              }
+              if (o.hero) {
+                c.fillStyle = "rgba(214,120,90,0.35)";
+                for (const sx of [-0.6, 0.66]) {
+                  c.beginPath();
+                  c.ellipse(fx + sx * r, fy + r * 0.2, r * 0.15, r * 0.085, 0.4, 0, Math.PI * 2);
+                  c.fill();
+                }
+              }
+              // accessoire du métier
+              if (o.acc) drawAcc(o.acc, r, clamp01(o.accA ?? 1) * face);
+            }
+          }
+          c.restore();
+        }
+        function drawAcc(kind, r, a) {
+          if (a <= 0.01) return;
+          c.save();
+          c.globalAlpha *= a;
+          c.lineCap = "round";
+          if (kind === "hammer") {
+            c.save();
+            c.translate(r * 0.95, -r * 0.15);
+            c.rotate(-0.55);
+            c.fillStyle = "#a36f3d";
+            c.fillRect(-r * 0.09, -r * 0.9, r * 0.18, r * 1.05);
+            c.fillStyle = "#7d8188";
+            c.beginPath();
+            c.roundRect(-r * 0.38, -r * 1.12, r * 0.76, r * 0.32, r * 0.08);
+            c.fill();
+            c.restore();
+          } else if (kind === "awning") {
+            const n = 6,
+              w = r * 2.3,
+              y0 = -r * 1.28;
+            for (let k = 0; k < n; k++) {
+              c.fillStyle = k % 2 ? "#ffffff" : "#c4572e";
+              const x0 = -w / 2 + (k * w) / n;
+              c.beginPath();
+              c.moveTo(x0, y0);
+              c.lineTo(x0 + w / n, y0);
+              c.lineTo(x0 + w / n, y0 + r * 0.32);
+              c.arc(x0 + w / (2 * n), y0 + r * 0.32, w / (2 * n), 0, Math.PI);
+              c.closePath();
+              c.fill();
+            }
+            c.strokeStyle = "#8a3a1e";
+            c.lineWidth = r * 0.07;
+            c.beginPath();
+            c.moveTo(-w / 2, y0);
+            c.lineTo(w / 2, y0);
+            c.stroke();
+          } else if (kind === "helmet") {
+            c.fillStyle = "#f2c230";
+            c.beginPath();
+            c.arc(0, -r * 0.42, r * 0.86, Math.PI, 2 * Math.PI);
+            c.closePath();
+            c.fill();
+            c.fillStyle = "#d9a91c";
+            c.beginPath();
+            c.roundRect(-r * 1.08, -r * 0.5, r * 2.16, r * 0.18, r * 0.09);
+            c.fill();
+            c.fillStyle = "rgba(255,255,255,0.5)";
+            c.beginPath();
+            c.ellipse(-r * 0.3, -r * 0.95, r * 0.22, r * 0.09, -0.3, 0, Math.PI * 2);
+            c.fill();
+          }
+          c.restore();
+        }
+        // bulle de parole (centre, taille), avec queue vers (tx, ty)
+        function bubble(x, y, w, h, a, tail, dotsA = 0) {
+          if (a <= 0.003) return;
+          c.save();
+          c.globalAlpha = a;
+          c.fillStyle = "#fffdf6";
+          c.strokeStyle = BR2;
+          c.lineWidth = 2.2 / Z;
+          c.beginPath();
+          c.roundRect(x - w / 2, y - h / 2, w, h, Math.min(h / 2, 26));
+          if (tail) {
+            const [tx, ty] = tail;
+            const bx = clamp(tx, x - w / 2 + 14, x + w / 2 - 14);
+            const by = ty > y ? y + h / 2 : y - h / 2;
+            c.moveTo(bx - 9, by);
+            c.lineTo(tx, ty);
+            c.lineTo(bx + 9, by);
+          }
+          c.fill();
+          c.stroke();
+          if (dotsA > 0) {
+            c.fillStyle = BR2;
+            c.globalAlpha = a * dotsA;
+            for (let k = -1; k <= 1; k++) {
+              c.beginPath();
+              c.arc(x + k * h * 0.32, y, h * 0.09, 0, Math.PI * 2);
+              c.fill();
+            }
+          }
+          c.restore();
+        }
+        function rrect(x, y, w, h, rad, fill, stroke, lw = 1.6) {
+          c.beginPath();
+          c.roundRect(x - w / 2, y - h / 2, w, h, rad);
+          if (fill) {
+            c.fillStyle = fill;
+            c.fill();
+          }
+          if (stroke) {
+            c.strokeStyle = stroke;
+            c.lineWidth = lw / Z;
+            c.stroke();
+          }
+        }
+        // icônes des services (dessinées dans un disque de rayon r)
+        function badge(x, y, r, kind, a) {
+          if (a <= 0.003) return;
+          c.save();
+          c.globalAlpha = a;
+          c.translate(x, y);
+          c.fillStyle = "#fffaf0";
+          c.strokeStyle = BR2;
+          c.lineWidth = r * 0.14;
+          c.beginPath();
+          c.arc(0, 0, r, 0, Math.PI * 2);
+          c.fill();
+          c.stroke();
+          c.strokeStyle = "#0b5a33";
+          c.fillStyle = "#0b5a33";
+          c.lineWidth = r * 0.13;
+          c.lineCap = "round";
+          c.lineJoin = "round";
+          if (kind === 0) {
+            c.beginPath();
+            c.arc(-r * 0.12, -r * 0.12, r * 0.36, 0, Math.PI * 2);
+            c.stroke();
+            c.beginPath();
+            c.moveTo(r * 0.14, r * 0.14);
+            c.lineTo(r * 0.5, r * 0.5);
+            c.stroke();
+          } else if (kind === 1) {
+            c.beginPath();
+            c.moveTo(-r * 0.6, -r * 0.12);
+            c.lineTo(0, -r * 0.42);
+            c.lineTo(r * 0.6, -r * 0.12);
+            c.lineTo(0, r * 0.18);
+            c.closePath();
+            c.fill();
+            c.beginPath();
+            c.moveTo(-r * 0.32, r * 0.05);
+            c.lineTo(-r * 0.32, r * 0.36);
+            c.quadraticCurveTo(0, r * 0.56, r * 0.32, r * 0.36);
+            c.lineTo(r * 0.32, r * 0.05);
+            c.stroke();
+          } else if (kind === 2) {
+            const P = [
+              [0, -r * 0.45],
+              [-r * 0.45, r * 0.3],
+              [r * 0.45, r * 0.3],
+            ];
+            c.beginPath();
+            c.moveTo(...P[0]);
+            c.lineTo(...P[1]);
+            c.lineTo(...P[2]);
+            c.closePath();
+            c.stroke();
+            for (const p of P) {
+              c.beginPath();
+              c.arc(p[0], p[1], r * 0.17, 0, Math.PI * 2);
+              c.fill();
+            }
+          } else {
+            c.beginPath();
+            c.moveTo(0, -r * 0.5);
+            c.lineTo(0, r * 0.45);
+            c.moveTo(-r * 0.3, r * 0.45);
+            c.lineTo(r * 0.3, r * 0.45);
+            c.moveTo(-r * 0.55, -r * 0.28);
+            c.lineTo(r * 0.55, -r * 0.28);
+            c.stroke();
+            for (const s of [-1, 1]) {
+              c.beginPath();
+              c.arc(s * r * 0.5, -r * 0.05, r * 0.2, 0, Math.PI);
+              c.fill();
+            }
+          }
+          c.restore();
+        }
+
+        // ---------------------------------------------------------------- étiquettes HTML projetées
+        const $ = (id) => document.getElementById(id);
+        let cam = CAM0;
+        const toScreen = (x, y) => [(x - cam.x) * cam.z + 960, (y - cam.y) * cam.z + 540];
+        const toWorld = (sx, sy, cm) => [(sx - 960) / cm.z + cm.x, (sy - 540) / cm.z + cm.y];
+        function place(name, x, y, a, ax = 0.5, ay = 0.5, dx = 0, dy = 0) {
+          const el = $("wl-" + name);
+          if (a <= 0.002) {
+            el.style.opacity = "0";
+            return;
+          }
+          const [sx, sy] = toScreen(x, y);
+          const w = el.offsetWidth,
+            h = el.offsetHeight;
+          el.style.opacity = a.toFixed(3);
+          el.style.transform = `translate(${Math.round(sx + dx - w * ax)}px, ${Math.round(sy + dy - h * ay + (1 - a) * 8)}px)`;
+        }
+
+        // badges : départ à gauche de chaque ligne de la liste (titres), arrivée en orbite autour du héros
+        const CAM_L09 = { x: 640, y: 380, z: 2.6 };
+        const LIST_Y = [386, 498, 610, 722];
+        const BADGE_FROM = LIST_Y.map((y) => toWorld(118, y, CAM_L09));
+        let page = null;
+
+        // ---------------------------------------------------------------- une image
+        function render(t) {
+          cam = camAt(t);
+          const drift = 1 - prog(t, T.rejoignez - 0.2, 1.0);
+          cam = { x: cam.x + Math.sin(t * 0.31) * 2.2 * drift, y: cam.y + Math.cos(t * 0.27) * 1.6 * drift, z: cam.z };
+          Z = cam.z;
+          const white = inOut(prog(t, T.rejoignez + 0.2, 1.3));
+          // fond : blanc chaud, puis blanc pur pour la carte de fin
+          c.setTransform(1, 0, 0, 1, 0, 0);
+          const bg = c.createRadialGradient(1100, 470, 120, 1000, 540, 1250);
+          bg.addColorStop(0, "#fffdf8");
+          bg.addColorStop(1, "#f0ebde");
+          c.fillStyle = bg;
+          c.fillRect(0, 0, 1920, 1080);
+          if (white > 0) {
+            c.globalAlpha = white;
+            c.fillStyle = "#ffffff";
+            c.fillRect(0, 0, 1920, 1080);
+            c.globalAlpha = 1;
+          }
+          c.setTransform(cam.z, 0, 0, cam.z, 960 - cam.x * cam.z, 540 - cam.y * cam.z);
+
+          const hs = hopState(hero.ch, t);
+          const heroPos = [hs.x, hs.y];
+          const close = clamp01((t - T.close) / 0.45);
+          const flat = inOut(prog(t, T.flat, 0.7));
+
+          // --- la place vide du héros
+          {
+            const a = win(t, T.fed, 0.8, T.land - 0.05, 0.25) * (1 - win(t, T.reunies, 0.3, T.ref[0] + 0.6, 0.6));
+            if (a > 0.01) {
+              const [x, y] = DW[HOME];
+              const pu = 1 + 0.08 * Math.sin(t * 4.2);
+              c.save();
+              c.globalAlpha = a;
+              c.fillStyle = "rgba(174,174,125,0.16)";
+              c.beginPath();
+              c.arc(x, y, (RD + 6) * pu, 0, Math.PI * 2);
+              c.fill();
+              c.setLineDash([4 / Z, 5 / Z]);
+              c.strokeStyle = BR2;
+              c.lineWidth = 2.2 / Z;
+              c.beginPath();
+              c.arc(x, y, RD - 0.6, 0, Math.PI * 2);
+              c.stroke();
+              c.setLineDash([]);
+              // étincelles quand le héros la regarde
+              const sp = bump(t, T.rass + 1.6, 0.6) + bump(t, T.votre, 0.5);
+              if (sp > 0.02) {
+                c.globalAlpha = a * sp;
+                c.lineCap = "round";
+                c.lineWidth = 2.4 / Z;
+                for (let k = 0; k < 6; k++) {
+                  const an = (k / 6) * Math.PI * 2 + 0.3;
+                  c.beginPath();
+                  c.moveTo(x + Math.cos(an) * (RD + 7), y + Math.sin(an) * (RD + 7));
+                  c.lineTo(x + Math.cos(an) * (RD + 15), y + Math.sin(an) * (RD + 15));
+                  c.stroke();
+                }
+              }
+              c.restore();
+            }
+          }
+
+          // --- L04 : deux jauges remplies de points
+          const gaugeA = win(t, T.ens - 0.1, 0.5, T.reunies - 0.3, 0.5);
+          if (gaugeA > 0.01) {
+            c.save();
+            c.globalAlpha = gaugeA;
+            for (let g = 0; g < 2; g++) {
+              const y = GA.y[g],
+                x0 = GA.x0 - 14,
+                x1 = GA.x0 + 19 * GA.step + 14;
+              rrect((x0 + x1) / 2, y, x1 - x0, 26, 13, "#efeadb", "#d8d2b4", 1.6);
+              for (let k = 0; k < 20; k++) {
+                c.fillStyle = "#e2dcc6";
+                c.beginPath();
+                c.arc(GA.x0 + k * GA.step, y, 5.4, 0, Math.PI * 2);
+                c.fill();
+              }
+            }
+            c.restore();
+          }
+          gaugeDots.forEach((d) => {
+            const a = gaugeA * prog(t, d.t0 - 0.02, 0.06);
+            if (a <= 0.01) return;
+            const st = hopState(d.ch, t);
+            const pal = d.g ? ["#7fc79a", "#3c9363", "#226a43"] : [BR0, BR1, BR2];
+            drawChar(st.x, st.y, 6.4, st, { awake: 1, alpha: a, pal, look: d.last ? null : [st.x + 40, st.y], blink: blinkAt(t, d.ph, d.per), mouth: d.last ? "smile" : "smile" });
+          });
+
+          // --- L05-L07 : sol du Forum, ateliers, page de la Déclaration
+          const forumA = win(t, T.gef - 0.15, 0.6, T.ref[0] - 0.7, 0.6);
+          if (forumA > 0.01) {
+            c.save();
+            c.globalAlpha = forumA;
+            const s = 0.9 + 0.1 * out3(prog(t, T.gef - 0.15, 0.7));
+            c.fillStyle = "#f2ecd9";
+            c.beginPath();
+            c.ellipse(RING[0], RING[1] + 6, 352 * s, 196 * s, 0, 0, Math.PI * 2);
+            c.fill();
+            c.setLineDash([7 / Z, 8 / Z]);
+            c.strokeStyle = "#c9c094";
+            c.lineWidth = 2 / Z;
+            c.stroke();
+            c.setLineDash([]);
+            c.restore();
+          }
+          const tablesA = win(t, T.huit - 0.15, 0.4, T.decl + 0.05, 0.5);
+          for (let k = 0; k < 8; k++) {
+            const a = tablesA * out3(prog(t, T.huit - 0.1 + k * 0.07, 0.3));
+            if (a <= 0.01) continue;
+            const col = k % 4,
+              row = Math.floor(k / 4);
+            const spread = 1 + 0.5 * inOut(prog(t, T.decl - 0.05, 0.6));
+            const x = RING[0] + (-84 + col * 56) * spread,
+              y = RING[1] + (-21 + row * 42) * spread;
+            const sc = pop(t, T.huit - 0.1 + k * 0.07, 0.45);
+            c.save();
+            c.globalAlpha = a;
+            c.translate(x, y);
+            c.scale(sc, sc);
+            rrect(0, 0, 44, 18, 7, "#e6dfc4", "#b7ae80", 1.6);
+            c.restore();
+          }
+          {
+            const up = out3(prog(t, T.decl - 0.1, 0.7));
+            const gone = 1 - inOut(prog(t, T.ref[0] - 0.9, 0.6));
+            const a = up * gone;
+            if (a > 0.01 && page) {
+              const s = (0.35 + 0.65 * pop(t, T.decl - 0.1, 0.7)) * (1 - 0.2 * (1 - gone));
+              const w = 100 * s,
+                h = 141.4 * s;
+              const y = RING[1] + 8 - 12 * up;
+              c.save();
+              c.globalAlpha = a;
+              c.shadowColor = "rgba(60,50,20,0.22)";
+              c.shadowBlur = 14 * Z;
+              c.shadowOffsetY = 5 * Z;
+              c.fillStyle = "#ffffff";
+              c.fillRect(RING[0] - w / 2 - 2, y - h / 2 - 2, w + 4, h + 4);
+              c.shadowColor = "transparent";
+              c.drawImage(page, RING[0] - w / 2, y - h / 2, w, h);
+              c.strokeStyle = "#cfc7a0";
+              c.lineWidth = 1.2 / Z;
+              c.strokeRect(RING[0] - w / 2 - 2, y - h / 2 - 2, w + 4, h + 4);
+              c.restore();
+            }
+          }
+
+          // --- L06 : tables du Bureau exécutif et du dialogue public-privé
+          const bureauA = win(t, T.remont - 0.1, 0.4, T.dial - 0.1, 0.6);
+          if (bureauA > 0.01) {
+            c.save();
+            c.globalAlpha = bureauA;
+            const sc = pop(t, T.remont - 0.1, 0.5);
+            c.translate(BUREAU[0], BUREAU[1]);
+            c.scale(sc, sc);
+            rrect(0, 0, 170, 42, 18, "#0f5a33", null);
+            rrect(0, -6, 158, 18, 9, "rgba(255,255,255,0.08)", null);
+            c.restore();
+          }
+          const dialogA = win(t, T.puis + 0.05, 0.4, T.dial - 0.1, 0.6);
+          if (dialogA > 0.01) {
+            c.save();
+            c.globalAlpha = dialogA;
+            const sc = pop(t, T.puis + 0.05, 0.5);
+            c.translate(DIALOG[0], DIALOG[1]);
+            c.scale(sc, sc);
+            rrect(0, 0, 240, 42, 18, "#e8e1c7", "#b7ae80", 1.8);
+            c.strokeStyle = "#b7ae80";
+            c.lineWidth = 1.6 / Z;
+            c.setLineDash([4 / Z, 5 / Z]);
+            c.beginPath();
+            c.moveTo(0, -16);
+            c.lineTo(0, 16);
+            c.stroke();
+            c.restore();
+          }
+
+          // --- L08 : les quatre réformes
+          T.ref.forEach((tt, k) => {
+            const a = win(t, tt - 0.12, 0.3, T.quot - 0.6, 0.5);
+            if (a <= 0.01) return;
+            const [x, y] = PANELS[k];
+            const sc = pop(t, tt - 0.12, 0.5);
+            const wob = Math.sin((t - T.pesent) * 13) * 0.035 * win(t, T.pesent - 0.1, 0.2, T.pesent + 1.3, 0.6);
+            c.save();
+            c.globalAlpha = a;
+            c.translate(x, y);
+            c.rotate(wob);
+            c.scale(sc, sc);
+            c.shadowColor = "rgba(60,50,20,0.14)";
+            c.shadowBlur = 10 * Z;
+            c.shadowOffsetY = 3 * Z;
+            rrect(0, 0, 232, 58, 14, "#fffdf6", null);
+            c.shadowColor = "transparent";
+            rrect(0, 0, 232, 58, 14, null, "#c9c294", 2);
+            c.fillStyle = k % 2 ? "#3c9363" : BR1;
+            c.beginPath();
+            c.arc(-98, 0, 6.5, 0, Math.PI * 2);
+            c.fill();
+            c.restore();
+          });
+
+          // --- les 70 points de la carte (et les trois métiers)
+          const ringLook = (p) => {
+            if (t > T.decl - 0.2 && t < T.ref[0] - 0.5) return [RING[0], RING[1] - 10];
+            if (t > T.seuleV - 0.3 && t < T.preocc + 1.4) return bubblePos(t) || [RING[0], RING[1]];
+            return [RING[0], RING[1]];
+          };
+          const lean = win(t, T.pesent - 0.15, 0.35, T.pesent + 1.25, 0.5);
+          const list = [];
+          for (const d of dots) {
+            const st = hopState(d.ch, t);
+            let aw = d.tri >= 0 ? out3(prog(t, d.wake - 0.05, 0.3)) : out3(prog(t, d.wake, 0.35));
+            let alpha = 1;
+            let scale = 1;
+            if (d.tri >= 0) {
+              scale = pop(t, d.wake - 0.08, 0.5);
+              alpha = scale > 0.001 ? 1 : 0;
+            } else alpha = 1;
+            // regard
+            let look = null;
+            const inRing = t > d.ch.hops[d.tri >= 0 ? 7 : 1].ta && t < T.ref[0] - 0.4;
+            if (d.tri >= 0 && t < T.seule) look = heroPos;
+            else if (inRing) look = ringLook(st);
+            else if (t > T.ref[0] && t < T.quot) look = [PANELS[1][0], PANELS[1][1] + 40];
+            else if (t > T.fed - 0.5 && t < T.reunies) look = heroPos;
+            else if (t > T.quot && t < T.rejoignez + 0.3) look = heroPos;
+            const sing = win(t, T.seuleV - 0.12, 0.15, T.preocc - 0.05, 0.25);
+            const opn = sing * (0.65 + 0.35 * Math.sin(t * 15 + d.ph));
+            list.push({
+              y: st.y,
+              draw: () =>
+                drawChar(st.x, st.y, RD * scale, st, {
+                  awake: aw,
+                  flat,
+                  look,
+                  blink: blinkAt(t, d.ph, d.per),
+                  closed: close,
+                  mouth: opn > 0.05 ? "open" : "smile",
+                  open: opn,
+                  acc: d.acc,
+                  accA: out3(prog(t, d.wake + 0.12, 0.3)),
+                  lean: -0.32 * lean * (st.air ? 0 : 1),
+                  alpha,
+                }),
+            });
+          }
+          // Bureau et table du dialogue : leurs membres
+          bureauDots.forEach((b) => {
+            const a = bureauA;
+            const s = pop(t, b.t0, 0.5);
+            if (a * s <= 0.01) return;
+            list.push({ y: b.p[1], draw: () => drawChar(b.p[0], b.p[1], RD * 0.9 * s, { sx: 1, sy: 1, ang: 0 }, { awake: 1, look: bubblePos(t) || BUREAU, blink: blinkAt(t, b.ph, b.per), alpha: a }) });
+          });
+          dialogDots.forEach((b) => {
+            const a = dialogA;
+            const s = pop(t, b.t0, 0.5);
+            if (a * s <= 0.01) return;
+            const pal = b.pub ? ["#cfdbe8", "#93a9c1", "#6f86a1"] : null;
+            list.push({ y: b.p[1], draw: () => drawChar(b.p[0], b.p[1], RD * 0.9 * s, { sx: 1, sy: 1, ang: 0 }, { awake: 1, pal, look: b.pub ? [DIALOG[0] - 80, DIALOG[1]] : [DIALOG[0] + 80, DIALOG[1]], blink: blinkAt(t, b.ph, b.per), alpha: a }) });
+          });
+          // le héros
+          {
+            const landed = prog(t, T.land - 0.02, 0.5);
+            const r = lerp(HR, RD, inOut(landed));
+            let look = null,
+              mouth = "smile",
+              sad = 0;
+            if (t < T.chaque) look = null;
+            else if (t < T.seule) {
+              const k = T.trio.filter((tt) => t > tt - 0.05).length;
+              look = k ? [I0[0] + [-100, 100, 0][k - 1], I0[1] + [8, 8, -95][k - 1]] : null;
+            } else if (t < T.voix2 - 0.2) look = [I0[0] + 300, I0[1] - 120];
+            else if (t < T.depuis + 0.6) {
+              sad = out3(prog(t, T.voix2 - 0.1, 0.5));
+              mouth = "sad";
+              look = [I0[0] + 10, I0[1] + 60];
+            } else if (t < T.ens) look = DW[HOME];
+            else if (t < T.ref[0]) look = [1300, 360];
+            else if (t < T.quot) look = PANELS[1];
+            else if (t < T.svc[3] + 1.6) {
+              const k = T.svc.filter((tt) => t > tt + 0.2).length;
+              look = k ? badgePos(Math.max(0, k - 1), t) : [400, 500];
+            } else if (t < T.jump) look = DW[HOME];
+            else look = null;
+            const sleepy = 1 - prog(t, T.chaque - 0.1, 0.35);
+            list.push({
+              y: hs.y + 1,
+              draw: () =>
+                drawChar(hs.x, hs.y, r * (1 + 0.025 * Math.sin(t * 2.3) * (1 - landed)), hs, {
+                  hero: landed < 0.5,
+                  awake: 1,
+                  flat,
+                  look,
+                  sad,
+                  mouth,
+                  blink: Math.max(blinkAt(t, hero.ph, hero.per), sleepy),
+                  closed: Math.max(close, sleepy * 0.9),
+                }),
+            });
+          }
+          list.sort((a, b) => a.y - b.y).forEach((o) => o.draw());
+
+          // --- bulles : L02 (la voix qui se perd), L05-L06 (une seule voix qui remonte)
+          {
+            const a = win(t, T.pese - 0.05, 0.25, T.voix2 + 0.05, 0.7);
+            if (a > 0.01) {
+              const s = 1 - 0.75 * inOut(prog(t, T.voix2, 0.8));
+              bubble(hs.x + 40, hs.y - 44 - 6 * (1 - s), 54 * s, 32 * s, a, [hs.x + 15, hs.y - 15], 1);
+            }
+          }
+          const bp = bubblePos(t);
+          if (bp) {
+            const [x, y, w, h, a, tail] = bp;
+            bubble(x, y, w, h, a, tail, prog(t, T.preocc - 0.05, 0.4));
+          }
+          // voix convergentes vers la bulle commune
+          {
+            const a = win(t, T.seuleV - 0.05, 0.2, T.preocc, 0.3);
+            if (a > 0.01) {
+              c.save();
+              c.globalAlpha = a * 0.7;
+              c.strokeStyle = BR1;
+              c.lineWidth = 2 / Z;
+              c.setLineDash([3 / Z, 6 / Z]);
+              c.lineDashOffset = -t * 30 / Z;
+              fams.forEach((fm) => {
+                const dx = RING[0] - fm.cx,
+                  dy = RING[1] - fm.cy,
+                  d = Math.hypot(dx, dy);
+                c.beginPath();
+                c.moveTo(fm.cx + (dx / d) * (fm.R + 6), fm.cy + (dy / d) * (fm.R + 6));
+                c.lineTo(RING[0] - (dx / d) * 112, RING[1] - (dy / d) * 46);
+                c.stroke();
+              });
+              c.restore();
+            }
+          }
+
+          // --- L09 : les badges des services, puis leur orbite autour du héros
+          T.svc.forEach((tt, k) => {
+            const a = win(t, tt - 0.05, 0.25, T.jump + 0.1, 0.4);
+            if (a <= 0.01) return;
+            const [x, y] = badgePos(k, t);
+            const s = pop(t, tt - 0.05, 0.45) * (1 + 0.6 * bump(t, T.jump + 0.3, 0.2));
+            badge(x, y, 11 * s, k, a);
+          });
+
+          // --- étiquettes
+          T.trio.forEach((tt, k) => {
+            const d = dots.find((q) => q.tri === k);
+            const st = hopState(d.ch, t);
+            place("a" + k, st.x, st.y - RD - (k === 2 ? 14 : 6), win(t, tt + 0.05, 0.35, T.seule - 0.3, 0.35), 0.5, 1, 0, -6);
+          });
+          place("g1", GA.x0 - 14, GA.y[0] - 20, gaugeA * out3(prog(t, T.p80 - 0.2, 0.4)), 0, 1);
+          place("g1b", GA.x0 - 14, GA.y[0] + 20, gaugeA * out3(prog(t, T.p80 + 0.5, 0.4)), 0, 0);
+          place("g2", GA.x0 - 14, GA.y[1] - 20, gaugeA * out3(prog(t, T.p90 - 0.2, 0.4)), 0, 1);
+          place("g2b", GA.x0 - 14, GA.y[1] + 20, gaugeA * out3(prog(t, T.p90 + 0.5, 0.4)), 0, 0);
+          const famA = win(t, T.treize + 0.55, 0.45, T.preocc - 0.1, 0.4);
+          fams.forEach((fm, k) => {
+            const ax = 0.5 - 0.5 * clamp(fm.nx / 0.5, -1, 1),
+              ay = 0.5 + 0.5 * clamp(fm.ny / 0.5, -1, 1);
+            const el = $("wl-f" + k);
+            el.style.textAlign = ax < 0.2 ? "left" : ax > 0.8 ? "right" : "center";
+            place("f" + k, fm.cx + fm.nx * (fm.R + 10), fm.cy - fm.ny * (fm.R + 10), famA * out3(prog(t, T.treize + 0.55 + k * 0.04, 0.4)), ax, ay);
+          });
+          place("bub", RING[0], RING[1] - 2, win(t, T.seuleV + 0.05, 0.3, T.preocc - 0.15, 0.3), 0.5, 0.5);
+          place("bureau", BUREAU[0], BUREAU[1] + 62, win(t, T.bureau - 0.05, 0.4, T.dial - 0.2, 0.4), 0.5, 0);
+          place("dlg", DIALOG[0], DIALOG[1] - 64, win(t, T.pp - 0.15, 0.4, T.dial - 0.2, 0.4), 0.5, 1);
+          place("pub", DIALOG[0] + 70, DIALOG[1] + 62, win(t, T.table - 0.05, 0.4, T.dial - 0.2, 0.4), 0.5, 0);
+          place("feg", DIALOG[0] - 70, DIALOG[1] + 62, win(t, T.table - 0.05, 0.4, T.dial - 0.2, 0.4), 0.5, 0);
+          T.ref.forEach((tt, k) => place("r" + k, PANELS[k][0] + 10, PANELS[k][1], win(t, tt, 0.35, T.quot - 0.6, 0.5), 0.5, 0.5));
+          place("decl", RING[0], RING[1] + 8 + 74, win(t, T.decl + 0.15, 0.4, T.ref[0] - 0.95, 0.4), 0.5, 0);
+        }
+
+        // position, taille et opacité de la bulle commune (L05-L06) ; null si absente
+        function bubblePos(t) {
+          const a0 = out3(prog(t, T.seuleV - 0.12, 0.35));
+          if (a0 <= 0 || t > T.pp + 0.9) return null;
+          let x = RING[0],
+            y = RING[1],
+            w = 236,
+            h = 82,
+            a = a0;
+          const s0 = pop(t, T.seuleV - 0.12, 0.55);
+          w *= s0;
+          h *= s0;
+          // remonte jusqu'au Bureau exécutif
+          const u1 = inOutQ(prog(t, T.preocc - 0.05, 1.3));
+          if (u1 > 0) {
+            x = RING[0];
+            y = lerp(RING[1], BUREAU[1] - 2, u1);
+            w = lerp(w, 92, u1);
+            h = lerp(h, 46, u1);
+          }
+          // se pose sur la table, puis repart vers le dialogue
+          const sit = win(t, T.bureau - 0.25, 0.3, T.puis, 0.25);
+          const u2 = inOutQ(prog(t, T.puis + 0.05, 0.9));
+          if (u2 > 0) {
+            x = lerp(BUREAU[0], DIALOG[0], u2);
+            y = BUREAU[1] - 2 - Math.sin(u2 * Math.PI) * 60;
+          }
+          a *= 1 - 0.55 * sit * (1 - u2);
+          a *= 1 - in3(prog(t, T.pp + 0.1, 0.7));
+          return [x, y, w, h, a, null];
+        }
+        // position d'un badge : apparition à gauche de sa ligne, vol, puis orbite autour du héros
+        function badgePos(k, t) {
+          const tt = T.svc[k];
+          const st = hopState(hero.ch, t);
+          const ang = -2.4 + k * 1.6 + (t - T.svc[0]) * 0.55;
+          const orb = [st.x + Math.cos(ang) * 34, st.y + Math.sin(ang) * 30];
+          const u = inOutQ(prog(t, tt + 0.45, 0.8));
+          if (u <= 0) return BADGE_FROM[k];
+          if (u >= 1) return orb;
+          const f = BADGE_FROM[k];
+          return [lerp(f[0], orb[0], u), lerp(f[1], orb[1], u) - Math.sin(u * Math.PI) * 40];
+        }
+
+        (async function init() {
+          await Promise.all([
+            document.fonts.load('500 28px "Hyundai Sans Head"'),
+            document.fonts.load('700 36px "Hyundai Sans Head"'),
+            document.fonts.load('400 32px "Hyundai Sans Text"'),
+          ]).catch(() => {});
+          page = await new Promise((res) => {
+            const i = new Image();
+            i.onload = () => res(i);
+            i.onerror = () => res(null);
+            i.src = "assets/img/declaration-p1.jpg";
+          });
+          host.render = render;
+          render(host.clock.t);
+          host.ready();
+        })();
+      })();
+    </script>
+  </body>
+</html>

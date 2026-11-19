@@ -1,0 +1,227 @@
+<template>
+  <!-- Titres du film « Le point bronze » : posés là où la scène laisse la place, encre vert profond et bronze. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #063d21;
+    }
+    .tt {
+      position: absolute;
+      opacity: 0;
+    }
+    .k {
+      display: block;
+      font-weight: 500;
+      font-size: 40px;
+      color: #5c6259;
+    }
+    .big {
+      display: block;
+      font-weight: 700;
+      font-size: 150px;
+      line-height: 0.95;
+      letter-spacing: -0.025em;
+      color: #8a8450;
+      font-variant-numeric: tabular-nums;
+    }
+    .h {
+      display: block;
+      font-weight: 700;
+      font-size: 64px;
+      line-height: 1.06;
+      letter-spacing: -0.012em;
+    }
+    .s {
+      display: block;
+      font-weight: 500;
+      font-size: 44px;
+      line-height: 1.12;
+      color: #1f2a22;
+    }
+    .row {
+      display: flex;
+      align-items: baseline;
+      gap: 22px;
+    }
+    #t-1959 {
+      left: 132px;
+      top: 176px;
+    }
+    #t-feg {
+      left: 132px;
+      top: 404px;
+      width: 700px;
+    }
+    #t-1100 {
+      left: 132px;
+      top: 600px;
+    }
+    #t-13 {
+      left: 560px;
+      top: 430px;
+      width: 800px;
+      text-align: center;
+    }
+    #t-gef {
+      left: 360px;
+      top: 70px;
+      width: 1200px;
+      text-align: center;
+    }
+    #t-gef .h {
+      font-size: 70px;
+    }
+    #t-8 {
+      left: 660px;
+      top: 250px;
+      width: 600px;
+      text-align: center;
+    }
+    #t-8 .s {
+      color: #8a8450;
+      font-weight: 700;
+    }
+    #t-decl {
+      left: 360px;
+      top: 84px;
+      width: 1200px;
+      text-align: center;
+    }
+    #t-quot {
+      left: 132px;
+      top: 230px;
+    }
+    .item {
+      position: absolute;
+      left: 176px;
+      opacity: 0;
+      font-weight: 700;
+      font-size: 46px;
+      color: #063d21;
+      white-space: nowrap;
+    }
+    .item i {
+      font-style: normal;
+      color: #0b6a3a;
+      margin-left: 14px;
+      font-size: 40px;
+    }
+    #t-fort {
+      left: 132px;
+      top: 330px;
+    }
+    #t-fort .h {
+      font-size: 56px;
+      line-height: 1.16;
+    }
+    #t-fort span span {
+      display: block;
+    }
+    #t-place {
+      left: 132px;
+      top: 300px;
+    }
+    #t-place .h {
+      font-size: 80px;
+      line-height: 1.06;
+    }
+    #t-place em {
+      font-style: normal;
+      color: #8a8450;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-titles" data-width="1920" data-height="1080">
+    <div id="t-1959" class="tt"><span class="k">Depuis</span><span class="big">1959</span></div>
+    <div id="t-feg" class="tt"><span class="h">Fédération des Entreprises du Gabon</span></div>
+    <div id="t-1100" class="tt">
+      <span class="k">plus de</span>
+      <div class="row"><span id="n-1100" class="big">1 100</span><span class="s">entreprises</span></div>
+    </div>
+    <div id="t-13" class="tt"><span class="big">13</span><span class="s">fédérations métiers</span></div>
+    <div id="t-gef" class="tt"><span class="k">Le grand rendez-vous du dialogue</span><span class="h">Gabon Economic Forum</span></div>
+    <div id="t-8" class="tt"><span class="s">8 ateliers</span></div>
+    <div id="t-quot" class="tt"><span class="k">Au quotidien</span></div>
+    <div id="i0" class="item" style="top: 356px">Veille sur les réformes<i>✓</i></div>
+    <div id="i1" class="item" style="top: 468px">Formations<i>✓</i></div>
+    <div id="i2" class="item" style="top: 580px">Réseau d'affaires<i>✓</i></div>
+    <div id="i3" class="item" style="top: 692px">Médiation et arbitrage<i>✓</i></div>
+    <div id="t-fort" class="tt">
+      <span class="h"><span id="f-1">Des entreprises fortes,</span><span id="f-2">une prospérité partagée.</span></span>
+    </div>
+    <div id="t-place" class="tt"><span class="h">Votre entreprise<br /><em>a sa place</em><br />à nos côtés.</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var at = function (id, w) {
+        return C.at(id, w);
+      };
+      var tl = gsap.timeline({ paused: true });
+      function show(sel, tIn, tOut) {
+        tl.fromTo(sel, { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, tIn);
+        tl.to(sel, { opacity: 0, y: -10, duration: 0.4, ease: "power2.in" }, tOut);
+      }
+      function count(sel, to, t0, dur) {
+        var o = { v: 0 };
+        tl.fromTo(
+          o,
+          { v: 0 },
+          {
+            v: to,
+            duration: dur,
+            ease: "power2.out",
+            onUpdate: function () {
+              var n = Math.round(o.v);
+              document.querySelector(sel).textContent = n >= 1000 ? Math.floor(n / 1000) + " " + String(n % 1000).padStart(3, "0") : String(n);
+            },
+          },
+          t0,
+        );
+      }
+      // L03
+      var L3out = C.lines.L04.start - 0.45;
+      show("#t-1959", at("L03", "mille") - 0.15, L3out);
+      show("#t-feg", at("L03", "Fédération") - 0.1, L3out);
+      var cents = C.lines.L03.words.filter(function (w) {
+        return w.n === "cent";
+      });
+      var tCent = cents.length ? cents[cents.length - 1].s : at("L03", "plus") + 0.6;
+      show("#t-1100", at("L03", "plus") - 0.15, L3out);
+      count("#n-1100", 1100, at("L03", "plus") - 0.1, tCent + 0.4 - (at("L03", "plus") - 0.1));
+      // L05
+      show("#t-13", at("L05", "treize") - 0.1, at("L05", "parlent") - 0.4);
+      // L07
+      show("#t-gef", at("L07", "rendez") - 0.1, at("L07", "Déclaration") - 0.45);
+      show("#t-8", at("L07", "huit") - 0.1, at("L07", "Déclaration") - 0.45);
+      // L09 : la liste des services (chaque badge part de sa ligne vers le héros)
+      var L9out = C.lines.L10.start - 0.6;
+      show("#t-quot", at("L09", "quotidien") - 0.2, L9out);
+      ["veille", "formations", "réseau", "médiation"].forEach(function (w, k) {
+        var t0 = at("L09", w) - 0.08;
+        tl.fromTo("#i" + k, { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, t0);
+        tl.fromTo("#i" + k + " i", { opacity: 0 }, { opacity: 1, duration: 0.25 }, t0 + 1.2);
+        tl.to("#i" + k, { opacity: 0, duration: 0.4, ease: "power2.in" }, L9out);
+      });
+      // L10
+      var tVotre = at("L10", "Votre");
+      tl.set("#t-fort", { opacity: 1 }, at("L10", "entreprises") - 0.2);
+      tl.fromTo("#f-1", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, at("L10", "entreprises") - 0.15);
+      tl.fromTo("#f-2", { opacity: 0, y: 18 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, at("L10", "prospérité") - 0.15);
+      tl.to("#t-fort", { opacity: 0, y: -10, duration: 0.35, ease: "power2.in" }, tVotre - 0.4);
+      show("#t-place", tVotre - 0.05, at("L10", "rejoignez") - 0.15);
+      window.__timelines["ov-titles"] = tl;
+    })();
+  </script>
+</template>
