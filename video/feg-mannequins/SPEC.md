@@ -60,4 +60,4 @@ Il est construit en 3D dans le navigateur (Three.js), pas généré par une IA d
 - `tools/lines.json` (texte et silences) et `tools/build.mjs` (calage, `assets/cues.js`, `index.html`).
 - `compositions/world.html` : les décors 3D, les mannequins et les étiquettes (Three.js). Tout ce qu'on voit est une fonction du temps.
 - `compositions/ov-end.html` : la carte de fin.
-- `renders/FEG-mannequins.mp4`.
+- `renders/FEG-mannequins.mp4`, réencodé pour l'envoi ; le rendu d'origine est `renders/FEG-mannequins-master.mp4`.

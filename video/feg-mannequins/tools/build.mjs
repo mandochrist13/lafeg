@@ -1,4 +1,4 @@
-// Calage du film FEG « Pâte à modeler » : lit tools/lines.json + audio_meta.json (voix calée mot à mot),
+// Calage du film FEG « Les archives » (mannequins) : lit tools/lines.json + audio_meta.json (voix calée mot à mot),
 // écrit assets/cues.js (temps de chaque phrase et de chaque mot) et index.html (hôtes + pistes audio).
 // Usage : node tools/build.mjs
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
