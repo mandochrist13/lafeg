@@ -1,4 +1,4 @@
-// Calage du film FEG « La lumière des entreprises » (data-art) : lit tools/lines.json + audio_meta.json (voix calée mot à mot),
+// Calage du film FEG « Pâte à modeler » : lit tools/lines.json + audio_meta.json (voix calée mot à mot),
 // écrit assets/cues.js (temps de chaque phrase et de chaque mot) et index.html (hôtes + pistes audio).
 // Usage : node tools/build.mjs
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -58,7 +58,8 @@ total = r3(Math.max(total, Math.min(startAt + MUSIC.length - offset, LOGO_T + 7.
 
 const overlays = [
   { id: "ov-titles", src: "compositions/ov-titles.html", start: 0, end: LOGO_T - 0.3 },
-  { id: "ov-end", src: "compositions/ov-end.html", start: LOGO_T - 0.6, end: total },
+  // la carte de fin commence par blanchir l'image dès que la caméra est à la verticale de la carte
+  { id: "ov-end", src: "compositions/ov-end.html", start: at("L10", "rejoignez") + 1.15, end: total },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 
 const cues = { total, order, lines, logo: LOGO_T, ov: Object.fromEntries(overlays.map((o) => [o.id, { start: o.start, dur: r3(o.end - o.start) }])) };
@@ -147,7 +148,7 @@ writeFileSync(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>FEG — La lumière des entreprises</title>
+    <title>FEG — Pâte à modeler</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <style>

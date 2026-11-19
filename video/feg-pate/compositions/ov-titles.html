@@ -1,0 +1,166 @@
+<template>
+  <!-- Titres « en pâte » : lettres vertes en relief, sous-titres brun chaud, posés là où la scène laisse de la place. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    .tt {
+      position: absolute;
+      opacity: 0;
+    }
+    .g {
+      display: block;
+      font-weight: 700;
+      font-size: 72px;
+      line-height: 1.08;
+      letter-spacing: -0.01em;
+      color: #0e5631;
+      text-shadow:
+        0 1px 0 #0c4d2c,
+        0 2px 0 #0b4528,
+        0 3px 0 #0a3e24,
+        0 4px 0 #093820,
+        0 5px 0 #08321d,
+        0 6px 0 #072c1a,
+        0 16px 22px rgba(90, 50, 20, 0.32);
+    }
+    .b {
+      display: block;
+      font-weight: 500;
+      font-size: 46px;
+      line-height: 1.15;
+      color: #8a4a1e;
+      text-shadow:
+        0 1px 0 #7a4019,
+        0 2px 0 #6c3815,
+        0 3px 0 #5f3112,
+        0 10px 16px rgba(90, 50, 20, 0.28);
+    }
+    .left {
+      left: 110px;
+      width: 1100px;
+    }
+    .center {
+      left: 260px;
+      width: 1400px;
+      text-align: center;
+    }
+    #t-compte {
+      top: 84px;
+    }
+    #t-1959 {
+      top: 74px;
+    }
+    #t-1959 .g {
+      font-size: 84px;
+    }
+    #t-feg {
+      top: 178px;
+    }
+    #t-1100 {
+      top: 244px;
+    }
+    #t-13,
+    #t-voix {
+      left: 710px;
+      width: 1100px;
+      text-align: right;
+    }
+    #t-13 {
+      top: 74px;
+    }
+    #t-voix {
+      top: 160px;
+    }
+    #t-voix .b {
+      font-size: 52px;
+    }
+    #t-gef {
+      top: 64px;
+    }
+    #t-gef .b {
+      font-size: 40px;
+    }
+    #t-8 {
+      top: 222px;
+    }
+    #t-decl {
+      top: 74px;
+    }
+    #t-quot {
+      top: 74px;
+    }
+    #t-fort {
+      top: 72px;
+    }
+    #t-fort .g {
+      font-size: 64px;
+    }
+    #t-place {
+      top: 232px;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-titles" data-width="1920" data-height="1080">
+    <div id="t-compte" class="tt left"><span class="g">Chaque entreprise compte</span></div>
+
+    <div id="t-1959" class="tt left"><span class="g">Depuis 1959</span></div>
+    <div id="t-feg" class="tt left"><span class="b">Fédération des Entreprises du Gabon</span></div>
+    <div id="t-1100" class="tt left"><span class="g">plus de 1 100 entreprises</span></div>
+
+    <div id="t-13" class="tt"><span class="g">13 fédérations métiers</span></div>
+    <div id="t-voix" class="tt"><span class="b">une seule voix</span></div>
+
+    <div id="t-gef" class="tt center"><span class="b">Le grand rendez-vous du dialogue</span><span class="g">Gabon Economic Forum</span></div>
+    <div id="t-8" class="tt center"><span class="b">8 ateliers</span></div>
+    <div id="t-decl" class="tt center"><span class="g">Déclaration de Libreville</span></div>
+
+    <div id="t-quot" class="tt center"><span class="g">Au quotidien</span></div>
+
+    <div id="t-fort" class="tt left"><span class="g" id="f-1">Des entreprises fortes,</span><span class="g" id="f-2">une prospérité partagée.</span></div>
+    <div id="t-place" class="tt left"><span class="b">Votre entreprise a sa place à nos côtés</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var at = function (id, w) {
+        return C.at(id, w);
+      };
+      var tl = gsap.timeline({ paused: true });
+      // les titres arrivent comme posés sur la table : petit rebond, puis tiennent
+      function show(sel, tIn, tOut) {
+        tl.fromTo(sel, { opacity: 0, y: 26, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.45, ease: "back.out(2)" }, tIn);
+        tl.to(sel, { opacity: 0, y: -12, duration: 0.35, ease: "power2.in" }, tOut);
+      }
+      show("#t-compte", at("L01", "Chaque") - 0.1, C.lines.L02.start - 0.35);
+      var L3out = C.lines.L04.start - 0.45;
+      show("#t-1959", at("L03", "mille") - 0.1, L3out);
+      show("#t-feg", at("L03", "Fédération") - 0.1, L3out);
+      show("#t-1100", at("L03", "plus") - 0.1, L3out);
+      show("#t-13", at("L05", "treize") - 0.1, at("L06", "préoccupations") - 0.15);
+      show("#t-voix", at("L05", "parlent") - 0.05, at("L06", "préoccupations") - 0.15);
+      show("#t-gef", at("L07", "rendez") - 0.1, at("L07", "Déclaration") - 0.45);
+      show("#t-8", at("L07", "huit") - 0.1, at("L07", "Déclaration") - 0.45);
+      show("#t-decl", at("L07", "Déclaration") - 0.05, at("L08", "Dette") - 0.75);
+      show("#t-quot", at("L09", "quotidien") - 0.15, C.lines.L10.start - 0.7);
+      var L10out = at("L10", "rejoignez") + 0.05;
+      tl.set("#t-fort", { opacity: 1 }, at("L10", "entreprises") - 0.2);
+      tl.fromTo("#f-1", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(2)" }, at("L10", "entreprises") - 0.15);
+      tl.fromTo("#f-2", { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.45, ease: "back.out(2)" }, at("L10", "prospérité") - 0.15);
+      tl.to("#t-fort", { opacity: 0, y: -12, duration: 0.35, ease: "power2.in" }, L10out);
+      show("#t-place", at("L10", "Votre") - 0.1, L10out);
+      window.__timelines["ov-titles"] = tl;
+    })();
+  </script>
+</template>

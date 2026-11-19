@@ -1,0 +1,169 @@
+<template>
+  <!-- Carte de fin : l'image blanchit, les 71 coussins deviennent les points bronze exacts du logo, puis le logo complet se dessine. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    #en-white {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+      opacity: 0;
+    }
+    #en-dots {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+      opacity: 0;
+    }
+    #en-dots circle {
+      fill: #aeae7d;
+    }
+    /* logo calé au pixel sur les points : 0,62 px écran par px du logo */
+    #en-logo {
+      position: absolute;
+      left: 691.54px;
+      top: 222px;
+      width: 536.92px;
+      height: 496px;
+      clip-path: inset(0 0 0 0);
+    }
+    #en-cta {
+      position: absolute;
+      left: 0;
+      top: 770px;
+      width: 1920px;
+      text-align: center;
+    }
+    #en-line {
+      font-weight: 700;
+      font-size: 58px;
+      letter-spacing: -0.01em;
+      color: #063d21;
+    }
+    #en-line span {
+      display: inline-block;
+    }
+    #en-url {
+      color: #0a7537;
+    }
+    #en-contact {
+      margin-top: 18px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #5c6259;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080">
+    <div id="en-white"></div>
+    <svg id="en-dots" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="900.51" cy="233.73" r="10.23" />
+        <circle cx="925.59" cy="233.71" r="10.23" />
+        <circle cx="951.36" cy="233.74" r="10.23" />
+        <circle cx="900.52" cy="258.05" r="10.23" />
+        <circle cx="924.55" cy="258.53" r="10.23" />
+        <circle cx="951.36" cy="258.56" r="10.23" />
+        <circle cx="900.54" cy="282.41" r="10.23" />
+        <circle cx="924.55" cy="282.84" r="10.23" />
+        <circle cx="951.36" cy="282.87" r="10.23" />
+        <circle cx="829.30" cy="283.32" r="10.23" />
+        <circle cx="853.09" cy="283.28" r="10.23" />
+        <circle cx="876.19" cy="283.31" r="10.23" />
+        <circle cx="977.30" cy="283.59" r="10.23" />
+        <circle cx="1000.92" cy="284.07" r="10.23" />
+        <circle cx="1025.24" cy="285.15" r="10.23" />
+        <circle cx="805.69" cy="306.72" r="10.23" />
+        <circle cx="829.32" cy="306.70" r="10.23" />
+        <circle cx="853.09" cy="306.69" r="10.23" />
+        <circle cx="876.19" cy="306.72" r="10.23" />
+        <circle cx="900.52" cy="308.87" r="10.23" />
+        <circle cx="924.54" cy="309.36" r="10.23" />
+        <circle cx="951.36" cy="309.36" r="10.23" />
+        <circle cx="977.31" cy="310.06" r="10.23" />
+        <circle cx="1000.93" cy="310.56" r="10.23" />
+        <circle cx="805.67" cy="333.69" r="10.23" />
+        <circle cx="829.29" cy="333.67" r="10.23" />
+        <circle cx="853.10" cy="333.68" r="10.23" />
+        <circle cx="876.20" cy="333.69" r="10.23" />
+        <circle cx="900.52" cy="333.69" r="10.23" />
+        <circle cx="924.54" cy="334.16" r="10.23" />
+        <circle cx="951.36" cy="334.18" r="10.23" />
+        <circle cx="977.31" cy="334.87" r="10.23" />
+        <circle cx="1000.94" cy="335.37" r="10.23" />
+        <circle cx="781.87" cy="358.71" r="10.23" />
+        <circle cx="805.69" cy="358.73" r="10.23" />
+        <circle cx="829.35" cy="358.72" r="10.23" />
+        <circle cx="853.10" cy="358.74" r="10.23" />
+        <circle cx="876.19" cy="358.73" r="10.23" />
+        <circle cx="900.55" cy="358.73" r="10.23" />
+        <circle cx="924.51" cy="359.21" r="10.23" />
+        <circle cx="951.38" cy="359.18" r="10.23" />
+        <circle cx="977.31" cy="359.91" r="10.23" />
+        <circle cx="1000.93" cy="360.37" r="10.23" />
+        <circle cx="1025.29" cy="359.94" r="10.23" />
+        <circle cx="805.68" cy="383.08" r="10.23" />
+        <circle cx="829.29" cy="383.09" r="10.23" />
+        <circle cx="853.10" cy="383.04" r="10.23" />
+        <circle cx="876.21" cy="383.08" r="10.23" />
+        <circle cx="900.53" cy="383.09" r="10.23" />
+        <circle cx="924.55" cy="383.09" r="10.23" />
+        <circle cx="951.36" cy="383.09" r="10.23" />
+        <circle cx="977.31" cy="383.79" r="10.23" />
+        <circle cx="1000.93" cy="384.28" r="10.23" />
+        <circle cx="1025.22" cy="385.12" r="10.23" />
+        <circle cx="805.67" cy="407.37" r="10.23" />
+        <circle cx="829.30" cy="408.09" r="10.23" />
+        <circle cx="853.09" cy="408.10" r="10.23" />
+        <circle cx="876.20" cy="408.10" r="10.23" />
+        <circle cx="900.52" cy="408.11" r="10.23" />
+        <circle cx="924.56" cy="408.10" r="10.23" />
+        <circle cx="977.30" cy="407.63" r="10.23" />
+        <circle cx="1000.94" cy="407.63" r="10.23" />
+        <circle cx="1000.92" cy="431.03" r="10.23" />
+        <circle cx="829.33" cy="431.88" r="10.23" />
+        <circle cx="853.10" cy="431.90" r="10.23" />
+        <circle cx="876.18" cy="431.89" r="10.23" />
+        <circle cx="853.09" cy="455.68" r="10.23" />
+        <circle cx="876.19" cy="455.70" r="10.23" />
+        <circle cx="900.52" cy="455.70" r="10.23" />
+        <circle cx="876.19" cy="479.47" r="10.23" />
+        <circle cx="900.54" cy="479.45" r="10.23" />
+    </svg>
+    <img id="en-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
+    <div id="en-cta">
+      <div id="en-line"><span>Devenez</span> <span>membre</span> <span>·</span> <span id="en-url">lafeg.ga</span></div>
+      <div id="en-contact">info@lafeg.ga · +241 11 77 55 95</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var W = (C.ov && C.ov["ov-end"]) || { start: 0, dur: 8 };
+      var tLogo = Math.max(0.6, C.logo - W.start);
+      var tl = gsap.timeline({ paused: true });
+      // la caméra est à la verticale de la carte : le plateau blanchit, les points bronze prennent le relais
+      tl.fromTo("#en-white", { opacity: 0 }, { opacity: 1, duration: 0.9, ease: "power2.inOut" }, 0.05);
+      tl.fromTo("#en-dots", { opacity: 0 }, { opacity: 1, duration: 0.7, ease: "power2.inOut" }, 0.15);
+      // le balayage dessine les arcs et « FEG » sur l'accord final
+      tl.fromTo("#en-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo - 0.5);
+      tl.fromTo("#en-line span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.08, ease: "power4.out" }, tLogo + 0.55);
+      tl.fromTo("#en-contact", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tLogo + 1.2);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>

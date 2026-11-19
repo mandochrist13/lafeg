@@ -1,0 +1,1333 @@
+<!doctype html>
+<!--
+  FEG — « Pâte à modeler ». Un grand plateau de pâte à modeler : au centre, la carte du Gabon en 71 coussins verts
+  (la trame du logo FEG) ; tout autour, les « ateliers » du récit (métiers, jauges, fédérations, Bureau exécutif,
+  dialogue public-privé, Gabon Economic Forum, réformes, services). La caméra fait le tour de la carte.
+  Les personnages et objets bougent comme en animation image par image (poses à 12 im/s).
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire) ; temps : assets/cues.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — Pâte à modeler</title>
+    <style>
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 500;
+        src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 700;
+        src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #f0d9ba;
+      }
+      #world-cv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      /* étiquettes : petites plaques de pâte claire */
+      .tag {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        padding: 8px 18px 9px;
+        border-radius: 20px;
+        background: #fffaf0;
+        box-shadow:
+          0 4px 0 #e2c9a2,
+          0 12px 20px rgba(90, 50, 20, 0.25);
+        font-family: "Hyundai Sans Head", sans-serif;
+        font-weight: 700;
+        font-size: 30px;
+        line-height: 1.12;
+        color: #0f5530;
+        white-space: nowrap;
+        text-align: center;
+      }
+      .tag.fed {
+        white-space: normal;
+        max-width: 210px;
+        padding: 7px 14px 8px;
+        font-weight: 500;
+        font-size: 28px;
+      }
+      .tag.fed b {
+        display: block;
+        font-weight: 700;
+        color: #8a4a1e;
+      }
+      .tag.sm {
+        font-weight: 500;
+        font-size: 30px;
+        color: #5a3317;
+      }
+      .tag.big {
+        padding: 12px 26px 14px;
+        border-radius: 26px;
+      }
+      .tag.big i {
+        display: block;
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        color: #8a4a1e;
+      }
+      .tag.big b {
+        display: block;
+        font-size: 84px;
+        line-height: 1;
+        letter-spacing: -0.01em;
+      }
+      .tag.big span {
+        display: block;
+        margin-top: 4px;
+        font-weight: 500;
+        font-size: 32px;
+        color: #3f4a36;
+      }
+      .tag.board {
+        background: transparent;
+        box-shadow: none;
+        padding: 0;
+        font-size: 30px;
+        color: #3a2412;
+        white-space: normal;
+        max-width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="world-root" data-composition-id="world" data-start="0" data-duration="86.731" data-total data-width="1920" data-height="1080" data-layout-allow-overlap>
+      <canvas id="world-cv" class="clip" data-start="0" data-duration="86.731" data-total data-track-index="0" data-layout-allow-overflow></canvas>
+      <div id="world-labels">
+        <div id="wl-a0" class="tag sm">un atelier</div>
+        <div id="wl-a1" class="tag sm">un commerce</div>
+        <div id="wl-a2" class="tag sm">un chantier</div>
+
+        <div id="wl-r0" class="tag big"><i>près de</i><b>80&#8239;%</b><span>du PIB</span></div>
+        <div id="wl-r1" class="tag big"><i>plus de</i><b>90&#8239;%</b><span>de la main-d'œuvre formelle</span></div>
+
+        <div id="wl-f0" class="tag fed">Construction<b>337</b></div>
+        <div id="wl-f1" class="tag fed">Services divers<b>118</b></div>
+        <div id="wl-f2" class="tag fed">Commerce<b>110</b></div>
+        <div id="wl-f3" class="tag fed">Conseil<b>83</b></div>
+        <div id="wl-f4" class="tag fed">Logistique et manutention<b>83</b></div>
+        <div id="wl-f5" class="tag fed">Industries extractives<b>67</b></div>
+        <div id="wl-f6" class="tag fed">Numérique<b>67</b></div>
+        <div id="wl-f7" class="tag fed">Industrie<b>61</b></div>
+        <div id="wl-f8" class="tag fed">Finance<b>50</b></div>
+        <div id="wl-f9" class="tag fed">Santé<b>43</b></div>
+        <div id="wl-f10" class="tag fed">Bois<b>30</b></div>
+        <div id="wl-f11" class="tag fed">Tourisme<b>29</b></div>
+        <div id="wl-f12" class="tag fed">Agriculture et pêche<b>22</b></div>
+
+        <div id="wl-core" class="tag">Bureau exécutif</div>
+        <div id="wl-etat" class="tag">Pouvoirs publics</div>
+        <div id="wl-dial" class="tag">Dialogue public-privé</div>
+
+        <div id="wl-s0" class="tag board">Dette intérieure</div>
+        <div id="wl-s1" class="tag board">Fiscalité</div>
+        <div id="wl-s2" class="tag board">Commande publique</div>
+        <div id="wl-s3" class="tag board">Financement des PME</div>
+
+        <div id="wl-v0" class="tag">Veille sur les réformes</div>
+        <div id="wl-v1" class="tag">Formations</div>
+        <div id="wl-v2" class="tag">Réseau d'affaires</div>
+        <div id="wl-v3" class="tag">Médiation et arbitrage</div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FL_CUES;
+        var total = C ? C.total : 86.731;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+
+      const host = window.__worldHost;
+      const C = window.__FL_CUES;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+
+      // ------------------------------------------------------------------ outils
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      const bump = (t, c, w) => Math.exp(-Math.pow((t - c) / w, 2));
+      const backOut = (u) => {
+        u = clamp01(u);
+        const c1 = 1.70158,
+          c3 = c1 + 1;
+        return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2);
+      };
+      // animation image par image : les poses changent 12 fois par seconde
+      const POSE = 12;
+      const stp = (t) => Math.floor(t * POSE + 1e-4) / POSE;
+      const hash1 = (n) => {
+        const x = Math.sin(n * 12.9898 + 78.233) * 43758.5453;
+        return x - Math.floor(x);
+      };
+      const boil = (id, t) => hash1(id * 131.7 + Math.floor(t * POSE + 1e-4)) * 2 - 1;
+      // présence d'un objet : il sort de la pâte (rebond) à tIn et y rentre à tOut
+      const life = (t, tIn, tOut, dIn = 0.45, dOut = 0.4) => {
+        const s = stp(t);
+        if (s < tIn || s > tOut + dOut) return 0;
+        return backOut(prog(s, tIn, dIn)) * (1 - in3(prog(s, tOut, dOut)));
+      };
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let r = Math.imul(a ^ (a >>> 15), 1 | a);
+          r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(71);
+
+      // ------------------------------------------------------------------ temps clés (calés sur la voix)
+      const T = {
+        chaque: at("L01", "Chaque"),
+        atelier: at("L01", "atelier"),
+        commerce: at("L01", "commerce"),
+        chantier: at("L01", "chantier"),
+        mais: at("L02", "Mais"),
+        seule: at("L02", "seule"),
+        voix2: at("L02", "voix"),
+        depuis: at("L03", "Depuis"),
+        y1959: at("L03", "mille"),
+        rass: at("L03", "rassemble"),
+        ens4: at("L04", "Ensemble"),
+        p80: at("L04", "80"),
+        p90: at("L04", "90"),
+        reunies: at("L05", "Réunies"),
+        treize: at("L05", "treize"),
+        parlent: at("L05", "parlent"),
+        voix5: at("L05", "seule"),
+        preocc: at("L06", "préoccupations"),
+        bureau: at("L06", "Bureau"),
+        puis: at("L06", "puis"),
+        table: at("L06", "table"),
+        pp: at("L06", "public"),
+        dial: at("L07", "dialogue"),
+        gef: at("L07", "Gabon"),
+        huit: at("L07", "huit"),
+        decl: at("L07", "Déclaration"),
+        ref: [at("L08", "Dette"), at("L08", "fiscalité"), at("L08", "commande"), at("L08", "financement")],
+        pesent: at("L08", "pèsent"),
+        quot: at("L09", "quotidien"),
+        svc: [at("L09", "veille"), at("L09", "formations"), at("L09", "réseau"), at("L09", "médiation")],
+        votre: at("L10", "Votre"),
+        rejoignez: at("L10", "rejoignez"),
+        logo: C.logo,
+      };
+
+      // ------------------------------------------------------------------ rendu : scène hors écran, flou de miniature, ACES, vignette
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      const canFloat = renderer.extensions.has("EXT_color_buffer_float") || renderer.extensions.has("EXT_color_buffer_half_float");
+      const RT_TYPE = canFloat ? THREE.HalfFloatType : THREE.UnsignedByteType;
+      const rtMain = new THREE.WebGLRenderTarget(1920, 1080, { type: RT_TYPE, samples: 4 });
+      const mk = (w, h) => new THREE.WebGLRenderTarget(w, h, { type: RT_TYPE, depthBuffer: false });
+      const rA = mk(960, 540),
+        rA2 = mk(960, 540),
+        rB = mk(480, 270),
+        rB2 = mk(480, 270);
+      const postVS = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
+      const postMat = (uniforms, fs) => new THREE.ShaderMaterial({ uniforms, vertexShader: postVS, fragmentShader: fs, depthTest: false, depthWrite: false });
+      const downMat = postMat(
+        { tSrc: { value: null }, uTexel: { value: new THREE.Vector2() } },
+        `uniform sampler2D tSrc; uniform vec2 uTexel; varying vec2 vUv;
+        void main(){ vec3 c = 0.25 * (texture2D(tSrc, vUv + uTexel * vec2(-1.0, -1.0)).rgb + texture2D(tSrc, vUv + uTexel * vec2(1.0, -1.0)).rgb
+          + texture2D(tSrc, vUv + uTexel * vec2(-1.0, 1.0)).rgb + texture2D(tSrc, vUv + uTexel * vec2(1.0, 1.0)).rgb); gl_FragColor = vec4(c, 1.0); }`,
+      );
+      const blurMat = postMat(
+        { tSrc: { value: null }, uDir: { value: new THREE.Vector2() } },
+        `uniform sampler2D tSrc; uniform vec2 uDir; varying vec2 vUv;
+        void main(){ vec3 c = texture2D(tSrc, vUv).rgb * 0.2270270270;
+          c += texture2D(tSrc, vUv + uDir * 1.3846153846).rgb * 0.3162162162; c += texture2D(tSrc, vUv - uDir * 1.3846153846).rgb * 0.3162162162;
+          c += texture2D(tSrc, vUv + uDir * 3.2307692308).rgb * 0.0702702703; c += texture2D(tSrc, vUv - uDir * 3.2307692308).rgb * 0.0702702703;
+          gl_FragColor = vec4(c, 1.0); }`,
+      );
+      const compMat = postMat(
+        { tMain: { value: rtMain.texture }, tBlur: { value: rB.texture }, uTilt: { value: 1 }, uFocusY: { value: 0.45 }, uFocusH: { value: 0.16 }, uExpo: { value: 1.05 }, uVig: { value: 1 } },
+        `uniform sampler2D tMain; uniform sampler2D tBlur; uniform float uTilt; uniform float uFocusY; uniform float uFocusH; uniform float uExpo; uniform float uVig; varying vec2 vUv;
+        vec3 RRTAndODTFit(vec3 v){ vec3 a = v * (v + 0.0245786) - 0.000090537; vec3 b = v * (0.983729 * v + 0.4329510) + 0.238081; return a / b; }
+        vec3 aces(vec3 c){
+          const mat3 I = mat3(vec3(0.59719, 0.07600, 0.02840), vec3(0.35458, 0.90834, 0.13383), vec3(0.04823, 0.01566, 0.83777));
+          const mat3 O = mat3(vec3(1.60475, -0.10208, -0.00327), vec3(-0.53108, 1.10813, -0.07276), vec3(-0.07367, -0.00605, 1.07602));
+          c *= uExpo / 0.6; c = I * c; c = RRTAndODTFit(c); c = O * c; return clamp(c, 0.0, 1.0); }
+        vec3 srgb(vec3 c){ return mix(c * 12.92, 1.055 * pow(c, vec3(1.0 / 2.4)) - 0.055, step(vec3(0.0031308), c)); }
+        void main(){
+          vec3 a = texture2D(tMain, vUv).rgb;
+          vec3 b = texture2D(tBlur, vUv).rgb;
+          float m = smoothstep(uFocusH, uFocusH + 0.24, abs(vUv.y - uFocusY)) * uTilt;
+          vec3 c = srgb(aces(mix(a, b, m)));
+          vec2 p = (vUv - 0.5) * vec2(1.7778, 1.0);
+          float v = smoothstep(0.55, 1.3, length(p));
+          c = mix(c, c * vec3(0.8, 0.68, 0.56), v * uVig);
+          float n = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+          c += (n - 0.5) / 255.0;
+          gl_FragColor = vec4(c, 1.0);
+        }`,
+      );
+      const postScene = new THREE.Scene();
+      const postCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), downMat);
+      quad.frustumCulled = false;
+      postScene.add(quad);
+      function pass(mat, target) {
+        quad.material = mat;
+        renderer.setRenderTarget(target);
+        renderer.render(postScene, postCam);
+      }
+
+      const scene = new THREE.Scene();
+      const BG = new THREE.Color(0xf0d9ba);
+      scene.background = BG.clone();
+      scene.fog = new THREE.Fog(0xf0d9ba, 30, 80);
+      const FOV = 30;
+      const camera = new THREE.PerspectiveCamera(FOV, 16 / 9, 0.3, 600);
+
+      // ------------------------------------------------------------------ pâte à modeler
+      function clayBump() {
+        const c = document.createElement("canvas");
+        c.width = c.height = 512;
+        const x = c.getContext("2d");
+        x.fillStyle = "#808080";
+        x.fillRect(0, 0, 512, 512);
+        for (let k = 0; k < 2600; k++) {
+          const px = rnd() * 512,
+            py = rnd() * 512,
+            r = 3 + rnd() * 16,
+            v = Math.floor(100 + rnd() * 56);
+          const g = x.createRadialGradient(px, py, 0, px, py, r);
+          g.addColorStop(0, `rgba(${v},${v},${v},0.35)`);
+          g.addColorStop(1, `rgba(${v},${v},${v},0)`);
+          x.fillStyle = g;
+          x.beginPath();
+          x.arc(px, py, r, 0, Math.PI * 2);
+          x.fill();
+        }
+        const t = new THREE.CanvasTexture(c);
+        t.wrapS = t.wrapT = THREE.RepeatWrapping;
+        return t;
+      }
+      const BUMP = clayBump();
+      const matCache = new Map();
+      const clay = (hex, rep = 1, unique = false) => {
+        const k = hex + "_" + rep;
+        if (!unique && matCache.has(k)) return matCache.get(k);
+        const b = BUMP.clone();
+        b.needsUpdate = true;
+        b.repeat.set(rep, rep);
+        const m = new THREE.MeshStandardMaterial({ color: hex, roughness: 0.82, metalness: 0, bumpMap: b, bumpScale: 0.9 });
+        if (!unique) matCache.set(k, m);
+        return m;
+      };
+      // forme « faite à la main » : sommets légèrement bosselés
+      function lumpy(geo, amp = 0.03, f = 3.1, seed = rnd() * 10) {
+        const p = geo.attributes.position;
+        const v = new THREE.Vector3();
+        for (let i = 0; i < p.count; i++) {
+          v.fromBufferAttribute(p, i);
+          const n = Math.sin(v.x * f + seed) * Math.sin(v.y * f * 1.3 + seed * 1.7) * Math.sin(v.z * f * 0.9 + seed * 0.6);
+          v.multiplyScalar(1 + amp * n);
+          p.setXYZ(i, v.x, v.y, v.z);
+        }
+        geo.computeVertexNormals();
+        return geo;
+      }
+      const add = (geo, mat, x, y, z, parent = scene) => {
+        const m = new THREE.Mesh(geo, mat);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      };
+      const BLACK = new THREE.MeshStandardMaterial({ color: 0x1a1410, roughness: 0.35 });
+      const WHITE = new THREE.MeshBasicMaterial({ color: 0xffffff });
+
+      // lumières : soleil chaud qui tourne avec la caméra, ciel doux, contre-jour froid
+      scene.add(new THREE.HemisphereLight(0xfff3e0, 0xc89a6a, 0.95));
+      const sun = new THREE.DirectionalLight(0xffe2bd, 2.6);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(4096, 4096);
+      sun.shadow.bias = -0.0004;
+      sun.shadow.normalBias = 0.02;
+      scene.add(sun);
+      scene.add(sun.target);
+      const rim = new THREE.DirectionalLight(0xcfe4ff, 0.7);
+      scene.add(rim);
+      scene.add(rim.target);
+
+      // plateau de pâte sable
+      {
+        const g = new THREE.PlaneGeometry(260, 260, 220, 220);
+        g.rotateX(-Math.PI / 2);
+        const p = g.attributes.position;
+        for (let i = 0; i < p.count; i++) {
+          const x = p.getX(i),
+            z = p.getZ(i);
+          p.setY(i, 0.06 * Math.sin(x * 0.9) * Math.cos(z * 0.7) + 0.04 * Math.sin(x * 2.3 + z * 1.7));
+        }
+        g.computeVertexNormals();
+        const m = new THREE.Mesh(g, clay(0xe7c9a0, 30));
+        m.receiveShadow = true;
+        scene.add(m);
+      }
+
+      // ------------------------------------------------------------------ la carte du Gabon : 71 coussins verts (trame du logo FEG)
+      const DOTS = [[337.05,18.92],[377.5,18.89],[419.06,18.93],[337.06,58.14],[375.82,58.92],[419.06,58.96],[337.1,97.43],[375.82,98.13],[419.06,98.17],[222.19,98.91],[260.56,98.84],[297.83,98.88],[460.9,99.34],[499.0,100.12],[538.23,101.86],[184.12,136.65],[222.22,136.62],[260.56,136.59],[297.83,136.64],[337.06,140.12],[375.81,140.91],[419.06,140.91],[460.92,142.03],[499.02,142.84],[184.08,180.14],[222.18,180.11],[260.58,180.13],[297.84,180.14],[337.06,180.14],[375.81,180.91],[419.06,180.94],[460.92,182.05],[499.03,182.85],[145.7,220.5],[184.12,220.54],[222.27,220.52],[260.58,220.55],[297.83,220.53],[337.12,220.54],[375.76,221.3],[419.09,221.25],[460.92,222.44],[499.01,223.18],[538.31,222.49],[184.09,259.81],[222.18,259.82],[260.58,259.74],[297.85,259.8],[337.08,259.82],[375.82,259.82],[419.06,259.83],[460.92,260.95],[499.01,261.75],[538.2,263.1],[184.08,298.99],[222.2,300.15],[260.56,300.16],[297.84,300.16],[337.06,300.17],[375.84,300.16],[460.9,299.41],[499.03,299.41],[499.0,337.14],[222.25,338.52],[260.58,338.55],[297.81,338.54],[260.57,376.9],[297.83,376.94],[337.07,376.93],[297.83,415.27],[337.09,415.25]];
+      const SC = 0.042; // unités par pixel du logo
+      const LCX = 342,
+        LCY = 218;
+      const cellXZ = DOTS.map(([px, py]) => [(px - LCX) * SC, (py - LCY) * SC]);
+      const LBV = 24; // Libreville, sur la côte
+      const cellD = cellXZ.map(([x, z]) => Math.hypot(x - cellXZ[LBV][0], z - cellXZ[LBV][1]));
+      const MAXD = Math.max(...cellD);
+      const CUSH_R = 0.66;
+      const GREENS = [0x2f8c55, 0x3a9b5f, 0x2a7d4b, 0x48a86a, 0x349457].map((h) => clay(h, 0.6, true));
+      const GREEN0 = GREENS.map((m) => m.color.clone());
+      const BRONZE = new THREE.Color(0xaeae7d);
+      const cushions = cellXZ.map(([x, z], i) => {
+        const g = lumpy(new THREE.SphereGeometry(CUSH_R, 28, 18), 0.05);
+        const m = add(g, GREENS[Math.floor(rnd() * GREENS.length)], x, 0.2, z);
+        m.rotation.y = rnd() * Math.PI;
+        m.userData.t0 = T.y1959 + 0.05 + (cellD[i] / MAXD) * 2.6 + rnd() * 0.25;
+        m.userData.d = cellD[i] / MAXD;
+        m.scale.setScalar(1e-4);
+        return m;
+      });
+      // maisons et arbres posés sur quelques coussins
+      const deco = [];
+      function house(ci, wall, roof, s = 0.8) {
+        const g = new THREE.Group();
+        add(lumpy(new THREE.BoxGeometry(0.9, 0.7, 0.8, 6, 6, 6), 0.03), clay(wall), 0, 0.35, 0, g);
+        const r = lumpy(new THREE.ConeGeometry(0.78, 0.6, 4, 2), 0.04);
+        r.rotateY(Math.PI / 4);
+        add(r, clay(roof), 0, 1.0, 0, g);
+        add(new THREE.BoxGeometry(0.22, 0.34, 0.05), clay(0x7a4a2a), 0, 0.17, 0.41, g);
+        g.rotation.y = rnd() * 0.8 - 0.4;
+        g.userData = { ci, s, y: 0.36 };
+        scene.add(g);
+        deco.push(g);
+      }
+      function tree(ci, s = 0.8) {
+        const g = new THREE.Group();
+        add(lumpy(new THREE.CylinderGeometry(0.11, 0.15, 0.8, 10), 0.05), clay(0x8a5a33), 0, 0.4, 0, g);
+        add(lumpy(new THREE.SphereGeometry(0.55, 20, 14), 0.08), clay(0x1f6e3e), 0, 1.05, 0, g);
+        add(lumpy(new THREE.SphereGeometry(0.38, 18, 12), 0.08), clay(0x2a8048), 0.3, 1.35, 0.1, g);
+        g.userData = { ci, s, y: 0.34 };
+        scene.add(g);
+        deco.push(g);
+      }
+      house(19, 0xf2e6d0, 0xc4572e);
+      house(49, 0xf5ecd8, 0xd07a2a, 0.75);
+      house(31, 0xefe0c4, 0xb84a2a, 0.72);
+      tree(9, 0.85);
+      tree(56, 0.8);
+      tree(42, 0.75);
+      tree(4, 0.7);
+
+      // quelques fleurs et galets de pâte sur le devant du plateau
+      {
+        const PET = [0xe0a030, 0xd8582e, 0xc94f6d, 0xf2e6d0, 0x8a5aa8];
+        [
+          [-7.6, 14.2],
+          [7.9, 13.8],
+          [-5.6, 16.4],
+          [6.1, 16.1],
+          [-11.8, 15.2],
+          [12.2, 15.0],
+          [0.8, 17.6],
+        ].forEach(([x, z], i) => {
+          const g = new THREE.Group();
+          g.position.set(x, 0, z);
+          scene.add(g);
+          add(lumpy(new THREE.CylinderGeometry(0.05, 0.07, 0.9, 8), 0.05), clay(0x3a8a4a), 0, 0.45, 0, g);
+          const leaf = add(lumpy(new THREE.SphereGeometry(0.16, 10, 8), 0.06), clay(0x3a8a4a), 0.14, 0.32, 0, g);
+          leaf.scale.set(1.6, 0.5, 0.8);
+          for (let k = 0; k < 5; k++) {
+            const a = (k / 5) * Math.PI * 2;
+            add(lumpy(new THREE.SphereGeometry(0.13, 10, 8), 0.06), clay(PET[i % PET.length]), Math.cos(a) * 0.17, 0.95, Math.sin(a) * 0.17, g);
+          }
+          add(new THREE.SphereGeometry(0.1, 10, 8), clay(0xf2c230), 0, 0.97, 0, g);
+          g.rotation.y = i * 1.3;
+        });
+        [
+          [-9.2, 13.0, 0.35],
+          [9.5, 12.8, 0.28],
+          [-3.4, 17.2, 0.3],
+          [3.6, 18.4, 0.4],
+          [-13.5, 12.4, 0.45],
+          [14.1, 12.1, 0.38],
+        ].forEach(([x, z, r], i) => {
+          const m = add(lumpy(new THREE.SphereGeometry(r, 16, 10), 0.08), clay([0xcfae86, 0xbfa07a, 0xd9c2a0][i % 3]), x, r * 0.35, z);
+          m.scale.y = 0.55;
+        });
+      }
+
+      // ------------------------------------------------------------------ personnages en pâte à modeler
+      function person({ skin, shirt, s = 1, simple = false }) {
+        const g = new THREE.Group();
+        const body = new THREE.Group();
+        g.add(body);
+        add(lumpy(new THREE.CapsuleGeometry(0.52, 0.8, 10, 20), 0.025), clay(shirt), 0, 0.98, 0, body);
+        const headG = new THREE.Group();
+        headG.position.set(0, 2.2, 0.02);
+        body.add(headG);
+        const head = add(lumpy(new THREE.SphereGeometry(0.5, 32, 22), 0.02), clay(skin), 0, 0, 0, headG);
+        const eyes = [];
+        for (const sx of [-0.17, 0.17]) {
+          const e = new THREE.Group();
+          e.position.set(sx, 0.07, 0.44);
+          headG.add(e);
+          add(new THREE.SphereGeometry(0.075, 16, 12), BLACK, 0, 0, 0, e);
+          add(new THREE.SphereGeometry(0.024, 10, 8), WHITE, 0.025, 0.03, 0.07, e);
+          eyes.push(e);
+        }
+        if (!simple) {
+          const smile = add(new THREE.TorusGeometry(0.13, 0.026, 10, 24, Math.PI), clay(0x3a1e14), 0, -0.14, 0.44, headG);
+          smile.rotation.z = Math.PI;
+        }
+        const arm = (sx) => {
+          const pv = new THREE.Group();
+          pv.position.set(sx * 0.52, 1.5, 0.05);
+          body.add(pv);
+          add(lumpy(new THREE.CapsuleGeometry(0.13, 0.55, 8, 12), 0.03), clay(shirt), 0, -0.38, 0, pv);
+          return pv;
+        };
+        const armL = arm(-1),
+          armR = arm(1);
+        g.scale.setScalar(s);
+        scene.add(g);
+        return { g, body, headG, head, eyes, armL, armR, s };
+      }
+      // l'artisan (atelier), la commerçante (commerce), le bâtisseur (chantier)
+      const ART = person({ skin: 0x7a4a30, shirt: 0xd8782e });
+      add(lumpy(new THREE.CapsuleGeometry(0.4, 0.5, 8, 16), 0.02), clay(0x8b5a2b), 0, 0.85, 0.22, ART.body).scale.set(1, 1, 0.5);
+      {
+        const hm = new THREE.Group();
+        hm.position.set(0, -0.8, 0.06);
+        add(lumpy(new THREE.CylinderGeometry(0.065, 0.075, 0.95, 10), 0.04), clay(0xa36f3d), 0, -0.4, 0, hm);
+        const hd = add(lumpy(new THREE.CapsuleGeometry(0.15, 0.36, 6, 12), 0.03), clay(0x80858c), 0, -0.92, 0, hm);
+        hd.rotation.x = Math.PI / 2;
+        ART.armR.add(hm);
+      }
+      const COM = person({ skin: 0x5c3522, shirt: 0x2f8f5b });
+      add(lumpy(new THREE.TorusGeometry(0.42, 0.14, 12, 28), 0.04), clay(0xe9a93a), 0, 0.35, 0, COM.headG).rotation.x = Math.PI / 2;
+      add(lumpy(new THREE.SphereGeometry(0.34, 20, 14), 0.06), clay(0xe9a93a), 0.05, 0.58, -0.05, COM.headG);
+      {
+        const crate = new THREE.Group();
+        crate.position.set(0, 1.05, 0.78);
+        add(lumpy(new THREE.BoxGeometry(1.35, 0.5, 0.7, 8, 4, 4), 0.025), clay(0xc58e52), 0, 0, 0, crate);
+        const FR = [0xd8432b, 0xf0a020, 0xe2c23a, 0xd8432b, 0x6fae3c, 0xf0a020];
+        for (let i = 0; i < 9; i++) add(lumpy(new THREE.SphereGeometry(0.17, 14, 10), 0.06), clay(FR[i % FR.length]), -0.45 + (i % 5) * 0.23 + (i > 4 ? 0.11 : 0), 0.34 + (i > 4 ? 0.12 : 0), -0.12 + (i > 4 ? 0.14 : 0), crate);
+        COM.body.add(crate);
+        COM.crate = crate;
+      }
+      const BAT = person({ skin: 0x8a5634, shirt: 0x2f5fa8 });
+      add(lumpy(new THREE.SphereGeometry(0.55, 28, 14, 0, Math.PI * 2, 0, Math.PI / 2), 0.02), clay(0xf2c230), 0, 0.22, 0, BAT.headG);
+      add(new THREE.CylinderGeometry(0.66, 0.66, 0.07, 32), clay(0xf2c230), 0, 0.22, 0.05, BAT.headG);
+      add(lumpy(new THREE.BoxGeometry(0.62, 0.3, 0.32, 4, 3, 3), 0.04), clay(0xb4532a), 0, -0.82, 0.15, BAT.armR).rotation.z = 0.2;
+
+      // bulle de parole en pâte (L02)
+      const bubble = new THREE.Group();
+      {
+        const b = add(lumpy(new THREE.SphereGeometry(0.62, 28, 18), 0.03), clay(0xfffaf0), 0, 0, 0, bubble);
+        b.scale.set(1.4, 0.95, 0.55);
+        const tail = add(lumpy(new THREE.ConeGeometry(0.2, 0.55, 12), 0.04), clay(0xfffaf0), -0.45, -0.62, 0, bubble);
+        tail.rotation.z = -0.5;
+        tail.rotation.x = Math.PI;
+        for (const dx of [-0.32, 0, 0.32]) add(new THREE.SphereGeometry(0.1, 14, 10), clay(0x3a2a1e), dx, 0, 0.33, bubble);
+        COM.g.add(bubble);
+        bubble.position.set(1.15, 3.45, 0.2);
+      }
+
+      // emplacements des personnages (sur le devant de la carte, puis aux réformes)
+      const STATION = (deg, r) => {
+        const a = (deg * Math.PI) / 180;
+        const g = new THREE.Group();
+        g.position.set(r * Math.sin(a), 0, r * Math.cos(a));
+        g.rotation.y = a;
+        scene.add(g);
+        g.updateMatrixWorld(true);
+        return g;
+      };
+      const ST_BUREAU = STATION(68, 18.5),
+        ST_DIAL = STATION(104, 18.5),
+        ST_GEF = STATION(150, 20),
+        ST_REF = STATION(210, 17.5),
+        ST_SVC = STATION(270, 17.5);
+      const toWorld = (st, x, y, z) => new THREE.Vector3(x, y, z).applyMatrix4(st.matrixWorld);
+      const SPOT_A = { ART: [-3.8, 11.4, 0.3], COM: [0.3, 12.1, -0.05], BAT: [4.4, 11.3, -0.35] };
+      const refSpot = (lx) => {
+        const v = toWorld(ST_REF, lx, 0, 0.55);
+        return [v.x, v.z, (210 * Math.PI) / 180];
+      };
+      const SPOT_R = { ART: refSpot(-3.2), COM: refSpot(0), BAT: refSpot(3.2) };
+      const PRES = {
+        ART: [
+          [T.atelier - 0.25, T.mais, "A"],
+          [T.rass - 0.1, T.reunies - 0.6, "A"],
+          [T.pesent - 0.35, T.quot - 0.7, "R"],
+          [S("L10") - 0.15, T.rejoignez + 0.3, "A"],
+        ],
+        COM: [
+          [T.commerce - 0.25, T.reunies - 0.6, "A"],
+          [T.pesent - 0.3, T.quot - 0.7, "R"],
+          [S("L10") - 0.05, T.rejoignez + 0.35, "A"],
+        ],
+        BAT: [
+          [T.chantier - 0.25, T.mais + 0.08, "A"],
+          [T.rass - 0.02, T.reunies - 0.55, "A"],
+          [T.pesent - 0.25, T.quot - 0.65, "R"],
+          [S("L10") + 0.05, T.rejoignez + 0.4, "A"],
+        ],
+      };
+      const mounds = {};
+      for (const k of ["ART", "COM", "BAT"]) {
+        const m = add(lumpy(new THREE.SphereGeometry(1.0, 24, 12, 0, Math.PI * 2, 0, Math.PI / 2), 0.06), clay(0xe7c9a0, 3), 0, 0, 0);
+        m.scale.setScalar(1e-4);
+        mounds[k] = m;
+      }
+
+      // ------------------------------------------------------------------ L04 : deux anneaux qui se remplissent, perle après perle
+      function ring(x, z, col, frac) {
+        const g = new THREE.Group();
+        g.position.set(x, 0, z);
+        scene.add(g);
+        add(lumpy(new THREE.CylinderGeometry(0.95, 1.1, 0.35, 28), 0.03), clay(0xd9b98c), 0, 0.17, 0, g);
+        add(lumpy(new THREE.CylinderGeometry(0.17, 0.2, 1.0, 12), 0.04), clay(0xd9b98c), 0, 0.8, 0, g);
+        const R = 1.85,
+          YC = 3.05;
+        add(lumpy(new THREE.TorusGeometry(R, 0.3, 14, 64), 0.02), clay(0xf3e3c6), 0, YC, -0.05, g);
+        const beads = [];
+        const N = 48;
+        for (let k = 0; k < N; k++) {
+          const a = Math.PI / 2 - (k / N) * Math.PI * 2;
+          const b = add(lumpy(new THREE.SphereGeometry(0.37, 16, 12), 0.06), clay(col), R * Math.cos(a), YC + R * Math.sin(a), 0.12, g);
+          b.scale.setScalar(1e-4);
+          beads.push(b);
+        }
+        return { g, beads, n: Math.round(N * frac), R, YC };
+      }
+      const RING1 = ring(-10.9, -0.2, 0xe39a2c, 0.8),
+        RING2 = ring(10.9, -0.2, 0x2f8f55, 0.9);
+
+      // ------------------------------------------------------------------ L05 : 13 fanions des fédérations
+      const FEDS = [337, 118, 110, 83, 83, 67, 67, 61, 50, 43, 30, 29, 22];
+      const FCOL = [0x2f8f55, 0xe0a030, 0xd8582e, 0x3d6fb0, 0x8a5aa8, 0x3aa39a, 0xd9b23a, 0x9a6b3a, 0x2a7d4b, 0xc94f6d, 0x6b8f2f, 0x4a90c2, 0xb8742a];
+      // une rangée, de la plus grande fédération à la plus petite, comme un diagramme : la hauteur du mât suit l'effectif
+      const flags = FEDS.map((n, k) => {
+        const g = new THREE.Group();
+        const x = -9.9 + k * 1.65,
+          z = 10.6 - 0.35 * Math.cos(((k - 6) / 6) * 1.2);
+        g.position.set(x, 0, z);
+        scene.add(g);
+        const h = 1.35 + 0.19 * Math.sqrt(n);
+        add(lumpy(new THREE.CylinderGeometry(0.55, 0.65, 0.22, 20), 0.04), clay(0xd9b98c), 0, 0.1, 0, g);
+        add(lumpy(new THREE.CylinderGeometry(0.075, 0.085, h, 10), 0.05), clay(0x8a5a33), 0, h / 2, 0, g);
+        add(lumpy(new THREE.SphereGeometry(0.15, 12, 10), 0.05), clay(0xf2c230), 0, h + 0.08, 0, g);
+        const cg = new THREE.PlaneGeometry(1.22, 0.82, 14, 6);
+        cg.translate(0.61, 0, 0);
+        const cloth = new THREE.Mesh(cg, new THREE.MeshStandardMaterial({ color: FCOL[k], roughness: 0.85, side: THREE.DoubleSide, bumpMap: BUMP, bumpScale: 0.6 }));
+        cloth.position.set(0.06, h - 0.45, 0);
+        cloth.castShadow = true;
+        g.add(cloth);
+        const base = Float32Array.from(cg.attributes.position.array);
+        g.scale.setScalar(1e-4);
+        return { g, cloth, base, h, k };
+      });
+      const flagOrder = FEDS.map((_, k) => k); // ordre d'apparition : de la plus grande à la plus petite
+
+      // enveloppes qui remontent des fanions vers le Bureau exécutif (L06)
+      const envelopes = flags.map(() => {
+        const g = new THREE.Group();
+        add(lumpy(new THREE.BoxGeometry(0.62, 0.42, 0.08, 4, 3, 1), 0.03), clay(0xfffaf0), 0, 0, 0, g);
+        add(new THREE.SphereGeometry(0.09, 12, 8), clay(0xc0392b), 0, 0.02, 0.06, g).scale.set(1, 1, 0.5);
+        g.visible = false;
+        scene.add(g);
+        return g;
+      });
+
+      // ------------------------------------------------------------------ L06 : Bureau exécutif ; table du dialogue public-privé
+      const bureau = new THREE.Group();
+      ST_BUREAU.add(bureau);
+      add(lumpy(new THREE.CylinderGeometry(1.95, 1.95, 0.24, 40), 0.02), clay(0xb98552), 0, 1.05, 0, bureau);
+      add(lumpy(new THREE.CylinderGeometry(0.32, 0.5, 1.0, 16), 0.03), clay(0x9c6b3e), 0, 0.5, 0, bureau);
+      const SUITS = [0x2f6f4a, 0x3d4a45, 0x2a5a8a, 0x6b4a2f, 0x2f6f4a, 0x4a3d55, 0x3d4a45];
+      const SKINS = [0x7a4a30, 0x5c3522, 0x8a5634, 0x6b3f2a, 0x5a3322, 0x8a5434, 0x6b3f2a];
+      const bureauPeople = [];
+      for (let k = 0; k < 7; k++) {
+        const a = (k / 7) * Math.PI * 2 + Math.PI / 7;
+        const p = person({ skin: SKINS[k], shirt: SUITS[k], s: 0.6, simple: true });
+        scene.remove(p.g);
+        bureau.add(p.g);
+        p.g.position.set(Math.sin(a) * 2.75, 0, Math.cos(a) * 2.75);
+        p.g.rotation.y = a + Math.PI;
+        bureauPeople.push(p);
+      }
+      const dial = new THREE.Group();
+      ST_DIAL.add(dial);
+      add(lumpy(new THREE.BoxGeometry(6.6, 0.24, 1.7, 12, 2, 4), 0.012), clay(0xb98552), 0, 1.05, 0, dial);
+      for (const [lx, lz] of [
+        [-3.0, -0.6],
+        [3.0, -0.6],
+        [-3.0, 0.6],
+        [3.0, 0.6],
+      ])
+        add(lumpy(new THREE.CylinderGeometry(0.1, 0.12, 1.0, 10), 0.03), clay(0x9c6b3e), lx, 0.5, lz, dial);
+      const dialPeople = [];
+      for (let k = 0; k < 6; k++) {
+        const pub = k >= 3;
+        const p = person({ skin: SKINS[k + 1], shirt: pub ? 0x3a5f9e : 0x2f7a4c, s: 0.6, simple: true });
+        scene.remove(p.g);
+        dial.add(p.g);
+        p.g.position.set(pub ? 0.9 + (k - 3) * 0.95 : -2.8 + k * 0.95, 0, -1.35);
+        p.g.rotation.y = 0;
+        dialPeople.push(p);
+      }
+      // petits fanions de table : vert (FEG), bleu (pouvoirs publics)
+      for (const [lx, col] of [
+        [-1.5, 0x2f8f55],
+        [1.9, 0x3a5f9e],
+      ]) {
+        add(new THREE.CylinderGeometry(0.03, 0.03, 0.7, 8), clay(0x8a5a33), lx, 1.5, 0.45, dial);
+        add(lumpy(new THREE.BoxGeometry(0.45, 0.3, 0.03), 0.02), clay(col), lx + 0.24, 1.72, 0.45, dial);
+      }
+      // le bâtiment à colonnes des pouvoirs publics
+      const etat = new THREE.Group();
+      etat.position.set(2.1, 0, -4.6);
+      dial.add(etat);
+      add(lumpy(new THREE.BoxGeometry(4.6, 0.45, 2.6, 8, 2, 4), 0.015), clay(0xf3ead8), 0, 0.22, 0, etat);
+      for (let k = 0; k < 5; k++) add(lumpy(new THREE.CylinderGeometry(0.2, 0.22, 2.4, 14), 0.02), clay(0xfaf3e3), -1.8 + k * 0.9, 1.65, 0.95, etat);
+      add(lumpy(new THREE.BoxGeometry(4.8, 0.35, 2.8, 8, 2, 4), 0.015), clay(0xf3ead8), 0, 3.02, 0, etat);
+      {
+        const ped = lumpy(new THREE.CylinderGeometry(2.6, 2.6, 2.6, 3, 1), 0.015);
+        ped.rotateZ(Math.PI / 2);
+        ped.rotateY(Math.PI / 2);
+        const pm = add(ped, clay(0xf3ead8), 0, 3.55, 0, etat);
+        pm.scale.set(1, 0.36, 1);
+      }
+      add(lumpy(new THREE.BoxGeometry(4.2, 2.4, 1.6, 6, 4, 2), 0.01), clay(0xe9dcc2), 0, 1.65, -0.3, etat);
+
+      // ------------------------------------------------------------------ L07 : l'amphithéâtre du Gabon Economic Forum, ses 8 ateliers, la Déclaration
+      const gef = new THREE.Group();
+      ST_GEF.add(gef);
+      {
+        const pts = [
+          [0.0, 0.06],
+          [2.95, 0.06],
+          [2.95, 0.44],
+          [3.95, 0.44],
+          [3.95, 0.82],
+          [4.95, 0.82],
+          [4.95, 1.2],
+          [5.95, 1.2],
+          [6.15, 0.0],
+        ].map(([x, y]) => new THREE.Vector2(x, y));
+        const lg = lumpy(new THREE.LatheGeometry(pts, 72), 0.006, 2.1);
+        add(lg, clay(0xf7ecd8, 3), 0, 0, 0, gef);
+        // la scène verte au centre, et le public sur les gradins
+        add(lumpy(new THREE.CylinderGeometry(2.85, 2.85, 0.1, 48), 0.01), clay(0x3a9b5f, 2), 0, 0.1, 0, gef);
+        const AUD = [0xd8582e, 0x3d6fb0, 0xe0a030, 0x2f8f55, 0x8a5aa8, 0xc94f6d, 0x3aa39a, 0xf2e6d0];
+        for (const [r, y, n] of [
+          [3.45, 0.44, 30],
+          [4.45, 0.82, 38],
+          [5.45, 1.2, 46],
+        ])
+          for (let k = 0; k < n; k++) {
+            const a = (k / n) * Math.PI * 2 + rnd() * 0.08;
+            if (Math.cos(a) > 0.82) continue; // une allée du côté de la caméra
+            const g = new THREE.Group();
+            g.position.set(Math.sin(a) * r, y, Math.cos(a) * r);
+            gef.add(g);
+            add(lumpy(new THREE.CapsuleGeometry(0.15, 0.18, 4, 8), 0.04), clay(AUD[k % AUD.length]), 0, 0.24, 0, g);
+            add(lumpy(new THREE.SphereGeometry(0.15, 10, 8), 0.04), clay(SKINS[k % 7]), 0, 0.58, 0, g);
+          }
+      }
+      const ateliers = [];
+      for (let k = 0; k < 8; k++) {
+        const a = (k / 8) * Math.PI * 2 + Math.PI / 8;
+        const g = new THREE.Group();
+        g.position.set(Math.sin(a) * 1.95, 0.06, Math.cos(a) * 1.95);
+        gef.add(g);
+        add(lumpy(new THREE.CylinderGeometry(0.5, 0.5, 0.12, 20), 0.03), clay(0xb98552), 0, 0.55, 0, g);
+        add(new THREE.CylinderGeometry(0.08, 0.12, 0.5, 8), clay(0x9c6b3e), 0, 0.27, 0, g);
+        for (const s of [-1, 1]) {
+          add(lumpy(new THREE.CapsuleGeometry(0.17, 0.25, 6, 10), 0.03), clay(FCOL[(k * 2 + (s > 0 ? 1 : 0)) % 13]), s * 0.62, 0.38, 0, g);
+          add(lumpy(new THREE.SphereGeometry(0.17, 14, 10), 0.03), clay(SKINS[(k + (s > 0 ? 3 : 0)) % 7]), s * 0.62, 0.8, 0, g);
+        }
+        g.scale.setScalar(1e-4);
+        ateliers.push(g);
+      }
+      const easel = new THREE.Group();
+      gef.add(easel);
+      add(lumpy(new THREE.BoxGeometry(3.0, 4.05, 0.22, 6, 6, 1), 0.012), clay(0x9c6b3e), 0, 0, -0.06, easel);
+      const pageMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(1.25, 1.25, 1.22) });
+      const page = new THREE.Mesh(new THREE.PlaneGeometry(2.62, 3.7), pageMat);
+      page.position.set(0, 0, 0.07);
+      easel.add(page);
+      add(lumpy(new THREE.CylinderGeometry(0.09, 0.11, 2.4, 8), 0.03), clay(0x8a5a33), -0.9, -2.0, -0.35, easel).rotation.x = 0.2;
+      add(lumpy(new THREE.CylinderGeometry(0.09, 0.11, 2.4, 8), 0.03), clay(0x8a5a33), 0.9, -2.0, -0.35, easel).rotation.x = 0.2;
+
+      // ------------------------------------------------------------------ L08 : quatre panneaux de réformes
+      const signs = [-4.8, -1.6, 1.6, 4.8].map((lx, k) => {
+        const g = new THREE.Group();
+        g.position.set(lx, 0, 0);
+        ST_REF.add(g);
+        add(lumpy(new THREE.CylinderGeometry(0.13, 0.15, 2.7, 10), 0.04), clay(0x8a5a33), 0, 1.35, 0, g);
+        add(lumpy(new THREE.BoxGeometry(2.9, 1.15, 0.22, 8, 4, 1), 0.012), clay([0xf6ead2, 0xdcefd8, 0xf6ead2, 0xf8e2c6][k]), 0, 2.45, 0.1, g);
+        g.scale.setScalar(1e-4);
+        return g;
+      });
+
+      // ------------------------------------------------------------------ L09 : quatre services sur leurs socles
+      const svc = [-5.2, -1.75, 1.75, 5.2].map((lx) => {
+        const g = new THREE.Group();
+        g.position.set(lx, 0, 0);
+        ST_SVC.add(g);
+        add(lumpy(new THREE.CylinderGeometry(0.9, 1.0, 0.9, 28), 0.02), clay(0xf2e3c6), 0, 0.45, 0, g);
+        g.scale.setScalar(1e-4);
+        return g;
+      });
+      // loupe : la veille sur les réformes
+      {
+        const l = new THREE.Group();
+        l.position.set(0, 1.95, 0);
+        svc[0].add(l);
+        add(lumpy(new THREE.TorusGeometry(0.58, 0.12, 12, 32), 0.03), clay(0x3d4a45), 0, 0, 0, l);
+        const lens = add(new THREE.CylinderGeometry(0.5, 0.5, 0.06, 32), new THREE.MeshStandardMaterial({ color: 0xbfe1ee, roughness: 0.15, metalness: 0, emissive: 0x2a4a55, emissiveIntensity: 0.25 }), 0, 0, 0, l);
+        lens.rotation.x = Math.PI / 2;
+        const h = add(lumpy(new THREE.CapsuleGeometry(0.11, 0.7, 6, 10), 0.03), clay(0x8a5a33), 0.68, -0.68, 0, l);
+        h.rotation.z = Math.PI / 4;
+        l.rotation.z = 0.15;
+      }
+      // livre ouvert : les formations
+      {
+        const b = new THREE.Group();
+        b.position.set(0, 1.12, 0.05);
+        svc[1].add(b);
+        for (const s of [-1, 1]) {
+          const cov = add(lumpy(new THREE.BoxGeometry(0.85, 0.07, 1.15, 4, 1, 4), 0.02), clay(0xb4532a), s * 0.42, 0.12, 0, b);
+          cov.rotation.z = -s * 0.32;
+          const pg = add(lumpy(new THREE.BoxGeometry(0.78, 0.12, 1.05, 4, 1, 4), 0.015), clay(0xfffaf0), s * 0.4, 0.2, 0, b);
+          pg.rotation.z = -s * 0.3;
+        }
+        add(new THREE.BoxGeometry(0.06, 0.02, 0.6), clay(0x2f8f55), 0.05, 0.34, 0.62, b);
+        b.rotation.x = 0.5;
+      }
+      // réseau : quatre boules reliées (le réseau d'affaires)
+      {
+        const n = new THREE.Group();
+        n.position.set(0, 1.75, 0);
+        svc[2].add(n);
+        const P = [
+          [0, 0.55, 0],
+          [-0.55, -0.15, 0.2],
+          [0.55, -0.15, 0.2],
+          [0, -0.05, -0.45],
+        ];
+        const cols = [0x2f8f55, 0xe0a030, 0x3d6fb0, 0xd8582e];
+        P.forEach(([x, y, z], i) => add(lumpy(new THREE.SphereGeometry(0.26, 18, 12), 0.04), clay(cols[i]), x, y, z, n));
+        const link = (a, b) => {
+          const va = new THREE.Vector3(...P[a]),
+            vb = new THREE.Vector3(...P[b]);
+          const mid = va.clone().add(vb).multiplyScalar(0.5);
+          const len = va.distanceTo(vb);
+          const m = add(new THREE.CylinderGeometry(0.05, 0.05, len, 8), clay(0x8a5a33), mid.x, mid.y, mid.z, n);
+          m.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), vb.clone().sub(va).normalize());
+        };
+        link(0, 1);
+        link(0, 2);
+        link(0, 3);
+        link(1, 2);
+        link(2, 3);
+        link(1, 3);
+      }
+      // balance : la médiation et l'arbitrage
+      const beam = new THREE.Group();
+      {
+        const b = new THREE.Group();
+        b.position.set(0, 0.9, 0);
+        svc[3].add(b);
+        add(lumpy(new THREE.CylinderGeometry(0.35, 0.42, 0.16, 20), 0.03), clay(0x8a6a3a), 0, 0.08, 0, b);
+        add(lumpy(new THREE.CylinderGeometry(0.07, 0.08, 1.5, 10), 0.03), clay(0x8a6a3a), 0, 0.85, 0, b);
+        beam.position.set(0, 1.6, 0);
+        b.add(beam);
+        const bm = add(lumpy(new THREE.CapsuleGeometry(0.06, 1.5, 6, 10), 0.03), clay(0x8a6a3a), 0, 0, 0, beam);
+        bm.rotation.z = Math.PI / 2;
+        for (const s of [-1, 1]) {
+          const hang = new THREE.Group();
+          hang.position.set(s * 0.78, 0, 0);
+          beam.add(hang);
+          add(new THREE.CylinderGeometry(0.02, 0.02, 0.5, 6), clay(0x6a5030), 0, -0.25, 0, hang);
+          add(lumpy(new THREE.CylinderGeometry(0.36, 0.3, 0.07, 20), 0.03), clay(0xe0a030), 0, -0.52, 0, hang);
+          hang.userData.s = s;
+        }
+      }
+
+      // ------------------------------------------------------------------ caméra : elle fait le tour de la carte
+      // plan final (vertical) : 0,62 px écran par px du logo, logo en (691,54 ; 222) — la carte de fin s'y superpose
+      const K_LOGO = 0.62,
+        LOGO_LEFT = 960 - (866 * K_LOGO) / 2,
+        LOGO_TOP = 222;
+      const S_FIN = K_LOGO / SC;
+      const Y_DISC = 0.22;
+      const FIN = {
+        phi: 360,
+        look: [(960 - LCX * K_LOGO - LOGO_LEFT) / S_FIN, Y_DISC, -(LOGO_TOP - 540 + LCY * K_LOGO) / S_FIN],
+        dist: 540 / (S_FIN * Math.tan(((FOV / 2) * Math.PI) / 180)),
+        elev: 90,
+        fy: 0.5,
+        tilt: 0,
+      };
+      const wp = (st, x, y, z) => {
+        const v = toWorld(st, x, y, z);
+        return [v.x, v.y, v.z];
+      };
+      const keys = [];
+      const key = (t0, dur, to, ease = inOut) => keys.push({ t0, dur, to, ease });
+      const CAM0 = { phi: -5, look: [0.3, 0.35, 11.6], dist: 10.5, elev: 16, fy: 0.5, tilt: 1 };
+      key(0, 3.4, { phi: -2, look: [0.3, 0.9, 11.6], dist: 12.5, elev: 15, fy: 0.45, tilt: 1 }, inOutQ);
+      key(T.atelier - 0.6, 3.2, { phi: 3, look: [0.3, 1.35, 11.7], dist: 15.5, elev: 17, fy: 0.42, tilt: 1 }, inOutQ);
+      key(T.mais - 0.2, 2.6, { phi: 6, look: [0.3, 1.0, 12.1], dist: 27, elev: 32, fy: 0.5, tilt: 1 }, inOutQ);
+      key(T.depuis - 0.3, 4.4, { phi: 2, look: [0.6, 0.6, 3.2], dist: 31, elev: 33, fy: 0.45, tilt: 1 }, inOutQ);
+      key(T.ens4 - 0.6, 1.9, { phi: 0, look: [0, 2.1, 1.2], dist: 34, elev: 21, fy: 0.5, tilt: 1 });
+      key(T.reunies - 0.35, 1.6, { phi: 0, look: [0, 2.0, 10.4], dist: 25, elev: 14, fy: 0.55, tilt: 0.9 });
+      key(T.preocc - 0.25, 2.3, { phi: 68, look: wp(ST_BUREAU, 0, 1.2, 0), dist: 15.5, elev: 27, fy: 0.45, tilt: 1 });
+      key(T.puis - 0.3, 1.6, { phi: 104, look: wp(ST_DIAL, 0.6, 1.4, -1.6), dist: 16.5, elev: 22, fy: 0.45, tilt: 1 });
+      key(T.dial - 0.35, 2.2, { phi: 150, look: wp(ST_GEF, 0, 1.6, -1.6), dist: 25, elev: 38, fy: 0.42, tilt: 1 });
+      key(T.decl - 0.45, 1.2, { phi: 150, look: wp(ST_GEF, 0, 3.0, 0), dist: 12.5, elev: 15, fy: 0.5, tilt: 0.85 });
+      key(T.ref[0] - 0.7, 2.0, { phi: 210, look: wp(ST_REF, 0, 2.1, 0), dist: 17, elev: 13, fy: 0.5, tilt: 0.9 });
+      key(T.quot - 0.65, 2.0, { phi: 270, look: wp(ST_SVC, 0, 1.35, 0), dist: 16.5, elev: 17, fy: 0.5, tilt: 0.9 });
+      key(S("L10") - 0.7, 2.1, { phi: 360, look: [0.6, 1.6, 2.2], dist: 32, elev: 31, fy: 0.42, tilt: 1 });
+      key(T.rejoignez - 0.25, 1.3, FIN, inOut);
+      function camAt(t) {
+        let s = { ...CAM0, look: [...CAM0.look] };
+        for (let i = 0; i < keys.length; i++) {
+          const k = keys[i];
+          if (t <= k.t0) break;
+          const next = keys[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const e = k.ease(prog(cut, k.t0, k.dur));
+          const to = k.to;
+          s = {
+            phi: lerp(s.phi, to.phi, e),
+            look: [lerp(s.look[0], to.look[0], e), lerp(s.look[1], to.look[1], e), lerp(s.look[2], to.look[2], e)],
+            dist: Math.exp(lerp(Math.log(s.dist), Math.log(to.dist), e)),
+            elev: lerp(s.elev, to.elev, e),
+            fy: lerp(s.fy, to.fy, e),
+            tilt: lerp(s.tilt, to.tilt, e),
+          };
+          if (!(next && next.t0 < t)) break;
+        }
+        return s;
+      }
+
+      // ------------------------------------------------------------------ étiquettes
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (x, y, z) => {
+        v3.set(x, y, z).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080, v3.z];
+      };
+      function place(name, p, a, ax = 0.5, ay = 1, dx = 0, dy = 0) {
+        const el = $("wl-" + name);
+        if (a <= 0.002) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [sx, sy, sz] = toScreen(p.x, p.y, p.z);
+        if (sz > 1) {
+          el.style.opacity = "0";
+          return;
+        }
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(sx + dx - w * ax)}px, ${Math.round(sy + dy - h * ay + (1 - a) * 10)}px)`;
+      }
+      const wv = (obj, x, y, z) => new THREE.Vector3(x, y, z).applyMatrix4(obj.matrixWorld);
+
+      // ------------------------------------------------------------------ une image
+      const tmpC = new THREE.Color();
+      function render(t) {
+        const ts = stp(t);
+        // --- caméra
+        const s = camAt(t);
+        const ph = (s.phi * Math.PI) / 180,
+          el = (s.elev * Math.PI) / 180;
+        const drift = 1 - prog(t, T.rejoignez - 0.3, 0.5);
+        const php = ph + 0.012 * Math.sin(t * 0.31) * drift;
+        camera.position.set(s.look[0] + s.dist * Math.sin(php) * Math.cos(el), s.look[1] + s.dist * Math.sin(el), s.look[2] + s.dist * Math.cos(php) * Math.cos(el));
+        const topUp = clamp01((s.elev - 70) / 20);
+        camera.up.set(-Math.sin(ph) * topUp, 1 - topUp, -Math.cos(ph) * topUp).normalize();
+        camera.lookAt(s.look[0], s.look[1], s.look[2]);
+        camera.updateMatrixWorld();
+        // soleil qui suit la caméra (lumière toujours de trois quarts avant gauche)
+        const ca = Math.cos(ph),
+          sa = Math.sin(ph);
+        const off = [-9, 16, 10];
+        sun.position.set(s.look[0] + off[0] * ca + off[2] * sa, s.look[1] + off[1], s.look[2] - off[0] * sa + off[2] * ca);
+        sun.target.position.set(s.look[0], 0, s.look[2]);
+        const half = Math.max(16, s.dist * Math.tan(((FOV / 2) * Math.PI) / 180) * 1.9);
+        const sc = sun.shadow.camera;
+        sc.left = -half;
+        sc.right = half;
+        sc.top = half;
+        sc.bottom = -half;
+        sc.near = 0.5;
+        sc.far = 120;
+        sc.updateProjectionMatrix();
+        rim.position.set(s.look[0] - 8 * sa, s.look[1] + 6, s.look[2] - 12 * ca);
+        rim.target.position.set(s.look[0], 0, s.look[2]);
+        scene.fog.near = s.dist * 0.8;
+        scene.fog.far = s.dist * 2.6 + 25;
+
+        // --- la carte
+        const pres = (k) => 1 + 0.22 * bump(t, T.pesent + 0.25 + cushions[k].userData.d * 0.7, 0.16);
+        const fin = inOut(prog(t, T.rejoignez + 0.15, 1.0));
+        GREENS.forEach((m, i) => m.color.copy(GREEN0[i]).lerp(BRONZE, fin));
+        cushions.forEach((m, k) => {
+          const u = m.userData;
+          const a = ts < u.t0 ? 0 : backOut(prog(ts, u.t0, 0.42));
+          const sy = lerp(0.46, 0.07, fin) * pres(k) * (1 + 0.02 * boil(k, t));
+          const sxz = lerp(1, 0.693 / CUSH_R, fin);
+          m.visible = a > 0.001;
+          m.scale.set(a * sxz, a * sy, a * sxz);
+          m.position.y = lerp(0.2, Y_DISC - 0.02, fin);
+        });
+        deco.forEach((g) => {
+          const u = g.userData,
+            c = cushions[u.ci];
+          const a = ts < c.userData.t0 + 0.15 ? 0 : backOut(prog(ts, c.userData.t0 + 0.15, 0.4)) * (1 - in3(prog(ts, T.rejoignez + 0.05, 0.45)));
+          g.visible = a > 0.001;
+          g.position.set(c.position.x, u.y, c.position.z);
+          g.scale.setScalar(Math.max(1e-4, a * u.s));
+        });
+
+        // --- personnages
+        const charPose = (P, key, id) => {
+          let best = null;
+          for (const [a, b, spot] of PRES[key]) {
+            const l = life(t, a, b, 0.5, 0.45);
+            if (l > 0.001 && (!best || l > best.l)) best = { l, spot, a, b };
+          }
+          const mound = mounds[key];
+          if (!best) {
+            P.g.visible = false;
+            const first = PRES[key][0][0];
+            const pre = t < first ? out3(prog(stp(t), 0.15 + id * 0.3, 0.8)) : 0;
+            mound.visible = pre > 0.01;
+            if (mound.visible) {
+              const [x0, z0] = SPOT_A[key];
+              const w = 0.55 + 0.12 * prog(t, 0.5, first) + 0.05 * boil(id + 20, t);
+              mound.position.set(x0, 0, z0);
+              mound.scale.set(w * pre, (0.32 + 0.1 * Math.sin(stp(t) * 5 + id)) * pre, w * pre);
+            }
+            return null;
+          }
+          const [x, z, rot] = best.spot === "A" ? SPOT_A[key] : SPOT_R[key];
+          P.g.visible = true;
+          const e = best.l;
+          P.g.position.set(x, -2.9 * (1 - Math.min(1, e)), z);
+          P.g.rotation.y = rot;
+          // la pâte se bombe autour du personnage qui sort
+          const m = Math.sin(Math.PI * clamp01(prog(stp(t), best.a, 0.55))) + Math.sin(Math.PI * clamp01(prog(stp(t), best.b, 0.45)));
+          mound.visible = m > 0.01;
+          mound.position.set(x, 0, z);
+          mound.scale.set(1.3 * m, 0.45 * m, 1.3 * m);
+          // poses image par image
+          const sq = 1 + 0.05 * Math.sin(ts * 3.1 + id) + 0.012 * boil(id, t);
+          P.body.scale.set(1 / Math.sqrt(sq), sq, 1 / Math.sqrt(sq));
+          P.headG.rotation.y = 0.18 * Math.sin(ts * 0.9 + id * 2);
+          P.headG.scale.setScalar(1 + 0.012 * boil(id + 7, t));
+          const blink = (Math.floor(ts * POSE) + id * 11) % 41 < 2;
+          P.eyes.forEach((ey) => ey.scale.set(1, blink ? 0.15 : 1, 1));
+          P.armL.rotation.set(0, 0, 0.25 + 0.06 * Math.sin(ts * 2.2 + id));
+          P.armR.rotation.set(0, 0, -0.25 - 0.06 * Math.sin(ts * 2.2 + id + 1));
+          P.body.rotation.set(0, 0, 0);
+          return best;
+        };
+        const bA = charPose(ART, "ART", 1),
+          bC = charPose(COM, "COM", 2),
+          bB = charPose(BAT, "BAT", 3);
+        // gestes : l'artisan martèle, la commerçante porte sa cagette, le bâtisseur lève sa brique
+        ART.armR.rotation.z = -2.05 + 0.45 * Math.abs(Math.sin(ts * 5.0));
+        COM.armL.rotation.set(-1.05, 0, 0.35);
+        COM.armR.rotation.set(-1.05, 0, -0.35);
+        BAT.armR.rotation.z = -1.25 + 0.12 * Math.sin(ts * 2.6);
+        // L08 : ils poussent les panneaux vers le haut
+        const push = win(t, T.pesent - 0.1, 0.4, T.quot - 0.9, 0.3);
+        if (push > 0) {
+          for (const P of [ART, COM, BAT]) {
+            P.armL.rotation.set(0, 0, lerp(P.armL.rotation.z, 2.75, push));
+            P.armR.rotation.set(0, 0, lerp(P.armR.rotation.z, -2.75, push));
+          }
+          COM.crate.visible = push < 0.5;
+        } else COM.crate.visible = true;
+        // L10 : ils saluent
+        const wave = win(t, S("L10") + 0.4, 0.4, T.rejoignez, 0.3);
+        if (wave > 0) {
+          ART.armL.rotation.set(0, 0, lerp(0.25, 2.5 + 0.35 * Math.sin(ts * 7), wave));
+          COM.armR.rotation.set(lerp(-1.05, 0, wave), 0, lerp(-0.35, -2.5 - 0.35 * Math.sin(ts * 7 + 1), wave));
+          BAT.armL.rotation.set(0, 0, lerp(0.25, 2.5 + 0.35 * Math.sin(ts * 7 + 2), wave));
+        }
+        // L02 : la bulle de la commerçante gonfle, puis se dégonfle et tombe
+        {
+          const inn = backOut(prog(ts, T.seule - 0.05, 0.5));
+          const outU = prog(ts, T.voix2 - 0.05, 0.75);
+          const sc = inn * (1 - in3(outU)) * (1 + 0.04 * boil(9, t));
+          bubble.visible = sc > 0.01 && ts < T.voix2 + 0.8;
+          bubble.scale.set(sc * (1 + 0.25 * outU), sc * (1 - 0.35 * outU), sc);
+          bubble.position.set(1.15, 3.45 - 1.4 * outU * outU, 0.2);
+          bubble.rotation.z = 0.35 * outU;
+        }
+
+        // --- L04 : anneaux
+        for (const [R, t0, frac] of [
+          [RING1, T.p80 - 0.15, 0.8],
+          [RING2, T.p90 - 0.15, 0.9],
+        ]) {
+          const l = life(t, T.ens4 - 0.35, T.reunies - 0.45, 0.5, 0.4);
+          R.g.visible = l > 0.001;
+          R.g.scale.setScalar(Math.max(1e-4, l));
+          R.beads.forEach((b, k) => {
+            if (k >= R.n) return;
+            const tk = t0 + (k / R.n) * 1.35;
+            const a = ts < tk ? 0 : backOut(prog(ts, tk, 0.22));
+            b.scale.setScalar(Math.max(1e-4, a * (1 + 0.03 * boil(k + 40, t))));
+          });
+        }
+
+        // --- L05 : fanions (ils ondulent ; sur « une seule voix », tous ensemble)
+        const sync = inOut(prog(t, T.parlent - 0.1, 0.7));
+        flags.forEach((F, i) => {
+          const t0 = T.treize - 0.1 + F.k * 0.065;
+          const l = life(t, t0, T.preocc + 0.35 + F.k * 0.03, 0.45, 0.4);
+          F.g.visible = l > 0.001;
+          if (!F.g.visible) return;
+          F.g.scale.setScalar(Math.max(1e-4, l));
+          const p = F.cloth.geometry.attributes.position;
+          const ph0 = lerp(F.k * 1.7, 0, sync);
+          const amp = lerp(0.16, 0.26, sync);
+          for (let j = 0; j < p.count; j++) {
+            const bx = F.base[3 * j],
+              by = F.base[3 * j + 1];
+            const u = bx / 1.22;
+            p.setXYZ(j, bx, by - 0.05 * u * u, amp * u * Math.sin(ts * 6.0 - bx * 3.6 + ph0));
+          }
+          p.needsUpdate = true;
+          F.cloth.geometry.computeVertexNormals();
+        });
+        // enveloppes : des fanions jusqu'au Bureau exécutif, en petits sauts
+        {
+          const dst = wv(ST_BUREAU, 0, 1.7, 0);
+          envelopes.forEach((g, k) => {
+            const F = flags[k];
+            const src = new THREE.Vector3(F.g.position.x, F.h + 0.3, F.g.position.z);
+            const u = prog(ts, T.preocc - 0.05 + k * 0.07, 1.25);
+            g.visible = u > 0 && u < 1;
+            if (!g.visible) return;
+            const hop = Math.abs(Math.sin(u * Math.PI * 3)) * 1.1 * (1 - u) + Math.sin(u * Math.PI) * 2.8;
+            g.position.set(lerp(src.x, dst.x, u), lerp(src.y, dst.y, u) + hop, lerp(src.z, dst.z, u));
+            g.lookAt(camera.position);
+            g.scale.setScalar(1.5 + 0.5 * Math.sin(u * Math.PI));
+          });
+        }
+
+        // --- L06 : Bureau exécutif, table du dialogue, pouvoirs publics
+        {
+          const lb = life(t, T.preocc - 0.2, T.puis + 0.35, 0.5, 0.4);
+          bureau.visible = lb > 0.001;
+          bureau.scale.setScalar(Math.max(1e-4, lb));
+          bureauPeople.forEach((p, k) => {
+            p.body.scale.set(1, 1 + 0.03 * Math.sin(ts * 2.4 + k) + 0.02 * bump(t, T.bureau + 0.5 + k * 0.05, 0.2), 1);
+            p.headG.rotation.y = 0.25 * Math.sin(ts * 1.3 + k * 1.7);
+          });
+          const ld = life(t, T.puis - 0.45, T.dial + 0.35, 0.5, 0.4);
+          dial.visible = ld > 0.001;
+          dial.scale.setScalar(Math.max(1e-4, ld));
+          const le = life(t, T.table - 0.2, T.dial + 0.35, 0.5, 0.4);
+          etat.scale.setScalar(Math.max(1e-4, le));
+          dialPeople.forEach((p, k) => {
+            p.armR.rotation.set(-0.6 - 0.35 * Math.abs(Math.sin(ts * 3 + k * 1.3)) * (k % 2), 0, -0.2);
+            p.headG.rotation.y = (k < 3 ? 0.35 : -0.35) * Math.sin(ts * 1.1 + k) + (k < 3 ? 0.25 : -0.25);
+          });
+        }
+
+        // --- L07 : amphithéâtre, ateliers, Déclaration
+        {
+          const lg = life(t, T.dial - 0.25, T.ref[0] - 0.4, 0.55, 0.45);
+          gef.visible = lg > 0.001;
+          gef.scale.setScalar(Math.max(1e-4, lg));
+          ateliers.forEach((g, k) => {
+            const t0 = T.huit - 0.05 + k * 0.08;
+            const a = ts < t0 ? 0 : backOut(prog(ts, t0, 0.35));
+            g.scale.setScalar(Math.max(1e-4, a));
+          });
+          const up = backOut(prog(ts, T.decl - 0.2, 0.6));
+          easel.visible = up > 0.001;
+          easel.position.set(0, lerp(-3.2, 2.55, up), 0);
+          easel.rotation.x = -0.08;
+          easel.scale.setScalar(Math.max(1e-4, Math.min(1, up * 1.05)));
+        }
+
+        // --- L08 : panneaux (penchés quand ils sortent, redressés quand les entreprises « pèsent »)
+        const straight = backOut(prog(ts, T.pesent + 0.05, 0.5));
+        signs.forEach((g, k) => {
+          const l = life(t, T.ref[k] - 0.12, T.quot - 0.75, 0.45, 0.4);
+          g.visible = l > 0.001;
+          g.scale.setScalar(Math.max(1e-4, l));
+          const tilt0 = [0.2, -0.16, 0.22, -0.2][k] * (1 + 0.1 * boil(k + 60, t));
+          g.rotation.z = tilt0 * (1 - straight);
+          g.position.y = 0.45 * clamp01(straight);
+        });
+
+        // --- L09 : services
+        svc.forEach((g, k) => {
+          const l = life(t, T.svc[k] - 0.15, S("L10") - 0.4, 0.45, 0.4);
+          g.visible = l > 0.001;
+          g.scale.setScalar(Math.max(1e-4, l));
+          g.rotation.y = 0.08 * Math.sin(ts * 1.2 + k);
+        });
+        beam.rotation.z = 0.28 * Math.exp(-2.2 * Math.max(0, ts - T.svc[3])) * Math.cos((ts - T.svc[3]) * 7);
+        beam.children.forEach((c) => {
+          if (c.userData.s) c.rotation.z = -beam.rotation.z;
+        });
+
+        // --- étiquettes (positions du monde mises à jour d'abord)
+        scene.updateMatrixWorld(true);
+        const lab = (name, obj, x, y, z, a, ax, ay, dx, dy) => place(name, wv(obj, x, y, z), a, ax, ay, dx, dy);
+        [
+          [ART, T.atelier, "a0"],
+          [COM, T.commerce, "a1"],
+          [BAT, T.chantier, "a2"],
+        ].forEach(([P, tw, nm]) => {
+          const a = win(t, tw + 0.2, 0.35, T.mais - 0.25, 0.35);
+          if (P.g.visible) lab(nm, P.g, 0, 3.15, 0, a, 0.5, 1, 0, 0);
+          else place(nm, new THREE.Vector3(), 0);
+        });
+        const r1a = win(t, T.p80 - 0.2, 0.4, T.reunies - 0.55, 0.35),
+          r2a = win(t, T.p90 - 0.2, 0.4, T.reunies - 0.55, 0.35);
+        lab("r0", RING1.g, 0, RING1.YC + RING1.R + 0.7, 0, r1a, 0.5, 1, 0, 0);
+        lab("r1", RING2.g, 0, RING2.YC + RING2.R + 0.7, 0, r2a, 0.5, 1, 0, 0);
+        // étiquettes une sur deux en haut (au-dessus du mât) et en bas (devant le socle)
+        flags.forEach((F) => {
+          const a = win(t, T.treize + 0.25 + F.k * 0.065, 0.35, T.preocc - 0.15, 0.3) * (F.g.visible ? 1 : 0);
+          if (F.k % 2 === 0) lab("f" + F.k, F.g, 0.1, F.h + 0.4, 0, a, 0.5, 1, 0, 0);
+          else lab("f" + F.k, F.g, 0, 0, 0.9, a, 0.5, 0, 0, 10);
+        });
+        lab("core", bureau, 0, 1.4, 2.4, win(t, T.bureau - 0.05, 0.4, T.dial - 0.4, 0.35), 0.5, 0, 0, 30);
+        lab("etat", etat, 2.5, 2.3, 0.9, win(t, T.table - 0.05, 0.4, T.dial - 0.25, 0.35), 0, 0.5, 12, 0);
+        lab("dial", dial, -0.9, 0.2, 1.4, win(t, T.pp - 0.1, 0.4, T.dial - 0.25, 0.35), 0.5, 0, 0, 16);
+        signs.forEach((g, k) => lab("s" + k, g, 0, 2.45, 0.24, win(t, T.ref[k] + 0.05, 0.3, T.quot - 0.85, 0.3) * (g.visible ? 1 : 0), 0.5, 0.5, 0, 0));
+        svc.forEach((g, k) => lab("v" + k, g, 0, 0.0, 1.0, win(t, T.svc[k] + 0.1, 0.35, S("L10") - 0.55, 0.35) * (g.visible ? 1 : 0), 0.5, 0, 0, 26));
+
+        // --- rendu : scène, flou de miniature, ACES, vignette
+        renderer.setRenderTarget(rtMain);
+        renderer.render(scene, camera);
+        downMat.uniforms.tSrc.value = rtMain.texture;
+        downMat.uniforms.uTexel.value.set(1 / 1920, 1 / 1080);
+        pass(downMat, rA);
+        blurMat.uniforms.tSrc.value = rA.texture;
+        blurMat.uniforms.uDir.value.set(1 / 960, 0);
+        pass(blurMat, rA2);
+        blurMat.uniforms.tSrc.value = rA2.texture;
+        blurMat.uniforms.uDir.value.set(0, 1 / 540);
+        pass(blurMat, rA);
+        downMat.uniforms.tSrc.value = rA.texture;
+        downMat.uniforms.uTexel.value.set(1 / 960, 1 / 540);
+        pass(downMat, rB);
+        blurMat.uniforms.tSrc.value = rB.texture;
+        blurMat.uniforms.uDir.value.set(1 / 480, 0);
+        pass(blurMat, rB2);
+        blurMat.uniforms.tSrc.value = rB2.texture;
+        blurMat.uniforms.uDir.value.set(0, 1 / 270);
+        pass(blurMat, rB);
+        compMat.uniforms.uTilt.value = s.tilt;
+        compMat.uniforms.uFocusY.value = s.fy;
+        compMat.uniforms.uVig.value = 1 - fin;
+        pass(compMat, null);
+      }
+
+      (async function init() {
+        await Promise.all([document.fonts.load('700 30px "Hyundai Sans Head"'), document.fonts.load('500 28px "Hyundai Sans Head"')]).catch(() => {});
+        await new Promise((res) => {
+          new THREE.TextureLoader().load(
+            "assets/img/declaration-p1.jpg",
+            (tx) => {
+              tx.colorSpace = THREE.SRGBColorSpace;
+              tx.anisotropy = 8;
+              pageMat.map = tx;
+              pageMat.needsUpdate = true;
+              res();
+            },
+            undefined,
+            () => res(),
+          );
+        });
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>
