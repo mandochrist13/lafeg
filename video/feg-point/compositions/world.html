@@ -477,6 +477,9 @@
           journey(d.ch, T.ref[0] - 0.85 + d.jit * 0.6, home, 3, 0.45, 0.07, 0.3, 50);
           // la vague (L10)
           hop(d.ch, T.fortes + 0.05 + (dLBV[i] / MAXD) * 1.5, 0.36, home, 11);
+          // les voisins accueillent le héros quand il se pose
+          const dh = Math.hypot(home[0] - DW[HOME][0], home[1] - DW[HOME][1]);
+          if (dh < 62) hop(d.ch, T.land + 0.04 + dh * 0.004, 0.3, home, 8);
           return d;
         });
         // le héros
@@ -1175,7 +1178,7 @@
                   sad,
                   mouth,
                   blink: Math.max(blinkAt(t, hero.ph, hero.per), sleepy),
-                  closed: Math.max(close, sleepy * 0.9),
+                  closed: Math.max(close, sleepy * 0.9, win(t, T.land + 0.04, 0.12, T.land + 0.8, 0.18)),
                 }),
             });
           }
