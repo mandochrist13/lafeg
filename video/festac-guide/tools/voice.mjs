@@ -54,7 +54,12 @@ function silences(file) {
 
 // Syllabes approximatives en français (chiffres développés à la main).
 const NUM_SYL = { "1959": 7, "1": 2, "118": 3, "1118": 5, "13": 2, "80": 3, "90": 4, "%": 2, "2026": 5, "8": 1 };
+// sigles prononcés comme des mots (et non lettre par lettre)
+const WORD_SYL = { festac: 2, cipres: 2, "knam-gs": 3 };
 function syllables(word) {
+  const key = word.toLowerCase().replace(/[«»"“”(),.;:!?]/g, "");
+  if (WORD_SYL[key] !== undefined) return WORD_SYL[key];
+  if (!key) return 0; // ponctuation isolée (« : », « ? » à la française)
   if (/^[A-Z]{2,}[,.;:!?]*$/.test(word)) return word.replace(/[^A-Z]/g, "").length;
   const w = word.toLowerCase().replace(/[«»"“”(),.;:!?]/g, "");
   if (NUM_SYL[w] !== undefined) return NUM_SYL[w];
@@ -80,7 +85,9 @@ function align(text, file) {
   const toks = [];
   for (const w of words) {
     const prev = toks[toks.length - 1];
-    if (prev && ((/^\d+$/.test(prev.w) && /^\d{3}[,.:]?$/.test(w)) || w === "%" || w === "%," || w === "%.")) prev.w += " " + w;
+    // « : », « ? », « ! », « ; » précédés d'une espace (typographie française) : rattachés au mot d'avant
+    if (prev && /^[:;?!»]+$/.test(w)) prev.w += " " + w;
+    else if (prev && ((/^\d+$/.test(prev.w) && /^\d{3}[,.:]?$/.test(w)) || w === "%" || w === "%," || w === "%.")) prev.w += " " + w;
     else toks.push({ w });
   }
   toks.forEach((t) => (t.syl = t.w.split(" ").reduce((a, x) => a + syllables(x), 0)));

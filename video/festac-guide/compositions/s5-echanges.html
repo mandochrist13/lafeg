@@ -1,0 +1,194 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    .s5-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s5-bar4 {
+      position: absolute;
+      left: 120px;
+      top: 84px;
+      width: 112px;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1f487c 0 25%, #c8423b 25% 50%, #d9a21b 50% 75%, #2e8b4f 75% 100%);
+    }
+    #s5-kick {
+      position: absolute;
+      left: 120px;
+      top: 106px;
+      font-weight: 700;
+      font-size: 34px;
+      color: #c8423b;
+    }
+    #s5-title {
+      position: absolute;
+      left: 120px;
+      top: 152px;
+      font-weight: 800;
+      font-size: 64px;
+      letter-spacing: -0.02em;
+      color: #14325a;
+      white-space: nowrap;
+    }
+    #s5-title span {
+      display: inline-block;
+    }
+    .s5-pill {
+      position: absolute;
+      top: 1006px;
+      width: 300px;
+      margin-left: -150px;
+      text-align: center;
+    }
+    .s5-pill span {
+      display: inline-block;
+      padding: 6px 22px 8px;
+      border-radius: 999px;
+      background: #14325a;
+      font-weight: 800;
+      font-size: 32px;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+    .s5-bub {
+      position: absolute;
+      width: 150px;
+      height: 112px;
+    }
+    .s5-ico {
+      position: absolute;
+      width: 84px;
+      height: 84px;
+      margin: -42px 0 0 -42px;
+      border-radius: 50%;
+      box-shadow: 0 6px 16px rgba(20, 50, 90, 0.2);
+    }
+  </style>
+  <div id="root" data-composition-id="s5" data-width="1920" data-height="1080">
+    <div class="s5-bar4"></div>
+    <div id="s5-kick">Échanger</div>
+    <div id="s5-title"><span>Avec</span> <span>les</span> <span>autres</span> <span>pays</span> <span>membres</span></div>
+    <svg class="s5-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <ellipse cx="960" cy="1000" rx="720" ry="16" fill="#000" opacity="0.05" />
+    </svg>
+    <div id="s5-people" class="s5-abs"></div>
+
+    <!-- bulles de conversation -->
+    <svg id="s5-b1" class="s5-bub" style="left: 330px; top: 300px" viewBox="0 0 150 112">
+      <path d="M 18,4 L 132,4 C 141,4 146,9 146,18 L 146,74 C 146,83 141,88 132,88 L 74,88 L 52,108 L 54,88 L 18,88 C 9,88 4,83 4,74 L 4,18 C 4,9 9,4 18,4 Z" fill="#2E8B4F" />
+      <path d="M 40,36 L 102,36 M 92,26 L 104,36 L 92,46 M 110,58 L 48,58 M 58,48 L 46,58 L 58,68" stroke="#FFFFFF" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+    </svg>
+    <svg id="s5-b2" class="s5-bub" style="left: 1440px; top: 300px" viewBox="0 0 150 112">
+      <path d="M 18,4 L 132,4 C 141,4 146,9 146,18 L 146,74 C 146,83 141,88 132,88 L 98,88 L 96,108 L 76,88 L 18,88 C 9,88 4,83 4,74 L 4,18 C 4,9 9,4 18,4 Z" fill="#F07F1E" />
+      <circle cx="46" cy="46" r="9" fill="#FFFFFF" />
+      <circle cx="75" cy="46" r="9" fill="#FFFFFF" />
+      <circle cx="104" cy="46" r="9" fill="#FFFFFF" />
+    </svg>
+
+    <!-- ce qu'on partage : documents, idées, résultats -->
+    <div id="s5-i0" class="s5-ico" style="left: 405px; top: 340px; background: #1f487c">
+      <svg width="84" height="84" viewBox="0 0 84 84"><path d="M 26,18 L 50,18 L 60,28 L 60,66 L 26,66 Z" fill="#FFFFFF" /><path d="M 50,18 L 50,28 L 60,28 Z" fill="#C9D6E6" /><rect x="32" y="36" width="22" height="4" rx="2" fill="#1F487C" /><rect x="32" y="45" width="22" height="4" rx="2" fill="#1F487C" /><rect x="32" y="54" width="14" height="4" rx="2" fill="#1F487C" /></svg>
+    </div>
+    <div id="s5-i1" class="s5-ico" style="left: 1515px; top: 340px; background: #d9a21b">
+      <svg width="84" height="84" viewBox="0 0 84 84"><path d="M 42,16 C 30,16 22,25 22,36 C 22,44 27,49 31,53 L 31,60 L 53,60 L 53,53 C 57,49 62,44 62,36 C 62,25 54,16 42,16 Z" fill="#FFFFFF" /><rect x="32" y="63" width="20" height="5" rx="2" fill="#FFFFFF" /><rect x="35" y="70" width="14" height="4" rx="2" fill="#FFFFFF" /></svg>
+    </div>
+    <div id="s5-i2" class="s5-ico" style="left: 405px; top: 340px; background: #c8423b">
+      <svg width="84" height="84" viewBox="0 0 84 84"><rect x="22" y="44" width="10" height="20" rx="2" fill="#FFFFFF" /><rect x="37" y="34" width="10" height="30" rx="2" fill="#FFFFFF" /><rect x="52" y="24" width="10" height="40" rx="2" fill="#FFFFFF" /><rect x="18" y="64" width="48" height="4" rx="2" fill="#FFFFFF" /></svg>
+    </div>
+
+    <div id="s5-c0" class="s5-pill" style="left: 560px"><span>Sénégal</span></div>
+    <div id="s5-c1" class="s5-pill" style="left: 960px"><span>Gabon</span></div>
+    <div id="s5-c2" class="s5-pill" style="left: 1360px"><span>Côte d'Ivoire</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FG_CUES;
+      var P = window.CNP;
+      var K = window.CAST;
+      var L = C.local("s5");
+      var D = C.sc.s5.dur;
+
+      var S = 0.78,
+        FEET = 1000;
+      var cast = [
+        { id: "x0", name: "ousmane", x: 560 },
+        { id: "x1", name: "aminata", x: 960 },
+        { id: "x2", name: "adjoua", x: 1360 },
+      ];
+      document.getElementById("s5-people").innerHTML = cast
+        .map(function (c) {
+          return P.front(c.id, K.with(c.name, { x: c.x, y: FEET - 304 * S, s: S, legs: true, skirt: c.name === "adjoua" ? ["#2E8B4F", "#F2C12E", "#2E8B4F"] : null }));
+        })
+        .join("");
+      cast.forEach(function (c) {
+        P.prep(c.id);
+        gsap.set("#" + c.id + "-uaL", { rotation: 4 });
+        gsap.set("#" + c.id + "-uaR", { rotation: -4 });
+      });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s5-bar4", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.05);
+      tl.fromTo("#s5-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.1);
+      tl.fromTo("#s5-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.08, ease: "power4.out" }, L(C.at("L05", "avec")) - 0.15);
+      cast.forEach(function (c, i) {
+        tl.fromTo("#" + c.id, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.1 + Math.abs(i - 1) * 0.12);
+        P.breathe(tl, c.id, 0.2, D, 3 + 0.3 * i, 0.008);
+        P.blink(tl, c.id, [1.0 + 0.4 * i, 3.6 + 0.3 * i]);
+      });
+      // « vous échangez » : les deux voisins se tournent vers Aminata et parlent
+      var tE = L(C.at("L05", "echangez")) - 0.15;
+      tl.to("#x0-head", { rotation: 6, duration: 0.4, ease: "power2.inOut" }, tE);
+      tl.to("#x2-head", { rotation: -6, duration: 0.4, ease: "power2.inOut" }, tE + 0.1);
+      tl.fromTo("#s5-b1", { opacity: 0, scale: 0.4, transformOrigin: "35% 100%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, tE + 0.05);
+      tl.fromTo("#s5-b2", { opacity: 0, scale: 0.4, transformOrigin: "65% 100%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, tE + 0.35);
+      for (var q = 0; q < 4; q++) {
+        tl.to("#x0-mouth", { scaleY: q % 2 ? 1 : 1.6, duration: 0.13, ease: "sine.inOut" }, tE + 0.1 + q * 0.15);
+        tl.to("#x2-mouth", { scaleY: q % 2 ? 1 : 1.6, duration: 0.13, ease: "sine.inOut" }, tE + 0.45 + q * 0.15);
+      }
+      // « des autres pays membres »
+      var tC = L(C.at("L05", "autres")) - 0.15;
+      [0, 1, 2].forEach(function (i) {
+        tl.fromTo("#s5-c" + i, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "back.out(1.8)" }, tC + 0.12 * i);
+      });
+      // « et vous partagez vos expériences » : documents, idées, résultats passent d'un pays à l'autre
+      var tS = L(C.at("L05", "partagez")) - 0.2;
+      tl.to(["#s5-b1", "#s5-b2"], { opacity: 0, scale: 0.6, duration: 0.25, ease: "power2.in" }, tS - 0.1);
+      var flights = [
+        { el: "#s5-i0", to: [960, 400], t: tS },
+        { el: "#s5-i1", to: [960, 400], t: tS + 0.12 },
+        { el: "#s5-i2", to: [960, 400], t: tS + 0.24 },
+      ];
+      var land = [
+        [-110, 0],
+        [0, -36],
+        [110, 0],
+      ];
+      flights.forEach(function (f, i) {
+        var el = document.querySelector(f.el);
+        var x0 = parseFloat(el.style.left),
+          y0 = parseFloat(el.style.top);
+        var dx = f.to[0] + land[i][0] - x0,
+          dy = f.to[1] + land[i][1] - y0;
+        tl.fromTo(f.el, { opacity: 0, scale: 0.4 }, { opacity: 1, scale: 1, duration: 0.25, ease: "back.out(2)" }, f.t);
+        tl.to(f.el, { x: dx, duration: 0.7, ease: "power2.inOut" }, f.t + 0.15);
+        tl.to(f.el, { y: dy - 46, duration: 0.35, ease: "power2.out" }, f.t + 0.15).to(f.el, { y: dy, duration: 0.35, ease: "power2.in" }, f.t + 0.5);
+      });
+      tl.to("#x1-mouth", { scaleY: 1.45, scaleX: 1.15, duration: 0.3, ease: "power2.out" }, tS + 0.8);
+      tl.to("#x1-head", { rotation: -3, y: -2, duration: 0.4, ease: "power2.inOut" }, tS + 0.7);
+
+      // sortie
+      tl.to(["#s5-title", "#s5-kick", ".s5-bar4", ".s5-pill", ".s5-ico"], { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power3.in" }, D - 0.34);
+      tl.to("#s5-people", { opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.32);
+      window.__timelines["s5"] = tl;
+    })();
+  </script>
+</template>

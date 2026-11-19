@@ -3,7 +3,7 @@
     {
       "id": "L01",
       "path": "assets/voice/L01.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 9.611,
       "speech": [
@@ -16,91 +16,86 @@
         {
           "text": "Dans",
           "start": 0.12,
-          "end": 0.274
+          "end": 0.286
         },
         {
           "text": "les",
-          "start": 0.274,
-          "end": 0.428
+          "start": 0.286,
+          "end": 0.452
         },
         {
           "text": "caisses",
-          "start": 0.428,
-          "end": 0.736
+          "start": 0.452,
+          "end": 0.618
         },
         {
           "text": "de",
-          "start": 0.736,
-          "end": 0.89
+          "start": 0.618,
+          "end": 0.784
         },
         {
           "text": "sécurité",
-          "start": 0.89,
-          "end": 1.506
+          "start": 0.784,
+          "end": 1.447
         },
         {
           "text": "sociale",
-          "start": 1.506,
-          "end": 1.814
+          "start": 1.447,
+          "end": 1.779
         },
         {
           "text": "d'Afrique,",
-          "start": 1.814,
+          "start": 1.779,
           "end": 2.277
         },
         {
           "text": "des",
           "start": 2.658,
-          "end": 2.823
+          "end": 2.847
         },
         {
           "text": "femmes",
-          "start": 2.823,
-          "end": 3.155
+          "start": 2.847,
+          "end": 3.036
         },
         {
           "text": "et",
-          "start": 3.155,
-          "end": 3.321
+          "start": 3.036,
+          "end": 3.226
         },
         {
           "text": "des",
-          "start": 3.321,
-          "end": 3.486
+          "start": 3.226,
+          "end": 3.415
         },
         {
           "text": "hommes",
-          "start": 3.486,
-          "end": 3.818
+          "start": 3.415,
+          "end": 3.605
         },
         {
           "text": "font",
-          "start": 3.818,
-          "end": 3.983
+          "start": 3.605,
+          "end": 3.794
         },
         {
           "text": "vivre",
-          "start": 3.983,
-          "end": 4.149
+          "start": 3.794,
+          "end": 3.983
         },
         {
           "text": "la",
-          "start": 4.149,
-          "end": 4.315
+          "start": 3.983,
+          "end": 4.173
         },
         {
           "text": "protection",
-          "start": 4.315,
-          "end": 4.812
+          "start": 4.173,
+          "end": 4.741
         },
         {
-          "text": "sociale",
-          "start": 4.812,
-          "end": 5.144
-        },
-        {
-          "text": ":",
-          "start": 5.144,
+          "text": "sociale :",
+          "start": 4.741,
           "end": 5.309
         },
         {
@@ -126,44 +121,45 @@
         {
           "text": "remboursent",
           "start": 7.385,
-          "end": 7.857
+          "end": 7.815
         },
         {
           "text": "les",
-          "start": 7.857,
-          "end": 8.014
+          "start": 7.815,
+          "end": 7.958
         },
         {
           "text": "soins",
-          "start": 8.014,
-          "end": 8.172
+          "start": 7.958,
+          "end": 8.102
         },
         {
           "text": "et",
-          "start": 8.172,
-          "end": 8.329
+          "start": 8.102,
+          "end": 8.245
         },
         {
           "text": "soutiennent",
-          "start": 8.329,
-          "end": 8.802
-        },
-        {
-          "text": "les",
-          "start": 8.802,
+          "start": 8.487,
           "end": 8.959
         },
         {
-          "text": "familles.",
+          "text": "les",
           "start": 8.959,
+          "end": 9.117
+        },
+        {
+          "text": "familles.",
+          "start": 9.117,
           "end": 9.432
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L02",
       "path": "assets/voice/L02.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 7.782,
       "speech": [
@@ -176,109 +172,105 @@
         {
           "text": "Ces",
           "start": 0.12,
-          "end": 0.265
+          "end": 0.279
         },
         {
           "text": "travailleurs",
-          "start": 0.265,
-          "end": 0.697
+          "start": 0.279,
+          "end": 0.755
         },
         {
           "text": "ont",
-          "start": 0.697,
-          "end": 0.841
+          "start": 0.755,
+          "end": 0.913
         },
         {
           "text": "leur",
-          "start": 0.841,
-          "end": 0.986
+          "start": 0.913,
+          "end": 1.072
         },
         {
-          "text": "fédération",
-          "start": 0.986,
-          "end": 1.562
-        },
-        {
-          "text": ":",
-          "start": 1.562,
+          "text": "fédération :",
+          "start": 1.072,
           "end": 1.707
         },
         {
           "text": "la",
           "start": 2.314,
-          "end": 2.427
+          "end": 2.577
         },
         {
           "text": "FESTAC,",
-          "start": 2.427,
+          "start": 2.577,
           "end": 3.103
         },
         {
           "text": "la",
           "start": 3.399,
-          "end": 3.561
+          "end": 3.59
         },
         {
           "text": "Fédération",
-          "start": 3.561,
-          "end": 4.207
+          "start": 3.59,
+          "end": 4.354
         },
         {
           "text": "des",
-          "start": 4.207,
-          "end": 4.369
+          "start": 4.354,
+          "end": 4.545
         },
         {
           "text": "Syndicats",
-          "start": 4.369,
-          "end": 4.854
+          "start": 4.545,
+          "end": 5.119
         },
         {
           "text": "des",
-          "start": 4.854,
-          "end": 5.016
+          "start": 5.119,
+          "end": 5.31
         },
         {
           "text": "Travailleurs",
-          "start": 5.016,
-          "end": 5.501
+          "start": 5.31,
+          "end": 5.883
         },
         {
           "text": "des",
-          "start": 5.501,
-          "end": 5.662
+          "start": 5.883,
+          "end": 6.074
         },
         {
           "text": "Pays",
-          "start": 5.662,
-          "end": 5.824
+          "start": 6.074,
+          "end": 6.265
         },
         {
           "text": "Affiliés",
-          "start": 5.824,
-          "end": 6.309
+          "start": 6.265,
+          "end": 6.838
         },
         {
           "text": "à",
-          "start": 6.309,
-          "end": 6.471
+          "start": 6.838,
+          "end": 7.029
         },
         {
           "text": "la",
-          "start": 6.471,
-          "end": 6.632
+          "start": 7.029,
+          "end": 7.22
         },
         {
           "text": "CIPRES.",
-          "start": 6.632,
+          "start": 7.22,
           "end": 7.602
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L03",
       "path": "assets/voice/L03.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 8.983,
       "speech": [
@@ -291,51 +283,51 @@
         {
           "text": "La",
           "start": 0.12,
-          "end": 0.297
+          "end": 0.334
         },
         {
           "text": "CIPRES,",
-          "start": 0.297,
-          "end": 1.358
+          "start": 0.334,
+          "end": 0.762
         },
         {
           "text": "c'est",
-          "start": 1.358,
-          "end": 1.535
+          "start": 0.762,
+          "end": 0.977
         },
         {
           "text": "la",
-          "start": 1.535,
-          "end": 1.712
+          "start": 0.977,
+          "end": 1.191
         },
         {
           "text": "Conférence",
-          "start": 1.712,
-          "end": 2.242
+          "start": 1.191,
+          "end": 1.833
         },
         {
           "text": "interafricaine",
-          "start": 2.242,
-          "end": 3.126
+          "start": 1.833,
+          "end": 2.903
         },
         {
           "text": "de",
-          "start": 3.126,
-          "end": 3.303
+          "start": 2.903,
+          "end": 3.117
         },
         {
           "text": "la",
-          "start": 3.303,
-          "end": 3.48
+          "start": 3.117,
+          "end": 3.331
         },
         {
           "text": "prévoyance",
-          "start": 3.48,
-          "end": 3.834
+          "start": 3.331,
+          "end": 3.759
         },
         {
           "text": "sociale.",
-          "start": 3.834,
+          "start": 3.759,
           "end": 4.187
         },
         {
@@ -393,12 +385,13 @@
           "start": 8.278,
           "end": 8.803
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L04",
       "path": "assets/voice/L04.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 7.765,
       "speech": [
@@ -410,7 +403,7 @@
       "words": [
         {
           "text": "Depuis",
-          "start": 0,
+          "start": 0.0,
           "end": 0.445
         },
         {
@@ -436,94 +429,95 @@
         {
           "text": "la",
           "start": 2.043,
-          "end": 2.207
+          "end": 2.27
         },
         {
           "text": "FESTAC",
-          "start": 2.207,
-          "end": 3.191
+          "start": 2.27,
+          "end": 2.724
         },
         {
           "text": "rassemble",
-          "start": 3.191,
-          "end": 3.519
+          "start": 2.724,
+          "end": 3.179
         },
         {
           "text": "des",
-          "start": 3.519,
-          "end": 3.683
+          "start": 3.179,
+          "end": 3.406
         },
         {
           "text": "syndicats",
-          "start": 3.683,
-          "end": 4.175
+          "start": 3.406,
+          "end": 4.087
         },
         {
           "text": "de",
-          "start": 4.175,
-          "end": 4.34
+          "start": 4.087,
+          "end": 4.314
         },
         {
           "text": "dix",
-          "start": 4.34,
-          "end": 4.504
+          "start": 4.314,
+          "end": 4.541
         },
         {
           "text": "pays",
-          "start": 4.504,
-          "end": 4.668
+          "start": 4.541,
+          "end": 4.769
         },
         {
           "text": "membres,",
-          "start": 4.668,
+          "start": 4.769,
           "end": 4.996
         },
         {
           "text": "en",
           "start": 5.478,
-          "end": 5.64
+          "end": 5.639
         },
         {
           "text": "Afrique",
-          "start": 5.64,
-          "end": 6.126
+          "start": 5.639,
+          "end": 6.124
         },
         {
           "text": "centrale",
-          "start": 6.126,
-          "end": 6.451
+          "start": 6.124,
+          "end": 6.447
         },
         {
           "text": "et",
-          "start": 6.451,
-          "end": 6.613
+          "start": 6.607,
+          "end": 6.747
         },
         {
           "text": "en",
-          "start": 6.613,
-          "end": 6.775
+          "start": 6.747,
+          "end": 6.887
         },
         {
           "text": "Afrique",
-          "start": 6.775,
-          "end": 7.261
+          "start": 6.887,
+          "end": 7.306
         },
         {
           "text": "de",
-          "start": 7.261,
-          "end": 7.423
+          "start": 7.306,
+          "end": 7.446
         },
         {
           "text": "l'Ouest.",
-          "start": 7.423,
+          "start": 7.446,
           "end": 7.585
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L05",
       "path": "assets/voice/L05.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 9.347,
       "speech": [
@@ -536,16 +530,11 @@
         {
           "text": "Sa",
           "start": 0.12,
-          "end": 0.269
+          "end": 0.319
         },
         {
-          "text": "mission",
-          "start": 0.269,
-          "end": 0.567
-        },
-        {
-          "text": ":",
-          "start": 0.567,
+          "text": "mission :",
+          "start": 0.319,
           "end": 0.716
         },
         {
@@ -601,49 +590,50 @@
         {
           "text": "et",
           "start": 5.474,
-          "end": 5.679
+          "end": 5.683
         },
         {
           "text": "promouvoir",
-          "start": 5.679,
-          "end": 6.295
+          "start": 5.683,
+          "end": 6.31
         },
         {
           "text": "une",
-          "start": 6.295,
-          "end": 6.5
+          "start": 6.31,
+          "end": 6.519
         },
         {
           "text": "protection",
-          "start": 6.5,
-          "end": 7.116
+          "start": 6.519,
+          "end": 7.146
         },
         {
           "text": "sociale",
-          "start": 7.116,
-          "end": 7.526
+          "start": 7.146,
+          "end": 7.564
         },
         {
           "text": "universelle",
-          "start": 7.526,
-          "end": 8.347
+          "start": 7.714,
+          "end": 8.262
         },
         {
           "text": "et",
-          "start": 8.347,
-          "end": 8.553
+          "start": 8.262,
+          "end": 8.399
         },
         {
           "text": "équitable.",
-          "start": 8.553,
+          "start": 8.537,
           "end": 9.168
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L06",
       "path": "assets/voice/L06.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 8.399,
       "speech": [
@@ -656,31 +646,26 @@
         {
           "text": "Elle",
           "start": 0.12,
-          "end": 0.268
+          "end": 0.281
         },
         {
           "text": "fonctionne",
-          "start": 0.268,
-          "end": 0.562
+          "start": 0.281,
+          "end": 0.602
         },
         {
           "text": "de",
-          "start": 0.562,
-          "end": 0.709
+          "start": 0.602,
+          "end": 0.763
         },
         {
           "text": "façon",
-          "start": 0.709,
-          "end": 1.004
+          "start": 0.763,
+          "end": 1.084
         },
         {
-          "text": "démocratique",
-          "start": 1.004,
-          "end": 1.739
-        },
-        {
-          "text": ":",
-          "start": 1.739,
+          "text": "démocratique :",
+          "start": 1.084,
           "end": 1.887
         },
         {
@@ -710,7 +695,7 @@
         },
         {
           "text": "et",
-          "start": 4.998,
+          "start": 4.997,
           "end": 5.152
         },
         {
@@ -768,12 +753,13 @@
           "start": 7.83,
           "end": 8.219
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L07",
       "path": "assets/voice/L07.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 9.423,
       "speech": [
@@ -786,82 +772,77 @@
         {
           "text": "Elle",
           "start": 0.12,
-          "end": 0.291
+          "end": 0.273
         },
         {
           "text": "forme",
-          "start": 0.291,
-          "end": 0.462
+          "start": 0.273,
+          "end": 0.426
         },
         {
           "text": "les",
-          "start": 0.462,
-          "end": 0.633
+          "start": 0.426,
+          "end": 0.579
         },
         {
           "text": "délégués",
-          "start": 0.633,
-          "end": 1.146
+          "start": 0.579,
+          "end": 1.037
         },
         {
           "text": "du",
-          "start": 1.146,
-          "end": 1.317
+          "start": 1.037,
+          "end": 1.19
         },
         {
           "text": "personnel",
-          "start": 1.317,
-          "end": 1.83
+          "start": 1.19,
+          "end": 1.649
         },
         {
           "text": "et",
-          "start": 1.83,
-          "end": 2.001
+          "start": 1.879,
+          "end": 2.008
         },
         {
           "text": "les",
-          "start": 2.001,
-          "end": 2.172
+          "start": 2.008,
+          "end": 2.138
         },
         {
           "text": "délégués",
-          "start": 2.172,
-          "end": 2.685
+          "start": 2.138,
+          "end": 2.527
         },
         {
           "text": "syndicaux",
-          "start": 2.685,
-          "end": 3.198
+          "start": 2.527,
+          "end": 2.915
         },
         {
           "text": "dans",
-          "start": 3.198,
-          "end": 3.369
+          "start": 3.091,
+          "end": 3.274
         },
         {
           "text": "son",
-          "start": 3.369,
-          "end": 3.541
+          "start": 3.274,
+          "end": 3.457
         },
         {
           "text": "centre",
-          "start": 3.541,
-          "end": 3.712
+          "start": 3.457,
+          "end": 3.639
         },
         {
           "text": "de",
-          "start": 3.712,
-          "end": 3.883
+          "start": 3.639,
+          "end": 3.822
         },
         {
-          "text": "formation",
-          "start": 3.883,
-          "end": 4.396
-        },
-        {
-          "text": ":",
-          "start": 4.396,
-          "end": 4.567
+          "text": "formation :",
+          "start": 3.822,
+          "end": 4.37
         },
         {
           "text": "droit",
@@ -913,12 +894,13 @@
           "start": 8.954,
           "end": 9.246
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L08",
       "path": "assets/voice/L08.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 6.924,
       "speech": [
@@ -1011,49 +993,50 @@
         {
           "text": "et",
           "start": 4.594,
-          "end": 4.729
+          "end": 4.79
         },
         {
           "text": "du",
-          "start": 4.729,
-          "end": 4.863
+          "start": 4.79,
+          "end": 4.986
         },
         {
           "text": "Conseil",
-          "start": 4.863,
-          "end": 5.132
+          "start": 4.986,
+          "end": 5.377
         },
         {
           "text": "des",
-          "start": 5.132,
-          "end": 5.267
+          "start": 5.377,
+          "end": 5.572
         },
         {
           "text": "ministres",
-          "start": 5.267,
-          "end": 5.67
+          "start": 5.572,
+          "end": 5.964
         },
         {
           "text": "de",
-          "start": 5.67,
-          "end": 5.805
+          "start": 5.964,
+          "end": 6.159
         },
         {
           "text": "la",
-          "start": 5.805,
-          "end": 5.939
+          "start": 6.159,
+          "end": 6.355
         },
         {
           "text": "CIPRES.",
-          "start": 5.939,
+          "start": 6.355,
           "end": 6.746
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L09",
       "path": "assets/voice/L09.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 11.054,
       "speech": [
@@ -1066,16 +1049,16 @@
         {
           "text": "Avec",
           "start": 0.12,
-          "end": 0.396
+          "end": 0.442
         },
         {
           "text": "ses",
-          "start": 0.396,
-          "end": 0.535
+          "start": 0.442,
+          "end": 0.604
         },
         {
           "text": "partenaires,",
-          "start": 0.535,
+          "start": 0.604,
           "end": 1.087
         },
         {
@@ -1091,114 +1074,115 @@
         {
           "text": "la",
           "start": 2.51,
-          "end": 2.988
+          "end": 2.749
         },
         {
           "text": "Knam-GS,",
-          "start": 2.988,
+          "start": 2.749,
           "end": 3.466
         },
         {
           "text": "la",
           "start": 3.719,
-          "end": 3.899
+          "end": 3.88
         },
         {
           "text": "CPPF",
-          "start": 3.899,
-          "end": 4.618
+          "start": 3.88,
+          "end": 4.524
         },
         {
           "text": "et",
-          "start": 4.618,
-          "end": 4.798
+          "start": 4.524,
+          "end": 4.685
         },
         {
           "text": "la",
-          "start": 4.798,
-          "end": 4.978
+          "start": 4.815,
+          "end": 4.993
         },
         {
           "text": "CNPS",
-          "start": 4.978,
-          "end": 5.697
+          "start": 4.993,
+          "end": 5.704
         },
         {
           "text": "de",
-          "start": 5.697,
-          "end": 5.876
+          "start": 5.704,
+          "end": 5.882
         },
         {
           "text": "Côte",
-          "start": 5.876,
-          "end": 6.056
+          "start": 5.882,
+          "end": 6.06
         },
         {
           "text": "d'Ivoire,",
-          "start": 6.056,
+          "start": 6.06,
           "end": 6.416
         },
         {
           "text": "elle",
           "start": 6.532,
-          "end": 6.72
+          "end": 6.721
         },
         {
           "text": "organise",
-          "start": 6.72,
-          "end": 7.287
+          "start": 6.721,
+          "end": 7.288
         },
         {
           "text": "des",
-          "start": 7.287,
-          "end": 7.476
+          "start": 7.288,
+          "end": 7.477
         },
         {
           "text": "rencontres",
-          "start": 7.476,
-          "end": 8.043
+          "start": 7.477,
+          "end": 7.855
         },
         {
           "text": "pour",
-          "start": 8.043,
-          "end": 8.232
+          "start": 7.855,
+          "end": 8.044
         },
         {
           "text": "une",
-          "start": 8.232,
-          "end": 8.421
+          "start": 8.044,
+          "end": 8.233
         },
         {
           "text": "sécurité",
-          "start": 8.421,
-          "end": 9.176
+          "start": 8.233,
+          "end": 8.989
         },
         {
           "text": "sociale",
-          "start": 9.176,
-          "end": 9.554
+          "start": 8.989,
+          "end": 9.367
         },
         {
           "text": "inclusive",
-          "start": 9.554,
-          "end": 10.121
+          "start": 9.477,
+          "end": 10.077
         },
         {
           "text": "et",
-          "start": 10.121,
-          "end": 10.31
+          "start": 10.077,
+          "end": 10.277
         },
         {
           "text": "performante.",
-          "start": 10.31,
+          "start": 10.277,
           "end": 10.876
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L10",
       "path": "assets/voice/L10.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 5.034,
       "speech": [
@@ -1266,24 +1250,25 @@
         {
           "text": "son",
           "start": 3.565,
-          "end": 3.75
+          "end": 3.778
         },
         {
           "text": "média",
-          "start": 3.75,
-          "end": 4.118
+          "start": 3.778,
+          "end": 4.204
         },
         {
           "text": "panafricain.",
-          "start": 4.118,
+          "start": 4.323,
           "end": 4.854
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L11",
       "path": "assets/voice/L11.wav",
-      "voice": "Kore",
+      "voice": "Sulafat",
       "model": "gemini-3.8-flash-tts",
       "duration_s": 9.954,
       "speech": [
@@ -1309,49 +1294,44 @@
           "end": 3.073
         },
         {
-          "text": "échange",
+          "text": "échange :",
           "start": 3.5,
-          "end": 3.825
-        },
-        {
-          "text": ":",
-          "start": 3.825,
           "end": 3.988
         },
         {
           "text": "la",
           "start": 4.252,
-          "end": 4.409
+          "end": 4.617
         },
         {
           "text": "FESTAC,",
-          "start": 4.409,
+          "start": 4.617,
           "end": 5.346
         },
         {
           "text": "la",
           "start": 5.812,
-          "end": 5.988
+          "end": 5.96
         },
         {
           "text": "voix",
-          "start": 5.988,
-          "end": 6.165
+          "start": 5.96,
+          "end": 6.109
         },
         {
           "text": "des",
-          "start": 6.165,
-          "end": 6.341
+          "start": 6.109,
+          "end": 6.258
         },
         {
           "text": "travailleurs",
-          "start": 6.341,
-          "end": 6.871
+          "start": 6.258,
+          "end": 6.704
         },
         {
           "text": "africains.",
-          "start": 6.871,
-          "end": 7.4
+          "start": 6.704,
+          "end": 7.15
         },
         {
           "text": "Rendez-vous",
@@ -1378,7 +1358,8 @@
           "start": 9.57,
           "end": 9.779
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     }
   ],
   "voice_credit": "Voix : Google Gemini TTS (Sulafat, gemini-3.8-flash-tts)",

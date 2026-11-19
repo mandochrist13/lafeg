@@ -1,7 +1,7 @@
-// Calage du film « Le Fonds 4 de la CNAMGS » (vidéo explicative 2D) : lit tools/lines.json et
+// Calage du film « La FESTAC et votre syndicat » (vidéo explicative 2D) : lit tools/lines.json et
 // audio_meta.json, écrit assets/cues.js (temps de chaque phrase, de chaque mot, fenêtres des scènes)
 // et index.html (scènes, voix, musique, bruitages).
-// Usage : node tools/build.mjs
+// Usage : node tools/build.mjs [--only=s1,s2]
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -42,25 +42,26 @@ const at = (id, needle, which = "s") => {
 };
 const S = (id) => lines[id].start;
 const E = (id) => lines[id].end;
+const LAST = order[order.length - 1];
 
-// Musique : SoundHill « Find Yourself ». Son accord final (130,16 s dans le morceau) tombe sur le logo,
-// posé juste après la dernière phrase (« La solidarité a un sens ») ; le film s'arrête avec la musique.
-const MUSIC = { src: "assets/bgm/soundhill-find-yourself.mp3", length: 138.109, finalChord: 130.16 };
-const LOGO_T = r3(E("L11") + 0.15);
-// la musique est éteinte (sous −55 dB) vers 136,7 s : le film tient la carte de fin 6,9 s après le logo
-const total = r3(Math.max(E("L11") + cfg.tail, LOGO_T + 6.9));
+// Musique : la piste kora de la Tribune, prolongée et montée à la durée du film (tools/musique.py du
+// projet festac-tribune) ; jouée depuis 0. Elle remonte après la dernière phrase (LOGO_T), sur la carte de fin.
+const MUSIC = { src: "assets/bgm/musique-festac.wav" };
+const LOGO_T = r3(E(LAST) + 0.3);
+const total = r3(Math.max(E(LAST) + cfg.tail, LOGO_T + 5.7));
 
-// Fenêtres des scènes (secondes absolues), bout à bout.
+// Fenêtres des scènes (secondes absolues), bout à bout : une phrase, une scène.
 const scenes = [
-  { id: "s1", src: "compositions/s1-metiers.html", start: 0, end: S("L02") - 0.2 },
-  { id: "s2", src: "compositions/s2-loi.html", start: S("L02") - 0.2, end: S("L03") - 0.2 },
-  { id: "s3", src: "compositions/s3-concernes.html", start: S("L03") - 0.2, end: S("L05") - 0.3 },
-  { id: "s4", src: "compositions/s4-soins.html", start: S("L05") - 0.3, end: S("L06") - 0.3 },
-  { id: "s5", src: "compositions/s5-bureau.html", start: S("L06") - 0.3, end: S("L07") - 0.3 },
-  { id: "s6", src: "compositions/s6-pieces.html", start: S("L07") - 0.3, end: S("L09") - 0.3 },
-  { id: "s7", src: "compositions/s7-cotisation.html", start: S("L09") - 0.3, end: S("L10") - 0.3 },
-  { id: "s8", src: "compositions/s8-pris-en-charge.html", start: S("L10") - 0.3, end: S("L11") - 0.3 },
-  { id: "s9", src: "compositions/s9-fin.html", start: S("L11") - 0.3, end: total },
+  { id: "s1", src: "compositions/s1-vous.html", start: 0, end: S("L02") - 0.2 },
+  { id: "s2", src: "compositions/s2-festac.html", start: S("L02") - 0.2, end: S("L03") - 0.25 },
+  { id: "s3", src: "compositions/s3-voix.html", start: S("L03") - 0.25, end: S("L04") - 0.3 },
+  { id: "s4", src: "compositions/s4-formation.html", start: S("L04") - 0.3, end: S("L05") - 0.3 },
+  { id: "s5", src: "compositions/s5-echanges.html", start: S("L05") - 0.3, end: S("L06") - 0.3 },
+  { id: "s6", src: "compositions/s6-droits.html", start: S("L06") - 0.3, end: S("L07") - 0.3 },
+  { id: "s7", src: "compositions/s7-infos.html", start: S("L07") - 0.3, end: S("L08") - 0.3 },
+  { id: "s8", src: "compositions/s8-adherer.html", start: S("L08") - 0.3, end: S("L09") - 0.3 },
+  { id: "s9", src: "compositions/s9-contact.html", start: S("L09") - 0.3, end: S("L10") - 0.3 },
+  { id: "s10", src: "compositions/s10-fin.html", start: S("L10") - 0.3, end: total },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 const ONLY = (process.argv.find((a) => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
 const W = 1920,
@@ -70,9 +71,9 @@ const cues = { total, order, lines, logo: LOGO_T, sc: Object.fromEntries(scenes.
 writeFileSync(
   join(ROOT, "assets/cues.js"),
   `// Généré par tools/build.mjs — ne pas éditer à la main.
-window.__CN_CUES = ${JSON.stringify(cues)};
+window.__FG_CUES = ${JSON.stringify(cues)};
 (function () {
-  var C = window.__CN_CUES;
+  var C = window.__FG_CUES;
   function norm(s) {
     return String(s).toLowerCase().normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").replace(/[^a-z0-9%]+/g, "");
   }
@@ -106,19 +107,15 @@ for (const id of order) {
   const L = lines[id];
   audio.push(`    <audio id="vo-${id}" src="${L.src}" data-start="${L.start}" data-duration="${L.dur}" data-track-index="20" data-volume="0.79"></audio>`);
 }
-{
-  let offset = r3(MUSIC.finalChord - LOGO_T);
-  const startAt = offset < 0 ? r3(-offset) : 0;
-  if (offset < 0) offset = 0;
-  const dur = r3(Math.min(total - startAt, MUSIC.length - offset));
+if (has(MUSIC.src)) {
   // pleine (FULL) sans voix, en retrait (UNDER) sous la voix, GAP dans les silences, END sur la carte de fin
-  const FULL = 0.5,
-    GAP = 0.34,
-    UNDER = 0.18,
+  const FULL = 0.52,
+    GAP = 0.36,
+    UNDER = 0.19,
     END = 0.85;
   const pts = [{ t: 0, v: FULL }];
   const push = (tt, v) => {
-    tt = r3(Math.max(0, tt - startAt));
+    tt = r3(Math.max(0, tt));
     if (tt <= pts[pts.length - 1].t) tt = r3(pts[pts.length - 1].t + 0.01);
     pts.push({ t: tt, v });
   };
@@ -128,9 +125,8 @@ for (const id of order) {
     push(L.start - 0.05, UNDER);
     const next = order[k + 1] ? lines[order[k + 1]] : null;
     if (!next) {
-      // après la dernière phrase : la musique remonte sur l'accord final et le logo
       push(L.end + 0.02, UNDER);
-      push(LOGO_T + 0.25, END);
+      push(LOGO_T + 0.6, END);
     } else if (next.start - L.end > 1.0) {
       push(L.end + 0.1, UNDER);
       push(L.end + 0.55, GAP);
@@ -138,9 +134,8 @@ for (const id of order) {
   });
   const auto = JSON.stringify({ version: 1, lanes: [{ target: "volume", points: pts }] });
   audio.push(
-    `    <audio id="bgm" src="${MUSIC.src}" data-start="${startAt}" data-duration="${dur}" data-media-start="${offset}" data-track-index="21" data-volume="1" data-fade-in="1.2" data-automation='${auto}'></audio>`,
+    `    <audio id="bgm" src="${MUSIC.src}" data-start="0" data-duration="${total}" data-track-index="21" data-volume="1" data-fade-in="0.8" data-automation='${auto}'></audio>`,
   );
-  console.log(`musique : départ ${offset} s dans le morceau, fin ${r3(startAt + dur)} s`);
 }
 // Bruitages : tools/sfx.json → [{ id, src, dur, volume, line, word, which, offset }] ou { abs } ou { anchor: "logo" }
 if (has("tools/sfx.json")) {
@@ -166,30 +161,33 @@ const html = `<!doctype html>
   data-composition-variables='[
     {"id":"color-ground","type":"color","label":"Fond","default":"#FFFFFF"},
     {"id":"color-ink","type":"color","label":"Texte","default":"#1C2430"},
-    {"id":"color-deep","type":"color","label":"Bleu CNAMGS profond","default":"#084E86"},
-    {"id":"color-blue","type":"color","label":"Bleu CNAMGS","default":"#0066A8"},
-    {"id":"color-green","type":"color","label":"Vert CNAMGS","default":"#5AA137"},
-    {"id":"color-yellow","type":"color","label":"Jaune CNAMGS","default":"#F7D21E"},
+    {"id":"color-deep","type":"color","label":"Bleu FESTAC profond","default":"#14325A"},
+    {"id":"color-blue","type":"color","label":"Bleu FESTAC","default":"#1F487C"},
+    {"id":"color-red","type":"color","label":"Rouge FESTAC","default":"#C8423B"},
+    {"id":"color-gold","type":"color","label":"Or","default":"#D9A21B"},
+    {"id":"color-green","type":"color","label":"Vert","default":"#2E8B4F"},
     {"id":"font-display","type":"string","label":"Police","default":"Montserrat"}
   ]'
 >
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=${W}, height=${H}" />
-    <title>CNAMGS — Le Fonds 4, mode d'emploi</title>
+    <title>FESTAC — La fédération de votre syndicat</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <script src="assets/people.js"></script>
     <script src="assets/cast.js"></script>
+    <script src="assets/africa.js"></script>
     <style>
 ${[400, 500, 600, 700, 800].map((w) => `      @font-face {\n        font-family: "Montserrat";\n        font-weight: ${w};\n        src: url("assets/fonts/Montserrat-${w}.woff2") format("woff2");\n      }`).join("\n")}
       :root {
         --color-ground: #ffffff;
         --color-ink: #1c2430;
-        --color-deep: #084e86;
-        --color-blue: #0066a8;
-        --color-green: #5aa137;
-        --color-yellow: #f7d21e;
+        --color-deep: #14325a;
+        --color-blue: #1f487c;
+        --color-red: #c8423b;
+        --color-gold: #d9a21b;
+        --color-green: #2e8b4f;
       }
       * {
         margin: 0;

@@ -1,0 +1,224 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    .s4-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s4-bar4 {
+      position: absolute;
+      left: 120px;
+      top: 84px;
+      width: 112px;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1f487c 0 25%, #c8423b 25% 50%, #d9a21b 50% 75%, #2e8b4f 75% 100%);
+    }
+    #s4-kick {
+      position: absolute;
+      left: 120px;
+      top: 106px;
+      font-weight: 700;
+      font-size: 34px;
+      color: #c8423b;
+    }
+    #s4-title {
+      position: absolute;
+      left: 120px;
+      top: 152px;
+      font-weight: 800;
+      font-size: 64px;
+      line-height: 1.04;
+      letter-spacing: -0.02em;
+      color: #14325a;
+      white-space: nowrap;
+    }
+    #s4-title span {
+      display: inline-block;
+    }
+    #s4-tag {
+      position: absolute;
+      left: 120px;
+      top: 236px;
+      padding: 6px 20px 8px;
+      border-radius: 12px;
+      background: #1f487c;
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+    }
+    #s4-board {
+      position: absolute;
+      left: 660px;
+      top: 292px;
+      width: 1160px;
+      height: 690px;
+      border-radius: 22px;
+      background: #ffffff;
+      border: 6px solid #d7dee7;
+      box-shadow: 0 12px 36px rgba(20, 50, 90, 0.12);
+    }
+    #s4-bhead {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1148px;
+      height: 92px;
+      border-radius: 16px 16px 0 0;
+      background: #f2f5f9;
+      border-bottom: 3px solid #e3e8ee;
+    }
+    #s4-bhead span {
+      position: absolute;
+      left: 48px;
+      top: 22px;
+      font-weight: 800;
+      font-size: 38px;
+      color: #1f487c;
+    }
+    .s4-row {
+      position: absolute;
+      left: 48px;
+      width: 1060px;
+      height: 136px;
+      display: flex;
+      align-items: center;
+      gap: 34px;
+    }
+    .s4-ic {
+      width: 112px;
+      height: 112px;
+      flex: none;
+      border-radius: 50%;
+    }
+    .s4-tx {
+      font-weight: 800;
+      font-size: 58px;
+      letter-spacing: -0.015em;
+      color: #1c2430;
+      white-space: nowrap;
+    }
+    .s4-ok {
+      margin-left: auto;
+      width: 64px;
+      height: 64px;
+      flex: none;
+    }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1920" data-height="1080">
+    <div class="s4-bar4"></div>
+    <div id="s4-kick">Se former</div>
+    <div id="s4-title"><span>Le</span> <span>centre</span> <span>de</span> <span>formation</span></div>
+    <div id="s4-tag">CNRF-DPDS</div>
+    <svg class="s4-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <rect x="0" y="1006" width="1920" height="74" fill="#F2F5F8" />
+    </svg>
+
+    <div id="s4-board">
+      <div id="s4-bhead"><span>Les modules</span></div>
+      <div id="s4-r0" class="s4-row" style="top: 104px">
+        <svg class="s4-ic" viewBox="0 0 112 112">
+          <circle cx="56" cy="56" r="56" fill="#1F487C" />
+          <path d="M 26,30 C 34,26 46,26 54,32 L 54,84 C 46,78 34,78 26,82 Z" fill="#FFFFFF" />
+          <path d="M 86,30 C 78,26 66,26 58,32 L 58,84 C 66,78 78,78 86,82 Z" fill="#FFFFFF" opacity="0.8" />
+          <text x="72" y="66" text-anchor="middle" font-family="Montserrat" font-weight="800" font-size="26" fill="#1F487C">§</text>
+          <rect x="31" y="44" width="17" height="3" rx="1.5" fill="#1F487C" opacity="0.5" />
+          <rect x="31" y="52" width="17" height="3" rx="1.5" fill="#1F487C" opacity="0.5" />
+          <rect x="31" y="60" width="12" height="3" rx="1.5" fill="#1F487C" opacity="0.5" />
+        </svg>
+        <div class="s4-tx">Droit du travail</div>
+      </div>
+      <div id="s4-r1" class="s4-row" style="top: 250px">
+        <svg class="s4-ic" viewBox="0 0 112 112">
+          <circle cx="56" cy="56" r="56" fill="#C8423B" />
+          <path d="M 22,30 L 62,30 C 67,30 70,33 70,38 L 70,56 C 70,61 67,64 62,64 L 40,64 L 28,75 L 30,64 L 22,64 C 17,64 14,61 14,56 L 14,38 C 14,33 17,30 22,30 Z" fill="#FFFFFF" />
+          <path d="M 50,48 L 90,48 C 95,48 98,51 98,56 L 98,74 C 98,79 95,82 90,82 L 84,82 L 86,93 L 74,82 L 50,82 C 45,82 42,79 42,74 L 42,56 C 42,51 45,48 50,48 Z" fill="#FFFFFF" opacity="0.72" />
+        </svg>
+        <div class="s4-tx">Négociation collective</div>
+      </div>
+      <div id="s4-r2" class="s4-row" style="top: 396px">
+        <svg class="s4-ic" viewBox="0 0 112 112">
+          <circle cx="56" cy="56" r="56" fill="#2E8B4F" />
+          <path d="M 26,68 C 26,44 38,32 56,32 C 74,32 86,44 86,68 Z" fill="#FFFFFF" />
+          <rect x="18" y="66" width="76" height="10" rx="5" fill="#FFFFFF" />
+          <rect x="52" y="32" width="8" height="24" fill="#2E8B4F" opacity="0.35" />
+          <rect x="49" y="42" width="14" height="4" fill="#2E8B4F" />
+          <rect x="54" y="37" width="4" height="14" fill="#2E8B4F" />
+        </svg>
+        <div class="s4-tx">Hygiène, santé et sécurité</div>
+      </div>
+      <div id="s4-r3" class="s4-row" style="top: 542px">
+        <svg class="s4-ic" viewBox="0 0 112 112">
+          <circle cx="56" cy="56" r="56" fill="#D9A21B" />
+          <path d="M 30,46 L 66,30 L 66,82 L 30,66 Z" fill="#FFFFFF" />
+          <rect x="20" y="46" width="14" height="20" rx="3" fill="#FFFFFF" />
+          <rect x="36" y="66" width="10" height="18" rx="3" fill="#FFFFFF" />
+          <path d="M 76,44 C 81,50 81,62 76,68 M 84,38 C 92,48 92,64 84,74" stroke="#FFFFFF" stroke-width="5" stroke-linecap="round" fill="none" />
+        </svg>
+        <div class="s4-tx">Communication syndicale</div>
+      </div>
+    </div>
+    <div id="s4-who" class="s4-abs"></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FG_CUES;
+      var P = window.CNP;
+      var K = window.CAST;
+      var L = C.local("s4");
+      var D = C.sc.s4.dur;
+
+      // la formatrice, debout à gauche du tableau
+      var S = 0.95,
+        FEET = 1012;
+      document.getElementById("s4-who").innerHTML = P.front("fm", K.with("formatrice", { x: 380, y: FEET - 304 * S, s: S, legs: true }));
+      P.prep("fm");
+      gsap.set("#fm-uaL", { rotation: 4 });
+      gsap.set("#fm-uaR", { rotation: -4 });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s4-bar4", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s4-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, 0.2);
+      tl.fromTo("#s4-board", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, 0.25);
+      tl.fromTo("#s4-who", { opacity: 0, x: -60 }, { opacity: 1, x: 0, duration: 0.6, ease: "power3.out" }, L(C.at("L04", "delegues")) - 0.2);
+      P.breathe(tl, "fm", 0.5, D, 3.3, 0.008);
+      P.blink(tl, "fm", [1.4, 4.6, 8.1]);
+      // « dans son centre de formation »
+      tl.fromTo("#s4-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.09, ease: "power4.out" }, L(C.at("L04", "centre")) - 0.2);
+      tl.fromTo("#s4-tag", { opacity: 0, scale: 0.7, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, L(C.at("L04", "formation")) + 0.2);
+
+      // chaque module s'écrit sur son mot ; la formatrice le désigne
+      var words = ["droit", "negociation", "hygiene", "communication"];
+      var aim = [-100, -66, -42, -29];
+      words.forEach(function (w, i) {
+        var t = L(C.at("L04", w)) - 0.2;
+        var row = "#s4-r" + i;
+        tl.fromTo(row + " .s4-ic", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.4, ease: "back.out(2.2)" }, t);
+        tl.fromTo(row + " .s4-tx", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.55, ease: "power1.inOut" }, t + 0.12);
+        tl.to("#fm-uaR", { rotation: aim[i], duration: 0.45, ease: "power2.inOut" }, t - 0.25);
+        tl.to("#fm-faR", { rotation: -8, duration: 0.45, ease: "power2.inOut" }, t - 0.25);
+        tl.to("#fm-head", { rotation: 6, duration: 0.4, ease: "power2.inOut" }, t - 0.2);
+        tl.to("#fm-mouth", { scaleY: 1.5, scaleX: 1.08, duration: 0.15, yoyo: true, repeat: 1, ease: "sine.inOut" }, t);
+      });
+      // fin : elle se tourne vers nous
+      var tE = L(C.at("L04", "syndicale")) + 0.6;
+      tl.to("#fm-uaR", { rotation: -4, duration: 0.5, ease: "power2.inOut" }, tE);
+      tl.to("#fm-faR", { rotation: 0, duration: 0.5, ease: "power2.inOut" }, tE);
+      tl.to("#fm-head", { rotation: 0, duration: 0.5, ease: "power2.inOut" }, tE);
+      tl.to("#fm-mouth", { scaleY: 1.4, scaleX: 1.15, duration: 0.3, ease: "power2.out" }, tE + 0.1);
+
+      // sortie
+      tl.to(["#s4-title", "#s4-kick", ".s4-bar4", "#s4-tag"], { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power3.in" }, D - 0.36);
+      tl.to(["#s4-board", "#s4-who"], { opacity: 0, y: 16, duration: 0.32, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

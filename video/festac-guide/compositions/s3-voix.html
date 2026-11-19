@@ -1,0 +1,300 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    .s3-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    .s3-bar4 {
+      position: absolute;
+      left: 120px;
+      top: 84px;
+      width: 112px;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #1f487c 0 25%, #c8423b 25% 50%, #d9a21b 50% 75%, #2e8b4f 75% 100%);
+    }
+    #s3-kick {
+      position: absolute;
+      left: 120px;
+      top: 106px;
+      font-weight: 700;
+      font-size: 34px;
+      color: #c8423b;
+    }
+    #s3-title {
+      position: absolute;
+      left: 120px;
+      top: 152px;
+      font-weight: 800;
+      font-size: 80px;
+      letter-spacing: -0.02em;
+      color: #14325a;
+      white-space: nowrap;
+    }
+    #s3-title span {
+      display: inline-block;
+    }
+    .s3-st {
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+    .s3-lab {
+      position: absolute;
+      top: 874px;
+      width: 560px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 40px;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      color: #1f487c;
+    }
+    .s3-lab small {
+      display: block;
+      margin-top: 6px;
+      font-weight: 600;
+      font-size: 30px;
+      color: #5b6573;
+    }
+    #s3-aglogo {
+      position: absolute;
+      left: 882px;
+      top: 393px;
+      width: 156px;
+    }
+    #s3-geneve {
+      position: absolute;
+      left: 1690px;
+      top: 404px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 18px 8px 12px;
+      border-radius: 999px;
+      background: #14325a;
+      font-weight: 700;
+      font-size: 28px;
+      color: #ffffff;
+      white-space: nowrap;
+    }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div class="s3-bar4"></div>
+    <div id="s3-kick">En rejoignant la FESTAC</div>
+    <div id="s3-title"><span>Une</span> <span>voix</span> <span>plus</span> <span>forte</span></div>
+
+    <!-- le chemin de la voix : deux arcs pointillés, tracés au fil de la phrase -->
+    <svg id="s3-arcs" class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+      <defs>
+        <mask id="s3-m1" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path id="s3-mp1" d="M 574,372 Q 720,236 862,430" fill="none" stroke="#FFFFFF" stroke-width="16" /></mask>
+        <mask id="s3-m2" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080"><path id="s3-mp2" d="M 1062,430 Q 1270,266 1478,470" fill="none" stroke="#FFFFFF" stroke-width="16" /></mask>
+      </defs>
+      <path d="M 574,372 Q 720,236 862,430" fill="none" stroke="#C8423B" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 18" mask="url(#s3-m1)" />
+      <path d="M 1062,430 Q 1270,266 1478,470" fill="none" stroke="#C8423B" stroke-width="8" stroke-linecap="round" stroke-dasharray="2 18" mask="url(#s3-m2)" />
+      <circle id="s3-e1" cx="862" cy="430" r="11" fill="#C8423B" />
+      <circle id="s3-e2" cx="1478" cy="470" r="11" fill="#C8423B" />
+    </svg>
+
+    <!-- 1. votre syndicat -->
+    <div id="s3-st1" class="s3-st">
+      <div id="s3-group" class="s3-abs"></div>
+      <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+        <rect x="110" y="784" width="440" height="20" rx="10" fill="#E6EBF1" />
+      </svg>
+      <svg id="s3-bub" class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080"><g transform="translate(36,-110)">
+        <path d="M 278,438 L 382,438 C 394,438 402,446 402,458 L 402,500 C 402,512 394,520 382,520 L 334,520 L 312,544 L 314,520 L 278,520 C 266,520 258,512 258,500 L 258,458 C 258,446 266,438 278,438 Z" fill="#C8423B" />
+        <rect x="282" y="466" width="8" height="26" rx="4" fill="#FFFFFF" />
+        <rect x="300" y="456" width="8" height="46" rx="4" fill="#FFFFFF" />
+        <rect x="318" y="462" width="8" height="34" rx="4" fill="#FFFFFF" />
+        <rect x="336" y="452" width="8" height="54" rx="4" fill="#FFFFFF" />
+        <rect x="354" y="464" width="8" height="30" rx="4" fill="#FFFFFF" />
+        <rect x="372" y="470" width="8" height="18" rx="4" fill="#FFFFFF" />
+      </g></svg>
+      <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+        <g fill="none" stroke="#C8423B" stroke-width="8" stroke-linecap="round" transform="translate(36,-110)">
+          <path id="s3-w1" d="M 420,446 Q 440,479 420,512" />
+          <path id="s3-w2" d="M 446,428 Q 476,479 446,530" />
+          <path id="s3-w3" d="M 472,410 Q 512,479 472,548" />
+        </g>
+      </svg>
+    </div>
+    <div id="s3-l1" class="s3-lab" style="left: 50px">Votre syndicat</div>
+
+    <!-- 2. l'Assemblée générale de la fédération -->
+    <div id="s3-st2" class="s3-st">
+      <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+        <ellipse cx="960" cy="822" rx="300" ry="24" fill="#000" opacity="0.06" />
+        <g id="s3-seats"></g>
+        <rect x="872" y="384" width="176" height="96" rx="10" fill="#FFFFFF" stroke="#D7DEE7" stroke-width="3" />
+        <rect x="956" y="480" width="8" height="40" fill="#D7DEE7" />
+        <g transform="translate(960,812) scale(1.3) translate(-960,-800)">
+          <circle cx="960" cy="664" r="16" fill="#5C3A24" />
+          <path d="M 932,700 C 932,680 944,672 960,672 C 976,672 988,680 988,700 Z" fill="#C8423B" />
+          <rect x="956" y="672" width="8" height="22" fill="#FFFFFF" opacity="0.6" />
+          <path d="M 914,700 L 1006,700 L 994,800 L 926,800 Z" fill="#1F487C" />
+          <rect x="904" y="690" width="112" height="16" rx="5" fill="#14325A" />
+          <rect x="926" y="728" width="68" height="8" rx="4" fill="#D9A21B" />
+        </g>
+      </svg>
+      <img id="s3-aglogo" src="assets/img/festac-logo.png" alt="FESTAC" />
+    </div>
+    <div id="s3-l2" class="s3-lab" style="left: 680px">Assemblée générale<small>de la fédération</small></div>
+
+    <!-- 3. la Conférence internationale du Travail -->
+    <div id="s3-st3" class="s3-st">
+      <svg class="s3-abs" width="1920" height="1080" viewBox="0 0 1920 1080">
+        <ellipse cx="1590" cy="806" rx="230" ry="22" fill="#000" opacity="0.06" />
+        <path d="M 1430,512 L 1590,440 L 1750,512 Z" fill="#14325A" />
+        <circle cx="1590" cy="486" r="20" fill="none" stroke="#FFFFFF" stroke-width="4" />
+        <path d="M 1570,486 L 1610,486 M 1590,466 C 1580,476 1580,496 1590,506 M 1590,466 C 1600,476 1600,496 1590,506" fill="none" stroke="#FFFFFF" stroke-width="3" />
+        <rect x="1438" y="512" width="304" height="18" fill="#1F487C" />
+        <g fill="#E8EDF3">
+          <rect x="1452" y="530" width="26" height="200" />
+          <rect x="1510" y="530" width="26" height="200" />
+          <rect x="1568" y="530" width="26" height="200" />
+          <rect x="1626" y="530" width="26" height="200" />
+          <rect x="1684" y="530" width="26" height="200" />
+        </g>
+        <rect x="1446" y="530" width="292" height="200" fill="#F5F7FA" opacity="0.4" />
+        <rect x="1426" y="730" width="328" height="20" fill="#C9D3DF" />
+        <rect x="1410" y="750" width="360" height="20" fill="#B9C5D3" />
+        <rect x="1394" y="770" width="392" height="22" fill="#A9B7C7" />
+        <g id="s3-flags"></g>
+      </svg>
+    </div>
+    <div id="s3-geneve">
+      <svg width="22" height="28" viewBox="0 0 22 28"><path d="M 11,1 C 5,1 1,6 1,11 C 1,18 11,27 11,27 C 11,27 21,18 21,11 C 21,6 17,1 11,1 Z" fill="#FFFFFF" /><circle cx="11" cy="11" r="4" fill="#14325A" /></svg>
+      <span>Genève</span>
+    </div>
+    <div id="s3-l3" class="s3-lab" style="left: 1310px">Conférence internationale<small>du Travail</small></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FG_CUES;
+      var P = window.CNP;
+      var K = window.CAST;
+      var L = C.local("s3");
+      var D = C.sc.s3.dur;
+
+      // hémicycle : trois rangées de délégués autour de la tribune
+      var cols = ["#1F487C", "#C8423B", "#D9A21B", "#2E8B4F"],
+        skins = ["#5C3A24", "#6E4429", "#4A2D1C", "#7F5236"];
+      var seats = "",
+        k = 0;
+      [
+        [176, 7],
+        [228, 9],
+        [280, 11],
+      ].forEach(function (row) {
+        var R = row[0],
+          N = row[1];
+        for (var i = 0; i < N; i++) {
+          var a = Math.PI * (1.08 + (0.84 * i) / (N - 1));
+          var x = 960 + R * Math.cos(a),
+            y = 792 + R * 0.6 * Math.sin(a);
+          seats += '<g transform="translate(' + x + "," + y + ") scale(1.25) translate(" + -x + "," + -y + ')"><path d="M ' + (x - 15) + "," + (y + 20) + " C " + (x - 15) + "," + (y + 4) + " " + (x - 8) + "," + y + " " + x + "," + y + " C " + (x + 8) + "," + y + " " + (x + 15) + "," + (y + 4) + " " + (x + 15) + "," + (y + 20) + ' Z" fill="' + cols[k % 4] + '"/>';
+          seats += '<circle cx="' + x + '" cy="' + (y - 8) + '" r="9" fill="' + skins[(k * 3) % 4] + '"/></g>';
+          k++;
+        }
+      });
+      document.getElementById("s3-seats").innerHTML = seats;
+      // drapeaux génériques devant le palais
+      var fl = "",
+        fc = [
+          ["#2E8B4F", "#D9A21B"],
+          ["#C8423B", "#FFFFFF"],
+          ["#1F487C", "#D9A21B"],
+          ["#D9A21B", "#2E8B4F"],
+          ["#14325A", "#C8423B"],
+          ["#2E8B4F", "#FFFFFF"],
+        ];
+      fc.forEach(function (c, i) {
+        var x = 1420 + i * 66;
+        fl += '<rect x="' + x + '" y="590" width="5" height="200" fill="#8A97A8"/>';
+        fl += '<g class="s3-flag" id="s3-f' + i + '"><rect x="' + (x + 5) + '" y="592" width="44" height="30" fill="' + c[0] + '"/><rect x="' + (x + 5) + '" y="604" width="44" height="8" fill="' + c[1] + '"/></g>';
+      });
+      document.getElementById("s3-flags").innerHTML = fl;
+
+      // votre syndicat : trois délégués côte à côte (Koffi au centre parle)
+      var grp = [
+        { id: "g1", name: "aminata", x: 214, s: 0.72 },
+        { id: "g3", name: "mba", x: 446, s: 0.72 },
+        { id: "g2", name: "koffi", x: 330, s: 0.78 },
+      ];
+      document.getElementById("s3-group").innerHTML = grp
+        .map(function (g) {
+          return P.front(g.id, K.with(g.name, { x: g.x, y: 786, s: g.s, cut: 0 }));
+        })
+        .join("");
+      grp.forEach(function (g) {
+        P.prep(g.id);
+        gsap.set("#" + g.id + "-uaL", { rotation: 4 });
+        gsap.set("#" + g.id + "-uaR", { rotation: -4 });
+      });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s3-bar4", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s3-kick", { opacity: 0, x: -16 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L03", "en")) - 0.15);
+      // « votre syndicat »
+      var tS = L(C.at("L03", "votre")) - 0.2;
+      tl.fromTo("#s3-group", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.55, ease: "power3.out" }, L(C.at("L03", "rejoignant")) - 0.2);
+      tl.fromTo("#s3-l1", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, tS);
+      grp.forEach(function (g, i) {
+        P.breathe(tl, g.id, 0.3, D, 3 + 0.3 * i, 0.009);
+        P.blink(tl, g.id, [1.6 + 0.4 * i, 5.2 + 0.3 * i]);
+      });
+      // « parle d'une voix plus forte » : Koffi parle, la bulle et les ondes grandissent
+      var tP = L(C.at("L03", "parle")) - 0.15;
+      tl.fromTo("#s3-bub", { opacity: 0, scale: 0.4, svgOrigin: "348 434" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, tP);
+      for (var q = 0; q < 4; q++) tl.to("#g2-mouth", { scaleY: q % 2 ? 1 : 1.7, scaleX: q % 2 ? 1 : 1.1, duration: 0.14, ease: "sine.inOut" }, tP + 0.1 + q * 0.16);
+      tl.to("#g2-head", { rotation: -4, duration: 0.4, ease: "power2.inOut" }, tP);
+      ["#s3-w1", "#s3-w2", "#s3-w3"].forEach(function (w, i) {
+        tl.fromTo(w, { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, tP + 0.25 + 0.12 * i);
+      });
+      var tF = L(C.at("L03", "plus")) - 0.05;
+      tl.to("#s3-title span", { color: "#C8423B", duration: 0.2, stagger: 0.05 }, tF - 0.3);
+      tl.fromTo("#s3-title", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.25);
+      tl.to("#s3-title span", { color: "#14325A", duration: 0.4 }, tF + 0.9);
+      tl.fromTo(["#s3-w1", "#s3-w2", "#s3-w3"], { scale: 1, svgOrigin: "366 369" }, { scale: 1.32, duration: 0.35, ease: "back.out(2.4)", stagger: 0.06 }, tF);
+      tl.to("#s3-bub", { scale: 1.12, duration: 0.3, ease: "back.out(2.4)" }, tF);
+
+      // « à l'Assemblée générale de la fédération »
+      var tA = L(C.at("L03", "lassemblee")) - 0.45;
+      var len1 = document.getElementById("s3-mp1").getTotalLength(),
+        len2 = document.getElementById("s3-mp2").getTotalLength();
+      gsap.set("#s3-mp1", { strokeDasharray: len1 + " " + len1, strokeDashoffset: len1 });
+      gsap.set("#s3-mp2", { strokeDasharray: len2 + " " + len2, strokeDashoffset: len2 });
+      tl.to("#s3-mp1", { strokeDashoffset: 0, duration: 0.6, ease: "power2.inOut" }, tA - 0.3);
+      tl.fromTo("#s3-e1", { scale: 0, svgOrigin: "862 430" }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, tA + 0.25);
+      tl.fromTo("#s3-st2", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, tA + 0.15);
+      tl.fromTo("#s3-seats path, #s3-seats circle", { opacity: 0 }, { opacity: 1, duration: 0.2, stagger: 0.012, ease: "power1.out" }, tA + 0.25);
+      tl.fromTo("#s3-l2", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, tA + 0.35);
+      tl.fromTo("#s3-aglogo", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2)" }, L(C.at("L03", "federation")) - 0.15);
+
+      // « et jusqu'aux travaux de la Conférence internationale du Travail »
+      var tC = L(C.at("L03", "conference")) - 0.35;
+      tl.to("#s3-mp2", { strokeDashoffset: 0, duration: 0.75, ease: "power2.inOut" }, L(C.at("L03", "jusquaux")) - 0.1);
+      tl.fromTo("#s3-e2", { scale: 0, svgOrigin: "1478 470" }, { scale: 1, duration: 0.3, ease: "back.out(3)" }, L(C.at("L03", "jusquaux")) + 0.6);
+      tl.fromTo("#s3-st3", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, tC - 0.2);
+      tl.fromTo(".s3-flag", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.3, stagger: 0.06, ease: "power2.out" }, tC + 0.1);
+      tl.fromTo("#s3-l3", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, tC);
+      tl.fromTo("#s3-geneve", { opacity: 0, scale: 0.7 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, L(C.at("L03", "travail")) - 0.1);
+      // la voix (les ondes) gagne chaque étape
+      tl.to(["#s3-w1", "#s3-w2", "#s3-w3"], { opacity: 0.35, duration: 0.3 }, tC + 1.2);
+
+      // sortie
+      tl.to(["#s3-title", "#s3-kick", ".s3-bar4", ".s3-lab", "#s3-geneve"], { opacity: 0, filter: "blur(6px)", duration: 0.3, ease: "power3.in" }, D - 0.36);
+      tl.to(["#s3-st1", "#s3-st2", "#s3-st3", "#s3-arcs", "#s3-l1"], { opacity: 0, duration: 0.3, ease: "power2.in" }, D - 0.34);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>
