@@ -10,7 +10,7 @@
 | Exécution | 0 erreur, 0 avertissement |
 | Mise en page | 0 problème |
 | Mouvement | 0 problème |
-| Contraste | textes conformes WCAG AA |
+| Contraste | 12/12 textes conformes WCAG AA |
 | Audio | 0 problème (11 phrases, musique) |
 
 ## Ce que la relecture a corrigé

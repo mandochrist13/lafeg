@@ -33,4 +33,15 @@ Le film a été vu en images fixes toutes les 3 secondes, puis à chaque moment 
 
 ## Rendu
 
-`renders/FESTAC-guide-2D.mp4`.
+`renders/FESTAC-guide-2D.mp4` est le rendu en qualité « delivery ». Il a pris 4 min 35 s.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Durée | 100,4 s |
+| Poids | 14,9 Mo, sous la limite de WhatsApp : pas de version allégée nécessaire |
+| Son | AAC stéréo 48 kHz ; −15,3 LUFS intégré, plage 3,1 LU, crête −1,9 dBFS |
+| Images noires | aucune |
+| Images presque fixes | la fiche contact (74 à 89 s), où seuls les chiffres et la respiration bougent, et la carte de fin |
+
+Planche contact du fichier rendu, une image toutes les 5 s : toutes les scènes sont conformes à la relecture.
