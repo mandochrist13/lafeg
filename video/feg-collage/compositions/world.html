@@ -1096,8 +1096,8 @@
         put(hand("ensemble", 72), 4460, 175, -0.04, T04.ens, { kind: "write", dur: 0.55 });
         const PIES = [];
         const DISC = disc(205);
-        PIES.push({ e: put(DISC, 4140, 470, -0.04, T04.p80 - 0.3, { from: { dx: -200, dy: -420, rot: -0.3, h: 180 } }), frac: 0.8, t0: T04.p80 - 0.05, col: GREEN });
-        PIES.push({ e: put(disc(205), 4860, 470, 0.05, T04.p90 - 0.3, { from: { dx: 220, dy: -420, rot: 0.3, h: 180 } }), frac: 0.9, t0: T04.p90 - 0.05, col: "#2f8f57" });
+        PIES.push({ e: put(DISC, 4140, 470, -0.04, T04.ens + 0.75, { from: { dx: -200, dy: -420, rot: -0.3, h: 180 } }), frac: 0.8, t0: T04.p80 - 0.05, col: GREEN });
+        PIES.push({ e: put(disc(205), 4860, 470, 0.05, T04.p90 - 0.5, { from: { dx: 220, dy: -420, rot: 0.3, h: 180 } }), frac: 0.9, t0: T04.p90 - 0.05, col: "#2f8f57" });
         put(strip("près de 80 %", 66, PAPER, DEEP), 4140, 780, -0.025, T04.p80, { from: { dy: 260, rot: 0.2, h: 120 } });
         put(strip("du PIB", 42, MANILA, DEEP, { weight: 500 }), 4140, 880, 0.03, T04.pib - 0.05, { from: { dy: 240, rot: -0.2, h: 100 } });
         put(strip("plus de 90 %", 66, PAPER, DEEP), 4860, 780, 0.02, T04.p90, { from: { dy: 260, rot: -0.2, h: 120 } });
@@ -1269,7 +1269,7 @@
         key(T03.depuis - 0.35, 1.6, 2860, 610, 0.95, -0.006);
         key(at("L04", "Ensemble") - 0.3, 1.5, 4480, 600, 0.95, 0.004);
         key(T05.reunies - 0.45, 1.3, 6400, 560, 0.86, -0.004);
-        key(T06.remont - 0.5, 1.5, 6520, 920, 0.71, 0.003);
+        key(T06.remont - 0.5, 1.5, 6520, 850, 0.71, 0.003);
         key(T06.puis - 0.3, 1.3, 7240, 1370, 0.84, -0.004);
         key(at("L07", "dialogue") - 0.2, 1.7, 8560, 615, 0.9, 0.004);
         key(T07.decl - 0.5, 1.0, 9070, 720, 0.98, 0);
