@@ -1,0 +1,112 @@
+<template>
+  <!-- Carte de fin : la grande feuille blanche est posée sur la table ; le médaillon et le logo s'y posent image par image, puis l'appel. -->
+  <style>
+    @font-face {
+      font-family: "Oswald";
+      font-weight: 700;
+      src: url("assets/fonts/oswald-latin-700-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 600;
+      src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 700;
+      src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Montserrat", sans-serif;
+      color: #14284f;
+    }
+    #en-medal {
+      position: absolute;
+      left: 340px;
+      top: 400px;
+      width: 400px;
+      height: 400px;
+      opacity: 0;
+      transform-origin: 50% 50%;
+    }
+    #en-logo {
+      position: absolute;
+      left: 310px;
+      top: 860px;
+      width: 460px;
+      height: 230px;
+      opacity: 0;
+      transform-origin: 50% 50%;
+    }
+    #en-cta {
+      position: absolute;
+      left: 0;
+      top: 1180px;
+      width: 1080px;
+      text-align: center;
+    }
+    #en-follow {
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.25;
+      color: #14284f;
+      opacity: 0;
+    }
+    #en-where {
+      margin-top: 18px;
+      font-weight: 600;
+      font-size: 40px;
+      color: #3b4660;
+      opacity: 0;
+    }
+    #en-url {
+      margin-top: 34px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 120px;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      color: #14284f;
+      opacity: 0;
+    }
+    #en-url span {
+      color: #b7860f;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1080" data-height="1920">
+    <img id="en-medal" src="assets/img/tribune-medaillon.png" alt="Tribune des Droits Sociaux" />
+    <img id="en-logo" src="assets/img/festac-logo.png" alt="FESTAC" />
+    <div id="en-cta">
+      <div id="en-follow">Suivez la Tribune<br />des Droits Sociaux</div>
+      <div id="en-where">sur WhatsApp et YouTube</div>
+      <div id="en-url">festac<span>.org</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var F = window.__FT;
+      var tLogo = Math.max(0.3, F.logo - F.ovEnd);
+      var tLogo2 = tLogo + F.beat / 2;
+      var P = 1 / 12; // une pose d'animation image par image
+      var tl = gsap.timeline({ paused: true });
+      // le médaillon se pose sur un temps fort, en trois poses
+      tl.set("#en-medal", { opacity: 1, scale: 1.08, rotation: 4, y: -14 }, tLogo - 2 * P);
+      tl.set("#en-medal", { scale: 1.03, rotation: -1.2, y: -4 }, tLogo - P);
+      tl.set("#en-medal", { scale: 1, rotation: 0, y: 0 }, tLogo);
+      // puis le logo de la FESTAC, un demi-temps plus tard
+      tl.set("#en-logo", { opacity: 1, scale: 1.07, rotation: -2, y: -10 }, tLogo2 - 2 * P);
+      tl.set("#en-logo", { scale: 1.025, rotation: 0.6, y: -3 }, tLogo2 - P);
+      tl.set("#en-logo", { scale: 1, rotation: 0, y: 0 }, tLogo2);
+      // l'appel, ligne après ligne, sur les temps
+      ["#en-follow", "#en-where", "#en-url"].forEach(function (s, i) {
+        var t0 = F.at(F.ctaBeats[i]) - F.ovEnd;
+        tl.set(s, { opacity: 1, y: -8, rotation: i % 2 ? 0.8 : -0.8 }, t0);
+        tl.set(s, { y: 0, rotation: 0 }, t0 + P);
+      });
+      tl.to("#en-url", { opacity: 1, duration: 0.01 }, F.total - F.ovEnd - 0.05);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>

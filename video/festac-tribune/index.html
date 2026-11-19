@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>FESTAC — Tribune des Droits Sociaux</title>
+    <script src="lib/gsap.min.js"></script>
+    <script src="assets/timing.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #e8dcc2;
+      }
+      #root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #e8dcc2;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="45.6" data-width="1080" data-height="1920">
+      <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="0" data-duration="45.6" data-track-index="1" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <div id="ov-end" data-composition-id="ov-end" data-composition-src="compositions/ov-end.html" data-start="41.003" data-duration="4.597" data-track-index="2" data-track-kind="graphics" data-width="1080" data-height="1920"></div>
+      <audio id="bgm" src="assets/bgm/musique-tribune.wav" data-start="0" data-duration="45.6" data-track-index="20" data-volume="1"></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>

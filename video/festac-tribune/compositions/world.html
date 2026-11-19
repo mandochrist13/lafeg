@@ -1,0 +1,1219 @@
+<!doctype html>
+<!--
+  FESTAC — « Tribune des Droits Sociaux ». Collage photo vertical (1080 × 1920) : une grande table de papier kraft,
+  plus grande que le cadre. La caméra passe d'une page à l'autre ; bandes de papier, photos, drapeaux découpés,
+  tickets et notes au feutre arrivent comme en animation image par image (poses à 12 im/s), se posent,
+  se font scotcher, tamponner, annoter. Tout ce qui est visible est render(t), fonction pure du temps
+  (horloge GSAP) ; les temps sont dans assets/timing.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>FESTAC — Tribune des Droits Sociaux</title>
+    <style>
+      @font-face {
+        font-family: "Oswald";
+        font-weight: 700;
+        src: url("assets/fonts/oswald-latin-700-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 600;
+        src: url("assets/fonts/montserrat-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 700;
+        src: url("assets/fonts/montserrat-latin-700-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Caveat";
+        font-weight: 700;
+        src: url("assets/fonts/caveat-latin-700-normal.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #e8dcc2;
+      }
+      #world-cv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1080px;
+        height: 1920px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="45.6"
+      data-width="1080"
+      data-height="1920"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        width="1080"
+        height="1920"
+        data-start="0"
+        data-duration="45.6"
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+    </div>
+
+    <script>
+      (function () {
+        var F = window.__FT;
+        var total = F ? F.total : 41;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+    <script>
+      (async function () {
+        const host = window.__worldHost;
+        const FT = window.__FT;
+        const BEAT = FT.beat,
+          AN = FT.anchors;
+        const T = (b) => FT.at(b); // temps n de la musique, en secondes
+        // pour une page ancrée au temps « an » : L(n, d) = départ d'un papier qui atterrit d secondes plus tard, au temps an + n
+        const lander = (an) => (n, d = 0.42) => T(an + n) - d;
+
+        // ------------------------------------------------------------ outils
+        const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+        const lerp = (a, b, u) => a + (b - a) * u;
+        const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+        const in2 = (u) => clamp01(u) * clamp01(u);
+        const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+        function mulberry32(a) {
+          return function () {
+            a |= 0;
+            a = (a + 0x6d2b79f5) | 0;
+            let r = Math.imul(a ^ (a >>> 15), 1 | a);
+            r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+            return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        const rnd = mulberry32(2024);
+        const hash = (n) => {
+          n = (n ^ 61) ^ (n >>> 16);
+          n = n + (n << 3);
+          n = n ^ (n >>> 4);
+          n = Math.imul(n, 0x27d4eb2d);
+          n = n ^ (n >>> 15);
+          return (n >>> 0) / 4294967296;
+        };
+        const FPS = 12; // cadence des poses (animation image par image)
+        const Q = (t) => Math.floor(t * FPS + 1e-6) / FPS;
+
+        const NAVY = "#14284f",
+          GOLD = "#d9a21b",
+          INK = "#1c2333",
+          MARKER = "#1f3f8f",
+          RED = "#a12a24",
+          PAPER = "#fbf8f0",
+          MANILA = "#ead9ad",
+          KG = "#1f8a3c",
+          KY = "#f2c12e",
+          KR = "#c8202f",
+          KB = "#161616";
+
+        await Promise.all([
+          document.fonts.load('700 120px "Oswald"'),
+          document.fonts.load('700 40px "Montserrat"'),
+          document.fonts.load('600 40px "Montserrat"'),
+          document.fonts.load("700 60px Caveat"),
+        ]).catch(() => {});
+        const load = (src) =>
+          new Promise((res) => {
+            const i = new Image();
+            i.onload = () => res(i);
+            i.onerror = () => res(null);
+            i.src = src;
+          });
+        const IMG = {};
+        const FILES = {
+          medal: "tribune-medaillon.png",
+          logo: "festac-logo.png",
+          siege: "siege-groupe.jpg",
+          delegues: "delegues.jpg",
+          affiche: "affiche-tribune.jpg",
+          p1: "parole-1.jpg",
+          p2: "parole-2.jpg",
+          p3: "parole-3.jpg",
+          p4: "parole-4.jpg",
+          sp: "sp-micro.jpg",
+          tr1: "table-ronde-1.jpg",
+        };
+        await Promise.all(Object.entries(FILES).map(async ([k, f]) => (IMG[k] = await load("assets/img/" + f))));
+
+        // ------------------------------------------------------------ fabrique de papiers (rendus une fois)
+        const SS = 1.5; // pixels de sprite par unité de table
+        function mk(w, h) {
+          const c = document.createElement("canvas");
+          c.width = Math.ceil(w * SS);
+          c.height = Math.ceil(h * SS);
+          const x = c.getContext("2d");
+          x.scale(SS, SS);
+          return [c, x];
+        }
+        function tornPath(pts, amp = 3, step = 5) {
+          const out = [];
+          for (let i = 0; i < pts.length; i++) {
+            const [x0, y0] = pts[i],
+              [x1, y1] = pts[(i + 1) % pts.length];
+            const L = Math.hypot(x1 - x0, y1 - y0),
+              n = Math.max(1, Math.floor(L / step));
+            const nx = -(y1 - y0) / L,
+              ny = (x1 - x0) / L;
+            for (let k = 0; k < n; k++) {
+              const u = k / n,
+                j = (rnd() - 0.5) * 2 * amp + Math.sin(u * 9 + i) * amp * 0.4;
+              out.push([x0 + (x1 - x0) * u + nx * j, y0 + (y1 - y0) * u + ny * j]);
+            }
+          }
+          return out;
+        }
+        const rectPts = (x, y, w, h) => [
+          [x, y],
+          [x + w, y],
+          [x + w, y + h],
+          [x, y + h],
+        ];
+        function pathFrom(c, pts) {
+          c.beginPath();
+          pts.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+          c.closePath();
+        }
+        function grain(c, x, y, w, h, a = 0.07, dens = 70) {
+          for (let k = 0; k < (w * h) / dens; k++) {
+            c.fillStyle = rnd() < 0.5 ? `rgba(255,255,255,${a})` : `rgba(60,40,10,${a})`;
+            c.fillRect(x + rnd() * w, y + rnd() * h, 0.8 + rnd() * 1.2, 0.8 + rnd() * 1.2);
+          }
+        }
+        // ombre : silhouette floutée, à demi-résolution
+        function withShadow(spr) {
+          const s = 0.5,
+            PAD = 22;
+          const c = document.createElement("canvas");
+          c.width = Math.ceil(spr.cv.width * s) + 2 * PAD;
+          c.height = Math.ceil(spr.cv.height * s) + 2 * PAD;
+          const x = c.getContext("2d");
+          x.filter = "blur(6px)";
+          x.drawImage(spr.cv, PAD, PAD, spr.cv.width * s, spr.cv.height * s);
+          x.filter = "none";
+          x.globalCompositeOperation = "source-in";
+          x.fillStyle = "rgb(45,30,10)";
+          x.fillRect(0, 0, c.width, c.height);
+          spr.sh = c;
+          spr.shPad = PAD / s / SS;
+          return spr;
+        }
+        const measure = (font, text, ls = 0) => {
+          const m = document.createElement("canvas").getContext("2d");
+          m.font = font;
+          m.letterSpacing = ls + "px";
+          return m.measureText(text).width;
+        };
+        // bande de papier déchirée avec un texte (titres, sous-titres)
+        function strip(text, size, bg, fg, o = {}) {
+          const fam = o.family || "Oswald",
+            wt = o.weight || 700,
+            ls = o.ls || 0;
+          const font = `${wt} ${size}px "${fam}"`;
+          const tw = measure(font, text, ls);
+          const padX = o.padX ?? size * 0.32,
+            padY = o.padY ?? size * (fam === "Oswald" ? 0.1 : 0.16);
+          const lh = fam === "Oswald" ? 1.24 : 1.12;
+          const w = tw + 2 * padX + 12,
+            h = size * lh + 2 * padY + 12;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = bg;
+          pathFrom(c, tornPath(rectPts(6, 6, w - 12, h - 12), o.amp ?? 2.0, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w, h, 0.06);
+          c.restore();
+          c.fillStyle = fg;
+          c.font = font;
+          c.letterSpacing = ls + "px";
+          c.textBaseline = "middle";
+          c.textAlign = "center";
+          c.fillText(text, w / 2 + ls / 2, h / 2 + size * (o.dy ?? (fam === "Oswald" ? 0.03 : 0.05)));
+          return withShadow({ cv, w, h });
+        }
+        // écriture au feutre (révélée de gauche à droite)
+        function hand(text, size, color = MARKER) {
+          const font = `700 ${size}px Caveat`;
+          const w = measure(font, text) + 16,
+            h = size * 1.25;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = color;
+          c.font = font;
+          c.textBaseline = "middle";
+          c.fillText(text, 8, h / 2);
+          return { cv, w, h, noShadow: true };
+        }
+        // photo tirée sur papier, recadrée autour du point (fx, fy)
+        function photo(img, w, h, o = {}) {
+          const b = o.border ?? 12,
+            bot = o.bottom ?? b;
+          const W = w + 2 * b + 12,
+            H = h + b + bot + 12;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = PAPER;
+          pathFrom(c, o.clean ? rectPts(6, 6, W - 12, H - 12) : tornPath(rectPts(6, 6, W - 12, H - 12), 2.4, 5));
+          c.fill();
+          c.save();
+          pathFrom(c, o.clean ? rectPts(6 + b, 6 + b, w, h) : tornPath(rectPts(6 + b, 6 + b, w, h), 1.3, 6));
+          c.clip();
+          if (img) {
+            const ar = img.width / img.height,
+              tr = w / h;
+            let sw = img.width,
+              sh = img.height,
+              sx = 0,
+              sy = 0;
+            if (ar > tr) {
+              sw = img.height * tr;
+              sx = (img.width - sw) * (o.fx ?? 0.5);
+            } else {
+              sh = img.width / tr;
+              sy = (img.height - sh) * (o.fy ?? 0.5);
+            }
+            c.drawImage(img, sx, sy, sw, sh, 6 + b, 6 + b, w, h);
+          }
+          c.fillStyle = "rgba(240, 225, 190, 0.08)";
+          c.fillRect(6 + b, 6 + b, w, h);
+          c.restore();
+          if (o.caption) {
+            c.fillStyle = INK;
+            c.font = "700 44px Caveat";
+            c.textAlign = "center";
+            c.textBaseline = "middle";
+            c.fillText(o.caption, W / 2, 6 + b + h + bot / 2 + 2);
+          }
+          return withShadow({ cv, w: W, h: H });
+        }
+        function pin(c, x, y, col = "#c0392b") {
+          c.fillStyle = "rgba(40,25,10,0.3)";
+          c.beginPath();
+          c.ellipse(x + 5, y + 6, 12, 9, 0, 0, Math.PI * 2);
+          c.fill();
+          const g = c.createRadialGradient(x - 4, y - 4, 1, x, y, 13);
+          g.addColorStop(0, "#f07a6a");
+          g.addColorStop(1, col);
+          c.fillStyle = g;
+          c.beginPath();
+          c.arc(x, y, 12, 0, Math.PI * 2);
+          c.fill();
+        }
+        // ruban adhésif
+        function tape(o = {}) {
+          const w = o.w || 150,
+            h = o.h || 42;
+          const [cv, c] = mk(w + 12, h + 12);
+          c.fillStyle = "rgba(238, 226, 192, 0.93)";
+          const pts = [];
+          const n = 9;
+          for (let i = 0; i <= n; i++) pts.push([6 + (i % 2 ? 5 : 0) + rnd() * 2, 6 + (i / n) * h]);
+          const right = [];
+          for (let i = n; i >= 0; i--) right.push([6 + w - (i % 2 ? 5 : 0) - rnd() * 2, 6 + (i / n) * h]);
+          pathFrom(c, [...pts, ...right]);
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w + 12, h + 12, 0.05);
+          c.restore();
+          return withShadow({ cv, w: w + 12, h: h + 12, light: true });
+        }
+        function scratch(c, R) {
+          c.globalCompositeOperation = "destination-out";
+          for (let k = 0; k < 700; k++) {
+            const a = rnd() * Math.PI * 2,
+              r = rnd() * R;
+            c.fillStyle = `rgba(0,0,0,${0.25 + rnd() * 0.6})`;
+            c.beginPath();
+            c.arc(Math.cos(a) * r, Math.sin(a) * r, 0.6 + rnd() * 2.2, 0, Math.PI * 2);
+            c.fill();
+          }
+          c.globalCompositeOperation = "source-over";
+        }
+        // tampon rond à l'encre rouge
+        function seal(top, bottom) {
+          const S = 300;
+          const [cv, c] = mk(S, S);
+          c.translate(S / 2, S / 2);
+          c.strokeStyle = RED;
+          c.fillStyle = RED;
+          c.lineWidth = 7;
+          c.beginPath();
+          c.arc(0, 0, 134, 0, Math.PI * 2);
+          c.stroke();
+          c.lineWidth = 3;
+          c.beginPath();
+          c.arc(0, 0, 116, 0, Math.PI * 2);
+          c.stroke();
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.font = '700 52px "Montserrat"';
+          c.fillText(top, 0, -26);
+          c.font = '700 31px "Montserrat"';
+          c.letterSpacing = "1px";
+          c.fillText(bottom, 0, 30);
+          c.letterSpacing = "0px";
+          c.beginPath();
+          c.moveTo(-70, 2);
+          c.lineTo(70, 2);
+          c.lineWidth = 3;
+          c.stroke();
+          scratch(c, 140);
+          return { cv, w: S, h: S, noShadow: true, alpha: 0.86 };
+        }
+        function paperclip() {
+          const [cv, c] = mk(60, 150);
+          c.strokeStyle = "#8f938f";
+          c.lineWidth = 5;
+          c.lineCap = "round";
+          c.beginPath();
+          c.moveTo(18, 110);
+          c.lineTo(18, 30);
+          c.arc(30, 30, 12, Math.PI, 0);
+          c.lineTo(42, 120);
+          c.arc(30, 120, 12, 0, Math.PI);
+          c.lineTo(18, 46);
+          c.stroke();
+          return withShadow({ cv, w: 60, h: 150 });
+        }
+        function pencil() {
+          const [cv, c] = mk(520, 40);
+          c.fillStyle = "#2f4f8f";
+          c.fillRect(60, 8, 400, 24);
+          c.fillStyle = "#24407a";
+          c.fillRect(60, 22, 400, 10);
+          c.fillStyle = "#e7c9a0";
+          c.beginPath();
+          c.moveTo(60, 8);
+          c.lineTo(14, 20);
+          c.lineTo(60, 32);
+          c.closePath();
+          c.fill();
+          c.fillStyle = "#2c2c2c";
+          c.beginPath();
+          c.moveTo(26, 17);
+          c.lineTo(10, 20);
+          c.lineTo(26, 23);
+          c.closePath();
+          c.fill();
+          c.fillStyle = "#b8b9b6";
+          c.fillRect(460, 8, 26, 24);
+          c.fillStyle = "#d9776a";
+          c.fillRect(486, 8, 26, 24);
+          return withShadow({ cv, w: 520, h: 40 });
+        }
+        // ruban panafricain, comme les bordures de la vidéo d'origine
+        function kente(w, h = 72) {
+          const W = w + 12,
+            H = h + 12;
+          const [cv, c] = mk(W, H);
+          pathFrom(c, tornPath(rectPts(6, 6, w, h), 1.6, 6));
+          c.fillStyle = KY;
+          c.fill();
+          c.save();
+          c.clip();
+          const U = 92;
+          for (let x = -40; x < W + 40; x += U) {
+            c.fillStyle = KG;
+            c.fillRect(x, 6, 26, h);
+            c.fillStyle = KR;
+            c.fillRect(x + 32, 6 + h * 0.2, 14, h * 0.6);
+            c.fillStyle = KB;
+            c.fillRect(x + 52, 6 + h * 0.31, h * 0.38, h * 0.38);
+            c.fillStyle = KY;
+            c.fillRect(x + 52 + h * 0.11, 6 + h * 0.42, h * 0.16, h * 0.16);
+            c.fillStyle = KR;
+            c.fillRect(x + 52 + h * 0.38 + 6, 6, 9, h);
+          }
+          c.fillStyle = KB;
+          c.fillRect(0, 6, W, 5);
+          c.fillRect(0, 6 + h - 5, W, 5);
+          grain(c, 0, 0, W, H, 0.07);
+          c.restore();
+          return withShadow({ cv, w: W, h: H, light: true });
+        }
+        // médaillon de la Tribune, en autocollant découpé
+        function medalSticker(D) {
+          const rim = 14,
+            S = D + 2 * rim + 12;
+          const [cv, c] = mk(S, S);
+          const cx = S / 2,
+            cy = S / 2;
+          const pts = [];
+          for (let i = 0; i < 140; i++) {
+            const a = (i / 140) * Math.PI * 2,
+              r = D / 2 + rim + (rnd() - 0.5) * 1.8;
+            pts.push([cx + Math.cos(a) * r, cy + Math.sin(a) * r]);
+          }
+          c.fillStyle = PAPER;
+          pathFrom(c, pts);
+          c.fill();
+          if (IMG.medal) c.drawImage(IMG.medal, cx - D / 2, cy - D / 2, D, D);
+          const g = c.createLinearGradient(cx - D / 2, cy - D / 2, cx + D / 2, cy + D / 2);
+          g.addColorStop(0, "rgba(255,255,255,0.14)");
+          g.addColorStop(0.45, "rgba(255,255,255,0)");
+          c.fillStyle = g;
+          c.beginPath();
+          c.arc(cx, cy, D / 2, 0, Math.PI * 2);
+          c.fill();
+          return withShadow({ cv, w: S, h: S });
+        }
+        // carton blanc avec le logo de la FESTAC
+        function logoCard(w) {
+          const lw = w - 80,
+            lh = IMG.logo ? (lw * IMG.logo.height) / IMG.logo.width : lw * 0.5;
+          const W = w,
+            H = lh + 76;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = "#ffffff";
+          pathFrom(c, tornPath(rectPts(6, 6, W - 12, H - 12), 1.6, 5));
+          c.fill();
+          if (IMG.logo) c.drawImage(IMG.logo, 40, 38, lw, lh);
+          return withShadow({ cv, w: W, h: H });
+        }
+        // drapeaux des pays membres, en papier découpé
+        function drawFlag(c, code, x, y, w, h) {
+          const V = (cols) => cols.forEach((col, i) => ((c.fillStyle = col), c.fillRect(x + (i * w) / cols.length, y, w / cols.length + 0.6, h)));
+          const Hz = (cols) => cols.forEach((col, i) => ((c.fillStyle = col), c.fillRect(x, y + (i * h) / cols.length, w, h / cols.length + 0.6)));
+          const star = (cx, cy, r, col) => {
+            c.fillStyle = col;
+            c.beginPath();
+            for (let i = 0; i < 10; i++) {
+              const a = -Math.PI / 2 + (i * Math.PI) / 5,
+                rr = i % 2 ? r * 0.382 : r;
+              c.lineTo(cx + Math.cos(a) * rr, cy + Math.sin(a) * rr);
+            }
+            c.closePath();
+            c.fill();
+          };
+          switch (code) {
+            case "CM":
+              V(["#007a5e", "#ce1126", "#fcd116"]);
+              star(x + w / 2, y + h / 2, h * 0.19, "#fcd116");
+              break;
+            case "GA":
+              Hz(["#009e60", "#fcd116", "#3a75c4"]);
+              break;
+            case "BJ":
+              c.fillStyle = "#fcd116";
+              c.fillRect(x, y, w, h / 2);
+              c.fillStyle = "#e8112d";
+              c.fillRect(x, y + h / 2, w, h / 2);
+              c.fillStyle = "#008751";
+              c.fillRect(x, y, w * 0.4, h);
+              break;
+            case "BF":
+              Hz(["#ef2b2d", "#009e49"]);
+              star(x + w / 2, y + h / 2, h * 0.17, "#fcd116");
+              break;
+            case "CI":
+              V(["#f77f00", "#ffffff", "#009e60"]);
+              break;
+            case "GN":
+              V(["#ce1126", "#fcd116", "#009460"]);
+              break;
+            case "ML":
+              V(["#14b53a", "#fcd116", "#ce1126"]);
+              break;
+            case "NE":
+              Hz(["#e05206", "#ffffff", "#0db02b"]);
+              c.fillStyle = "#e05206";
+              c.beginPath();
+              c.arc(x + w / 2, y + h / 2, h * 0.13, 0, Math.PI * 2);
+              c.fill();
+              break;
+            case "SN":
+              V(["#00853f", "#fdef42", "#e31b23"]);
+              star(x + w / 2, y + h / 2, h * 0.15, "#00853f");
+              break;
+            case "TG":
+              Hz(["#006a4e", "#ffce00", "#006a4e", "#ffce00", "#006a4e"]);
+              c.fillStyle = "#d21034";
+              c.fillRect(x, y, h * 0.6, h * 0.6);
+              star(x + h * 0.3, y + h * 0.3, h * 0.19, "#ffffff");
+              break;
+          }
+        }
+        function flagCard(code, name, fw = 236, fh = 157) {
+          const b = 12,
+            cap = 60;
+          const W = fw + 2 * b + 12,
+            H = fh + b + cap + 12;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = PAPER;
+          pathFrom(c, tornPath(rectPts(6, 6, W - 12, H - 12), 1.8, 5));
+          c.fill();
+          c.save();
+          pathFrom(c, tornPath(rectPts(6 + b, 6 + b, fw, fh), 1.1, 6));
+          c.clip();
+          drawFlag(c, code, 6 + b, 6 + b, fw, fh);
+          const g = c.createLinearGradient(6 + b, 6 + b, 6 + b + fw, 6 + b + fh);
+          g.addColorStop(0, "rgba(255,255,255,0.12)");
+          g.addColorStop(1, "rgba(0,0,0,0.08)");
+          c.fillStyle = g;
+          c.fillRect(6 + b, 6 + b, fw, fh);
+          grain(c, 6 + b, 6 + b, fw, fh, 0.05);
+          c.restore();
+          c.fillStyle = INK;
+          c.font = "700 46px Caveat";
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.fillText(name, W / 2, 6 + b + fh + cap / 2 + 1);
+          return withShadow({ cv, w: W, h: H });
+        }
+        // ticket des émissions : liseré or, icône découpée, libellé en capitales, punaise
+        function ticket(label, icon, o = {}) {
+          const font = '700 46px "Montserrat"',
+            ls = 2;
+          const tw = measure(font, label, ls);
+          const IW = 130;
+          const w = Math.max(o.minW || 0, tw + IW + 90 + 12),
+            h = 150;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = PAPER;
+          pathFrom(c, tornPath(rectPts(6, 10, w - 12, h - 16), 1.8, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w, h, 0.05);
+          c.fillStyle = GOLD;
+          c.fillRect(0, 0, 20, h);
+          c.restore();
+          icon(c, 6 + 30 + IW / 2, h / 2 + 4);
+          c.fillStyle = NAVY;
+          c.font = font;
+          c.letterSpacing = ls + "px";
+          c.textBaseline = "middle";
+          c.fillText(label, 6 + 40 + IW, h / 2 + 6);
+          pin(c, w / 2, 24, o.pin);
+          return withShadow({ cv, w, h, pinY: 24 - h / 2 });
+        }
+        // icônes découpées (bleu nuit et or)
+        const icScales = (c, x, y) => {
+          c.strokeStyle = NAVY;
+          c.fillStyle = NAVY;
+          c.lineCap = "round";
+          c.lineWidth = 7;
+          c.beginPath();
+          c.moveTo(x, y - 38);
+          c.lineTo(x, y + 32);
+          c.moveTo(x - 42, y - 24);
+          c.lineTo(x + 42, y - 24);
+          c.stroke();
+          c.fillRect(x - 24, y + 30, 48, 10);
+          for (const s of [-1, 1]) {
+            const px = x + 42 * s;
+            c.lineWidth = 3;
+            c.beginPath();
+            c.moveTo(px, y - 24);
+            c.lineTo(px - 15, y + 6);
+            c.moveTo(px, y - 24);
+            c.lineTo(px + 15, y + 6);
+            c.stroke();
+            c.fillStyle = GOLD;
+            c.beginPath();
+            c.arc(px, y + 6, 17, 0, Math.PI);
+            c.closePath();
+            c.fill();
+          }
+          c.fillStyle = GOLD;
+          c.beginPath();
+          c.arc(x, y - 42, 8, 0, Math.PI * 2);
+          c.fill();
+        };
+        const icWorker = (c, x, y) => {
+          c.fillStyle = NAVY;
+          c.beginPath();
+          c.arc(x, y - 2, 19, 0, Math.PI * 2);
+          c.fill();
+          c.beginPath();
+          c.moveTo(x - 40, y + 44);
+          c.quadraticCurveTo(x - 38, y + 18, x, y + 18);
+          c.quadraticCurveTo(x + 38, y + 18, x + 40, y + 44);
+          c.closePath();
+          c.fill();
+          c.fillStyle = GOLD;
+          c.beginPath();
+          c.arc(x, y - 10, 25, Math.PI, 0);
+          c.closePath();
+          c.fill();
+          c.fillRect(x - 33, y - 12, 66, 8);
+          c.fillStyle = NAVY;
+          c.fillRect(x - 3, y - 34, 6, 15);
+        };
+        const icUnion = (c, x, y) => {
+          [-34, 0, 34].forEach((dx, i) => {
+            c.fillStyle = i === 1 ? GOLD : NAVY;
+            c.beginPath();
+            c.arc(x + dx, y - 26, 11, 0, Math.PI * 2);
+            c.fill();
+            c.beginPath();
+            c.moveTo(x + dx - 13, y - 11);
+            c.lineTo(x + dx + 13, y - 11);
+            c.lineTo(x + dx + 10, y + 42);
+            c.lineTo(x + dx - 10, y + 42);
+            c.closePath();
+            c.fill();
+          });
+          // bras liés, levés ensemble
+          c.strokeStyle = NAVY;
+          c.lineWidth = 6;
+          c.lineCap = "round";
+          c.beginPath();
+          c.moveTo(x - 44, y - 6);
+          c.lineTo(x - 17, y - 30);
+          c.lineTo(x + 0, y - 8);
+          c.moveTo(x + 0, y - 8);
+          c.lineTo(x + 17, y - 30);
+          c.lineTo(x + 44, y - 6);
+          c.stroke();
+        };
+        const icShield = (c, x, y) => {
+          c.fillStyle = NAVY;
+          c.beginPath();
+          c.moveTo(x, y - 44);
+          c.lineTo(x + 38, y - 30);
+          c.lineTo(x + 34, y + 8);
+          c.quadraticCurveTo(x + 26, y + 34, x, y + 47);
+          c.quadraticCurveTo(x - 26, y + 34, x - 34, y + 8);
+          c.lineTo(x - 38, y - 30);
+          c.closePath();
+          c.fill();
+          c.fillStyle = GOLD;
+          c.beginPath();
+          c.moveTo(x, y + 24);
+          c.bezierCurveTo(x - 32, y + 2, x - 16, y - 26, x, y - 8);
+          c.bezierCurveTo(x + 16, y - 26, x + 32, y + 2, x, y + 24);
+          c.fill();
+        };
+        const icUmbrella = (c, x, y) => {
+          c.fillStyle = NAVY;
+          c.beginPath();
+          c.arc(x, y - 4, 46, Math.PI, 0);
+          c.closePath();
+          c.fill();
+          c.strokeStyle = NAVY;
+          c.lineWidth = 6;
+          c.lineCap = "round";
+          c.beginPath();
+          c.moveTo(x, y - 4);
+          c.lineTo(x, y + 34);
+          c.arc(x - 10, y + 34, 10, 0, Math.PI);
+          c.stroke();
+          c.fillStyle = GOLD;
+          c.fillRect(x + 14, y + 14, 30, 10);
+          c.fillRect(x + 24, y + 4, 10, 30);
+        };
+        function endSheet() {
+          const W = 1040,
+            H = 1880;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = "#fdfbf6";
+          pathFrom(c, tornPath(rectPts(6, 6, W - 12, H - 12), 2.6, 7));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, W, H, 0.025, 160);
+          c.restore();
+          return withShadow({ cv, w: W, h: H });
+        }
+
+        // ------------------------------------------------------------ table : texture de kraft (motif répété)
+        const kraft = (() => {
+          const N = 1024;
+          const c = document.createElement("canvas");
+          c.width = c.height = N;
+          const x = c.getContext("2d");
+          x.fillStyle = "#e6d8bb";
+          x.fillRect(0, 0, N, N);
+          const img = x.getImageData(0, 0, N, N);
+          for (let i = 0; i < img.data.length; i += 4) {
+            const n = (rnd() - 0.5) * 12;
+            img.data[i] += n;
+            img.data[i + 1] += n;
+            img.data[i + 2] += n * 0.8;
+          }
+          x.putImageData(img, 0, 0);
+          for (let k = 0; k < 40; k++) {
+            const px = rnd() * N,
+              py = rnd() * N,
+              r = 60 + rnd() * 160;
+            for (const [ox, oy] of [
+              [0, 0],
+              [N, 0],
+              [-N, 0],
+              [0, N],
+              [0, -N],
+            ]) {
+              const g = x.createRadialGradient(px + ox, py + oy, 0, px + ox, py + oy, r);
+              g.addColorStop(0, rnd() < 0.5 ? "rgba(255,250,235,0.10)" : "rgba(150,115,60,0.06)");
+              g.addColorStop(1, "rgba(0,0,0,0)");
+              x.fillStyle = g;
+              x.fillRect(px + ox - r, py + oy - r, 2 * r, 2 * r);
+            }
+          }
+          x.strokeStyle = "rgba(110, 85, 40, 0.08)";
+          for (let k = 0; k < 1100; k++) {
+            const px = rnd() * N,
+              py = rnd() * N,
+              a = rnd() * Math.PI,
+              l = 8 + rnd() * 26;
+            for (const [ox, oy] of [
+              [0, 0],
+              [N, 0],
+              [0, N],
+              [N, N],
+              [-N, 0],
+              [0, -N],
+            ]) {
+              x.beginPath();
+              x.moveTo(px + ox, py + oy);
+              x.lineTo(px + ox + Math.cos(a) * l, py + oy + Math.sin(a) * l);
+              x.stroke();
+            }
+          }
+          return c;
+        })();
+
+        // ------------------------------------------------------------ éléments posés sur la table
+        const ELS = [];
+        let nid = 1;
+        // spr, x, y, rot, t0 ; from : d'où arrive le papier (dx, dy, rot, s, h = hauteur au-dessus de la table)
+        function put(spr, x, y, rot, t0, o = {}) {
+          const e = { id: nid++, spr, x, y, rot, t0, dur: o.dur ?? 0.42, from: o.from || { dy: -120, rot: 0.15, h: 140 }, kind: o.kind || "drop", ...o };
+          // l'encre (écriture, tampons) ne bouge plus une fois posée
+          if (e.still === undefined) e.still = e.kind === "write" || !!spr.noShadow;
+          e.sgn = hash(e.id * 7) < 0.5 ? -1 : 1;
+          ELS.push(e);
+          return e;
+        }
+        // pose d'un élément à l'instant t (fonction pure)
+        function pose(e, t) {
+          const q = Q(t);
+          if (q < e.t0 - 1e-6) return null;
+          let x = e.x,
+            y = e.y,
+            rot = e.rot,
+            s = 1,
+            h = 0,
+            a = 1,
+            rev = 1;
+          const k = Math.round((q - e.t0) * FPS);
+          if (e.kind === "pop") {
+            s = k === 0 ? 1.16 : k === 1 ? 1.05 : 1;
+            h = k === 0 ? 36 : k === 1 ? 10 : 0;
+            rot += k === 0 ? 0.05 * e.sgn : 0;
+          } else if (e.kind === "write") {
+            rev = clamp01((q - e.t0 + 1 / FPS) / e.dur);
+          } else {
+            const u = clamp01((q - e.t0) / e.dur);
+            const ee = out3(u);
+            const f = e.from;
+            x += (f.dx || 0) * (1 - ee);
+            y += (f.dy || 0) * (1 - ee);
+            rot += (f.rot || 0) * (1 - ee);
+            h = (f.h ?? 120) * (1 - ee);
+            s = 1 + (f.s || 0) * (1 - ee);
+            // petit rebond à la pose
+            const k2 = Math.round((q - e.t0 - e.dur) * FPS);
+            if (k2 === 0) rot += 0.014 * e.sgn;
+            else if (k2 === 1) rot -= 0.006 * e.sgn;
+          }
+          // « vie » du papier posé à la main : micro-déplacements à 6 im/s
+          if (!e.still) {
+            const b = Math.floor(t * 6);
+            rot += (hash(e.id * 131 + b) - 0.5) * 0.004;
+            x += (hash(e.id * 71 + b * 3) - 0.5) * 1.1;
+            y += (hash(e.id * 53 + b * 5) - 0.5) * 1.1;
+          }
+          return { x, y, rot, s, h, a, rev };
+        }
+        // traits au feutre
+        const ARROWS = [];
+        function smooth(pts) {
+          const out = [];
+          for (let i = 0; i < pts.length - 1; i++) {
+            const p0 = pts[Math.max(0, i - 1)],
+              p1 = pts[i],
+              p2 = pts[i + 1],
+              p3 = pts[Math.min(pts.length - 1, i + 2)];
+            for (let k = 0; k < 16; k++) {
+              const u = k / 16,
+                u2 = u * u,
+                u3 = u2 * u;
+              out.push([
+                0.5 * (2 * p1[0] + (-p0[0] + p2[0]) * u + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * u2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * u3),
+                0.5 * (2 * p1[1] + (-p0[1] + p2[1]) * u + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * u2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * u3),
+              ]);
+            }
+          }
+          out.push(pts[pts.length - 1]);
+          return out;
+        }
+        function arrow(pts, t0, dur, o = {}) {
+          ARROWS.push({ pts: smooth(pts), t0, dur, col: o.col || MARKER, w: o.w || 7, head: o.head !== false });
+        }
+
+        // ------------------------------------------------------------ pages (centres sur la table)
+        const P = {
+          A: [540, 960],
+          B: [540, 2980],
+          C1: [1720, 2980],
+          C2: [1720, 5000],
+          D1: [540, 5000],
+          D2: [540, 7020],
+          D3: [1720, 7020],
+          E: [1720, 9040],
+          F: [540, 9040],
+          G: [540, 11060],
+        };
+
+        // ---- A : les valeurs
+        {
+          const L = lander(AN.A);
+          put(kente(1240), 540, 520, -0.02, L(1, 0.5), { from: { dx: -1300, rot: -0.05, h: 60 }, dur: 0.5 });
+          put(kente(1240), 540, 1415, 0.015, L(1.5, 0.5), { from: { dx: 1300, rot: 0.05, h: 60 }, dur: 0.5 });
+          put(pencil(), 250, 330, -0.55, 0.2, { from: { dx: -320, dy: -60, rot: -0.3, h: 120 } });
+          put(paperclip(), 950, 1650, 0.45, 0.45, { from: { dx: 200, dy: 140, rot: 0.6, h: 100 } });
+          put(photo(IMG.delegues, 400, 300, { border: 12 }), 770, 255, 0.05, L(1.5), { from: { dx: 320, dy: -320, rot: 0.3, h: 200 } });
+          put(photo(IMG.p4, 400, 267, { border: 12 }), 315, 1665, -0.05, L(2.5), { from: { dx: -320, dy: 320, rot: -0.3, h: 200 } });
+          const W = [
+            ["TRAVAIL", PAPER, NAVY, 535, 660, -0.03],
+            ["DIGNITÉ", NAVY, PAPER, 560, 862, 0.02],
+            ["JUSTICE", GOLD, NAVY, 522, 1064, -0.015],
+            ["SOLIDARITÉ", PAPER, NAVY, 548, 1266, 0.022],
+          ];
+          W.forEach(([txt, bg, fg, x, y, r], i) =>
+            put(strip(txt, 146, bg, fg), x, y, r, L(1 + i, 0.3), { from: { dy: -260, rot: (i % 2 ? 0.16 : -0.16), h: 170, s: 0.12 }, dur: 0.3 }),
+          );
+        }
+
+        // ---- B : la Tribune
+        {
+          const L = lander(AN.B);
+          put(medalSticker(570), 540, 2790, -0.05, L(0, 0.5), { from: { dy: -560, rot: 0.7, h: 280, s: 0.2 }, dur: 0.5 });
+          put(strip("LE MÉDIA PANAFRICAIN", 50, NAVY, PAPER, { family: "Montserrat", ls: 3 }), 540, 3215, -0.012, L(1), { from: { dx: -420, rot: -0.2, h: 140 } });
+          put(strip("DES DROITS SOCIAUX", 50, NAVY, PAPER, { family: "Montserrat", ls: 3 }), 545, 3313, 0.014, L(1.5), { from: { dx: 420, rot: 0.2, h: 140 } });
+          put(hand("créé par la FESTAC", 84), 480, 3545, -0.035, L(3, 0), { kind: "write", dur: 0.7 });
+          arrow(
+            [
+              [805, 3568],
+              [905, 3556],
+              [1010, 3512],
+            ],
+            L(4.5, 0),
+            0.3,
+          );
+          put(tape({ w: 150 }), 905, 2480, 0.7, L(0.75, 0.25), { from: { dy: -60, h: 50 } });
+        }
+
+        // ---- C1 : la FESTAC
+        {
+          const L = lander(AN.C1);
+          put(logoCard(560), 1720, 2330, 0.02, L(0), { from: { dx: 520, dy: -200, rot: 0.35, h: 220 } });
+          put(tape({ w: 130 }), 1470, 2232, -0.6, L(0.75, 0.25), { from: { dy: -60, h: 50 } });
+          put(tape({ w: 130 }), 1970, 2232, 0.6, L(1, 0.25), { from: { dy: -60, h: 50 } });
+          const NAME = ["Fédération des Syndicats", "des Travailleurs des Pays", "Affiliés à la CIPRES"];
+          NAME.forEach((txt, i) =>
+            put(strip(txt, 40, MANILA, NAVY, { family: "Montserrat" }), 1720 + (i - 1) * 14, 2560 + i * 76, (i % 2 ? 0.012 : -0.012), L(1 + i * 0.5), { from: { dx: (i % 2 ? 380 : -380), rot: (i % 2 ? 0.2 : -0.2), h: 130 } }),
+          );
+          put(photo(IMG.siege, 740, 493, { border: 13 }), 1720, 3080, -0.03, L(3), { from: { dx: -420, dy: 260, rot: -0.3, h: 220 } });
+          put(tape({ w: 140 }), 1395, 2850, -0.55, L(3.5, 0.25), { from: { dy: -60, h: 50 } });
+          put(tape({ w: 140 }), 2045, 2850, 0.55, L(3.75, 0.25), { from: { dy: -60, h: 50 } });
+          put(seal("SIÈGE", "LIBREVILLE"), 2035, 3385, -0.18, L(4.25, 0), { kind: "pop" });
+          put(strip("LA VOIX DES TRAVAILLEURS", 74, PAPER, NAVY), 1700, 3505, -0.015, L(5), { from: { dx: -440, rot: -0.2, h: 150 } });
+          put(strip("AFRICAINS", 74, GOLD, NAVY), 1765, 3612, 0.02, L(5.5), { from: { dx: 440, rot: 0.2, h: 150 } });
+        }
+
+        // ---- C2 : 10 pays membres
+        {
+          const L = lander(AN.C2);
+          put(strip("10", 250, NAVY, GOLD, { padX: 34 }), 1430, 4318, -0.04, L(0, 0), { kind: "pop" });
+          put(strip("PAYS", 104, PAPER, NAVY), 1820, 4262, 0.02, L(0.5), { from: { dx: 360, rot: 0.2, h: 140 } });
+          put(strip("MEMBRES", 104, PAPER, NAVY), 1850, 4392, -0.015, L(1), { from: { dx: 360, rot: -0.2, h: 140 } });
+          const FL = [
+            ["CM", "Cameroun"],
+            ["GA", "Gabon"],
+            ["BJ", "Bénin"],
+            ["BF", "Burkina Faso"],
+            ["CI", "Côte d'Ivoire"],
+            ["GN", "Guinée"],
+            ["ML", "Mali"],
+            ["NE", "Niger"],
+            ["SN", "Sénégal"],
+            ["TG", "Togo"],
+          ];
+          FL.forEach(([code, name], i) => {
+            const col = i % 2,
+              row = Math.floor(i / 2);
+            const x = 1720 + (col ? 205 : -205) + (hash(i * 5) - 0.5) * 16,
+              y = 4668 + row * 262 + (hash(i * 11) - 0.5) * 14;
+            put(flagCard(code, name, 270, 180), x, y, (hash(i * 17) - 0.5) * 0.12, L(1.5 + i * 0.4, 0.3), { from: { dx: (col ? 1 : -1) * 220, dy: -200, rot: (col ? 0.3 : -0.3), h: 150 }, dur: 0.3 });
+          });
+        }
+
+        // ---- D : notre mission (trois pages)
+        const numStrip = (n) => strip(n, 190, GOLD, NAVY, { padX: 26 });
+        {
+          const L = lander(AN.D1);
+          put(strip("NOTRE MISSION", 52, NAVY, GOLD, { family: "Montserrat", ls: 6 }), 590, 4228, -0.01, L(0), { from: { dy: -320, rot: -0.15, h: 150 } });
+          put(numStrip("01"), 190, 4440, -0.05, L(1, 0), { kind: "pop" });
+          put(strip("INFORMER", 150, NAVY, PAPER), 600, 4605, 0.015, L(1.5), { from: { dx: 460, rot: 0.2, h: 160 } });
+          put(strip("sur les droits sociaux en Afrique", 40, MANILA, NAVY, { family: "Montserrat", weight: 600 }), 540, 4760, -0.01, L(2), { from: { dx: -420, rot: -0.2, h: 130 } });
+          put(photo(IMG.affiche, 500, 750, { border: 13 }), 540, 5270, 0.03, L(3), { from: { dy: 560, rot: 0.3, h: 220 } });
+          put(tape({ w: 150 }), 545, 4895, 0.05, L(3.75, 0.25), { from: { dy: -60, h: 50 } });
+        }
+        {
+          const L = lander(AN.D2);
+          put(numStrip("02"), 190, 6418, -0.05, L(0, 0), { kind: "pop" });
+          put(strip("DONNER LA PAROLE", 106, NAVY, PAPER), 560, 6600, 0.012, L(0.5), { from: { dx: 460, rot: 0.2, h: 160 } });
+          put(strip("aux travailleurs et aux acteurs sociaux", 38, MANILA, NAVY, { family: "Montserrat", weight: 600 }), 540, 6738, -0.01, L(1), { from: { dx: -420, rot: -0.2, h: 130 } });
+          put(photo(IMG.p1, 560, 373, { border: 12 }), 385, 7060, -0.04, L(2), { from: { dx: -520, dy: 120, rot: -0.3, h: 200 } });
+          put(photo(IMG.p2, 560, 373, { border: 12 }), 695, 7340, 0.035, L(2.5), { from: { dx: 520, dy: 80, rot: 0.3, h: 200 } });
+          put(photo(IMG.p3, 560, 373, { border: 12 }), 400, 7620, -0.025, L(3), { from: { dx: -520, dy: 60, rot: -0.3, h: 200 } });
+          put(tape({ w: 130 }), 170, 6880, -0.7, L(3.5, 0.25), { from: { dy: -60, h: 50 } });
+          put(tape({ w: 130 }), 930, 7160, 0.7, L(3.75, 0.25), { from: { dy: -60, h: 50 } });
+        }
+        {
+          const L = lander(AN.D3);
+          put(numStrip("03"), 1370, 6418, -0.05, L(0, 0), { kind: "pop" });
+          put(strip("PROMOUVOIR", 132, NAVY, PAPER), 1748, 6605, 0.015, L(0.5), { from: { dx: 460, rot: 0.2, h: 160 } });
+          put(strip("le dialogue social", 42, MANILA, NAVY, { family: "Montserrat", weight: 600 }), 1700, 6752, -0.012, L(1), { from: { dx: -420, rot: -0.2, h: 130 } });
+          put(strip("et la justice sociale", 42, MANILA, NAVY, { family: "Montserrat", weight: 600 }), 1745, 6830, 0.012, L(1.5), { from: { dx: 420, rot: 0.2, h: 130 } });
+          put(photo(IMG.tr1, 880, 587, { border: 13 }), 1720, 7215, -0.02, L(2.25), { from: { dy: 520, rot: 0.25, h: 220 } });
+          put(tape({ w: 140 }), 1300, 6935, -0.5, L(2.75, 0.25), { from: { dy: -60, h: 50 } });
+          put(tape({ w: 140 }), 2140, 6935, 0.5, L(3, 0.25), { from: { dy: -60, h: 50 } });
+          put(hand("table ronde FESTAC – CNSS", 62), 1720, 7580, -0.02, L(3, 0), { kind: "write", dur: 0.6 });
+        }
+
+        // ---- E : au cœur de nos émissions
+        {
+          const L = lander(AN.E);
+          put(strip("AU CŒUR DE", 50, NAVY, GOLD, { family: "Montserrat", ls: 5 }), 1720, 8302, -0.012, L(0), { from: { dy: -300, rot: -0.15, h: 150 } });
+          put(strip("NOS ÉMISSIONS", 128, PAPER, NAVY), 1720, 8432, 0.012, L(0.5), { from: { dy: -300, rot: 0.15, h: 160 } });
+          const TK = [
+            ["DROITS SOCIAUX", icScales, "#c0392b"],
+            ["TRAVAILLEURS", icWorker, "#2e6fb4"],
+            ["SYNDICALISME", icUnion, "#c79a1a"],
+            ["PROTECTION SOCIALE", icShield, "#2f8f57"],
+            ["SÉCURITÉ SOCIALE", icUmbrella, "#c0392b"],
+          ];
+          TK.forEach(([lab, ic, pc], i) =>
+            put(ticket(lab, ic, { minW: 830, pin: pc }), 1720 + (i % 2 ? 16 : -16), 8645 + i * 186, (i % 2 ? 0.014 : -0.014), L(1.5 + i * 0.75, 0.34), { from: { dx: (i % 2 ? 1 : -1) * 480, dy: -60, rot: (i % 2 ? 0.25 : -0.25), h: 160 }, dur: 0.34 }),
+          );
+          put(paperclip(), 2120, 9640, 0.3, L(5.5), { from: { dx: 200, dy: 120, rot: 0.6, h: 100 } });
+        }
+
+        // ---- F : à votre écoute
+        {
+          const L = lander(AN.F);
+          put(hand("À votre écoute", 100), 540, 8262, -0.03, L(0, 0.3), { kind: "write", dur: 0.65 });
+          put(photo(IMG.sp, 540, 660, { border: 16, bottom: 70, fx: 0.46, clean: true }), 540, 8800, -0.025, L(1), { from: { dy: -560, rot: -0.35, h: 260 } });
+          put(tape({ w: 160 }), 540, 8432, 0.04, L(1.5, 0.25), { from: { dy: -60, h: 50 } });
+          put(strip("RICHARD NDI BEKOUNG", 96, PAPER, NAVY), 540, 9285, 0.012, L(2.5), { from: { dx: -460, rot: -0.2, h: 160 } });
+          put(strip("Secrétaire permanent de la FESTAC", 40, NAVY, PAPER, { family: "Montserrat" }), 540, 9410, -0.012, L(3), { from: { dx: 460, rot: 0.2, h: 140 } });
+          put(strip("Responsable de la Tribune des Droits Sociaux", 34, MANILA, NAVY, { family: "Montserrat", weight: 600 }), 540, 9500, 0.01, L(3.5), { from: { dx: -460, rot: -0.2, h: 130 } });
+        }
+
+        // ---- G : ensemble pour la justice sociale
+        {
+          const L = lander(AN.G);
+          put(kente(1240), 540, 10660, -0.02, L(0, 0.5), { from: { dx: -1300, rot: -0.05, h: 60 }, dur: 0.5 });
+          put(kente(1240), 540, 11465, 0.02, L(0.5, 0.5), { from: { dx: 1300, rot: 0.05, h: 60 }, dur: 0.5 });
+          put(strip("ENSEMBLE", 180, NAVY, GOLD), 540, 10950, -0.02, L(1, 0.32), { from: { dy: -300, rot: -0.15, h: 180, s: 0.12 }, dur: 0.32 });
+          put(strip("pour la justice sociale", 60, PAPER, NAVY, { family: "Montserrat" }), 548, 11150, 0.015, L(1.75), { from: { dy: 300, rot: 0.15, h: 160 } });
+        }
+
+        // ---- la grande feuille blanche de la carte de fin (dans le repère de l'écran)
+        const SHEET = endSheet();
+        const eSheet = { id: 9999, spr: SHEET, x: 540, y: 960, rot: -0.004, t0: FT.sheet, dur: 0.55, from: { dx: -150, dy: 2150, rot: 0.1, h: 260 }, kind: "drop", sgn: 1, still: true };
+        const SHEET_TAPES = [
+          { id: 9998, spr: tape({ w: 170 }), x: 110, y: 78, rot: -0.62, t0: FT.sheet + 0.65, dur: 0.25, from: { dy: -60, h: 50 }, kind: "drop", sgn: 1, still: true },
+          { id: 9997, spr: tape({ w: 170 }), x: 970, y: 78, rot: 0.6, t0: FT.sheet + 0.75, dur: 0.25, from: { dy: -60, h: 50 }, kind: "drop", sgn: -1, still: true },
+        ];
+
+        // ------------------------------------------------------------ caméra (centre, zoom, rotation)
+        const KEYS = [];
+        const key = (t0, dur, [x, y], z, r = 0) => KEYS.push({ t0, dur, x, y, z, r });
+        const CAM0 = { x: 540, y: 960, z: 1.08, r: -0.01 };
+        key(0.05, 1.6, P.A, 1.0, -0.004);
+        const ORDER = ["B", "C1", "C2", "D1", "D2", "D3", "E", "F", "G"];
+        // la caméra se pose sur la page au temps d'ancrage
+        ORDER.forEach((k, i) => key(T(AN[k]) - 0.92, 0.92, P[k], 1.0, i % 2 ? -0.005 : 0.005));
+        const PUSH = 0.03,
+          PUSHT = 3.2,
+          DIP = 0.16;
+        function camAt(t) {
+          let s = { ...CAM0 };
+          let push = 0,
+            prevEnd = 0;
+          let i = 0;
+          for (; i < KEYS.length; i++) {
+            const k = KEYS[i];
+            if (t <= k.t0) {
+              push = i > 0 ? PUSH * out3((t - prevEnd) / PUSHT) : 0;
+              break;
+            }
+            const u = clamp01((t - k.t0) / k.dur),
+              e = inOut(u);
+            const p0 = i > 0 ? PUSH * out3((k.t0 - prevEnd) / PUSHT) : 0;
+            const zt = Math.exp(lerp(Math.log(s.z), Math.log(k.z), e));
+            const dip = i > 0 ? 1 - DIP * Math.sin(Math.PI * u) : 1;
+            if (u < 1) {
+              s = { x: lerp(s.x, k.x, e), y: lerp(s.y, k.y, e), z: zt * dip, r: lerp(s.r, k.r, e) };
+              push = p0 * (1 - e);
+              break;
+            }
+            s = { x: k.x, y: k.y, z: k.z, r: k.r };
+            prevEnd = k.t0 + k.dur;
+          }
+          if (i === KEYS.length) push = PUSH * out3((t - prevEnd) / PUSHT);
+          s.z *= 1 + push;
+          // banc-titre tenu à la main : légère dérive
+          s.x += 4 * Math.sin(t * 0.31) + 2.5 * Math.sin(t * 0.73 + 1);
+          s.y += 5 * Math.sin(t * 0.27 + 2) + 2.5 * Math.sin(t * 0.61);
+          s.r += 0.0016 * Math.sin(t * 0.22 + 0.5);
+          return s;
+        }
+
+        // ------------------------------------------------------------ dessin d'une image
+        const cv = document.getElementById("world-cv");
+        const ctx = cv.getContext("2d");
+        const kraftPat = ctx.createPattern(kraft, "repeat");
+        function drawSprite(e, p, c = ctx) {
+          const sp = e.spr;
+          const alpha = (sp.alpha ?? 1) * p.a;
+          if (!sp.noShadow && sp.sh) {
+            const pad = sp.shPad;
+            const off = 5 + p.h * 0.16,
+              offY = 8 + p.h * 0.24;
+            const sc = 1 + p.h * 0.0007;
+            c.save();
+            c.translate(p.x + off, p.y + offY);
+            c.rotate(p.rot);
+            c.scale(p.s * sc, p.s * sc);
+            c.globalAlpha = alpha * Math.max(0.12, (sp.light ? 0.16 : 0.3) - p.h * 0.0006);
+            c.drawImage(sp.sh, -sp.w / 2 - pad, -sp.h / 2 - pad, sp.w + 2 * pad, sp.h + 2 * pad);
+            c.restore();
+          }
+          c.save();
+          c.translate(p.x, p.y);
+          c.rotate(p.rot);
+          c.scale(p.s, p.s);
+          c.globalAlpha = alpha;
+          if (p.rev < 1) {
+            c.beginPath();
+            c.rect(-sp.w / 2, -sp.h / 2 - 20, sp.w * p.rev, sp.h + 40);
+            c.clip();
+          }
+          c.drawImage(sp.cv, -sp.w / 2, -sp.h / 2, sp.w, sp.h);
+          c.restore();
+        }
+        function drawPath(a, t) {
+          const q = Q(t);
+          if (q < a.t0) return;
+          const u = clamp01((q - a.t0 + 1 / FPS) / a.dur);
+          const n = Math.max(2, Math.floor(a.pts.length * u));
+          ctx.save();
+          ctx.strokeStyle = a.col;
+          ctx.globalAlpha = 0.92;
+          ctx.lineWidth = a.w;
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.beginPath();
+          for (let i = 0; i < n; i++) i ? ctx.lineTo(a.pts[i][0], a.pts[i][1]) : ctx.moveTo(a.pts[i][0], a.pts[i][1]);
+          ctx.stroke();
+          if (a.head && u >= 1) {
+            const [x2, y2] = a.pts[a.pts.length - 1],
+              [x1, y1] = a.pts[a.pts.length - 4];
+            const ang = Math.atan2(y2 - y1, x2 - x1);
+            ctx.beginPath();
+            ctx.moveTo(x2 - 30 * Math.cos(ang - 0.5), y2 - 30 * Math.sin(ang - 0.5));
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(x2 - 30 * Math.cos(ang + 0.5), y2 - 30 * Math.sin(ang + 0.5));
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+
+        function render(t) {
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          const cam = camAt(t);
+          ctx.translate(540, 960);
+          ctx.rotate(cam.r);
+          ctx.scale(cam.z, cam.z);
+          ctx.translate(-cam.x, -cam.y);
+          // la table : kraft répété sur toute la zone visible
+          const R = Math.hypot(540, 960) / cam.z + 40;
+          ctx.fillStyle = kraftPat;
+          ctx.fillRect(cam.x - R, cam.y - R, 2 * R, 2 * R);
+          // éléments, dans l'ordre de pose (hors champ : ignorés)
+          for (const e of ELS) {
+            const p = pose(e, t);
+            if (!p) continue;
+            const rr = Math.hypot(e.spr.w, e.spr.h) * 0.5 * p.s + 80 + p.h;
+            if (Math.abs(p.x - cam.x) > R + rr || Math.abs(p.y - cam.y) > R + rr) continue;
+            drawSprite(e, p);
+          }
+          for (const a of ARROWS) drawPath(a, t);
+          // carte de fin : la feuille blanche, dans le repère de l'écran
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          const ps = pose(eSheet, t);
+          if (ps) {
+            drawSprite(eSheet, ps);
+            for (const tp of SHEET_TAPES) {
+              const pt = pose(tp, t);
+              if (pt) drawSprite(tp, pt);
+            }
+          }
+          // lumière de prise de vue : vignette douce
+          const vg = ctx.createRadialGradient(540, 930, 520, 540, 960, 1300);
+          vg.addColorStop(0, "rgba(60,40,10,0)");
+          vg.addColorStop(1, "rgba(60,40,10,0.24)");
+          ctx.fillStyle = vg;
+          ctx.fillRect(0, 0, 1080, 1920);
+        }
+
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>
