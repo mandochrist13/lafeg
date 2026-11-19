@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — Les archives (mannequins)</title>
+    <script src="lib/gsap.min.js"></script>
+    <script src="assets/cues.js"></script>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1b1d1c;
+      }
+      #root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #1b1d1c;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-composition-id="main" data-start="0" data-duration="86.731" data-width="1920" data-height="1080">
+    <div id="world" data-composition-id="world" data-composition-src="compositions/world.html" data-start="0" data-duration="86.731" data-track-index="1" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <div id="ov-end" data-composition-id="ov-end" data-composition-src="compositions/ov-end.html" data-start="78.331" data-duration="8.4" data-track-index="2" data-track-kind="graphics" data-width="1920" data-height="1080"></div>
+    <audio id="vo-L01" src="assets/voice/L01.wav" data-start="2.6" data-duration="6.496" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L02" src="assets/voice/L02.wav" data-start="9.896" data-duration="4.075" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L03" src="assets/voice/L03.wav" data-start="15.171" data-duration="8.66" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L04" src="assets/voice/L04.wav" data-start="24.731" data-duration="6.02" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L05" src="assets/voice/L05.wav" data-start="31.751" data-duration="3.757" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L06" src="assets/voice/L06.wav" data-start="36.408" data-duration="4.898" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L07" src="assets/voice/L07.wav" data-start="42.306" data-duration="8.699" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L08" src="assets/voice/L08.wav" data-start="52.005" data-duration="7.667" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L09" src="assets/voice/L09.wav" data-start="60.672" data-duration="7.396" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="vo-L10" src="assets/voice/L10.wav" data-start="69.268" data-duration="9.063" data-track-index="20" data-volume="0.8"></audio>
+    <audio id="bgm" src="assets/bgm/soundhill-find-yourself.mp3" data-start="0" data-duration="86.731" data-media-start="50.929" data-track-index="21" data-volume="1" data-fade-in="1.2" data-automation='{"version":1,"lanes":[{"target":"volume","points":[{"t":0,"v":0.52},{"t":2.2,"v":0.52},{"t":2.55,"v":0.19},{"t":9.496,"v":0.19},{"t":9.846,"v":0.19},{"t":14.071,"v":0.19},{"t":14.521,"v":0.36},{"t":14.771,"v":0.36},{"t":15.121,"v":0.19},{"t":24.331,"v":0.19},{"t":24.681,"v":0.19},{"t":31.351,"v":0.19},{"t":31.701,"v":0.19},{"t":36.008,"v":0.19},{"t":36.358,"v":0.19},{"t":41.906,"v":0.19},{"t":42.256,"v":0.19},{"t":51.605,"v":0.19},{"t":51.955,"v":0.19},{"t":60.272,"v":0.19},{"t":60.622,"v":0.19},{"t":68.168,"v":0.19},{"t":68.618,"v":0.36},{"t":68.868,"v":0.36},{"t":69.218,"v":0.19},{"t":78.481,"v":0.19},{"t":79.181,"v":0.85}]}]}'></audio>
+    </div>
+    <script>
+      window.__timelines = window.__timelines || {};
+      window.__timelines["main"] = gsap.timeline({ paused: true });
+    </script>
+  </body>
+</html>
