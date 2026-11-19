@@ -1,0 +1,109 @@
+<template>
+  <!-- Carte de fin : une page blanche du carnet ; le logo se dessine, « lafeg.ga » est souligné au feutre vert. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    #en-bg {
+      position: absolute;
+      inset: 0;
+      background-color: #f4eee0;
+      background-image: radial-gradient(rgba(120, 105, 70, 0.24) 1.3px, transparent 1.6px);
+      background-size: 34px 34px;
+      background-position: 17px 17px;
+    }
+    #en-vig {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 48%, rgba(255, 252, 242, 0) 55%, rgba(150, 118, 66, 0.16) 100%);
+    }
+    /* Logo à 0,62 px écran par px du logo, comme les autres films FEG. */
+    #en-logo {
+      position: absolute;
+      left: 691.54px;
+      top: 222px;
+      width: 536.92px;
+      height: 496px;
+      clip-path: inset(0 0 0 0);
+    }
+    #en-cta {
+      position: absolute;
+      left: 0;
+      top: 770px;
+      width: 1920px;
+      text-align: center;
+    }
+    #en-line {
+      font-weight: 700;
+      font-size: 58px;
+      letter-spacing: -0.01em;
+      color: #063d21;
+    }
+    #en-line span {
+      display: inline-block;
+    }
+    #en-url {
+      position: relative;
+      color: #0a7537;
+    }
+    #en-ul {
+      position: absolute;
+      left: -6px;
+      bottom: -18px;
+      width: calc(100% + 12px);
+      height: 26px;
+      overflow: visible;
+    }
+    #en-contact {
+      margin-top: 22px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #5c6259;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080" data-hold>
+    <div id="en-bg"></div>
+    <div id="en-vig"></div>
+    <img id="en-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
+    <div id="en-cta">
+      <div id="en-line">
+        <span>Devenez</span> <span>membre</span> <span>·</span>
+        <span id="en-url"
+          >lafeg.ga<svg id="en-ul" viewBox="0 0 220 26" preserveAspectRatio="none">
+            <path id="en-ulp" d="M4 15 C40 9, 80 18, 120 12 S190 9, 216 14" fill="none" stroke="#2f8f57" stroke-width="7" stroke-linecap="round" /></svg
+        ></span>
+      </div>
+      <div id="en-contact">info@lafeg.ga · +241 11 77 55 95</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var W = (C.ov && C.ov["ov-end"]) || { start: 0, dur: 8 };
+      var tLogo = Math.max(0.1, C.logo - W.start);
+      var tl = gsap.timeline({ paused: true });
+      var ul = document.getElementById("en-ulp");
+      var L = 230;
+      tl.fromTo("#en-bg, #en-vig", { opacity: 0 }, { opacity: 1, duration: 0.42, ease: "power2.inOut" }, 0);
+      // le logo se dessine sur l'accord final de la musique
+      tl.fromTo("#en-logo", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo - 0.5);
+      tl.fromTo("#en-line span:not(#en-url), #en-url", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.14, stagger: 0.08, ease: "power4.out" }, tLogo + 0.55);
+      tl.fromTo(ul, { strokeDasharray: L + " " + L, strokeDashoffset: L }, { strokeDashoffset: 0, duration: 0.42, ease: "power2.inOut" }, tLogo + 1.05);
+      tl.fromTo("#en-contact", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, tLogo + 1.35);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>

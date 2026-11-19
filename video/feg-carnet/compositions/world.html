@@ -1,0 +1,1251 @@
+<!doctype html>
+<!--
+  FEG — « De la voix à la réforme », carnet de croquis. Dix pages de carnet posées sur un bureau (deux rangées
+  de cinq, parcourues en serpentin) ; la caméra glisse de page en page pendant que tout se dessine en direct :
+  traits rough.js qui se révèlent, lavis vert par couches, écriture manuscrite lettre par lettre, stylo plume
+  dont la pointe suit le trait en cours. À la fin, recul sur le carnet entier.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire) ; temps : assets/cues.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — Carnet de croquis</title>
+    <style>
+      @font-face {
+        font-family: "Caveat";
+        font-weight: 400;
+        src: url("assets/fonts/caveat-latin-400-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Caveat";
+        font-weight: 600;
+        src: url("assets/fonts/caveat-latin-600-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Caveat";
+        font-weight: 700;
+        src: url("assets/fonts/caveat-latin-700-normal.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #221d18;
+      }
+      #stage-wrap {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      #stage {
+        display: block;
+        width: 1920px;
+        height: 1080px;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="86.731" data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <div id="stage-wrap" class="clip" data-start="0" data-duration="86.731" data-total data-track-index="0" data-layout-allow-overflow>
+        <svg id="stage" viewBox="0 0 1920 1080" xmlns="http://www.w3.org/2000/svg">
+          <defs id="defs"></defs>
+          <g id="cam">
+            <g id="desk"></g>
+            <g id="shadows"></g>
+            <g id="papers"></g>
+            <g id="content"></g>
+            <g id="pen"></g>
+          </g>
+        </svg>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FL_CUES;
+        var total = C ? C.total : 86.731;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import rough from "./lib/rough.esm.js";
+      import "./assets/geo.js";
+
+      const host = window.__worldHost;
+      const C = window.__FL_CUES;
+      const at = (id, w, which) => C.at(id, w, which);
+      const norm = (s) =>
+        String(s)
+          .toLowerCase()
+          .normalize("NFD")
+          .replace(/[\u0300-\u036f]/g, "")
+          .replace(/[^a-z0-9%]+/g, "");
+      // dernière occurrence d'un mot dans une phrase
+      const atLast = (id, needle, which = "s") => {
+        const n = norm(needle);
+        const ws = C.lines[id].words.filter((w) => w.n && (w.n === n || w.n.indexOf(n) === 0));
+        return ws.length ? ws[ws.length - 1][which] : C.lines[id].start;
+      };
+
+      // ------------------------------------------------------------------ outils
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const outBack = (u) => {
+        u = clamp01(u);
+        const c1 = 1.70158,
+          c3 = c1 + 1;
+        return 1 + c3 * Math.pow(u - 1, 3) + c1 * Math.pow(u - 1, 2);
+      };
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let r = Math.imul(a ^ (a >>> 15), 1 | a);
+          r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+
+      const INK = "#1e2a3a",
+        GREEN = "#2f8f57",
+        GREEN_H = "rgba(47,143,87,0.9)",
+        BRONZE = "#9a8f4e",
+        BRONZE_H = "rgba(154,143,78,0.85)",
+        PAPER = "#f4eee0";
+      const NS = "http://www.w3.org/2000/svg";
+      const svg = document.getElementById("stage");
+      const defs = document.getElementById("defs");
+      const camG = document.getElementById("cam");
+      const deskG = document.getElementById("desk");
+      const shadowsG = document.getElementById("shadows");
+      const papersG = document.getElementById("papers");
+      const contentG = document.getElementById("content");
+      const penG = document.getElementById("pen");
+      const rc = rough.svg(svg);
+      const el = (tag, attrs = {}, parent = null) => {
+        const e = document.createElementNS(NS, tag);
+        for (const k in attrs) e.setAttribute(k, attrs[k]);
+        if (parent) parent.appendChild(e);
+        return e;
+      };
+
+      // ------------------------------------------------------------------ le carnet : dix pages, deux rangées, en serpentin
+      // page de 1760 × 1100 ; le contenu est dessiné sur 1600 de large, centré (marge de 80)
+      const PW = 1760,
+        PH = 1100,
+        GX = 90,
+        GY = 110,
+        CX0 = 80;
+      const WORLD_W = 5 * PW + 4 * GX,
+        WORLD_H = 2 * PH + GY;
+      const pageOrigin = (k) => {
+        const row = k < 5 ? 0 : 1,
+          col = k < 5 ? k : 9 - k;
+        return [col * (PW + GX), row * (PH + GY)];
+      };
+      const pageCenter = (k) => {
+        const [x, y] = pageOrigin(k);
+        return [x + PW / 2, y + PH / 2 - 15];
+      };
+
+      // textures (papier, ombre, bureau), calculées une fois, déterministes
+      function canvas(w, h) {
+        const c = document.createElement("canvas");
+        c.width = w;
+        c.height = h;
+        return [c, c.getContext("2d")];
+      }
+      function paperTexture(seed) {
+        const [c, x] = canvas(PW, PH);
+        const r = mulberry32(seed);
+        x.fillStyle = PAPER;
+        x.fillRect(0, 0, PW, PH);
+        const g = x.createRadialGradient(PW / 2, PH / 2, 260, PW / 2, PH / 2, 1150);
+        g.addColorStop(0, "rgba(255,252,242,0.25)");
+        g.addColorStop(1, "rgba(150,118,66,0.16)");
+        x.fillStyle = g;
+        x.fillRect(0, 0, PW, PH);
+        for (let k = 0; k < 34000; k++) {
+          x.fillStyle = r() < 0.5 ? "rgba(255,255,255,0.11)" : "rgba(90,70,30,0.055)";
+          x.fillRect(r() * PW, r() * PH, 1.5, 1.5);
+        }
+        x.strokeStyle = "rgba(110,85,40,0.05)";
+        for (let k = 0; k < 500; k++) {
+          const px = r() * PW,
+            py = r() * PH,
+            a = r() * Math.PI;
+          x.beginPath();
+          x.moveTo(px, py);
+          x.lineTo(px + Math.cos(a) * 14, py + Math.sin(a) * 14);
+          x.stroke();
+        }
+        x.fillStyle = "rgba(120,105,70,0.24)";
+        for (let gx = 34; gx < PW - 10; gx += 34) for (let gy = 34; gy < PH - 10; gy += 34) x.fillRect(gx - 1.2, gy - 1.2, 2.4, 2.4);
+        // bord supérieur : marque de la reliure arrachée
+        x.fillStyle = "rgba(120,100,60,0.12)";
+        for (let gx = 40; gx < PW; gx += 46) {
+          x.beginPath();
+          x.arc(gx, 16, 4.5, 0, Math.PI * 2);
+          x.fill();
+        }
+        return c.toDataURL("image/jpeg", 0.9);
+      }
+      function shadowTexture() {
+        const m = 70;
+        const [c, x] = canvas(PW + 2 * m, PH + 2 * m);
+        x.filter = "blur(24px)";
+        x.fillStyle = "rgba(0,0,0,0.62)";
+        x.fillRect(m, m, PW, PH);
+        return { url: c.toDataURL("image/png"), m };
+      }
+      function deskPattern() {
+        const [c, x] = canvas(256, 256);
+        const r = mulberry32(77);
+        x.fillStyle = "#221d18";
+        x.fillRect(0, 0, 256, 256);
+        for (let k = 0; k < 3000; k++) {
+          x.fillStyle = r() < 0.5 ? "rgba(255,240,210,0.035)" : "rgba(0,0,0,0.12)";
+          x.fillRect(r() * 256, r() * 256, 1 + r() * 2, 1);
+        }
+        return c.toDataURL("image/png");
+      }
+
+      // lavis à l'aquarelle : couches translucides, bord plus foncé, grain du pigment
+      function washImage(drawShape, bbox, color, seed) {
+        const m = 34;
+        const W = Math.ceil(bbox.w + 2 * m),
+          H = Math.ceil(bbox.h + 2 * m);
+        const [c, x] = canvas(W, H);
+        const r = mulberry32(seed);
+        x.translate(m - bbox.x, m - bbox.y);
+        for (let l = 0; l < 9; l++) {
+          x.save();
+          x.globalAlpha = 0.085;
+          x.fillStyle = color;
+          x.translate((r() - 0.5) * 9, (r() - 0.5) * 9);
+          drawShape(x, r);
+          x.fill();
+          x.restore();
+        }
+        x.save();
+        x.globalAlpha = 0.16;
+        x.strokeStyle = color;
+        x.lineWidth = 3.2;
+        x.filter = "blur(1.6px)";
+        drawShape(x, r);
+        x.stroke();
+        x.restore();
+        x.save();
+        drawShape(x, r);
+        x.clip();
+        for (let k = 0; k < (bbox.w * bbox.h) / 90; k++) {
+          x.fillStyle = r() < 0.6 ? "rgba(30,90,55,0.06)" : "rgba(255,255,255,0.08)";
+          x.fillRect(bbox.x + r() * bbox.w, bbox.y + r() * bbox.h, 1.6, 1.6);
+        }
+        x.restore();
+        return { url: c.toDataURL("image/png"), x: bbox.x - m, y: bbox.y - m, w: W, h: H };
+      }
+      const blobShape = (cx, cy, rx, ry, seed) => {
+        const base = mulberry32(seed);
+        const ph = [base() * 6.28, base() * 6.28, base() * 6.28];
+        return (x, r) => {
+          x.beginPath();
+          for (let i = 0; i <= 48; i++) {
+            const a = (i / 48) * Math.PI * 2;
+            const k = 1 + 0.07 * Math.sin(a * 3 + ph[0]) + 0.05 * Math.sin(a * 5 + ph[1]) + (r() - 0.5) * 0.05;
+            const px = cx + Math.cos(a) * rx * k,
+              py = cy + Math.sin(a) * ry * k;
+            i ? x.lineTo(px, py) : x.moveTo(px, py);
+          }
+          x.closePath();
+        };
+      };
+      const polyShape = (pts) => (x, r) => {
+        x.beginPath();
+        pts.forEach(([px, py], i) => (i ? x.lineTo(px + (r() - 0.5) * 3, py + (r() - 0.5) * 3) : x.moveTo(px, py)));
+        x.closePath();
+      };
+
+      // ------------------------------------------------------------------ éléments animés
+      const items = []; // chacun : update(t)
+      const penItems = []; // éléments tracés au stylo : t0, dur, pointAt(t) en coordonnées du monde
+      let SEED = 11;
+      const O = (o = {}) => ({ roughness: 1.25, bowing: 1.1, stroke: INK, strokeWidth: 2.8, disableMultiStroke: true, disableMultiStrokeFill: true, seed: SEED++, ...o });
+      const HATCH = (col = GREEN_H, o = {}) => ({ fill: col, fillStyle: "hachure", hachureGap: 9, fillWeight: 1.9, hachureAngle: -41, ...o });
+
+      const pages = [];
+      const PAPER_URLS = [paperTexture(3), paperTexture(5)];
+      const SHADOW = shadowTexture();
+      for (let k = 0; k < 10; k++) {
+        const [px, py] = pageOrigin(k);
+        el("image", { href: SHADOW.url, x: px - SHADOW.m + 12, y: py - SHADOW.m + 20, width: PW + 2 * SHADOW.m, height: PH + 2 * SHADOW.m }, shadowsG);
+        el("image", { href: PAPER_URLS[k % 2], x: px, y: py, width: PW, height: PH }, papersG);
+        const g = el("g", { transform: `translate(${px + CX0} ${py})` }, contentG);
+        const wash = el("g", {}, g),
+          ink = el("g", {}, g);
+        pages.push({ k, px: px + CX0, py, g, wash, ink });
+      }
+      // bureau
+      {
+        const pid = "deskpat";
+        const p = el("pattern", { id: pid, width: 256, height: 256, patternUnits: "userSpaceOnUse" }, defs);
+        el("image", { href: deskPattern(), width: 256, height: 256 }, p);
+        el("rect", { x: -3000, y: -2400, width: WORLD_W + 6000, height: WORLD_H + 4800, fill: `url(#${pid})` }, deskG);
+        const rg = el("radialGradient", { id: "desklight", cx: WORLD_W / 2, cy: WORLD_H / 2, r: WORLD_W * 0.7, gradientUnits: "userSpaceOnUse" }, defs);
+        el("stop", { offset: "0", "stop-color": "#5a4a36", "stop-opacity": "0.35" }, rg);
+        el("stop", { offset: "1", "stop-color": "#000", "stop-opacity": "0.35" }, rg);
+        el("rect", { x: -3000, y: -2400, width: WORLD_W + 6000, height: WORLD_H + 4800, fill: "url(#desklight)" }, deskG);
+      }
+
+      // trait qui se dessine : les tracés rough.js se révèlent (stroke-dashoffset), les hachures ensuite
+      function draw(pg, node, t0, dur, { pen = true, off = [0, 0] } = {}) {
+        let host = pg.ink;
+        if (off[0] || off[1]) host = el("g", { transform: `translate(${off[0]} ${off[1]})` }, pg.ink);
+        host.appendChild(node);
+        const paths = [...node.querySelectorAll("path")];
+        const outl = [],
+          hatch = [],
+          fills = [];
+        paths.forEach((p, i) => {
+          p.setAttribute("stroke-linecap", "round");
+          p.setAttribute("stroke-linejoin", "round");
+          const f = p.getAttribute("fill");
+          if (f && f !== "none") {
+            fills.push(p);
+            p.style.opacity = "0";
+            return;
+          }
+          const len = p.getTotalLength() + 1;
+          p.style.strokeDasharray = `${len} ${len}`;
+          p.style.strokeDashoffset = `${len}`;
+          (i === paths.length - 1 ? outl : hatch).push({ p, len });
+        });
+        const split = hatch.length ? 0.62 : 1;
+        const it = {
+          t0,
+          dur,
+          update(t) {
+            const u = prog(t, t0, dur);
+            const uo = clamp01(u / split),
+              uh = hatch.length ? clamp01((u - 0.38) / 0.62) : 0;
+            for (const r of outl) r.p.style.strokeDashoffset = `${r.len * (1 - uo)}`;
+            for (const r of hatch) r.p.style.strokeDashoffset = `${r.len * (1 - uh)}`;
+            for (const p of fills) p.style.opacity = `${clamp01((u - 0.45) / 0.55)}`;
+          },
+          pointAt(t) {
+            const u = prog(t, t0, dur);
+            let r = outl[0] || hatch[0],
+              v = clamp01(u / split);
+            if (hatch.length && u > split) {
+              r = hatch[0];
+              v = clamp01((u - 0.38) / 0.62);
+            }
+            if (!r) return [pg.px + off[0], pg.py + off[1]];
+            const q = r.p.getPointAtLength(Math.max(0, r.len - 1) * v);
+            return [pg.px + off[0] + q.x, pg.py + off[1] + q.y];
+          },
+        };
+        items.push(it);
+        if (pen) penItems.push(it);
+        return it;
+      }
+      // écriture manuscrite : le texte se découvre lettre par lettre derrière une découpe
+      let CLIP = 0;
+      function write(pg, str, x, y, size, t0, dur, { weight = 600, color = INK, anchor = "start", pen = true } = {}) {
+        // texte de lecture (44 px et plus à l'échelle normale) ; il ne devient minuscule que pendant le recul final sur le carnet
+        const t = el("text", { x, y, "font-family": "Caveat", "font-weight": weight, "font-size": size, fill: color, "data-layout-ignore": "" }, pg.ink);
+        t.textContent = str;
+        const w = t.getComputedTextLength();
+        const x0 = anchor === "middle" ? x - w / 2 : anchor === "end" ? x - w : x;
+        t.setAttribute("x", x0);
+        const n = str.length;
+        const cx = [0];
+        for (let i = 1; i <= n; i++) cx.push(t.getSubStringLength(0, i));
+        const id = "wc" + CLIP++;
+        const cp = el("clipPath", { id }, defs);
+        const rect = el("rect", { x: x0 - size * 0.35, y: y - size * 1.2, width: 0, height: size * 1.75 }, cp);
+        t.setAttribute("clip-path", `url(#${id})`);
+        const reveal = (u) => {
+          if (u <= 0) return -1;
+          if (u >= 1) return w;
+          const idx = u * n,
+            i = Math.min(n - 1, Math.floor(idx));
+          return cx[i] + (cx[i + 1] - cx[i]) * (idx - i);
+        };
+        const it = {
+          t0,
+          dur,
+          w,
+          x0,
+          update(tt) {
+            const u = prog(tt, t0, dur);
+            const xr = reveal(u);
+            rect.setAttribute("width", xr < 0 ? 0 : u >= 1 ? w + size : xr + size * 0.35);
+          },
+          pointAt(tt) {
+            const u = prog(tt, t0, dur);
+            const xr = Math.max(0, reveal(u));
+            return [pg.px + x0 + xr, pg.py + y - size * 0.3 + Math.sin(tt * 38) * size * 0.07];
+          },
+        };
+        items.push(it);
+        if (pen) penItems.push(it);
+        return it;
+      }
+      // lavis : apparaît par couches, comme l'eau qui s'étale
+      function wash(pg, img, t0, dur = 0.9, opacity = 0.95) {
+        const cx = img.x + img.w / 2,
+          cy = img.y + img.h / 2;
+        const e = el("image", { href: img.url, x: img.x, y: img.y, width: img.w, height: img.h, opacity: 0 }, pg.wash);
+        items.push({
+          update(t) {
+            const u = prog(t, t0, dur);
+            const s = 0.9 + 0.1 * out3(u);
+            e.setAttribute("opacity", (out3(u) * opacity).toFixed(3));
+            e.setAttribute("transform", `translate(${cx} ${cy}) scale(${s.toFixed(4)}) translate(${-cx} ${-cy})`);
+          },
+        });
+      }
+      const washBlob = (pg, cx, cy, rx, ry, t0, dur, col = "#3f9a62") => wash(pg, washImage(blobShape(cx, cy, rx, ry, SEED++), { x: cx - rx * 1.15, y: cy - ry * 1.15, w: rx * 2.3, h: ry * 2.3 }, col, SEED++), t0, dur);
+      // image collée (logo, coupure de la Déclaration)
+      function paste(pg, href, x, y, w, h, t0, dur, rot = 0, shadow = true) {
+        const g = el("g", {}, pg.ink);
+        const sh = el("rect", { x: x + 8, y: y + 10, width: w, height: h, fill: shadow ? "rgba(40,30,10,0.22)" : "none", opacity: 0 }, g);
+        const im = el("image", { href, x, y, width: w, height: h, opacity: 0, preserveAspectRatio: "xMidYMid slice" }, g);
+        const cx = x + w / 2,
+          cy = y + h / 2;
+        items.push({
+          update(t) {
+            const u = prog(t, t0, dur);
+            const s = 1.06 - 0.06 * out3(u);
+            g.setAttribute("transform", `rotate(${rot} ${cx} ${cy}) translate(${cx} ${cy}) scale(${s.toFixed(4)}) translate(${-cx} ${-cy})`);
+            im.setAttribute("opacity", out3(u).toFixed(3));
+            sh.setAttribute("opacity", out3(u).toFixed(3));
+          },
+        });
+        return g;
+      }
+      // points qui apparaissent (carte) : petit cercle d'encre et touche de vert
+      function pops(pg, pts, size, tOf, { skip = -1, col = GREEN_H } = {}) {
+        pts.forEach(([x, y], i) => {
+          if (i === skip) return;
+          const g = el("g", {}, pg.ink);
+          g.appendChild(rc.circle(x, y, size, O({ strokeWidth: 1.8, roughness: 0.9, fill: col, fillStyle: "solid" })));
+          g.querySelectorAll("path").forEach((p) => p.setAttribute("stroke-linecap", "round"));
+          const t0 = tOf(i);
+          items.push({
+            update(t) {
+              const u = prog(t, t0, 0.22);
+              const s = u <= 0 ? 0 : outBack(u);
+              g.setAttribute("opacity", u <= 0 ? 0 : 1);
+              g.setAttribute("transform", `translate(${x} ${y}) scale(${Math.max(0.001, s).toFixed(4)}) translate(${-x} ${-y})`);
+            },
+          });
+        });
+      }
+
+      // ------------------------------------------------------------------ la carte du Gabon (contour du logo, 71 points)
+      const OUT = window.GABON_OUTLINE,
+        DOTS = window.FEG_DOTS;
+      const obx = [Math.min(...OUT.map((p) => p[0])), Math.max(...OUT.map((p) => p[0]))],
+        oby = [Math.min(...OUT.map((p) => p[1])), Math.max(...OUT.map((p) => p[1]))];
+      const OCX = (obx[0] + obx[1]) / 2,
+        OCY = (oby[0] + oby[1]) / 2;
+      const mapXY = (cx, cy, s) => (p) => [cx + (p[0] - OCX) * s, cy + (p[1] - OCY) * s];
+      const LBV = 24;
+      const dist = DOTS.map((d) => Math.hypot(d[0] - DOTS[LBV][0], d[1] - DOTS[LBV][1]));
+      const MAXD = Math.max(...dist);
+
+      // ------------------------------------------------------------------ le stylo plume
+      const penShadow = el("g", { opacity: 0 }, penG);
+      const penBody = el("g", { opacity: 0 }, penG);
+      const PEN = (g, shadow) => {
+        const f = shadow ? "rgba(0,0,0,1)" : null;
+        el("path", { d: "M0 0 L-10 -36 L10 -36 Z", fill: f || "#c7a24a" }, g);
+        if (!shadow) el("path", { d: "M0 -4 L0 -26", stroke: "#5b4a1a", "stroke-width": 1.6 }, g);
+        if (!shadow) el("circle", { cx: 0, cy: -24, r: 2.2, fill: "#5b4a1a" }, g);
+        el("rect", { x: -12, y: -50, width: 24, height: 14, rx: 3, fill: f || "#d7b75e" }, g);
+        el("rect", { x: -14, y: -320, width: 28, height: 272, rx: 13, fill: f || "#1f3b2a" }, g);
+        if (!shadow) {
+          el("rect", { x: -8, y: -308, width: 5, height: 250, rx: 2.5, fill: "rgba(255,255,255,0.16)" }, g);
+          el("rect", { x: -14, y: -132, width: 28, height: 8, fill: "#c7a24a" }, g);
+        }
+      };
+      PEN(penShadow, true);
+      PEN(penBody, false);
+      const PEN_ANGLE = 36;
+
+      // ------------------------------------------------------------------ le récit, page par page
+      async function build() {
+        // ===== page 0 : titre ; un atelier, un commerce, un chantier
+        {
+          const p = pages[0];
+          paste(p, "assets/img/feg-logo.png", 1350, 64, 168, 155, 0.15, 0.6, 0, false);
+          write(p, "De la voix à la réforme", 110, 172, 100, 0.35, 1.85, { weight: 700 });
+          draw(
+            p,
+            rc.curve(
+              [
+                [112, 202],
+                [400, 194],
+                [700, 205],
+                [1005, 190],
+              ],
+              O({ stroke: GREEN, strokeWidth: 6, roughness: 1.6 }),
+            ),
+            2.22,
+            0.42,
+          );
+          const tCh = at("L01", "Chaque");
+          write(p, "Chaque entreprise compte :", 112, 296, 68, tCh - 0.05, at("L01", "compte", "e") - tCh + 0.25);
+          // un atelier
+          const ta = at("L01", "atelier");
+          washBlob(p, 330, 590, 175, 165, ta - 0.3, 0.8);
+          const gear = [];
+          for (let i = 0; i < 16; i++) {
+            const a = (i / 16) * Math.PI * 2,
+              r = i % 2 ? 44 : 57;
+            gear.push([330 + Math.cos(a) * r, 462 + Math.sin(a) * r]);
+          }
+          draw(p, rc.polygon(gear, O()), ta - 0.15, 0.42);
+          draw(p, rc.circle(330, 462, 30, O()), ta + 0.25, 0.12);
+          draw(p, rc.rectangle(215, 590, 230, 24, O(HATCH(BRONZE_H, { hachureGap: 8 }))), ta + 0.36, 0.3);
+          draw(p, rc.path("M236 614 L226 724 M424 614 L434 724 M231 684 L429 684", O()), ta + 0.66, 0.22);
+          draw(p, rc.line(250, 576, 345, 561, O({ strokeWidth: 5 })), ta + 0.86, 0.1);
+          draw(
+            p,
+            rc.polygon(
+              [
+                [340, 545],
+                [369, 541],
+                [374, 578],
+                [345, 582],
+              ],
+              O(HATCH(INK, { hachureGap: 6, fillWeight: 1.4 })),
+            ),
+            ta + 0.94,
+            0.16,
+          );
+          write(p, "un atelier", 330, 828, 62, ta + 1.08, 0.45, { anchor: "middle" });
+          // un commerce
+          const tc = at("L01", "commerce");
+          washBlob(p, 800, 600, 175, 160, tc - 0.3, 0.8);
+          draw(p, rc.rectangle(705, 590, 190, 130, O()), tc - 0.1, 0.32);
+          draw(
+            p,
+            rc.polygon(
+              [
+                [690, 590],
+                [910, 590],
+                [885, 528],
+                [715, 528],
+              ],
+              O(HATCH()),
+            ),
+            tc + 0.2,
+            0.38,
+          );
+          draw(p, rc.rectangle(778, 640, 44, 80, O()), tc + 0.56, 0.16);
+          draw(p, rc.rectangle(836, 620, 42, 34, O({ strokeWidth: 2.2 })), tc + 0.7, 0.12);
+          write(p, "un commerce", 800, 828, 62, tc + 0.83, 0.48, { anchor: "middle" });
+          // un chantier
+          const tch = at("L01", "chantier");
+          washBlob(p, 1290, 595, 180, 165, tch - 0.3, 0.8);
+          draw(p, rc.path("M1196 735 L1196 440 M1222 735 L1222 440", O()), tch - 0.1, 0.2);
+          {
+            const z = [];
+            for (let k = 0; k <= 8; k++) z.push([k % 2 ? 1222 : 1196, 735 - k * 36.8]);
+            draw(p, rc.linearPath(z, O({ strokeWidth: 2 })), tch + 0.1, 0.22);
+          }
+          draw(p, rc.path("M1150 440 L1430 440 M1209 408 L1430 440 M1209 408 L1150 440", O()), tch + 0.32, 0.22);
+          draw(p, rc.path("M1392 440 L1392 520 M1392 520 Q1392 538 1376 536", O({ strokeWidth: 2.2 })), tch + 0.54, 0.1);
+          draw(p, rc.rectangle(1262, 620, 150, 115, O()), tch + 0.64, 0.14);
+          draw(p, rc.path("M1262 658 L1412 658 M1262 696 L1412 696 M1312 620 L1312 735 M1362 620 L1362 735", O({ strokeWidth: 2 })), tch + 0.78, 0.12);
+          write(p, "un chantier", 1300, 828, 62, tch + 0.9, 0.42, { anchor: "middle" });
+          write(p, "qui fait vivre le pays", 800, 968, 66, at("L01", "vivre") - 0.03, 0.85, { anchor: "middle", color: GREEN, weight: 700 });
+        }
+
+        // ===== page 1 : seule, une entreprise pèse peu ; sa voix se perd
+        {
+          const p = pages[1];
+          write(p, "Mais seule…", 130, 196, 100, at("L02", "Mais") - 0.05, 0.75, { weight: 700 });
+          washBlob(p, 800, 650, 155, 135, at("L02", "seule") + 0.15, 0.8);
+          const t1 = at("L02", "seule") + 0.32;
+          draw(p, rc.rectangle(724, 640, 152, 104, O()), t1, 0.26);
+          draw(
+            p,
+            rc.polygon(
+              [
+                [712, 640],
+                [888, 640],
+                [868, 590],
+                [732, 590],
+              ],
+              O(HATCH()),
+            ),
+            t1 + 0.26,
+            0.3,
+          );
+          draw(p, rc.rectangle(782, 680, 36, 64, O()), t1 + 0.56, 0.12);
+          draw(p, rc.rectangle(829, 662, 34, 28, O({ strokeWidth: 2.2 })), t1 + 0.68, 0.1);
+          write(p, "une entreprise pèse peu", 800, 876, 64, at("L02", "une") + 0.62, at("L02", "peu", "e") - at("L02", "une") - 0.3, { anchor: "middle" });
+          // la bulle en pointillés, puis elle se dissipe
+          {
+            const pts = [];
+            const cx = 1030,
+              cy = 470,
+              rx = 158,
+              ry = 92;
+            const a0 = (205 * Math.PI) / 180,
+              a1 = a0 + Math.PI * 2 - 0.42;
+            const path = [];
+            for (let i = 0; i <= 200; i++) {
+              const a = lerp(a0, a1, i / 200);
+              path.push([cx + Math.cos(a) * rx, cy + Math.sin(a) * ry]);
+            }
+            path.push([905, 590]);
+            path.push([cx + Math.cos(a0) * rx, cy + Math.sin(a0) * ry]);
+            // rééchantillonnage tous les 21 px
+            let acc = 0;
+            pts.push(path[0]);
+            for (let i = 1; i < path.length; i++) {
+              const [x0, y0] = path[i - 1],
+                [x1, y1] = path[i];
+              const L = Math.hypot(x1 - x0, y1 - y0);
+              let s = 21 - acc;
+              while (s <= L) {
+                pts.push([x0 + ((x1 - x0) * s) / L, y0 + ((y1 - y0) * s) / L]);
+                s += 21;
+              }
+              acc = (acc + L) % 21;
+            }
+            const g = el("g", {}, p.ink);
+            const dots = pts.map(([x, y]) => el("circle", { cx: x, cy: y, r: 4.2, fill: INK, opacity: 0 }, g));
+            const ell = [0, 1, 2].map((i) => el("circle", { cx: cx - 42 + i * 42, cy: cy + 6, r: 9, fill: INK, opacity: 0 }, g));
+            const tb0 = at("L02", "peu", "e") + 0.05,
+              tbd = 0.55,
+              tv = at("L02", "voix");
+            const it = {
+              t0: tb0,
+              dur: tbd,
+              update(t) {
+                const n = Math.floor(prog(t, tb0, tbd) * dots.length);
+                const fade = 1 - out3(prog(t, tv + 0.05, 0.95));
+                const s = 1 + 0.22 * out3(prog(t, tv + 0.05, 0.95));
+                g.setAttribute("transform", `translate(${cx} ${cy}) scale(${s.toFixed(4)}) translate(${-cx} ${-cy - 30 * (s - 1) * 4})`);
+                dots.forEach((d, i) => d.setAttribute("opacity", i < n ? (fade * (1 - 0.6 * (1 - fade) * ((i * 7) % 3) / 2)).toFixed(3) : 0));
+                ell.forEach((d, i) => d.setAttribute("opacity", (prog(t, tb0 + tbd + i * 0.08, 0.1) * fade).toFixed(3)));
+              },
+              pointAt(t) {
+                const n = Math.min(pts.length - 1, Math.floor(prog(t, tb0, tbd) * pts.length));
+                return [p.px + pts[n][0], p.py + pts[n][1]];
+              },
+            };
+            items.push(it);
+            penItems.push(it);
+          }
+        }
+
+        // ===== page 2 : depuis 1959, la FEG ; la carte ; plus de 1 100 entreprises
+        {
+          const p = pages[2];
+          const tD = at("L03", "Depuis");
+          const w1959 = write(p, "depuis 1959", 120, 190, 100, tD - 0.05, 0.95, { weight: 700 });
+          {
+            const m = document.createElementNS(NS, "text");
+            m.setAttribute("font-family", "Caveat");
+            m.setAttribute("font-weight", 700);
+            m.setAttribute("font-size", 100);
+            m.textContent = "depuis ";
+            p.ink.appendChild(m);
+            const wd = m.getComputedTextLength();
+            m.remove();
+            const ex = 120 + wd + (w1959.w - wd) / 2;
+            draw(p, rc.ellipse(ex, 158, w1959.w - wd + 46, 104, O({ stroke: GREEN, strokeWidth: 3.6, roughness: 1.5 })), tD + 0.98, 0.32);
+          }
+          const MP = mapXY(1110, 600, 1.45);
+          const outline = OUT.map(MP);
+          draw(p, rc.polygon(outline, O({ roughness: 0.8, strokeWidth: 3.2 })), tD + 0.32, 1.55);
+          wash(p, washImage(polyShape(outline), { x: 770, y: 260, w: 680, h: 690 }, "#3f9a62", 901), at("L03", "Fédération") - 0.1, 1.1, 0.92);
+          write(p, "la Fédération des", 120, 336, 70, at("L03", "la") - 0.05, 0.78);
+          write(p, "Entreprises du Gabon", 120, 414, 70, at("L03", "Entreprises") - 0.12, 0.98);
+          const tr = at("L03", "rassemble");
+          pops(p, DOTS.map(MP), 22, (i) => tr + (dist[i] / MAXD) * 1.5);
+          const tp = at("L03", "plus");
+          write(p, "plus de", 124, 604, 64, tp - 0.08, 0.36);
+          const w1100 = write(p, "1 100", 116, 782, 190, tp + 0.3, 0.5, { weight: 700, color: GREEN });
+          const tEn = atLast("L03", "entreprises");
+          write(p, "entreprises", 128, 872, 78, tEn - 0.08, 0.58, { weight: 600 });
+          draw(
+            p,
+            rc.curve(
+              [
+                [116 + w1100.w + 30, 700],
+                [640, 640],
+                [770, 618],
+              ],
+              O({ stroke: GREEN, strokeWidth: 3 }),
+            ),
+            tEn + 0.52,
+            0.3,
+          );
+          draw(p, rc.path("M748 600 L774 618 L750 640", O({ stroke: GREEN, strokeWidth: 3 })), tEn + 0.8, 0.12);
+        }
+
+        // ===== page 3 : près de 80 % du PIB, plus de 90 % de la main-d'œuvre formelle
+        {
+          const p = pages[3];
+          write(p, "Ensemble,", 120, 190, 100, at("L04", "Ensemble") - 0.03, 0.6, { weight: 700 });
+          const t80 = at("L04", "80"),
+            t90 = at("L04", "90");
+          washBlob(p, 480, 545, 250, 240, t80 - 1.0, 0.9);
+          washBlob(p, 1120, 545, 250, 240, t90 - 0.9, 0.9);
+          const pie = (cx, cy, frac, tCircle, tWedge, style) => {
+            draw(p, rc.circle(cx, cy, 390, O({ strokeWidth: 3 })), tCircle, 0.55);
+            draw(p, rc.arc(cx, cy, 390, 390, -Math.PI / 2, -Math.PI / 2 + frac * Math.PI * 2, true, O({ strokeWidth: 2.6, ...style })), tWedge, 0.62);
+          };
+          pie(480, 545, 0.8, t80 - 0.85, t80 - 0.18, HATCH(GREEN_H, { hachureGap: 10 }));
+          write(p, "près de 80 %", 480, 845, 92, t80 + 0.44, 0.55, { anchor: "middle", weight: 700 });
+          write(p, "du PIB", 480, 930, 66, at("L04", "PIB") + 0.05, 0.4, { anchor: "middle" });
+          pie(1120, 545, 0.9, t90 - 0.85, t90 - 0.22, { fill: "rgba(35,117,72,0.9)", fillStyle: "cross-hatch", hachureGap: 12, fillWeight: 1.6, hachureAngle: 41 });
+          write(p, "plus de 90 %", 1120, 845, 92, t90 + 0.42, 0.55, { anchor: "middle", weight: 700 });
+          write(p, "de la main-d'œuvre formelle", 1120, 930, 60, at("L04", "main") - 0.25, 0.95, { anchor: "middle" });
+        }
+
+        // ===== page 4 : les 13 fédérations métiers, une seule voix
+        {
+          const p = pages[4];
+          const FEDS = [
+            ["Construction", 337],
+            ["Services divers", 118],
+            ["Commerce", 110],
+            ["Conseil", 83],
+            ["Logistique et manutention", 83],
+            ["Industries extractives", 67],
+            ["Numérique", 67],
+            ["Industrie", 61],
+            ["Finance", 50],
+            ["Santé", 43],
+            ["Bois", 30],
+            ["Tourisme", 29],
+            ["Agriculture et pêche", 22],
+          ];
+          write(p, "13 fédérations métiers", 120, 152, 92, at("L05", "Réunies") + 0.2, 1.05, { weight: 700 });
+          const t0 = at("L05", "fédérations") + 0.02;
+          FEDS.forEach(([name, n], i) => {
+            const y = 246 + i * 51;
+            const ti = t0 + i * 0.13;
+            write(p, name, 596, y + 14, 46, ti, 0.3, { anchor: "end", pen: false });
+            const w = (n / 337) * 640;
+            draw(p, rc.rectangle(618, y - 15, w, 28, O({ strokeWidth: 2.2, roughness: 0.9, ...HATCH(i === 0 ? "rgba(35,117,72,0.95)" : GREEN_H, { hachureGap: 6.5, fillWeight: 1.6 }) })), ti + 0.05, 0.32);
+            write(p, String(n), 618 + w + 16, y + 14, 46, ti + 0.34, 0.16, { weight: 700, pen: false });
+          });
+          write(p, "elles parlent d'une seule voix", 800, 972, 74, at("L05", "parlent") - 0.08, 0.92, { anchor: "middle", weight: 700, color: GREEN });
+        }
+
+        // ===== page 5 : sa fédération → le Bureau exécutif → le dialogue public-privé ← pouvoirs publics
+        {
+          const p = pages[5];
+          const tP = at("L06", "préoccupations");
+          washBlob(p, 250, 560, 140, 125, tP - 0.25, 0.8);
+          {
+            const g = [];
+            for (let k = 0; k < 13; k++) {
+              const a = (k / 13) * Math.PI * 2,
+                r = k % 2 ? 74 : 54;
+              g.push([250 + Math.cos(a) * r, 560 + Math.sin(a) * r * 0.85, 30 + (k % 3) * 6]);
+            }
+            const node = el("g");
+            g.forEach(([x, y, d], k) => node.appendChild(rc.circle(x, y, d, O({ strokeWidth: 2, fill: k === 4 ? "rgba(47,143,87,0.95)" : undefined, fillStyle: "solid" }))));
+            node.appendChild(rc.circle(250, 560, 40, O({ fill: BRONZE_H, fillStyle: "zigzag", fillWeight: 1.4 })));
+            draw(p, node, tP - 0.1, 0.48);
+          }
+          write(p, "sa fédération", 250, 742, 62, tP + 0.36, 0.42, { anchor: "middle" });
+          const tR = at("L06", "remontent");
+          draw(
+            p,
+            rc.curve(
+              [
+                [405, 545],
+                [470, 520],
+                [538, 520],
+              ],
+              O({ strokeWidth: 2.6 }),
+            ),
+            tR + 0.02,
+            0.22,
+          );
+          draw(p, rc.path("M518 504 L540 520 L518 538", O({ strokeWidth: 2.6 })), tR + 0.24, 0.08);
+          const tB = at("L06", "Bureau");
+          washBlob(p, 720, 520, 175, 120, tR + 0.1, 0.8);
+          draw(p, rc.ellipse(720, 520, 236, 92, O({ ...HATCH(BRONZE_H, { hachureGap: 8 }) })), tR + 0.34, 0.38);
+          {
+            const node = el("g");
+            for (let k = 0; k < 7; k++) {
+              const a = (k / 7) * Math.PI * 2 + 0.2;
+              node.appendChild(rc.circle(720 + Math.cos(a) * 146, 520 + Math.sin(a) * 70, 26, O({ strokeWidth: 2 })));
+            }
+            draw(p, node, tB - 0.2, 0.3);
+          }
+          write(p, "le Bureau exécutif", 720, 690, 62, tB + 0.12, 0.66, { anchor: "middle" });
+          // pouvoirs publics
+          const tPuis = at("L06", "puis");
+          washBlob(p, 1420, 330, 140, 110, tPuis - 0.6, 0.8);
+          {
+            const node = el("g");
+            node.appendChild(
+              rc.polygon(
+                [
+                  [1332, 300],
+                  [1508, 300],
+                  [1420, 244],
+                ],
+                O(),
+              ),
+            );
+            node.appendChild(rc.rectangle(1338, 300, 164, 18, O({ strokeWidth: 2.2 })));
+            for (const x of [1354, 1396, 1444, 1486]) node.appendChild(rc.rectangle(x - 7, 318, 14, 100, O({ strokeWidth: 2 })));
+            node.appendChild(rc.rectangle(1326, 418, 188, 20, O({ strokeWidth: 2.2 })));
+            draw(p, node, tPuis - 0.52, 0.42);
+          }
+          write(p, "Pouvoirs publics", 1420, 494, 54, tPuis - 0.08, 0.42, { anchor: "middle" });
+          // le dialogue public-privé : deux bulles
+          const tT = at("L06", "table");
+          washBlob(p, 1110, 650, 200, 140, tT - 0.3, 0.8);
+          draw(p, rc.path("M955 640 q0 -70 95 -70 q95 0 95 60 q0 60 -95 60 l-55 0 l-30 30 l5 -34 q-15 -10 -15 -46 z", O()), tT - 0.12, 0.3);
+          draw(p, rc.path("M1100 730 q0 -60 90 -60 q90 0 90 55 q0 55 -60 58 l10 34 l-35 -32 q-85 0 -85 -55 z", O(HATCH(GREEN_H, { fillStyle: "cross-hatch", hachureGap: 11, fillWeight: 1.4 }))), tT + 0.18, 0.32);
+          write(p, "privé", 1048, 642, 46, tT + 0.5, 0.18, { anchor: "middle", weight: 700, pen: false });
+          write(p, "public", 1190, 736, 46, tT + 0.55, 0.2, { anchor: "middle", weight: 700, pen: false });
+          write(p, "le dialogue public-privé", 1120, 868, 62, at("L06", "public") - 0.2, 0.82, { anchor: "middle" });
+          const tA = at("L06", "public") + 0.66;
+          draw(
+            p,
+            rc.curve(
+              [
+                [858, 560],
+                [910, 590],
+                [948, 618],
+              ],
+              O({ strokeWidth: 2.6 }),
+            ),
+            tA,
+            0.18,
+          );
+          draw(
+            p,
+            rc.curve(
+              [
+                [1402, 512],
+                [1340, 580],
+                [1278, 664],
+              ],
+              O({ strokeWidth: 2.6 }),
+            ),
+            tA + 0.2,
+            0.2,
+          );
+        }
+
+        // ===== page 6 : le Gabon Economic Forum, ses 8 ateliers, la Déclaration de Libreville
+        {
+          const p = pages[6];
+          write(p, "le grand rendez-vous du dialogue", 120, 170, 64, at("L07", "dialogue") - 0.12, 1.3);
+          const tG = at("L07", "Gabon");
+          write(p, "Gabon Economic Forum", 120, 272, 100, tG - 0.12, 1.12, { weight: 700, color: GREEN });
+          const tA = at("L07", "Forum", "e") + 0.15;
+          washBlob(p, 420, 590, 245, 200, tA - 0.3, 0.9);
+          draw(p, rc.rectangle(305, 380, 230, 62, O(HATCH(BRONZE_H, { hachureGap: 10 }))), tA, 0.3);
+          draw(p, rc.rectangle(276, 456, 288, 34, O()), tA + 0.3, 0.18);
+          {
+            const node = el("g");
+            for (let i = 0; i < 4; i++) node.appendChild(rc.arc(420, 470, 360 + i * 92, 150 + i * 70, 0.16 * Math.PI, 0.84 * Math.PI, false, O({ strokeWidth: 2.4 })));
+            draw(p, node, tA + 0.5, 0.55);
+          }
+          const tH = at("L07", "huit");
+          washBlob(p, 948, 560, 250, 150, tH - 0.4, 0.8);
+          for (let k = 0; k < 8; k++) {
+            const x = 760 + (k % 4) * 125,
+              y = 485 + Math.floor(k / 4) * 150;
+            const node = el("g");
+            node.appendChild(rc.circle(x, y, 60, O({ ...HATCH(GREEN_H, { hachureGap: 7, fillWeight: 1.4 }) })));
+            for (const [dx, dy] of [
+              [-46, 0],
+              [46, 0],
+              [0, -46],
+              [0, 46],
+            ])
+              node.appendChild(rc.circle(x + dx, y + dy, 18, O({ strokeWidth: 1.8 })));
+            draw(p, node, tH - 0.14 + k * 0.085, 0.22);
+          }
+          write(p, "8 ateliers", 948, 802, 72, tH + 0.62, 0.45, { anchor: "middle", weight: 700, color: GREEN });
+          const tDl = at("L07", "Déclaration");
+          draw(
+            p,
+            rc.curve(
+              [
+                [1190, 560],
+                [1230, 540],
+                [1272, 532],
+              ],
+              O({ strokeWidth: 2.6 }),
+            ),
+            tDl - 0.42,
+            0.2,
+          );
+          draw(p, rc.path("M1252 516 L1274 532 L1252 550", O({ strokeWidth: 2.6 })), tDl - 0.22, 0.08);
+          paste(p, "assets/img/declaration-p1.jpg", 1290, 330, 250, 354, tDl - 0.1, 0.35, 3);
+          // ruban adhésif aux coins
+          for (const [x, y, r] of [
+            [1300, 330, -28],
+            [1528, 340, 30],
+          ]) {
+            const tp = el("rect", { x: x - 42, y: y - 14, width: 84, height: 28, fill: "rgba(236,226,196,0.82)", opacity: 0, transform: `rotate(${r} ${x} ${y})` }, p.ink);
+            items.push({
+              update(t) {
+                tp.setAttribute("opacity", out3(prog(t, tDl + 0.2, 0.15)).toFixed(3));
+              },
+            });
+          }
+          write(p, "Déclaration", 1415, 774, 64, tDl + 0.3, 0.5, { anchor: "middle", weight: 700 });
+          write(p, "de Libreville", 1415, 846, 64, at("L07", "Libreville") + 0.1, 0.5, { anchor: "middle", weight: 700 });
+        }
+
+        // ===== page 7 : les réformes ; ensemble, les entreprises pèsent
+        {
+          const p = pages[7];
+          write(p, "Les réformes", 120, 176, 100, at("L08", "Dette") - 0.5, 0.5, { weight: 700 });
+          const words = [
+            ["Dette intérieure", at("L08", "Dette"), at("L08", "intérieure", "e")],
+            ["Fiscalité", at("L08", "fiscalité"), at("L08", "fiscalité", "e")],
+            ["Commande publique", at("L08", "commande"), at("L08", "publique", "e")],
+            ["Financement des PME", at("L08", "financement"), at("L08", "PME", "e")],
+          ];
+          words.forEach(([txt, ts, te], i) => {
+            const y = 300 + i * 140;
+            draw(p, rc.rectangle(170, y, 60, 60, O({ strokeWidth: 2.6 })), ts - 0.16, 0.14);
+            const w = write(p, txt, 266, y + 50, 76, ts - 0.02, Math.max(0.45, te - ts - 0.05));
+            draw(
+              p,
+              rc.linearPath(
+                [
+                  [178, y + 30],
+                  [198, y + 52],
+                  [242, y - 6],
+                ],
+                O({ stroke: GREEN, strokeWidth: 7, roughness: 1.4 }),
+              ),
+              te,
+              0.2,
+            );
+          });
+          const tE = at("L08", "ensemble");
+          draw(p, rc.path("M990 286 q40 0 40 60 l0 150 q0 40 40 50 q-40 10 -40 50 l0 150 q0 60 -40 60", O({ strokeWidth: 3 })), tE - 0.22, 0.32);
+          write(p, "ensemble,", 1100, 430, 70, tE + 0.08, 0.45, { weight: 700, color: GREEN });
+          write(p, "les entreprises", 1100, 516, 70, at("L08", "les") - 0.04, 0.62, { weight: 700, color: GREEN });
+          const wP = write(p, "pèsent sur", 1100, 602, 70, at("L08", "pèsent") - 0.06, 0.42, { weight: 700, color: GREEN });
+          write(p, "les réformes", 1100, 688, 70, at("L08", "réformes") - 0.15, 0.5, { weight: 700, color: GREEN });
+          write(p, "du pays", 1100, 774, 70, at("L08", "pays") - 0.02, 0.32, { weight: 700, color: GREEN });
+          {
+            const tU = at("L08", "pays", "e") + 0.1;
+            const m = document.createElementNS(NS, "text");
+            m.setAttribute("font-family", "Caveat");
+            m.setAttribute("font-weight", 700);
+            m.setAttribute("font-size", 70);
+            m.textContent = "pèsent";
+            p.ink.appendChild(m);
+            const wp = m.getComputedTextLength();
+            m.remove();
+            draw(p, rc.line(1098, 618, 1104 + wp, 614, O({ stroke: GREEN, strokeWidth: 4.5, roughness: 1.6 })), tU, 0.18);
+            draw(p, rc.line(1104, 632, 1100 + wp, 629, O({ stroke: GREEN, strokeWidth: 3.5, roughness: 1.6 })), tU + 0.2, 0.15);
+          }
+        }
+
+        // ===== page 8 : au quotidien, quatre services
+        {
+          const p = pages[8];
+          write(p, "Et au quotidien :", 120, 176, 100, at("L09", "Et") - 0.05, 0.75, { weight: 700 });
+          const tv = at("L09", "veille"),
+            tf = at("L09", "formations"),
+            tr = at("L09", "réseau"),
+            tm = at("L09", "médiation");
+          washBlob(p, 262, 500, 150, 140, tv - 0.6, 0.8);
+          washBlob(p, 620, 500, 150, 140, tf - 0.5, 0.8);
+          washBlob(p, 980, 500, 160, 130, tr - 0.5, 0.8);
+          washBlob(p, 1340, 500, 150, 140, tm - 0.5, 0.8);
+          // une veille : loupe
+          draw(p, rc.circle(245, 478, 150, O({ strokeWidth: 3.2 })), tv - 0.18, 0.32);
+          draw(p, rc.line(300, 533, 368, 602, O({ strokeWidth: 11 })), tv + 0.14, 0.12);
+          draw(p, rc.path("M206 458 L286 458 M206 482 L286 482 M206 506 L262 506", O({ strokeWidth: 2.2 })), tv + 0.27, 0.16);
+          write(p, "une veille", 262, 768, 60, tv + 0.42, 0.38, { anchor: "middle" });
+          write(p, "sur les réformes", 262, 836, 60, tv + 0.8, 0.52, { anchor: "middle" });
+          // des formations : livre ouvert
+          draw(
+            p,
+            rc.polygon(
+              [
+                [520, 562],
+                [618, 582],
+                [618, 442],
+                [520, 422],
+              ],
+              O(),
+            ),
+            tf - 0.12,
+            0.24,
+          );
+          draw(
+            p,
+            rc.polygon(
+              [
+                [618, 582],
+                [716, 562],
+                [716, 422],
+                [618, 442],
+              ],
+              O(HATCH(GREEN_H, { hachureGap: 10, fillWeight: 1.3 })),
+            ),
+            tf + 0.12,
+            0.26,
+          );
+          draw(p, rc.path("M534 460 L604 474 M534 488 L604 502 M534 516 L590 528", O({ strokeWidth: 2 })), tf + 0.38, 0.14);
+          write(p, "des formations", 620, 768, 60, tf + 0.5, 0.46, { anchor: "middle" });
+          // un réseau d'affaires : poignée de main
+          {
+            const node = el("g");
+            // deux avant-bras qui montent l'un vers l'autre, manchettes, mains serrées, pouce par-dessus
+            node.appendChild(
+              rc.polygon(
+                [
+                  [826, 598],
+                  [928, 506],
+                  [952, 544],
+                  [850, 632],
+                ],
+                O(HATCH(BRONZE_H, { hachureGap: 8 })),
+              ),
+            );
+            node.appendChild(
+              rc.polygon(
+                [
+                  [1134, 598],
+                  [1032, 506],
+                  [1008, 544],
+                  [1110, 632],
+                ],
+                O(HATCH(BRONZE_H, { hachureGap: 8, hachureAngle: 41 })),
+              ),
+            );
+            node.appendChild(rc.path("M852 574 L874 604 M1108 574 L1086 604", O({ strokeWidth: 2.4 })));
+            node.appendChild(rc.ellipse(980, 522, 118, 64, O({ strokeWidth: 2.8 })));
+            node.appendChild(rc.path("M946 526 q10 16 0 30 M968 528 q10 18 0 32 M990 528 q10 16 0 30 M1012 524 q8 12 0 24", O({ strokeWidth: 2.2 })));
+            node.appendChild(rc.path("M944 506 q22 -24 54 -8", O({ strokeWidth: 2.6 })));
+            draw(p, node, tr - 0.06, 0.48);
+          }
+          write(p, "un réseau", 980, 768, 60, tr + 0.44, 0.34, { anchor: "middle" });
+          write(p, "d'affaires", 980, 836, 60, tr + 0.8, 0.4, { anchor: "middle" });
+          // la médiation et l'arbitrage : balance
+          {
+            const node = el("g");
+            node.appendChild(rc.path("M1340 392 L1340 620 M1290 622 L1390 622 M1252 430 L1428 430", O({ strokeWidth: 3 })));
+            node.appendChild(rc.path("M1262 430 L1240 506 M1262 430 L1284 506 M1418 430 L1396 506 M1418 430 L1440 506", O({ strokeWidth: 2 })));
+            node.appendChild(rc.arc(1262, 506, 96, 46, 0, Math.PI, true, O(HATCH(GREEN_H, { hachureGap: 7, fillWeight: 1.3 }))));
+            node.appendChild(rc.arc(1418, 506, 96, 46, 0, Math.PI, true, O(HATCH(GREEN_H, { hachureGap: 7, fillWeight: 1.3 }))));
+            node.appendChild(rc.circle(1340, 386, 16, O({ strokeWidth: 2 })));
+            draw(p, node, tm - 0.1, 0.6);
+          }
+          write(p, "la médiation", 1340, 768, 60, tm + 0.52, 0.44, { anchor: "middle" });
+          write(p, "et l'arbitrage", 1340, 836, 60, at("L09", "larbitrage") + 0.02, 0.5, { anchor: "middle" });
+        }
+
+        // ===== page 9 : des entreprises fortes ; votre entreprise a sa place à nos côtés
+        {
+          const p = pages[9];
+          write(p, "Des entreprises fortes,", 130, 236, 96, at("L10", "Des") - 0.02, 0.98, { weight: 700 });
+          write(p, "une prospérité partagée.", 130, 352, 96, at("L10", "une") - 0.04, 0.95, { weight: 700 });
+          const MP = mapXY(1250, 640, 0.95);
+          const outline = OUT.map(MP);
+          const tM = at("L10", "partagée", "e") + 0.02;
+          draw(p, rc.polygon(outline, O({ roughness: 0.8, strokeWidth: 2.8 })), tM, 0.6, { pen: true });
+          wash(p, washImage(polyShape(outline), { x: 1020, y: 420, w: 460, h: 440 }, "#3f9a62", 911), tM + 0.2, 0.8, 0.9);
+          const PLACE = 33;
+          pops(p, DOTS.map(MP), 15, (i) => tM + 0.3 + (dist[i] / MAXD) * 0.5, { skip: PLACE });
+          const tV = at("L10", "Votre");
+          write(p, "Votre entreprise", 130, 566, 108, tV - 0.04, 0.72, { weight: 700, color: GREEN });
+          write(p, "a sa place", 130, 696, 108, at("L10", "a") - 0.02, 0.52, { weight: 700, color: GREEN });
+          const wC = write(p, "à nos côtés.", 130, 826, 108, at("L10", "nos") - 0.22, 0.58, { weight: 700, color: GREEN });
+          const tU = at("L10", "côtés", "e") + 0.1;
+          {
+            const m = document.createElementNS(NS, "text");
+            m.setAttribute("font-family", "Caveat");
+            m.setAttribute("font-weight", 700);
+            m.setAttribute("font-size", 108);
+            m.textContent = "a sa place";
+            p.ink.appendChild(m);
+            const wa = m.getComputedTextLength();
+            m.remove();
+            draw(p, rc.line(126, 720, 136 + wa, 714, O({ stroke: GREEN, strokeWidth: 8, roughness: 1.8 })), tU, 0.22);
+          }
+          draw(p, rc.line(126, 850, 136 + wC.w, 846, O({ stroke: GREEN, strokeWidth: 8, roughness: 1.8 })), tU + 0.24, 0.22);
+          const [qx, qy] = MP(DOTS[PLACE]);
+          draw(p, rc.circle(qx, qy, 22, O({ stroke: GREEN, strokeWidth: 2.6, strokeLineDash: [5, 5] })), tU + 0.5, 0.15);
+          write(p, "votre place", qx - 36, qy - 8, 54, tU + 0.66, 0.42, { anchor: "end", weight: 700, color: GREEN });
+          draw(
+            p,
+            rc.curve(
+              [
+                [qx - 34, qy + 4],
+                [qx - 22, qy + 8],
+                [qx - 14, qy + 4],
+              ],
+              O({ stroke: GREEN, strokeWidth: 2.6 }),
+            ),
+            tU + 1.1,
+            0.1,
+          );
+        }
+      }
+
+      // ------------------------------------------------------------------ caméra : de page en page, puis recul sur le carnet
+      const MOVES = [
+        [9.35, 1],
+        [14.45, 2],
+        [24.05, 3],
+        [31.15, 4],
+        [35.85, 5],
+        [41.65, 6],
+        [51.25, 7],
+        [59.95, 8],
+        [68.55, 9],
+      ];
+      const MOVE_DUR = 0.9;
+      const T_BACK = at("L10", "rejoignez") - 0.1,
+        BACK_DUR = 2.35;
+      function camAt(t) {
+        let [x, y] = pageCenter(0);
+        let z = 1.1,
+          dip = 0,
+          kPrev = 0,
+          tArrive = 0;
+        for (let i = 0; i < MOVES.length; i++) {
+          const [tm, k] = MOVES[i];
+          if (t < tm) break;
+          const s = prog(t, tm, MOVE_DUR),
+            e = inOut(s);
+          const a = pageCenter(kPrev),
+            b = pageCenter(k);
+          x = lerp(a[0], b[0], e);
+          y = lerp(a[1], b[1], e);
+          dip = Math.sin(Math.PI * s) * 0.13;
+          kPrev = k;
+          tArrive = tm + MOVE_DUR;
+        }
+        // lente avancée sur chaque page
+        const nextMove = (MOVES.find((m) => m[0] > t) || [T_BACK])[0];
+        z = (1.1 + 0.035 * inOut(prog(t, tArrive, Math.max(1, nextMove - tArrive)))) * (1 - dip);
+        // recul final
+        const sb = prog(t, T_BACK, BACK_DUR),
+          eb = inOut(sb);
+        if (sb > 0) {
+          x = lerp(x, WORLD_W / 2, eb);
+          y = lerp(y, WORLD_H / 2, eb);
+          z = Math.exp(lerp(Math.log(z), Math.log(0.2), eb));
+        }
+        return { x, y, z, hand: 1 - eb };
+      }
+
+      // ------------------------------------------------------------------ le stylo suit le trait en cours
+      function penAt(t) {
+        let act = null;
+        for (const it of penItems) if (t >= it.t0 && t <= it.t0 + it.dur && (!act || it.t0 >= act.t0)) act = it;
+        if (act) return { p: act.pointAt(t), lift: 0 };
+        let prev = null,
+          next = null;
+        for (const it of penItems) {
+          const e = it.t0 + it.dur;
+          if (e < t && (!prev || e > prev.t0 + prev.dur)) prev = it;
+          if (it.t0 > t && (!next || it.t0 < next.t0)) next = it;
+        }
+        if (!prev && next) {
+          const b = next.pointAt(next.t0);
+          const s = inOut(prog(t, 0, next.t0));
+          return { p: [lerp(b[0] + 900, b[0], s), lerp(b[1] + 700, b[1], s)], lift: 1 - s };
+        }
+        if (prev && next) {
+          const a = prev.pointAt(prev.t0 + prev.dur),
+            b = next.pointAt(next.t0);
+          const t1 = prev.t0 + prev.dur;
+          const s = prog(t, t1, next.t0 - t1),
+            e = inOut(s);
+          const lift = Math.sin(Math.PI * s) * Math.min(1, (next.t0 - t1) / 0.6);
+          return { p: [lerp(a[0], b[0], e) + lift * 26, lerp(a[1], b[1], e) - lift * 46], lift };
+        }
+        if (prev) {
+          const a = prev.pointAt(prev.t0 + prev.dur);
+          const s = inOut(prog(t, prev.t0 + prev.dur, 0.9));
+          return { p: [a[0] + s * 160, a[1] + s * 90], lift: s };
+        }
+        return { p: [0, 0], lift: 1 };
+      }
+
+      // ------------------------------------------------------------------ une image
+      function render(t) {
+        const c = camAt(t);
+        const hx = Math.sin(t * 0.41) * 5 * c.hand,
+          hy = Math.sin(t * 0.33 + 1) * 4 * c.hand,
+          hr = Math.sin(t * 0.27) * 0.22 * c.hand;
+        camG.setAttribute("transform", `translate(${(960 + hx).toFixed(2)} ${(540 + hy).toFixed(2)}) rotate(${hr.toFixed(3)}) scale(${c.z.toFixed(5)}) translate(${(-c.x).toFixed(2)} ${(-c.y).toFixed(2)})`);
+        for (const it of items) it.update(t);
+        // stylo
+        const pa = penAt(t);
+        const vis = out3(prog(t, 0.05, 0.4)) * (1 - out3(prog(t, T_BACK - 0.1, 0.5)));
+        const [px, py] = pa.p;
+        const lift = pa.lift;
+        penBody.setAttribute("opacity", vis.toFixed(3));
+        penShadow.setAttribute("opacity", (vis * (0.2 - 0.08 * lift)).toFixed(3));
+        penBody.setAttribute("transform", `translate(${px.toFixed(1)} ${py.toFixed(1)}) rotate(${PEN_ANGLE})`);
+        penShadow.setAttribute("transform", `translate(${(px + 18 + lift * 40).toFixed(1)} ${(py + 14 + lift * 30).toFixed(1)}) rotate(${PEN_ANGLE})`);
+      }
+
+      (async function init() {
+        await Promise.all([document.fonts.load('600 60px "Caveat"'), document.fonts.load('700 60px "Caveat"')]).catch(() => {});
+        await build();
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>

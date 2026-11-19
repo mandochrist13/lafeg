@@ -1,4 +1,4 @@
-// Calage du film FEG « La lumière des entreprises » (data-art) : lit tools/lines.json + audio_meta.json (voix calée mot à mot),
+// Calage du film FEG « De la voix à la réforme » (carnet de croquis) : lit tools/lines.json + audio_meta.json (voix calée mot à mot),
 // écrit assets/cues.js (temps de chaque phrase et de chaque mot) et index.html (hôtes + pistes audio).
 // Usage : node tools/build.mjs
 import { readFileSync, writeFileSync, existsSync } from "node:fs";
@@ -147,7 +147,7 @@ writeFileSync(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>FEG — La lumière des entreprises</title>
+    <title>FEG — De la voix à la réforme (carnet de croquis)</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <style>
@@ -161,14 +161,14 @@ writeFileSync(
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #03100a;
+        background: #221d18;
       }
       #root {
         position: relative;
         width: 1920px;
         height: 1080px;
         overflow: hidden;
-        background: #03100a;
+        background: #221d18;
       }
     </style>
   </head>
