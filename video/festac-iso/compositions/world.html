@@ -1,0 +1,1429 @@
+<!doctype html>
+<!--
+  FESTAC — la maquette : une seule prise continue à travers une maquette isométrique blanche.
+  Une caisse de sécurité sociale, le siège de la FESTAC à Libreville et son campus (gouvernance, centre de formation,
+  partenaires, Tribune), posés sur la dalle de Libreville d'une carte de l'Afrique de l'Ouest et du Centre
+  (dalles Natural Earth, assets/africa.js) où se lèvent les dix pays membres.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire).
+  Les temps viennent de assets/cues.js (window.__FS_CUES), recalculés par tools/build.mjs.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>Maquette FESTAC</title>
+    <style>
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 500;
+        src: url("assets/fonts/Montserrat-500.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 600;
+        src: url("assets/fonts/Montserrat-600.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 700;
+        src: url("assets/fonts/Montserrat-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Montserrat";
+        font-weight: 800;
+        src: url("assets/fonts/Montserrat-800.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #world-cv,
+      #world-svg {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Montserrat", sans-serif;
+        color: #16202a;
+      }
+      .wl .ti {
+        display: block;
+        font-weight: 700;
+        font-size: 36px;
+        letter-spacing: -0.01em;
+        color: #14325a;
+      }
+      .wl .ds {
+        display: block;
+        margin-top: 2px;
+        font-weight: 600;
+        font-size: 28px;
+        color: #3a4651;
+      }
+      .wl.ctr {
+        text-align: center;
+      }
+      .wl.big .ti {
+        font-weight: 800;
+        font-size: 64px;
+        letter-spacing: -0.02em;
+        color: #1f487c;
+      }
+      .wl.big .ds {
+        font-size: 32px;
+        color: #16202a;
+      }
+      .wl.cty .ti {
+        font-size: 30px;
+        color: #ffffff;
+        text-shadow:
+          0 1px 3px rgba(10, 24, 45, 0.85),
+          0 0 10px rgba(10, 24, 45, 0.55);
+      }
+      .wl.val .ti {
+        font-weight: 800;
+        font-size: 42px;
+        color: #1f487c;
+      }
+      #world-svg .ld {
+        fill: none;
+        stroke: #16202a;
+        stroke-width: 2;
+        stroke-opacity: 0.55;
+      }
+      #world-svg .dt {
+        fill: #16202a;
+        opacity: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="114.876"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="114.876"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+      <svg id="world-svg" viewBox="0 0 1920 1080" aria-hidden="true">
+        <polyline id="wk-pen" class="ld" points="" /><circle id="wd-pen" class="dt" r="5" />
+        <polyline id="wk-soi" class="ld" points="" /><circle id="wd-soi" class="dt" r="5" />
+        <polyline id="wk-fam" class="ld" points="" /><circle id="wd-fam" class="dt" r="5" />
+        <polyline id="wk-lome" class="ld" points="" /><circle id="wd-lome" class="dt" r="5" />
+        <polyline id="wk-lbv" class="ld" points="" /><circle id="wd-lbv" class="dt" r="5" />
+        <polyline id="wk-ag" class="ld" points="" /><circle id="wd-ag" class="dt" r="5" />
+        <polyline id="wk-be" class="ld" points="" /><circle id="wd-be" class="dt" r="5" />
+        <polyline id="wk-com" class="ld" points="" /><circle id="wd-com" class="dt" r="5" />
+        <polyline id="wk-cf" class="ld" points="" /><circle id="wd-cf" class="dt" r="5" />
+        <polyline id="wk-gen" class="ld" points="" /><circle id="wd-gen" class="dt" r="5" />
+        <polyline id="wk-cip" class="ld" points="" /><circle id="wd-cip" class="dt" r="5" />
+        <polyline id="wk-p0" class="ld" points="" /><circle id="wd-p0" class="dt" r="5" />
+        <polyline id="wk-p1" class="ld" points="" /><circle id="wd-p1" class="dt" r="5" />
+        <polyline id="wk-p2" class="ld" points="" /><circle id="wd-p2" class="dt" r="5" />
+        <polyline id="wk-p3" class="ld" points="" /><circle id="wd-p3" class="dt" r="5" />
+        <polyline id="wk-rt" class="ld" points="" /><circle id="wd-rt" class="dt" r="5" />
+        <polyline id="wk-trib" class="ld" points="" /><circle id="wd-trib" class="dt" r="5" />
+      </svg>
+      <div id="world-labels">
+        <div id="wl-pen" class="wl"><span class="ti">Pensions</span></div>
+        <div id="wl-soi" class="wl"><span class="ti">Soins</span></div>
+        <div id="wl-fam" class="wl"><span class="ti">Familles</span></div>
+
+        <div id="wl-name" class="wl big ctr">
+          <span class="ti">FESTAC</span><span class="ds">Fédération des Syndicats des Travailleurs</span><span class="ds">des Pays Affiliés à la CIPRES</span>
+        </div>
+
+        <div id="wl-cipres" class="wl">
+          <span class="ti">CIPRES</span><span class="ds">Conférence interafricaine de la prévoyance sociale</span><span class="ds" id="wl-18">18 États membres</span>
+        </div>
+        <div id="wl-lome" class="wl"><span class="ti">Lomé</span><span class="ds">Secrétariat de la CIPRES</span></div>
+        <div id="wl-lbv" class="wl"><span class="ti">Libreville</span><span class="ds">Siège de la FESTAC</span></div>
+        <div id="wl-members" class="wl"><span class="ti">10 pays membres</span><span class="ds">Afrique centrale et Afrique de l'Ouest</span></div>
+        <div id="wl-c0" class="wl cty ctr"><span class="ti">Cameroun</span></div>
+        <div id="wl-c1" class="wl cty ctr"><span class="ti">Gabon</span></div>
+        <div id="wl-c2" class="wl cty ctr"><span class="ti">Bénin</span></div>
+        <div id="wl-c3" class="wl cty ctr"><span class="ti">Burkina Faso</span></div>
+        <div id="wl-c4" class="wl cty ctr"><span class="ti">Côte d'Ivoire</span></div>
+        <div id="wl-c5" class="wl cty ctr"><span class="ti">Guinée</span></div>
+        <div id="wl-c6" class="wl cty ctr"><span class="ti">Mali</span></div>
+        <div id="wl-c7" class="wl cty ctr"><span class="ti">Niger</span></div>
+        <div id="wl-c8" class="wl cty ctr"><span class="ti">Sénégal</span></div>
+        <div id="wl-c9" class="wl cty ctr"><span class="ti">Togo</span></div>
+
+        <div id="wl-def" class="wl ctr"><span class="ti">Défendre</span><span class="ds">les intérêts des travailleurs</span></div>
+        <div id="wl-ps" class="wl ctr"><span class="ti">Protection sociale</span><span class="ds">universelle et équitable</span></div>
+
+        <div id="wl-ag" class="wl"><span class="ti">Assemblée générale</span><span class="ds">fixe les orientations</span></div>
+        <div id="wl-be" class="wl"><span class="ti">Bureau exécutif</span><span class="ds">les met en œuvre</span></div>
+        <div id="wl-com" class="wl"><span class="ti">Commissions techniques</span><span class="ds">formation · communication · protection sociale</span></div>
+
+        <div id="wl-cf" class="wl"><span class="ti">Centre de formation</span><span class="ds">CNRF-DPDS</span></div>
+        <div id="wl-m0" class="wl"><span class="ti">Droit du travail</span></div>
+        <div id="wl-m1" class="wl"><span class="ti">Négociation collective</span></div>
+        <div id="wl-m2" class="wl"><span class="ti">Santé et sécurité au travail</span></div>
+
+        <div id="wl-gen" class="wl"><span class="ti">Genève</span><span class="ds">Conférence internationale du Travail</span></div>
+        <div id="wl-cip" class="wl"><span class="ti">CIPRES</span><span class="ds">Conseil des ministres</span></div>
+
+        <div id="wl-p0" class="wl"><span class="ti">CNSS</span></div>
+        <div id="wl-p1" class="wl"><span class="ti">CNAMGS</span></div>
+        <div id="wl-p2" class="wl"><span class="ti">CPPF</span></div>
+        <div id="wl-p3" class="wl"><span class="ti">CNPS</span><span class="ds">Côte d'Ivoire</span></div>
+        <div id="wl-rt" class="wl"><span class="ti">Rencontres</span><span class="ds">pour une sécurité sociale inclusive et performante</span></div>
+
+        <div id="wl-trib" class="wl"><span class="ti">Tribune des Droits Sociaux</span><span class="ds">le média panafricain de la FESTAC</span></div>
+
+        <div id="wl-v0" class="wl val ctr"><span class="ti">Coopération</span></div>
+        <div id="wl-v1" class="wl val ctr"><span class="ti">Défense</span></div>
+        <div id="wl-v2" class="wl val ctr"><span class="ti">Gouvernance</span></div>
+        <div id="wl-v3" class="wl val ctr"><span class="ti">Échange</span></div>
+        <div id="wl-voix" class="wl big ctr"><span class="ti">La voix des travailleurs africains</span></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FS_CUES;
+        var total = C ? C.total : 114.876;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+    <script src="assets/africa.js"></script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+      import { RoundedBoxGeometry } from "./lib/RoundedBoxGeometry.js";
+
+      const host = window.__worldHost;
+      const C = window.__FS_CUES;
+      const AF = window.FS_AFRICA;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+
+      // ------------------------------------------------------------------ outils
+      const DEG = Math.PI / 180;
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      // ressort amorti (dépassement ~1,5 %), stabilisé à u = 1
+      const spring = (u) => {
+        u = clamp01(u);
+        if (u >= 1) return 1;
+        const z = 0.8,
+          w = 9,
+          wd = w * Math.sqrt(1 - z * z);
+        return 1 - Math.exp(-z * w * u) * (Math.cos(wd * u) + ((z * w) / wd) * Math.sin(wd * u));
+      };
+      // fenêtre visible : monte sur [a, a+fi], descend sur [b, b+fo]
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      const tiny = 1e-4;
+
+      // ------------------------------------------------------------------ temps clés (depuis la voix)
+      const T = {};
+      T.pens = at("L01", "pensions");
+      T.soins = at("L01", "soins");
+      T.fam = at("L01", "familles");
+      T.pull2 = S("L02") - 0.55;
+      T.walk = S("L02") + 0.2;
+      T.festac = at("L02", "FESTAC");
+      T.fed = at("L02", "Syndicats") - 0.45; // la seconde « Fédération »
+      T.out3 = S("L03") - 0.75;
+      T.tiles = S("L03") - 0.35;
+      T.cipres = at("L03", "CIPRES");
+      T.coord = at("L03", "coordonne");
+      T.dixhuit = at("L03", "dix-huit");
+      T.siege = at("L04", "siège");
+      T.dix = at("L04", "dix");
+      T.membres = at("L04", "membres");
+      T.centrale = at("L04", "centrale");
+      T.in5 = S("L05") - 0.95;
+      T.def = at("L05", "défendre");
+      T.prom = at("L05", "promouvoir");
+      T.to6 = S("L06") - 0.9;
+      T.ag = at("L06", "l'Assemblée");
+      T.bur = at("L06", "Bureau");
+      T.com = at("L06", "commissions");
+      T.to7 = S("L07") - 0.9;
+      T.deleg = at("L07", "délégués");
+      T.centre = at("L07", "centre");
+      T.m = [at("L07", "droit"), at("L07", "négociation"), at("L07", "santé")];
+      T.out8 = S("L08") - 0.8;
+      T.cit = at("L08", "Conférence");
+      T.gen = at("L08", "Genève");
+      T.cons = at("L08", "Conseil");
+      T.to9 = S("L09") - 0.95;
+      T.p = [at("L09", "CNSS"), at("L09", "CNAMGS"), at("L09", "CPPF"), at("L09", "CNPS")];
+      T.renc = at("L09", "rencontres");
+      T.to10 = S("L10") - 0.9;
+      T.trib = at("L10", "Tribune");
+      T.media = at("L10", "média");
+      T.to11 = S("L11") - 0.9;
+      T.v = [at("L11", "Coopération"), at("L11", "défense"), at("L11", "gouvernance"), at("L11", "échange")];
+      T.voix = at("L11", "voix");
+      T.rdv = at("L11", "Rendez");
+      T.end = C.ov["ov-end"].start;
+
+      // ------------------------------------------------------------------ rendu
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      const scene = new THREE.Scene();
+      scene.background = new THREE.Color(0xffffff);
+
+      // Lumière : ciel + soleil haut gauche. FACE = éclairement d'une face horizontale.
+      const HEMI = 2.9,
+        SUN = 1.9;
+      const SUN_DIR = new THREE.Vector3(-0.35, 1.0, 0.75).normalize();
+      const FACE = (HEMI + SUN * SUN_DIR.y) / Math.PI;
+      const lit = (hex, k = 1) => new THREE.Color(hex).multiplyScalar(k / FACE);
+      scene.add(new THREE.HemisphereLight(0xffffff, 0xe2e5df, HEMI));
+      const sun = new THREE.DirectionalLight(0xffffff, SUN);
+      sun.castShadow = true;
+      sun.shadow.mapSize.set(2048, 2048);
+      sun.shadow.radius = 3;
+      sun.shadow.bias = -0.0002;
+      scene.add(sun, sun.target);
+
+      const mat = (hex, opts = {}) => new THREE.MeshStandardMaterial({ color: lit(hex, opts.k || 1), roughness: opts.r ?? 0.86, metalness: opts.m ?? 0 });
+      // Couleurs FESTAC : bleu du logo, rouge du « e », or de la Tribune ; vert panafricain
+      const COL = {
+        ground: 0xffffff,
+        white: 0xf6f6f1,
+        roof: 0xdedfd9,
+        glass: 0x7f8c86,
+        walk: 0xefefeb,
+        road: 0xe1e3df,
+        navy: 0x1f487c,
+        deep: 0x14325a,
+        red: 0xc8423b,
+        gold: 0xd9a21b,
+        green: 0x2e8b4f,
+        figure: 0xe9e9e4,
+        wood: 0xcdb58e,
+        leaf: 0x86b56c,
+        lawn: 0xc9dfb6,
+      };
+      const M = {
+        ground: mat(COL.ground, { r: 1 }),
+        white: mat(COL.white),
+        roof: mat(COL.roof),
+        glass: mat(COL.glass, { r: 0.35, m: 0.1 }),
+        walk: mat(COL.walk, { r: 1 }),
+        road: mat(COL.road, { r: 1 }),
+        navy: mat(COL.navy, { r: 0.6 }),
+        red: mat(COL.red, { r: 0.6 }),
+        gold: mat(COL.gold, { r: 0.45, m: 0.2 }),
+        green: mat(COL.green, { r: 0.7 }),
+        figure: mat(COL.figure),
+        wood: mat(COL.wood),
+        leaf: mat(COL.leaf),
+        lawn: mat(COL.lawn, { r: 1 }),
+        metal: mat(0xd5d6d0, { r: 0.4, m: 0.3 }),
+        dark: mat(0x2a333c, { r: 0.45, m: 0.15 }),
+        figNavy: mat(0x2f5f9e),
+        figRed: mat(0xd1574f),
+        figGold: mat(0xe2b33c),
+        figGreen: mat(0x4f9a5f),
+      };
+      const FIGMATS = [M.figNavy, M.figRed, M.figGold, M.figGreen, M.figure];
+
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(40000, 40000), M.ground);
+      ground.rotation.x = -Math.PI / 2;
+      ground.receiveShadow = true;
+      scene.add(ground);
+
+      // aides de construction
+      const BOX = new THREE.BoxGeometry(1, 1, 1);
+      BOX.translate(0, 0.5, 0);
+      const RBOX = new RoundedBoxGeometry(1, 1, 1, 2, 0.04);
+      RBOX.translate(0, 0.5, 0);
+      function box(parent, w, h, d, x, y, z, material, rounded = false) {
+        const m = new THREE.Mesh(rounded ? RBOX : BOX, material);
+        m.scale.set(w, h, d);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function cyl(parent, r, h, x, y, z, material, seg = 32, r2 = null) {
+        const g = new THREE.CylinderGeometry(r, r2 ?? r, h, seg);
+        g.translate(0, h / 2, 0);
+        const m = new THREE.Mesh(g, material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+      function sphere(parent, r, x, y, z, material) {
+        const m = new THREE.Mesh(new THREE.SphereGeometry(r, 24, 16), material);
+        m.position.set(x, y, z);
+        m.castShadow = true;
+        m.receiveShadow = true;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ textures (pictogrammes)
+      function canvasTex(w, h, draw) {
+        const c = document.createElement("canvas");
+        c.width = w;
+        c.height = h;
+        draw(c.getContext("2d"), w, h);
+        const tx = new THREE.CanvasTexture(c);
+        tx.colorSpace = THREE.SRGBColorSpace;
+        tx.anisotropy = 8;
+        return tx;
+      }
+      function rr(g, x, y, w, h, r) {
+        g.beginPath();
+        g.moveTo(x + r, y);
+        g.arcTo(x + w, y, x + w, y + h, r);
+        g.arcTo(x + w, y + h, x, y + h, r);
+        g.arcTo(x, y + h, x, y, r);
+        g.arcTo(x, y, x + w, y, r);
+        g.closePath();
+      }
+      // panneau carré arrondi, fond blanc, liseré coloré, pictogramme
+      function signTex(draw, edge = "#1f487c") {
+        return canvasTex(256, 256, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          rr(g, 4, 4, w - 8, h - 8, 40);
+          g.fill();
+          g.lineWidth = 12;
+          g.strokeStyle = edge;
+          rr(g, 10, 10, w - 20, h - 20, 34);
+          g.stroke();
+          draw(g, w, h);
+        });
+      }
+      const NAVY = "#1f487c",
+        RED = "#c8423b",
+        GOLD = "#d9a21b",
+        GREEN = "#2e8b4f";
+      const person = (g, x, y, s, col) => {
+        g.fillStyle = col;
+        g.beginPath();
+        g.arc(x, y - 30 * s, 15 * s, 0, Math.PI * 2);
+        g.fill();
+        g.beginPath();
+        g.moveTo(x - 24 * s, y + 34 * s);
+        g.quadraticCurveTo(x - 24 * s, y - 10 * s, x, y - 10 * s);
+        g.quadraticCurveTo(x + 24 * s, y - 10 * s, x + 24 * s, y + 34 * s);
+        g.closePath();
+        g.fill();
+      };
+      const ICON = {
+        // pension : pile de pièces
+        coins(g) {
+          for (let k = 0; k < 4; k++) {
+            g.fillStyle = k % 2 ? "#e9b830" : GOLD;
+            g.beginPath();
+            g.ellipse(128, 180 - k * 26, 62, 20, 0, 0, Math.PI * 2);
+            g.fill();
+            g.fillRect(66, 158 - k * 26, 124, 22);
+          }
+          g.fillStyle = "#f3cf52";
+          g.beginPath();
+          g.ellipse(128, 80, 62, 20, 0, 0, Math.PI * 2);
+          g.fill();
+        },
+        // soins : croix
+        cross(g) {
+          g.fillStyle = GREEN;
+          g.fillRect(103, 62, 50, 132);
+          g.fillRect(62, 103, 132, 50);
+        },
+        // familles : adulte, adulte, enfant
+        family(g) {
+          person(g, 92, 132, 1.25, NAVY);
+          person(g, 162, 136, 1.15, RED);
+          person(g, 128, 172, 0.8, GOLD);
+        },
+        // défendre : bouclier
+        shield(g) {
+          g.fillStyle = NAVY;
+          g.beginPath();
+          g.moveTo(128, 46);
+          g.lineTo(196, 72);
+          g.lineTo(190, 140);
+          g.quadraticCurveTo(176, 190, 128, 214);
+          g.quadraticCurveTo(80, 190, 66, 140);
+          g.lineTo(60, 72);
+          g.closePath();
+          g.fill();
+          g.strokeStyle = "#ffffff";
+          g.lineWidth = 12;
+          g.lineCap = "round";
+          g.lineJoin = "round";
+          g.beginPath();
+          g.moveTo(98, 130);
+          g.lineTo(120, 154);
+          g.lineTo(160, 104);
+          g.stroke();
+        },
+        // protection sociale : parapluie au-dessus d'une famille
+        umbrella(g) {
+          g.fillStyle = RED;
+          g.beginPath();
+          g.arc(128, 116, 74, Math.PI, 0);
+          g.closePath();
+          g.fill();
+          g.strokeStyle = RED;
+          g.lineWidth = 8;
+          g.beginPath();
+          g.moveTo(128, 116);
+          g.lineTo(128, 132);
+          g.stroke();
+          person(g, 104, 182, 0.75, NAVY);
+          person(g, 150, 186, 0.6, GOLD);
+        },
+        // formation : livre ouvert
+        book(g) {
+          g.fillStyle = NAVY;
+          g.beginPath();
+          g.moveTo(128, 92);
+          g.quadraticCurveTo(92, 74, 52, 84);
+          g.lineTo(52, 182);
+          g.quadraticCurveTo(92, 172, 128, 190);
+          g.quadraticCurveTo(164, 172, 204, 182);
+          g.lineTo(204, 84);
+          g.quadraticCurveTo(164, 74, 128, 92);
+          g.closePath();
+          g.fill();
+          g.strokeStyle = "#ffffff";
+          g.lineWidth = 6;
+          g.beginPath();
+          g.moveTo(128, 96);
+          g.lineTo(128, 182);
+          g.stroke();
+        },
+        // communication : bulles
+        talk(g) {
+          g.fillStyle = NAVY;
+          rr(g, 44, 64, 120, 78, 22);
+          g.fill();
+          g.beginPath();
+          g.moveTo(70, 138);
+          g.lineTo(62, 168);
+          g.lineTo(98, 140);
+          g.fill();
+          g.fillStyle = GOLD;
+          rr(g, 104, 124, 108, 70, 20);
+          g.fill();
+          g.beginPath();
+          g.moveTo(186, 190);
+          g.lineTo(196, 214);
+          g.lineTo(166, 192);
+          g.fill();
+        },
+      };
+      function plane(parent, w, h, tex, x, y, z, opts = {}) {
+        const m = new THREE.Mesh(
+          new THREE.PlaneGeometry(w, h),
+          new THREE.MeshBasicMaterial({ map: tex || null, color: opts.color ?? 0xffffff, transparent: true, side: opts.side ?? THREE.FrontSide, depthWrite: opts.depthWrite ?? true }),
+        );
+        m.position.set(x, y, z);
+        if (opts.ry !== undefined) m.rotation.y = opts.ry;
+        if (opts.rx !== undefined) m.rotation.x = opts.rx;
+        parent.add(m);
+        return m;
+      }
+
+      // ------------------------------------------------------------------ animations génériques
+      const risers = []; // se lèvent (échelle verticale, ressort)
+      function riser(g, t0, d = 0.75) {
+        risers.push({ g, t0, d });
+        g.scale.y = tiny;
+        g.visible = false;
+        return g;
+      }
+      const pops = []; // apparaissent (échelle uniforme, ressort)
+      function pop(g, t0, s = 1, d = 0.5, out = null) {
+        pops.push({ g, t0, s, d, out });
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        return g;
+      }
+      const boards = []; // panneaux face caméra
+      // panneau-pictogramme sur un mât, face caméra
+      function signPost(parent, x, z, h, tex, size, t0, out = null) {
+        const g = new THREE.Group();
+        g.position.set(x, 0, z);
+        parent.add(g);
+        cyl(g, 0.03, h, 0, 0, 0, M.metal, 8);
+        const p = plane(g, size, size, tex, 0, h + size / 2, 0);
+        boards.push(p);
+        pop(g, t0, 1, 0.55, out);
+        return g;
+      }
+
+      // personnages : homme (cylindre), femme (évasé), tête
+      const FIG_BODY_M = new THREE.CylinderGeometry(0.075, 0.09, 0.3, 14);
+      FIG_BODY_M.translate(0, 0.15, 0);
+      const FIG_BODY_F = new THREE.CylinderGeometry(0.052, 0.118, 0.3, 14);
+      FIG_BODY_F.translate(0, 0.15, 0);
+      const FIG_HEAD = new THREE.SphereGeometry(0.075, 16, 12);
+      FIG_HEAD.translate(0, 0.38, 0);
+      const figs = [];
+      function figure(parent, x, z, o = {}) {
+        const g = new THREE.Group();
+        const mtl = o.m || M.figure;
+        const b = new THREE.Mesh(o.f ? FIG_BODY_F : FIG_BODY_M, mtl);
+        const h = new THREE.Mesh(FIG_HEAD, o.hm || M.figure);
+        b.castShadow = h.castShadow = true;
+        g.add(b, h);
+        g.position.set(x, o.y || 0, z);
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        parent.add(g);
+        const f = { g, s: o.s || 1.2, t0: o.t0 ?? 0, d: o.d || 0.5, bob: o.bob || 0, w: o.w || 9, ph: o.ph || 0, walk: o.walk || null, y0: o.y || 0, out: o.out || null };
+        figs.push(f);
+        return f;
+      }
+      const figMat = (k) => FIGMATS[k % FIGMATS.length];
+
+      // ------------------------------------------------------------------ la carte : dalles de l'Afrique de l'Ouest et du Centre
+      const TILE_H = 2.0,
+        SP = 48,
+        TS = 43.2;
+      // dalle de Libreville : la plus proche de la ville ; elle porte le campus
+      let lbvI = 0;
+      {
+        const [cx, cy] = AF.cities.LBV;
+        let best = 1e9;
+        AF.tiles.forEach((p, i) => {
+          const d = Math.hypot(p[0] - cx, p[1] - cy);
+          if (AF.codes[p[2]] === "GAB" && d < best) {
+            best = d;
+            lbvI = i;
+          }
+        });
+      }
+      const [IX0, IY0] = AF.tiles[lbvI];
+      const gx = (ix) => (ix - IX0) * SP,
+        gz = (iy) => (iy - IY0) * SP;
+      const MEMBERS = AF.members; // ordre : CMR, GAB, BEN, BFA, CIV, GIN, MLI, NER, SEN, TGO
+      const tiles = AF.tiles.map(([ix, iy, ci], i) => {
+        const code = AF.codes[ci];
+        return { i, x: gx(ix), z: gz(iy), code, mem: MEMBERS.indexOf(code) };
+      });
+      tiles.forEach((p) => (p.d = Math.hypot(p.x, p.z)));
+      const MAXD = Math.max(...tiles.map((p) => p.d));
+      const XMIN = Math.min(...tiles.map((p) => p.x)),
+        XMAX = Math.max(...tiles.map((p) => p.x));
+      const ZMIN = Math.min(...tiles.map((p) => p.z)),
+        ZMAX = Math.max(...tiles.map((p) => p.z));
+      const MAPC = new THREE.Vector3((XMIN + XMAX) / 2, TILE_H, (ZMIN + ZMAX) / 2);
+      const tileGeo = new RoundedBoxGeometry(TS, TILE_H, TS, 1, 0.8);
+      tileGeo.translate(0, TILE_H / 2, 0);
+      const tileInst = new THREE.InstancedMesh(tileGeo, new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.92 }), tiles.length);
+      tileInst.castShadow = true;
+      tileInst.receiveShadow = true;
+      tileInst.frustumCulled = false;
+      scene.add(tileInst);
+      const cBase = lit(0xe2e5e0);
+      const cLbv = lit(0xffffff);
+      const cMem = [0x1f487c, 0x27598f, 0x1b3f6d, 0x2a5f97, 0x204c82, 0x1d4677, 0x2b5a8f, 0x234f86, 0x1a426f, 0x28558a].map((h) => lit(h));
+      const cGabon = lit(0x1f487c);
+      // repères : centre de chaque pays membre (pour les noms)
+      const memCenter = MEMBERS.map((code) => {
+        const list = tiles.filter((p) => p.code === code);
+        const cx = list.reduce((a, p) => a + p.x, 0) / list.length;
+        const cz = list.reduce((a, p) => a + p.z, 0) / list.length;
+        return new THREE.Vector3(cx, TILE_H * 2.4, cz);
+      });
+      // temps de levée de chaque pays membre (du siège vers l'extérieur)
+      const memOrder = MEMBERS.map((c, k) => k).sort((a, b) => memCenter[a].length() - memCenter[b].length());
+      const memT = [];
+      memOrder.forEach((k, r) => (memT[k] = T.dix - 0.1 + r * 0.16));
+      const W0 = (p) => new THREE.Vector3(p.x, TILE_H, p.z);
+      // dalle de Lomé (Togo) : porte l'épingle de la CIPRES
+      let lomeI = 0;
+      {
+        const [cx, cy] = AF.cities.LOME;
+        let best = 1e9;
+        AF.tiles.forEach((p, i) => {
+          const d = Math.hypot(p[0] - cx, p[1] - cy);
+          if (AF.codes[p[2]] === "TGO" && d < best) {
+            best = d;
+            lomeI = i;
+          }
+        });
+      }
+      const tileH = new Float32Array(AF.tiles.length).fill(1);
+      const LOME = new THREE.Vector3(gx(AF.cities.LOME[0]), TILE_H, gz(AF.cities.LOME[1]));
+      // Genève (46,2° N, 6,1° E), hors de la carte, au nord
+      const GENEVA = new THREE.Vector3(gx((6.14 + 18) / AF.step), TILE_H, gz((25.2 - 46.2) / AF.step));
+
+      // repères (épingles) de la carte
+      const pinCone = new THREE.ConeGeometry(4.2, 22, 32);
+      pinCone.rotateX(Math.PI);
+      pinCone.translate(0, 11, 0);
+      const pinHead = new THREE.SphereGeometry(6.6, 32, 20);
+      pinHead.translate(0, 24, 0);
+      const pinDot = new THREE.CircleGeometry(2.7, 32);
+      const pins = [];
+      function mapPin(p, m, s, t0, out, tile = -1) {
+        const g = new THREE.Group();
+        g.position.copy(p);
+        const a = new THREE.Mesh(pinCone, m);
+        const b = new THREE.Mesh(pinHead, m);
+        a.castShadow = b.castShadow = true;
+        g.add(a, b);
+        const dot = new THREE.Mesh(pinDot, new THREE.MeshBasicMaterial({ color: 0xffffff }));
+        g.add(dot);
+        scene.add(g);
+        const P = { g, dot, t0, s, out, tile };
+        g.scale.setScalar(tiny);
+        g.visible = false;
+        pins.push(P);
+        return P;
+      }
+      const PIN_S = 7;
+      const pinLbv = mapPin(new THREE.Vector3(0, TILE_H, 0), M.navy, PIN_S, T.siege - 0.1, T.in5 + 0.2);
+      const pinLbv8 = mapPin(new THREE.Vector3(0, TILE_H, 0), M.navy, PIN_S, T.out8 + 0.9, T.to9 + 0.2);
+      const pinLome = mapPin(LOME.clone(), M.gold, PIN_S * 0.85, T.coord - 0.05, T.in5 + 0.2, lomeI);
+      const pinLome8 = mapPin(LOME.clone(), M.gold, PIN_S * 0.85, T.cons - 0.1, T.to9 + 0.2, lomeI);
+      const pinGen = mapPin(GENEVA, M.red, PIN_S * 1.15, T.cit - 0.1, T.to9 + 0.2);
+      // arcs de liaison (L08) : de Libreville vers Genève et vers Lomé
+      const arcMat = new THREE.MeshBasicMaterial({ color: COL.navy, transparent: true });
+      const arcs = [];
+      function arc(a, b, hgt, t0, d, r) {
+        const mid = a.clone().add(b).multiplyScalar(0.5);
+        mid.y = hgt;
+        const curve = new THREE.QuadraticBezierCurve3(a.clone().setY(TILE_H + 6), mid, b.clone().setY(TILE_H + 6));
+        const geo = new THREE.TubeGeometry(curve, 160, r, 10, false);
+        const m = new THREE.Mesh(geo, arcMat);
+        m.visible = false;
+        scene.add(m);
+        const dot = new THREE.Mesh(new THREE.SphereGeometry(r * 2.6, 20, 14), new THREE.MeshBasicMaterial({ color: COL.gold }));
+        dot.visible = false;
+        scene.add(dot);
+        arcs.push({ m, dot, curve, t0, d, n: geo.index.count });
+      }
+      arc(new THREE.Vector3(0, TILE_H, 0), GENEVA, 1500, T.cit - 0.2, 1.6, 9);
+      arc(new THREE.Vector3(0, TILE_H, 0), LOME, 520, T.cons - 0.2, 1.1, 7);
+
+      // ------------------------------------------------------------------ le campus (sur la dalle de Libreville)
+      // (r, u) : r vers la droite de l'écran, u vers le haut de l'écran, au sol (azimut 45°)
+      const RU = (r, u, y = 0) => new THREE.Vector3(0.70711 * (r - u), y, -0.70711 * (r + u));
+      const city = new THREE.Group();
+      city.position.y = TILE_H;
+      scene.add(city);
+      const W = (p, x, y, z) => new THREE.Vector3(p.x + x, TILE_H + y, p.z + z);
+      const P_HQ = new THREE.Vector3(0, 0, 0),
+        P_CA = RU(-9.5, 0.6),
+        P_AG = RU(-6.2, 7.2),
+        P_BE = RU(0.2, 9.4),
+        P_CO = RU(6.6, 7.0),
+        P_CF = RU(9.4, 0.2),
+        P_PA = RU(1.4, -8.8),
+        P_TR = RU(-7.2, -7.6);
+      const flat = (parent, w, d, x, z, m, y = 0, h = 0.02) => {
+        const b = box(parent, w, h, d, x, y, z, m);
+        b.castShadow = false;
+        return b;
+      };
+      // allées, place du siège, pelouses
+      {
+        const gr = riser(new THREE.Group(), T.pull2 + 0.2, 0.6);
+        city.add(gr);
+        flat(gr, 7.2, 7.2, 0, 0, M.walk, 0, 0.025);
+        const lane = (p, w) => {
+          const L = Math.hypot(p.x, p.z);
+          const m = flat(gr, w, L, p.x / 2, p.z / 2, M.road);
+          m.rotation.y = Math.atan2(p.x, p.z);
+        };
+        [P_CA, P_AG, P_BE, P_CO, P_CF, P_PA, P_TR].forEach((p) => lane(p, 1.0));
+        for (const p of [RU(-4.5, 4.2), RU(4.5, 4.2), RU(4.6, -4.4), RU(-4.6, -4.2)]) {
+          const lw = flat(gr, 2.6, 2.6, p.x, p.z, M.lawn, 0, 0.03);
+          lw.rotation.y = Math.PI / 4;
+        }
+      }
+      function tree(parent, x, z, r, t0) {
+        const tr = riser(new THREE.Group(), t0, 0.7);
+        tr.position.set(x, 0, z);
+        parent.add(tr);
+        cyl(tr, 0.045, r + 0.14, 0, 0, 0, M.wood, 10);
+        sphere(tr, r, 0, r + 0.34, 0, M.leaf);
+        return tr;
+      }
+      [RU(-4.5, 4.2), RU(4.5, 4.2), RU(4.6, -4.4), RU(-4.6, -4.2), RU(-11.5, 3.5), RU(11.2, 3.6), RU(-3.6, -11), RU(4.6, 11.6)].forEach((p, k) =>
+        tree(city, p.x, p.z, 0.32 + (k % 3) * 0.04, T.pull2 + 0.5 + k * 0.05),
+      );
+
+      // ================================================================== L01 : la caisse de sécurité sociale
+      const gCA = new THREE.Group();
+      gCA.position.copy(P_CA);
+      city.add(gCA);
+      const WCA = (x, y, z) => W(P_CA, x, y, z);
+      {
+        flat(gCA, 6.4, 4.6, 0, 0, M.walk, 0, 0.025);
+        box(gCA, 4.6, 1.5, 1.7, 0, 0, -1.25, M.white, true);
+        box(gCA, 4.7, 0.08, 1.8, 0, 1.5, -1.25, M.roof);
+        box(gCA, 4.62, 0.3, 1.72, 0, 0.92, -1.25, M.glass);
+        // trois guichets dehors, devant la façade
+        for (let k = 0; k < 3; k++) {
+          const x = -1.45 + k * 1.45;
+          box(gCA, 0.9, 0.42, 0.34, x, 0, 0.05, M.white, true);
+          box(gCA, 0.92, 0.04, 0.38, x, 0.42, 0.05, M.navy);
+          figure(gCA, x, -0.32, { m: M.figNavy, t0: 0.05 + k * 0.08, s: 1.15 });
+          figure(gCA, x + 0.06, 0.62, { f: k !== 1, m: figMat(k + 1), t0: 0.35 + k * 0.12, s: 1.2, bob: 0.012, w: 2.2, ph: k });
+        }
+        // enseigne : bandeau bleu
+        box(gCA, 2.2, 0.32, 0.06, 0, 1.12, -0.38, M.navy);
+      }
+      const caSign = [
+        signPost(gCA, -1.45, 0.9, 1.25, signTex(ICON.coins, GOLD), 0.62, T.pens - 0.1),
+        signPost(gCA, 0, 0.9, 1.25, signTex(ICON.cross, GREEN), 0.62, T.soins - 0.1),
+        signPost(gCA, 1.45, 0.9, 1.25, signTex(ICON.family, RED), 0.62, T.fam - 0.1),
+      ];
+      // famille qui arrive au guichet
+      figure(gCA, 1.95, 1.6, { m: M.figRed, f: true, t0: T.fam - 0.05, walk: [3.0, 2.4, 1.95, 1.4, T.fam - 0.1, T.fam + 0.9] });
+      figure(gCA, 2.25, 1.7, { m: M.figGold, s: 0.8, t0: T.fam + 0.05, walk: [3.3, 2.5, 2.25, 1.5, T.fam - 0.05, T.fam + 0.95] });
+
+      // ================================================================== L02 : le siège de la FESTAC
+      const gHQ = new THREE.Group();
+      city.add(gHQ);
+      const WHQ = (x, y, z) => W(P_HQ, x, y, z);
+      let logoPlane;
+      {
+        const b = riser(new THREE.Group(), T.pull2 + 0.35, 0.8);
+        gHQ.add(b);
+        box(b, 3.8, 1.0, 2.6, 0, 0, -0.4, M.white, true);
+        box(b, 3.3, 0.9, 2.2, -0.15, 1.0, -0.55, M.white, true);
+        box(b, 3.84, 0.22, 2.64, 0, 0.62, -0.4, M.glass);
+        box(b, 3.34, 0.24, 2.24, -0.15, 1.48, -0.55, M.glass);
+        box(b, 3.42, 0.07, 2.3, -0.15, 1.9, -0.55, M.roof);
+        box(b, 0.9, 0.55, 0.08, 0.9, 0, 0.92, M.glass);
+        // enseigne au logo sur la façade avant (+z)
+        logoPlane = plane(b, 2.4, 1.2, null, -0.55, 1.45, 0.6, {});
+        logoPlane.position.z = 0.67;
+        // trois mâts et leurs drapeaux
+        [M.navy, M.red, M.gold].forEach((m, k) => {
+          const x = 2.4 + k * 0.42;
+          cyl(b, 0.025, 1.7, x, 0, 1.5, M.metal, 8);
+          box(b, 0.36, 0.22, 0.02, x + 0.19, 1.42, 1.5, m);
+        });
+      }
+      const hqSignPop = { s: 0 };
+      // les travailleurs rejoignent le siège
+      const walkers = [];
+      for (let k = 0; k < 9; k++) {
+        const a = RU(-6.4 + (k % 3) * 0.35, 0.2 + Math.floor(k / 3) * 0.35);
+        const b = RU(-2.0 + (k % 3) * 0.32, -2.2 + Math.floor(k / 3) * 0.32);
+        walkers.push(figure(city, a.x, a.z, { m: figMat(k), f: k % 2 === 0, t0: T.walk + k * 0.06, walk: [a.x, a.z, b.x, b.z, T.walk + 0.2 + k * 0.08, T.walk + 3.2 + k * 0.08] }));
+      }
+
+      // ================================================================== L05 : la mission (pictogrammes au-dessus du siège)
+      const missionDef = signPost(gHQ, -1.0, 1.9, 2.5, signTex(ICON.shield, NAVY), 1.0, T.def - 0.1, T.to6 + 0.2);
+      const missionPS = signPost(gHQ, 1.4, 1.6, 2.5, signTex(ICON.umbrella, RED), 1.0, T.prom - 0.05, T.to6 + 0.2);
+
+      // ================================================================== L06 : la gouvernance
+      // Assemblée générale : hémicycle et ses délégués
+      const gAG = new THREE.Group();
+      gAG.position.copy(P_AG);
+      city.add(gAG);
+      {
+        const base = riser(new THREE.Group(), T.pull2 + 0.6, 0.7);
+        gAG.add(base);
+        flat(base, 5.0, 4.4, 0, 0, M.walk, 0, 0.03);
+        // estrade et pupitre (vers le bas-droite de l'écran)
+        const st = RU(1.4, -1.0);
+        box(base, 1.1, 0.12, 0.8, st.x, 0, st.z, M.white, true);
+        box(base, 0.26, 0.5, 0.2, st.x, 0.12, st.z, M.navy, true);
+        // gradins : trois arcs de bancs face à l'estrade
+        let n = 0;
+        for (let ring = 0; ring < 3; ring++) {
+          const R = 1.25 + ring * 0.55;
+          for (let k = 0; k < 7 + ring * 2; k++) {
+            const a = (-0.55 + (1.1 * k) / (6 + ring * 2)) * Math.PI + Math.PI * 0.75;
+            const x = st.x + Math.cos(a) * R,
+              z = st.z + Math.sin(a) * R;
+            box(base, 0.3, 0.1 + ring * 0.06, 0.3, x, 0, z, M.roof);
+            figure(gAG, x, z, { y: 0.1 + ring * 0.06, m: figMat(n), f: n % 3 === 1, s: 0.9, t0: T.ag - 0.15 + n * 0.025 });
+            n++;
+          }
+        }
+        figure(gAG, st.x + 0.05, st.z + 0.18, { y: 0.12, m: M.figNavy, t0: T.ag - 0.2, s: 1.0 });
+      }
+      // Bureau exécutif : pavillon ouvert, longue table, neuf membres
+      const gBE = new THREE.Group();
+      gBE.position.copy(P_BE);
+      city.add(gBE);
+      {
+        const base = riser(new THREE.Group(), T.pull2 + 0.7, 0.7);
+        gBE.add(base);
+        flat(base, 3.6, 2.8, 0, 0, M.walk, 0, 0.03);
+        box(base, 3.2, 0.06, 2.4, 0, 1.25, 0, M.roof);
+        for (const [x, z] of [
+          [-1.5, -1.1],
+          [1.5, -1.1],
+          [-1.5, 1.1],
+          [1.5, 1.1],
+        ])
+          cyl(base, 0.05, 1.25, x, 0, z, M.white, 10);
+        box(base, 2.2, 0.36, 0.7, 0, 0, 0, M.wood, true);
+        let n = 0;
+        for (const z of [-0.55, 0.55])
+          for (let k = 0; k < 4; k++) {
+            figure(gBE, -0.8 + k * 0.54, z, { m: n % 2 ? M.figNavy : M.figGold, f: k % 2 === 0, s: 1.0, t0: T.bur - 0.1 + n * 0.05 });
+            n++;
+          }
+        figure(gBE, 1.32, 0, { m: M.figRed, s: 1.05, t0: T.bur + 0.3 });
+      }
+      // commissions techniques : trois petits pavillons
+      const gCO = new THREE.Group();
+      gCO.position.copy(P_CO);
+      city.add(gCO);
+      const coSigns = [];
+      {
+        const base = riser(new THREE.Group(), T.pull2 + 0.8, 0.7);
+        gCO.add(base);
+        flat(base, 5.2, 2.6, 0, 0, M.walk, 0, 0.03);
+        [ICON.book, ICON.talk, ICON.umbrella].forEach((ic, k) => {
+          const x = -1.7 + k * 1.7;
+          cyl(base, 0.42, 0.3, x, 0, 0.1, M.white, 28);
+          for (let j = 0; j < 3; j++) {
+            const a = (j / 3) * Math.PI * 2 + 0.4;
+            figure(gCO, x + Math.cos(a) * 0.62, 0.1 + Math.sin(a) * 0.62, { m: figMat(k + j), f: j === 1, s: 0.95, t0: T.com - 0.05 + k * 0.12 + j * 0.04 });
+          }
+          coSigns.push(signPost(gCO, x, -0.75, 0.95, signTex(ic, [NAVY, GOLD, RED][k]), 0.55, T.com + k * 0.15));
+        });
+      }
+
+      // ================================================================== L07 : le centre de formation (CNRF-DPDS)
+      const gCF = new THREE.Group();
+      gCF.position.copy(P_CF);
+      city.add(gCF);
+      let boardPlane;
+      {
+        const base = riser(new THREE.Group(), T.pull2 + 0.9, 0.7);
+        gCF.add(base);
+        flat(base, 4.6, 4.0, 0, 0, M.walk, 0, 0.03);
+        // murs bas (salle sans toit, vue de dessus)
+        box(base, 4.2, 0.5, 0.12, 0, 0, -1.85, M.white);
+        box(base, 0.12, 0.5, 3.7, -2.05, 0, 0, M.white);
+        // tableau sur le mur du fond (face +z)
+        box(base, 2.4, 1.2, 0.06, 0, 0.35, -1.76, M.dark);
+        boardPlane = plane(base, 2.25, 1.05, null, 0, 0.95, -1.72, {});
+        // pupitres et délégués
+        let n = 0;
+        for (let row = 0; row < 3; row++)
+          for (let k = 0; k < 3; k++) {
+            const x = -1.1 + k * 1.1,
+              z = -0.6 + row * 0.85;
+            box(base, 0.62, 0.26, 0.3, x, 0, z, M.wood, true);
+            figure(gCF, x, z + 0.3, { m: figMat(n), f: n % 2 === 1, s: 0.95, t0: T.deleg - 0.1 + n * 0.05 });
+            n++;
+          }
+        figure(gCF, 1.55, -1.3, { m: M.figNavy, s: 1.1, t0: T.centre - 0.1 });
+      }
+
+      // ================================================================== L09 : les partenaires
+      const gPA = new THREE.Group();
+      gPA.position.copy(P_PA);
+      city.add(gPA);
+      const partnerSigns = [];
+      {
+        const base = riser(new THREE.Group(), T.pull2 + 1.0, 0.7);
+        gPA.add(base);
+        flat(base, 6.0, 6.0, 0, 0, M.walk, 0, 0.03);
+        // table ronde au centre
+        cyl(base, 0.95, 0.34, 0, 0, 0, M.white, 40);
+        cyl(base, 0.96, 0.03, 0, 0.34, 0, M.wood, 40);
+        for (let j = 0; j < 8; j++) {
+          const a = (j / 8) * Math.PI * 2;
+          figure(gPA, Math.cos(a) * 1.3, Math.sin(a) * 1.3, { m: figMat(j), f: j % 2 === 0, s: 1.0, t0: T.renc - 0.2 + j * 0.05 });
+        }
+      }
+      // quatre maisons des partenaires, aux coins de la place
+      const PA_POS = [RU(-2.1, 1.9), RU(2.1, 1.9), RU(-2.1, -1.9), RU(2.1, -1.9)];
+      PA_POS.forEach((p, k) => {
+        const g = riser(new THREE.Group(), T.p[k] - 0.3, 0.75);
+        g.position.copy(p);
+        gPA.add(g);
+        box(g, 1.25, 0.85, 1.25, 0, 0, 0, M.white, true);
+        box(g, 1.3, 0.06, 1.3, 0, 0.85, 0, M.roof);
+        box(g, 1.27, 0.16, 1.27, 0, 0.55, 0, M.glass);
+      });
+
+      // ================================================================== L10 : la Tribune des Droits Sociaux
+      const gTR = new THREE.Group();
+      gTR.position.copy(P_TR);
+      city.add(gTR);
+      let medalPlane;
+      const waves = [];
+      {
+        const base = riser(new THREE.Group(), T.pull2 + 1.1, 0.7);
+        gTR.add(base);
+        flat(base, 4.2, 3.6, 0, 0, M.walk, 0, 0.03);
+        box(base, 2.0, 0.9, 1.4, -0.6, 0, -0.4, M.white, true);
+        box(base, 2.04, 0.2, 1.44, -0.6, 0.5, -0.4, M.glass);
+        box(base, 2.08, 0.06, 1.48, -0.6, 0.9, -0.4, M.roof);
+        // pylône d'antenne
+        cyl(base, 0.05, 2.6, 0.9, 0, -0.6, M.metal, 10, 0.09);
+        sphere(base, 0.12, 0.9, 2.62, -0.6, M.red);
+      }
+      // médaillon, face caméra
+      {
+        const g = new THREE.Group();
+        g.position.set(0.3, 0, 0.8);
+        gTR.add(g);
+        cyl(g, 0.03, 0.9, 0, 0, 0, M.metal, 8);
+        medalPlane = plane(g, 1.3, 1.3, null, 0, 1.55, 0, {});
+        boards.push(medalPlane);
+        pop(g, T.trib - 0.15, 1, 0.6);
+      }
+      for (let k = 0; k < 3; k++) {
+        const m = new THREE.Mesh(new THREE.TorusGeometry(1, 0.035, 8, 64), new THREE.MeshBasicMaterial({ color: COL.gold, transparent: true, opacity: 0 }));
+        m.position.copy(W(P_TR, 0.9, 2.62, -0.6));
+        scene.add(m);
+        waves.push(m);
+      }
+
+      // ================================================================== L11 : les quatre valeurs (piliers autour du siège)
+      const VAL_POS = [RU(-3.6, 2.9), RU(3.6, 2.9), RU(3.6, -3.0), RU(-3.6, -3.0)];
+      const VAL_M = [M.navy, M.red, M.gold, M.green];
+      const valTops = VAL_POS.map((p, k) => {
+        const g = riser(new THREE.Group(), T.v[k] - 0.2, 0.8);
+        g.position.copy(p);
+        city.add(g);
+        cyl(g, 0.3, 1.9, 0, 0, 0, M.white, 32);
+        cyl(g, 0.38, 0.12, 0, 1.9, 0, VAL_M[k], 32);
+        cyl(g, 0.38, 0.12, 0, 0, 0, M.roof, 32);
+        return W(p, 0, 2.1, 0);
+      });
+
+      // ------------------------------------------------------------------ caméra
+      const camera = new THREE.OrthographicCamera(-16, 16, 9, -9, 1, 2400);
+      const ISO = 35.264;
+      // Décalage écran : déplace la cible pour que le sujet tombe à (fx, fy) du cadre (0 = centre, ±1 = bords).
+      function framed(p, V, fx, fy, el = ISO, az = 45) {
+        const A = 16 / 9;
+        const right = new THREE.Vector3(Math.cos(az * DEG), 0, -Math.sin(az * DEG));
+        const upG = new THREE.Vector3(-Math.sin(az * DEG), 0, -Math.cos(az * DEG));
+        const dx = -fx * V * A;
+        const dy = (-fy * V) / Math.max(0.2, Math.sin(el * DEG));
+        return { x: p.x + right.x * dx + upG.x * dy, y: p.y || 0, z: p.z + right.z * dx + upG.z * dy, V, el, az };
+      }
+      const moves = [];
+      const mv = (t0, dur, to, mode = "lin", ease = inOut) => moves.push({ t0, dur, to, mode, ease });
+      // Mouvements enchaînés : un mouvement qui commence avant la fin du précédent repart de l'état interrompu.
+      function camAt(t) {
+        let s = { ...CAM0 };
+        for (let i = 0; i < moves.length; i++) {
+          const m = moves[i];
+          if (t <= m.t0) break;
+          const next = moves[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const u = prog(cut, m.t0, m.dur);
+          const to = { ...s, ...m.to };
+          const e = m.ease(u);
+          const V = Math.exp(lerp(Math.log(s.V), Math.log(to.V), e));
+          let w = e;
+          if (m.mode === "pivot" && Math.abs(to.V - s.V) > 1e-6) w = (V - s.V) / (to.V - s.V);
+          s = u >= 1 ? to : { x: lerp(s.x, to.x, w), y: lerp(s.y, to.y, w), z: lerp(s.z, to.z, w), V, az: lerp(s.az, to.az, e), el: lerp(s.el, to.el, e) };
+          if (!(next && next.t0 < t)) break;
+        }
+        return s;
+      }
+      const CAM0 = framed(WCA(0.1, 0.5, 0.55), 3.4, 0.0, -0.06);
+      // L01 : lente poussée sur la caisse
+      mv(0, T.pull2, framed(WCA(0.1, 0.5, 0.6), 3.05, 0.0, -0.08), "lin", inOutQ);
+      // L02 : recul : le campus et le siège
+      mv(T.pull2, 2.6, framed(W(P_HQ, -1.2, 0.6, 0.6), 7.2, -0.12, -0.05), "pivot", inOut);
+      mv(T.festac - 0.2, 2.2, framed(W(P_HQ, -0.3, 0.8, 0.4), 5.6, 0.0, -0.18), "lin", inOutQ);
+      // L03 : grand recul sur la carte
+      const MAPV = 1330;
+      mv(T.out3, 3.0, framed(MAPC, MAPV, 0.12, 0.0, 58, 0), "pivot", inOut);
+      // L04 : lente poussée sur la carte
+      mv(S("L04") - 0.2, E("L04") - S("L04") + 0.4, framed(MAPC, MAPV * 0.94, 0.1, 0.02, 60, 0), "lin", inOutQ);
+      // L05 : retour au siège
+      mv(T.in5, 2.8, framed(W(P_HQ, 0.1, 1.3, 0.4), 4.9, 0.0, -0.1), "pivot", inOut);
+      // L06 : la gouvernance (en haut du campus)
+      mv(T.to6, 1.9, framed(RU(0.2, 7.6, TILE_H), 7.0, 0.0, 0.05), "lin", inOut);
+      // L07 : le centre de formation (à droite), le texte à gauche
+      mv(T.to7, 1.9, framed(W(P_CF, 0, 0.5, 0), 3.8, 0.18, -0.02), "lin", inOut);
+      // L08 : la carte, jusqu'à Genève
+      const GENC = new THREE.Vector3((XMIN + XMAX) / 2, TILE_H, (GENEVA.z + ZMAX) / 2);
+      mv(T.out8, 2.9, framed(GENC, 2380, 0.05, 0.0, 58, 0), "pivot", inOut);
+      // L09 : la place des partenaires
+      mv(T.to9, 2.8, framed(W(P_PA, 0, 0.5, 0), 4.6, 0.0, -0.06), "pivot", inOut);
+      // L10 : la Tribune
+      mv(T.to10, 1.8, framed(W(P_TR, 0.2, 0.9, 0.1), 3.6, -0.05, -0.04), "lin", inOut);
+      // L11 : les valeurs autour du siège, puis recul
+      mv(T.to11, 1.9, framed(W(P_HQ, 0, 0.9, 0), 7.4, 0.0, -0.04), "lin", inOut);
+      mv(T.voix - 0.2, T.end - T.voix + 1.0, framed(W(P_HQ, 0, 0.6, 0), 15.5, 0.0, 0.02), "pivot", inOutQ);
+
+      // ------------------------------------------------------------------ étiquettes
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (p) => {
+        v3.copy(p).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080];
+      };
+      // ancre monde → point écran ; étiquette posée à (dx, dy) ; filet de rappel
+      function label(name, anchor, dx, dy, a, align = "left") {
+        const el = $("wl-" + name);
+        const ld = $("wk-" + name);
+        const dt = $("wd-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          if (ld) ld.setAttribute("points", "");
+          if (dt) dt.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        const lx = ax + dx,
+          ly = ay + dy;
+        const left = align === "left" ? lx + 12 : align === "right" ? lx - w - 12 : lx - w / 2;
+        const top = ly - h / 2;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(left)}px, ${Math.round(top + (1 - a) * 8)}px)`;
+        if (ld) {
+          const k = Math.min(1, a * 1.4);
+          const mx = ax + (lx - ax) * k,
+            my = ay + (ly - ay) * k;
+          ld.setAttribute("points", `${ax.toFixed(1)},${ay.toFixed(1)} ${mx.toFixed(1)},${my.toFixed(1)}`);
+          ld.style.strokeOpacity = (0.55 * a).toFixed(3);
+        }
+        if (dt) {
+          dt.setAttribute("cx", ax.toFixed(1));
+          dt.setAttribute("cy", ay.toFixed(1));
+          dt.style.opacity = (0.8 * a).toFixed(3);
+        }
+      }
+      function labelAbove(name, anchor, gap, a) {
+        const el = $("wl-" + name);
+        if (a <= 0.001) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [ax, ay] = toScreen(anchor);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(ax - w / 2)}px, ${Math.round(ay - gap - h + (1 - a) * 8)}px)`;
+      }
+      function fixedLabel(name, x, y, a) {
+        const el = $("wl-" + name);
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(x)}px, ${Math.round(y + (1 - a) * 8)}px)`;
+      }
+
+      // ------------------------------------------------------------------ état des objets à t
+      const mtx = new THREE.Matrix4();
+      const q = new THREE.Quaternion();
+      const scv = new THREE.Vector3();
+      const pos = new THREE.Vector3();
+      const cTmp = new THREE.Color();
+      const camFwd = new THREE.Vector3();
+
+      function render(t) {
+        // --- caméra
+        const s = camAt(t);
+        const top = clamp01((s.el - 50) / 40);
+        const drift = (1 - top) * 0.9 * Math.sin(t * 0.11);
+        const az = (s.az + drift) * DEG,
+          el = s.el * DEG,
+          D = 600 + s.V * 4;
+        camera.position.set(s.x + Math.sin(az) * Math.cos(el) * D, s.y + Math.sin(el) * D, s.z + Math.cos(az) * Math.cos(el) * D);
+        camera.rotation.set(-el, az, 0, "YXZ");
+        const A = 16 / 9;
+        camera.left = -s.V * A;
+        camera.right = s.V * A;
+        camera.top = s.V;
+        camera.bottom = -s.V;
+        camera.near = 1;
+        camera.far = D * 2 + 6000;
+        camera.updateProjectionMatrix();
+        camera.updateMatrixWorld();
+        camera.getWorldDirection(camFwd);
+        // ombre recadrée sur la vue
+        const tgt = new THREE.Vector3(s.x, 0, s.z);
+        sun.target.position.copy(tgt);
+        sun.position.copy(tgt).addScaledVector(SUN_DIR, 700 + s.V * 3);
+        const ext = Math.max(4, s.V * 2.3);
+        const shc = sun.shadow.camera;
+        shc.left = -ext;
+        shc.right = ext;
+        shc.top = ext;
+        shc.bottom = -ext;
+        shc.near = 1;
+        shc.far = 1600 + s.V * 8;
+        shc.updateProjectionMatrix();
+        sun.shadow.normalBias = 0.0016 * s.V + 0.002;
+
+        // --- levées, apparitions
+        for (const r of risers) {
+          const k = spring(prog(t, r.t0, r.d));
+          r.g.scale.y = Math.max(tiny, k);
+          r.g.visible = k > 0.003;
+        }
+        for (const p of pops) {
+          let k = spring(prog(t, p.t0, p.d));
+          if (p.out !== null) k *= 1 - inOut(prog(t, p.out, 0.45));
+          p.g.scale.setScalar(Math.max(tiny, k * p.s));
+          p.g.visible = k > 0.003;
+        }
+        for (const f of figs) {
+          let k = spring(prog(t, f.t0, f.d));
+          if (f.out) k *= 1 - inOut(prog(t, f.out, 0.45));
+          f.g.visible = k > 0.003;
+          f.g.scale.setScalar(Math.max(tiny, f.s * k));
+          let y = f.y0;
+          if (f.bob) y += f.bob * Math.max(0, Math.sin(t * f.w + f.ph));
+          if (f.walk) {
+            const [ax, az2, bx, bz, t1, t2] = f.walk;
+            const u = inOutQ(prog(t, t1, t2 - t1));
+            f.g.position.x = lerp(ax, bx, u);
+            f.g.position.z = lerp(az2, bz, u);
+            if (u > 0 && u < 1) y += 0.022 * Math.abs(Math.sin(t * 11));
+          }
+          f.g.position.y = y;
+        }
+        for (const b of boards) b.quaternion.copy(camera.quaternion);
+        // enseigne du siège : se dévoile sur « FESTAC »
+        if (logoPlane) {
+          const k = spring(prog(t, T.festac - 0.15, 0.6));
+          logoPlane.scale.setScalar(Math.max(tiny, k));
+          logoPlane.visible = k > 0.003;
+        }
+
+        // --- carte : dalles qui se lèvent, puis les dix pays membres
+        {
+          const mapOn = t > T.tiles - 0.1;
+          // relief : les dalles s'épaississent pendant les plans de carte, se reposent quand on revient au campus
+          const lift = Math.max(win(t, T.tiles + 0.3, 1.2, T.in5 + 0.3, 1.0), win(t, T.out8 + 0.3, 1.2, T.to9 + 0.3, 1.0));
+          for (const p of tiles) {
+            let r = p.i === lbvI ? 1 : mapOn ? spring(prog(t, T.tiles + (p.d / MAXD) * 1.4, 0.7)) : 0;
+            let hgt = p.i === lbvI ? 1 : r * (1 + 5 * lift);
+            let c = p.i === lbvI ? cLbv : cBase;
+            if (p.mem >= 0 && p.i !== lbvI) {
+              const km = spring(prog(t, memT[p.mem], 0.7));
+              hgt = r * (1 + 5 * lift) * (1 + 1.1 * km * lift + 0.4 * km);
+              cTmp.copy(cBase).lerp(cMem[p.mem], out3(prog(t, memT[p.mem], 0.6)));
+              c = cTmp;
+            }
+            const rw = r > 0.01 ? 1 : tiny;
+            tileH[p.i] = hgt;
+            mtx.compose(pos.set(p.x, 0, p.z), q.identity(), scv.set(rw, Math.max(tiny, hgt), rw));
+            tileInst.setMatrixAt(p.i, mtx);
+            tileInst.setColorAt(p.i, c);
+          }
+          tileInst.instanceMatrix.needsUpdate = true;
+          tileInst.instanceColor.needsUpdate = true;
+        }
+        // épingles
+        for (const P of pins) {
+          let g = spring(prog(t, P.t0, 0.6));
+          if (P.out) g *= 1 - inOut(prog(t, P.out, 0.5));
+          P.g.scale.setScalar(Math.max(tiny, P.s * g));
+          P.g.position.y = P.tile >= 0 ? TILE_H * tileH[P.tile] : TILE_H;
+          P.g.visible = g > 0.003;
+          P.dot.position.set(0, 24, 0).addScaledVector(camFwd, -6.8);
+          P.dot.quaternion.copy(camera.quaternion);
+        }
+        // arcs vers Genève et Lomé
+        for (const a of arcs) {
+          const u = inOut(prog(t, a.t0, a.d));
+          const fade = 1 - inOut(prog(t, T.to9 + 0.1, 0.5));
+          const n = Math.floor((a.n * u) / 3) * 3;
+          a.m.geometry.setDrawRange(0, n);
+          a.m.visible = n > 0 && fade > 0.01;
+          a.dot.visible = u > 0.01 && u < 0.999;
+          if (a.dot.visible) a.dot.position.copy(a.curve.getPoint(u));
+        }
+        arcMat.opacity = 0.9 * (1 - inOut(prog(t, T.to9 + 0.1, 0.5)));
+        // ondes de la Tribune
+        waves.forEach((m, k) => {
+          const u = ((t - T.media + k * 0.55) % 1.65) / 1.65;
+          const on = t > T.trib && t < T.to11 + 0.3;
+          m.visible = on;
+          if (on) {
+            const R = 0.25 + u * 1.6;
+            m.scale.set(R, R, R);
+            m.quaternion.copy(camera.quaternion);
+            m.material.opacity = 0.75 * (1 - u) * (1 - inOut(prog(t, T.to11, 0.4)));
+          }
+        });
+
+        // --- étiquettes
+        // L01 : pensions, soins, familles
+        const l1out = T.pull2 + 0.2;
+        label("pen", WCA(-1.45, 2.2, 0.9), -60, -110, win(t, T.pens, 0.4, l1out, 0.35), "right");
+        label("soi", WCA(0, 2.2, 0.9), 0, -150, win(t, T.soins, 0.4, l1out, 0.35), "center");
+        label("fam", WCA(1.45, 2.2, 0.9), 60, -110, win(t, T.fam, 0.4, l1out, 0.35));
+        // L02 : le nom, au-dessus du siège
+        labelAbove("name", WHQ(-0.2, 2.4, -0.4), 70, win(t, T.fed - 0.1, 0.5, T.out3 + 0.1, 0.4));
+        // L03 : la CIPRES (en haut à gauche), Lomé
+        fixedLabel("cipres", 110, 120, win(t, T.cipres - 0.1, 0.5, T.siege - 0.6, 0.4));
+        $("wl-18").style.opacity = out3(prog(t, T.dixhuit - 0.1, 0.4)).toFixed(3);
+        label("lome", LOME.clone().setY(TILE_H * tileH[lomeI] + 28 * PIN_S * 0.85), -60, -60, win(t, T.coord + 0.1, 0.45, T.siege - 0.6, 0.4), "right");
+        // L04 : Libreville, les dix pays
+        label("lbv", new THREE.Vector3(0, TILE_H + 28 * PIN_S, 0), 160, 40, win(t, T.siege, 0.45, T.in5 + 0.1, 0.35));
+        fixedLabel("members", 110, 120, win(t, T.membres - 0.05, 0.5, T.in5 + 0.1, 0.35));
+        memCenter.forEach((p, k) => {
+          const off = { GAB: new THREE.Vector3(0, 0, 140), TGO: new THREE.Vector3(-120, 0, -30), BEN: new THREE.Vector3(120, 0, 0) }[MEMBERS[k]] || new THREE.Vector3();
+          labelAbove("c" + k, p.clone().add(off), 6, win(t, memT[k] + 0.25, 0.45, T.in5 + 0.1, 0.35));
+        });
+        // L05 : la mission
+        labelAbove("def", WHQ(-1.0, 4.1, 1.9), 8, win(t, T.def, 0.45, T.to6 + 0.1, 0.35));
+        labelAbove("ps", WHQ(1.4, 4.1, 1.6), 8, win(t, T.prom + 0.2, 0.45, T.to6 + 0.1, 0.35));
+        // L06 : la gouvernance
+        const l6out = T.to7 + 0.1;
+        label("ag", W(P_AG, -0.3, 0.8, 0.2), 0, -190, win(t, T.ag, 0.45, l6out, 0.35), "center");
+        label("be", W(P_BE, 0, 1.4, 0), 0, -150, win(t, T.bur, 0.45, l6out, 0.35), "center");
+        label("com", W(P_CO, 0, 1.6, -0.75), 0, -170, win(t, T.com, 0.45, l6out, 0.35), "center");
+        // L07 : le centre de formation et ses modules
+        const l7out = T.out8 + 0.1;
+        label("cf", W(P_CF, -1.6, 0.6, 1.4), -120, 60, win(t, T.centre - 0.05, 0.45, l7out, 0.35), "right");
+        ["m0", "m1", "m2"].forEach((n, k) => fixedLabel(n, 110, 330 + k * 86, win(t, T.m[k] - 0.05, 0.4, l7out, 0.35)));
+        // L08 : Genève et la CIPRES
+        label("gen", GENEVA.clone().setY(TILE_H + 28 * PIN_S * 1.15), 70, -30, win(t, T.gen - 0.05, 0.45, T.to9 + 0.1, 0.35));
+        label("cip", LOME.clone().setY(TILE_H * tileH[lomeI] + 28 * PIN_S * 0.85), -70, 40, win(t, T.cons + 0.1, 0.45, T.to9 + 0.1, 0.35), "right");
+        // L09 : les partenaires
+        const l9out = T.to10 + 0.1;
+        const paDir = [
+          [-80, -90, "right"],
+          [80, -90, "left"],
+          [-90, 60, "right"],
+          [90, 60, "left"],
+        ];
+        PA_POS.forEach((p, k) => label("p" + k, W(P_PA, p.x, 1.95, p.z), paDir[k][0], paDir[k][1], win(t, T.p[k] - 0.05, 0.4, l9out, 0.35), paDir[k][2]));
+        label("rt", W(P_PA, 0, 0.5, 0), 0, 230, win(t, T.renc - 0.05, 0.45, l9out, 0.35), "center");
+        // L10 : la Tribune
+        label("trib", W(P_TR, 0.3, 1.6, 0.8), -150, 30, win(t, T.trib, 0.45, T.to11 + 0.1, 0.35), "right");
+        // L11 : les valeurs, puis la devise
+        valTops.forEach((p, k) => labelAbove("v" + k, p, 18, win(t, T.v[k], 0.4, T.voix - 0.3, 0.35)));
+        fixedLabel("voix", 960 - $("wl-voix").offsetWidth / 2, 820, win(t, T.voix - 0.05, 0.5, T.end + 0.2, 0.4));
+
+        renderer.render(scene, camera);
+      }
+
+      // ------------------------------------------------------------------ chargement
+      const loadImg = (src) =>
+        new Promise((res, rej) => {
+          const im = new Image();
+          im.onload = () => res(im);
+          im.onerror = rej;
+          im.src = src;
+        });
+      (async function init() {
+        await Promise.all([document.fonts.load('700 36px "Montserrat"'), document.fonts.load('600 28px "Montserrat"'), document.fonts.load('800 64px "Montserrat"')]).catch(() => {});
+        const [logo, medal, l0, l1, l2, l3] = await Promise.all(
+          ["assets/img/festac-logo.png", "assets/img/tribune-medaillon.png", "assets/img/logo-cnss.png", "assets/img/logo-cnamgs.png", "assets/img/logo-cppf.png", "assets/img/logo-cnps.png"].map(loadImg),
+        );
+        // enseigne du siège : le logo sur fond blanc
+        logoPlane.material.map = canvasTex(880, 440, (g, w, h) => {
+          g.fillStyle = "#ffffff";
+          rr(g, 0, 0, w, h, 28);
+          g.fill();
+          g.drawImage(logo, 0, 0, logo.width, logo.height, 0, 0, w, h);
+        });
+        logoPlane.material.needsUpdate = true;
+        // médaillon de la Tribune (disque)
+        medalPlane.material.map = canvasTex(512, 512, (g, w, h) => {
+          g.clearRect(0, 0, w, h);
+          g.save();
+          g.beginPath();
+          g.arc(w / 2, h / 2, w / 2 - 2, 0, Math.PI * 2);
+          g.clip();
+          g.drawImage(medal, 0, 0, w, h);
+          g.restore();
+        });
+        medalPlane.material.needsUpdate = true;
+        // tableau du centre de formation
+        boardPlane.material.map = canvasTex(900, 420, (g, w, h) => {
+          g.fillStyle = "#24543a";
+          g.fillRect(0, 0, w, h);
+          g.fillStyle = "#ffffff";
+          g.font = '800 64px "Montserrat"';
+          g.fillText("CNRF-DPDS", 46, 100);
+          g.font = '600 40px "Montserrat"';
+          ["Droit du travail", "Négociation collective", "Santé et sécurité"].forEach((s, k) => g.fillText("— " + s, 52, 182 + k * 70));
+        });
+        boardPlane.material.needsUpdate = true;
+        // panneaux des partenaires, sur chaque maison
+        [l0, l1, l2, l3].forEach((im, k) => {
+          const tex = canvasTex(320, 320, (g, w, h) => {
+            g.fillStyle = "#ffffff";
+            rr(g, 0, 0, w, h, 36);
+            g.fill();
+            const sc = Math.min((w - 40) / im.width, (h - 40) / im.height);
+            g.drawImage(im, (w - im.width * sc) / 2, (h - im.height * sc) / 2, im.width * sc, im.height * sc);
+          });
+          const p = PA_POS[k];
+          partnerSigns.push(signPost(gPA, p.x, p.z, 0.9, tex, 0.95, T.p[k] - 0.05));
+        });
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>

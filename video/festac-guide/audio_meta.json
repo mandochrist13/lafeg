@@ -1,0 +1,1261 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.56,
+      "speech": [
+        0.121,
+        9.38
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Vous",
+          "start": 0.121,
+          "end": 0.3
+        },
+        {
+          "text": "êtes",
+          "start": 0.3,
+          "end": 0.657
+        },
+        {
+          "text": "délégué",
+          "start": 0.657,
+          "end": 1.193
+        },
+        {
+          "text": "du",
+          "start": 1.193,
+          "end": 1.372
+        },
+        {
+          "text": "personnel,",
+          "start": 1.372,
+          "end": 1.909
+        },
+        {
+          "text": "délégué",
+          "start": 2.114,
+          "end": 2.654
+        },
+        {
+          "text": "syndical",
+          "start": 2.654,
+          "end": 3.193
+        },
+        {
+          "text": "ou",
+          "start": 3.193,
+          "end": 3.373
+        },
+        {
+          "text": "responsable",
+          "start": 3.373,
+          "end": 3.913
+        },
+        {
+          "text": "d'un",
+          "start": 3.913,
+          "end": 4.093
+        },
+        {
+          "text": "syndicat",
+          "start": 4.093,
+          "end": 4.632
+        },
+        {
+          "text": "dans",
+          "start": 4.632,
+          "end": 4.812
+        },
+        {
+          "text": "une",
+          "start": 4.812,
+          "end": 4.992
+        },
+        {
+          "text": "institution",
+          "start": 4.992,
+          "end": 5.711
+        },
+        {
+          "text": "de",
+          "start": 5.711,
+          "end": 5.891
+        },
+        {
+          "text": "sécurité",
+          "start": 5.891,
+          "end": 6.61
+        },
+        {
+          "text": "sociale",
+          "start": 6.61,
+          "end": 6.97
+        },
+        {
+          "text": "?",
+          "start": 6.97,
+          "end": 7.15
+        },
+        {
+          "text": "Cette",
+          "start": 7.952,
+          "end": 8.19
+        },
+        {
+          "text": "vidéo",
+          "start": 8.19,
+          "end": 8.666
+        },
+        {
+          "text": "est",
+          "start": 8.666,
+          "end": 8.904
+        },
+        {
+          "text": "pour",
+          "start": 8.904,
+          "end": 9.142
+        },
+        {
+          "text": "vous.",
+          "start": 9.142,
+          "end": 9.38
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.796,
+      "speech": [
+        0.12,
+        7.613
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "La",
+          "start": 0.12,
+          "end": 0.288
+        },
+        {
+          "text": "FESTAC",
+          "start": 0.288,
+          "end": 1.296
+        },
+        {
+          "text": "fédère",
+          "start": 1.296,
+          "end": 1.633
+        },
+        {
+          "text": "les",
+          "start": 1.633,
+          "end": 1.801
+        },
+        {
+          "text": "syndicats",
+          "start": 1.801,
+          "end": 2.305
+        },
+        {
+          "text": "des",
+          "start": 2.305,
+          "end": 2.473
+        },
+        {
+          "text": "travailleurs",
+          "start": 2.473,
+          "end": 2.977
+        },
+        {
+          "text": "de",
+          "start": 2.977,
+          "end": 3.145
+        },
+        {
+          "text": "la",
+          "start": 3.145,
+          "end": 3.313
+        },
+        {
+          "text": "prévoyance",
+          "start": 3.313,
+          "end": 3.649
+        },
+        {
+          "text": "sociale,",
+          "start": 3.649,
+          "end": 3.985
+        },
+        {
+          "text": "dans",
+          "start": 4.123,
+          "end": 4.25
+        },
+        {
+          "text": "les",
+          "start": 4.25,
+          "end": 4.377
+        },
+        {
+          "text": "pays",
+          "start": 4.377,
+          "end": 4.503
+        },
+        {
+          "text": "affiliés",
+          "start": 4.503,
+          "end": 4.884
+        },
+        {
+          "text": "à",
+          "start": 4.884,
+          "end": 5.011
+        },
+        {
+          "text": "la",
+          "start": 5.011,
+          "end": 5.138
+        },
+        {
+          "text": "CIPRES.",
+          "start": 5.138,
+          "end": 5.9
+        },
+        {
+          "text": "Son",
+          "start": 6.374,
+          "end": 6.551
+        },
+        {
+          "text": "siège",
+          "start": 6.551,
+          "end": 6.728
+        },
+        {
+          "text": "est",
+          "start": 6.728,
+          "end": 6.905
+        },
+        {
+          "text": "à",
+          "start": 6.905,
+          "end": 7.082
+        },
+        {
+          "text": "Libreville.",
+          "start": 7.082,
+          "end": 7.613
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.275,
+      "speech": [
+        0.12,
+        8.093
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "En",
+          "start": 0.12,
+          "end": 0.316
+        },
+        {
+          "text": "la",
+          "start": 0.316,
+          "end": 0.512
+        },
+        {
+          "text": "rejoignant,",
+          "start": 0.512,
+          "end": 1.101
+        },
+        {
+          "text": "votre",
+          "start": 1.101,
+          "end": 1.297
+        },
+        {
+          "text": "syndicat",
+          "start": 1.297,
+          "end": 1.886
+        },
+        {
+          "text": "parle",
+          "start": 1.886,
+          "end": 2.082
+        },
+        {
+          "text": "d'une",
+          "start": 2.082,
+          "end": 2.279
+        },
+        {
+          "text": "voix",
+          "start": 2.279,
+          "end": 2.475
+        },
+        {
+          "text": "plus",
+          "start": 2.475,
+          "end": 2.671
+        },
+        {
+          "text": "forte",
+          "start": 2.671,
+          "end": 2.867
+        },
+        {
+          "text": ":",
+          "start": 2.867,
+          "end": 3.064
+        },
+        {
+          "text": "à",
+          "start": 3.258,
+          "end": 3.392
+        },
+        {
+          "text": "l'Assemblée",
+          "start": 3.392,
+          "end": 3.795
+        },
+        {
+          "text": "générale",
+          "start": 3.795,
+          "end": 4.198
+        },
+        {
+          "text": "de",
+          "start": 4.198,
+          "end": 4.332
+        },
+        {
+          "text": "la",
+          "start": 4.332,
+          "end": 4.466
+        },
+        {
+          "text": "fédération,",
+          "start": 4.466,
+          "end": 5.003
+        },
+        {
+          "text": "et",
+          "start": 5.13,
+          "end": 5.286
+        },
+        {
+          "text": "jusqu'aux",
+          "start": 5.286,
+          "end": 5.754
+        },
+        {
+          "text": "travaux",
+          "start": 5.754,
+          "end": 6.065
+        },
+        {
+          "text": "de",
+          "start": 6.065,
+          "end": 6.221
+        },
+        {
+          "text": "la",
+          "start": 6.221,
+          "end": 6.377
+        },
+        {
+          "text": "Conférence",
+          "start": 6.377,
+          "end": 6.845
+        },
+        {
+          "text": "internationale",
+          "start": 6.845,
+          "end": 7.625
+        },
+        {
+          "text": "du",
+          "start": 7.625,
+          "end": 7.781
+        },
+        {
+          "text": "Travail.",
+          "start": 7.781,
+          "end": 8.093
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.571,
+      "speech": [
+        0.12,
+        9.39
+      ],
+      "pauses": 5,
+      "anchored": 5,
+      "words": [
+        {
+          "text": "Vos",
+          "start": 0.12,
+          "end": 0.272
+        },
+        {
+          "text": "délégués",
+          "start": 0.272,
+          "end": 0.729
+        },
+        {
+          "text": "se",
+          "start": 0.729,
+          "end": 0.882
+        },
+        {
+          "text": "forment",
+          "start": 0.882,
+          "end": 1.186
+        },
+        {
+          "text": "dans",
+          "start": 1.186,
+          "end": 1.339
+        },
+        {
+          "text": "son",
+          "start": 1.339,
+          "end": 1.491
+        },
+        {
+          "text": "centre",
+          "start": 1.491,
+          "end": 1.643
+        },
+        {
+          "text": "de",
+          "start": 1.643,
+          "end": 1.796
+        },
+        {
+          "text": "formation",
+          "start": 1.796,
+          "end": 2.253
+        },
+        {
+          "text": ":",
+          "start": 2.253,
+          "end": 2.405
+        },
+        {
+          "text": "droit",
+          "start": 2.99,
+          "end": 3.228
+        },
+        {
+          "text": "du",
+          "start": 3.228,
+          "end": 3.467
+        },
+        {
+          "text": "travail,",
+          "start": 3.467,
+          "end": 3.944
+        },
+        {
+          "text": "négociation",
+          "start": 4.14,
+          "end": 4.912
+        },
+        {
+          "text": "collective,",
+          "start": 4.912,
+          "end": 5.492
+        },
+        {
+          "text": "hygiène,",
+          "start": 5.868,
+          "end": 6.37
+        },
+        {
+          "text": "santé",
+          "start": 6.534,
+          "end": 6.841
+        },
+        {
+          "text": "et",
+          "start": 6.841,
+          "end": 6.995
+        },
+        {
+          "text": "sécurité,",
+          "start": 6.995,
+          "end": 7.61
+        },
+        {
+          "text": "communication",
+          "start": 8.151,
+          "end": 8.925
+        },
+        {
+          "text": "syndicale.",
+          "start": 8.925,
+          "end": 9.39
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.274,
+      "speech": [
+        0.121,
+        4.094
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Vous",
+          "start": 0.121,
+          "end": 0.259
+        },
+        {
+          "text": "échangez",
+          "start": 0.259,
+          "end": 0.674
+        },
+        {
+          "text": "avec",
+          "start": 0.674,
+          "end": 0.95
+        },
+        {
+          "text": "les",
+          "start": 0.95,
+          "end": 1.088
+        },
+        {
+          "text": "syndicats",
+          "start": 1.088,
+          "end": 1.502
+        },
+        {
+          "text": "des",
+          "start": 1.502,
+          "end": 1.64
+        },
+        {
+          "text": "autres",
+          "start": 1.64,
+          "end": 1.916
+        },
+        {
+          "text": "pays",
+          "start": 1.916,
+          "end": 2.054
+        },
+        {
+          "text": "membres,",
+          "start": 2.054,
+          "end": 2.33
+        },
+        {
+          "text": "et",
+          "start": 2.642,
+          "end": 2.788
+        },
+        {
+          "text": "vous",
+          "start": 2.788,
+          "end": 2.933
+        },
+        {
+          "text": "partagez",
+          "start": 2.933,
+          "end": 3.368
+        },
+        {
+          "text": "vos",
+          "start": 3.368,
+          "end": 3.513
+        },
+        {
+          "text": "expériences.",
+          "start": 3.513,
+          "end": 4.094
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.539,
+      "speech": [
+        0.121,
+        9.358
+      ],
+      "pauses": 5,
+      "anchored": 5,
+      "words": [
+        {
+          "text": "Ensemble,",
+          "start": 0.121,
+          "end": 0.699
+        },
+        {
+          "text": "vous",
+          "start": 0.912,
+          "end": 1.071
+        },
+        {
+          "text": "défendez",
+          "start": 1.071,
+          "end": 1.548
+        },
+        {
+          "text": "les",
+          "start": 1.548,
+          "end": 1.708
+        },
+        {
+          "text": "droits",
+          "start": 1.708,
+          "end": 1.867
+        },
+        {
+          "text": "des",
+          "start": 1.867,
+          "end": 2.026
+        },
+        {
+          "text": "travailleurs",
+          "start": 2.026,
+          "end": 2.504
+        },
+        {
+          "text": ":",
+          "start": 2.504,
+          "end": 2.663
+        },
+        {
+          "text": "le",
+          "start": 3.142,
+          "end": 3.312
+        },
+        {
+          "text": "droit",
+          "start": 3.312,
+          "end": 3.482
+        },
+        {
+          "text": "à",
+          "start": 3.482,
+          "end": 3.652
+        },
+        {
+          "text": "la",
+          "start": 3.652,
+          "end": 3.822
+        },
+        {
+          "text": "sécurité",
+          "start": 3.822,
+          "end": 4.503
+        },
+        {
+          "text": "sociale,",
+          "start": 4.503,
+          "end": 4.843
+        },
+        {
+          "text": "le",
+          "start": 5.091,
+          "end": 5.298
+        },
+        {
+          "text": "droit",
+          "start": 5.298,
+          "end": 5.505
+        },
+        {
+          "text": "syndical,",
+          "start": 5.505,
+          "end": 6.125
+        },
+        {
+          "text": "le",
+          "start": 6.377,
+          "end": 6.55
+        },
+        {
+          "text": "droit",
+          "start": 6.55,
+          "end": 6.722
+        },
+        {
+          "text": "à",
+          "start": 6.722,
+          "end": 6.895
+        },
+        {
+          "text": "la",
+          "start": 6.895,
+          "end": 7.068
+        },
+        {
+          "text": "formation,",
+          "start": 7.068,
+          "end": 7.586
+        },
+        {
+          "text": "et",
+          "start": 7.798,
+          "end": 7.954
+        },
+        {
+          "text": "des",
+          "start": 7.954,
+          "end": 8.11
+        },
+        {
+          "text": "conditions",
+          "start": 8.11,
+          "end": 8.578
+        },
+        {
+          "text": "de",
+          "start": 8.578,
+          "end": 8.734
+        },
+        {
+          "text": "travail",
+          "start": 8.734,
+          "end": 9.046
+        },
+        {
+          "text": "justes.",
+          "start": 9.046,
+          "end": 9.358
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.887,
+      "speech": [
+        0.12,
+        7.707
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Vous",
+          "start": 0.12,
+          "end": 0.246
+        },
+        {
+          "text": "restez",
+          "start": 0.246,
+          "end": 0.499
+        },
+        {
+          "text": "informés",
+          "start": 0.499,
+          "end": 0.877
+        },
+        {
+          "text": ":",
+          "start": 0.877,
+          "end": 1.004
+        },
+        {
+          "text": "publications,",
+          "start": 1.54,
+          "end": 2.224
+        },
+        {
+          "text": "rapports",
+          "start": 2.552,
+          "end": 2.901
+        },
+        {
+          "text": "des",
+          "start": 2.901,
+          "end": 3.076
+        },
+        {
+          "text": "sessions",
+          "start": 3.076,
+          "end": 3.425
+        },
+        {
+          "text": "internationales,",
+          "start": 3.425,
+          "end": 4.472
+        },
+        {
+          "text": "et",
+          "start": 4.472,
+          "end": 4.646
+        },
+        {
+          "text": "la",
+          "start": 4.646,
+          "end": 4.82
+        },
+        {
+          "text": "Tribune",
+          "start": 4.82,
+          "end": 5.169
+        },
+        {
+          "text": "des",
+          "start": 5.169,
+          "end": 5.344
+        },
+        {
+          "text": "Droits",
+          "start": 5.344,
+          "end": 5.518
+        },
+        {
+          "text": "Sociaux,",
+          "start": 5.518,
+          "end": 5.867
+        },
+        {
+          "text": "sur",
+          "start": 6.209,
+          "end": 6.423
+        },
+        {
+          "text": "WhatsApp",
+          "start": 6.423,
+          "end": 6.851
+        },
+        {
+          "text": "et",
+          "start": 6.851,
+          "end": 7.065
+        },
+        {
+          "text": "sur",
+          "start": 7.065,
+          "end": 7.279
+        },
+        {
+          "text": "YouTube.",
+          "start": 7.279,
+          "end": 7.707
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.674,
+      "speech": [
+        0.12,
+        5.492
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Pour",
+          "start": 0.12,
+          "end": 0.238
+        },
+        {
+          "text": "adhérer,",
+          "start": 0.238,
+          "end": 0.592
+        },
+        {
+          "text": "contactez",
+          "start": 0.715,
+          "end": 0.996
+        },
+        {
+          "text": "la",
+          "start": 0.996,
+          "end": 1.09
+        },
+        {
+          "text": "FESTAC",
+          "start": 1.09,
+          "end": 1.651
+        },
+        {
+          "text": ":",
+          "start": 1.651,
+          "end": 1.745
+        },
+        {
+          "text": "elle",
+          "start": 2.264,
+          "end": 2.404
+        },
+        {
+          "text": "vous",
+          "start": 2.404,
+          "end": 2.544
+        },
+        {
+          "text": "présente",
+          "start": 2.544,
+          "end": 2.825
+        },
+        {
+          "text": "les",
+          "start": 2.825,
+          "end": 2.965
+        },
+        {
+          "text": "conditions",
+          "start": 2.965,
+          "end": 3.387
+        },
+        {
+          "text": "d'adhésion",
+          "start": 3.387,
+          "end": 3.808
+        },
+        {
+          "text": "et",
+          "start": 3.808,
+          "end": 3.948
+        },
+        {
+          "text": "les",
+          "start": 3.948,
+          "end": 4.089
+        },
+        {
+          "text": "avantages",
+          "start": 4.089,
+          "end": 4.65
+        },
+        {
+          "text": "de",
+          "start": 4.65,
+          "end": 4.791
+        },
+        {
+          "text": "la",
+          "start": 4.791,
+          "end": 4.931
+        },
+        {
+          "text": "fédération.",
+          "start": 4.931,
+          "end": 5.492
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 14.295,
+      "speech": [
+        0.12,
+        14.115
+      ],
+      "pauses": 12,
+      "anchored": 9,
+      "words": [
+        {
+          "text": "Écrivez",
+          "start": 0.12,
+          "end": 0.787
+        },
+        {
+          "text": "à",
+          "start": 0.787,
+          "end": 1.009
+        },
+        {
+          "text": "contact",
+          "start": 1.009,
+          "end": 1.453
+        },
+        {
+          "text": "arobase",
+          "start": 1.453,
+          "end": 2.12
+        },
+        {
+          "text": "festac",
+          "start": 2.12,
+          "end": 2.564
+        },
+        {
+          "text": "point",
+          "start": 2.564,
+          "end": 2.786
+        },
+        {
+          "text": "org,",
+          "start": 2.786,
+          "end": 3.008
+        },
+        {
+          "text": "appelez",
+          "start": 3.325,
+          "end": 3.524
+        },
+        {
+          "text": "le",
+          "start": 3.524,
+          "end": 3.59
+        },
+        {
+          "text": "plus",
+          "start": 3.59,
+          "end": 3.656
+        },
+        {
+          "text": "deux",
+          "start": 3.656,
+          "end": 3.723
+        },
+        {
+          "text": "cent",
+          "start": 3.723,
+          "end": 3.789
+        },
+        {
+          "text": "quarante",
+          "start": 3.789,
+          "end": 3.922
+        },
+        {
+          "text": "et",
+          "start": 3.922,
+          "end": 3.988
+        },
+        {
+          "text": "un,",
+          "start": 3.988,
+          "end": 4.054
+        },
+        {
+          "text": "soixante-quatorze,",
+          "start": 4.192,
+          "end": 5.396
+        },
+        {
+          "text": "zéro",
+          "start": 5.653,
+          "end": 6.112
+        },
+        {
+          "text": "zéro,",
+          "start": 6.112,
+          "end": 6.572
+        },
+        {
+          "text": "trente-quatre,",
+          "start": 6.752,
+          "end": 7.417
+        },
+        {
+          "text": "quarante-trois,",
+          "start": 7.702,
+          "end": 8.941
+        },
+        {
+          "text": "ou",
+          "start": 9.199,
+          "end": 9.236
+        },
+        {
+          "text": "passez",
+          "start": 9.236,
+          "end": 9.309
+        },
+        {
+          "text": "au",
+          "start": 9.309,
+          "end": 9.345
+        },
+        {
+          "text": "siège,",
+          "start": 9.345,
+          "end": 9.382
+        },
+        {
+          "text": "à",
+          "start": 9.534,
+          "end": 9.739
+        },
+        {
+          "text": "Libreville,",
+          "start": 9.739,
+          "end": 10.355
+        },
+        {
+          "text": "du",
+          "start": 10.6,
+          "end": 10.894
+        },
+        {
+          "text": "lundi",
+          "start": 10.894,
+          "end": 11.483
+        },
+        {
+          "text": "au",
+          "start": 11.483,
+          "end": 11.777
+        },
+        {
+          "text": "vendredi,",
+          "start": 11.777,
+          "end": 12.659
+        },
+        {
+          "text": "de",
+          "start": 12.868,
+          "end": 13.007
+        },
+        {
+          "text": "huit",
+          "start": 13.007,
+          "end": 13.145
+        },
+        {
+          "text": "heures",
+          "start": 13.145,
+          "end": 13.422
+        },
+        {
+          "text": "à",
+          "start": 13.422,
+          "end": 13.561
+        },
+        {
+          "text": "dix-sept",
+          "start": 13.561,
+          "end": 13.838
+        },
+        {
+          "text": "heures.",
+          "start": 13.838,
+          "end": 14.115
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.234,
+      "speech": [
+        0.12,
+        5.043
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "La",
+          "start": 0.12,
+          "end": 0.339
+        },
+        {
+          "text": "FESTAC",
+          "start": 0.339,
+          "end": 1.654
+        },
+        {
+          "text": ":",
+          "start": 1.654,
+          "end": 1.873
+        },
+        {
+          "text": "ensemble,",
+          "start": 2.143,
+          "end": 2.484
+        },
+        {
+          "text": "pour",
+          "start": 2.484,
+          "end": 2.655
+        },
+        {
+          "text": "une",
+          "start": 2.655,
+          "end": 2.826
+        },
+        {
+          "text": "protection",
+          "start": 2.826,
+          "end": 3.337
+        },
+        {
+          "text": "sociale",
+          "start": 3.337,
+          "end": 3.679
+        },
+        {
+          "text": "universelle",
+          "start": 3.679,
+          "end": 4.361
+        },
+        {
+          "text": "et",
+          "start": 4.361,
+          "end": 4.532
+        },
+        {
+          "text": "équitable.",
+          "start": 4.532,
+          "end": 5.043
+        }
+      ]
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Sulafat, gemini-3.8-flash-tts)",
+  "onepass": {
+    "voice": "Sulafat",
+    "model": "gemini-3.8-flash-tts",
+    "split": "tools/resplit.py (transcription Whisper + silences)"
+  },
+  "tts_provider": "gemini"
+}

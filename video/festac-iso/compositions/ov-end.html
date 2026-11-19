@@ -1,0 +1,112 @@
+<template>
+  <style>
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 600;
+      src: url("assets/fonts/Montserrat-600.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 700;
+      src: url("assets/fonts/Montserrat-700.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Montserrat";
+      font-weight: 800;
+      src: url("assets/fonts/Montserrat-800.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Montserrat", sans-serif;
+      color: #16202a;
+    }
+    #en-bg {
+      position: absolute;
+      inset: 0;
+      background: #ffffff;
+    }
+    #en-logo {
+      position: absolute;
+      left: 285px;
+      top: 230px;
+      width: 1350px;
+      height: 233px;
+      clip-path: inset(0 0 0 0);
+    }
+    #en-text {
+      position: absolute;
+      left: 0;
+      top: 560px;
+      width: 1920px;
+      text-align: center;
+    }
+    #en-l1 {
+      font-weight: 700;
+      font-size: 42px;
+      letter-spacing: -0.01em;
+      color: #14325a;
+    }
+    #en-l1 b {
+      font-weight: 800;
+      color: #1f487c;
+    }
+    #en-l2 {
+      margin-top: 14px;
+      font-weight: 600;
+      font-size: 34px;
+      color: #3a4651;
+    }
+    #en-bar {
+      display: flex;
+      width: 240px;
+      height: 10px;
+      margin: 38px auto 34px;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+    #en-bar span {
+      flex: 1;
+    }
+    #en-l3 {
+      font-weight: 800;
+      font-size: 54px;
+      letter-spacing: -0.015em;
+      color: #1f487c;
+    }
+    #en-url {
+      margin-top: 22px;
+      font-weight: 700;
+      font-size: 32px;
+      color: #3a4651;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080">
+    <div id="en-bg"></div>
+    <img id="en-logo" src="assets/img/festac-logo-full.png" alt="FESTAC — Fédération des Syndicats des Travailleurs des Pays Affiliés à la CIPRES" />
+    <div id="en-text">
+      <div id="en-l1"><b>La voix des travailleurs africains</b></div>
+      <div id="en-l2">Coopération · Défense · Gouvernance · Échange</div>
+      <div id="en-bar"><span style="background: #1f487c"></span><span style="background: #c8423b"></span><span style="background: #d9a21b"></span><span style="background: #2e8b4f"></span></div>
+      <div id="en-l3">festac.org</div>
+      <div id="en-url">contact@festac.org · +241 74 00 34 43</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FS_CUES;
+      var W = (C.ov && C.ov["ov-end"]) || { start: 0, dur: 8 };
+      var tLogo = Math.max(0.3, C.logo - W.start);
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#en-bg", { opacity: 0 }, { opacity: 1, duration: 0.55, ease: "power2.inOut" }, 0);
+      // le logo se révèle sur le dernier accord de la musique
+      tl.fromTo("#en-logo", { clipPath: "inset(0% 100% 0% 0%)", opacity: 1 }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.9, ease: "power2.inOut" }, tLogo);
+      tl.fromTo("#en-l1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tLogo + 0.85);
+      tl.fromTo("#en-l2", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, tLogo + 1.1);
+      tl.fromTo("#en-bar", { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: "power3.inOut" }, tLogo + 1.35);
+      tl.fromTo("#en-l3", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.45, ease: "power4.out" }, tLogo + 1.6);
+      tl.fromTo("#en-url", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power2.out" }, tLogo + 2.0);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>

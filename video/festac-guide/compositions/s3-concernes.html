@@ -1,0 +1,260 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Montserrat", sans-serif;
+    }
+    .s3-bar3 {
+      position: absolute;
+      left: 96px;
+      top: 66px;
+      width: 96px;
+      height: 8px;
+      border-radius: 4px;
+      background: linear-gradient(90deg, #5aa137 0 33.4%, #f7d21e 33.4% 66.7%, #0066a8 66.7% 100%);
+    }
+    #s3-title {
+      position: absolute;
+      left: 96px;
+      top: 86px;
+      font-weight: 800;
+      font-size: 72px;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      color: #084e86;
+    }
+    #s3-title span {
+      display: inline-block;
+    }
+    .s3-card {
+      position: absolute;
+      width: 840px;
+      height: 380px;
+      border-radius: 28px;
+      background: #ffffff;
+      border: 3px solid #e3e9f0;
+      box-shadow: 0 10px 30px rgba(8, 78, 134, 0.08);
+      overflow: hidden;
+    }
+    .s3-por {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 244px;
+      height: 374px;
+      overflow: hidden;
+    }
+    .s3-txt {
+      position: absolute;
+      left: 274px;
+      top: 30px;
+      width: 536px;
+    }
+    .s3-gt {
+      font-weight: 800;
+      font-size: 36px;
+      line-height: 1.12;
+      color: #084e86;
+    }
+    .s3-chips {
+      margin-top: 18px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .s3-chip {
+      display: inline-block;
+      padding: 4px 18px 6px;
+      border-radius: 999px;
+      border: 2px solid #d3dee9;
+      background: #ffffff;
+      font-weight: 600;
+      font-size: 28px;
+      line-height: 1.25;
+      color: #1c2430;
+      white-space: nowrap;
+    }
+    .s3-tiles {
+      margin-top: 26px;
+      display: flex;
+      gap: 22px;
+    }
+    .s3-tile {
+      width: 150px;
+      height: 150px;
+      border-radius: 26px;
+      background: #f0f4f8;
+      color: #5b6573;
+    }
+    .s3-tile svg {
+      display: block;
+      margin: 27px auto 0;
+    }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1920" data-height="1080">
+    <div class="s3-bar3"></div>
+    <div id="s3-title"><span>Qui</span> <span>est</span> <span>concerné&nbsp;?</span></div>
+
+    <div id="s3-c1" class="s3-card" style="left: 96px; top: 200px">
+      <div id="s3-p1" class="s3-por" style="background: #e8f2fa"></div>
+      <div class="s3-txt">
+        <div class="s3-gt">Métiers de la santé</div>
+        <div class="s3-chips">
+          <span id="s3-c1-0" class="s3-chip">Médecin</span>
+          <span id="s3-c1-1" class="s3-chip">Pharmacien</span>
+          <span id="s3-c1-2" class="s3-chip">Infirmier</span>
+          <span id="s3-c1-3" class="s3-chip">Sage-femme</span>
+          <span id="s3-c1-4" class="s3-chip">Kinésithérapeute</span>
+          <span id="s3-c1-5" class="s3-chip">Vétérinaire</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="s3-c2" class="s3-card" style="left: 984px; top: 200px">
+      <div id="s3-p2" class="s3-por" style="background: #eef1f6"></div>
+      <div class="s3-txt">
+        <div class="s3-gt">Métiers techniques et juridiques</div>
+        <div class="s3-chips">
+          <span id="s3-c2-0" class="s3-chip">Expert-comptable</span>
+          <span id="s3-c2-1" class="s3-chip">Commissaire aux comptes</span>
+          <span id="s3-c2-2" class="s3-chip">Conseiller financier</span>
+          <span id="s3-c2-3" class="s3-chip">Avocat</span>
+          <span id="s3-c2-4" class="s3-chip">Notaire</span>
+          <span id="s3-c2-5" class="s3-chip">Huissier de justice</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="s3-c3" class="s3-card" style="left: 96px; top: 612px">
+      <div id="s3-p3" class="s3-por" style="background: #eef6e9"></div>
+      <div class="s3-txt">
+        <div class="s3-gt">Commerçants, artisans, artistes</div>
+        <div class="s3-tiles">
+          <div id="s3-t0" class="s3-tile">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="currentColor">
+              <path d="M 10,32 L 18,12 L 78,12 L 86,32 Z" />
+              <circle cx="18" cy="32" r="8" />
+              <circle cx="34" cy="32" r="8" />
+              <circle cx="50" cy="32" r="8" />
+              <circle cx="66" cy="32" r="8" />
+              <circle cx="80" cy="32" r="7" />
+              <rect x="14" y="34" width="6" height="50" rx="2" />
+              <rect x="76" y="34" width="6" height="50" rx="2" />
+              <rect x="10" y="62" width="76" height="10" rx="3" />
+              <circle cx="34" cy="54" r="7" />
+              <circle cx="50" cy="54" r="7" />
+              <circle cx="64" cy="55" r="6" />
+            </svg>
+          </div>
+          <div id="s3-t1" class="s3-tile">
+            <svg width="96" height="96" viewBox="0 0 96 96" fill="none" stroke="currentColor" stroke-linecap="round">
+              <path d="M 72,80 L 38,46" stroke-width="10" />
+              <path d="M 26.9,24.4 A 12,12 0 1,1 18.4,32.9" stroke-width="9" />
+              <path d="M 22,82 L 58,46" stroke-width="10" />
+              <path d="M 48,24 L 80,56" stroke-width="18" stroke-linecap="butt" />
+            </svg>
+          </div>
+          <div id="s3-t2" class="s3-tile">
+            <svg width="96" height="96" viewBox="0 0 96 96">
+              <path
+                fill="currentColor"
+                fill-rule="evenodd"
+                d="M 48,10 C 24,10 8,28 8,48 C 8,70 26,86 46,86 C 56,86 58,78 54,72 C 50,66 54,60 62,60 L 72,60 C 82,60 88,54 88,44 C 88,24 70,10 48,10 Z M 30,34 a 7,7 0 1,0 0.1,0 Z M 50,24 a 7,7 0 1,0 0.1,0 Z M 70,34 a 7,7 0 1,0 0.1,0 Z M 28,56 a 7,7 0 1,0 0.1,0 Z"
+              />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="s3-c4" class="s3-card" style="left: 984px; top: 612px">
+      <div id="s3-p4" class="s3-por" style="background: #fdf6da"></div>
+      <div class="s3-txt">
+        <div class="s3-gt">Employés de maison</div>
+        <div class="s3-chips">
+          <span id="s3-c4-0" class="s3-chip">Femme de ménage</span>
+          <span id="s3-c4-1" class="s3-chip">Jardinier</span>
+          <span id="s3-c4-2" class="s3-chip">Chauffeur</span>
+          <span id="s3-c4-3" class="s3-chip">Gardien</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__CN_CUES;
+      var P = window.CNP;
+      var K = window.CAST;
+      var L = C.local("s3");
+      var D = C.sc.s3.dur;
+      // un visage par famille de métiers (buste, repère du médaillon 244 × 380)
+      var por = [
+        { id: "b1", name: "medecin", y: 412 },
+        { id: "b2", name: "avocat", y: 410 },
+        { id: "b3", name: "awa", y: 440 },
+        { id: "b4", name: "jardinier", y: 420 },
+      ];
+      por.forEach(function (p, i) {
+        document.getElementById("s3-p" + (i + 1)).innerHTML = P.front(p.id, K.with(p.name, { x: 122, y: p.y, s: 0.98 }));
+        P.prep(p.id);
+        gsap.set("#" + p.id + "-uaL", { rotation: 4 });
+        gsap.set("#" + p.id + "-uaR", { rotation: -4 });
+      });
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo(".s3-bar3", { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.4, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s3-title span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, stagger: 0.09, ease: "power4.out" }, L(C.at("L03", ["sont"])) - 0.1);
+
+      // les quatre familles entrent sur leurs mots ; la carte active est cerclée de bleu
+      var groups = [
+        { c: "#s3-c1", t: L(C.at("L03", ["metiers"])) - 0.2, b: "b1" },
+        { c: "#s3-c2", t: L(C.at("L03", ["techniques"])) - 0.5, b: "b2" },
+        { c: "#s3-c3", t: L(C.at("L04", ["commercants"])) - 0.25, b: "b3" },
+        { c: "#s3-c4", t: L(C.at("L04", ["employes"])) - 0.25, b: "b4" },
+      ];
+      groups.forEach(function (g, i) {
+        tl.fromTo(g.c, { opacity: 0, y: 44 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, g.t);
+        tl.fromTo(g.c + " .s3-por > div", { y: 40 }, { y: 0, duration: 0.6, ease: "power3.out" }, g.t + 0.05);
+        tl.fromTo(g.c + " .s3-gt", { opacity: 0, x: -12 }, { opacity: 1, x: 0, duration: 0.35, ease: "power2.out" }, g.t + 0.15);
+        tl.fromTo(g.c + " .s3-chip, " + g.c + " .s3-tile", { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.06, ease: "power2.out" }, g.t + 0.3);
+        tl.to(g.c, { borderColor: "#0066A8", duration: 0.3, ease: "power2.out" }, g.t + 0.1);
+        if (i > 0) tl.to(groups[i - 1].c, { borderColor: "#E3E9F0", duration: 0.3, ease: "power2.out" }, g.t + 0.1);
+        tl.fromTo("#" + g.b + "-head", { rotation: -4 }, { rotation: 0, duration: 0.7, ease: "power2.out" }, g.t + 0.3);
+        tl.to("#" + g.b + "-mouth", { scaleX: 1.12, scaleY: 1.35, duration: 0.3, ease: "power2.out" }, g.t + 0.4);
+        P.breathe(tl, g.b, g.t, D, 3.3 + 0.2 * i, 0.008);
+        P.blink(tl, g.b, [g.t + 1.6, g.t + 4.1]);
+      });
+      tl.to(groups[3].c, { borderColor: "#E3E9F0", duration: 0.3, ease: "power2.out" }, D - 1.2);
+
+      // les métiers cités par la voix s'allument
+      function lit(sel, t) {
+        tl.to(sel, { backgroundColor: "#0066A8", borderColor: "#0066A8", color: "#FFFFFF", duration: 0.2, ease: "power2.out" }, t);
+        tl.fromTo(sel, { scale: 1 }, { scale: 1.08, duration: 0.12, ease: "power2.out", yoyo: true, repeat: 1 }, t);
+      }
+      [
+        ["#s3-c1-0", "L03", "medecins"],
+        ["#s3-c1-1", "L03", "pharmaciens"],
+        ["#s3-c1-2", "L03", "infirmiers"],
+        ["#s3-c1-3", "L03", "sagesfemmes"],
+        ["#s3-c2-0", "L03", "expertscomptables"],
+        ["#s3-c2-3", "L03", "avocats"],
+        ["#s3-c2-4", "L03", "notaires"],
+        ["#s3-t0", "L04", "commercants"],
+        ["#s3-t1", "L04", "artisans"],
+        ["#s3-t2", "L04", "artistes"],
+        ["#s3-c4-0", "L04", "femmes"],
+        ["#s3-c4-1", "L04", "jardiniers"],
+        ["#s3-c4-2", "L04", "chauffeurs"],
+        ["#s3-c4-3", "L04", "gardiens"],
+      ].forEach(function (x) {
+        lit(x[0], L(C.at(x[1], [x[2]])) + 0.02);
+      });
+
+      tl.to(["#s3-title", ".s3-bar3", ".s3-card"], { opacity: 0, filter: "blur(6px)", duration: 0.32, ease: "power3.in" }, D - 0.36);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

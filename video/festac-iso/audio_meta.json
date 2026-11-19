@@ -1,0 +1,1391 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.611,
+      "speech": [
+        0.12,
+        9.432
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Dans",
+          "start": 0.12,
+          "end": 0.274
+        },
+        {
+          "text": "les",
+          "start": 0.274,
+          "end": 0.428
+        },
+        {
+          "text": "caisses",
+          "start": 0.428,
+          "end": 0.736
+        },
+        {
+          "text": "de",
+          "start": 0.736,
+          "end": 0.89
+        },
+        {
+          "text": "sécurité",
+          "start": 0.89,
+          "end": 1.506
+        },
+        {
+          "text": "sociale",
+          "start": 1.506,
+          "end": 1.814
+        },
+        {
+          "text": "d'Afrique,",
+          "start": 1.814,
+          "end": 2.277
+        },
+        {
+          "text": "des",
+          "start": 2.658,
+          "end": 2.823
+        },
+        {
+          "text": "femmes",
+          "start": 2.823,
+          "end": 3.155
+        },
+        {
+          "text": "et",
+          "start": 3.155,
+          "end": 3.321
+        },
+        {
+          "text": "des",
+          "start": 3.321,
+          "end": 3.486
+        },
+        {
+          "text": "hommes",
+          "start": 3.486,
+          "end": 3.818
+        },
+        {
+          "text": "font",
+          "start": 3.818,
+          "end": 3.983
+        },
+        {
+          "text": "vivre",
+          "start": 3.983,
+          "end": 4.149
+        },
+        {
+          "text": "la",
+          "start": 4.149,
+          "end": 4.315
+        },
+        {
+          "text": "protection",
+          "start": 4.315,
+          "end": 4.812
+        },
+        {
+          "text": "sociale",
+          "start": 4.812,
+          "end": 5.144
+        },
+        {
+          "text": ":",
+          "start": 5.144,
+          "end": 5.309
+        },
+        {
+          "text": "ils",
+          "start": 5.907,
+          "end": 6.092
+        },
+        {
+          "text": "versent",
+          "start": 6.092,
+          "end": 6.463
+        },
+        {
+          "text": "les",
+          "start": 6.463,
+          "end": 6.648
+        },
+        {
+          "text": "pensions,",
+          "start": 6.648,
+          "end": 7.019
+        },
+        {
+          "text": "remboursent",
+          "start": 7.385,
+          "end": 7.857
+        },
+        {
+          "text": "les",
+          "start": 7.857,
+          "end": 8.014
+        },
+        {
+          "text": "soins",
+          "start": 8.014,
+          "end": 8.172
+        },
+        {
+          "text": "et",
+          "start": 8.172,
+          "end": 8.329
+        },
+        {
+          "text": "soutiennent",
+          "start": 8.329,
+          "end": 8.802
+        },
+        {
+          "text": "les",
+          "start": 8.802,
+          "end": 8.959
+        },
+        {
+          "text": "familles.",
+          "start": 8.959,
+          "end": 9.432
+        }
+      ]
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.782,
+      "speech": [
+        0.12,
+        7.602
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Ces",
+          "start": 0.12,
+          "end": 0.265
+        },
+        {
+          "text": "travailleurs",
+          "start": 0.265,
+          "end": 0.697
+        },
+        {
+          "text": "ont",
+          "start": 0.697,
+          "end": 0.841
+        },
+        {
+          "text": "leur",
+          "start": 0.841,
+          "end": 0.986
+        },
+        {
+          "text": "fédération",
+          "start": 0.986,
+          "end": 1.562
+        },
+        {
+          "text": ":",
+          "start": 1.562,
+          "end": 1.707
+        },
+        {
+          "text": "la",
+          "start": 2.314,
+          "end": 2.427
+        },
+        {
+          "text": "FESTAC,",
+          "start": 2.427,
+          "end": 3.103
+        },
+        {
+          "text": "la",
+          "start": 3.399,
+          "end": 3.561
+        },
+        {
+          "text": "Fédération",
+          "start": 3.561,
+          "end": 4.207
+        },
+        {
+          "text": "des",
+          "start": 4.207,
+          "end": 4.369
+        },
+        {
+          "text": "Syndicats",
+          "start": 4.369,
+          "end": 4.854
+        },
+        {
+          "text": "des",
+          "start": 4.854,
+          "end": 5.016
+        },
+        {
+          "text": "Travailleurs",
+          "start": 5.016,
+          "end": 5.501
+        },
+        {
+          "text": "des",
+          "start": 5.501,
+          "end": 5.662
+        },
+        {
+          "text": "Pays",
+          "start": 5.662,
+          "end": 5.824
+        },
+        {
+          "text": "Affiliés",
+          "start": 5.824,
+          "end": 6.309
+        },
+        {
+          "text": "à",
+          "start": 6.309,
+          "end": 6.471
+        },
+        {
+          "text": "la",
+          "start": 6.471,
+          "end": 6.632
+        },
+        {
+          "text": "CIPRES.",
+          "start": 6.632,
+          "end": 7.602
+        }
+      ]
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.983,
+      "speech": [
+        0.12,
+        8.803
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "La",
+          "start": 0.12,
+          "end": 0.297
+        },
+        {
+          "text": "CIPRES,",
+          "start": 0.297,
+          "end": 1.358
+        },
+        {
+          "text": "c'est",
+          "start": 1.358,
+          "end": 1.535
+        },
+        {
+          "text": "la",
+          "start": 1.535,
+          "end": 1.712
+        },
+        {
+          "text": "Conférence",
+          "start": 1.712,
+          "end": 2.242
+        },
+        {
+          "text": "interafricaine",
+          "start": 2.242,
+          "end": 3.126
+        },
+        {
+          "text": "de",
+          "start": 3.126,
+          "end": 3.303
+        },
+        {
+          "text": "la",
+          "start": 3.303,
+          "end": 3.48
+        },
+        {
+          "text": "prévoyance",
+          "start": 3.48,
+          "end": 3.834
+        },
+        {
+          "text": "sociale.",
+          "start": 3.834,
+          "end": 4.187
+        },
+        {
+          "text": "Elle",
+          "start": 4.953,
+          "end": 5.128
+        },
+        {
+          "text": "coordonne",
+          "start": 5.128,
+          "end": 5.478
+        },
+        {
+          "text": "les",
+          "start": 5.478,
+          "end": 5.653
+        },
+        {
+          "text": "politiques",
+          "start": 5.653,
+          "end": 6.353
+        },
+        {
+          "text": "de",
+          "start": 6.353,
+          "end": 6.528
+        },
+        {
+          "text": "protection",
+          "start": 6.528,
+          "end": 7.053
+        },
+        {
+          "text": "sociale",
+          "start": 7.053,
+          "end": 7.403
+        },
+        {
+          "text": "de",
+          "start": 7.403,
+          "end": 7.578
+        },
+        {
+          "text": "dix-huit",
+          "start": 7.578,
+          "end": 7.928
+        },
+        {
+          "text": "États",
+          "start": 7.928,
+          "end": 8.278
+        },
+        {
+          "text": "africains.",
+          "start": 8.278,
+          "end": 8.803
+        }
+      ]
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 7.765,
+      "speech": [
+        0,
+        7.585
+      ],
+      "pauses": 3,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Depuis",
+          "start": 0,
+          "end": 0.445
+        },
+        {
+          "text": "son",
+          "start": 0.445,
+          "end": 0.667
+        },
+        {
+          "text": "siège",
+          "start": 0.667,
+          "end": 0.89
+        },
+        {
+          "text": "de",
+          "start": 0.89,
+          "end": 1.112
+        },
+        {
+          "text": "Libreville,",
+          "start": 1.112,
+          "end": 1.78
+        },
+        {
+          "text": "la",
+          "start": 2.043,
+          "end": 2.207
+        },
+        {
+          "text": "FESTAC",
+          "start": 2.207,
+          "end": 3.191
+        },
+        {
+          "text": "rassemble",
+          "start": 3.191,
+          "end": 3.519
+        },
+        {
+          "text": "des",
+          "start": 3.519,
+          "end": 3.683
+        },
+        {
+          "text": "syndicats",
+          "start": 3.683,
+          "end": 4.175
+        },
+        {
+          "text": "de",
+          "start": 4.175,
+          "end": 4.34
+        },
+        {
+          "text": "dix",
+          "start": 4.34,
+          "end": 4.504
+        },
+        {
+          "text": "pays",
+          "start": 4.504,
+          "end": 4.668
+        },
+        {
+          "text": "membres,",
+          "start": 4.668,
+          "end": 4.996
+        },
+        {
+          "text": "en",
+          "start": 5.478,
+          "end": 5.64
+        },
+        {
+          "text": "Afrique",
+          "start": 5.64,
+          "end": 6.126
+        },
+        {
+          "text": "centrale",
+          "start": 6.126,
+          "end": 6.451
+        },
+        {
+          "text": "et",
+          "start": 6.451,
+          "end": 6.613
+        },
+        {
+          "text": "en",
+          "start": 6.613,
+          "end": 6.775
+        },
+        {
+          "text": "Afrique",
+          "start": 6.775,
+          "end": 7.261
+        },
+        {
+          "text": "de",
+          "start": 7.261,
+          "end": 7.423
+        },
+        {
+          "text": "l'Ouest.",
+          "start": 7.423,
+          "end": 7.585
+        }
+      ]
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.347,
+      "speech": [
+        0.12,
+        9.168
+      ],
+      "pauses": 5,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Sa",
+          "start": 0.12,
+          "end": 0.269
+        },
+        {
+          "text": "mission",
+          "start": 0.269,
+          "end": 0.567
+        },
+        {
+          "text": ":",
+          "start": 0.567,
+          "end": 0.716
+        },
+        {
+          "text": "défendre",
+          "start": 1.132,
+          "end": 1.516
+        },
+        {
+          "text": "les",
+          "start": 1.516,
+          "end": 1.708
+        },
+        {
+          "text": "intérêts",
+          "start": 1.708,
+          "end": 2.284
+        },
+        {
+          "text": "professionnels,",
+          "start": 2.284,
+          "end": 3.052
+        },
+        {
+          "text": "sociaux",
+          "start": 3.21,
+          "end": 3.515
+        },
+        {
+          "text": "et",
+          "start": 3.515,
+          "end": 3.667
+        },
+        {
+          "text": "économiques",
+          "start": 3.667,
+          "end": 4.43
+        },
+        {
+          "text": "de",
+          "start": 4.43,
+          "end": 4.582
+        },
+        {
+          "text": "ces",
+          "start": 4.582,
+          "end": 4.735
+        },
+        {
+          "text": "travailleurs,",
+          "start": 4.735,
+          "end": 5.192
+        },
+        {
+          "text": "et",
+          "start": 5.474,
+          "end": 5.679
+        },
+        {
+          "text": "promouvoir",
+          "start": 5.679,
+          "end": 6.295
+        },
+        {
+          "text": "une",
+          "start": 6.295,
+          "end": 6.5
+        },
+        {
+          "text": "protection",
+          "start": 6.5,
+          "end": 7.116
+        },
+        {
+          "text": "sociale",
+          "start": 7.116,
+          "end": 7.526
+        },
+        {
+          "text": "universelle",
+          "start": 7.526,
+          "end": 8.347
+        },
+        {
+          "text": "et",
+          "start": 8.347,
+          "end": 8.553
+        },
+        {
+          "text": "équitable.",
+          "start": 8.553,
+          "end": 9.168
+        }
+      ]
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.399,
+      "speech": [
+        0.12,
+        8.219
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.12,
+          "end": 0.268
+        },
+        {
+          "text": "fonctionne",
+          "start": 0.268,
+          "end": 0.562
+        },
+        {
+          "text": "de",
+          "start": 0.562,
+          "end": 0.709
+        },
+        {
+          "text": "façon",
+          "start": 0.709,
+          "end": 1.004
+        },
+        {
+          "text": "démocratique",
+          "start": 1.004,
+          "end": 1.739
+        },
+        {
+          "text": ":",
+          "start": 1.739,
+          "end": 1.887
+        },
+        {
+          "text": "l'Assemblée",
+          "start": 2.528,
+          "end": 3.049
+        },
+        {
+          "text": "générale",
+          "start": 3.049,
+          "end": 3.569
+        },
+        {
+          "text": "fixe",
+          "start": 3.569,
+          "end": 3.743
+        },
+        {
+          "text": "les",
+          "start": 3.743,
+          "end": 3.916
+        },
+        {
+          "text": "orientations,",
+          "start": 3.916,
+          "end": 4.61
+        },
+        {
+          "text": "et",
+          "start": 4.998,
+          "end": 5.152
+        },
+        {
+          "text": "le",
+          "start": 5.152,
+          "end": 5.306
+        },
+        {
+          "text": "Bureau",
+          "start": 5.306,
+          "end": 5.614
+        },
+        {
+          "text": "exécutif",
+          "start": 5.614,
+          "end": 6.231
+        },
+        {
+          "text": "les",
+          "start": 6.231,
+          "end": 6.385
+        },
+        {
+          "text": "met",
+          "start": 6.385,
+          "end": 6.539
+        },
+        {
+          "text": "en",
+          "start": 6.539,
+          "end": 6.694
+        },
+        {
+          "text": "œuvre,",
+          "start": 6.694,
+          "end": 6.848
+        },
+        {
+          "text": "avec",
+          "start": 7.051,
+          "end": 7.311
+        },
+        {
+          "text": "des",
+          "start": 7.311,
+          "end": 7.441
+        },
+        {
+          "text": "commissions",
+          "start": 7.441,
+          "end": 7.83
+        },
+        {
+          "text": "techniques.",
+          "start": 7.83,
+          "end": 8.219
+        }
+      ]
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.423,
+      "speech": [
+        0.12,
+        9.246
+      ],
+      "pauses": 6,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.12,
+          "end": 0.291
+        },
+        {
+          "text": "forme",
+          "start": 0.291,
+          "end": 0.462
+        },
+        {
+          "text": "les",
+          "start": 0.462,
+          "end": 0.633
+        },
+        {
+          "text": "délégués",
+          "start": 0.633,
+          "end": 1.146
+        },
+        {
+          "text": "du",
+          "start": 1.146,
+          "end": 1.317
+        },
+        {
+          "text": "personnel",
+          "start": 1.317,
+          "end": 1.83
+        },
+        {
+          "text": "et",
+          "start": 1.83,
+          "end": 2.001
+        },
+        {
+          "text": "les",
+          "start": 2.001,
+          "end": 2.172
+        },
+        {
+          "text": "délégués",
+          "start": 2.172,
+          "end": 2.685
+        },
+        {
+          "text": "syndicaux",
+          "start": 2.685,
+          "end": 3.198
+        },
+        {
+          "text": "dans",
+          "start": 3.198,
+          "end": 3.369
+        },
+        {
+          "text": "son",
+          "start": 3.369,
+          "end": 3.541
+        },
+        {
+          "text": "centre",
+          "start": 3.541,
+          "end": 3.712
+        },
+        {
+          "text": "de",
+          "start": 3.712,
+          "end": 3.883
+        },
+        {
+          "text": "formation",
+          "start": 3.883,
+          "end": 4.396
+        },
+        {
+          "text": ":",
+          "start": 4.396,
+          "end": 4.567
+        },
+        {
+          "text": "droit",
+          "start": 5.061,
+          "end": 5.32
+        },
+        {
+          "text": "du",
+          "start": 5.32,
+          "end": 5.579
+        },
+        {
+          "text": "travail,",
+          "start": 5.579,
+          "end": 6.097
+        },
+        {
+          "text": "négociation",
+          "start": 6.282,
+          "end": 6.944
+        },
+        {
+          "text": "collective,",
+          "start": 6.944,
+          "end": 7.441
+        },
+        {
+          "text": "santé",
+          "start": 7.786,
+          "end": 8.078
+        },
+        {
+          "text": "et",
+          "start": 8.078,
+          "end": 8.224
+        },
+        {
+          "text": "sécurité",
+          "start": 8.224,
+          "end": 8.808
+        },
+        {
+          "text": "au",
+          "start": 8.808,
+          "end": 8.954
+        },
+        {
+          "text": "travail.",
+          "start": 8.954,
+          "end": 9.246
+        }
+      ]
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.924,
+      "speech": [
+        0.12,
+        6.746
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.12,
+          "end": 0.269
+        },
+        {
+          "text": "porte",
+          "start": 0.269,
+          "end": 0.418
+        },
+        {
+          "text": "la",
+          "start": 0.418,
+          "end": 0.566
+        },
+        {
+          "text": "voix",
+          "start": 0.566,
+          "end": 0.715
+        },
+        {
+          "text": "des",
+          "start": 0.715,
+          "end": 0.864
+        },
+        {
+          "text": "travailleurs",
+          "start": 0.864,
+          "end": 1.311
+        },
+        {
+          "text": "aux",
+          "start": 1.311,
+          "end": 1.46
+        },
+        {
+          "text": "travaux",
+          "start": 1.46,
+          "end": 1.757
+        },
+        {
+          "text": "de",
+          "start": 1.757,
+          "end": 1.906
+        },
+        {
+          "text": "la",
+          "start": 1.906,
+          "end": 2.055
+        },
+        {
+          "text": "Conférence",
+          "start": 2.055,
+          "end": 2.502
+        },
+        {
+          "text": "internationale",
+          "start": 2.502,
+          "end": 3.246
+        },
+        {
+          "text": "du",
+          "start": 3.246,
+          "end": 3.395
+        },
+        {
+          "text": "Travail,",
+          "start": 3.395,
+          "end": 3.693
+        },
+        {
+          "text": "à",
+          "start": 3.844,
+          "end": 4.009
+        },
+        {
+          "text": "Genève,",
+          "start": 4.009,
+          "end": 4.34
+        },
+        {
+          "text": "et",
+          "start": 4.594,
+          "end": 4.729
+        },
+        {
+          "text": "du",
+          "start": 4.729,
+          "end": 4.863
+        },
+        {
+          "text": "Conseil",
+          "start": 4.863,
+          "end": 5.132
+        },
+        {
+          "text": "des",
+          "start": 5.132,
+          "end": 5.267
+        },
+        {
+          "text": "ministres",
+          "start": 5.267,
+          "end": 5.67
+        },
+        {
+          "text": "de",
+          "start": 5.67,
+          "end": 5.805
+        },
+        {
+          "text": "la",
+          "start": 5.805,
+          "end": 5.939
+        },
+        {
+          "text": "CIPRES.",
+          "start": 5.939,
+          "end": 6.746
+        }
+      ]
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 11.054,
+      "speech": [
+        0.12,
+        10.876
+      ],
+      "pauses": 6,
+      "anchored": 4,
+      "words": [
+        {
+          "text": "Avec",
+          "start": 0.12,
+          "end": 0.396
+        },
+        {
+          "text": "ses",
+          "start": 0.396,
+          "end": 0.535
+        },
+        {
+          "text": "partenaires,",
+          "start": 0.535,
+          "end": 1.087
+        },
+        {
+          "text": "la",
+          "start": 1.255,
+          "end": 1.475
+        },
+        {
+          "text": "CNSS,",
+          "start": 1.475,
+          "end": 2.356
+        },
+        {
+          "text": "la",
+          "start": 2.51,
+          "end": 2.988
+        },
+        {
+          "text": "Knam-GS,",
+          "start": 2.988,
+          "end": 3.466
+        },
+        {
+          "text": "la",
+          "start": 3.719,
+          "end": 3.899
+        },
+        {
+          "text": "CPPF",
+          "start": 3.899,
+          "end": 4.618
+        },
+        {
+          "text": "et",
+          "start": 4.618,
+          "end": 4.798
+        },
+        {
+          "text": "la",
+          "start": 4.798,
+          "end": 4.978
+        },
+        {
+          "text": "CNPS",
+          "start": 4.978,
+          "end": 5.697
+        },
+        {
+          "text": "de",
+          "start": 5.697,
+          "end": 5.876
+        },
+        {
+          "text": "Côte",
+          "start": 5.876,
+          "end": 6.056
+        },
+        {
+          "text": "d'Ivoire,",
+          "start": 6.056,
+          "end": 6.416
+        },
+        {
+          "text": "elle",
+          "start": 6.532,
+          "end": 6.72
+        },
+        {
+          "text": "organise",
+          "start": 6.72,
+          "end": 7.287
+        },
+        {
+          "text": "des",
+          "start": 7.287,
+          "end": 7.476
+        },
+        {
+          "text": "rencontres",
+          "start": 7.476,
+          "end": 8.043
+        },
+        {
+          "text": "pour",
+          "start": 8.043,
+          "end": 8.232
+        },
+        {
+          "text": "une",
+          "start": 8.232,
+          "end": 8.421
+        },
+        {
+          "text": "sécurité",
+          "start": 8.421,
+          "end": 9.176
+        },
+        {
+          "text": "sociale",
+          "start": 9.176,
+          "end": 9.554
+        },
+        {
+          "text": "inclusive",
+          "start": 9.554,
+          "end": 10.121
+        },
+        {
+          "text": "et",
+          "start": 10.121,
+          "end": 10.31
+        },
+        {
+          "text": "performante.",
+          "start": 10.31,
+          "end": 10.876
+        }
+      ]
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.034,
+      "speech": [
+        0.12,
+        4.854
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Et",
+          "start": 0.12,
+          "end": 0.3
+        },
+        {
+          "text": "elle",
+          "start": 0.3,
+          "end": 0.48
+        },
+        {
+          "text": "informe",
+          "start": 0.48,
+          "end": 0.84
+        },
+        {
+          "text": "les",
+          "start": 0.84,
+          "end": 1.02
+        },
+        {
+          "text": "travailleurs",
+          "start": 1.02,
+          "end": 1.56
+        },
+        {
+          "text": "avec",
+          "start": 1.56,
+          "end": 1.92
+        },
+        {
+          "text": "la",
+          "start": 1.92,
+          "end": 2.1
+        },
+        {
+          "text": "Tribune",
+          "start": 2.1,
+          "end": 2.461
+        },
+        {
+          "text": "des",
+          "start": 2.461,
+          "end": 2.641
+        },
+        {
+          "text": "Droits",
+          "start": 2.641,
+          "end": 2.821
+        },
+        {
+          "text": "Sociaux,",
+          "start": 2.821,
+          "end": 3.181
+        },
+        {
+          "text": "son",
+          "start": 3.565,
+          "end": 3.75
+        },
+        {
+          "text": "média",
+          "start": 3.75,
+          "end": 4.118
+        },
+        {
+          "text": "panafricain.",
+          "start": 4.118,
+          "end": 4.854
+        }
+      ]
+    },
+    {
+      "id": "L11",
+      "path": "assets/voice/L11.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.954,
+      "speech": [
+        0.12,
+        9.779
+      ],
+      "pauses": 7,
+      "anchored": 6,
+      "words": [
+        {
+          "text": "Coopération,",
+          "start": 0.12,
+          "end": 0.883
+        },
+        {
+          "text": "défense,",
+          "start": 1.343,
+          "end": 1.97
+        },
+        {
+          "text": "gouvernance,",
+          "start": 2.338,
+          "end": 3.073
+        },
+        {
+          "text": "échange",
+          "start": 3.5,
+          "end": 3.825
+        },
+        {
+          "text": ":",
+          "start": 3.825,
+          "end": 3.988
+        },
+        {
+          "text": "la",
+          "start": 4.252,
+          "end": 4.409
+        },
+        {
+          "text": "FESTAC,",
+          "start": 4.409,
+          "end": 5.346
+        },
+        {
+          "text": "la",
+          "start": 5.812,
+          "end": 5.988
+        },
+        {
+          "text": "voix",
+          "start": 5.988,
+          "end": 6.165
+        },
+        {
+          "text": "des",
+          "start": 6.165,
+          "end": 6.341
+        },
+        {
+          "text": "travailleurs",
+          "start": 6.341,
+          "end": 6.871
+        },
+        {
+          "text": "africains.",
+          "start": 6.871,
+          "end": 7.4
+        },
+        {
+          "text": "Rendez-vous",
+          "start": 8.106,
+          "end": 8.733
+        },
+        {
+          "text": "sur",
+          "start": 8.733,
+          "end": 8.942
+        },
+        {
+          "text": "festac",
+          "start": 8.942,
+          "end": 9.361
+        },
+        {
+          "text": "point",
+          "start": 9.361,
+          "end": 9.57
+        },
+        {
+          "text": "org.",
+          "start": 9.57,
+          "end": 9.779
+        }
+      ]
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Sulafat, gemini-3.8-flash-tts)",
+  "onepass": {
+    "voice": "Sulafat",
+    "model": "gemini-3.8-flash-tts",
+    "split": "tools/resplit.py (transcription Whisper + silences)"
+  },
+  "tts_provider": "gemini"
+}
