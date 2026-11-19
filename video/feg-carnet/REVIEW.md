@@ -37,7 +37,30 @@ Le film a été vu en images fixes à une quarantaine de moments avant le rendu.
 
 ## Rendu
 
-À compléter après le rendu.
+`renders/FEG-carnet.mp4`, en qualité « delivery », rendu en 6 min.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz |
+| Durée | 86,7 s |
+| Poids | 67,4 Mo |
+| Volume | −15,4 LUFS intégré, plage 3,3 LU, crête vraie −2,1 dBFS |
+
+Vingt-sept images extraites du MP4, de 1,5 s à 85,5 s, montrent les mêmes plans que les images de contrôle :
+
+- le titre et les trois croquis (atelier, commerce, chantier) ;
+- la boutique seule et sa bulle qui se dissipe ;
+- la carte et « plus de 1 100 entreprises » ;
+- les deux camemberts ;
+- les 13 fédérations ;
+- le schéma jusqu'au dialogue public-privé ;
+- le Forum, les 8 ateliers et la Déclaration ;
+- les réformes cochées ;
+- les quatre services ;
+- « Votre entreprise a sa place à nos côtés » ;
+- le recul sur le carnet entier ;
+- la carte de fin.
 
 ## À valider par la FEG
 
