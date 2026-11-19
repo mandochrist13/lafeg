@@ -34,7 +34,28 @@ Le film a été vu en images fixes toutes les 2 s, puis à chaque moment retouch
 
 ## Rendu
 
-À compléter après le rendu.
+`renders/FEG-pate-a-modeler.mp4`, en qualité « delivery », rendu en 43 min. Le premier rendu a été perdu lors d'un redémarrage de la machine ; il a été relancé après un nouveau contrôle (0 erreur) et une nouvelle relecture des images.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz |
+| Durée | 86,7 s |
+| Poids | 47,7 Mo |
+| Volume | −15,4 LUFS intégré, crête vraie −2,1 dBFS |
+
+Vingt-huit images extraites du MP4, de 1,5 s à 85,5 s, montrent les mêmes plans que les images de contrôle :
+
+- les trois personnages qui sortent de la pâte ;
+- la commerçante seule et sa bulle qui se dégonfle ;
+- la carte du Gabon qui se lève et ses titres ;
+- les deux anneaux 80 % et 90 % ;
+- les 13 fanions des fédérations ;
+- le Bureau exécutif, la table du dialogue et les pouvoirs publics ;
+- l'amphithéâtre du Gabon Economic Forum et la Déclaration de Libreville ;
+- les panneaux des réformes, puis les objets des services ;
+- le slogan et la montée vers les points du logo ;
+- la carte de fin.
 
 ## À valider par la FEG
 
