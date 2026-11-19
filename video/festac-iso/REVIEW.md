@@ -29,4 +29,20 @@ Le film a été vu en images fixes toutes les 4 secondes, puis à chaque moment 
 
 ## Rendu
 
-`renders/FESTAC-presentation-3D.mp4`.
+`renders/FESTAC-presentation-3D.mp4` est le rendu en qualité « delivery ». Il a pris 31 min 42 s, en WebGL logiciel.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Durée | 114,9 s |
+| Poids | 59,1 Mo |
+| Son | AAC stéréo 48 kHz ; −15,4 LUFS intégré, plage 3,5 LU, crête −2,3 dBFS |
+| Images noires | aucune |
+| Images figées | seulement la carte de fin, tenue à partir de 110,8 s |
+
+Planche contact du fichier rendu, une image toutes les 6 s : toutes les étapes sont conformes à la relecture.
+
+`renders/FESTAC-presentation-3D-whatsapp.mp4` est la même vidéo, réencodée pour WhatsApp et les réseaux sociaux :
+
+- H.264 CRF 23, 3 Mbit/s au plus, son AAC 160 kbit/s ;
+- 15,8 Mo, quasi identique au rendu d'origine (SSIM 0,997).
