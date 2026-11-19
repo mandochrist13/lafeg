@@ -1,0 +1,1475 @@
+<!doctype html>
+<!--
+  FEG — « Ceux qui font l'économie du pays ». Collage photo : une grande table de papier kraft, plus large que le cadre.
+  La caméra la parcourt d'une zone à l'autre ; papiers déchirés, photos, étiquettes, post-it et rubans arrivent
+  comme en animation image par image (poses à 12 im/s), se posent, se font scotcher, tamponner, annoter.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP) ; temps : assets/cues.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>FEG — Ceux qui font l'économie du pays</title>
+    <style>
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 500;
+        src: url("assets/fonts/HyundaiSansHead-Medium.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Hyundai Sans Head";
+        font-weight: 700;
+        src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Caveat";
+        font-weight: 700;
+        src: url("assets/fonts/caveat-latin-700-normal.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Caveat";
+        font-weight: 600;
+        src: url("assets/fonts/caveat-latin-600-normal.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #e8dcc2;
+      }
+      #world-cv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="86.731"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        width="1920"
+        height="1080"
+        data-start="0"
+        data-duration="86.731"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__FL_CUES;
+        var total = C ? C.total : 86.731;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+    <script src="assets/geo.js"></script>
+    <script>
+      (async function () {
+        const host = window.__worldHost;
+        const C = window.__FL_CUES;
+        const at = (id, w) => C.at(id, w);
+        const atLast = (id, w) => {
+          const n = w.toLowerCase();
+          const ws = C.lines[id].words.filter((x) => x.n === n);
+          return ws.length ? ws[ws.length - 1].s : C.lines[id].start;
+        };
+
+        // ------------------------------------------------------------ outils
+        const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+        const lerp = (a, b, u) => a + (b - a) * u;
+        const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+        const in2 = (u) => clamp01(u) * clamp01(u);
+        const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+        function mulberry32(a) {
+          return function () {
+            a |= 0;
+            a = (a + 0x6d2b79f5) | 0;
+            let r = Math.imul(a ^ (a >>> 15), 1 | a);
+            r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+            return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+          };
+        }
+        const rnd = mulberry32(1959);
+        const hash = (n) => {
+          n = (n ^ 61) ^ (n >>> 16);
+          n = n + (n << 3);
+          n = n ^ (n >>> 4);
+          n = Math.imul(n, 0x27d4eb2d);
+          n = n ^ (n >>> 15);
+          return (n >>> 0) / 4294967296;
+        };
+        const FPS = 12; // cadence des poses (animation image par image)
+        const Q = (t) => Math.floor(t * FPS + 1e-6) / FPS;
+
+        const GREEN = "#0b5a33",
+          DEEP = "#063d21",
+          BRONZE = "#b3ae78",
+          INK = "#1d2a22",
+          MARKER = "#0d6b3c",
+          RED = "#7d2a1f",
+          PAPER = "#fbf8f0",
+          MANILA = "#ead9ad",
+          WOOL = "#b4322a";
+
+        await Promise.all([
+          document.fonts.load('700 90px "Hyundai Sans Head"'),
+          document.fonts.load('500 40px "Hyundai Sans Head"'),
+          document.fonts.load("700 60px Caveat"),
+          document.fonts.load("600 40px Caveat"),
+        ]).catch(() => {});
+        const load = (src) =>
+          new Promise((res) => {
+            const i = new Image();
+            i.onload = () => res(i);
+            i.onerror = () => res(null);
+            i.src = src;
+          });
+        const [IMG_SIEGE, IMG_FORM, IMG_MAINS, IMG_SALLE, IMG_DECL, IMG_LOGO, IMG_GEF] = await Promise.all(
+          ["assets/img/siege.jpg", "assets/img/formation.jpg", "assets/img/mains.jpg", "assets/img/salle.jpg", "assets/img/declaration-p1.jpg", "assets/img/feg-logo.png", "assets/img/gef-logo.png"].map(load),
+        );
+
+        // ------------------------------------------------------------ fabrique de papiers (rendus une fois)
+        const SS = 1.5; // pixels de sprite par unité de table
+        function mk(w, h) {
+          const c = document.createElement("canvas");
+          c.width = Math.ceil(w * SS);
+          c.height = Math.ceil(h * SS);
+          const x = c.getContext("2d");
+          x.scale(SS, SS);
+          return [c, x];
+        }
+        function tornPath(pts, amp = 3, step = 5) {
+          const out = [];
+          for (let i = 0; i < pts.length; i++) {
+            const [x0, y0] = pts[i],
+              [x1, y1] = pts[(i + 1) % pts.length];
+            const L = Math.hypot(x1 - x0, y1 - y0),
+              n = Math.max(1, Math.floor(L / step));
+            const nx = -(y1 - y0) / L,
+              ny = (x1 - x0) / L;
+            for (let k = 0; k < n; k++) {
+              const u = k / n,
+                j = (rnd() - 0.5) * 2 * amp + Math.sin(u * 9 + i) * amp * 0.4;
+              out.push([x0 + (x1 - x0) * u + nx * j, y0 + (y1 - y0) * u + ny * j]);
+            }
+          }
+          return out;
+        }
+        const rectPts = (x, y, w, h) => [
+          [x, y],
+          [x + w, y],
+          [x + w, y + h],
+          [x, y + h],
+        ];
+        function pathFrom(c, pts) {
+          c.beginPath();
+          pts.forEach(([x, y], i) => (i ? c.lineTo(x, y) : c.moveTo(x, y)));
+          c.closePath();
+        }
+        function grain(c, x, y, w, h, a = 0.07, dens = 70) {
+          for (let k = 0; k < (w * h) / dens; k++) {
+            c.fillStyle = rnd() < 0.5 ? `rgba(255,255,255,${a})` : `rgba(60,40,10,${a})`;
+            c.fillRect(x + rnd() * w, y + rnd() * h, 0.8 + rnd() * 1.2, 0.8 + rnd() * 1.2);
+          }
+        }
+        // ombre : silhouette floutée, à demi-résolution
+        function withShadow(spr) {
+          const s = 0.5,
+            PAD = 22;
+          const c = document.createElement("canvas");
+          c.width = Math.ceil(spr.cv.width * s) + 2 * PAD;
+          c.height = Math.ceil(spr.cv.height * s) + 2 * PAD;
+          const x = c.getContext("2d");
+          x.filter = "blur(6px)";
+          x.drawImage(spr.cv, PAD, PAD, spr.cv.width * s, spr.cv.height * s);
+          x.filter = "none";
+          x.globalCompositeOperation = "source-in";
+          x.fillStyle = "rgb(45,30,10)";
+          x.fillRect(0, 0, c.width, c.height);
+          spr.sh = c;
+          spr.shPad = PAD / s / SS;
+          return spr;
+        }
+        // bande de papier avec un texte (titres)
+        function strip(text, size, bg, fg, o = {}) {
+          const font = `${o.weight || 700} ${size}px "${o.family || "Hyundai Sans Head"}"`;
+          const m = document.createElement("canvas").getContext("2d");
+          m.font = font;
+          const tw = m.measureText(text).width;
+          const padX = o.padX ?? size * 0.34,
+            padY = o.padY ?? size * 0.17;
+          const w = tw + 2 * padX + 12,
+            h = size * 1.1 + 2 * padY + 12;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = bg;
+          pathFrom(c, tornPath(rectPts(6, 6, w - 12, h - 12), 2.0, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w, h, 0.06);
+          c.restore();
+          c.fillStyle = fg;
+          c.font = font;
+          c.textBaseline = "middle";
+          c.textAlign = "center";
+          c.fillText(text, w / 2, h / 2 + size * 0.04);
+          return withShadow({ cv, w, h });
+        }
+        // écriture manuscrite (révélée de gauche à droite)
+        function hand(text, size, color = MARKER, weight = 700) {
+          const font = `${weight} ${size}px Caveat`;
+          const m = document.createElement("canvas").getContext("2d");
+          m.font = font;
+          const w = m.measureText(text).width + 16,
+            h = size * 1.25;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = color;
+          c.font = font;
+          c.textBaseline = "middle";
+          c.fillText(text, 8, h / 2);
+          return { cv, w, h, noShadow: true };
+        }
+        // photo découpée : papier blanc, photo recadrée
+        function photo(img, w, h, o = {}) {
+          const b = o.border ?? 12,
+            bot = o.bottom ?? b;
+          const W = w + 2 * b + 12,
+            H = h + b + bot + 12;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = PAPER;
+          pathFrom(c, o.clean ? rectPts(6, 6, W - 12, H - 12) : tornPath(rectPts(6, 6, W - 12, H - 12), 2.4, 5));
+          c.fill();
+          c.save();
+          pathFrom(c, o.clean ? rectPts(6 + b, 6 + b, w, h) : tornPath(rectPts(6 + b, 6 + b, w, h), 1.3, 6));
+          c.clip();
+          if (img) {
+            const ar = img.width / img.height,
+              tr = w / h;
+            let sw = img.width,
+              sh = img.height,
+              sx = 0,
+              sy = 0;
+            if (ar > tr) {
+              sw = img.height * tr;
+              sx = (img.width - sw) * (o.fx ?? 0.5);
+            } else {
+              sh = img.width / tr;
+              sy = (img.height - sh) * (o.fy ?? 0.5);
+            }
+            c.drawImage(img, sx, sy, sw, sh, 6 + b, 6 + b, w, h);
+          }
+          c.fillStyle = "rgba(240, 225, 190, 0.1)";
+          c.fillRect(6 + b, 6 + b, w, h);
+          c.restore();
+          if (o.caption) {
+            c.fillStyle = INK;
+            c.font = "600 34px Caveat";
+            c.textAlign = "center";
+            c.textBaseline = "middle";
+            c.fillText(o.caption, W / 2, 6 + b + h + bot / 2 + 2);
+          }
+          return withShadow({ cv, w: W, h: H });
+        }
+        // découpage : formes colorées + liseré blanc découpé aux ciseaux
+        function cutout(draw, w, h, border = 11) {
+          const M = border + 8;
+          const W = w + 2 * M,
+            H = h + 2 * M;
+          const [sc, s] = mk(W, H);
+          s.translate(M, M);
+          draw(s);
+          const [cv, c] = mk(W, H);
+          const k = 24;
+          for (let i = 0; i < k; i++) {
+            const a = (i / k) * Math.PI * 2;
+            c.drawImage(sc, Math.cos(a) * border, Math.sin(a) * border, W, H);
+          }
+          c.globalCompositeOperation = "source-in";
+          c.fillStyle = PAPER;
+          c.fillRect(0, 0, W, H);
+          c.globalCompositeOperation = "source-over";
+          c.drawImage(sc, 0, 0, W, H);
+          return withShadow({ cv, w: W, h: H });
+        }
+        const P = (c, col, f) => {
+          c.fillStyle = col;
+          c.beginPath();
+          f();
+          c.fill();
+        };
+        // étiquette de fédération, épinglée
+        function tag(name, count) {
+          const m = document.createElement("canvas").getContext("2d");
+          m.font = '500 34px "Hyundai Sans Head"';
+          const w1 = m.measureText(name).width;
+          m.font = '700 36px "Hyundai Sans Head"';
+          const w2 = m.measureText(String(count)).width;
+          const w = w1 + w2 + 26 + 2 * 26 + 12,
+            h = 104;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = MANILA;
+          pathFrom(c, tornPath(rectPts(6, 14, w - 12, h - 20), 1.6, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w, h, 0.07);
+          c.restore();
+          c.textBaseline = "middle";
+          c.fillStyle = INK;
+          c.font = '500 34px "Hyundai Sans Head"';
+          c.fillText(name, 6 + 26, h / 2 + 6);
+          c.fillStyle = GREEN;
+          c.font = '700 36px "Hyundai Sans Head"';
+          c.fillText(String(count), 6 + 26 + w1 + 26, h / 2 + 6);
+          pin(c, w / 2, 16);
+          return withShadow({ cv, w, h, pinY: 16 - h / 2 });
+        }
+        function pin(c, x, y, col = "#c0392b") {
+          c.fillStyle = "rgba(40,25,10,0.3)";
+          c.beginPath();
+          c.ellipse(x + 5, y + 6, 12, 9, 0, 0, Math.PI * 2);
+          c.fill();
+          const g = c.createRadialGradient(x - 4, y - 4, 1, x, y, 13);
+          g.addColorStop(0, "#f07a6a");
+          g.addColorStop(1, col);
+          c.fillStyle = g;
+          c.beginPath();
+          c.arc(x, y, 12, 0, Math.PI * 2);
+          c.fill();
+        }
+        function card(text, size, o = {}) {
+          const m = document.createElement("canvas").getContext("2d");
+          m.font = `700 ${size}px "Hyundai Sans Head"`;
+          const tw = m.measureText(text).width;
+          const icon = o.icon ? 110 : 0;
+          const w = tw + icon + 2 * 40 + 12,
+            h = o.h || 170;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = o.bg || PAPER;
+          pathFrom(c, tornPath(rectPts(6, 10, w - 12, h - 16), 1.8, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w, h, 0.05);
+          c.restore();
+          if (o.icon) o.icon(c, 46, h / 2);
+          c.fillStyle = o.fg || DEEP;
+          c.font = `700 ${size}px "Hyundai Sans Head"`;
+          c.textBaseline = "middle";
+          c.fillText(text, 6 + 40 + icon, h / 2 + 6);
+          pin(c, w / 2, 20, o.pin);
+          return withShadow({ cv, w, h, pinY: 20 - h / 2 });
+        }
+        function postit(text, col) {
+          const S = 330;
+          const [cv, c] = mk(S + 12, S + 12);
+          const g = c.createLinearGradient(0, 0, 0, S);
+          g.addColorStop(0, col);
+          g.addColorStop(1, shade(col, -0.08));
+          c.fillStyle = g;
+          c.beginPath();
+          c.moveTo(6, 6);
+          c.lineTo(S + 6, 6);
+          c.lineTo(S + 6, S - 10);
+          c.quadraticCurveTo(S - 20, S + 4, S - 60, S + 6);
+          c.lineTo(6, S + 6);
+          c.closePath();
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, S + 12, S + 12, 0.05);
+          c.fillStyle = "rgba(0,0,0,0.05)";
+          c.fillRect(6, 6, S, 34);
+          c.restore();
+          c.fillStyle = INK;
+          c.font = "700 58px Caveat";
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          const lines = wrap(c, text, S - 60);
+          lines.forEach((l, i) => c.fillText(l, S / 2 + 6, S / 2 + 10 + (i - (lines.length - 1) / 2) * 60));
+          return withShadow({ cv, w: S + 12, h: S + 12 });
+        }
+        function wrap(c, text, maxW) {
+          const words = text.split(" "),
+            lines = [];
+          let cur = "";
+          for (const w of words) {
+            const t = cur ? cur + " " + w : w;
+            if (c.measureText(t).width > maxW && cur) {
+              lines.push(cur);
+              cur = w;
+            } else cur = t;
+          }
+          if (cur) lines.push(cur);
+          return lines;
+        }
+        function shade(hex, k) {
+          const n = parseInt(hex.slice(1), 16);
+          const f = (v) => Math.max(0, Math.min(255, Math.round(v * (1 + k))));
+          return `rgb(${f(n >> 16)},${f((n >> 8) & 255)},${f(n & 255)})`;
+        }
+        // ruban adhésif, avec ou sans texte au feutre
+        function tape(text, o = {}) {
+          let w = o.w || 160;
+          const h = o.h || (text ? 86 : 42);
+          if (text) {
+            const m = document.createElement("canvas").getContext("2d");
+            m.font = "700 56px Caveat";
+            w = m.measureText(text).width + 70;
+          }
+          const [cv, c] = mk(w + 12, h + 12);
+          c.fillStyle = o.col || "rgba(238, 226, 192, 0.93)";
+          const pts = [];
+          const n = 9;
+          for (let i = 0; i <= n; i++) pts.push([6 + (i % 2 ? 5 : 0) + rnd() * 2, 6 + (i / n) * h]);
+          const right = [];
+          for (let i = n; i >= 0; i--) right.push([6 + w - (i % 2 ? 5 : 0) - rnd() * 2, 6 + (i / n) * h]);
+          pathFrom(c, [...pts, ...right]);
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w + 12, h + 12, 0.05);
+          c.restore();
+          if (text) {
+            c.fillStyle = INK;
+            c.font = "700 56px Caveat";
+            c.textAlign = "center";
+            c.textBaseline = "middle";
+            c.fillText(text, (w + 12) / 2, (h + 12) / 2 + 3);
+          }
+          return withShadow({ cv, w: w + 12, h: h + 12, light: true });
+        }
+        // tampons encreurs
+        function stampRound(top, big) {
+          const S = 220;
+          const [cv, c] = mk(S, S);
+          c.translate(S / 2, S / 2);
+          c.strokeStyle = RED;
+          c.fillStyle = RED;
+          c.lineWidth = 6;
+          c.beginPath();
+          c.arc(0, 0, 96, 0, Math.PI * 2);
+          c.stroke();
+          c.lineWidth = 2.5;
+          c.beginPath();
+          c.arc(0, 0, 82, 0, Math.PI * 2);
+          c.stroke();
+          c.textAlign = "center";
+          c.font = '700 28px "Hyundai Sans Head"';
+          c.fillText(top, 0, -20);
+          c.font = '700 62px "Hyundai Sans Head"';
+          c.fillText(big, 0, 40);
+          scratch(c, 100);
+          return { cv, w: S, h: S, noShadow: true, alpha: 0.86 };
+        }
+        function stampRect(text) {
+          const m = document.createElement("canvas").getContext("2d");
+          m.font = '700 60px "Hyundai Sans Head"';
+          const w = m.measureText(text).width + 70,
+            h = 110;
+          const [cv, c] = mk(w, h);
+          c.strokeStyle = RED;
+          c.fillStyle = RED;
+          c.lineWidth = 6;
+          c.strokeRect(8, 8, w - 16, h - 16);
+          c.font = '700 60px "Hyundai Sans Head"';
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.fillText(text, w / 2, h / 2 + 3);
+          c.translate(w / 2, h / 2);
+          scratch(c, Math.max(w, h) / 2);
+          return { cv, w, h, noShadow: true, alpha: 0.86 };
+        }
+        function scratch(c, R) {
+          c.globalCompositeOperation = "destination-out";
+          for (let k = 0; k < 600; k++) {
+            const a = rnd() * Math.PI * 2,
+              r = rnd() * R;
+            c.fillStyle = `rgba(0,0,0,${0.25 + rnd() * 0.6})`;
+            c.beginPath();
+            c.arc(Math.cos(a) * r, Math.sin(a) * r, 0.6 + rnd() * 2.2, 0, Math.PI * 2);
+            c.fill();
+          }
+          c.globalCompositeOperation = "source-over";
+        }
+        function disc(r) {
+          const S = 2 * r + 16;
+          const [cv, c] = mk(S, S);
+          const pts = [];
+          for (let i = 0; i < 90; i++) {
+            const a = (i / 90) * Math.PI * 2;
+            pts.push([S / 2 + Math.cos(a) * r, S / 2 + Math.sin(a) * r]);
+          }
+          c.fillStyle = PAPER;
+          pathFrom(c, tornPath(pts, 1.8, 6));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, S, S, 0.05);
+          c.restore();
+          return withShadow({ cv, w: S, h: S });
+        }
+        function bubble(text, size, bg, fg, w, h, tailLeft = true) {
+          const W = w + 40,
+            H = h + 70;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = bg;
+          const pts = [];
+          for (let i = 0; i < 70; i++) {
+            const a = (i / 70) * Math.PI * 2;
+            pts.push([W / 2 + (Math.cos(a) * w) / 2, 20 + h / 2 + (Math.sin(a) * h) / 2]);
+          }
+          pathFrom(c, tornPath(pts, 1.6, 6));
+          c.fill();
+          // queue de la bulle
+          c.beginPath();
+          const bx = tailLeft ? W * 0.3 : W * 0.7;
+          c.moveTo(bx - 26, 20 + h * 0.9);
+          c.lineTo(bx + (tailLeft ? -40 : 40), H - 8);
+          c.lineTo(bx + 30, 20 + h * 0.86);
+          c.closePath();
+          c.fill();
+          c.save();
+          c.clip();
+          c.restore();
+          c.fillStyle = fg;
+          c.font = `700 ${size}px "Hyundai Sans Head"`;
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.fillText(text, W / 2, 20 + h / 2 + size * 0.05);
+          return withShadow({ cv, w: W, h: H });
+        }
+        function logoTag() {
+          const [cv, c] = mk(176, 168);
+          c.fillStyle = PAPER;
+          pathFrom(c, tornPath(rectPts(6, 6, 164, 156), 1.6, 5));
+          c.fill();
+          if (IMG_LOGO) c.drawImage(IMG_LOGO, 22, 18, 132, 122);
+          return withShadow({ cv, w: 176, h: 168 });
+        }
+        function greenMap() {
+          const S = 1.62;
+          const O = window.GABON_OUTLINE;
+          const xs = O.map((p) => p[0]),
+            ys = O.map((p) => p[1]);
+          const x0 = Math.min(...xs),
+            y0 = Math.min(...ys);
+          const M = 14;
+          const W = (Math.max(...xs) - x0) * S + 2 * M,
+            H = (Math.max(...ys) - y0) * S + 2 * M;
+          const T = ([x, y]) => [(x - x0) * S + M, (y - y0) * S + M];
+          const pts = O.map(T);
+          const [cv, c] = mk(W, H);
+          c.fillStyle = "#f7f1e1";
+          pathFrom(
+            c,
+            tornPath(pts, 3.4, 6).map(([x, y]) => [x + (rnd() - 0.5) * 3, y + (rnd() - 0.5) * 3]),
+          );
+          c.fill();
+          c.save();
+          c.translate(W / 2, H / 2);
+          c.scale(0.985, 0.985);
+          c.translate(-W / 2, -H / 2);
+          pathFrom(c, tornPath(pts, 2.2, 6));
+          c.fillStyle = GREEN;
+          c.fill();
+          c.clip();
+          grain(c, 0, 0, W, H, 0.06, 50);
+          c.strokeStyle = "rgba(255,255,255,0.05)";
+          for (let k = 0; k < 500; k++) {
+            const x = rnd() * W,
+              y = rnd() * H,
+              a = rnd() * Math.PI;
+            c.beginPath();
+            c.moveTo(x, y);
+            c.lineTo(x + Math.cos(a) * 18, y + Math.sin(a) * 18);
+            c.stroke();
+          }
+          c.restore();
+          const dots = window.FEG_DOTS.map(([x, y]) => {
+            const [u, v] = T([x, y]);
+            return [u - W / 2, v - H / 2];
+          });
+          return withShadow({ cv, w: W, h: H, dots });
+        }
+        function punchDot() {
+          const r = 22;
+          const [cv, c] = mk(2 * r + 8, 2 * r + 8);
+          const g = c.createRadialGradient(r - 5, r - 6, 2, r + 4, r + 4, r);
+          g.addColorStop(0, "#cbc694");
+          g.addColorStop(1, "#a9a46d");
+          c.fillStyle = g;
+          c.beginPath();
+          c.arc(r + 4, r + 4, r, 0, Math.PI * 2);
+          c.fill();
+          return withShadow({ cv, w: 2 * r + 8, h: 2 * r + 8 });
+        }
+        function paperclip() {
+          const [cv, c] = mk(60, 150);
+          c.strokeStyle = "#8f938f";
+          c.lineWidth = 5;
+          c.lineCap = "round";
+          c.beginPath();
+          c.moveTo(18, 110);
+          c.lineTo(18, 30);
+          c.arc(30, 30, 12, Math.PI, 0);
+          c.lineTo(42, 120);
+          c.arc(30, 120, 12, 0, Math.PI);
+          c.lineTo(18, 46);
+          c.stroke();
+          return withShadow({ cv, w: 60, h: 150 });
+        }
+        function pencil() {
+          const [cv, c] = mk(520, 40);
+          c.fillStyle = "#e9b43c";
+          c.fillRect(60, 8, 400, 24);
+          c.fillStyle = "#d29e2c";
+          c.fillRect(60, 22, 400, 10);
+          c.fillStyle = "#e7c9a0";
+          c.beginPath();
+          c.moveTo(60, 8);
+          c.lineTo(14, 20);
+          c.lineTo(60, 32);
+          c.closePath();
+          c.fill();
+          c.fillStyle = "#2c2c2c";
+          c.beginPath();
+          c.moveTo(26, 17);
+          c.lineTo(10, 20);
+          c.lineTo(26, 23);
+          c.closePath();
+          c.fill();
+          c.fillStyle = "#b8b9b6";
+          c.fillRect(460, 8, 26, 24);
+          c.fillStyle = "#d9776a";
+          c.fillRect(486, 8, 26, 24);
+          return withShadow({ cv, w: 520, h: 40 });
+        }
+        function endSheet() {
+          const W = 1872,
+            H = 1046;
+          const [cv, c] = mk(W, H);
+          c.fillStyle = "#fdfbf6";
+          pathFrom(c, tornPath(rectPts(6, 6, W - 12, H - 12), 2.6, 7));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, W, H, 0.025, 160);
+          c.restore();
+          return withShadow({ cv, w: W, h: H });
+        }
+
+        // ------------------------------------------------------------ dessins des trois métiers (découpages)
+        const ATELIER = cutout(
+          (c) => {
+            // engrenage bronze
+            const cx = 135,
+              cy = 160;
+            c.fillStyle = BRONZE;
+            c.beginPath();
+            for (let i = 0; i < 20; i++) {
+              const a0 = (i / 20) * Math.PI * 2,
+                r = i % 2 ? 84 : 108;
+              c.lineTo(cx + Math.cos(a0 - 0.12) * r, cy + Math.sin(a0 - 0.12) * r);
+              c.lineTo(cx + Math.cos(a0 + 0.12) * r, cy + Math.sin(a0 + 0.12) * r);
+            }
+            c.closePath();
+            c.fill();
+            c.fillStyle = "#8d884f";
+            c.beginPath();
+            c.arc(cx, cy, 52, 0, Math.PI * 2);
+            c.fill();
+            c.fillStyle = PAPER;
+            c.beginPath();
+            c.arc(cx, cy, 26, 0, Math.PI * 2);
+            c.fill();
+            // marteau
+            c.save();
+            c.translate(275, 175);
+            c.rotate(0.6);
+            c.fillStyle = "#a3703f";
+            c.fillRect(-14, -60, 28, 210);
+            c.fillStyle = "#8a5c32";
+            c.fillRect(-14, 90, 28, 60);
+            c.fillStyle = "#5f656c";
+            c.fillRect(-70, -110, 140, 54);
+            c.fillStyle = "#7c838b";
+            c.fillRect(-70, -110, 140, 16);
+            c.restore();
+            // clé plate verte
+            c.save();
+            c.translate(320, 60);
+            c.rotate(-0.5);
+            c.fillStyle = GREEN;
+            c.fillRect(-12, 0, 24, 120);
+            c.beginPath();
+            c.arc(0, -6, 30, 0, Math.PI * 2);
+            c.fill();
+            c.fillStyle = PAPER;
+            c.fillRect(-10, -42, 20, 34);
+            c.restore();
+          },
+          400,
+          320,
+        );
+        const COMMERCE = cutout(
+          (c) => {
+            c.fillStyle = "#f2e6cc";
+            c.fillRect(40, 120, 330, 200);
+            // auvent rayé
+            const top = 64,
+              bot = 128;
+            for (let i = 0; i < 10; i++) {
+              const x0 = 26 + i * 35.8;
+              c.fillStyle = i % 2 ? PAPER : GREEN;
+              c.beginPath();
+              c.moveTo(40 + i * 33, top);
+              c.lineTo(40 + (i + 1) * 33, top);
+              c.lineTo(x0 + 35.8, bot);
+              c.lineTo(x0, bot);
+              c.closePath();
+              c.fill();
+              c.beginPath();
+              c.arc(x0 + 17.9, bot, 17.9, 0, Math.PI);
+              c.fill();
+            }
+            c.fillStyle = "#0a4a2b";
+            c.fillRect(36, 54, 338, 14);
+            // vitrines et porte
+            c.fillStyle = "#cfe3ea";
+            c.fillRect(66, 176, 90, 92);
+            c.fillRect(262, 176, 90, 92);
+            c.fillStyle = PAPER;
+            c.fillRect(108, 176, 6, 92);
+            c.fillRect(66, 218, 90, 6);
+            c.fillRect(304, 176, 6, 92);
+            c.fillRect(262, 218, 90, 6);
+            c.fillStyle = GREEN;
+            c.fillRect(176, 186, 66, 134);
+            c.fillStyle = BRONZE;
+            c.beginPath();
+            c.arc(230, 256, 6, 0, Math.PI * 2);
+            c.fill();
+            // fruits devant la boutique
+            const FR = ["#d8432b", "#f0a020", "#e2c23a", "#6fae3c"];
+            c.fillStyle = "#c58e52";
+            c.fillRect(270, 282, 96, 38);
+            for (let i = 0; i < 5; i++) {
+              c.fillStyle = FR[i % 4];
+              c.beginPath();
+              c.arc(282 + i * 18, 278, 10, 0, Math.PI * 2);
+              c.fill();
+            }
+          },
+          410,
+          330,
+        );
+        const CHANTIER = cutout(
+          (c) => {
+            const Y = "#e2b33c",
+              YD = "#b8902c";
+            // immeuble en construction
+            c.fillStyle = "#a3a9ac";
+            c.fillRect(200, 190, 180, 140);
+            c.fillStyle = "#c4c9cb";
+            for (let r = 0; r < 3; r++) for (let k = 0; k < 4; k++) c.fillRect(214 + k * 42, 206 + r * 40, 26, 22);
+            c.fillStyle = "#b4532a";
+            c.fillRect(200, 172, 120, 18);
+            // grue
+            c.fillStyle = Y;
+            c.fillRect(110, 40, 30, 290);
+            c.fillRect(20, 40, 380, 24);
+            c.fillStyle = YD;
+            c.lineWidth = 3;
+            c.strokeStyle = YD;
+            for (let y = 64; y < 330; y += 30) {
+              c.beginPath();
+              c.moveTo(110, y);
+              c.lineTo(140, y + 30);
+              c.stroke();
+            }
+            for (let x = 140; x < 400; x += 26) {
+              c.beginPath();
+              c.moveTo(x, 40);
+              c.lineTo(x + 26, 64);
+              c.stroke();
+            }
+            c.fillStyle = "#5f656c";
+            c.fillRect(20, 64, 52, 36);
+            c.fillStyle = "#3e6f9e";
+            c.fillRect(102, 66, 46, 34);
+            c.fillStyle = "#cfe3ea";
+            c.fillRect(110, 72, 30, 18);
+            c.strokeStyle = "#3c3c3c";
+            c.lineWidth = 3;
+            c.beginPath();
+            c.moveTo(330, 64);
+            c.lineTo(330, 150);
+            c.stroke();
+            c.fillStyle = "#b4532a";
+            c.fillRect(298, 150, 64, 34);
+            c.fillStyle = "#8c3f20";
+            c.fillRect(298, 166, 64, 4);
+          },
+          410,
+          330,
+        );
+
+        // ------------------------------------------------------------ table : texture de kraft (motif répété)
+        const kraft = (() => {
+          const N = 1024;
+          const c = document.createElement("canvas");
+          c.width = c.height = N;
+          const x = c.getContext("2d");
+          x.fillStyle = "#e6d8bb";
+          x.fillRect(0, 0, N, N);
+          const img = x.getImageData(0, 0, N, N);
+          for (let i = 0; i < img.data.length; i += 4) {
+            const n = (rnd() - 0.5) * 12;
+            img.data[i] += n;
+            img.data[i + 1] += n;
+            img.data[i + 2] += n * 0.8;
+          }
+          x.putImageData(img, 0, 0);
+          for (let k = 0; k < 40; k++) {
+            const px = rnd() * N,
+              py = rnd() * N,
+              r = 60 + rnd() * 160;
+            for (const [ox, oy] of [
+              [0, 0],
+              [N, 0],
+              [-N, 0],
+              [0, N],
+              [0, -N],
+            ]) {
+              const g = x.createRadialGradient(px + ox, py + oy, 0, px + ox, py + oy, r);
+              g.addColorStop(0, rnd() < 0.5 ? "rgba(255,250,235,0.10)" : "rgba(150,115,60,0.06)");
+              g.addColorStop(1, "rgba(0,0,0,0)");
+              x.fillStyle = g;
+              x.fillRect(px + ox - r, py + oy - r, 2 * r, 2 * r);
+            }
+          }
+          x.strokeStyle = "rgba(110, 85, 40, 0.08)";
+          for (let k = 0; k < 1100; k++) {
+            const px = rnd() * N,
+              py = rnd() * N,
+              a = rnd() * Math.PI,
+              l = 8 + rnd() * 26;
+            for (const [ox, oy] of [
+              [0, 0],
+              [N, 0],
+              [0, N],
+              [N, N],
+              [-N, 0],
+              [0, -N],
+            ]) {
+              x.beginPath();
+              x.moveTo(px + ox, py + oy);
+              x.lineTo(px + ox + Math.cos(a) * l, py + oy + Math.sin(a) * l);
+              x.stroke();
+            }
+          }
+          return c;
+        })();
+
+        // ------------------------------------------------------------ éléments posés sur la table
+        const ELS = [];
+        let nid = 1;
+        // spr, x, y, rot, t0 ; from : d'où arrive le papier (dx, dy, rot, h = hauteur au-dessus de la table)
+        // décalage de la zone en cours de construction (les zones C, D et E sont posées plus loin sur la table)
+        let ZX = 0,
+          ZY = 0;
+        function put(spr, x, y, rot, t0, o = {}) {
+          x += ZX;
+          y += ZY;
+          const e = { id: nid++, spr, x, y, rot, t0, dur: o.dur ?? 0.42, from: o.from || { dy: -120, rot: 0.15, h: 140 }, kind: o.kind || "drop", ...o };
+          // l'encre (écriture, tampons) ne bouge plus une fois posée
+          if (e.still === undefined) e.still = e.kind === "write" || !!spr.noShadow;
+          e.sgn = hash(e.id * 7) < 0.5 ? -1 : 1;
+          ELS.push(e);
+          return e;
+        }
+        // pose d'un élément à l'instant t (fonction pure)
+        function pose(e, t) {
+          const q = Q(t);
+          if (q < e.t0 - 1e-6) return null;
+          let x = e.x,
+            y = e.y,
+            rot = e.rot,
+            s = 1,
+            h = 0,
+            a = 1,
+            rev = 1;
+          const k = Math.round((q - e.t0) * FPS);
+          if (e.kind === "pop") {
+            s = k === 0 ? 1.16 : k === 1 ? 1.05 : 1;
+            h = k === 0 ? 36 : k === 1 ? 10 : 0;
+            rot += k === 0 ? 0.05 * e.sgn : 0;
+          } else if (e.kind === "write") {
+            rev = clamp01((q - e.t0 + 1 / FPS) / e.dur);
+          } else {
+            const u = clamp01((q - e.t0) / e.dur);
+            const ee = out3(u);
+            const f = e.from;
+            x += (f.dx || 0) * (1 - ee);
+            y += (f.dy || 0) * (1 - ee);
+            rot += (f.rot || 0) * (1 - ee);
+            h = (f.h ?? 120) * (1 - ee);
+            s = 1 + (f.s || 0) * (1 - ee);
+            // petit rebond à la pose
+            const k2 = Math.round((q - e.t0 - e.dur) * FPS);
+            if (k2 === 0) rot += 0.014 * e.sgn;
+            else if (k2 === 1) rot -= 0.006 * e.sgn;
+          }
+          // « vie » du papier posé à la main : micro-déplacements à 6 im/s
+          if (!e.still) {
+            const b = Math.floor(t * 6);
+            rot += (hash(e.id * 131 + b) - 0.5) * 0.004;
+            x += (hash(e.id * 71 + b * 3) - 0.5) * 1.1;
+            y += (hash(e.id * 53 + b * 5) - 0.5) * 1.1;
+          }
+          if (e.t1 !== undefined && q >= e.t1) {
+            const v = clamp01((q - e.t1) / (e.exitDur || 0.45));
+            if (v >= 1) return null;
+            const ev = in2(v);
+            const to = e.to || {};
+            x += (to.dx || 0) * ev;
+            y += (to.dy || 0) * ev;
+            rot += (to.rot || 0) * ev;
+            s *= 1 + (to.s || 0) * ev;
+            h += (to.h ?? 80) * Math.sin(v * Math.PI);
+            a *= 1 - (to.a || 0) * ev;
+          }
+          return { x, y, rot, s, h, a, rev };
+        }
+        // point d'une image locale vers la table
+        const toTable = (p, lx, ly) => [p.x + (lx * Math.cos(p.rot) - ly * Math.sin(p.rot)) * p.s, p.y + (lx * Math.sin(p.rot) + ly * Math.cos(p.rot)) * p.s];
+
+        // ------------------------------------------------------------ zone A : un atelier, un commerce, un chantier
+        const T01 = { chaque: at("L01", "Chaque"), atelier: at("L01", "atelier"), commerce: at("L01", "commerce"), chantier: at("L01", "chantier"), vivre: at("L01", "vivre") };
+        const T02 = { mais: at("L02", "Mais"), seule: at("L02", "seule"), et: at("L02", "et"), voix: at("L02", "voix"), perd: at("L02", "perd") };
+        put(pencil(), 175, 400, -1.25, 0.7, { from: { dx: -300, dy: 120, rot: 0.3, h: 120 } });
+        put(paperclip(), 1730, 210, 0.5, 1.2, { from: { dx: 200, dy: -160, rot: 0.6, h: 100 } });
+        put(tape(null, { w: 150 }), 1660, 990, -0.3, 1.7, { from: { dx: 160, dy: 100, rot: 0.3, h: 90 } });
+        const eTitle01 = put(strip("Chaque entreprise compte", 86, PAPER, DEEP), 990, 250, -0.02, T01.chaque - 0.05, { from: { dx: -80, dy: -320, rot: -0.14, h: 170 }, t1: T02.mais - 0.05, to: { dy: -760, rot: 0.2 }, exitDur: 0.5 });
+        const eAt = put(ATELIER, 470, 625, -0.06, T01.atelier - 0.08, { from: { dx: -560, dy: 60, rot: -0.35, h: 140 }, t1: T02.mais, to: { dx: -1300, rot: -0.45 }, exitDur: 0.5 });
+        const eCo = put(COMMERCE, 1000, 640, 0.03, T01.commerce - 0.08, { from: { dy: 520, rot: 0.3, h: 160 } });
+        const eCh = put(CHANTIER, 1530, 625, 0.06, T01.chantier - 0.08, { from: { dx: 560, dy: -80, rot: 0.35, h: 140 }, t1: T02.mais + 0.08, to: { dx: 1300, rot: 0.45 }, exitDur: 0.5 });
+        put(hand("un atelier", 64), 470, 870, -0.03, T01.atelier + 0.05, { kind: "write", dur: 0.55, t1: T02.mais, to: { dx: -1300, rot: -0.3 }, exitDur: 0.5 });
+        put(hand("un commerce", 64), 1000, 892, 0.01, T01.commerce + 0.05, { kind: "write", dur: 0.6 });
+        put(hand("un chantier", 64), 1530, 870, 0.03, T01.chantier + 0.05, { kind: "write", dur: 0.55, t1: T02.mais + 0.08, to: { dx: 1300, rot: 0.3 }, exitDur: 0.5 });
+        // L02 : seule… et sa voix se perd
+        put(hand("seule…", 76), 640, 420, -0.06, T02.seule - 0.02, { kind: "write", dur: 0.5 });
+        const eBubble = put(bubble("…", 96, PAPER, DEEP, 250, 150, true), 1240, 395, 0.06, T02.et - 0.25, { kind: "pop", t1: T02.voix, to: { dx: 560, dy: -420, rot: 1.1, s: -0.75, a: 1, h: 60 }, exitDur: 0.75 });
+
+        // ------------------------------------------------------------ zone B : la carte, 1959, 1 100 entreprises, 80 % et 90 %
+        const T03 = { depuis: at("L03", "Depuis"), cinq: at("L03", "cinquante"), fed: at("L03", "Fédération"), ceux: at("L03", "ceux"), eco: at("L03", "l'économie"), pays: at("L03", "pays"), plus: at("L03", "plus"), entr: atLast("L03", "entreprises") };
+        const MAP = greenMap();
+        const eMap = put(MAP, 3200, 610, -0.03, T03.depuis - 0.1, { from: { dx: 260, dy: -620, rot: 0.28, h: 260 }, dur: 0.55 });
+        put(stampRound("DEPUIS", "1959"), 2770, 1010, -0.21, T03.cinq, { kind: "pop" });
+        put(logoTag(), 3555, 248, 0.07, T03.fed, { from: { dx: 120, dy: -300, rot: 0.3, h: 120 } });
+        put(tape(null, { w: 120 }), 3555, 168, -0.08, T03.fed + 0.25, { from: { dy: -80, rot: 0.2, h: 60 } });
+        put(strip("Ceux qui font", 84, PAPER, DEEP), 2390, 330, -0.03, T03.ceux - 0.05, { from: { dx: -420, dy: -60, rot: -0.2, h: 140 } });
+        put(strip("l'économie", 116, GREEN, PAPER, { padX: 34, padY: 14 }), 2410, 478, 0.022, T03.eco - 0.05, { from: { dx: -460, dy: 40, rot: 0.2, h: 150 } });
+        put(strip("du pays", 84, PAPER, DEEP), 2440, 632, -0.018, T03.pays - 0.05, { from: { dx: -400, dy: 80, rot: -0.15, h: 140 } });
+        // étiquette bronze « plus de 1 100 entreprises »
+        const LABEL1100 = (() => {
+          const w = 500,
+            h = 180;
+          const [cv, c] = mk(w, h);
+          c.fillStyle = BRONZE;
+          pathFrom(c, tornPath(rectPts(6, 6, w - 12, h - 12), 2, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, w, h, 0.06);
+          c.restore();
+          c.fillStyle = DEEP;
+          c.font = '500 36px "Hyundai Sans Head"';
+          c.fillText("plus de", 34, 52);
+          c.font = '700 96px "Hyundai Sans Head"';
+          c.fillText("1 100", 28, 144);
+          c.font = '500 36px "Hyundai Sans Head"';
+          c.fillText("entreprises", 296, 140);
+          return withShadow({ cv, w, h });
+        })();
+        put(LABEL1100, 2350, 850, 0.035, T03.plus - 0.05, { from: { dx: -380, dy: 200, rot: 0.25, h: 150 } });
+        // les 71 points du logo, en confettis bronze posés sur la carte
+        const DOT = punchDot();
+        const dotOrder = MAP.dots.map((d, i) => ({ i, k: Math.hypot(d[0] + 190, d[1] + 40) + hash(i * 17) * 120 })).sort((a, b) => a.k - b.k);
+        const dotT = [];
+        dotOrder.forEach((o, r) => (dotT[o.i] = T03.plus + 0.3 + Math.floor(r / 6) / FPS));
+        // flèche au feutre : de l'étiquette vers la carte
+        const ARROWS = [];
+        function arrow(pts, t0, dur, o = {}) {
+          pts = pts.map(([x, y]) => [x + ZX, y + ZY]);
+          ARROWS.push({ pts: smooth(pts), t0, dur, col: o.col || MARKER, w: o.w || 7, head: o.head !== false, t1: o.t1 });
+        }
+        function smooth(pts) {
+          const out = [];
+          for (let i = 0; i < pts.length - 1; i++) {
+            const p0 = pts[Math.max(0, i - 1)],
+              p1 = pts[i],
+              p2 = pts[i + 1],
+              p3 = pts[Math.min(pts.length - 1, i + 2)];
+            for (let k = 0; k < 16; k++) {
+              const u = k / 16,
+                u2 = u * u,
+                u3 = u2 * u;
+              out.push([
+                0.5 * (2 * p1[0] + (-p0[0] + p2[0]) * u + (2 * p0[0] - 5 * p1[0] + 4 * p2[0] - p3[0]) * u2 + (-p0[0] + 3 * p1[0] - 3 * p2[0] + p3[0]) * u3),
+                0.5 * (2 * p1[1] + (-p0[1] + p2[1]) * u + (2 * p0[1] - 5 * p1[1] + 4 * p2[1] - p3[1]) * u2 + (-p0[1] + 3 * p1[1] - 3 * p2[1] + p3[1]) * u3),
+              ]);
+            }
+          }
+          out.push(pts[pts.length - 1]);
+          return out;
+        }
+        arrow(
+          [
+            [2610, 800],
+            [2720, 740],
+            [2860, 700],
+          ],
+          T03.entr + 0.1,
+          0.45,
+        );
+        // trait de feutre sous les trois métiers (L01)
+        arrow(
+          [
+            [250, 985],
+            [700, 1005],
+            [1200, 975],
+            [1760, 990],
+          ],
+          T01.vivre - 0.05,
+          0.6,
+          { head: false, w: 8 },
+        );
+        // flèche vers la boutique seule (L02)
+        arrow(
+          [
+            [700, 470],
+            [760, 530],
+            [820, 575],
+          ],
+          T02.seule + 0.35,
+          0.3,
+        );
+
+        // L04 : deux disques de papier, quartiers verts découpés
+        const T04 = { ens: at("L04", "Ensemble"), p80: at("L04", "80"), pib: at("L04", "PIB"), p90: at("L04", "90"), mo: at("L04", "main") };
+        put(hand("ensemble", 72), 4460, 175, -0.04, T04.ens, { kind: "write", dur: 0.55 });
+        const PIES = [];
+        const DISC = disc(205);
+        PIES.push({ e: put(DISC, 4140, 470, -0.04, T04.p80 - 0.3, { from: { dx: -200, dy: -420, rot: -0.3, h: 180 } }), frac: 0.8, t0: T04.p80 - 0.05, col: GREEN });
+        PIES.push({ e: put(disc(205), 4860, 470, 0.05, T04.p90 - 0.3, { from: { dx: 220, dy: -420, rot: 0.3, h: 180 } }), frac: 0.9, t0: T04.p90 - 0.05, col: "#2f8f57" });
+        put(strip("près de 80 %", 66, PAPER, DEEP), 4140, 780, -0.025, T04.p80, { from: { dy: 260, rot: 0.2, h: 120 } });
+        put(strip("du PIB", 42, MANILA, DEEP, { weight: 500 }), 4140, 880, 0.03, T04.pib - 0.05, { from: { dy: 240, rot: -0.2, h: 100 } });
+        put(strip("plus de 90 %", 66, PAPER, DEEP), 4860, 780, 0.02, T04.p90, { from: { dy: 260, rot: -0.2, h: 120 } });
+        put(strip("de la main-d'œuvre formelle", 40, MANILA, DEEP, { weight: 500 }), 4860, 880, -0.025, T04.mo - 0.05, { from: { dy: 240, rot: 0.2, h: 100 } });
+
+        // ------------------------------------------------------------ zone C : 13 fédérations, le Bureau exécutif, le dialogue
+        ZX = 640;
+        ZY = 0;
+        const T05 = { reunies: at("L05", "Réunies"), treize: at("L05", "treize"), metiers: at("L05", "métiers"), seule: at("L05", "seule") };
+        const T06 = { remont: at("L06", "remontent"), bureau: at("L06", "Bureau"), puis: at("L06", "puis"), table: at("L06", "table"), dial: at("L06", "dialogue"), pp: at("L06", "public") };
+        const FEDS = [
+          ["Construction", 337],
+          ["Services divers", 118],
+          ["Commerce", 110],
+          ["Conseil", 83],
+          ["Logistique et manutention", 83],
+          ["Industries extractives", 67],
+          ["Numérique", 67],
+          ["Industrie", 61],
+          ["Finance", 50],
+          ["Santé", 43],
+          ["Bois", 30],
+          ["Tourisme", 29],
+          ["Agriculture et pêche", 22],
+        ];
+        put(strip("13 fédérations métiers", 74, GREEN, PAPER), 5760, 150, -0.015, T05.treize - 0.05, { from: { dy: -300, rot: -0.15, h: 150 } });
+        const TAGS = [];
+        {
+          const rows = [FEDS.slice(0, 5), FEDS.slice(5, 9), FEDS.slice(9, 13)];
+          const ys = [330, 528, 726];
+          let n = 0;
+          rows.forEach((row, r) => {
+            const sprs = row.map(([nm, ct]) => tag(nm, ct));
+            const gap = 34;
+            const W = sprs.reduce((a, s) => a + s.w, 0) + gap * (sprs.length - 1);
+            let x = 5760 - W / 2;
+            sprs.forEach((s, i) => {
+              const cx = x + s.w / 2;
+              x += s.w + gap;
+              const rot = (hash(n * 13 + 5) - 0.5) * 0.07;
+              const t0 = T05.reunies - 0.05 + n * 0.125;
+              TAGS.push(put(s, cx, ys[r] + (hash(n * 3) - 0.5) * 14, rot, t0, { from: { dx: (hash(n) - 0.5) * 300, dy: -240, rot: (hash(n * 9) - 0.5) * 0.6, h: 140 }, dur: 0.34 }));
+              n++;
+            });
+          });
+        }
+        put(bubble("une seule voix", 66, GREEN, PAPER, 560, 170, false), 5760, 975, -0.02, T05.seule - 0.1, { kind: "pop", t1: T06.remont - 0.35, to: { dx: 1700, dy: 160, rot: 0.5, h: 160 }, exitDur: 0.55 });
+        // le Bureau exécutif et le dialogue public-privé
+        const eBureau = put(card("Bureau exécutif", 58), 5760, 1440, 0.015, T06.remont - 0.1, { from: { dy: 340, rot: 0.2, h: 150 } });
+        const iconCols = (c, x, y) => {
+          c.fillStyle = "#7f97ad";
+          c.beginPath();
+          c.moveTo(x - 46, y - 18);
+          c.lineTo(x + 46, y - 18);
+          c.lineTo(x, y - 52);
+          c.closePath();
+          c.fill();
+          for (let k = 0; k < 4; k++) c.fillRect(x - 40 + k * 23, y - 12, 12, 52);
+          c.fillRect(x - 50, y + 42, 100, 12);
+        };
+        const ePP = put(card("Pouvoirs publics", 54, { icon: iconCols, pin: "#3e6f9e" }), 7310, 1450, -0.02, T06.table - 0.15, { from: { dx: 380, dy: -120, rot: 0.3, h: 150 } });
+        const ePub = put(bubble("public", 54, PAPER, DEEP, 300, 150, false), 6880, 1350, 0.05, T06.dial - 0.12, { from: { dx: 240, dy: -200, rot: 0.3, h: 140 } });
+        const ePri = put(bubble("privé", 54, GREEN, PAPER, 280, 140, true), 6610, 1455, -0.04, T06.dial - 0.02, { from: { dx: -240, dy: 200, rot: -0.3, h: 140 } });
+        put(strip("Dialogue public-privé", 56, PAPER, DEEP), 6760, 1690, -0.02, T06.pp - 0.05, { from: { dy: 300, rot: -0.2, h: 140 } });
+        // fils de laine : des fédérations au Bureau, du Bureau au dialogue, des pouvoirs publics au dialogue
+        const STRINGS = [];
+        TAGS.forEach((e, i) => STRINGS.push({ a: () => [e, 0, e.spr.pinY], b: () => [eBureau, 0, eBureau.spr.pinY], t0: T06.remont - 0.05 + i * 0.06, dur: 0.42 }));
+        STRINGS.push({ a: () => [eBureau, 0, eBureau.spr.pinY], b: () => [ePri, -60, -20], t0: T06.puis - 0.05, dur: 0.5 });
+        STRINGS.push({ a: () => [ePP, 0, ePP.spr.pinY], b: () => [ePub, 70, -30], t0: T06.pp - 0.1, dur: 0.45 });
+
+        // ------------------------------------------------------------ zone D : le Gabon Economic Forum, la Déclaration, les réformes
+        ZX = 640;
+        ZY = -60;
+        const T07 = { rdv: at("L07", "rendez"), gef: at("L07", "Gabon"), huit: at("L07", "huit"), decl: at("L07", "Déclaration"), lib: at("L07", "Libreville") };
+        const T08 = { dette: at("L08", "Dette"), fisc: at("L08", "fiscalité"), comm: at("L08", "commande"), fin: at("L08", "financement"), ens: at("L08", "ensemble"), pesent: at("L08", "pèsent"), ref: at("L08", "réformes") };
+        put(photo(IMG_SALLE, 600, 338, { border: 14 }), 7700, 650, -0.04, T07.rdv - 0.1, { from: { dx: -300, dy: -400, rot: -0.3, h: 200 } });
+        put(tape(null, { w: 150 }), 7460, 470, -0.6, T07.rdv + 0.3, { from: { dy: -60, h: 60 } });
+        put(tape(null, { w: 150 }), 7960, 470, 0.55, T07.rdv + 0.4, { from: { dy: -60, h: 60 } });
+        put(strip("Gabon Economic Forum", 68, GREEN, PAPER), 7860, 330, -0.02, T07.gef - 0.05, { from: { dy: -320, rot: -0.15, h: 150 } });
+        // le logo du Forum, imprimé sur un carton
+        {
+          const [cv, c] = mk(392, 196);
+          c.fillStyle = PAPER;
+          pathFrom(c, tornPath(rectPts(6, 6, 380, 184), 1.8, 5));
+          c.fill();
+          if (IMG_GEF) c.drawImage(IMG_GEF, 30, 28, 332, 137);
+          put(withShadow({ cv, w: 392, h: 196 }), 8290, 640, 0.06, T07.gef + 0.45, { from: { dx: 300, dy: -200, rot: 0.3, h: 150 } });
+        }
+        const numCard = (n) => {
+          const [cv, c] = mk(112, 134);
+          c.fillStyle = MANILA;
+          pathFrom(c, tornPath(rectPts(6, 6, 100, 122), 1.4, 5));
+          c.fill();
+          c.save();
+          c.clip();
+          grain(c, 0, 0, 112, 134, 0.07);
+          c.restore();
+          c.fillStyle = DEEP;
+          c.font = "700 80px Caveat";
+          c.textAlign = "center";
+          c.textBaseline = "middle";
+          c.fillText(String(n), 56, 72);
+          return withShadow({ cv, w: 112, h: 134 });
+        };
+        for (let i = 0; i < 8; i++) put(numCard(i + 1), 7400 + i * 118, 1035 + (i % 2 ? 10 : -6), (hash(i * 31) - 0.5) * 0.16, T07.huit - 0.05 + i * 0.083, { from: { dy: -180, rot: 0.3, h: 110 }, dur: 0.3 });
+        put(hand("8 ateliers", 70), 7810, 1170, -0.02, T07.huit + 0.75, { kind: "write", dur: 0.5 });
+        const eDecl = put(photo(IMG_DECL, 400, 566, { border: 6, clean: true }), 8720, 770, 0.05, T07.decl - 0.12, { from: { dx: 420, dy: -300, rot: 0.35, h: 220 }, dur: 0.5 });
+        put(paperclip(), 8570, 495, 0.1, T07.decl + 0.35, { from: { dx: -60, dy: -100, rot: 0.4, h: 60 } });
+        put(strip("Déclaration de Libreville", 54, PAPER, DEEP), 8720, 1150, -0.015, T07.lib - 0.1, { from: { dy: 300, rot: 0.2, h: 140 } });
+        // L08 : quatre bandes de ruban adhésif sur la Déclaration
+        put(tape("Dette intérieure"), 8630, 590, -0.07, T08.dette - 0.05, { from: { dx: -360, dy: -60, rot: -0.3, h: 120 } });
+        put(tape("Fiscalité"), 8890, 740, 0.06, T08.fisc - 0.05, { from: { dx: 360, dy: -40, rot: 0.3, h: 120 } });
+        put(tape("Commande publique"), 8615, 895, -0.035, T08.comm - 0.05, { from: { dx: -380, dy: 40, rot: -0.3, h: 120 } });
+        put(tape("Financement des PME"), 8850, 1040, 0.045, T08.fin - 0.05, { from: { dx: 380, dy: 60, rot: 0.3, h: 120 } });
+        put(stampRect("RÉFORMES"), 8930, 470, -0.13, T08.ref - 0.05, { kind: "pop" });
+        put(hand("ensemble !", 78), 8760, 1262, -0.03, T08.ens - 0.02, { kind: "write", dur: 0.55 });
+        arrow(
+          [
+            [8590, 1300],
+            [8740, 1312],
+            [8930, 1296],
+          ],
+          T08.ens + 0.55,
+          0.3,
+          { head: false, w: 6 },
+        );
+
+        // ------------------------------------------------------------ zone E : au quotidien
+        ZX = 640;
+        ZY = 200;
+        const T09 = { quot: at("L09", "quotidien"), veille: at("L09", "veille"), form: at("L09", "formations"), res: at("L09", "réseau"), med: at("L09", "médiation") };
+        put(strip("Au quotidien", 76, PAPER, DEEP), 6780, 1820, -0.025, T09.quot - 0.1, { from: { dx: -300, dy: -200, rot: -0.2, h: 150 } });
+        const POST = [
+          ["Veille sur les réformes", "#f6e27a", 6660, T09.veille],
+          ["Formations", "#bfe4b4", 7100, T09.form],
+          ["Réseau d'affaires", "#f6c3cb", 7540, T09.res],
+          ["Médiation et arbitrage", "#bfdcf3", 7980, T09.med],
+        ];
+        POST.forEach(([txt, col, x, tt], i) => put(postit(txt, col), x, 2215 + (i % 2 ? 14 : -10), (hash(i * 41) - 0.5) * 0.12, tt - 0.06, { from: { dx: (i - 1.5) * 120, dy: -380, rot: (i % 2 ? 0.3 : -0.3), h: 170 }, dur: 0.38 }));
+        put(photo(IMG_FORM, 440, 248, { border: 12 }), 7130, 2660, 0.04, T09.form + 0.35, { from: { dy: 380, rot: 0.25, h: 160 } });
+        put(photo(IMG_MAINS, 300, 248, { border: 12 }), 7980, 2660, -0.05, T09.res + 0.3, { from: { dy: 380, rot: -0.25, h: 160 } });
+        put(tape(null, { w: 130 }), 7130, 2520, 0.08, T09.form + 0.7, { from: { dy: -60, h: 50 } });
+        put(tape(null, { w: 130 }), 7980, 2520, -0.1, T09.res + 0.65, { from: { dy: -60, h: 50 } });
+
+        // ------------------------------------------------------------ zone F : le slogan, le siège, l'adhésion
+        ZX = 0;
+        ZY = 0;
+        const T10 = { des: at("L10", "Des"), prosp: at("L10", "prospérité"), votre: at("L10", "Votre"), place: at("L10", "place"), cotes: at("L10", "côtés"), rej: at("L10", "rejoignez") };
+        put(strip("Des entreprises fortes,", 80, PAPER, DEEP), 4900, 1990, -0.022, T10.des - 0.05, { from: { dx: -380, dy: -160, rot: -0.2, h: 150 } });
+        put(strip("une prospérité partagée.", 80, GREEN, PAPER), 4930, 2130, 0.016, T10.prosp - 0.12, { from: { dx: -420, dy: 60, rot: 0.2, h: 150 } });
+        put(photo(IMG_SIEGE, 300, 372, { border: 14, bottom: 62, caption: "le siège, immeuble Odyssée", fy: 0.25, clean: true }), 5900, 2235, 0.075, T10.votre - 0.25, { from: { dx: 420, dy: -300, rot: 0.4, h: 200 } });
+        put(tape(null, { w: 150 }), 5890, 2000, 0.06, T10.votre + 0.1, { from: { dy: -70, h: 60 } });
+        put(strip("Votre entreprise a sa place", 70, BRONZE, DEEP), 4950, 2390, -0.018, T10.votre - 0.05, { from: { dx: -400, dy: 200, rot: -0.2, h: 150 } });
+        put(strip("à nos côtés.", 70, PAPER, DEEP), 4800, 2520, 0.02, T10.place, { from: { dx: -380, dy: 240, rot: 0.2, h: 150 } });
+        // la grande feuille blanche de la carte de fin (dans le cadre de l'écran)
+        const SHEET = endSheet();
+        const eSheet = { id: 9999, spr: SHEET, x: 960, y: 540, rot: -0.004, t0: T10.rej + 1.3, dur: 0.58, from: { dx: -180, dy: 1150, rot: 0.11, h: 260 }, kind: "drop", sgn: 1, still: true };
+        const SHEET_TAPES = [
+          { id: 9998, spr: tape(null, { w: 170 }), x: 120, y: 74, rot: -0.62, t0: T10.rej + 2.05, dur: 0.25, from: { dy: -60, h: 50 }, kind: "drop", sgn: 1, still: true },
+          { id: 9997, spr: tape(null, { w: 170 }), x: 1800, y: 74, rot: 0.6, t0: T10.rej + 2.15, dur: 0.25, from: { dy: -60, h: 50 }, kind: "drop", sgn: -1, still: true },
+        ];
+
+        // ------------------------------------------------------------ caméra (centre, zoom, rotation)
+        const KEYS = [];
+        const key = (t0, dur, x, y, z, r = 0) => KEYS.push({ t0, dur, to: { x, y, z, r } });
+        const CAM0 = { x: 1000, y: 600, z: 0.92, r: -0.012 };
+        key(0.2, 2.4, 1000, 590, 1.0, 0);
+        key(T02.mais - 0.1, 1.4, 1010, 592, 1.42, 0.008);
+        key(T03.depuis - 0.35, 1.6, 2860, 610, 0.95, -0.006);
+        key(at("L04", "Ensemble") - 0.3, 1.5, 4480, 600, 0.95, 0.004);
+        key(T05.reunies - 0.45, 1.3, 6400, 560, 0.86, -0.004);
+        key(T06.remont - 0.5, 1.5, 6520, 920, 0.71, 0.003);
+        key(T06.puis - 0.3, 1.3, 7240, 1370, 0.84, -0.004);
+        key(at("L07", "dialogue") - 0.2, 1.7, 8560, 615, 0.9, 0.004);
+        key(T07.decl - 0.5, 1.0, 9070, 720, 0.98, 0);
+        key(T08.dette - 0.45, 1.0, 9260, 820, 1.1, -0.004);
+        key(at("L09", "Et") - 0.3, 1.7, 7970, 2400, 0.85, 0.004);
+        key(T10.des - 0.45, 1.7, 5340, 2260, 0.95, -0.004);
+        function camAt(t) {
+          let s = { ...CAM0 };
+          for (let i = 0; i < KEYS.length; i++) {
+            const k = KEYS[i];
+            if (t <= k.t0) break;
+            const next = KEYS[i + 1];
+            const cut = next && next.t0 < t ? next.t0 : t;
+            const e = inOut(clamp01((cut - k.t0) / k.dur));
+            s = { x: lerp(s.x, k.to.x, e), y: lerp(s.y, k.to.y, e), z: Math.exp(lerp(Math.log(s.z), Math.log(k.to.z), e)), r: lerp(s.r, k.to.r, e) };
+            if (!(next && next.t0 < t)) break;
+          }
+          // banc-titre tenu à la main : légère dérive
+          s.x += 5 * Math.sin(t * 0.31) + 3 * Math.sin(t * 0.73 + 1);
+          s.y += 4 * Math.sin(t * 0.27 + 2) + 2 * Math.sin(t * 0.61);
+          s.r += 0.0016 * Math.sin(t * 0.22 + 0.5);
+          return s;
+        }
+
+        // ------------------------------------------------------------ dessin d'une image
+        const cv = document.getElementById("world-cv");
+        const ctx = cv.getContext("2d");
+        const kraftPat = ctx.createPattern(kraft, "repeat");
+        function drawSprite(e, p, c = ctx) {
+          const sp = e.spr;
+          const alpha = (sp.alpha ?? 1) * p.a;
+          if (!sp.noShadow && sp.sh) {
+            const pad = sp.shPad;
+            const off = 5 + p.h * 0.16,
+              offY = 8 + p.h * 0.24;
+            const sc = 1 + p.h * 0.0007;
+            c.save();
+            c.translate(p.x + off, p.y + offY);
+            c.rotate(p.rot);
+            c.scale(p.s * sc, p.s * sc);
+            c.globalAlpha = alpha * Math.max(0.12, (sp.light ? 0.16 : 0.3) - p.h * 0.0006);
+            c.drawImage(sp.sh, -sp.w / 2 - pad, -sp.h / 2 - pad, sp.w + 2 * pad, sp.h + 2 * pad);
+            c.restore();
+          }
+          c.save();
+          c.translate(p.x, p.y);
+          c.rotate(p.rot);
+          c.scale(p.s, p.s);
+          c.globalAlpha = alpha;
+          if (p.rev < 1) {
+            c.beginPath();
+            c.rect(-sp.w / 2, -sp.h / 2 - 20, sp.w * p.rev, sp.h + 40);
+            c.clip();
+          }
+          c.drawImage(sp.cv, -sp.w / 2, -sp.h / 2, sp.w, sp.h);
+          c.restore();
+        }
+        function drawPath(a, t) {
+          const q = Q(t);
+          if (q < a.t0) return;
+          const u = clamp01((q - a.t0 + 1 / FPS) / a.dur);
+          const n = Math.max(2, Math.floor(a.pts.length * u));
+          ctx.save();
+          ctx.strokeStyle = a.col;
+          ctx.globalAlpha = 0.92;
+          ctx.lineWidth = a.w;
+          ctx.lineCap = "round";
+          ctx.lineJoin = "round";
+          ctx.beginPath();
+          for (let i = 0; i < n; i++) i ? ctx.lineTo(a.pts[i][0], a.pts[i][1]) : ctx.moveTo(a.pts[i][0], a.pts[i][1]);
+          ctx.stroke();
+          if (a.head && u >= 1) {
+            const [x2, y2] = a.pts[a.pts.length - 1],
+              [x1, y1] = a.pts[a.pts.length - 4];
+            const ang = Math.atan2(y2 - y1, x2 - x1);
+            ctx.beginPath();
+            ctx.moveTo(x2 - 30 * Math.cos(ang - 0.5), y2 - 30 * Math.sin(ang - 0.5));
+            ctx.lineTo(x2, y2);
+            ctx.lineTo(x2 - 30 * Math.cos(ang + 0.5), y2 - 30 * Math.sin(ang + 0.5));
+            ctx.stroke();
+          }
+          ctx.restore();
+        }
+        function drawString(s, t) {
+          const q = Q(t);
+          if (q < s.t0) return;
+          const [ea, ax, ay] = s.a(),
+            [eb, bx, by] = s.b();
+          const pa = pose(ea, t),
+            pb = pose(eb, t);
+          if (!pa || !pb) return;
+          const A = toTable(pa, ax, ay),
+            B = toTable(pb, bx, by);
+          const u = clamp01((q - s.t0 + 1 / FPS) / s.dur);
+          const mx = (A[0] + B[0]) / 2,
+            my = (A[1] + B[1]) / 2 + 40 + Math.hypot(B[0] - A[0], B[1] - A[1]) * 0.06;
+          const pt = (v) => {
+            const iv = 1 - v;
+            return [iv * iv * A[0] + 2 * iv * v * mx + v * v * B[0], iv * iv * A[1] + 2 * iv * v * my + v * v * B[1]];
+          };
+          for (const pass of [0, 1]) {
+            ctx.save();
+            ctx.lineCap = "round";
+            ctx.strokeStyle = pass ? WOOL : "rgba(40,20,10,0.22)";
+            ctx.lineWidth = pass ? 4.5 : 5;
+            ctx.beginPath();
+            const N = 40;
+            for (let i = 0; i <= N; i++) {
+              const [x, y] = pt((i / N) * u);
+              const ox = pass ? 0 : 4,
+                oy = pass ? 0 : 7;
+              i ? ctx.lineTo(x + ox, y + oy) : ctx.moveTo(x + ox, y + oy);
+            }
+            ctx.stroke();
+            ctx.restore();
+          }
+        }
+        // disque + quartier vert qui se découpe pose après pose
+        function drawPie(pie, t) {
+          const p = pose(pie.e, t);
+          if (!p) return;
+          const q = Q(t);
+          const u = clamp01((q - pie.t0) / 1.25);
+          if (u <= 0) return;
+          const ang = -Math.PI / 2 + Math.PI * 2 * pie.frac * out3(u);
+          ctx.save();
+          ctx.translate(p.x, p.y);
+          ctx.rotate(p.rot);
+          ctx.scale(p.s, p.s);
+          ctx.fillStyle = "rgba(40,25,10,0.22)";
+          ctx.beginPath();
+          ctx.moveTo(5, 8);
+          ctx.arc(5, 8, 176, -Math.PI / 2, ang);
+          ctx.closePath();
+          ctx.fill();
+          ctx.fillStyle = pie.col;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.arc(0, 0, 176, -Math.PI / 2, ang);
+          ctx.closePath();
+          ctx.fill();
+          ctx.strokeStyle = "rgba(255,255,255,0.55)";
+          ctx.lineWidth = 2;
+          ctx.stroke();
+          ctx.restore();
+        }
+
+        function render(t) {
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          const cam = camAt(t);
+          ctx.translate(960, 540);
+          ctx.rotate(cam.r);
+          ctx.scale(cam.z, cam.z);
+          ctx.translate(-cam.x, -cam.y);
+          // la table : kraft répété sur toute la zone visible
+          const R = Math.hypot(960, 540) / cam.z + 40;
+          ctx.fillStyle = kraftPat;
+          ctx.fillRect(cam.x - R, cam.y - R, 2 * R, 2 * R);
+          // éléments, dans l'ordre de pose
+          for (const e of ELS) {
+            const p = pose(e, t);
+            if (!p) continue;
+            drawSprite(e, p);
+            if (e === eMap) {
+              // confettis bronze : les 71 points du logo
+              for (let i = 0; i < MAP.dots.length; i++) {
+                if (Q(t) < dotT[i]) continue;
+                const [lx, ly] = MAP.dots[i];
+                const [x, y] = toTable(p, lx, ly);
+                const k = Math.round((Q(t) - dotT[i]) * FPS);
+                const dp = { x, y, rot: hash(i * 7) * 6, s: k === 0 ? 1.25 : 1, h: k === 0 ? 20 : 0, a: 1, rev: 1 };
+                drawSprite({ spr: DOT }, dp);
+              }
+            }
+            for (const pie of PIES) if (pie.e === e) drawPie(pie, t);
+            if (e === eBureau) for (const s of STRINGS) drawString(s, t);
+          }
+          for (const a of ARROWS) drawPath(a, t);
+          // carte de fin : la feuille blanche, dans le repère de l'écran
+          ctx.setTransform(1, 0, 0, 1, 0, 0);
+          const ps = pose(eSheet, t);
+          if (ps) {
+            drawSprite(eSheet, ps);
+            for (const tp of SHEET_TAPES) {
+              const pt = pose(tp, t);
+              if (pt) drawSprite(tp, pt);
+            }
+          }
+          // lumière de prise de vue : vignette douce
+          const vg = ctx.createRadialGradient(960, 520, 420, 960, 540, 1250);
+          vg.addColorStop(0, "rgba(60,40,10,0)");
+          vg.addColorStop(1, "rgba(60,40,10,0.26)");
+          ctx.fillStyle = vg;
+          ctx.fillRect(0, 0, 1920, 1080);
+        }
+
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>

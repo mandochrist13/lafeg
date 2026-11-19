@@ -1,0 +1,86 @@
+<template>
+  <!-- Carte de fin : la grande feuille blanche est posée sur la table ; le logo s'y pose image par image, puis l'appel. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Head";
+      font-weight: 700;
+      src: url("assets/fonts/HyundaiSansHead-Bold.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 400;
+      src: url("assets/fonts/HyundaiSansText-Regular.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Head", sans-serif;
+      color: #1a1c19;
+    }
+    #en-logo {
+      position: absolute;
+      left: 691.54px;
+      top: 222px;
+      width: 536.92px;
+      height: 496px;
+      opacity: 0;
+      transform-origin: 50% 50%;
+    }
+    #en-cta {
+      position: absolute;
+      left: 0;
+      top: 770px;
+      width: 1920px;
+      text-align: center;
+    }
+    #en-line {
+      font-weight: 700;
+      font-size: 58px;
+      letter-spacing: -0.01em;
+      color: #063d21;
+    }
+    #en-line span {
+      display: inline-block;
+      opacity: 0;
+    }
+    #en-url {
+      color: #0a7537;
+    }
+    #en-contact {
+      margin-top: 18px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #5c6259;
+      opacity: 0;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080">
+    <img id="en-logo" src="assets/img/feg-logo.png" alt="Fédération des Entreprises du Gabon" />
+    <div id="en-cta">
+      <div id="en-line"><span>Devenez</span> <span>membre</span> <span>·</span> <span id="en-url">lafeg.ga</span></div>
+      <div id="en-contact">info@lafeg.ga · +241 11 77 55 95</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FL_CUES;
+      var W = (C.ov && C.ov["ov-end"]) || { start: 0, dur: 8 };
+      var tLogo = Math.max(0.3, C.logo - W.start);
+      var F = 1 / 12; // une pose d'animation image par image
+      var tl = gsap.timeline({ paused: true });
+      // le logo se pose sur l'accord final, en trois poses
+      tl.set("#en-logo", { opacity: 1, scale: 1.07, rotation: 1.4, y: -10 }, tLogo - 2 * F);
+      tl.set("#en-logo", { scale: 1.025, rotation: -0.5, y: -3 }, tLogo - F);
+      tl.set("#en-logo", { scale: 1, rotation: 0, y: 0 }, tLogo);
+      // l'appel, mot après mot
+      var spans = ["#en-line span:nth-child(1)", "#en-line span:nth-child(2)", "#en-line span:nth-child(3)", "#en-line span:nth-child(4)"];
+      spans.forEach(function (s, i) {
+        tl.set(s, { opacity: 1, y: -6, rotation: i % 2 ? 1.2 : -1.2 }, tLogo + 0.55 + i * 2 * F);
+        tl.set(s, { y: 0, rotation: 0 }, tLogo + 0.55 + i * 2 * F + F);
+      });
+      tl.set("#en-contact", { opacity: 1 }, tLogo + 1.25);
+      tl.to("#en-contact", { opacity: 1, duration: 0.01 }, W.dur - 0.05);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>
