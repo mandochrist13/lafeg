@@ -37,7 +37,17 @@ Le film a été vu en images fixes toutes les 2 s, puis en gros plan aux moments
 
 ## Rendu
 
-À compléter après le rendu.
+`renders/FEG-point-bronze.mp4`, en qualité « delivery », rendu en 4 min.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Son | AAC stéréo 48 kHz |
+| Durée | 86,7 s |
+| Poids | 33,9 Mo |
+| Volume | −15,4 LUFS intégré, plage 3,3 LU, crête vraie −2,1 dBFS |
+
+Vingt-six images extraites du MP4, de 1,5 s à 85,5 s, montrent les mêmes plans que les images de contrôle : le réveil, les trois métiers, la solitude, la carte et le compteur, les jauges, l'anneau des fédérations et « une seule voix », le Bureau exécutif et la table du dialogue, le Forum, ses ateliers et la Déclaration, les réformes, les badges, le saut dans la place, la carte de fin.
 
 ## À valider par la FEG
 
