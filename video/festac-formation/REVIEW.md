@@ -31,9 +31,9 @@ Le film a été vu en images fixes toutes les 3 secondes, puis à chaque moment 
 | Mesure | Valeur |
 | --- | --- |
 | Image | 1080 × 1920 (vertical), 30 im/s, H.264 |
-| Durée | 87,2 s |
-| Poids | 22,1 Mo |
-| Son | AAC stéréo 48 kHz ; −15,2 LUFS intégré, plage 3,0 LU, crête −2,3 dBFS |
+| Durée | 88,0 s |
+| Poids | 22,4 Mo |
+| Son | AAC stéréo 48 kHz ; −15,2 LUFS intégré, plage 3,0 LU, crête −2,5 dBFS |
 | Images noires ou figées | aucune |
 
 Planche contact du fichier rendu, une image toutes les 5 s : toutes les scènes sont conformes à la relecture.
@@ -41,4 +41,4 @@ Planche contact du fichier rendu, une image toutes les 5 s : toutes les scènes 
 `renders/FESTAC-formation-cotisations-whatsapp.mp4` est la même vidéo, réencodée pour rester sous la limite de 16 Mo de WhatsApp :
 
 - H.264 en deux passes à 1,2 Mbit/s, son AAC 128 kbit/s ;
-- 14,4 Mo, quasi identique au rendu (SSIM 0,998).
+- 14,6 Mo, quasi identique au rendu (SSIM 0,998).
