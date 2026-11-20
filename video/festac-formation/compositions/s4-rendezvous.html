@@ -90,11 +90,18 @@
       overflow: hidden;
       box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
     }
+    #s4-ihem {
+      position: absolute;
+      left: 636px;
+      top: 34px;
+      width: 250px;
+      height: 110px;
+    }
     #s4-pl1 {
       position: absolute;
       left: 44px;
       top: 40px;
-      width: 840px;
+      width: 580px;
       font-weight: 800;
       font-size: 60px;
       line-height: 1.06;
@@ -139,6 +146,7 @@
       <span>7 h – 16 h</span>
     </div>
     <div id="s4-place">
+      <img id="s4-ihem" src="assets/img/logo-ihem.png" alt="Groupe IHEM International" />
       <div id="s4-pl1">Groupe IHEM International</div>
       <div id="s4-pl2">Nzeng-Ayong, Libreville</div>
       <div id="s4-pl3">vers la fin du goudron</div>
@@ -190,6 +198,7 @@
       // « au Groupe IHEM International, à Nzeng-Ayong, Libreville, vers la fin du goudron »
       tl.fromTo("#s4-place", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, L(C.at("L04", "groupe")) - 0.3);
       tl.fromTo("#s4-pl1", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "groupe")) - 0.15);
+      tl.fromTo("#s4-ihem", { opacity: 0, scale: 0.7, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "back.out(2)" }, L(C.at("L04", "ihem")) - 0.1);
       tl.fromTo("#s4-pl2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "nzengayong")) - 0.15);
       tl.fromTo("#s4-pl3", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "vers")) - 0.15);
       tl.fromTo("#s4-dash", { strokeDashoffset: 0 }, { strokeDashoffset: -96, duration: 2, ease: "none" }, L(C.at("L04", "vers")) - 0.6);

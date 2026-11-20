@@ -42,7 +42,7 @@ Ces faits viennent de son texte à l'écran et de sa voix (transcrite par Whispe
 - **Photos.** Elles viennent du site festac.org : table ronde FESTAC – CNSS du 29 novembre 2025 et remise des attestations. Chacune porte une légende, pour qu'on ne les prenne pas pour des images de cette formation.
 - **Logos.**
   - FESTAC et CNSS, et le médaillon de la Tribune.
-  - Le Groupe IHEM International est écrit en toutes lettres : son logo n'existe pas en bonne qualité (il est flou dans la vidéo d'origine, et introuvable en ligne).
+  - Le logo du Groupe IHEM International, fourni par la FESTAC (`assets/img/logo-ihem.png`, recadré). Il apparaît sur la carte du lieu, dans la scène des partenaires et dans le bandeau des trois logos de fin (CNSS, IHEM, Tribune), comme dans la vidéo d'origine.
 - **Icônes.** Simples, dessinées en SVG :
   - calendrier, œil, engrenages, document, loupe, bouclier ;
   - mégaphone, badge, mallette, étoile de police ;
@@ -60,8 +60,8 @@ Ces faits viennent de son texte à l'écran et de sa voix (transcrite par Whispe
 | 43,2–52,2 s | L05 : le public | « POUR QUI ? » et quatre tuiles. |
 | 52,2–62,9 s | L06 : inscription | Fond rouge : « INSCRIVEZ-VOUS », « vendredi 20 novembre 2026 », Secrétariat permanent. Le numéro 074 00 34 43 s'allume groupe par groupe, au moment où il est dit. |
 | 62,9–69,7 s | L07 : le slogan | Sur la photo des attestations : JUSTICE, TRANSPARENCE, SOLIDARITÉ. |
-| 69,7–77,3 s | L08 : les partenaires | CNSS du Gabon (partenaire principal et technique), Groupe IHEM International (accompagnement). |
-| 77,3–87,2 s | L09 : la signature | Logo complet ; SOLIDARITÉ, EXPERTISE, PANAFRICANISME ! ; récapitulatif (thème, dates, heures, lieu, inscription, numéro) ; médaillon de la Tribune. |
+| 69,7–77,3 s | L08 : les partenaires | Logo de la CNSS du Gabon (partenaire principal et technique), logo du Groupe IHEM International (accompagnement). |
+| 77,3–87,2 s | L09 : la signature | Logo complet ; SOLIDARITÉ, EXPERTISE, PANAFRICANISME ! ; récapitulatif (thème, dates, heures, lieu, inscription, numéro) ; bandeau des logos CNSS, IHEM et Tribune. |
 
 ## Son
 
@@ -100,6 +100,5 @@ Ces faits viennent de son texte à l'écran et de sa voix (transcrite par Whispe
 ## À valider
 
 - **La date limite d'inscription, « avant le vendredi 20 novembre 2026 », est celle de l'original : c'est aujourd'hui.** Faut-il la repousser ?
-- Le logo du Groupe IHEM International, à fournir en bonne qualité pour remplacer le nom écrit.
 - Les photos sont des images d'archives de la FESTAC et de la CNSS, légendées comme telles.
 - La licence de la musique (MusicGen, CC BY-NC 4.0).
