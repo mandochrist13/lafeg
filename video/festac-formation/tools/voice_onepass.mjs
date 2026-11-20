@@ -17,12 +17,7 @@ const opt = (n, d) => {
 const VOICE = opt("voice", "Kore");
 const MODEL = opt("model", "gemini-3.8-flash-tts");
 const SPLIT_ONLY = args.includes("--split-only");
-const STYLE =
-  "Voix féminine française, dynamique, claire et engageante : une annonce institutionnelle moderne pour une formation, " +
-  "énergique sans jamais crier, souriante, assurée, rythme soutenu mais toujours intelligible, intonation naturelle et vivante. " +
-  "Prononce FESTAC « fès-tak », en un seul mot ; CNSS lettre par lettre, « cé-èn-èss-èss » ; I.H.E.M. lettre par lettre, « i-ache-e-èm » ; " +
-  "Nzeng-Ayong « n-zèng-a-yong ». Dis les dates en toutes lettres et clairement. Le numéro de téléphone lentement, groupe par groupe. " +
-  "Marque une courte pause, d'environ une demi-seconde, entre chaque paragraphe. La dernière phrase avec élan et fierté.";
+import { STYLE } from "./voice_style.mjs";
 
 const cfg = JSON.parse(readFileSync(join(ROOT, "tools/lines.json"), "utf8"));
 const lines = cfg.lines;

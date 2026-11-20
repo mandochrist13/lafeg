@@ -21,6 +21,7 @@ Le film a été vu en images fixes toutes les 3 secondes, puis à chaque moment 
 | Inscription | « INSCRIVEZ-VOUS » passait sur deux lignes ; le numéro débordait de sa carte. | Tailles revues ; le numéro tient dans sa carte et chaque groupe s'allume quand il est dit. |
 | Slogan | « TRANSPARENCE » touchait le bord droit. | Taille ajustée. |
 | Bandeau du haut | Sur un statut WhatsApp, le nom et l'heure de l'expéditeur couvrent le haut de l'image. | Bandeau descendu à 150 px du haut. |
+| Lieu (v2) | « vers la fin du goudron » (repris de l'original) : le quartier s'appelle Fin Goudron. | Phrase 4 régénérée (« vers Fin Goudron »), même voix et même consigne ; sigle IHEM vérifié par deux modèles (I-H-E-M). Carte du lieu : « vers Fin Goudron », route goudronnée avec l'épingle et l'étiquette du quartier. |
 | Partenaires (v2) | Le Groupe IHEM International n'était qu'un nom écrit, faute de logo. | Logo fourni par la FESTAC, intégré sur la carte du lieu, dans la scène des partenaires et dans un bandeau de fin CNSS · IHEM · Tribune, comme dans l'original. |
 
 ## Rendu

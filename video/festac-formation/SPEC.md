@@ -11,7 +11,7 @@ Le public visé (responsables syndicaux, délégués du personnel, responsables 
 
 OUTPUT : HyperFrames 0.9.41, 1080 × 1920 (vertical, comme l'original, pour WhatsApp et les statuts), 30 im/s, MP4 H.264 + AAC.
 
-TIME : 87,2 s ; la voix finit à 82,2 s, puis le récapitulatif reste 5 s à l'écran.
+TIME : 88,0 s ; la voix finit à 83,0 s, puis le récapitulatif reste 5 s à l'écran.
 
 ## Faits repris de la vidéo d'origine
 
@@ -24,7 +24,7 @@ Ces faits viennent de son texte à l'écran et de sa voix (transcrite par Whispe
   - vérifier les déclarations sociales ;
   - identifier les irrégularités ;
   - mieux protéger les droits des travailleurs.
-- Rendez-vous : les 27 et 28 novembre 2026, de 7 h à 16 h, au Groupe IHEM International, à Nzeng-Ayong (Libreville), vers la fin du goudron.
+- Rendez-vous : les 27 et 28 novembre 2026, de 7 h à 16 h, au Groupe IHEM International, à Nzeng-Ayong (Libreville), vers Fin Goudron (le quartier, précisé par la FESTAC ; l'original écrivait « vers la fin du goudron »).
 - Public : responsables syndicaux, délégués du personnel, responsables RH et officiers de police judiciaire.
 - Inscription : avant le vendredi 20 novembre 2026, auprès du Secrétariat permanent de la FESTAC, au 074 00 34 43.
 - Slogan : « Faisons du contrôle des cotisations sociales un instrument de justice, de transparence et de solidarité. »
@@ -56,7 +56,7 @@ Ces faits viennent de son texte à l'écran et de sa voix (transcrite par Whispe
 | 1,6–8,8 s | L01 : droit fondamental ; cotisations régulières et transparentes | Sur la photo de la salle : « La protection sociale est un droit fondamental. », puis deux cartes, « régulières » et « transparentes ». |
 | 8,8–19,6 s | L02 : la FESTAC organise… avec la CNSS | Photo de la table ronde ; « La FESTAC organise », bandeau « FORMATION NATIONALE », le thème mot à mot, la carte CNSS. |
 | 19,6–33,3 s | L03 : deux jours, ce qu'on apprend | « 2 JOURS », « avec les experts formateurs de la CNSS », quatre cartes cochées sur leur verbe. |
-| 33,3–43,2 s | L04 : rendez-vous | Les dates « 27 » et « 28 » sur deux pages de calendrier, « NOVEMBRE 2026 », « 7 h – 16 h ». Carte du lieu, où une épingle tombe là où la route goudronnée s'arrête. |
+| 33,3–44,0 s | L04 : rendez-vous | Les dates « 27 » et « 28 » sur deux pages de calendrier, « NOVEMBRE 2026 », « 7 h – 16 h ». Carte du lieu avec le logo IHEM ; sur une route, une épingle et l'étiquette « Fin Goudron ». |
 | 43,2–52,2 s | L05 : le public | « POUR QUI ? » et quatre tuiles. |
 | 52,2–62,9 s | L06 : inscription | Fond rouge : « INSCRIVEZ-VOUS », « vendredi 20 novembre 2026 », Secrétariat permanent. Le numéro 074 00 34 43 s'allume groupe par groupe, au moment où il est dit. |
 | 62,9–69,7 s | L07 : le slogan | Sur la photo des attestations : JUSTICE, TRANSPARENCE, SOLIDARITÉ. |

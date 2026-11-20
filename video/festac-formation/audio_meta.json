@@ -453,138 +453,128 @@
       "path": "assets/voice/L04.wav",
       "voice": "Kore",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 9.207,
+      "duration_s": 10.046,
       "speech": [
-        0.121,
-        9.053
+        0.12,
+        9.866
       ],
-      "pauses": 3,
-      "anchored": 3,
+      "pauses": 6,
+      "anchored": 5,
       "words": [
         {
           "text": "Rendez-vous",
-          "start": 0.121,
-          "end": 0.643
+          "start": 0.12,
+          "end": 0.741
         },
         {
           "text": "les",
-          "start": 0.643,
-          "end": 0.818
+          "start": 0.741,
+          "end": 0.948
         },
         {
           "text": "27",
-          "start": 0.818,
-          "end": 1.166
+          "start": 0.948,
+          "end": 1.363
         },
         {
           "text": "et",
-          "start": 1.166,
-          "end": 1.341
+          "start": 1.363,
+          "end": 1.57
         },
         {
           "text": "28",
-          "start": 1.341,
-          "end": 1.689
+          "start": 1.57,
+          "end": 1.984
         },
         {
           "text": "novembre",
-          "start": 1.689,
-          "end": 2.038
+          "start": 1.984,
+          "end": 2.398
         },
         {
           "text": "2026,",
-          "start": 2.038,
-          "end": 2.91
+          "start": 2.398,
+          "end": 3.434
         },
         {
           "text": "de",
-          "start": 2.91,
-          "end": 3.084
+          "start": 3.635,
+          "end": 3.806
         },
         {
           "text": "7",
-          "start": 3.084,
-          "end": 3.433
+          "start": 3.806,
+          "end": 4.149
         },
         {
           "text": "heures",
-          "start": 3.433,
-          "end": 3.607
+          "start": 4.149,
+          "end": 4.32
         },
         {
           "text": "à",
-          "start": 3.607,
-          "end": 3.781
+          "start": 4.447,
+          "end": 4.627
         },
         {
           "text": "16",
-          "start": 3.781,
-          "end": 4.13
+          "start": 4.627,
+          "end": 4.989
         },
         {
           "text": "heures,",
-          "start": 4.13,
-          "end": 4.304
+          "start": 4.989,
+          "end": 5.169
         },
         {
           "text": "au",
-          "start": 4.478,
-          "end": 4.709
+          "start": 5.415,
+          "end": 5.523
         },
         {
           "text": "Groupe",
-          "start": 4.709,
-          "end": 4.94
+          "start": 5.523,
+          "end": 5.631
         },
         {
           "text": "I.H.E.M.",
-          "start": 4.94,
-          "end": 5.401
+          "start": 5.631,
+          "end": 5.847
         },
         {
           "text": "International,",
-          "start": 5.401,
-          "end": 6.554
+          "start": 5.974,
+          "end": 7.358
         },
         {
           "text": "à",
-          "start": 6.554,
-          "end": 6.784
+          "start": 7.479,
+          "end": 7.723
         },
         {
           "text": "Nzeng-Ayong,",
-          "start": 6.784,
-          "end": 7.245
+          "start": 7.723,
+          "end": 8.209
         },
         {
           "text": "Libreville,",
-          "start": 7.374,
-          "end": 7.972
+          "start": 8.209,
+          "end": 8.939
         },
         {
           "text": "vers",
-          "start": 8.082,
-          "end": 8.244
+          "start": 9.126,
+          "end": 9.311
         },
         {
-          "text": "la",
-          "start": 8.244,
-          "end": 8.406
+          "text": "Fin",
+          "start": 9.311,
+          "end": 9.496
         },
         {
-          "text": "fin",
-          "start": 8.406,
-          "end": 8.568
-        },
-        {
-          "text": "du",
-          "start": 8.568,
-          "end": 8.73
-        },
-        {
-          "text": "goudron.",
-          "start": 8.73,
-          "end": 9.053
+          "text": "Goudron.",
+          "start": 9.496,
+          "end": 9.866
         }
       ],
       "align": "pauses+ponctuation (tools/align.py)"
@@ -1028,7 +1018,7 @@
       "words": [
         {
           "text": "FESTAC :",
-          "start": 0.0,
+          "start": 0,
           "end": 0.929
         },
         {
