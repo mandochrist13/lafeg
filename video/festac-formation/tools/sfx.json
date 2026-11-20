@@ -1,0 +1,314 @@
+[
+  {
+    "id": "sfx-s1-out",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.2,
+    "line": "L01",
+    "word": "La",
+    "offset": -0.35
+  },
+  {
+    "id": "sfx-s1-p0",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.26,
+    "line": "L01",
+    "word": "régulières",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s1-p1",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.26,
+    "line": "L01",
+    "word": "transparentes",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s2-in",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.18,
+    "abs": 8.85
+  },
+  {
+    "id": "sfx-s2-band",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.26,
+    "line": "L02",
+    "word": "formation",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s2-cnss",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.32,
+    "line": "L02",
+    "word": "Caisse",
+    "offset": -0.3
+  },
+  {
+    "id": "sfx-s3-two",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.34,
+    "line": "L03",
+    "word": "deux",
+    "offset": -0.15
+  },
+  {
+    "id": "sfx-s3-comp",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L03",
+    "word": "comprendre",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s3-ok-comp",
+    "src": "assets/sfx/tick.wav",
+    "dur": 0.26,
+    "volume": 0.18,
+    "line": "L03",
+    "word": "comprendre",
+    "offset": 0.6
+  },
+  {
+    "id": "sfx-s3-véri",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L03",
+    "word": "vérifier",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s3-ok-véri",
+    "src": "assets/sfx/tick.wav",
+    "dur": 0.26,
+    "volume": 0.18,
+    "line": "L03",
+    "word": "vérifier",
+    "offset": 0.6
+  },
+  {
+    "id": "sfx-s3-iden",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L03",
+    "word": "identifier",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s3-ok-iden",
+    "src": "assets/sfx/tick.wav",
+    "dur": 0.26,
+    "volume": 0.18,
+    "line": "L03",
+    "word": "identifier",
+    "offset": 0.6
+  },
+  {
+    "id": "sfx-s3-mieu",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L03",
+    "word": "mieux",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s3-ok-mieu",
+    "src": "assets/sfx/tick.wav",
+    "dur": 0.26,
+    "volume": 0.18,
+    "line": "L03",
+    "word": "mieux",
+    "offset": 0.6
+  },
+  {
+    "id": "sfx-s4-rdv",
+    "src": "assets/sfx/stamp.wav",
+    "dur": 0.32,
+    "volume": 0.28,
+    "line": "L04",
+    "word": "Rendez-vous",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s4-d27",
+    "src": "assets/sfx/paper.wav",
+    "dur": 0.42,
+    "volume": 0.26,
+    "line": "L04",
+    "word": "27",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s4-d28",
+    "src": "assets/sfx/paper.wav",
+    "dur": 0.42,
+    "volume": 0.26,
+    "line": "L04",
+    "word": "28",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s4-time",
+    "src": "assets/sfx/tick.wav",
+    "dur": 0.26,
+    "volume": 0.22,
+    "line": "L04",
+    "word": "7",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s4-place",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.16,
+    "line": "L04",
+    "word": "Groupe",
+    "offset": -0.3
+  },
+  {
+    "id": "sfx-s4-pin",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.32,
+    "line": "L04",
+    "word": "goudron",
+    "offset": 0.1
+  },
+  {
+    "id": "sfx-s5-t0",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L05",
+    "word": "responsables",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s5-t1",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L05",
+    "word": "délégués",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s5-t2",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L05",
+    "word": "ressources",
+    "offset": -0.55
+  },
+  {
+    "id": "sfx-s5-t3",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.24,
+    "line": "L05",
+    "word": "officiers",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s6-title",
+    "src": "assets/sfx/stamp.wav",
+    "dur": 0.32,
+    "volume": 0.3,
+    "line": "L06",
+    "word": "Inscrivez-vous",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s6-date",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.3,
+    "line": "L06",
+    "word": "vendredi",
+    "offset": -0.25
+  },
+  {
+    "id": "sfx-s6-call",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.26,
+    "line": "L06",
+    "word": "Appelez",
+    "offset": -0.15
+  },
+  {
+    "id": "sfx-s7-just",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.15,
+    "line": "L07",
+    "word": "justice",
+    "offset": -0.18
+  },
+  {
+    "id": "sfx-s7-tran",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.15,
+    "line": "L07",
+    "word": "transparence",
+    "offset": -0.18
+  },
+  {
+    "id": "sfx-s7-soli",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.15,
+    "line": "L07",
+    "word": "solidarité",
+    "offset": -0.18
+  },
+  {
+    "id": "sfx-s8-cnss",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.3,
+    "line": "L08",
+    "word": "CNSS",
+    "offset": -0.3
+  },
+  {
+    "id": "sfx-s8-ihem",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.3,
+    "line": "L08",
+    "word": "Groupe",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-s9-logo",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.57,
+    "volume": 0.2,
+    "line": "L09",
+    "word": "FESTAC",
+    "offset": -0.3
+  },
+  {
+    "id": "sfx-s9-card",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.36,
+    "volume": 0.26,
+    "anchor": "logo",
+    "offset": -0.05
+  }
+]

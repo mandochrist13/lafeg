@@ -1,0 +1,97 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #0b1e3b;
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #s7-photo {
+      position: absolute;
+      left: -200px;
+      top: 0;
+      width: 1480px;
+      height: 1920px;
+      background: url(assets/img/p-attestation.jpg) 46% 50% / cover no-repeat;
+      filter: blur(2px) saturate(0.85);
+    }
+    #s7-veil {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(11, 30, 59, 0.8) 0%, rgba(11, 30, 59, 0.86) 45%, rgba(11, 30, 59, 0.95) 100%);
+    }
+    #s7-lead {
+      position: absolute;
+      left: 80px;
+      top: 330px;
+      width: 920px;
+      font-weight: 700;
+      font-size: 60px;
+      line-height: 1.16;
+    }
+    #s7-lead span {
+      display: inline-block;
+    }
+    .s7-w {
+      position: absolute;
+      left: 80px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+    .s7-u {
+      position: absolute;
+      left: 84px;
+      height: 12px;
+      border-radius: 6px;
+    }
+    #s7-cap {
+      position: absolute;
+      left: 80px;
+      top: 1660px;
+      padding: 8px 18px 10px;
+      border-radius: 14px;
+      background: rgba(11, 30, 59, 0.85);
+      font-weight: 600;
+      font-size: 28px;
+      color: #dbe5f2;
+    }
+  </style>
+  <div id="root" data-composition-id="s7" data-width="1080" data-height="1920">
+    <div id="s7-photo"></div>
+    <div id="s7-veil"></div>
+    <div id="s7-lead"><span>Faisons</span> <span>du</span> <span>contrôle</span> <span>des</span> <span>cotisations</span> <span>sociales</span> <span>un</span> <span>instrument</span> <span>de…</span></div>
+    <div id="s7-w0" class="s7-w" style="top: 820px; font-size: 190px; color: #e8b23a">JUSTICE</div>
+    <div id="s7-u0" class="s7-u" style="top: 1022px; width: 300px; background: #e8b23a"></div>
+    <div id="s7-w1" class="s7-w" style="top: 1068px; font-size: 128px">TRANSPARENCE</div>
+    <div id="s7-u1" class="s7-u" style="top: 1214px; width: 300px; background: #4c8ddb"></div>
+    <div id="s7-w2" class="s7-w" style="top: 1260px; font-size: 176px; color: #e8b23a">SOLIDARITÉ</div>
+    <div id="s7-u2" class="s7-u" style="top: 1452px; width: 300px; background: #2e8b4f"></div>
+    <div id="s7-cap">Remise des attestations, table ronde FESTAC – CNSS (2025)</div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var L = C.local("s7");
+      var D = C.sc.s7.dur;
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s7-photo", { scale: 1.1, x: 20 }, { scale: 1.0, x: -30, duration: D, ease: "none" }, 0);
+      tl.fromTo("#s7-cap", { opacity: 0 }, { opacity: 1, duration: 0.4, ease: "power1.out" }, 0.3);
+      // « Faisons du contrôle des cotisations sociales un instrument de »
+      tl.fromTo("#s7-lead span", { opacity: 0, y: 20, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.22, stagger: 0.1, ease: "power4.out" }, L(C.at("L07", "faisons")) - 0.15);
+      // « justice », « transparence », « solidarité »
+      [["justice", 0], ["transparence", 1], ["solidarite", 2]].forEach(function (w) {
+        var t = L(C.at("L07", w[0])) - 0.15;
+        tl.fromTo("#s7-w" + w[1], { opacity: 0, x: -90, skewX: -8 }, { opacity: 1, x: 0, skewX: 0, duration: 0.45, ease: "power4.out" }, t);
+        tl.fromTo("#s7-u" + w[1], { scaleX: 0, transformOrigin: "0% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, t + 0.2);
+      });
+      // sortie
+      tl.to(["#s7-lead", ".s7-w", ".s7-u", "#s7-cap"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, stagger: 0.02, ease: "power3.in" }, D - 0.42);
+      tl.to("#s7-photo", { opacity: 0, duration: 0.35, ease: "power2.in" }, D - 0.35);
+      window.__timelines["s7"] = tl;
+    })();
+  </script>
+</template>

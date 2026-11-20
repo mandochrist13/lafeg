@@ -1,0 +1,188 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: radial-gradient(130% 80% at 50% 10%, #1f487c 0%, #14325a 48%, #0b1e3b 100%);
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #s3-days {
+      position: absolute;
+      left: 80px;
+      top: 270px;
+      display: flex;
+      align-items: baseline;
+      gap: 26px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      line-height: 1;
+    }
+    #s3-two {
+      font-size: 300px;
+      color: #e8b23a;
+    }
+    #s3-jours {
+      font-size: 132px;
+      letter-spacing: 0.02em;
+    }
+    #s3-sub {
+      position: absolute;
+      left: 80px;
+      top: 590px;
+      width: 920px;
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-weight: 700;
+      font-size: 42px;
+      line-height: 1.15;
+      color: #dbe5f2;
+    }
+    #s3-sub img {
+      width: 84px;
+      height: 84px;
+      flex: none;
+      padding: 6px;
+      border-radius: 50%;
+      background: #ffffff;
+    }
+    #s3-learn {
+      position: absolute;
+      left: 80px;
+      top: 740px;
+      font-weight: 800;
+      font-size: 52px;
+      color: #e8b23a;
+    }
+    .s3-card {
+      position: absolute;
+      left: 80px;
+      width: 920px;
+      height: 184px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 0 30px;
+      border-radius: 30px;
+      background: #ffffff;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.32);
+    }
+    .s3-ic {
+      width: 124px;
+      height: 124px;
+      flex: none;
+    }
+    .s3-tx {
+      flex: 1;
+      font-weight: 800;
+      font-size: 46px;
+      line-height: 1.1;
+      letter-spacing: -0.01em;
+      color: #14325a;
+    }
+    .s3-ok {
+      width: 60px;
+      height: 60px;
+      flex: none;
+    }
+  </style>
+  <div id="root" data-composition-id="s3" data-width="1080" data-height="1920">
+    <div id="s3-days"><span id="s3-two">2</span><span id="s3-jours">JOURS</span></div>
+    <div id="s3-sub"><img src="assets/img/logo-cnss.png" alt="CNSS" /><span>avec les experts formateurs de la CNSS</span></div>
+    <div id="s3-learn">Vous apprendrez à :</div>
+
+    <div id="s3-c0" class="s3-card" style="top: 836px">
+      <svg class="s3-ic" viewBox="0 0 124 124">
+        <circle cx="62" cy="62" r="62" fill="#1F487C" />
+        <g id="s3-gear1" fill="#FFFFFF"></g>
+        <circle cx="52" cy="56" r="10" fill="#1F487C" />
+        <g id="s3-gear2" fill="#E8B23A"></g>
+        <circle cx="84" cy="84" r="6" fill="#1F487C" />
+      </svg>
+      <div class="s3-tx">Comprendre les mécanismes de cotisation</div>
+      <svg class="s3-ok" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#2E8B4F" /><path d="M 17,31 L 26,40 L 44,21" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </div>
+    <div id="s3-c1" class="s3-card" style="top: 1040px">
+      <svg class="s3-ic" viewBox="0 0 124 124">
+        <circle cx="62" cy="62" r="62" fill="#2E8B4F" />
+        <path d="M 36,26 L 72,26 L 86,40 L 86,98 L 36,98 Z" fill="#FFFFFF" />
+        <path d="M 72,26 L 72,40 L 86,40 Z" fill="#CFE3D6" />
+        <rect x="46" y="50" width="30" height="5" rx="2" fill="#2E8B4F" />
+        <rect x="46" y="61" width="30" height="5" rx="2" fill="#2E8B4F" />
+        <rect x="46" y="72" width="20" height="5" rx="2" fill="#2E8B4F" />
+        <circle cx="84" cy="88" r="17" fill="#14325A" />
+        <path d="M 76,88 L 82,94 L 93,82" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+      </svg>
+      <div class="s3-tx">Vérifier les déclarations sociales</div>
+      <svg class="s3-ok" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#2E8B4F" /><path d="M 17,31 L 26,40 L 44,21" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </div>
+    <div id="s3-c2" class="s3-card" style="top: 1244px">
+      <svg class="s3-ic" viewBox="0 0 124 124">
+        <circle cx="62" cy="62" r="62" fill="#D2463E" />
+        <circle cx="54" cy="54" r="24" fill="none" stroke="#FFFFFF" stroke-width="8" />
+        <path d="M 71,71 L 92,92" stroke="#FFFFFF" stroke-width="11" stroke-linecap="round" />
+        <rect x="51" y="40" width="6" height="18" rx="3" fill="#FFFFFF" />
+        <circle cx="54" cy="65" r="3.6" fill="#FFFFFF" />
+      </svg>
+      <div class="s3-tx">Identifier les irrégularités</div>
+      <svg class="s3-ok" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#2E8B4F" /><path d="M 17,31 L 26,40 L 44,21" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </div>
+    <div id="s3-c3" class="s3-card" style="top: 1448px">
+      <svg class="s3-ic" viewBox="0 0 124 124">
+        <circle cx="62" cy="62" r="62" fill="#E8B23A" />
+        <path d="M 62,22 L 96,34 L 96,60 C 96,82 82,98 62,104 C 42,98 28,82 28,60 L 28,34 Z" fill="#FFFFFF" />
+        <circle cx="52" cy="56" r="8" fill="#14325A" />
+        <circle cx="73" cy="54" r="9" fill="#14325A" />
+        <path d="M 38,86 C 38,72 45,67 52,67 C 58,67 62,71 63,77 C 64,69 68,65 73,65 C 81,65 86,71 86,86 Z" fill="#14325A" />
+      </svg>
+      <div class="s3-tx">Mieux protéger les droits des travailleurs</div>
+      <svg class="s3-ok" viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#2E8B4F" /><path d="M 17,31 L 26,40 L 44,21" fill="none" stroke="#FFFFFF" stroke-width="6" stroke-linecap="round" stroke-linejoin="round" /></svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var L = C.local("s3");
+      var D = C.sc.s3.dur;
+
+      // deux engrenages (dents dessinées une fois, sans aléa)
+      function gear(cx, cy, r, n, w) {
+        var g = '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '"/>';
+        for (var i = 0; i < n; i++) {
+          var a = (360 / n) * i;
+          g += '<rect x="' + (cx - w / 2) + '" y="' + (cy - r - 7) + '" width="' + w + '" height="14" rx="2" transform="rotate(' + a + " " + cx + " " + cy + ')"/>';
+        }
+        return g;
+      }
+      document.getElementById("s3-gear1").innerHTML = gear(52, 56, 22, 8, 10);
+      document.getElementById("s3-gear2").innerHTML = gear(84, 84, 14, 6, 8);
+
+      var tl = gsap.timeline({ paused: true });
+      // « Pendant deux jours »
+      var tD = L(C.at("L03", "deux")) - 0.15;
+      tl.fromTo("#s3-two", { opacity: 0, scale: 0.4, transformOrigin: "50% 70%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(2.2)" }, tD);
+      tl.fromTo("#s3-jours", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, tD + 0.15);
+      // « avec les experts formateurs de la CNSS »
+      tl.fromTo("#s3-sub", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, L(C.at("L03", "experts")) - 0.2);
+      // « vous apprendrez à »
+      tl.fromTo("#s3-learn", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L03", "apprendrez")) - 0.25);
+      // les quatre compétences, chacune sur son verbe
+      var verbs = ["comprendre", "verifier", "identifier", "mieux"];
+      verbs.forEach(function (v, i) {
+        var t = L(C.at("L03", v)) - 0.25;
+        var c = "#s3-c" + i;
+        tl.fromTo(c, { opacity: 0, x: 120 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, t);
+        tl.fromTo(c + " .s3-ic", { scale: 0.4, rotation: -25, transformOrigin: "50% 50%" }, { scale: 1, rotation: 0, duration: 0.5, ease: "back.out(2.2)" }, t + 0.1);
+        tl.fromTo(c + " .s3-ok", { scale: 0, transformOrigin: "50% 50%" }, { scale: 1, duration: 0.35, ease: "back.out(3)" }, t + 0.85);
+      });
+      // les engrenages tournent
+      tl.fromTo("#s3-gear1", { rotation: 0, svgOrigin: "52 56" }, { rotation: 90, duration: D, ease: "none" }, 0);
+      tl.fromTo("#s3-gear2", { rotation: 0, svgOrigin: "84 84" }, { rotation: -120, duration: D, ease: "none" }, 0);
+      // sortie
+      tl.to(["#s3-days", "#s3-sub", "#s3-learn", ".s3-card"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, stagger: 0.03, ease: "power3.in" }, D - 0.45);
+      window.__timelines["s3"] = tl;
+    })();
+  </script>
+</template>

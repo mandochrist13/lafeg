@@ -1,0 +1,117 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: radial-gradient(130% 80% at 50% 10%, #1f487c 0%, #14325a 48%, #0b1e3b 100%);
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #s8-kick {
+      position: absolute;
+      left: 80px;
+      top: 278px;
+      font-weight: 800;
+      font-size: 44px;
+      letter-spacing: 0.06em;
+      color: #e8b23a;
+    }
+    #s8-panel {
+      position: absolute;
+      left: 80px;
+      top: 360px;
+      width: 920px;
+      height: 1180px;
+      border-radius: 40px;
+      background: #ffffff;
+      box-shadow: 0 22px 54px rgba(0, 0, 0, 0.4);
+    }
+    .s8-lab {
+      position: absolute;
+      left: 0;
+      width: 920px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 38px;
+      letter-spacing: 0.05em;
+      color: #c8423b;
+    }
+    #s8-cnss {
+      position: absolute;
+      left: 320px;
+      top: 150px;
+      width: 280px;
+      height: 280px;
+    }
+    #s8-cnssn {
+      position: absolute;
+      left: 60px;
+      top: 456px;
+      width: 800px;
+      text-align: center;
+      font-weight: 800;
+      font-size: 50px;
+      line-height: 1.12;
+      color: #14325a;
+    }
+    #s8-sep {
+      position: absolute;
+      left: 160px;
+      top: 650px;
+      width: 600px;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(90deg, #1f487c 0 25%, #c8423b 25% 50%, #e8b23a 50% 75%, #2e8b4f 75% 100%);
+    }
+    #s8-ihem {
+      position: absolute;
+      left: 110px;
+      top: 830px;
+      width: 700px;
+      height: 230px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 28px;
+      background: #eef2f7;
+      text-align: center;
+      font-weight: 800;
+      font-size: 60px;
+      line-height: 1.1;
+      color: #14325a;
+    }
+  </style>
+  <div id="root" data-composition-id="s8" data-width="1080" data-height="1920">
+    <div id="s8-kick">PARTENAIRES</div>
+    <div id="s8-panel">
+      <div id="s8-l1" class="s8-lab" style="top: 70px">PARTENAIRE PRINCIPAL ET TECHNIQUE</div>
+      <img id="s8-cnss" src="assets/img/logo-cnss.png" alt="CNSS — Caisse nationale de sécurité sociale" />
+      <div id="s8-cnssn">Caisse nationale de sécurité sociale du Gabon</div>
+      <div id="s8-sep"></div>
+      <div id="s8-l2" class="s8-lab" style="top: 730px">ACCOMPAGNEMENT</div>
+      <div id="s8-ihem">Groupe IHEM<br />International</div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var L = C.local("s8");
+      var D = C.sc.s8.dur;
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s8-kick", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, 0.2);
+      tl.fromTo("#s8-panel", { opacity: 0, y: 80, scale: 0.95 }, { opacity: 1, y: 0, scale: 1, duration: 0.55, ease: "power3.out" }, 0.15);
+      // « Partenaire principal et technique : la CNSS du Gabon »
+      tl.fromTo("#s8-l1", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L08", "partenaire")) - 0.1);
+      tl.fromTo("#s8-cnss", { opacity: 0, scale: 0.5, rotation: -40, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, rotation: 0, duration: 0.6, ease: "back.out(1.8)" }, L(C.at("L08", "cnss")) - 0.3);
+      tl.fromTo("#s8-cnssn", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L08", "cnss")) + 0.1);
+      tl.fromTo("#s8-sep", { scaleX: 0, transformOrigin: "50% 50%" }, { scaleX: 1, duration: 0.5, ease: "power3.out" }, L(C.at("L08", "gabon")) + 0.3);
+      // « Accompagnement : le Groupe IHEM International »
+      tl.fromTo("#s8-l2", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L08", "accompagnement")) - 0.1);
+      tl.fromTo("#s8-ihem", { opacity: 0, scale: 0.85, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, L(C.at("L08", "groupe")) - 0.2);
+      // sortie
+      tl.to(["#s8-kick", "#s8-panel"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, stagger: 0.03, ease: "power3.in" }, D - 0.42);
+      window.__timelines["s8"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,1059 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.79,
+      "speech": [
+        0.12,
+        6.603
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "La",
+          "start": 0.12,
+          "end": 0.318
+        },
+        {
+          "text": "protection",
+          "start": 0.318,
+          "end": 0.913
+        },
+        {
+          "text": "sociale",
+          "start": 0.913,
+          "end": 1.309
+        },
+        {
+          "text": "est",
+          "start": 1.309,
+          "end": 1.508
+        },
+        {
+          "text": "un",
+          "start": 1.508,
+          "end": 1.706
+        },
+        {
+          "text": "droit",
+          "start": 1.706,
+          "end": 1.904
+        },
+        {
+          "text": "fondamental.",
+          "start": 1.904,
+          "end": 2.697
+        },
+        {
+          "text": "Et",
+          "start": 2.967,
+          "end": 3.135
+        },
+        {
+          "text": "sa",
+          "start": 3.303,
+          "end": 3.468
+        },
+        {
+          "text": "solidité",
+          "start": 3.468,
+          "end": 4.128
+        },
+        {
+          "text": "repose",
+          "start": 4.128,
+          "end": 4.458
+        },
+        {
+          "text": "sur",
+          "start": 4.458,
+          "end": 4.623
+        },
+        {
+          "text": "des",
+          "start": 4.623,
+          "end": 4.788
+        },
+        {
+          "text": "cotisations",
+          "start": 4.788,
+          "end": 5.448
+        },
+        {
+          "text": "régulières",
+          "start": 5.448,
+          "end": 5.943
+        },
+        {
+          "text": "et",
+          "start": 5.943,
+          "end": 6.108
+        },
+        {
+          "text": "transparentes.",
+          "start": 6.108,
+          "end": 6.603
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 10.158,
+      "speech": [
+        0.121,
+        9.978
+      ],
+      "pauses": 3,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "C'est",
+          "start": 0.121,
+          "end": 0.349
+        },
+        {
+          "text": "pourquoi",
+          "start": 0.462,
+          "end": 0.785
+        },
+        {
+          "text": "la",
+          "start": 0.785,
+          "end": 0.946
+        },
+        {
+          "text": "FESTAC",
+          "start": 0.946,
+          "end": 1.268
+        },
+        {
+          "text": "organise",
+          "start": 1.268,
+          "end": 1.752
+        },
+        {
+          "text": "une",
+          "start": 1.881,
+          "end": 2.072
+        },
+        {
+          "text": "formation",
+          "start": 2.072,
+          "end": 2.644
+        },
+        {
+          "text": "nationale",
+          "start": 2.644,
+          "end": 3.216
+        },
+        {
+          "text": "sur",
+          "start": 3.216,
+          "end": 3.407
+        },
+        {
+          "text": "le",
+          "start": 3.407,
+          "end": 3.598
+        },
+        {
+          "text": "contrôle",
+          "start": 3.598,
+          "end": 3.98
+        },
+        {
+          "text": "et",
+          "start": 3.98,
+          "end": 4.17
+        },
+        {
+          "text": "la",
+          "start": 4.17,
+          "end": 4.361
+        },
+        {
+          "text": "vérification",
+          "start": 4.361,
+          "end": 5.315
+        },
+        {
+          "text": "des",
+          "start": 5.315,
+          "end": 5.506
+        },
+        {
+          "text": "cotisations",
+          "start": 5.506,
+          "end": 6.269
+        },
+        {
+          "text": "sociales,",
+          "start": 6.269,
+          "end": 6.651
+        },
+        {
+          "text": "en",
+          "start": 6.773,
+          "end": 6.912
+        },
+        {
+          "text": "collaboration",
+          "start": 6.912,
+          "end": 7.609
+        },
+        {
+          "text": "avec",
+          "start": 7.609,
+          "end": 7.887
+        },
+        {
+          "text": "la",
+          "start": 7.887,
+          "end": 8.027
+        },
+        {
+          "text": "Caisse",
+          "start": 8.027,
+          "end": 8.166
+        },
+        {
+          "text": "nationale",
+          "start": 8.166,
+          "end": 8.584
+        },
+        {
+          "text": "de",
+          "start": 8.584,
+          "end": 8.724
+        },
+        {
+          "text": "sécurité",
+          "start": 8.724,
+          "end": 9.281
+        },
+        {
+          "text": "sociale",
+          "start": 9.281,
+          "end": 9.56
+        },
+        {
+          "text": "du",
+          "start": 9.56,
+          "end": 9.699
+        },
+        {
+          "text": "Gabon.",
+          "start": 9.699,
+          "end": 9.978
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 12.931,
+      "speech": [
+        0.12,
+        12.751
+      ],
+      "pauses": 5,
+      "anchored": 4,
+      "words": [
+        {
+          "text": "Pendant",
+          "start": 0.12,
+          "end": 0.548
+        },
+        {
+          "text": "deux",
+          "start": 0.548,
+          "end": 0.762
+        },
+        {
+          "text": "jours,",
+          "start": 0.762,
+          "end": 0.975
+        },
+        {
+          "text": "avec",
+          "start": 0.975,
+          "end": 1.403
+        },
+        {
+          "text": "les",
+          "start": 1.403,
+          "end": 1.617
+        },
+        {
+          "text": "experts",
+          "start": 1.617,
+          "end": 2.044
+        },
+        {
+          "text": "formateurs",
+          "start": 2.044,
+          "end": 2.686
+        },
+        {
+          "text": "de",
+          "start": 2.686,
+          "end": 2.9
+        },
+        {
+          "text": "la",
+          "start": 2.9,
+          "end": 3.113
+        },
+        {
+          "text": "CNSS,",
+          "start": 3.113,
+          "end": 3.969
+        },
+        {
+          "text": "vous",
+          "start": 4.098,
+          "end": 4.259
+        },
+        {
+          "text": "apprendrez",
+          "start": 4.259,
+          "end": 4.742
+        },
+        {
+          "text": "à",
+          "start": 4.742,
+          "end": 4.903
+        },
+        {
+          "text": "comprendre",
+          "start": 4.903,
+          "end": 5.224
+        },
+        {
+          "text": "les",
+          "start": 5.224,
+          "end": 5.385
+        },
+        {
+          "text": "mécanismes",
+          "start": 5.385,
+          "end": 5.868
+        },
+        {
+          "text": "de",
+          "start": 5.868,
+          "end": 6.029
+        },
+        {
+          "text": "cotisation,",
+          "start": 6.029,
+          "end": 6.673
+        },
+        {
+          "text": "à",
+          "start": 6.819,
+          "end": 6.994
+        },
+        {
+          "text": "vérifier",
+          "start": 6.994,
+          "end": 7.522
+        },
+        {
+          "text": "les",
+          "start": 7.522,
+          "end": 7.697
+        },
+        {
+          "text": "déclarations",
+          "start": 7.697,
+          "end": 8.4
+        },
+        {
+          "text": "sociales,",
+          "start": 8.4,
+          "end": 8.752
+        },
+        {
+          "text": "à",
+          "start": 9.109,
+          "end": 9.24
+        },
+        {
+          "text": "identifier",
+          "start": 9.24,
+          "end": 9.766
+        },
+        {
+          "text": "les",
+          "start": 9.766,
+          "end": 9.897
+        },
+        {
+          "text": "irrégularités,",
+          "start": 9.897,
+          "end": 10.685
+        },
+        {
+          "text": "et",
+          "start": 10.989,
+          "end": 11.136
+        },
+        {
+          "text": "à",
+          "start": 11.136,
+          "end": 11.282
+        },
+        {
+          "text": "mieux",
+          "start": 11.282,
+          "end": 11.429
+        },
+        {
+          "text": "protéger",
+          "start": 11.429,
+          "end": 11.87
+        },
+        {
+          "text": "les",
+          "start": 11.87,
+          "end": 12.016
+        },
+        {
+          "text": "droits",
+          "start": 12.016,
+          "end": 12.163
+        },
+        {
+          "text": "des",
+          "start": 12.163,
+          "end": 12.31
+        },
+        {
+          "text": "travailleurs.",
+          "start": 12.31,
+          "end": 12.75
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.207,
+      "speech": [
+        0.121,
+        9.053
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Rendez-vous",
+          "start": 0.121,
+          "end": 0.643
+        },
+        {
+          "text": "les",
+          "start": 0.643,
+          "end": 0.818
+        },
+        {
+          "text": "27",
+          "start": 0.818,
+          "end": 1.166
+        },
+        {
+          "text": "et",
+          "start": 1.166,
+          "end": 1.341
+        },
+        {
+          "text": "28",
+          "start": 1.341,
+          "end": 1.689
+        },
+        {
+          "text": "novembre",
+          "start": 1.689,
+          "end": 2.038
+        },
+        {
+          "text": "2026,",
+          "start": 2.038,
+          "end": 2.91
+        },
+        {
+          "text": "de",
+          "start": 2.91,
+          "end": 3.084
+        },
+        {
+          "text": "7",
+          "start": 3.084,
+          "end": 3.433
+        },
+        {
+          "text": "heures",
+          "start": 3.433,
+          "end": 3.607
+        },
+        {
+          "text": "à",
+          "start": 3.607,
+          "end": 3.781
+        },
+        {
+          "text": "16",
+          "start": 3.781,
+          "end": 4.13
+        },
+        {
+          "text": "heures,",
+          "start": 4.13,
+          "end": 4.304
+        },
+        {
+          "text": "au",
+          "start": 4.478,
+          "end": 4.709
+        },
+        {
+          "text": "Groupe",
+          "start": 4.709,
+          "end": 4.94
+        },
+        {
+          "text": "I.H.E.M.",
+          "start": 4.94,
+          "end": 5.401
+        },
+        {
+          "text": "International,",
+          "start": 5.401,
+          "end": 6.554
+        },
+        {
+          "text": "à",
+          "start": 6.554,
+          "end": 6.784
+        },
+        {
+          "text": "Nzeng-Ayong,",
+          "start": 6.784,
+          "end": 7.245
+        },
+        {
+          "text": "Libreville,",
+          "start": 7.374,
+          "end": 7.972
+        },
+        {
+          "text": "vers",
+          "start": 8.082,
+          "end": 8.244
+        },
+        {
+          "text": "la",
+          "start": 8.244,
+          "end": 8.406
+        },
+        {
+          "text": "fin",
+          "start": 8.406,
+          "end": 8.568
+        },
+        {
+          "text": "du",
+          "start": 8.568,
+          "end": 8.73
+        },
+        {
+          "text": "goudron.",
+          "start": 8.73,
+          "end": 9.053
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.286,
+      "speech": [
+        0.12,
+        8.106
+      ],
+      "pauses": 4,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Cette",
+          "start": 0.12,
+          "end": 0.436
+        },
+        {
+          "text": "formation",
+          "start": 0.643,
+          "end": 1.177
+        },
+        {
+          "text": "est",
+          "start": 1.177,
+          "end": 1.354
+        },
+        {
+          "text": "ouverte",
+          "start": 1.354,
+          "end": 1.71
+        },
+        {
+          "text": "aux",
+          "start": 1.71,
+          "end": 1.887
+        },
+        {
+          "text": "responsables",
+          "start": 1.887,
+          "end": 2.421
+        },
+        {
+          "text": "syndicaux,",
+          "start": 2.421,
+          "end": 2.954
+        },
+        {
+          "text": "aux",
+          "start": 3.278,
+          "end": 3.417
+        },
+        {
+          "text": "délégués",
+          "start": 3.417,
+          "end": 3.832
+        },
+        {
+          "text": "du",
+          "start": 3.832,
+          "end": 3.971
+        },
+        {
+          "text": "personnel,",
+          "start": 3.971,
+          "end": 4.386
+        },
+        {
+          "text": "aux",
+          "start": 4.707,
+          "end": 4.87
+        },
+        {
+          "text": "responsables",
+          "start": 4.87,
+          "end": 5.362
+        },
+        {
+          "text": "des",
+          "start": 5.362,
+          "end": 5.526
+        },
+        {
+          "text": "ressources",
+          "start": 5.526,
+          "end": 5.854
+        },
+        {
+          "text": "humaines",
+          "start": 5.854,
+          "end": 6.181
+        },
+        {
+          "text": "et",
+          "start": 6.181,
+          "end": 6.345
+        },
+        {
+          "text": "aux",
+          "start": 6.536,
+          "end": 6.693
+        },
+        {
+          "text": "officiers",
+          "start": 6.693,
+          "end": 7.164
+        },
+        {
+          "text": "de",
+          "start": 7.164,
+          "end": 7.321
+        },
+        {
+          "text": "police",
+          "start": 7.321,
+          "end": 7.635
+        },
+        {
+          "text": "judiciaire.",
+          "start": 7.635,
+          "end": 8.106
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.97,
+      "speech": [
+        0.12,
+        9.79
+      ],
+      "pauses": 5,
+      "anchored": 4,
+      "words": [
+        {
+          "text": "Inscrivez-vous",
+          "start": 0.12,
+          "end": 0.743
+        },
+        {
+          "text": "avant",
+          "start": 0.743,
+          "end": 1.054
+        },
+        {
+          "text": "le",
+          "start": 1.054,
+          "end": 1.21
+        },
+        {
+          "text": "vendredi",
+          "start": 1.21,
+          "end": 1.677
+        },
+        {
+          "text": "20",
+          "start": 1.677,
+          "end": 1.988
+        },
+        {
+          "text": "novembre",
+          "start": 1.988,
+          "end": 2.299
+        },
+        {
+          "text": "2026,",
+          "start": 2.299,
+          "end": 3.078
+        },
+        {
+          "text": "auprès",
+          "start": 3.078,
+          "end": 3.389
+        },
+        {
+          "text": "du",
+          "start": 3.389,
+          "end": 3.545
+        },
+        {
+          "text": "Secrétariat",
+          "start": 3.545,
+          "end": 4.167
+        },
+        {
+          "text": "permanent",
+          "start": 4.167,
+          "end": 4.634
+        },
+        {
+          "text": "de",
+          "start": 4.634,
+          "end": 4.79
+        },
+        {
+          "text": "la",
+          "start": 4.79,
+          "end": 4.946
+        },
+        {
+          "text": "FESTAC.",
+          "start": 4.946,
+          "end": 5.257
+        },
+        {
+          "text": "Appelez",
+          "start": 5.713,
+          "end": 6.213
+        },
+        {
+          "text": "le",
+          "start": 6.213,
+          "end": 6.379
+        },
+        {
+          "text": "zéro",
+          "start": 6.379,
+          "end": 6.713
+        },
+        {
+          "text": "soixante-quatorze,",
+          "start": 6.713,
+          "end": 7.379
+        },
+        {
+          "text": "zéro",
+          "start": 7.644,
+          "end": 7.951
+        },
+        {
+          "text": "zéro,",
+          "start": 7.951,
+          "end": 8.258
+        },
+        {
+          "text": "trente-quatre,",
+          "start": 8.571,
+          "end": 9.078
+        },
+        {
+          "text": "quarante-trois.",
+          "start": 9.246,
+          "end": 9.79
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.07,
+      "speech": [
+        0.12,
+        5.89
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Faisons",
+          "start": 0.12,
+          "end": 0.405
+        },
+        {
+          "text": "du",
+          "start": 0.588,
+          "end": 0.78
+        },
+        {
+          "text": "contrôle",
+          "start": 0.78,
+          "end": 1.162
+        },
+        {
+          "text": "des",
+          "start": 1.162,
+          "end": 1.353
+        },
+        {
+          "text": "cotisations",
+          "start": 1.353,
+          "end": 2.118
+        },
+        {
+          "text": "sociales",
+          "start": 2.118,
+          "end": 2.5
+        },
+        {
+          "text": "un",
+          "start": 2.5,
+          "end": 2.692
+        },
+        {
+          "text": "instrument",
+          "start": 2.692,
+          "end": 3.265
+        },
+        {
+          "text": "de",
+          "start": 3.265,
+          "end": 3.457
+        },
+        {
+          "text": "justice,",
+          "start": 3.457,
+          "end": 3.839
+        },
+        {
+          "text": "de",
+          "start": 4.079,
+          "end": 4.244
+        },
+        {
+          "text": "transparence",
+          "start": 4.244,
+          "end": 4.738
+        },
+        {
+          "text": "et",
+          "start": 4.738,
+          "end": 4.902
+        },
+        {
+          "text": "de",
+          "start": 4.902,
+          "end": 5.067
+        },
+        {
+          "text": "solidarité.",
+          "start": 5.067,
+          "end": 5.89
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.999,
+      "speech": [
+        0.12,
+        6.819
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Partenaire",
+          "start": 0.12,
+          "end": 0.365
+        },
+        {
+          "text": "principal",
+          "start": 0.513,
+          "end": 1.123
+        },
+        {
+          "text": "et",
+          "start": 1.123,
+          "end": 1.327
+        },
+        {
+          "text": "technique :",
+          "start": 1.327,
+          "end": 1.938
+        },
+        {
+          "text": "la",
+          "start": 2.203,
+          "end": 2.352
+        },
+        {
+          "text": "CNSS",
+          "start": 2.352,
+          "end": 2.949
+        },
+        {
+          "text": "du",
+          "start": 2.949,
+          "end": 3.098
+        },
+        {
+          "text": "Gabon.",
+          "start": 3.098,
+          "end": 3.396
+        },
+        {
+          "text": "Accompagnement :",
+          "start": 4.017,
+          "end": 4.733
+        },
+        {
+          "text": "le",
+          "start": 5.074,
+          "end": 5.268
+        },
+        {
+          "text": "Groupe",
+          "start": 5.268,
+          "end": 5.461
+        },
+        {
+          "text": "I.H.E.M.",
+          "start": 5.461,
+          "end": 5.849
+        },
+        {
+          "text": "International.",
+          "start": 5.849,
+          "end": 6.819
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Kore",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.545,
+      "speech": [
+        0,
+        4.367
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "FESTAC :",
+          "start": 0.0,
+          "end": 0.929
+        },
+        {
+          "text": "solidarité,",
+          "start": 1.333,
+          "end": 2.086
+        },
+        {
+          "text": "expertise,",
+          "start": 2.455,
+          "end": 3.148
+        },
+        {
+          "text": "panafricanisme !",
+          "start": 3.528,
+          "end": 4.367
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Kore, gemini-3.8-flash-tts)",
+  "onepass": {
+    "voice": "Kore",
+    "model": "gemini-3.8-flash-tts"
+  },
+  "tts_provider": "gemini"
+}

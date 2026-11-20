@@ -1,0 +1,185 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: radial-gradient(130% 80% at 50% 15%, #df5a4f 0%, #c8423b 45%, #8e211c 100%);
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #s6-rays {
+      position: absolute;
+      left: -420px;
+      top: -300px;
+      width: 1920px;
+      height: 1920px;
+      opacity: 0.12;
+    }
+    #s6-title {
+      position: absolute;
+      left: 80px;
+      top: 282px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 124px;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+    }
+    #s6-before {
+      position: absolute;
+      left: 80px;
+      top: 470px;
+      font-weight: 700;
+      font-size: 48px;
+    }
+    #s6-date {
+      position: absolute;
+      left: 80px;
+      top: 540px;
+      width: 920px;
+      height: 130px;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      padding: 0 30px;
+      border-radius: 28px;
+      background: #e8b23a;
+      box-shadow: 0 14px 34px rgba(80, 10, 5, 0.35);
+    }
+    #s6-date span {
+      font-weight: 800;
+      font-size: 58px;
+      letter-spacing: -0.015em;
+      color: #0b1e3b;
+      white-space: nowrap;
+    }
+    #s6-sp {
+      position: absolute;
+      left: 80px;
+      top: 720px;
+      width: 920px;
+      font-weight: 700;
+      font-size: 50px;
+      line-height: 1.16;
+    }
+    #s6-sp b {
+      font-weight: 800;
+    }
+    #s6-call {
+      position: absolute;
+      left: 80px;
+      top: 930px;
+      font-weight: 800;
+      font-size: 48px;
+      color: #ffe3a3;
+    }
+    #s6-phone {
+      position: absolute;
+      left: 80px;
+      top: 1006px;
+      width: 920px;
+      height: 300px;
+      border-radius: 40px;
+      background: #ffffff;
+      box-shadow: 0 22px 54px rgba(80, 10, 5, 0.45);
+    }
+    #s6-ring {
+      position: absolute;
+      left: 40px;
+      top: 70px;
+      width: 160px;
+      height: 160px;
+    }
+    #s6-num {
+      position: absolute;
+      left: 236px;
+      top: 54px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 108px;
+      line-height: 190px;
+      color: #14325a;
+      white-space: nowrap;
+    }
+    .s6-g {
+      display: inline-block;
+      padding: 0 4px;
+      border-radius: 14px;
+    }
+  </style>
+  <div id="root" data-composition-id="s6" data-width="1080" data-height="1920">
+    <svg id="s6-rays" viewBox="-960 -960 1920 1920"></svg>
+    <div id="s6-title">INSCRIVEZ-VOUS</div>
+    <div id="s6-before">avant le</div>
+    <div id="s6-date">
+      <svg width="84" height="84" viewBox="0 0 84 84">
+        <rect x="8" y="14" width="68" height="62" rx="10" fill="#0B1E3B" />
+        <rect x="8" y="14" width="68" height="18" rx="8" fill="#C8423B" />
+        <rect x="20" y="6" width="8" height="16" rx="4" fill="#0B1E3B" />
+        <rect x="56" y="6" width="8" height="16" rx="4" fill="#0B1E3B" />
+        <text x="42" y="66" text-anchor="middle" font-family="Oswald" font-weight="700" font-size="32" fill="#FFFFFF">20</text>
+      </svg>
+      <span>vendredi 20 novembre 2026</span>
+    </div>
+    <div id="s6-sp">auprès du <b>Secrétariat permanent de la FESTAC</b></div>
+    <div id="s6-call">Appelez le</div>
+    <div id="s6-phone">
+      <svg id="s6-ring" viewBox="0 0 160 160">
+        <circle id="s6-w1" cx="80" cy="80" r="74" fill="none" stroke="#C8423B" stroke-width="4" opacity="0" />
+        <circle id="s6-w2" cx="80" cy="80" r="74" fill="none" stroke="#C8423B" stroke-width="4" opacity="0" />
+        <circle cx="80" cy="80" r="62" fill="#C8423B" />
+        <path d="M 62,46 C 57,46 52,51 52,58 C 55,86 74,105 102,108 C 109,108 114,103 114,98 L 114,90 C 114,88 112,86 110,85 L 96,81 C 94,81 91,82 90,84 L 86,89 C 76,84 74,82 70,72 L 75,68 C 77,67 78,64 78,62 L 74,48 C 74,47 72,46 70,46 Z" fill="#FFFFFF" />
+      </svg>
+      <div id="s6-num"><span id="s6-g0" class="s6-g">074</span> <span id="s6-g1" class="s6-g">00</span> <span id="s6-g2" class="s6-g">34</span> <span id="s6-g3" class="s6-g">43</span></div>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var L = C.local("s6");
+      var D = C.sc.s6.dur;
+      // rayons en fond
+      var r = "";
+      for (var i = 0; i < 24; i++) {
+        var a0 = (i * 15 * Math.PI) / 180,
+          a1 = ((i * 15 + 7) * Math.PI) / 180;
+        r += '<path d="M 0,0 L ' + (1400 * Math.cos(a0)).toFixed(1) + "," + (1400 * Math.sin(a0)).toFixed(1) + " L " + (1400 * Math.cos(a1)).toFixed(1) + "," + (1400 * Math.sin(a1)).toFixed(1) + ' Z" fill="#FFFFFF"/>';
+      }
+      document.getElementById("s6-rays").innerHTML = r;
+
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#s6-rays", { rotation: 0, transformOrigin: "50% 50%" }, { rotation: 20, duration: D, ease: "none" }, 0);
+      // « Inscrivez-vous »
+      tl.fromTo("#s6-title", { opacity: 0, scale: 1.3, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.45, ease: "power4.out" }, L(C.at("L06", "inscrivezvous")) - 0.2);
+      // « avant le vendredi 20 novembre 2026 »
+      tl.fromTo("#s6-before", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, L(C.at("L06", "avant")) - 0.15);
+      tl.fromTo("#s6-date", { opacity: 0, x: -80 }, { opacity: 1, x: 0, duration: 0.5, ease: "back.out(1.6)" }, L(C.at("L06", "vendredi")) - 0.25);
+      tl.to("#s6-date", { scale: 1.04, duration: 0.22, yoyo: true, repeat: 1, ease: "sine.inOut" }, L(C.at("L06", "2026")) + 0.2);
+      // « auprès du Secrétariat permanent de la FESTAC »
+      tl.fromTo("#s6-sp", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, L(C.at("L06", "aupres")) - 0.2);
+      // « Appelez le 074 00 34 43 » : chaque groupe s'allume quand il est dit
+      var tC = L(C.at("L06", "appelez")) - 0.2;
+      tl.fromTo("#s6-call", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.35, ease: "power3.out" }, tC);
+      tl.fromTo("#s6-phone", { opacity: 0, y: 60, scale: 0.92 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, tC + 0.05);
+      // le deuxième « zéro » ouvre le groupe « 00 »
+      var zeros = C.lines.L06.words.filter(function (w) {
+        return w.n.indexOf("zero") === 0;
+      });
+      var g = [L(zeros[0].s) - 0.1, L(zeros[1].s) - 0.1, L(C.at("L06", "trentequatre")) - 0.1, L(C.at("L06", "quarantetrois")) - 0.1];
+      g.forEach(function (t, i) {
+        tl.fromTo("#s6-g" + i, { backgroundColor: "rgba(232,178,58,0)", color: "#14325A" }, { backgroundColor: "rgba(232,178,58,0.45)", color: "#C8423B", duration: 0.18, ease: "power1.out" }, t);
+        tl.to("#s6-g" + i, { backgroundColor: "rgba(232,178,58,0)", color: "#14325A", duration: 0.35, ease: "power1.in" }, (g[i + 1] || t + 1.0) - 0.02);
+      });
+      // ondes autour du combiné
+      for (var k = 0; k < 4; k++) {
+        var t0 = tC + 0.4 + k * 0.9;
+        tl.fromTo("#s6-w" + ((k % 2) + 1), { scale: 0.85, opacity: 0.9, svgOrigin: "80 80" }, { scale: 1.25, opacity: 0, duration: 0.85, ease: "power1.out" }, t0);
+      }
+      // sortie
+      tl.to(["#s6-title", "#s6-before", "#s6-date", "#s6-sp", "#s6-call", "#s6-phone"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, stagger: 0.03, ease: "power3.in" }, D - 0.45);
+      window.__timelines["s6"] = tl;
+    })();
+  </script>
+</template>

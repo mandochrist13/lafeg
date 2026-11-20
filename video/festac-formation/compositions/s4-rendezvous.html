@@ -1,0 +1,202 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: radial-gradient(130% 80% at 50% 10%, #1f487c 0%, #14325a 48%, #0b1e3b 100%);
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #s4-rdv {
+      position: absolute;
+      left: 80px;
+      top: 270px;
+      padding: 10px 28px 14px;
+      border-radius: 16px;
+      background: #d2463e;
+      font-weight: 800;
+      font-size: 50px;
+      letter-spacing: 0.04em;
+    }
+    .s4-day {
+      position: absolute;
+      top: 380px;
+      width: 430px;
+      height: 400px;
+      border-radius: 32px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+    }
+    .s4-day b {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 430px;
+      height: 92px;
+      background: #d2463e;
+      text-align: center;
+      line-height: 92px;
+      font-weight: 800;
+      font-size: 44px;
+      letter-spacing: 0.08em;
+      color: #ffffff;
+    }
+    .s4-day span {
+      position: absolute;
+      left: 0;
+      top: 96px;
+      width: 430px;
+      text-align: center;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 250px;
+      line-height: 300px;
+      color: #14325a;
+    }
+    #s4-month {
+      position: absolute;
+      left: 80px;
+      top: 806px;
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 100px;
+      letter-spacing: 0.02em;
+      color: #e8b23a;
+    }
+    #s4-time {
+      position: absolute;
+      left: 80px;
+      top: 960px;
+      display: flex;
+      align-items: center;
+      gap: 26px;
+    }
+    #s4-time span {
+      font-family: "Oswald", sans-serif;
+      font-weight: 700;
+      font-size: 112px;
+      line-height: 1;
+    }
+    #s4-place {
+      position: absolute;
+      left: 80px;
+      top: 1140px;
+      width: 920px;
+      height: 520px;
+      border-radius: 36px;
+      background: #ffffff;
+      overflow: hidden;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+    }
+    #s4-pl1 {
+      position: absolute;
+      left: 44px;
+      top: 40px;
+      width: 840px;
+      font-weight: 800;
+      font-size: 60px;
+      line-height: 1.06;
+      letter-spacing: -0.015em;
+      color: #14325a;
+    }
+    #s4-pl2 {
+      position: absolute;
+      left: 44px;
+      top: 196px;
+      font-weight: 700;
+      font-size: 46px;
+      color: #1f487c;
+    }
+    #s4-pl3 {
+      position: absolute;
+      left: 44px;
+      top: 262px;
+      font-weight: 600;
+      font-size: 40px;
+      color: #5b6573;
+    }
+    #s4-road {
+      position: absolute;
+      left: 0;
+      top: 340px;
+    }
+  </style>
+  <div id="root" data-composition-id="s4" data-width="1080" data-height="1920">
+    <div id="s4-rdv">RENDEZ-VOUS</div>
+    <div id="s4-d27" class="s4-day" style="left: 80px"><b>NOV.</b><span>27</span></div>
+    <div id="s4-d28" class="s4-day" style="left: 570px"><b>NOV.</b><span>28</span></div>
+    <div id="s4-month">NOVEMBRE 2026</div>
+    <div id="s4-time">
+      <svg width="104" height="104" viewBox="0 0 104 104">
+        <circle cx="52" cy="52" r="52" fill="#E8B23A" />
+        <circle cx="52" cy="52" r="34" fill="#FFFFFF" />
+        <path id="s4-hand1" d="M 52,52 L 52,30" stroke="#14325A" stroke-width="6" stroke-linecap="round" />
+        <path id="s4-hand2" d="M 52,52 L 66,60" stroke="#D2463E" stroke-width="5" stroke-linecap="round" />
+        <circle cx="52" cy="52" r="5" fill="#14325A" />
+      </svg>
+      <span>7 h – 16 h</span>
+    </div>
+    <div id="s4-place">
+      <div id="s4-pl1">Groupe IHEM International</div>
+      <div id="s4-pl2">Nzeng-Ayong, Libreville</div>
+      <div id="s4-pl3">vers la fin du goudron</div>
+      <svg id="s4-road" width="920" height="180" viewBox="0 0 920 180">
+        <rect x="0" y="0" width="920" height="180" fill="#E9F0E4" />
+        <path d="M 0,110 C 140,96 300,92 470,98 L 470,150 C 300,144 140,148 0,162 Z" fill="#3C4350" />
+        <path id="s4-dash" d="M 10,134 C 150,124 300,121 460,124" fill="none" stroke="#F2F2F2" stroke-width="5" stroke-dasharray="26 22" />
+        <path d="M 470,98 C 620,104 780,112 920,104 L 920,156 C 780,160 620,152 470,150 Z" fill="#C98A5A" />
+        <g fill="#B5764A">
+          <circle cx="540" cy="128" r="4" />
+          <circle cx="610" cy="118" r="3" />
+          <circle cx="690" cy="136" r="4" />
+          <circle cx="770" cy="122" r="3" />
+          <circle cx="850" cy="140" r="4" />
+        </g>
+        <g fill="#5AA137">
+          <circle cx="120" cy="58" r="26" />
+          <circle cx="160" cy="66" r="20" />
+          <circle cx="760" cy="56" r="28" />
+          <circle cx="806" cy="66" r="20" />
+        </g>
+        <g id="s4-pin">
+          <ellipse cx="470" cy="122" rx="20" ry="7" fill="#000" opacity="0.25" />
+          <path d="M 470,120 C 462,102 440,88 440,66 C 440,48 454,36 470,36 C 486,36 500,48 500,66 C 500,88 478,102 470,120 Z" fill="#D2463E" />
+          <circle cx="470" cy="66" r="12" fill="#FFFFFF" />
+        </g>
+      </svg>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var L = C.local("s4");
+      var D = C.sc.s4.dur;
+      var tl = gsap.timeline({ paused: true });
+      // « Rendez-vous »
+      tl.fromTo("#s4-rdv", { opacity: 0, scale: 0.6, transformOrigin: "0% 50%" }, { opacity: 1, scale: 1, duration: 0.4, ease: "back.out(2.4)" }, L(C.at("L04", "rendezvous")) - 0.2);
+      // « les 27 et 28 novembre 2026 »
+      [["#s4-d27", "27"], ["#s4-d28", "28"]].forEach(function (d) {
+        var t = L(C.at("L04", d[1])) - 0.2;
+        tl.fromTo(d[0], { opacity: 0, rotationX: -80, transformOrigin: "50% 0%", transformPerspective: 900 }, { opacity: 1, rotationX: 0, duration: 0.55, ease: "back.out(1.6)" }, t);
+      });
+      tl.fromTo("#s4-month", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "novembre")) - 0.15);
+      // « de 7 heures à 16 heures »
+      var tT = L(C.at("L04", "7")) - 0.25;
+      tl.fromTo("#s4-time", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, tT);
+      tl.fromTo("#s4-hand1", { rotation: -150, svgOrigin: "52 52" }, { rotation: 0, duration: 1.2, ease: "power2.out" }, tT);
+      tl.fromTo("#s4-hand2", { rotation: -300, svgOrigin: "52 52" }, { rotation: 0, duration: 1.2, ease: "power2.out" }, tT);
+      // « au Groupe IHEM International, à Nzeng-Ayong, Libreville, vers la fin du goudron »
+      tl.fromTo("#s4-place", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, L(C.at("L04", "groupe")) - 0.3);
+      tl.fromTo("#s4-pl1", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "groupe")) - 0.15);
+      tl.fromTo("#s4-pl2", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "nzengayong")) - 0.15);
+      tl.fromTo("#s4-pl3", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L04", "vers")) - 0.15);
+      tl.fromTo("#s4-dash", { strokeDashoffset: 0 }, { strokeDashoffset: -96, duration: 2, ease: "none" }, L(C.at("L04", "vers")) - 0.6);
+      tl.fromTo("#s4-pin", { y: -120, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "bounce.out" }, L(C.at("L04", "goudron")) - 0.35);
+      // sortie
+      tl.to(["#s4-rdv", ".s4-day", "#s4-month", "#s4-time", "#s4-place"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, stagger: 0.03, ease: "power3.in" }, D - 0.45);
+      window.__timelines["s4"] = tl;
+    })();
+  </script>
+</template>

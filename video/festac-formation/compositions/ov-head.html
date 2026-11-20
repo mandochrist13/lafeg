@@ -1,0 +1,66 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      font-family: "Montserrat", sans-serif;
+    }
+    #oh-logo {
+      position: absolute;
+      left: 70px;
+      top: 108px;
+      width: 262px;
+      height: 104px;
+      padding: 16px 22px;
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.28);
+    }
+    #oh-logo img {
+      display: block;
+      width: 218px;
+    }
+    #oh-chip {
+      position: absolute;
+      left: 358px;
+      top: 116px;
+      width: 652px;
+      height: 88px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 28px;
+      border-radius: 22px;
+      background: rgba(11, 30, 59, 0.82);
+      border: 2px solid rgba(232, 178, 58, 0.75);
+    }
+    #oh-chip b {
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      color: #e8b23a;
+    }
+    #oh-chip span {
+      font-weight: 600;
+      font-size: 28px;
+      color: #ffffff;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-head" data-width="1080" data-height="1920">
+    <div id="oh-logo"><img src="assets/img/festac-logo.png" alt="FESTAC" /></div>
+    <div id="oh-chip"><b>FORMATION NATIONALE</b><span>27 &amp; 28 novembre 2026 · Libreville</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var D = C.sc["ov-head"].dur;
+      var tl = gsap.timeline({ paused: true });
+      tl.fromTo("#oh-logo", { opacity: 0, y: -40 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.15);
+      tl.fromTo("#oh-chip", { opacity: 0, x: 40 }, { opacity: 1, x: 0, duration: 0.5, ease: "power3.out" }, 0.3);
+      tl.to(["#oh-logo", "#oh-chip"], { opacity: 0, y: -30, duration: 0.3, ease: "power2.in" }, D - 0.32);
+      window.__timelines["ov-head"] = tl;
+    })();
+  </script>
+</template>

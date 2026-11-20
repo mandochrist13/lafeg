@@ -1,0 +1,153 @@
+<template>
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: radial-gradient(130% 80% at 50% 10%, #1f487c 0%, #14325a 48%, #0b1e3b 100%);
+      font-family: "Montserrat", sans-serif;
+      color: #ffffff;
+    }
+    #s2-photo {
+      position: absolute;
+      left: 70px;
+      top: 270px;
+      width: 940px;
+      height: 600px;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.4);
+    }
+    #s2-img {
+      position: absolute;
+      left: -40px;
+      top: -30px;
+      width: 1020px;
+      height: 680px;
+      background: url(assets/img/p-banniere.jpg) 50% 35% / cover no-repeat;
+    }
+    .s2-cap {
+      position: absolute;
+      left: 24px;
+      bottom: 22px;
+      padding: 8px 18px 10px;
+      border-radius: 14px;
+      background: rgba(11, 30, 59, 0.8);
+      font-weight: 600;
+      font-size: 28px;
+      color: #ffffff;
+    }
+    #s2-org {
+      position: absolute;
+      left: 80px;
+      top: 930px;
+      font-weight: 800;
+      font-size: 46px;
+      letter-spacing: 0.02em;
+      color: #ffffff;
+    }
+    #s2-org b {
+      color: #e8b23a;
+      font-weight: 800;
+    }
+    #s2-band {
+      position: absolute;
+      left: 80px;
+      top: 1006px;
+      padding: 12px 30px 16px;
+      border-radius: 16px;
+      background: #e8b23a;
+      font-weight: 800;
+      font-size: 56px;
+      letter-spacing: 0.03em;
+      color: #0b1e3b;
+      white-space: nowrap;
+    }
+    #s2-title {
+      position: absolute;
+      left: 80px;
+      top: 1120px;
+      width: 920px;
+      font-weight: 800;
+      font-size: 70px;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+    }
+    #s2-title span {
+      display: inline-block;
+    }
+    #s2-title .g {
+      color: #e8b23a;
+    }
+    #s2-with {
+      position: absolute;
+      left: 80px;
+      top: 1440px;
+      font-weight: 700;
+      font-size: 40px;
+      color: #dbe5f2;
+    }
+    #s2-cnss {
+      position: absolute;
+      left: 80px;
+      top: 1506px;
+      width: 920px;
+      height: 196px;
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      padding: 0 34px;
+      border-radius: 32px;
+      background: #ffffff;
+      box-shadow: 0 18px 44px rgba(0, 0, 0, 0.35);
+    }
+    #s2-cnss img {
+      width: 150px;
+      height: 150px;
+      flex: none;
+    }
+    #s2-cnss span {
+      font-weight: 800;
+      font-size: 44px;
+      line-height: 1.12;
+      color: #14325a;
+    }
+  </style>
+  <div id="root" data-composition-id="s2" data-width="1080" data-height="1920">
+    <div id="s2-photo">
+      <div id="s2-img"></div>
+      <div class="s2-cap">Table ronde FESTAC – CNSS, 29 novembre 2025</div>
+    </div>
+    <div id="s2-org">La <b>FESTAC</b> organise</div>
+    <div id="s2-band">FORMATION NATIONALE</div>
+    <div id="s2-title"><span>sur</span> <span>le</span> <span class="g">contrôle</span> <span>et</span> <span>la</span> <span class="g">vérification</span> <span>des</span> <span>cotisations</span> <span>sociales</span></div>
+    <div id="s2-with">en collaboration avec</div>
+    <div id="s2-cnss">
+      <img src="assets/img/logo-cnss.png" alt="CNSS" />
+      <span>Caisse nationale de sécurité sociale du Gabon</span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FF_CUES;
+      var L = C.local("s2");
+      var D = C.sc.s2.dur;
+      var tl = gsap.timeline({ paused: true });
+      // la photo de la table ronde FESTAC – CNSS
+      tl.fromTo("#s2-photo", { opacity: 0, y: 60, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.6, ease: "power3.out" }, 0.1);
+      tl.fromTo("#s2-img", { scale: 1.0, x: 0 }, { scale: 1.08, x: -24, duration: D, ease: "none" }, 0);
+      // « la FESTAC organise une formation nationale »
+      tl.fromTo("#s2-org", { opacity: 0, x: -40 }, { opacity: 1, x: 0, duration: 0.4, ease: "power3.out" }, L(C.at("L02", "festac")) - 0.2);
+      tl.fromTo("#s2-band", { opacity: 0, scaleX: 0.2, transformOrigin: "0% 50%" }, { opacity: 1, scaleX: 1, duration: 0.5, ease: "power3.out" }, L(C.at("L02", "formation")) - 0.2);
+      // « sur le contrôle et la vérification des cotisations sociales »
+      tl.fromTo("#s2-title span", { opacity: 0, y: 24, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.24, stagger: 0.13, ease: "power4.out" }, L(C.at("L02", "sur")) - 0.1);
+      // « en collaboration avec la Caisse nationale de sécurité sociale du Gabon »
+      tl.fromTo("#s2-with", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.35, ease: "power2.out" }, L(C.at("L02", "collaboration")) - 0.2);
+      tl.fromTo("#s2-cnss", { opacity: 0, y: 50, scale: 0.94 }, { opacity: 1, y: 0, scale: 1, duration: 0.5, ease: "back.out(1.7)" }, L(C.at("L02", "caisse")) - 0.3);
+      tl.fromTo("#s2-cnss img", { rotation: -30, scale: 0.6, transformOrigin: "50% 50%" }, { rotation: 0, scale: 1, duration: 0.6, ease: "back.out(2)" }, L(C.at("L02", "caisse")) - 0.15);
+      // sortie
+      tl.to(["#s2-photo", "#s2-org", "#s2-band", "#s2-title", "#s2-with", "#s2-cnss"], { opacity: 0, y: -40, filter: "blur(8px)", duration: 0.35, stagger: 0.03, ease: "power3.in" }, D - 0.42);
+      window.__timelines["s2"] = tl;
+    })();
+  </script>
+</template>
