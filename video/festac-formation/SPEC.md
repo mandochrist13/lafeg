@@ -72,9 +72,14 @@ Ces faits viennent de son texte à l'écran et de sa voix (transcrite par Whispe
     - FESTAC « fès-tak » ;
     - CNSS et IHEM épelés lettre par lettre, comme dans l'original ;
     - Nzeng-Ayong « n-zèng-a-yong ».
-- **Musique.** Elle remplace la kora de l'original. C'est une nouvelle prise MusicGen (medium, en local), dans un autre style (voir `assets/bgm`), montée à la durée du film.
+- **Musique.** Elle remplace la kora de l'original : une piste électronique moderne, dynamique et « corporate », à 100 bpm (nappes, notes pincées, basse et batterie).
+  - Elle a été générée en local avec MusicGen (Meta, modèle medium), car Lyria n'est pas disponible avec la clé du projet (quota nul).
+  - Deux prises ont été écoutées par Gemini. La prise retenue a obtenu 8/10, sans raccord audible ; l'autre, « funk rétro » à 110 bpm, convenait moins à une formation institutionnelle.
+  - Montage (`../festac-tribune/tools/musique.py`) :
+    - le début de la prise, puis des boucles de 8 mesures (temps 9 à 41) calées sur la grille des temps, jusqu'à 87,2 s ;
+    - un fondu de fin à partir de 83,6 s.
   - Elle baisse sous la voix et remonte sur le récapitulatif.
-  - Lyria n'est pas disponible avec la clé du projet (quota nul).
+  - Licence : les poids de MusicGen sont sous CC BY-NC 4.0 (usage non commercial), à valider.
 - **Bruitages.** 35 bruitages discrets (Pixabay, voir `assets/sfx/CREDITS.md`) :
   - glissés aux changements de scène ;
   - clics doux sur les cartes ;
