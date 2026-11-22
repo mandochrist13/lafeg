@@ -44,3 +44,24 @@ Demandes de la FEG, et ce qui a été fait :
 | Une musique propre, différente de celle de la FEG | « Horizon » d'Andrewkn (CC BY 4.0), choisie parmi une douzaine de pistes libres écoutées par Gemini. Sa dernière montée tombe sur le logo. |
 
 Contrôle : `npx hyperframes check` passé, 0 erreur, 14 textes sur 14 conformes en contraste.
+
+## Rendu (version 2)
+
+`renders/BGFIBourse-lumiere.mp4` est le rendu en qualité « delivery ». Il a pris 37 min.
+
+| Mesure | Valeur |
+| --- | --- |
+| Image | 1920 × 1080, 30 im/s, H.264 |
+| Durée | 80,0 s |
+| Poids | 59,2 Mo |
+| Son | AAC stéréo 48 kHz ; −16,0 LUFS intégré, plage 4,0 LU, crête −2,3 dBFS |
+| Images noires | aucune |
+| Image fixe | seulement la carte de fin, à partir de 73,8 s (voulu) |
+
+La planche du fichier rendu (une image toutes les 5 s) correspond aux images fixes de la relecture.
+
+`renders/BGFIBourse-lumiere-whatsapp.mp4` est la même vidéo, réencodée pour rester sous la limite de 16 Mo de WhatsApp :
+
+- H.264 en deux passes à 1,35 Mbit/s, son AAC 128 kbit/s ;
+- 14,9 Mo, quasi identique au rendu (SSIM 0,994) ;
+- les étoiles fines restent nettes (vérifié en gros plan).
