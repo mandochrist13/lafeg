@@ -32,3 +32,15 @@ Le film a été vu en images fixes à plus de 80 moments avant le rendu, puis à
 | L09 | « Arrangeur et chef de file » restait trop peu de temps à l'écran. | La ligne arrive sur « milliards ». |
 | Aube | Un volet blanc à bord dur, avec une boule surexposée. | Le jour se lève depuis l'étoile, en lumière douce ; le halo s'éteint plus vite. |
 | Carte de fin | Deux copies du même logo (risque de doublon au rendu). | Logo découpé en deux images : les pavés avec l'étoile, puis le nom. |
+
+## Version 2 : logo officiel, slogan de BGFIBourse, musique propre
+
+Demandes de la FEG, et ce qui a été fait :
+
+| Demande | Correction |
+| --- | --- |
+| Le bon logo | Logo officiel fourni, découpé en deux PNG transparents : les pavés avec l'étoile, et le nom. Les creux des lettres sont transparents, les bords dé-mélangés. L'étoile de la scène a été redessinée d'après la sienne : huit branches mesurées sur l'image. Le plan final la pose exactement sur celle du logo : même centre, même taille, vérifiés en image fixe. L'aube finit sur le blanc exact du fond du logo. |
+| Le slogan de BGFIBourse | « Votre partenaire pour l'avenir », sur la carte de fin et dans la dernière phrase de la voix. Celle-ci a été relue à la suite de la phrase 9, pour éviter un ton publicitaire. |
+| Une musique propre, différente de celle de la FEG | « Horizon » d'Andrewkn (CC BY 4.0), choisie parmi une douzaine de pistes libres écoutées par Gemini. Sa dernière montée tombe sur le logo. |
+
+Contrôle : `npx hyperframes check` passé, 0 erreur, 14 textes sur 14 conformes en contraste.
