@@ -1,0 +1,1498 @@
+<!doctype html>
+<!--
+  BGFIBourse — « Une étoile pour guider votre épargne ». Un ciel de nuit, froid et calme.
+  L'épargne de l'Afrique centrale : 953 petites lumières sur la carte des six pays de la CEMAC (Natural Earth).
+  Réunies, elles financent les projets (usines, routes, logements, tracés en constellations). Elles se rencontrent
+  sur la BVMAC (une étoile, à Douala) ; la COSUMAF trace l'anneau du marché réglementé ; il y faut un guide :
+  BGFIBourse, l'étoile à quatre branches du logo, descend du ciel et prend la place de la société de bourse.
+  À la fin, l'étoile s'élève, l'épargne la suit, le jour se lève et l'étoile devient celle du logo.
+  Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire) ; temps : assets/cues.js.
+-->
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <title>BGFIBourse — Une étoile pour guider votre épargne</title>
+    <style>
+      @font-face {
+        font-family: "Lato";
+        font-weight: 400;
+        src: url("assets/fonts/Lato-400.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Lato";
+        font-weight: 700;
+        src: url("assets/fonts/Lato-700.woff2") format("woff2");
+      }
+      @font-face {
+        font-family: "Tenor Sans";
+        font-weight: 400;
+        src: url("assets/fonts/TenorSans-400.woff2") format("woff2");
+      }
+      #world-root {
+        position: relative;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+        background: #02050f;
+      }
+      #world-cv {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        display: block;
+      }
+      #world-labels {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 1920px;
+        height: 1080px;
+        overflow: hidden;
+      }
+      .wl {
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        white-space: nowrap;
+        font-family: "Lato", sans-serif;
+        font-weight: 400;
+        color: #eef3ff;
+        text-shadow:
+          0 0 16px rgba(110, 160, 240, 0.35),
+          0 0 3px rgba(0, 0, 0, 0.85);
+      }
+      .wl .ti {
+        display: block;
+        font-family: "Tenor Sans", sans-serif;
+        font-size: 40px;
+        line-height: 1.12;
+        letter-spacing: 0.01em;
+      }
+      .wl .su {
+        display: block;
+        margin-top: 2px;
+        font-size: 28px;
+        line-height: 1.2;
+        color: #bccbe6;
+      }
+      .wl.sm {
+        font-size: 30px;
+        color: #e3ebfb;
+      }
+      .wl.ct {
+        font-size: 30px;
+        font-weight: 700;
+        color: #f1f5ff;
+      }
+      .wl.sg .ti {
+        color: #d9e6b6;
+      }
+      .wl.bl .ti {
+        color: #a8d0f6;
+      }
+      .wl.c {
+        text-align: center;
+      }
+      .wl.r {
+        text-align: right;
+      }
+    </style>
+    <script src="assets/data/cemac.js"></script>
+  </head>
+  <body>
+    <div
+      id="world-root"
+      data-composition-id="world"
+      data-start="0"
+      data-duration="80.384"
+      data-total
+      data-width="1920"
+      data-height="1080"
+      data-layout-allow-overlap
+    >
+      <canvas
+        id="world-cv"
+        class="clip"
+        data-start="0"
+        data-duration="80.384"
+        data-total
+        data-track-index="0"
+        data-layout-allow-overflow
+      ></canvas>
+      <div id="world-labels">
+        <div id="wl-ep" class="wl sm">une épargne</div>
+
+        <div id="wl-hdr" class="wl sg c"><span class="ti">Entreprises et États</span></div>
+        <div id="wl-p0" class="wl sm c">Usines</div>
+        <div id="wl-p1" class="wl sm c">Routes</div>
+        <div id="wl-p2" class="wl sm c">Logements</div>
+
+        <div id="wl-c0" class="wl ct">Cameroun</div>
+        <div id="wl-c1" class="wl ct">Centrafrique</div>
+        <div id="wl-c2" class="wl ct">Tchad</div>
+        <div id="wl-c3" class="wl ct">Congo</div>
+        <div id="wl-c4" class="wl ct r">Guinée équatoriale</div>
+        <div id="wl-c5" class="wl ct r">Gabon</div>
+        <div id="wl-bv" class="wl bl c"><span class="ti">BVMAC</span><span class="su">Bourse des valeurs mobilières de l'Afrique centrale</span></div>
+        <div id="wl-dla" class="wl sm r">Douala</div>
+
+        <div id="wl-cos" class="wl c"><span class="ti">COSUMAF</span><span class="su">le régulateur</span></div>
+        <div id="wl-gate" class="wl c"><span class="ti">Société de bourse</span><span class="su">agréée</span></div>
+        <div id="wl-you" class="wl sm c">votre épargne</div>
+
+        <div id="wl-s0" class="wl c"><span class="ti">Courtage</span><span class="su">vos ordres d'achat et de vente</span></div>
+        <div id="wl-s1" class="wl r"><span class="ti">Conservation</span><span class="su">vos titres en sécurité</span></div>
+        <div id="wl-s2" class="wl r">
+          <span class="ti">OPC</span><span class="su">l'épargne de chacun, mise en commun</span><span id="wl-s2b" class="su">gérée par des professionnels</span>
+        </div>
+        <div id="wl-s3" class="wl c"><span class="ti">Conseil</span><span class="su">selon vos objectifs</span></div>
+        <div id="wl-s4" class="wl sg c"><span class="ti">Levée de fonds</span></div>
+        <div id="wl-hc" class="wl bl"><span class="ti">BGFI HC</span></div>
+      </div>
+    </div>
+
+    <script>
+      (function () {
+        var C = window.__BL_CUES;
+        var total = C ? C.total : 80.384;
+        var host = { clock: { t: 0 }, render: null };
+        window.__worldHost = host;
+        window.__hf = window.__hf || {};
+        window.__hf.buildReady = window.__hf.buildReady || {};
+        window.__hf.buildReady["world"] = new Promise(function (resolve) {
+          host.ready = resolve;
+        });
+        var tl = gsap.timeline({ paused: true });
+        tl.to(host.clock, {
+          t: total,
+          duration: total,
+          ease: "none",
+          onUpdate: function () {
+            if (host.render) host.render(host.clock.t);
+          },
+        });
+        window.__timelines = window.__timelines || {};
+        window.__timelines["world"] = tl;
+      })();
+    </script>
+
+    <script type="module">
+      import * as THREE from "./lib/three.module.js";
+
+      const host = window.__worldHost;
+      const C = window.__BL_CUES;
+      const MAP = window.__BL_CEMAC;
+      const at = (id, w, which) => C.at(id, w, which);
+      const S = (id) => C.lines[id].start;
+      const E = (id) => C.lines[id].end;
+
+      // ------------------------------------------------------------------ outils
+      const clamp01 = (x) => (x < 0 ? 0 : x > 1 ? 1 : x);
+      const clamp = (x, a, b) => (x < a ? a : x > b ? b : x);
+      const lerp = (a, b, u) => a + (b - a) * u;
+      const prog = (t, t0, d) => clamp01((t - t0) / d);
+      const inOut = (u) => ((u = clamp01(u)), u < 0.5 ? 4 * u * u * u : 1 - Math.pow(-2 * u + 2, 3) / 2);
+      const inOutQ = (u) => ((u = clamp01(u)), u < 0.5 ? 2 * u * u : 1 - Math.pow(-2 * u + 2, 2) / 2);
+      const out3 = (u) => 1 - Math.pow(1 - clamp01(u), 3);
+      const in3 = (u) => Math.pow(clamp01(u), 3);
+      // fenêtre : monte à partir de a (durée fi), redescend à partir de b (durée fo)
+      const win = (t, a, fi, b, fo) => out3(prog(t, a, fi)) * (1 - in3(prog(t, b, fo)));
+      const bump = (t, c, w) => Math.exp(-Math.pow((t - c) / w, 2));
+      const frac = (x) => x - Math.floor(x);
+      function mulberry32(a) {
+        return function () {
+          a |= 0;
+          a = (a + 0x6d2b79f5) | 0;
+          let r = Math.imul(a ^ (a >>> 15), 1 | a);
+          r = (r + Math.imul(r ^ (r >>> 7), 61 | r)) ^ r;
+          return ((r ^ (r >>> 14)) >>> 0) / 4294967296;
+        };
+      }
+      const rnd = mulberry32(2006);
+      const gauss = () => Math.sqrt(-2 * Math.log(1 - rnd() * 0.999999)) * Math.cos(2 * Math.PI * rnd());
+
+      // ------------------------------------------------------------------ temps clés (calés sur la voix)
+      const T = {
+        leve: at("L01", "lève"),
+        etoiles: at("L01", "étoiles"),
+        chemin: at("L01", "trouver"),
+        afrique: at("L02", "Afrique"),
+        epargne: at("L02", "épargne"),
+        lumiere: at("L02", "lumière"),
+        seule: at("L02", "Seule"),
+        brille: at("L02", "brille"),
+        reunies: at("L03", "Réunies"),
+        financent: at("L03", "financent"),
+        entreprises: at("L03", "entreprises"),
+        usines: at("L03", "usines"),
+        routes: at("L03", "routes"),
+        logements: at("L03", "logements"),
+        rencontrent: at("L04", "rencontrent"),
+        bourse: at("L04", "Bourse"),
+        six: at("L04", "six"),
+        cemac: at("L04", "Cémac"),
+        bvmac: at("L04", "BVMAC"),
+        douala: at("L04", "Douala"),
+        acceder: at("L05", "accéder"),
+        faut: at("L05", "faut"),
+        guide: at("L05", "guide"),
+        regul: at("L05", "régulateur"),
+        cosumaf: at("L05", "Cosumaf"),
+        societe: at("L05", "société"),
+        ceGuide: at("L06", "guide"),
+        bgfi: at("L06", "BGFI"),
+        groupe: at("L06", "groupe"),
+        agreee: at("L06", "agréée"),
+        transmet: at("L07", "transmet"),
+        execute: at("L07", "exécute"),
+        conserve: at("L07", "conserve"),
+        securite: at("L07", "sécurité"),
+        rassemble: at("L07", "rassemble"),
+        opc: at("L07", "OPC"),
+        geres: at("L07", "gérés"),
+        conseille: at("L08", "conseille"),
+        objectifs: at("L08", "objectifs"),
+        accompagne: at("L08", "accompagne"),
+        fonds: at("L08", "fonds"),
+        y2026: at("L09", "deux"),
+        conduit: at("L09", "conduit"),
+        holding: at("L09", "Holding"),
+        plus: at("L09", "plus"),
+        leves: at("L09", "levés"),
+        bgfi10: at("L10", "BGFI"),
+        etoile10: at("L10", "étoile"),
+        guider: at("L10", "guider"),
+        logo: C.logo,
+      };
+      T.gDown = T.bgfi - 0.45; // l'étoile guide quitte le ciel
+      T.gLand = T.gDown + 1.25; // … et se pose à la porte du marché
+      T.gUp = T.etoile10 - 0.3; // L10 : elle s'élève, l'épargne la suit
+      T.dawn = E("L10") - 0.05; // le jour se lève
+
+      // ------------------------------------------------------------------ rendu
+      const canvas = document.getElementById("world-cv");
+      const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+      renderer.setPixelRatio(1);
+      renderer.setSize(1920, 1080, false);
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
+      renderer.toneMapping = THREE.NoToneMapping;
+      const scene = new THREE.Scene();
+      const FOV = 30;
+      const TANH = Math.tan(((FOV / 2) * Math.PI) / 180);
+      const camera = new THREE.PerspectiveCamera(FOV, 16 / 9, 0.5, 3000);
+
+      // fond : nuit bleu marine, vignette ; une lueur d'horizon au début ; le jour se lève (blanc froid) à la fin
+      const bgMat = new THREE.ShaderMaterial({
+        uniforms: { uDawn: { value: 0 }, uHor: { value: 0 }, uHorY: { value: 0.3 }, uStar: { value: new THREE.Vector2(0.74, 0.64) } },
+        vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.9999, 1.0); }`,
+        fragmentShader: `varying vec2 vUv; uniform float uDawn; uniform float uHor; uniform float uHorY; uniform vec2 uStar;
+          void main(){
+            vec2 p = (vUv - vec2(0.5, 0.56)) * vec2(1.7778, 1.0);
+            float r = length(p);
+            vec3 c = mix(vec3(0.034, 0.062, 0.150), vec3(0.005, 0.011, 0.036), smoothstep(0.0, 1.12, r));
+            float h = smoothstep(uHorY + 0.32, uHorY - 0.04, vUv.y);
+            c += vec3(0.010, 0.020, 0.044) * uHor * h;
+            // le jour se lève à partir de l'étoile, en cercle qui s'élargit
+            float dist = length((vUv - uStar) * vec2(1.7778, 1.0));
+            float dl = smoothstep(0.0, 1.0, uDawn * 2.25 - dist * 0.78);
+            vec3 day = mix(c, vec3(0.973, 0.980, 0.992), dl);
+            gl_FragColor = vec4(day, 1.0);
+          }`,
+        depthTest: false,
+        depthWrite: false,
+      });
+      const bg = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), bgMat);
+      bg.frustumCulled = false;
+      bg.renderOrder = -10;
+      scene.add(bg);
+
+      // ------------------------------------------------------------------ halo (bloom) : la scène est rendue hors écran, puis floutée en cascade
+      const canFloat = renderer.extensions.has("EXT_color_buffer_float") || renderer.extensions.has("EXT_color_buffer_half_float");
+      const RT_TYPE = canFloat ? THREE.HalfFloatType : THREE.UnsignedByteType;
+      const rtMain = new THREE.WebGLRenderTarget(1920, 1080, { type: RT_TYPE, samples: 4, depthBuffer: false });
+      const LV = [
+        [960, 540],
+        [480, 270],
+        [240, 135],
+        [120, 68],
+      ].map(([w, h]) => ({
+        w,
+        h,
+        a: new THREE.WebGLRenderTarget(w, h, { type: RT_TYPE, depthBuffer: false }),
+        b: new THREE.WebGLRenderTarget(w, h, { type: RT_TYPE, depthBuffer: false }),
+      }));
+      const postVS = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy, 0.0, 1.0); }`;
+      const postMat = (uniforms, fs) => new THREE.ShaderMaterial({ uniforms, vertexShader: postVS, fragmentShader: fs, depthTest: false, depthWrite: false });
+      const downMat = postMat(
+        { tSrc: { value: null }, uTexel: { value: new THREE.Vector2() }, uTh: { value: 0.1 }, uUseTh: { value: 0 } },
+        `uniform sampler2D tSrc; uniform vec2 uTexel; uniform float uTh; uniform float uUseTh; varying vec2 vUv;
+        void main(){
+          vec3 c = 0.25 * (texture2D(tSrc, vUv + uTexel * vec2(-1.0, -1.0)).rgb + texture2D(tSrc, vUv + uTexel * vec2(1.0, -1.0)).rgb
+                 + texture2D(tSrc, vUv + uTexel * vec2(-1.0, 1.0)).rgb + texture2D(tSrc, vUv + uTexel * vec2(1.0, 1.0)).rgb);
+          if (uUseTh > 0.5) { float l = max(c.r, max(c.g, c.b)); c *= smoothstep(uTh, uTh + 0.25, l); }
+          gl_FragColor = vec4(c, 1.0);
+        }`,
+      );
+      const blurMat = postMat(
+        { tSrc: { value: null }, uDir: { value: new THREE.Vector2() } },
+        `uniform sampler2D tSrc; uniform vec2 uDir; varying vec2 vUv;
+        void main(){
+          vec3 c = texture2D(tSrc, vUv).rgb * 0.2270270270;
+          c += texture2D(tSrc, vUv + uDir * 1.3846153846).rgb * 0.3162162162;
+          c += texture2D(tSrc, vUv - uDir * 1.3846153846).rgb * 0.3162162162;
+          c += texture2D(tSrc, vUv + uDir * 3.2307692308).rgb * 0.0702702703;
+          c += texture2D(tSrc, vUv - uDir * 3.2307692308).rgb * 0.0702702703;
+          gl_FragColor = vec4(c, 1.0);
+        }`,
+      );
+      const compMat = postMat(
+        {
+          tBase: { value: rtMain.texture },
+          tB0: { value: LV[0].a.texture },
+          tB1: { value: LV[1].a.texture },
+          tB2: { value: LV[2].a.texture },
+          tB3: { value: LV[3].a.texture },
+          uStr: { value: 1 },
+          uW: { value: new THREE.Vector4(0.55, 0.7, 0.85, 1.0) },
+          uDither: { value: 1 },
+        },
+        `uniform sampler2D tBase; uniform sampler2D tB0; uniform sampler2D tB1; uniform sampler2D tB2; uniform sampler2D tB3;
+        uniform float uStr; uniform vec4 uW; uniform float uDither; varying vec2 vUv;
+        void main(){
+          vec3 c = texture2D(tBase, vUv).rgb;
+          vec3 b = uW.x * texture2D(tB0, vUv).rgb + uW.y * texture2D(tB1, vUv).rgb + uW.z * texture2D(tB2, vUv).rgb + uW.w * texture2D(tB3, vUv).rgb;
+          c += b * uStr;
+          float n = fract(sin(dot(gl_FragCoord.xy, vec2(12.9898, 78.233))) * 43758.5453);
+          c += (n - 0.5) * uDither / 255.0;
+          gl_FragColor = vec4(clamp(c, 0.0, 1.0), 1.0);
+        }`,
+      );
+      const postScene = new THREE.Scene();
+      const postCam = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+      const quad = new THREE.Mesh(new THREE.PlaneGeometry(2, 2), downMat);
+      quad.frustumCulled = false;
+      postScene.add(quad);
+      function pass(mat, target) {
+        quad.material = mat;
+        renderer.setRenderTarget(target);
+        renderer.render(postScene, postCam);
+      }
+      function renderFrame(strength, dither, threshold) {
+        downMat.uniforms.uTh.value = threshold;
+        renderer.setRenderTarget(rtMain);
+        renderer.render(scene, camera);
+        let src = rtMain.texture,
+          sw = 1920,
+          sh = 1080;
+        LV.forEach((L, i) => {
+          downMat.uniforms.tSrc.value = src;
+          downMat.uniforms.uTexel.value.set(1 / sw, 1 / sh);
+          downMat.uniforms.uUseTh.value = i === 0 ? 1 : 0;
+          pass(downMat, L.a);
+          blurMat.uniforms.tSrc.value = L.a.texture;
+          blurMat.uniforms.uDir.value.set(1 / L.w, 0);
+          pass(blurMat, L.b);
+          blurMat.uniforms.tSrc.value = L.b.texture;
+          blurMat.uniforms.uDir.value.set(0, 1 / L.h);
+          pass(blurMat, L.a);
+          src = L.a.texture;
+          sw = L.w;
+          sh = L.h;
+        });
+        compMat.uniforms.uStr.value = strength;
+        compMat.uniforms.uDither.value = dither;
+        pass(compMat, null);
+      }
+
+      // lumières : point doux (cœur + halo), mélange additif
+      const vs = `attribute vec3 aColor; attribute float aSize; attribute float aAlpha;
+        varying vec3 vColor; varying float vAlpha; uniform float uRef; uniform float uMax;
+        void main(){ vec4 mv = modelViewMatrix * vec4(position, 1.0); gl_Position = projectionMatrix * mv;
+          gl_PointSize = clamp(aSize * uRef / max(1.0, -mv.z), 0.0, uMax); vColor = aColor; vAlpha = aAlpha; }`;
+      const fsGlow = `uniform float uOpacity; varying vec3 vColor; varying float vAlpha;
+        void main(){ vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 > 1.0) discard;
+          float a = (exp(-r2 * 14.0) + 0.30 * exp(-r2 * 3.6)) * vAlpha * uOpacity; gl_FragColor = vec4(vColor * a, a); }`;
+      // nébuleuse : taches très douces et très larges
+      const fsSoft = `uniform float uOpacity; varying vec3 vColor; varying float vAlpha;
+        void main(){ vec2 p = gl_PointCoord * 2.0 - 1.0; float r2 = dot(p, p); if (r2 > 1.0) discard;
+          float a = exp(-r2 * 3.2) * (1.0 - r2) * vAlpha * uOpacity; gl_FragColor = vec4(vColor * a, a); }`;
+      const REF = 70; // une lumière de taille s fait s px à 70 unités de la caméra
+      function pointsSystem(n, order, fs = fsGlow, maxPx = 360) {
+        const g = new THREE.BufferGeometry();
+        const pos = new Float32Array(n * 3),
+          col = new Float32Array(n * 3),
+          size = new Float32Array(n),
+          alpha = new Float32Array(n);
+        g.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        g.setAttribute("aColor", new THREE.BufferAttribute(col, 3));
+        g.setAttribute("aSize", new THREE.BufferAttribute(size, 1));
+        g.setAttribute("aAlpha", new THREE.BufferAttribute(alpha, 1));
+        const m = new THREE.ShaderMaterial({
+          uniforms: { uOpacity: { value: 1 }, uRef: { value: REF }, uMax: { value: maxPx } },
+          vertexShader: vs,
+          fragmentShader: fs,
+          transparent: true,
+          depthWrite: false,
+          depthTest: false,
+          blending: THREE.CustomBlending,
+          blendEquation: THREE.AddEquation,
+          blendSrc: THREE.OneFactor,
+          blendDst: THREE.OneFactor,
+        });
+        const p = new THREE.Points(g, m);
+        p.frustumCulled = false;
+        p.renderOrder = order;
+        scene.add(p);
+        let k = 0;
+        return {
+          m,
+          reset() {
+            k = 0;
+          },
+          push(x, y, z, c, s, a) {
+            if (k >= n || a <= 0.003) return;
+            pos[3 * k] = x;
+            pos[3 * k + 1] = y;
+            pos[3 * k + 2] = z;
+            col[3 * k] = c[0];
+            col[3 * k + 1] = c[1];
+            col[3 * k + 2] = c[2];
+            size[k] = s;
+            alpha[k] = a;
+            k++;
+          },
+          commit() {
+            g.setDrawRange(0, k);
+            for (const nm of ["position", "aColor", "aSize", "aAlpha"]) g.attributes[nm].needsUpdate = true;
+          },
+        };
+      }
+      const hex = (h) => [((h >> 16) & 255) / 255, ((h >> 8) & 255) / 255, (h & 255) / 255];
+      const mixc = (a, b, u) => [lerp(a[0], b[0], u), lerp(a[1], b[1], u), lerp(a[2], b[2], u)];
+      // palette froide et sobre ; l'épargne garde un blanc à peine chaud (accueillant)
+      const CW = hex(0xfff1da), // l'épargne
+        CI = hex(0xe2ecff), // blanc glacé
+        CB = hex(0x8fc3f0), // bleu BGFI lumineux (le marché)
+        CS = hex(0xd5e2b0), // sauge lumineuse (les projets)
+        CV = hex(0xc9d4e8), // argent (la COSUMAF)
+        CD = hex(0x7d93bd); // bleu gris (traits discrets)
+
+      // ------------------------------------------------------------------ le ciel
+      const ST = pointsSystem(6000, 0); // étoiles et voie lactée
+      const NB = pointsSystem(110, -1, fsSoft, 900); // nébuleuse
+      const STARS = [];
+      for (let i = 0; i < 2300; i++) {
+        const u = rnd();
+        STARS.push({
+          x: (rnd() - 0.5) * 380,
+          y: -70 + rnd() * 200,
+          z: -175 + rnd() * 95,
+          s: 9 + Math.pow(rnd(), 2.5) * 26,
+          a: 0.22 + rnd() * 0.62,
+          w: 0.4 + rnd() * 1.8,
+          ph: rnd() * 6.28,
+          c: u < 0.72 ? CI : u < 0.9 ? hex(0xbcd4ff) : hex(0xfff0dc),
+        });
+      }
+      // voie lactée : une bande diagonale de poussière d'étoiles
+      const BAND = { x: -6, y: 9, ang: (26 * Math.PI) / 180 };
+      for (let i = 0; i < 3600; i++) {
+        const s = (rnd() - 0.5) * 420,
+          o = gauss() * 9.5;
+        STARS.push({
+          x: BAND.x + Math.cos(BAND.ang) * s - Math.sin(BAND.ang) * o,
+          y: BAND.y + Math.sin(BAND.ang) * s + Math.cos(BAND.ang) * o,
+          z: -170 + rnd() * 30,
+          s: 6 + rnd() * 5,
+          a: 0.08 + rnd() * 0.2,
+          w: 0.6 + rnd() * 1.4,
+          ph: rnd() * 6.28,
+          c: rnd() < 0.7 ? CI : hex(0xb9cff5),
+        });
+      }
+      const NEB = [];
+      for (let i = 0; i < 110; i++) {
+        const s = (rnd() - 0.5) * 420,
+          o = gauss() * 6;
+        NEB.push({
+          x: BAND.x + Math.cos(BAND.ang) * s - Math.sin(BAND.ang) * o,
+          y: BAND.y + Math.sin(BAND.ang) * s + Math.cos(BAND.ang) * o,
+          z: -168,
+          s: 600 + rnd() * 700,
+          a: 0.012 + rnd() * 0.014,
+          c: rnd() < 0.6 ? hex(0x6f8fd0) : hex(0x8aa6c8),
+        });
+      }
+
+      // ------------------------------------------------------------------ l'épargne : 953 lumières sur la carte de la CEMAC
+      const SVC = [-20, 0.5, 0];
+      const P = MAP.pts.map(([x, y, c], i) => ({ i, c, home: [SVC[0] + x, SVC[1] + y, (rnd() - 0.5) * 0.8], jit: rnd(), tw: rnd() * Math.PI * 2 }));
+      const LBV = MAP.cities.Libreville,
+        DLA = MAP.cities.Douala;
+      const HERO_HOME = [SVC[0] + LBV[0], SVC[1] + LBV[1], 0.5];
+      let HERO = P[0];
+      {
+        let bd = 1e9;
+        for (const p of P) {
+          const d = Math.hypot(p.home[0] - HERO_HOME[0], p.home[1] - HERO_HOME[1]);
+          if (d < bd) {
+            bd = d;
+            HERO = p;
+          }
+        }
+        HERO.home = HERO_HOME.slice();
+      }
+      const DOUALA = [SVC[0] + DLA[0], SVC[1] + DLA[1], 0.3];
+      // pays : ordre alphabétique, comme la CEMAC les cite (index dans MAP.countries)
+      const NAMES = MAP.countries; // Cameroun, Centrafrique, Tchad, Congo, Guinée équatoriale, Gabon
+      const ORDER = ["Cameroun", "Centrafrique", "Congo", "Gabon", "Guinée équatoriale", "Tchad"].map((n) => NAMES.indexOf(n));
+      const CENT = NAMES.map((n) => [SVC[0] + MAP.cent[n][0], SVC[1] + MAP.cent[n][1], 0.4]);
+
+      // ------------------------------------------------------------------ le marché : la BVMAC (Douala), l'anneau de la COSUMAF, la porte
+      const BV = [0, 0, 0];
+      const RC = 4.5;
+      const GATE = [-RC, 0, 0];
+      const HV = [-8.3, -0.9, 0.6]; // « votre épargne » attend devant la porte
+      const CF = [-12.2, 0.9, 0.6]; // confluence des lumières réunies
+      const CONS = [-7.4, 3.7, 0.3]; // conservation
+      const OPC = [-7.9, -4.1, 0.6]; // OPC
+      const OBJ = [-12.6, 3.9, 0.5]; // vos objectifs
+      const G0 = [-3, 16.5, -10]; // l'étoile guide, dans le ciel
+      const NEW0 = [-7.6, 2.6, 0.5],
+        NEW_END = [1.7, 1.4, 0.4]; // BGFI Holding Corporation entre en Bourse
+      const STAR_FIN = [-6.5, 5.5, 0];
+      // projets
+      const FA = [20, 5.6, 0],
+        RO = [20, -0.4, 0],
+        HO = [20, -6.2, 0];
+
+      // allumage : Libreville d'abord (« chaque épargne »), puis une onde sur toute la carte
+      {
+        let maxD = 0;
+        for (const p of P) maxD = Math.max(maxD, Math.hypot(p.home[0] - HERO.home[0], p.home[1] - HERO.home[1]));
+        P.forEach((p) => {
+          const d = Math.hypot(p.home[0] - HERO.home[0], p.home[1] - HERO.home[1]) / maxD;
+          p.tIgn = p === HERO ? T.epargne - 0.12 : T.epargne + 0.55 + d * 1.35 + p.jit * 0.3;
+          p.hl = ORDER.indexOf(p.c); // rang du pays dans « six pays »
+        });
+      }
+      // OPC : 72 épargnes venues de toute la carte
+      const OPCM = P.filter((p) => p !== HERO && p.i % 13 === 5);
+      OPCM.forEach((p, k) => {
+        const n = OPCM.length;
+        const yy = 1 - (2 * (k + 0.5)) / n,
+          rr = Math.sqrt(1 - yy * yy),
+          th = k * 2.399963;
+        p.opc = { th, rr, yy, r: 0.62 + 0.3 * rnd() };
+        p.tOpc = T.rassemble - 0.15 + p.jit * 0.75;
+      });
+      // L10 : la procession vers l'étoile (six lumières sur dix, et votre épargne)
+      P.forEach((p) => {
+        p.proc = p === HERO || p.opc || p.i % 10 < 6;
+        p.tProc = T.gUp - 0.2 + p.jit * 0.7;
+        p.k = rnd();
+        p.lane = [(rnd() - 0.5) * 2.4, (rnd() - 0.5) * 1.6, (rnd() - 0.5) * 1.4];
+      });
+
+      // trajectoire de « votre épargne » (L05) : vers le marché, l'anneau l'arrête, elle revient devant la porte
+      const STOP = [GATE[0] - 0.75, -0.15, 0.4];
+      T.go = T.acceder - 0.35;
+      T.hit = T.go + 1.55;
+      function heroL05(tau, o) {
+        const u = prog(tau, T.go, T.hit - T.go);
+        const e = inOutQ(u);
+        let x = lerp(HERO.home[0], STOP[0], e),
+          y = lerp(HERO.home[1], STOP[1], e) + Math.sin(u * Math.PI) * 2.2,
+          z = lerp(HERO.home[2], STOP[2], e) + Math.sin(u * Math.PI) * 1.5;
+        const b = out3(prog(tau, T.hit + 0.02, 0.9));
+        x = lerp(x, HV[0], b);
+        y = lerp(y, HV[1], b);
+        z = lerp(z, HV[2], b);
+        // léger balancement pendant l'attente
+        const w = prog(tau, T.hit + 0.9, 1.0);
+        o[0] = x;
+        o[1] = y + Math.sin(tau * 1.3) * 0.08 * w;
+        o[2] = z;
+        return o;
+      }
+
+      const tmp = [0, 0, 0];
+      // procession : courbe de Bézier de la lumière (sur la carte) à l'étoile
+      function procPos(p, tau, o) {
+        const u = frac(p.k + (tau - p.tProc) * 0.17);
+        const a = p.home,
+          b = STAR_FIN;
+        const m = [lerp(a[0], b[0], 0.55) + p.lane[0], Math.max(a[1], b[1]) + 1.8 + p.lane[1], 2.2 + p.lane[2]];
+        const iu = 1 - u;
+        o[0] = iu * iu * a[0] + 2 * iu * u * m[0] + u * u * (b[0] + p.lane[0] * 0.12);
+        o[1] = iu * iu * a[1] + 2 * iu * u * m[1] + u * u * (b[1] + p.lane[1] * 0.12);
+        o[2] = iu * iu * a[2] + 2 * iu * u * m[2] + u * u * b[2];
+        return u;
+      }
+      // position d'une lumière à l'instant tau (fonction pure)
+      function posAt(p, tau, o) {
+        let x = p.home[0] + Math.sin(tau * 0.31 + p.tw) * 0.03,
+          y = p.home[1] + Math.cos(tau * 0.27 + p.tw) * 0.03,
+          z = p.home[2];
+        if (p === HERO && tau > T.go) {
+          heroL05(tau, tmp);
+          x = tmp[0];
+          y = tmp[1];
+          z = tmp[2];
+        }
+        if (p.opc && tau > p.tOpc) {
+          const u = prog(tau, p.tOpc, 1.45);
+          const e = inOutQ(u);
+          const a = p.opc.th + tau * 0.75;
+          const cx = OPC[0] + Math.cos(a) * p.opc.rr * p.opc.r,
+            cy = OPC[1] + p.opc.yy * p.opc.r,
+            cz = OPC[2] + Math.sin(a) * p.opc.rr * p.opc.r;
+          x = lerp(x, cx, e);
+          y = lerp(y, cy, e) + Math.sin(u * Math.PI) * 1.6;
+          z = lerp(z, cz, e) + Math.sin(u * Math.PI) * 1.2;
+        }
+        o[0] = x;
+        o[1] = y;
+        o[2] = z;
+        if (p.proc && tau > p.tProc) {
+          const e = inOut(prog(tau, p.tProc, 1.5));
+          procPos(p, tau, tmp);
+          o[0] = lerp(x, tmp[0], e);
+          o[1] = lerp(y, tmp[1], e);
+          o[2] = lerp(z, tmp[2], e);
+        }
+        return o;
+      }
+      // intensité d'une lumière à l'instant t
+      function alphaAt(p, t) {
+        let a = out3(prog(t, p.tIgn, 0.7));
+        if (p !== HERO) {
+          // « Seule » : les autres s'effacent ; « Réunies » : elles reviennent
+          const off = inOut(prog(t, T.seule - 0.2, 0.7)) * (1 - inOut(prog(t, T.reunies - 0.25, 0.6)));
+          a *= 1 - 0.94 * off;
+        } else {
+          // « elle brille peu » : la lumière seule vacille
+          const weak = win(t, T.seule + 0.25, 0.4, T.reunies - 0.25, 0.4);
+          a *= 1 - weak * (0.42 + 0.16 * Math.sin(t * 13.0) * Math.sin(t * 7.3));
+        }
+        if (p.proc && t > p.tProc) {
+          const u = frac(p.k + (t - p.tProc) * 0.17);
+          const e = inOut(prog(t, p.tProc, 1.5));
+          a *= lerp(1, Math.min(1, u / 0.06) * (1 - in3(prog(u, 0.82, 0.18))), e);
+        }
+        return a;
+      }
+
+      const TR = pointsSystem(P.length * 4, 2); // traînées
+      const PS = pointsSystem(P.length, 3); // l'épargne
+      const FX = pointsSystem(16000, 4); // tracés, flux, anneaux
+
+      // ------------------------------------------------------------------ étoiles à aigrettes (lumières principales)
+      const flareFS = `varying vec2 vUv; uniform vec3 uColor; uniform float uAlpha; uniform float uSpike; uniform float uCore;
+        void main(){ vec2 p = vUv * 2.0 - 1.0; float r2 = dot(p, p);
+          float core = exp(-r2 * 260.0) * 1.7 * uCore + exp(-r2 * 45.0) * 0.55 + exp(-r2 * 7.5) * 0.17;
+          float sx = exp(-abs(p.y) * 150.0) * pow(max(0.0, 1.0 - abs(p.x)), 3.0);
+          float sy = exp(-abs(p.x) * 150.0) * pow(max(0.0, 1.0 - abs(p.y)), 3.0);
+          float a = (core + uSpike * 0.65 * (sx + sy)) * uAlpha * (1.0 - smoothstep(0.82, 1.0, r2));
+          gl_FragColor = vec4(uColor * a, a); }`;
+      const FL = [];
+      for (let i = 0; i < 48; i++) {
+        const m = new THREE.Mesh(
+          new THREE.PlaneGeometry(1, 1),
+          new THREE.ShaderMaterial({
+            uniforms: { uColor: { value: new THREE.Vector3(1, 1, 1) }, uAlpha: { value: 0 }, uSpike: { value: 1 }, uCore: { value: 1 } },
+            vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+            fragmentShader: flareFS,
+            transparent: true,
+            depthTest: false,
+            depthWrite: false,
+            blending: THREE.CustomBlending,
+            blendEquation: THREE.AddEquation,
+            blendSrc: THREE.OneFactor,
+            blendDst: THREE.OneFactor,
+          }),
+        );
+        m.renderOrder = 8;
+        m.visible = false;
+        m.frustumCulled = false;
+        scene.add(m);
+        FL.push(m);
+      }
+      let flN = 0,
+        flOpacity = 1;
+      function flare(x, y, z, size, col, a, spike = 0.5, core = 1) {
+        a *= flOpacity;
+        if (flN >= FL.length || a <= 0.003) return;
+        const m = FL[flN++];
+        m.visible = true;
+        m.position.set(x, y, z);
+        m.scale.setScalar(size);
+        m.quaternion.copy(camera.quaternion);
+        m.material.uniforms.uColor.value.set(col[0], col[1], col[2]);
+        m.material.uniforms.uAlpha.value = a;
+        m.material.uniforms.uSpike.value = spike;
+        m.material.uniforms.uCore.value = core;
+      }
+      function flareEnd() {
+        for (let i = flN; i < FL.length; i++) FL[i].visible = false;
+        flN = 0;
+      }
+
+      // ------------------------------------------------------------------ l'étoile BGFIBourse : l'étoile à quatre branches du logo
+      // (branches horizontales plus longues, quatre petits rayons en diagonale, cœur blanc) ; branche horizontale = A unités
+      const starMat = new THREE.ShaderMaterial({
+        uniforms: { uA: { value: 0 }, uHalo: { value: new THREE.Vector3(0.42, 0.62, 0.95) }, uHaloA: { value: 0.5 }, uSpk: { value: 1 } },
+        vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
+        fragmentShader: `varying vec2 vUv; uniform float uA; uniform vec3 uHalo; uniform float uHaloA; uniform float uSpk;
+          float arm(vec2 p, float len, float w0, float e){ float ax = abs(p.x), ay = abs(p.y);
+            float w = w0 * max(0.0, 1.0 - ax / len); return (1.0 - smoothstep(w, w + e, ay)) * step(ax, len); }
+          void main(){
+            vec2 p = (vUv * 2.0 - 1.0) * 1.6;
+            float e = 0.02;
+            float h = arm(p, uSpk, 0.11, e);
+            float v = arm(p.yx, 0.79 * uSpk, 0.075, e);
+            vec2 q = vec2(p.x + p.y, p.y - p.x) * 0.70710678;
+            float dg = 0.75 * max(arm(q, 0.69, 0.04, e), arm(q.yx, 0.69, 0.04, e));
+            float s = max(max(h, v), dg);
+            float r2 = dot(p, p);
+            float glow = exp(-r2 * 42.0) * 0.95 + exp(-r2 * 11.0) * 0.2;
+            float halo = exp(-r2 * 2.6) * uHaloA;
+            vec3 col = vec3(1.0) * (s + glow) + uHalo * halo;
+            float a = clamp(s + glow, 0.0, 1.0);
+            gl_FragColor = vec4(col * uA, a * uA);
+          }`,
+        transparent: true,
+        depthTest: false,
+        depthWrite: false,
+        blending: THREE.CustomBlending,
+        blendEquation: THREE.AddEquation,
+        blendSrc: THREE.OneFactor,
+        blendDst: THREE.OneFactor,
+      });
+      const starMesh = new THREE.Mesh(new THREE.PlaneGeometry(1, 1), starMat);
+      starMesh.renderOrder = 9;
+      starMesh.frustumCulled = false;
+      scene.add(starMesh);
+      // position de l'étoile guide : dans le ciel, puis à la porte du marché, puis (L10) au-dessus de l'épargne
+      function guidePos(t, o) {
+        let x = G0[0],
+          y = G0[1] + Math.sin(t * 0.4) * 0.15,
+          z = G0[2];
+        const u = prog(t, T.gDown, T.gLand - T.gDown);
+        if (u > 0) {
+          const e = inOut(u);
+          x = lerp(G0[0], GATE[0], e) - Math.sin(e * Math.PI) * 2.6;
+          y = lerp(y, GATE[1], e);
+          z = lerp(G0[2], GATE[2], e) + Math.sin(e * Math.PI) * 2.0;
+        }
+        const v = prog(t, T.gUp, 1.6);
+        if (v > 0) {
+          const e = inOut(v);
+          x = lerp(x, STAR_FIN[0], e);
+          y = lerp(y, STAR_FIN[1], e) + Math.sin(e * Math.PI) * 0.8;
+          z = lerp(z, STAR_FIN[2], e);
+        }
+        o[0] = x;
+        o[1] = y;
+        o[2] = z;
+        return o;
+      }
+
+      // ------------------------------------------------------------------ caméra (perspective ; plan final calé sur la carte de fin)
+      // Carte de fin : logo de 1 100 px de large en (410 ; 300) ; son étoile est en (1 412,7 ; 388,9), branche horizontale de 49,4 px.
+      const STAR_PX = [410 + (2844 / 3120) * 1100, 300 + (252 / 900) * ((900 / 3120) * 1100)];
+      const D_FIN = 46;
+      const S_FIN = 540 / (D_FIN * TANH); // px par unité, à z = 0
+      const A_FIN = ((140 / 3120) * 1100) / S_FIN; // demi-branche horizontale de l'étoile du logo
+      const FIN = { x: STAR_FIN[0] - (STAR_PX[0] - 960) / S_FIN, y: STAR_FIN[1] + (STAR_PX[1] - 540) / S_FIN, d: D_FIN, yaw: 0, pitch: 0 };
+      const keys = [];
+      const key = (t0, dur, to, ease = inOut) => keys.push({ t0, dur, to, ease });
+      const CAM0 = { x: -3, y: -4.5, d: 40, yaw: -2, pitch: 7 };
+      key(0, 3.4, { x: -3, y: -3, d: 37, yaw: 0, pitch: 6 }, inOutQ);
+      key(T.leve - 0.35, 2.7, { x: -3.5, y: 11.5, d: 40, yaw: 2, pitch: -7 });
+      key(T.afrique - 0.55, 2.3, { x: -20, y: 0.5, d: 40, yaw: 3, pitch: 3 });
+      key(T.seule - 0.35, 1.5, { x: HERO.home[0] + 0.6, y: HERO.home[1] + 0.3, d: 14, yaw: -3, pitch: 2 });
+      key(T.reunies - 0.3, 1.5, { x: -19, y: 0.4, d: 42, yaw: 2, pitch: 3 });
+      key(T.financent - 0.25, 2.2, { x: 2, y: 0.4, d: 70, yaw: -2, pitch: 2 }, inOutQ);
+      key(T.usines - 0.4, 3.0, { x: 7, y: 0.3, d: 58, yaw: -3, pitch: 2 }, inOutQ);
+      key(T.rencontrent - 0.8, 1.9, { x: -2, y: 0.8, d: 80, yaw: 0, pitch: 3 });
+      key(T.six - 0.55, 1.6, { x: -10, y: 0.3, d: 50, yaw: -2, pitch: 2 });
+      key(T.acceder - 0.45, 1.7, { x: -9, y: 0, d: 46, yaw: 3, pitch: 2 });
+      key(T.ceGuide - 0.45, 1.3, { x: -5, y: 7.5, d: 52, yaw: 2, pitch: -4 });
+      key(T.gDown + 0.25, 1.6, { x: -8.7, y: 2.8, d: 34, yaw: -2, pitch: 1 });
+      key(T.transmet - 0.45, 1.6, { x: -6, y: 0, d: 36, yaw: 3, pitch: 3 });
+      key(T.accompagne - 0.35, 2.0, { x: 2, y: 0.3, d: 78, yaw: 0, pitch: 3 });
+      key(T.y2026 - 0.45, 1.8, { x: -5, y: 4.6, d: 56, yaw: -2, pitch: 2 });
+      key(T.bgfi10 - 0.3, T.gUp + 1.45 - (T.bgfi10 - 0.3), FIN, inOut);
+      function camAt(t) {
+        let s = { ...CAM0 };
+        for (let i = 0; i < keys.length; i++) {
+          const k = keys[i];
+          if (t <= k.t0) break;
+          const next = keys[i + 1];
+          const cut = next && next.t0 < t ? next.t0 : t;
+          const e = k.ease(prog(cut, k.t0, k.dur));
+          const to = k.to;
+          s = { x: lerp(s.x, to.x, e), y: lerp(s.y, to.y, e), d: Math.exp(lerp(Math.log(s.d), Math.log(to.d), e)), yaw: lerp(s.yaw, to.yaw, e), pitch: lerp(s.pitch, to.pitch, e) };
+          if (!(next && next.t0 < t)) break;
+        }
+        return s;
+      }
+
+      // ------------------------------------------------------------------ étiquettes (texte HTML projeté)
+      const $ = (id) => document.getElementById(id);
+      const v3 = new THREE.Vector3();
+      const toScreen = (x, y, z) => {
+        v3.set(x, y, z).project(camera);
+        return [(v3.x * 0.5 + 0.5) * 1920, (-v3.y * 0.5 + 0.5) * 1080];
+      };
+      // ax, ay : point d'accroche de l'étiquette (0 = bord gauche/haut, 0,5 = centre, 1 = bord droit/bas)
+      function place(name, x, y, z, a, ax = 0.5, ay = 0.5, dx = 0, dy = 0) {
+        const el = $("wl-" + name);
+        if (a <= 0.002) {
+          el.style.opacity = "0";
+          return;
+        }
+        const [sx, sy] = toScreen(x, y, z);
+        const w = el.offsetWidth,
+          h = el.offsetHeight;
+        el.style.opacity = a.toFixed(3);
+        el.style.transform = `translate(${Math.round(sx + dx - w * ax)}px, ${Math.round(sy + dy - h * ay + (1 - a) * 8)}px)`;
+      }
+
+      // ------------------------------------------------------------------ effets
+      // anneau de lumières face à la caméra ; reveal partant de l'angle a0 dans les deux sens
+      function ringFx(c, r, n, reveal, col, size, alpha, t, spin = 0, a0 = Math.PI / 2, skip = 0) {
+        const rev = clamp01(reveal);
+        if (rev <= 0 || alpha <= 0.003) return;
+        for (let k = 0; k < n; k++) {
+          if (skip && k % skip) continue;
+          const a = a0 + (k / n) * Math.PI * 2 + spin * t;
+          const d = Math.abs((((k / n) * 2 + 1) % 2) - 1); // 0 au départ, 1 à l'opposé
+          if (d > rev) continue;
+          const tw = 0.78 + 0.22 * Math.sin(t * 2.0 + k * 1.7);
+          FX.push(c[0] + Math.cos(a) * r, c[1] + Math.sin(a) * r, c[2], col, size, alpha * tw);
+        }
+      }
+      // orbite inclinée (plan défini par deux vecteurs unitaires)
+      function orbitFx(c, r, u, v, n, reveal, col, size, alpha, t, spin) {
+        const m = Math.floor(n * clamp01(reveal));
+        for (let k = 0; k < m; k++) {
+          const a = (k / n) * Math.PI * 2 + spin * t;
+          const ca = Math.cos(a) * r,
+            sa = Math.sin(a) * r;
+          FX.push(c[0] + ca * u[0] + sa * v[0], c[1] + ca * u[1] + sa * v[1], c[2] + ca * u[2] + sa * v[2], col, size, alpha * (0.7 + 0.3 * Math.sin(k * 0.9 + t * 2)));
+        }
+      }
+      // flux de points le long d'une courbe de Bézier quadratique a → b (sommet m)
+      const bez = (a, m, b, u, o) => {
+        const iu = 1 - u;
+        o[0] = iu * iu * a[0] + 2 * iu * u * m[0] + u * u * b[0];
+        o[1] = iu * iu * a[1] + 2 * iu * u * m[1] + u * u * b[1];
+        o[2] = iu * iu * a[2] + 2 * iu * u * m[2] + u * u * b[2];
+        return o;
+      };
+      const bz = [0, 0, 0];
+      function streamFx(a, m, b, n, reveal, speed, col, size, alpha, t) {
+        const rev = clamp01(reveal);
+        if (rev <= 0 || alpha <= 0.003) return;
+        for (let k = 0; k < n; k++) {
+          const u = (k / n + t * speed) % 1;
+          if (u > rev) continue;
+          bez(a, m, b, u, bz);
+          FX.push(bz[0], bz[1], bz[2], col, size, alpha * Math.pow(Math.sin(Math.PI * Math.min(1, u / rev)), 0.35));
+        }
+      }
+      // pointillés fixes le long d'une courbe a → b (sommet m), révélés de a vers b
+      function dottedFx(a, m, b, n, reveal, col, size, alpha) {
+        const rev = clamp01(reveal);
+        if (rev <= 0 || alpha <= 0.003) return;
+        for (let k = 0; k <= n; k++) {
+          const u = k / n;
+          if (u > rev) break;
+          bez(a, m, b, u, bz);
+          FX.push(bz[0], bz[1], bz[2], col, size, alpha);
+        }
+      }
+      const mid = (a, b, lift, z = 0) => [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2 + lift, (a[2] + b[2]) / 2 + z];
+
+      // contours de la carte : pointillés, révélés d'ouest en est
+      const OUT_EXT = [],
+        OUT_INT = [];
+      function samplePoly(pl, step, arr) {
+        for (let i = 0; i < pl.length - 1; i++) {
+          const [x1, y1] = pl[i],
+            [x2, y2] = pl[i + 1];
+          const n = Math.max(1, Math.round(Math.hypot(x2 - x1, y2 - y1) / step));
+          for (let k = 0; k < n; k++) {
+            const u = k / n;
+            arr.push([SVC[0] + lerp(x1, x2, u), SVC[1] + lerp(y1, y2, u), 0, 0]);
+          }
+        }
+      }
+      MAP.ext.forEach((pl) => samplePoly(pl, 0.12, OUT_EXT));
+      MAP.int.forEach((pl) => samplePoly(pl, 0.2, OUT_INT));
+      {
+        let x0 = 1e9,
+          x1 = -1e9;
+        for (const p of OUT_EXT) {
+          x0 = Math.min(x0, p[0]);
+          x1 = Math.max(x1, p[0]);
+        }
+        for (const arr of [OUT_EXT, OUT_INT]) for (const p of arr) p[3] = clamp01((p[0] - x0) / (x1 - x0)) * 0.85 + rnd() * 0.15;
+      }
+
+      // projets : constellations tracées (usines, routes, logements)
+      function makeTrace(pls, origin, step) {
+        const segs = [];
+        let total = 0;
+        for (const pl of pls)
+          for (let i = 0; i < pl.length - 1; i++) {
+            const a = pl[i],
+              b = pl[i + 1];
+            const L = Math.hypot(b[0] - a[0], b[1] - a[1]);
+            segs.push({ a, b, L, s0: total });
+            total += L;
+          }
+        const samples = [],
+          verts = [];
+        for (const sg of segs) {
+          const n = Math.max(1, Math.round(sg.L / step));
+          for (let k = 0; k < n; k++) {
+            const u = k / n;
+            samples.push([origin[0] + lerp(sg.a[0], sg.b[0], u), origin[1] + lerp(sg.a[1], sg.b[1], u), origin[2], (sg.s0 + u * sg.L) / total]);
+          }
+          verts.push([origin[0] + sg.a[0], origin[1] + sg.a[1], origin[2], sg.s0 / total]);
+          verts.push([origin[0] + sg.b[0], origin[1] + sg.b[1], origin[2], (sg.s0 + sg.L) / total]);
+        }
+        return { samples, verts };
+      }
+      const house = (cx, w, h, rh) => [
+        [
+          [cx - w / 2, -1.5],
+          [cx - w / 2, -1.5 + h],
+          [cx - w / 2 - 0.25, -1.5 + h],
+          [cx, -1.5 + h + rh],
+          [cx + w / 2 + 0.25, -1.5 + h],
+          [cx + w / 2, -1.5 + h],
+          [cx + w / 2, -1.5],
+          [cx - w / 2, -1.5],
+        ],
+      ];
+      const TRACES = [
+        makeTrace(
+          [
+            [
+              [-3, -1.6],
+              [-3, 0.3],
+              [-2, 1.3],
+              [-2, 0.3],
+              [-1, 1.3],
+              [-1, 0.3],
+              [0, 1.3],
+              [0, 0.3],
+              [1.5, 0.3],
+              [1.5, 2.9],
+              [2.2, 2.9],
+              [2.2, 0.3],
+              [3, 0.3],
+              [3, -1.6],
+              [-3, -1.6],
+            ],
+          ],
+          FA,
+          0.17,
+        ),
+        makeTrace(
+          [
+            [
+              [-3.4, -1.5],
+              [-0.45, 1.3],
+            ],
+            [
+              [3.4, -1.5],
+              [0.45, 1.3],
+            ],
+            [
+              [0, -1.5],
+              [0, -1.0],
+            ],
+            [
+              [0, -0.62],
+              [0, -0.25],
+            ],
+            [
+              [0, 0.08],
+              [0, 0.36],
+            ],
+            [
+              [0, 0.6],
+              [0, 0.8],
+            ],
+            [
+              [0, 0.98],
+              [0, 1.1],
+            ],
+          ],
+          RO,
+          0.17,
+        ),
+        makeTrace([...house(-2.25, 1.7, 1.5, 0.95), ...house(0.1, 2.0, 2.0, 1.15), ...house(2.45, 1.6, 1.35, 0.9)], HO, 0.17),
+      ];
+      const PROJ = [FA, RO, HO];
+      const WINDOWS = [
+        [-2.25, -0.8],
+        [-0.35, -0.4],
+        [0.55, -0.4],
+        [2.45, -0.85],
+      ].map(([x, y]) => [HO[0] + x, HO[1] + y, 0.1]);
+      function drawTrace(tr, rev, col, alpha, t) {
+        if (alpha <= 0.003 || rev <= 0) return;
+        for (const p of tr.samples) if (p[3] <= rev) FX.push(p[0], p[1], p[2], col, 4.4, alpha * 0.75);
+        for (const v of tr.verts) if (v[3] <= rev + 1e-6) FX.push(v[0], v[1], v[2], col, 8.5, alpha * (0.85 + 0.15 * Math.sin(t * 2 + v[0] * 3 + v[1])));
+      }
+      // tête lumineuse du tracé
+      function traceHead(tr, rev, col, alpha) {
+        if (rev <= 0 || rev >= 1 || alpha <= 0.01) return;
+        let best = tr.samples[0];
+        for (const p of tr.samples) if (p[3] <= rev) best = p;
+        flare(best[0], best[1], best[2], 1.6, col, alpha * 0.9, 0.4);
+      }
+      // sources des flux de l'épargne : des points de toute la carte vers la confluence
+      const SRC = [0, 1, 2, 3, 4, 5, 6].map((k) => P[Math.floor(((k + 0.5) / 7) * P.length)].home);
+
+      // conservation : une sphère de lumière (sphère de Fibonacci)
+      const SPH = [];
+      for (let k = 0; k < 230; k++) {
+        const y = 1 - (2 * (k + 0.5)) / 230;
+        SPH.push({ y, r: Math.sqrt(1 - y * y), th: k * 2.399963 });
+      }
+
+      // ------------------------------------------------------------------ une image
+      const o = [0, 0, 0],
+        o2 = [0, 0, 0],
+        g = [0, 0, 0];
+      function render(t) {
+        // --- caméra
+        const s = camAt(t);
+        const drift = 1 - prog(t, T.gUp - 0.4, 1.6); // la dérive s'éteint pour le plan final exact
+        const yaw = ((s.yaw + 1.1 * Math.sin(t * 0.13) * drift) * Math.PI) / 180;
+        const pitch = ((s.pitch + 0.7 * Math.sin(t * 0.11 + 1.3) * drift) * Math.PI) / 180;
+        camera.position.set(s.x + Math.sin(yaw) * Math.cos(pitch) * s.d, s.y + Math.sin(pitch) * s.d, Math.cos(yaw) * Math.cos(pitch) * s.d);
+        camera.lookAt(s.x, s.y, 0);
+        camera.updateMatrixWorld();
+
+        const dawn = inOut(prog(t, T.dawn, 1.7));
+        bgMat.uniforms.uDawn.value = dawn;
+        {
+          guidePos(t, g);
+          const [sx, sy] = toScreen(g[0], g[1], g[2]);
+          bgMat.uniforms.uStar.value.set(sx / 1920, 1 - sy / 1080);
+        }
+        bgMat.uniforms.uHor.value = out3(prog(t, 0, 1.6)) * (1 - prog(t, T.leve + 0.4, 2.0));
+        {
+          const [, hy] = toScreen(s.x, -11, -30);
+          bgMat.uniforms.uHorY.value = 1 - hy / 1080;
+        }
+
+        // --- le ciel
+        ST.reset();
+        const skyA = out3(prog(t, 0, 2.2)) * (1 - dawn);
+        const starBoost = 1 + 0.35 * win(t, T.etoiles - 0.2, 0.6, T.etoiles + 1.4, 1.2);
+        for (const st of STARS) ST.push(st.x, st.y, st.z, st.c, st.s, Math.min(1, st.a * starBoost) * (0.7 + 0.3 * Math.sin(t * st.w + st.ph)) * skyA);
+        ST.commit();
+        NB.reset();
+        for (const nb of NEB) NB.push(nb.x, nb.y, nb.z, nb.c, nb.s, nb.a * skyA);
+        NB.commit();
+
+        // --- l'épargne (+ traînées)
+        PS.reset();
+        TR.reset();
+        const reun = bump(t, T.reunies + 0.35, 0.45); // « Réunies » : elles brillent ensemble
+        const restA = 1 - 0.3 * win(t, T.acceder - 0.4, 1.0, T.accompagne - 0.4, 1.0); // la carte en retrait pendant les scènes du marché
+        for (const p of P) {
+          let a = alphaAt(p, t);
+          if (a <= 0.003) continue;
+          posAt(p, t, o);
+          let col = CW;
+          let size = p === HERO ? lerp(10, 7, prog(t, T.reunies, 1.0)) : 6.5;
+          // « six pays » : chaque pays s'éclaire à son tour
+          const tk = T.six - 0.15 + p.hl * 0.16;
+          const hl = win(t, tk, 0.35, T.bvmac - 0.1, 0.6);
+          size *= 1 + 0.25 * reun + 0.12 * hl;
+          if (p !== HERO) a *= restA;
+          a = Math.min(1, a * (0.86 + 0.14 * hl + 0.14 * reun));
+          if (p.opc && t > p.tOpc + 1.0) col = mixc(CW, CI, 0.35);
+          const tw = 0.86 + 0.14 * Math.sin(t * 1.7 + p.tw);
+          const aa = a * tw;
+          PS.push(o[0], o[1], o[2], col, size, aa);
+          // traînée quand la lumière se déplace vite
+          posAt(p, t - 0.05, o2);
+          const sp = Math.hypot(o[0] - o2[0], o[1] - o2[1], o[2] - o2[2]);
+          if (sp > 0.05) {
+            const k = Math.min(1, sp / 0.8);
+            for (let j = 1; j <= 4; j++) {
+              posAt(p, t - j * 0.035, o2);
+              TR.push(o2[0], o2[1], o2[2], col, size * (1 - j * 0.15), aa * k * 0.5 * (1 - j / 5));
+            }
+          }
+        }
+        PS.commit();
+        TR.commit();
+
+        // --- effets
+        FX.reset();
+        flOpacity = 1 - dawn;
+        const endFade = 1 - inOut(prog(t, T.bgfi10 - 0.2, 1.4)); // L10 : le marché s'efface, l'étoile et l'épargne restent
+
+        // L01 : le chemin vers l'étoile guide
+        {
+          const a = win(t, T.chemin - 0.55, 0.4, T.afrique - 0.2, 0.8);
+          if (a > 0.01) dottedFx([-9, -9, 2], [-8.5, 5, -1], G0, 80, out3(prog(t, T.chemin - 0.5, 1.5)), CI, 4.0, a * 0.55);
+        }
+        // L02 : contours de la carte (Afrique centrale)
+        {
+          const rev = out3(prog(t, T.afrique - 0.25, 1.3));
+          const a = (0.5 - 0.32 * win(t, T.seule - 0.2, 0.6, T.reunies - 0.25, 0.6) + 0.25 * win(t, T.six - 0.3, 0.5, T.bvmac, 0.8)) * (1 - 0.35 * prog(t, T.acceder, 1.5)) * (1 - prog(t, T.gUp + 0.6, 1.4));
+          if (rev > 0 && a > 0.01) {
+            for (const p of OUT_EXT) if (p[3] <= rev) FX.push(p[0], p[1], p[2], CD, 3.6, a);
+            for (const p of OUT_INT) if (p[3] <= rev) FX.push(p[0], p[1], p[2], CD, 3.0, a * 0.5);
+          }
+        }
+        // L02 : la première lumière (« chaque épargne ») ; « elle brille peu »
+        {
+          const u = prog(t, T.epargne - 0.1, 1.3);
+          if (u > 0 && u < 1) ringFx(HERO.home, 0.25 + u * 1.6, 70, 1, CW, 3.2, 0.5 * (1 - u), t);
+          const w = prog(t, T.brille - 0.05, 0.9);
+          if (w > 0 && w < 1) ringFx(HERO.home, 0.2 + w * 0.7, 50, 1, CW, 2.6, 0.32 * (1 - w), t);
+          const aH = win(t, T.epargne - 0.1, 0.5, T.reunies + 0.2, 0.8) * (1 - 0.55 * win(t, T.seule + 0.25, 0.4, T.reunies - 0.25, 0.4));
+          flare(HERO.home[0], HERO.home[1], HERO.home[2], 1.5, CW, aH * 0.8, 0.3);
+        }
+        // « votre épargne » (L05 → L09) : un éclat pour la suivre
+        {
+          const a = win(t, T.go - 0.15, 0.4, T.gUp, 0.8);
+          if (a > 0.01) {
+            posAt(HERO, t, o);
+            flare(o[0], o[1], o[2], 1.35, CW, a * 0.9, 0.35);
+          }
+        }
+        // L03 « Réunies » : une onde de lumière traverse la carte
+        {
+          const u = prog(t, T.reunies + 0.05, 1.8);
+          if (u > 0 && u < 1) ringFx(SVC, 1 + u * 11, 260, 1, CW, 3.6, 0.42 * (1 - u), t);
+        }
+        // L03 : l'épargne réunie finance les projets (carte → confluence → BVMAC → projets)
+        const flowA = win(t, T.financent - 0.3, 0.6, T.acceder - 0.3, 0.8);
+        if (flowA > 0.01) {
+          SRC.forEach((a, k) => streamFx(a, mid(a, CF, 1.2 + (k % 3) * 0.6, 1), CF, 22, out3(prog(t, T.financent - 0.3 + k * 0.06, 0.9)), 0.42, CW, 4.2, flowA * 0.55, t));
+          streamFx(CF, mid(CF, BV, 1.6, 1.0), [-0.5, 0.1, 0], 70, out3(prog(t, T.financent + 0.1, 1.1)), 0.35, CW, 5.2, flowA * 0.85, t);
+          const times = [T.usines, T.routes, T.logements];
+          PROJ.forEach((pj, k) => {
+            const b = [pj[0] - 3.7, pj[1] - (k === 0 ? 0.4 : 0), 0];
+            streamFx([0.5, 0.1, 0], mid([0.5, 0.1, 0], b, 2.0 - k * 1.4, 1.0), b, 60, out3(prog(t, times[k] - 0.75, 0.9)), 0.33, CW, 4.8, flowA * 0.75, t);
+          });
+        }
+        // L04 : les projets répondent (flux sauge vers la Bourse)
+        {
+          const a = win(t, T.rencontrent - 0.2, 0.6, T.acceder - 0.3, 0.8);
+          if (a > 0.01)
+            PROJ.forEach((pj, k) => {
+              const a2 = [pj[0] - 3.7, pj[1] - 0.6 - (k === 0 ? 0.4 : 0), 0.3];
+              streamFx(a2, mid(a2, [0.5, -0.2, 0], -1.4 + k * 0.4, 1.0), [0.5, -0.2, 0], 44, out3(prog(t, T.rencontrent - 0.1 + k * 0.1, 0.9)), 0.3, CS, 4.4, a * 0.6, t);
+            });
+        }
+        // projets : constellations
+        {
+          const times = [T.usines, T.routes, T.logements];
+          const a = (0.75 + 0.25 * win(t, T.accompagne - 0.3, 0.6, T.y2026 - 0.4, 0.8) - 0.4 * win(t, T.acceder, 1.0, T.accompagne - 0.4, 0.8) - 0.75 * out3(prog(t, T.y2026 - 0.3, 1.2))) * endFade;
+          TRACES.forEach((tr, k) => {
+            const rev = inOutQ(prog(t, times[k] - 0.35, 1.25));
+            drawTrace(tr, rev, CS, a, t);
+            traceHead(tr, rev, CI, a);
+          });
+          // fenêtres allumées, fumée légère de l'usine
+          const wA = out3(prog(t, T.logements + 0.6, 0.6)) * a;
+          WINDOWS.forEach((w, k) => FX.push(w[0], w[1], w[2], CW, 6.5, wA * (0.8 + 0.2 * Math.sin(t * 1.5 + k))));
+          const sA = out3(prog(t, T.usines + 0.9, 0.8)) * a;
+          if (sA > 0.01)
+            for (let k = 0; k < 9; k++) {
+              const u = frac(k / 9 + t * 0.12);
+              FX.push(FA[0] + 1.85 + Math.sin(u * 5 + k) * 0.25 + u * 0.9, FA[1] + 3.0 + u * 2.4, 0, CD, 6 + u * 10, sA * 0.32 * Math.sin(Math.PI * u));
+            }
+        }
+        // L04 : la BVMAC, Bourse commune aux six pays, à Douala
+        const bvA = out3(prog(t, T.bourse - 0.15, 0.6)) * endFade;
+        if (bvA > 0.01) {
+          const pulse = bump(t, T.bvmac + 0.15, 0.3) + 0.8 * bump(t, T.execute + 0.3, 0.3);
+          flare(BV[0], BV[1], BV[2], 3.0 * (1 + 0.35 * pulse), CB, bvA * (0.85 + 0.3 * pulse), 0.45);
+          const u = prog(t, T.bourse - 0.1, 1.4);
+          if (u > 0 && u < 1) ringFx(BV, 0.4 + u * 3.2, 120, 1, CB, 3.6, 0.6 * (1 - u), t);
+          ringFx(BV, 0.85, 54, 1, CB, 3.2, bvA * 0.35, t, 0.4);
+        }
+        // les six pays reliés à la Bourse
+        {
+          const a = win(t, T.cemac - 0.2, 0.5, T.acceder - 0.6, 0.7);
+          if (a > 0.01)
+            ORDER.forEach((ci, k) => {
+              const c = CENT[ci];
+              dottedFx(c, mid(c, BV, 1.4 - k * 0.45, 1.2), [-0.5, 0, 0], 70, out3(prog(t, T.cemac - 0.2 + k * 0.08, 0.9)), CB, 3.4, a * 0.5);
+              flare(c[0], c[1], c[2], 1.1, CI, a * 0.55, 0.2);
+            });
+        }
+        // Douala
+        {
+          const a = win(t, T.douala - 0.15, 0.4, T.acceder - 0.2, 0.7);
+          if (a > 0.01) {
+            flare(DOUALA[0], DOUALA[1], DOUALA[2], 1.6, CB, a, 0.4);
+            ringFx(DOUALA, 0.42, 40, 1, CB, 3.0, a * 0.8, t, 0.6);
+            dottedFx(DOUALA, mid(DOUALA, BV, 3.2, 1.5), [-0.4, 0.2, 0], 90, out3(prog(t, T.douala - 0.1, 0.8)), CB, 3.8, a * 0.6);
+          }
+        }
+        // L05 : la COSUMAF trace l'anneau du marché réglementé ; une place vide pour un guide agréé
+        const ringA = out3(prog(t, T.faut - 0.25, 0.4)) * endFade;
+        if (ringA > 0.01) {
+          const rev = out3(prog(t, T.faut - 0.25, 1.1));
+          const glow = 1 + 0.6 * win(t, T.regul - 0.1, 0.4, T.societe, 0.8) + 0.9 * bump(t, T.hit + 0.05, 0.18);
+          // l'anneau s'ouvre à la porte (à gauche) et se referme à droite
+          const n = 300;
+          for (let k = 0; k < n; k++) {
+            const f = k / n; // 0 à la porte
+            const ang = Math.PI + f * Math.PI * 2;
+            const dd = Math.abs(((f * 2 + 1) % 2) - 1); // 0 à la porte, 1 à droite
+            if (dd > rev) continue;
+            if (Math.abs(f - 0.5) > 0.5 - 0.022) continue; // la porte
+            FX.push(Math.cos(ang) * RC, Math.sin(ang) * RC, 0, CV, 4.0, ringA * 0.72 * glow * (0.8 + 0.2 * Math.sin(t * 1.6 + k * 0.7)));
+          }
+          // « agréée » : une impulsion part du sommet (la COSUMAF) et rejoint la porte
+          const u = prog(t, T.agreee - 0.15, 0.9);
+          if (u > 0 && u < 1)
+            for (let j = 0; j < 6; j++) {
+              const ang = Math.PI / 2 + inOutQ(u) * (Math.PI / 2) - j * 0.035;
+              FX.push(Math.cos(ang) * RC, Math.sin(ang) * RC, 0, CI, 9 - j, ringA * (1 - j / 6));
+            }
+        }
+        // la place du guide : cercle pointillé (vide), puis plein quand l'étoile s'y pose
+        {
+          const a = win(t, T.guide - 0.1, 0.4, T.bgfi10 - 0.2, 1.0);
+          if (a > 0.01) {
+            const filled = out3(prog(t, T.gLand - 0.05, 0.5));
+            ringFx(GATE, 0.9, 44, out3(prog(t, T.guide - 0.1, 0.7)), filled > 0.5 ? CB : CV, 3.4, a * (0.75 - 0.3 * filled), t, 0.15, Math.PI / 2, filled > 0.5 ? 0 : 2);
+          }
+        }
+        // L05 : « votre épargne » heurte l'anneau
+        {
+          const u = prog(t, T.hit, 0.7);
+          if (u > 0 && u < 1) ringFx(STOP, 0.2 + u * 1.2, 50, 1, CI, 3.2, 0.55 * (1 - u), t);
+        }
+
+        // --- l'étoile BGFIBourse
+        guidePos(t, g);
+        {
+          const appear = out3(prog(t, T.leve + 0.2, 1.2));
+          const tw = 1 + 0.06 * Math.sin(t * 2.3) * drift;
+          const land = bump(t, T.gLand + 0.05, 0.3);
+          const A = lerp(1.55, 1.3, prog(t, T.gLand, 0.6)) * (1 + 0.25 * bump(t, T.etoiles + 0.2, 0.4) + 0.3 * land);
+          const Ae = lerp(A, A_FIN, inOut(prog(t, T.gUp, 1.6)));
+          starMesh.position.set(g[0], g[1], g[2]);
+          starMesh.quaternion.copy(camera.quaternion);
+          starMesh.scale.setScalar(3.2 * Ae);
+          starMat.uniforms.uA.value = appear * (1 - dawn) * (0.95 + 0.15 * land);
+          starMat.uniforms.uSpk.value = tw;
+          starMat.uniforms.uHaloA.value = 0.16 + 0.16 * land + 0.1 * bump(t, T.etoile10 + 0.2, 0.5);
+          // halo large, bleu et sauge, comme entre les deux pavés du logo
+          flare(g[0], g[1], g[2] - 0.05, 3.4 * Ae, mixc(CB, CS, 0.3), appear * 0.16 * (1 + 0.8 * land), 0, 0.1);
+          // traînée pendant la descente
+          const ud = prog(t, T.gDown, T.gLand - T.gDown);
+          if (ud > 0.02 && ud < 1) {
+            for (let j = 1; j < 14; j++) {
+              guidePos(t - j * 0.03, o2);
+              FX.push(o2[0], o2[1], o2[2], CI, 16 - j, 0.55 * (1 - j / 14));
+            }
+          }
+          if (land > 0.05) ringFx(GATE, 0.6 + prog(t, T.gLand, 1.0) * 3.0, 120, 1, CI, 3.6, 0.6 * (1 - prog(t, T.gLand, 1.0)), t);
+        }
+
+        // L07 : courtage — vos ordres (achat, vente) passent par l'étoile jusqu'à la Bourse
+        {
+          const a = win(t, T.transmet - 0.2, 0.5, T.conseille - 0.3, 0.6);
+          if (a > 0.01) {
+            const r1 = out3(prog(t, T.transmet - 0.1, 0.6)),
+              r2 = out3(prog(t, T.execute - 0.1, 0.6));
+            streamFx(HV, mid(HV, GATE, 0.9, 0.6), GATE, 5, r1, 0.9, CB, 10, a, t);
+            streamFx(HV, mid(HV, GATE, -0.6, 0.6), GATE, 5, r1, 0.9, CS, 10, a, t + 0.55);
+            streamFx(GATE, mid(GATE, BV, 0.7, 0.5), BV, 6, r2, 0.8, CB, 10, a, t);
+            streamFx(GATE, mid(GATE, BV, -0.6, 0.5), BV, 6, r2, 0.8, CS, 10, a, t + 0.6);
+            dottedFx(HV, mid(HV, GATE, 0.15, 0.3), GATE, 26, r1, CD, 2.8, a * 0.5);
+            dottedFx(GATE, mid(GATE, BV, 0.1, 0.3), BV, 30, r2, CD, 2.8, a * 0.5);
+          }
+        }
+        // L07 : conservation — les titres reviennent et se mettent à l'abri dans une sphère de lumière
+        {
+          const a = win(t, T.conserve - 0.2, 0.5, T.y2026 - 0.4, 0.8);
+          if (a > 0.01) {
+            const r = out3(prog(t, T.conserve - 0.1, 0.8));
+            streamFx(BV, mid(BV, CONS, 2.2, 1.0), CONS, 8, r * (1 - prog(t, T.securite + 0.5, 0.5)), 0.7, CB, 8, a, t);
+            for (let k = 0; k < 8; k++) {
+              const an = (k / 8) * Math.PI * 2 + t * 0.9;
+              FX.push(CONS[0] + Math.cos(an) * 0.42, CONS[1] + Math.sin(an * 1.3) * 0.25, CONS[2] + Math.sin(an) * 0.42, CB, 7.5, a * out3(prog(t, T.conserve + 0.4 + k * 0.05, 0.4)));
+            }
+            const close = out3(prog(t, T.securite - 0.25, 0.9));
+            SPH.forEach((q) => {
+              if ((1 - q.y) / 2 > close) return;
+              const an = q.th + t * 0.35;
+              FX.push(CONS[0] + Math.cos(an) * q.r * 1.05, CONS[1] + q.y * 1.05, CONS[2] + Math.sin(an) * q.r * 1.05, CV, 3.6, a * 0.6 * (0.6 + 0.4 * Math.cos(an)));
+            });
+            flare(CONS[0], CONS[1], CONS[2], 2.6, CB, a * 0.35 * close, 0);
+          }
+        }
+        // L07 : OPC — l'épargne de chacun mise en commun, gérée par des professionnels (orbites réglées)
+        {
+          const a = win(t, T.rassemble + 0.6, 0.6, T.y2026 - 0.4, 0.8);
+          if (a > 0.01) {
+            flare(OPC[0], OPC[1], OPC[2], 3.2, CW, a * 0.35, 0);
+            const r = out3(prog(t, T.geres - 0.15, 0.8));
+            orbitFx(OPC, 1.45, [1, 0, 0], [0, 0.34, 0.94], 90, r, CI, 3.4, a * 0.7, t, 0.5);
+            orbitFx(OPC, 1.25, [0.5, 0.866, 0], [-0.3, 0.17, 0.94], 80, r, CI, 3.2, a * 0.55, t, -0.6);
+            for (let j = 0; j < 2; j++) {
+              const an = t * (j ? -0.6 : 0.5) * 1 + j * 2.0;
+              const u = j ? [0.5, 0.866, 0] : [1, 0, 0],
+                v = j ? [-0.3, 0.17, 0.94] : [0, 0.34, 0.94];
+              const rr = j ? 1.25 : 1.45;
+              const px = OPC[0] + Math.cos(an) * rr * u[0] + Math.sin(an) * rr * v[0];
+              const py = OPC[1] + Math.cos(an) * rr * u[1] + Math.sin(an) * rr * v[1];
+              const pz = OPC[2] + Math.cos(an) * rr * u[2] + Math.sin(an) * rr * v[2];
+              FX.push(px, py, pz, CI, 11, a * r);
+            }
+          }
+        }
+        // L08 : conseil — l'étoile éclaire votre épargne et trace le chemin vers vos objectifs
+        {
+          const a = win(t, T.conseille - 0.25, 0.5, T.y2026 - 0.4, 0.8);
+          if (a > 0.01) {
+            streamFx(GATE, mid(GATE, HV, 1.0, 0.6), HV, 14, out3(prog(t, T.conseille - 0.2, 0.6)), 0.6, CI, 6, a * 0.8, t);
+            const r = out3(prog(t, T.objectifs - 0.3, 1.0));
+            const m = mid(HV, OBJ, 0.4, 1.2);
+            m[0] += 1.6;
+            dottedFx(HV, m, OBJ, 46, r, CI, 3.6, a * 0.7);
+            const oa = out3(prog(t, T.objectifs - 0.15, 0.5)) * a;
+            flare(OBJ[0], OBJ[1], OBJ[2], 1.7, CI, oa, 0.5);
+            ringFx(OBJ, 0.55, 36, 1, CI, 3.2, oa * 0.8, t, 0.3);
+            ringFx(OBJ, 0.95, 56, 1, CI, 2.8, oa * 0.45, t, -0.2);
+            if (r >= 1) {
+              const u = frac(t * 0.5);
+              bez(HV, m, OBJ, u, bz);
+              FX.push(bz[0], bz[1], bz[2], CW, 11, a * Math.sin(Math.PI * u));
+            }
+          }
+        }
+        // L08 : levée de fonds — l'épargne passe de la Bourse aux projets, l'étoile les accompagne
+        {
+          const a = win(t, T.accompagne - 0.2, 0.5, T.y2026 - 0.2, 0.8);
+          if (a > 0.01) {
+            PROJ.forEach((pj, k) => {
+              const b = [pj[0] - 3.7, pj[1] - (k === 0 ? 0.4 : 0), 0];
+              streamFx([0.6, 0, 0], mid([0.6, 0, 0], b, 2.2 - k * 1.5, 1.2), b, 56, out3(prog(t, T.accompagne + k * 0.12, 0.9)), 0.35, CW, 5, a * 0.85, t);
+              dottedFx(GATE, mid(GATE, b, 6.5 - k * 2.5, 2.0), b, 120, out3(prog(t, T.accompagne + 0.3 + k * 0.1, 1.2)), CB, 3.0, a * 0.4);
+            });
+            SRC.forEach((sa, k) => streamFx(sa, mid(sa, GATE, 1.0 + (k % 3) * 0.5, 1), GATE, 20, out3(prog(t, T.accompagne + k * 0.05, 0.8)), 0.4, CW, 4.0, a * 0.45, t));
+          }
+        }
+        // L09 : l'entrée en Bourse de BGFI Holding Corporation
+        {
+          const a = win(t, T.conduit - 0.35, 0.4, T.bgfi10 - 0.2, 1.2);
+          if (a > 0.01) {
+            const pathM = [-2.4, 3.6, 1.4];
+            // l'étoile montre le chemin
+            dottedFx(NEW0, [-5.4, 3.2, 1.0], GATE, 26, out3(prog(t, T.conduit - 0.2, 0.5)), CI, 3.2, a * 0.5 * (1 - prog(t, T.holding + 1.0, 0.8)));
+            dottedFx(GATE, pathM, NEW_END, 40, out3(prog(t, T.conduit + 0.1, 0.6)), CI, 3.2, a * 0.5 * (1 - prog(t, T.holding + 1.0, 0.8)));
+            const u = prog(t, T.conduit + 0.05, 1.9);
+            let x, y, z;
+            if (u < 0.35) {
+              bez(NEW0, [-5.4, 3.2, 1.0], GATE, inOutQ(u / 0.35), bz);
+            } else {
+              bez(GATE, pathM, NEW_END, inOutQ((u - 0.35) / 0.65), bz);
+            }
+            x = bz[0];
+            y = bz[1] + (u < 0.35 ? 0.55 * Math.sin((Math.PI * u) / 0.35) : 0);
+            z = bz[2];
+            const fund = out3(prog(t, T.plus - 0.1, 2.0));
+            const sz = (1.9 + 1.2 * fund) * (1 + 0.4 * bump(t, T.conduit + 1.95, 0.25));
+            flare(x, y, z, sz, mixc(CI, CB, 0.35), a * out3(prog(t, T.conduit - 0.3, 0.5)), 0.6);
+            if (u >= 1) ringFx(NEW_END, 0.5 + 0.12 * Math.sin(t * 2), 40, 1, CB, 3.0, a * 0.6, t, 0.5);
+            const ur = prog(t, T.conduit + 1.95, 1.0);
+            if (ur > 0 && ur < 1) ringFx(NEW_END, 0.4 + ur * 2.4, 90, 1, CI, 3.4, a * 0.6 * (1 - ur), t);
+            // plus de 45 milliards de francs CFA levés : l'épargne afflue vers la nouvelle étoile
+            const fa = win(t, T.plus - 0.3, 0.5, T.bgfi10 - 0.3, 0.8);
+            if (fa > 0.01) {
+              SRC.forEach((sa, k) => streamFx(sa, mid(sa, GATE, 1.2 + (k % 3) * 0.5, 1), GATE, 26, out3(prog(t, T.plus - 0.25 + k * 0.05, 0.8)), 0.45, CW, 4.4, fa * 0.6, t));
+              streamFx(GATE, mid(GATE, NEW_END, 1.6, 0.8), NEW_END, 50, out3(prog(t, T.plus + 0.1, 0.7)), 0.5, CW, 5.2, fa * 0.85, t);
+            }
+          }
+        }
+        // L10 : l'épargne suit l'étoile
+        {
+          const u = prog(t, T.gUp + 0.2, 1.2);
+          if (u > 0 && u < 1) ringFx(STAR_FIN, 0.6 + u * 3.6, 140, 1, CI, 3.6, 0.45 * (1 - u) * (1 - dawn), t);
+        }
+        FX.commit();
+
+        // --- lever du jour : les lumières s'effacent
+        PS.m.uniforms.uOpacity.value = 1 - dawn;
+        TR.m.uniforms.uOpacity.value = 1 - dawn;
+        FX.m.uniforms.uOpacity.value = 1 - dawn;
+
+        // --- étiquettes
+        place("ep", HERO.home[0], HERO.home[1], HERO.home[2], win(t, T.epargne + 0.1, 0.45, T.seule - 0.35, 0.4), 1, 0.5, -22, 0);
+        const pA = win(t, T.usines - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5);
+        place("hdr", FA[0], FA[1] + 3.6, 0, Math.min(1, win(t, T.entreprises - 0.1, 0.5, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5)), 0.5, 1);
+        place("p0", FA[0], FA[1] - 2.0, 0, Math.min(1, pA), 0.5, 0);
+        place("p1", RO[0], RO[1] - 1.9, 0, Math.min(1, win(t, T.routes - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5)), 0.5, 0);
+        place("p2", HO[0], HO[1] - 1.9, 0, Math.min(1, win(t, T.logements - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5)), 0.5, 0);
+        // les six pays (étiquettes au centre de chaque pays ; Guinée équatoriale et Gabon côté océan)
+        const cOut = T.bvmac - 0.05;
+        ORDER.forEach((ci, k) => {
+          const tk = T.six - 0.15 + k * 0.16;
+          const a = win(t, tk, 0.35, cOut, 0.4);
+          const n = NAMES[ci];
+          const c = CENT[ci];
+          if (n === "Guinée équatoriale") place("c" + ci, SVC[0] - 5.0, c[1], 0.4, a, 1, 0.5);
+          else if (n === "Gabon") place("c" + ci, SVC[0] - 5.0, c[1] - 0.45, 0.4, a, 1, 0.5);
+          else if (n === "Cameroun") place("c" + ci, SVC[0] - 4.8, SVC[1] - 1.1, 0.4, a, 1, 0.5);
+          else if (n === "Congo") place("c" + ci, SVC[0] + 0.15, c[1] - 0.7, 0.4, a, 0, 0.5);
+          else if (n === "Centrafrique") place("c" + ci, SVC[0] + 5.05, c[1] + 0.2, 0.4, a, 0, 0.5);
+          else place("c" + ci, SVC[0] + 3.4, c[1], 0.4, a, 0, 0.5);
+        });
+        place("bv", BV[0], BV[1] - 1.5, 0, win(t, T.bvmac - 0.05, 0.45, T.acceder - 0.4, 0.5), 0.5, 0);
+        place("dla", DOUALA[0] - 0.6, DOUALA[1] + 0.05, DOUALA[2], win(t, T.douala - 0.05, 0.4, T.acceder - 0.3, 0.5), 1, 0.5);
+        place("cos", 0, RC + 0.5, 0, win(t, T.regul - 0.05, 0.45, T.ceGuide - 0.4, 0.5), 0.5, 1);
+        place("gate", GATE[0] + 0.3, GATE[1] + 1.15, 0, win(t, T.societe - 0.05, 0.45, T.gDown + 0.2, 0.4), 1, 1);
+        {
+          posAt(HERO, t, o);
+          place("you", o[0], o[1] - 0.6, o[2], Math.max(win(t, T.acceder - 0.2, 0.45, T.ceGuide - 0.4, 0.5), win(t, T.transmet - 0.1, 0.45, T.accompagne - 0.3, 0.4)), 0.5, 0);
+        }
+        const svcOut = T.conseille - 0.45;
+        place("s0", -2.3, -0.95, 0, win(t, T.transmet, 0.45, svcOut, 0.45), 0.5, 0);
+        place("s1", CONS[0] - 1.45, CONS[1], CONS[2], win(t, T.conserve, 0.45, svcOut, 0.45), 1, 0.5);
+        place("s2", OPC[0] - 1.75, OPC[1], OPC[2], win(t, T.rassemble + 0.4, 0.45, svcOut, 0.45), 1, 0.5);
+        $("wl-s2b").style.opacity = out3(prog(t, T.geres - 0.1, 0.45)).toFixed(3);
+        place("s3", OBJ[0], OBJ[1] + 1.25, OBJ[2], win(t, T.objectifs - 0.2, 0.45, T.accompagne + 0.1, 0.45), 0.5, 1);
+        place("s4", FA[0], FA[1] + 6.2, 0, win(t, T.accompagne + 0.4, 0.45, T.y2026 - 0.5, 0.5), 0.5, 1);
+        place("hc", NEW_END[0] + 0.75, NEW_END[1], NEW_END[2], win(t, T.conduit + 1.9, 0.45, T.bgfi10 - 0.4, 0.5), 0, 0.5);
+
+        flareEnd();
+        renderFrame(0.82 * Math.pow(1 - dawn, 4), 1 - dawn, 0.2 + 0.85 * dawn);
+      }
+
+      (async function init() {
+        await Promise.all([document.fonts.load('400 30px "Lato"'), document.fonts.load('700 30px "Lato"'), document.fonts.load('400 40px "Tenor Sans"')]).catch(() => {});
+        host.render = render;
+        render(host.clock.t);
+        host.ready();
+      })();
+    </script>
+  </body>
+</html>

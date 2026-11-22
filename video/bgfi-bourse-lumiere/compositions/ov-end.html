@@ -1,0 +1,83 @@
+<template>
+  <!-- Carte de fin : le jour s'est levé. L'étoile de la scène devient celle du logo : les deux pavés (bleu et sauge)
+       apparaissent autour d'elle, puis le nom se dessine et la phrase de fin s'écrit. -->
+  <style>
+    @font-face {
+      font-family: "Lato";
+      font-weight: 400;
+      src: url("assets/fonts/Lato-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Tenor Sans";
+      font-weight: 400;
+      src: url("assets/fonts/TenorSans-400.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Lato", sans-serif;
+      color: #0b2677;
+    }
+    /* Logo de 1 100 px de large en (410 ; 300) : son étoile tombe en (1 412,7 ; 388,9), là où la scène pose la sienne. */
+    /* deux découpes du logo : les pavés et l'étoile (x ≥ 2600, y < 468 px du logo), puis le nom (y ≥ 468) */
+    #en-mark {
+      position: absolute;
+      left: 1326.67px;
+      top: 300px;
+      width: 183.33px;
+      height: 165.00px;
+    }
+    #en-word {
+      position: absolute;
+      left: 410px;
+      top: 465.00px;
+      width: 1100px;
+      height: 152.31px;
+    }
+    #en-tag {
+      position: absolute;
+      left: 0;
+      top: 688px;
+      width: 1920px;
+      text-align: center;
+      font-family: "Tenor Sans", sans-serif;
+      font-size: 56px;
+      line-height: 1.2;
+      color: #0b2677;
+    }
+    #en-tag span {
+      display: inline-block;
+    }
+    #en-sub {
+      position: absolute;
+      left: 0;
+      top: 852px;
+      width: 1920px;
+      text-align: center;
+      font-size: 30px;
+      letter-spacing: 0.02em;
+      color: #56683f;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080">
+    <img id="en-word" src="assets/img/bgfibourse-word.png" alt="BGFIBourse" />
+    <img id="en-mark" src="assets/img/bgfibourse-mark.png" alt="" />
+    <div id="en-tag"><span>Une étoile pour guider votre épargne</span><br /><span>en Afrique centrale</span></div>
+    <div id="en-sub">La société de bourse du groupe BGFIBank</div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BL_CUES;
+      var W = (C.ov && C.ov["ov-end"]) || { start: 0, dur: 8 };
+      var tLogo = Math.max(0.1, C.logo - W.start);
+      var tl = gsap.timeline({ paused: true });
+      // les deux pavés apparaissent autour de l'étoile, pendant que le jour se lève
+      tl.fromTo("#en-mark", { opacity: 0, scale: 0.97, transformOrigin: "46.9% 53.8%" }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, tLogo - 0.3);
+      // le nom se dessine de gauche à droite sur l'accord final
+      tl.fromTo("#en-word", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo);
+      tl.fromTo("#en-tag span", { opacity: 0, y: 12, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, stagger: 0.35, ease: "power3.out" }, tLogo + 1.0);
+      tl.fromTo("#en-sub", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, tLogo + 1.9);
+      window.__timelines["ov-end"] = tl;
+    })();
+  </script>
+</template>

@@ -1,0 +1,1068 @@
+{
+  "voices": [
+    {
+      "id": "L01",
+      "path": "assets/voice/L01.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 3.253,
+      "speech": [
+        0,
+        3.084
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "La",
+          "start": 0.0,
+          "end": 0.296
+        },
+        {
+          "text": "nuit,",
+          "start": 0.296,
+          "end": 0.592
+        },
+        {
+          "text": "on",
+          "start": 0.935,
+          "end": 1.089
+        },
+        {
+          "text": "lève",
+          "start": 1.089,
+          "end": 1.242
+        },
+        {
+          "text": "les",
+          "start": 1.242,
+          "end": 1.396
+        },
+        {
+          "text": "yeux",
+          "start": 1.396,
+          "end": 1.549
+        },
+        {
+          "text": "vers",
+          "start": 1.549,
+          "end": 1.703
+        },
+        {
+          "text": "les",
+          "start": 1.703,
+          "end": 1.856
+        },
+        {
+          "text": "étoiles",
+          "start": 1.856,
+          "end": 2.163
+        },
+        {
+          "text": "pour",
+          "start": 2.163,
+          "end": 2.317
+        },
+        {
+          "text": "trouver",
+          "start": 2.317,
+          "end": 2.624
+        },
+        {
+          "text": "son",
+          "start": 2.624,
+          "end": 2.777
+        },
+        {
+          "text": "chemin.",
+          "start": 2.777,
+          "end": 3.084
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L02",
+      "path": "assets/voice/L02.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.322,
+      "speech": [
+        0.118,
+        5.149
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "En",
+          "start": 0.118,
+          "end": 0.281
+        },
+        {
+          "text": "Afrique",
+          "start": 0.281,
+          "end": 0.768
+        },
+        {
+          "text": "centrale,",
+          "start": 0.768,
+          "end": 1.092
+        },
+        {
+          "text": "chaque",
+          "start": 1.408,
+          "end": 1.766
+        },
+        {
+          "text": "épargne",
+          "start": 1.766,
+          "end": 2.124
+        },
+        {
+          "text": "est",
+          "start": 2.124,
+          "end": 2.302
+        },
+        {
+          "text": "une",
+          "start": 2.302,
+          "end": 2.481
+        },
+        {
+          "text": "petite",
+          "start": 2.481,
+          "end": 2.839
+        },
+        {
+          "text": "lumière.",
+          "start": 2.839,
+          "end": 3.196
+        },
+        {
+          "text": "Seule,",
+          "start": 4.003,
+          "end": 4.289
+        },
+        {
+          "text": "elle",
+          "start": 4.289,
+          "end": 4.576
+        },
+        {
+          "text": "brille",
+          "start": 4.576,
+          "end": 4.862
+        },
+        {
+          "text": "peu.",
+          "start": 4.862,
+          "end": 5.149
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L03",
+      "path": "assets/voice/L03.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.874,
+      "speech": [
+        0.119,
+        6.706
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Réunies,",
+          "start": 0.119,
+          "end": 0.587
+        },
+        {
+          "text": "ces",
+          "start": 0.775,
+          "end": 0.918
+        },
+        {
+          "text": "lumières",
+          "start": 0.918,
+          "end": 1.205
+        },
+        {
+          "text": "financent",
+          "start": 1.205,
+          "end": 1.636
+        },
+        {
+          "text": "les",
+          "start": 1.636,
+          "end": 1.779
+        },
+        {
+          "text": "projets",
+          "start": 1.779,
+          "end": 2.066
+        },
+        {
+          "text": "des",
+          "start": 2.066,
+          "end": 2.21
+        },
+        {
+          "text": "entreprises",
+          "start": 2.21,
+          "end": 2.64
+        },
+        {
+          "text": "et",
+          "start": 2.64,
+          "end": 2.784
+        },
+        {
+          "text": "des",
+          "start": 2.784,
+          "end": 2.928
+        },
+        {
+          "text": "États :",
+          "start": 2.928,
+          "end": 3.215
+        },
+        {
+          "text": "des",
+          "start": 3.61,
+          "end": 3.929
+        },
+        {
+          "text": "usines,",
+          "start": 3.929,
+          "end": 4.569
+        },
+        {
+          "text": "des",
+          "start": 5.137,
+          "end": 5.411
+        },
+        {
+          "text": "routes,",
+          "start": 5.411,
+          "end": 5.685
+        },
+        {
+          "text": "des",
+          "start": 6.189,
+          "end": 6.318
+        },
+        {
+          "text": "logements.",
+          "start": 6.318,
+          "end": 6.706
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L04",
+      "path": "assets/voice/L04.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.031,
+      "speech": [
+        0.12,
+        4.852
+      ],
+      "pauses": 2,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Elles",
+          "start": 0.12,
+          "end": 0.289
+        },
+        {
+          "text": "se",
+          "start": 0.289,
+          "end": 0.459
+        },
+        {
+          "text": "rencontrent",
+          "start": 0.459,
+          "end": 0.969
+        },
+        {
+          "text": "sur",
+          "start": 0.969,
+          "end": 1.139
+        },
+        {
+          "text": "la",
+          "start": 1.139,
+          "end": 1.309
+        },
+        {
+          "text": "Bourse",
+          "start": 1.309,
+          "end": 1.479
+        },
+        {
+          "text": "commune",
+          "start": 1.479,
+          "end": 1.819
+        },
+        {
+          "text": "aux",
+          "start": 1.819,
+          "end": 1.989
+        },
+        {
+          "text": "six",
+          "start": 1.989,
+          "end": 2.159
+        },
+        {
+          "text": "pays",
+          "start": 2.159,
+          "end": 2.329
+        },
+        {
+          "text": "de",
+          "start": 2.329,
+          "end": 2.499
+        },
+        {
+          "text": "la",
+          "start": 2.499,
+          "end": 2.668
+        },
+        {
+          "text": "Cémac :",
+          "start": 2.668,
+          "end": 3.008
+        },
+        {
+          "text": "la",
+          "start": 3.392,
+          "end": 3.514
+        },
+        {
+          "text": "BVMAC,",
+          "start": 3.514,
+          "end": 4.123
+        },
+        {
+          "text": "à",
+          "start": 4.437,
+          "end": 4.576
+        },
+        {
+          "text": "Douala.",
+          "start": 4.576,
+          "end": 4.852
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L05",
+      "path": "assets/voice/L05.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 5.7,
+      "speech": [
+        0.12,
+        5.528
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Pour",
+          "start": 0.12,
+          "end": 0.27
+        },
+        {
+          "text": "y",
+          "start": 0.27,
+          "end": 0.42
+        },
+        {
+          "text": "accéder,",
+          "start": 0.42,
+          "end": 0.869
+        },
+        {
+          "text": "il",
+          "start": 1.209,
+          "end": 1.359
+        },
+        {
+          "text": "faut",
+          "start": 1.359,
+          "end": 1.509
+        },
+        {
+          "text": "un",
+          "start": 1.509,
+          "end": 1.659
+        },
+        {
+          "text": "guide",
+          "start": 1.659,
+          "end": 1.809
+        },
+        {
+          "text": "agréé",
+          "start": 1.809,
+          "end": 2.11
+        },
+        {
+          "text": "par",
+          "start": 2.11,
+          "end": 2.26
+        },
+        {
+          "text": "le",
+          "start": 2.26,
+          "end": 2.41
+        },
+        {
+          "text": "régulateur,",
+          "start": 2.41,
+          "end": 3.01
+        },
+        {
+          "text": "la",
+          "start": 3.299,
+          "end": 3.47
+        },
+        {
+          "text": "Cosumaf :",
+          "start": 3.47,
+          "end": 3.982
+        },
+        {
+          "text": "une",
+          "start": 4.533,
+          "end": 4.699
+        },
+        {
+          "text": "société",
+          "start": 4.699,
+          "end": 5.196
+        },
+        {
+          "text": "de",
+          "start": 5.196,
+          "end": 5.362
+        },
+        {
+          "text": "bourse.",
+          "start": 5.362,
+          "end": 5.528
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L06",
+      "path": "assets/voice/L06.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 6.481,
+      "speech": [
+        0.12,
+        6.307
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Ce",
+          "start": 0.119,
+          "end": 0.34
+        },
+        {
+          "text": "guide,",
+          "start": 0.34,
+          "end": 0.56
+        },
+        {
+          "text": "c'est",
+          "start": 0.927,
+          "end": 1.097
+        },
+        {
+          "text": "BGFI",
+          "start": 1.097,
+          "end": 1.778
+        },
+        {
+          "text": "Bourse,",
+          "start": 1.778,
+          "end": 1.948
+        },
+        {
+          "text": "la",
+          "start": 2.475,
+          "end": 2.622
+        },
+        {
+          "text": "société",
+          "start": 2.622,
+          "end": 3.063
+        },
+        {
+          "text": "de",
+          "start": 3.063,
+          "end": 3.21
+        },
+        {
+          "text": "bourse",
+          "start": 3.21,
+          "end": 3.357
+        },
+        {
+          "text": "du",
+          "start": 3.357,
+          "end": 3.504
+        },
+        {
+          "text": "groupe",
+          "start": 3.504,
+          "end": 3.651
+        },
+        {
+          "text": "BGFI",
+          "start": 3.651,
+          "end": 4.24
+        },
+        {
+          "text": "Bank.",
+          "start": 4.24,
+          "end": 4.387
+        },
+        {
+          "text": "Elle",
+          "start": 4.931,
+          "end": 5.084
+        },
+        {
+          "text": "est",
+          "start": 5.084,
+          "end": 5.237
+        },
+        {
+          "text": "agréée",
+          "start": 5.237,
+          "end": 5.543
+        },
+        {
+          "text": "depuis",
+          "start": 5.543,
+          "end": 5.849
+        },
+        {
+          "text": "deux",
+          "start": 5.849,
+          "end": 6.002
+        },
+        {
+          "text": "mille",
+          "start": 6.002,
+          "end": 6.154
+        },
+        {
+          "text": "six.",
+          "start": 6.154,
+          "end": 6.307
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L07",
+      "path": "assets/voice/L07.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.296,
+      "speech": [
+        0.119,
+        9.116
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.119,
+          "end": 0.303
+        },
+        {
+          "text": "transmet",
+          "start": 0.303,
+          "end": 0.672
+        },
+        {
+          "text": "et",
+          "start": 0.672,
+          "end": 0.856
+        },
+        {
+          "text": "exécute",
+          "start": 0.856,
+          "end": 1.408
+        },
+        {
+          "text": "vos",
+          "start": 1.408,
+          "end": 1.593
+        },
+        {
+          "text": "ordres",
+          "start": 1.593,
+          "end": 1.777
+        },
+        {
+          "text": "d'achat",
+          "start": 1.777,
+          "end": 2.145
+        },
+        {
+          "text": "et",
+          "start": 2.145,
+          "end": 2.329
+        },
+        {
+          "text": "de",
+          "start": 2.329,
+          "end": 2.513
+        },
+        {
+          "text": "vente,",
+          "start": 2.513,
+          "end": 2.697
+        },
+        {
+          "text": "conserve",
+          "start": 3.337,
+          "end": 3.685
+        },
+        {
+          "text": "vos",
+          "start": 3.685,
+          "end": 3.859
+        },
+        {
+          "text": "titres",
+          "start": 3.859,
+          "end": 4.033
+        },
+        {
+          "text": "en",
+          "start": 4.033,
+          "end": 4.208
+        },
+        {
+          "text": "sécurité,",
+          "start": 4.208,
+          "end": 4.904
+        },
+        {
+          "text": "et",
+          "start": 5.485,
+          "end": 5.664
+        },
+        {
+          "text": "rassemble",
+          "start": 5.664,
+          "end": 6.021
+        },
+        {
+          "text": "l'épargne",
+          "start": 6.021,
+          "end": 6.379
+        },
+        {
+          "text": "de",
+          "start": 6.379,
+          "end": 6.558
+        },
+        {
+          "text": "chacun",
+          "start": 6.558,
+          "end": 6.915
+        },
+        {
+          "text": "dans",
+          "start": 6.915,
+          "end": 7.094
+        },
+        {
+          "text": "des",
+          "start": 7.094,
+          "end": 7.273
+        },
+        {
+          "text": "OPC,",
+          "start": 7.273,
+          "end": 7.809
+        },
+        {
+          "text": "gérés",
+          "start": 8.037,
+          "end": 8.307
+        },
+        {
+          "text": "par",
+          "start": 8.307,
+          "end": 8.441
+        },
+        {
+          "text": "des",
+          "start": 8.441,
+          "end": 8.576
+        },
+        {
+          "text": "professionnels.",
+          "start": 8.576,
+          "end": 9.116
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L08",
+      "path": "assets/voice/L08.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.894,
+      "speech": [
+        0.12,
+        4.724
+      ],
+      "pauses": 2,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Elle",
+          "start": 0.12,
+          "end": 0.267
+        },
+        {
+          "text": "vous",
+          "start": 0.267,
+          "end": 0.415
+        },
+        {
+          "text": "conseille",
+          "start": 0.415,
+          "end": 0.71
+        },
+        {
+          "text": "selon",
+          "start": 0.71,
+          "end": 1.006
+        },
+        {
+          "text": "vos",
+          "start": 1.006,
+          "end": 1.153
+        },
+        {
+          "text": "objectifs,",
+          "start": 1.153,
+          "end": 1.597
+        },
+        {
+          "text": "et",
+          "start": 2.437,
+          "end": 2.571
+        },
+        {
+          "text": "accompagne",
+          "start": 2.571,
+          "end": 2.975
+        },
+        {
+          "text": "les",
+          "start": 2.975,
+          "end": 3.109
+        },
+        {
+          "text": "entreprises",
+          "start": 3.109,
+          "end": 3.513
+        },
+        {
+          "text": "et",
+          "start": 3.513,
+          "end": 3.647
+        },
+        {
+          "text": "les",
+          "start": 3.647,
+          "end": 3.782
+        },
+        {
+          "text": "États",
+          "start": 3.782,
+          "end": 4.051
+        },
+        {
+          "text": "qui",
+          "start": 4.051,
+          "end": 4.186
+        },
+        {
+          "text": "lèvent",
+          "start": 4.186,
+          "end": 4.455
+        },
+        {
+          "text": "des",
+          "start": 4.455,
+          "end": 4.589
+        },
+        {
+          "text": "fonds.",
+          "start": 4.589,
+          "end": 4.724
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L09",
+      "path": "assets/voice/L09.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 8.808,
+      "speech": [
+        0.12,
+        8.628
+      ],
+      "pauses": 4,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "En",
+          "start": 0.12,
+          "end": 0.339
+        },
+        {
+          "text": "deux",
+          "start": 0.339,
+          "end": 0.557
+        },
+        {
+          "text": "mille",
+          "start": 0.557,
+          "end": 0.776
+        },
+        {
+          "text": "vingt-six,",
+          "start": 0.776,
+          "end": 1.213
+        },
+        {
+          "text": "elle",
+          "start": 1.442,
+          "end": 1.593
+        },
+        {
+          "text": "a",
+          "start": 1.593,
+          "end": 1.745
+        },
+        {
+          "text": "conduit",
+          "start": 1.745,
+          "end": 2.048
+        },
+        {
+          "text": "l'entrée",
+          "start": 2.048,
+          "end": 2.351
+        },
+        {
+          "text": "en",
+          "start": 2.351,
+          "end": 2.503
+        },
+        {
+          "text": "Bourse",
+          "start": 2.503,
+          "end": 2.654
+        },
+        {
+          "text": "de",
+          "start": 2.654,
+          "end": 2.806
+        },
+        {
+          "text": "BGFI",
+          "start": 2.806,
+          "end": 3.412
+        },
+        {
+          "text": "Holding",
+          "start": 3.412,
+          "end": 3.715
+        },
+        {
+          "text": "Corporation,",
+          "start": 3.715,
+          "end": 4.321
+        },
+        {
+          "text": "la",
+          "start": 4.766,
+          "end": 4.903
+        },
+        {
+          "text": "maison",
+          "start": 4.903,
+          "end": 5.178
+        },
+        {
+          "text": "mère",
+          "start": 5.178,
+          "end": 5.316
+        },
+        {
+          "text": "du",
+          "start": 5.316,
+          "end": 5.453
+        },
+        {
+          "text": "groupe :",
+          "start": 5.453,
+          "end": 5.728
+        },
+        {
+          "text": "plus",
+          "start": 6.297,
+          "end": 6.449
+        },
+        {
+          "text": "de",
+          "start": 6.449,
+          "end": 6.601
+        },
+        {
+          "text": "quarante-cinq",
+          "start": 6.712,
+          "end": 7.191
+        },
+        {
+          "text": "milliards",
+          "start": 7.191,
+          "end": 7.51
+        },
+        {
+          "text": "de",
+          "start": 7.51,
+          "end": 7.67
+        },
+        {
+          "text": "francs",
+          "start": 7.67,
+          "end": 7.829
+        },
+        {
+          "text": "CFA",
+          "start": 7.829,
+          "end": 8.308
+        },
+        {
+          "text": "levés.",
+          "start": 8.308,
+          "end": 8.628
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L10",
+      "path": "assets/voice/L10.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.025,
+      "speech": [
+        0.117,
+        3.86
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "BGFI",
+          "start": 0.117,
+          "end": 0.656
+        },
+        {
+          "text": "Bourse :",
+          "start": 0.656,
+          "end": 0.926
+        },
+        {
+          "text": "une",
+          "start": 1.591,
+          "end": 1.743
+        },
+        {
+          "text": "étoile",
+          "start": 1.743,
+          "end": 2.045
+        },
+        {
+          "text": "pour",
+          "start": 2.045,
+          "end": 2.196
+        },
+        {
+          "text": "guider",
+          "start": 2.196,
+          "end": 2.499
+        },
+        {
+          "text": "votre",
+          "start": 2.499,
+          "end": 2.65
+        },
+        {
+          "text": "épargne",
+          "start": 2.65,
+          "end": 2.953
+        },
+        {
+          "text": "en",
+          "start": 2.953,
+          "end": 3.104
+        },
+        {
+          "text": "Afrique",
+          "start": 3.104,
+          "end": 3.558
+        },
+        {
+          "text": "centrale.",
+          "start": 3.558,
+          "end": 3.86
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    }
+  ],
+  "voice_credit": "Voix : Google Gemini TTS (Charon, gemini-3.8-flash-tts)",
+  "onepass": {
+    "voice": "Charon",
+    "model": "gemini-3.8-flash-tts",
+    "regenerated_alone": {
+      "L09": "phrase refaite seule (même voix, même consigne) pour que l'année « deux mille vingt-six » soit bien détachée"
+    }
+  },
+  "tts_provider": "gemini"
+}

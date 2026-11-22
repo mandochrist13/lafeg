@@ -1,0 +1,57 @@
+{
+  "lead": 3.2,
+  "tail": 6.0,
+  "lines": [
+    {
+      "id": "L01",
+      "gap": 0,
+      "text": "La nuit, on lève les yeux vers les étoiles pour trouver son chemin."
+    },
+    {
+      "id": "L02",
+      "gap": 1.0,
+      "text": "En Afrique centrale, chaque épargne est une petite lumière. Seule, elle brille peu."
+    },
+    {
+      "id": "L03",
+      "gap": 1.0,
+      "text": "Réunies, ces lumières financent les projets des entreprises et des États : des usines, des routes, des logements."
+    },
+    {
+      "id": "L04",
+      "gap": 1.0,
+      "text": "Elles se rencontrent sur la Bourse commune aux six pays de la Cémac : la BVMAC, à Douala."
+    },
+    {
+      "id": "L05",
+      "gap": 1.0,
+      "text": "Pour y accéder, il faut un guide agréé par le régulateur, la Cosumaf : une société de bourse."
+    },
+    {
+      "id": "L06",
+      "gap": 1.0,
+      "text": "Ce guide, c'est BGFI Bourse, la société de bourse du groupe BGFI Bank. Elle est agréée depuis deux mille six."
+    },
+    {
+      "id": "L07",
+      "gap": 1.0,
+      "text": "Elle transmet et exécute vos ordres d'achat et de vente, conserve vos titres en sécurité, et rassemble l'épargne de chacun dans des OPC, gérés par des professionnels."
+    },
+    {
+      "id": "L08",
+      "gap": 1.0,
+      "text": "Elle vous conseille selon vos objectifs, et accompagne les entreprises et les États qui lèvent des fonds."
+    },
+    {
+      "id": "L09",
+      "gap": 1.0,
+      "text": "En deux mille vingt-six, elle a conduit l'entrée en Bourse de BGFI Holding Corporation, la maison mère du groupe : plus de quarante-cinq milliards de francs CFA levés.",
+      "match": "En 2026, elle"
+    },
+    {
+      "id": "L10",
+      "gap": 1.1,
+      "text": "BGFI Bourse : une étoile pour guider votre épargne en Afrique centrale."
+    }
+  ]
+}

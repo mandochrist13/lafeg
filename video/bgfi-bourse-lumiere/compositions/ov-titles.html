@@ -1,0 +1,191 @@
+<template>
+  <!-- Titres : la phrase-image de l'épargne, l'identité de BGFIBourse, l'entrée en Bourse de BGFI Holding Corporation. -->
+  <style>
+    @font-face {
+      font-family: "Lato";
+      font-weight: 400;
+      src: url("assets/fonts/Lato-400.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Lato";
+      font-weight: 700;
+      src: url("assets/fonts/Lato-700.woff2") format("woff2");
+    }
+    @font-face {
+      font-family: "Tenor Sans";
+      font-weight: 400;
+      src: url("assets/fonts/TenorSans-400.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Lato", sans-serif;
+      color: #eef3ff;
+    }
+    .tt {
+      position: absolute;
+      opacity: 0;
+      text-shadow:
+        0 0 26px rgba(110, 160, 240, 0.3),
+        0 0 3px rgba(0, 0, 0, 0.75);
+    }
+    .h {
+      display: block;
+      font-family: "Tenor Sans", sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.005em;
+    }
+    .s {
+      display: block;
+      font-size: 36px;
+      line-height: 1.25;
+      color: #c9d6ee;
+    }
+    .k {
+      display: block;
+      font-weight: 700;
+      font-size: 32px;
+      letter-spacing: 0.04em;
+      color: #a8d0f6;
+    }
+    #t-m1,
+    #t-m2 {
+      left: 1250px;
+      top: 432px;
+      width: 600px;
+    }
+    #t-m1 .h,
+    #t-m2 .h {
+      font-size: 58px;
+      line-height: 1.16;
+    }
+    #t-m2 .h span {
+      color: #ffe9c6;
+    }
+    #t-bgfi,
+    #t-ipo {
+      right: 100px;
+      width: 760px;
+      text-align: right;
+    }
+    #t-bgfi {
+      top: 112px;
+    }
+    #t-bgfi .h {
+      font-size: 100px;
+      line-height: 1;
+      color: #ffffff;
+    }
+    #t-bgfi .s {
+      margin-top: 14px;
+    }
+    #t-bgfi .k {
+      margin-top: 12px;
+    }
+    #t-ipo {
+      top: 84px;
+    }
+    #t-ipo .h {
+      margin-top: 8px;
+      font-size: 60px;
+      line-height: 1.05;
+      color: #ffffff;
+    }
+    #t-ipo .s {
+      margin-top: 6px;
+      font-size: 34px;
+    }
+    #t-ipo .num {
+      display: flex;
+      justify-content: flex-end;
+      align-items: baseline;
+      gap: 18px;
+      margin-top: 14px;
+    }
+    #n-45 {
+      font-family: "Tenor Sans", sans-serif;
+      font-size: 112px;
+      line-height: 1;
+      color: #ffe9c6;
+      font-variant-numeric: tabular-nums;
+    }
+    #t-ipo .u {
+      font-size: 38px;
+      color: #ffe9c6;
+    }
+    #t-ipo .ar {
+      display: block;
+      margin-top: 10px;
+      font-size: 30px;
+      color: #c9d6ee;
+    }
+  </style>
+  <div id="root" data-composition-id="ov-titles" data-width="1920" data-height="1080">
+    <div id="t-m1" class="tt"><span class="h">Chaque épargne<br />est une petite lumière.</span></div>
+    <div id="t-m2" class="tt"><span class="h">Seule,<br /><span>elle brille peu.</span></span></div>
+
+    <div id="t-bgfi" class="tt">
+      <span id="b-h" class="h">BGFIBourse</span>
+      <span id="b-s" class="s">La société de bourse du groupe BGFIBank</span>
+      <span id="b-k" class="k">Agréée par la COSUMAF depuis 2006</span>
+    </div>
+
+    <div id="t-ipo" class="tt">
+      <span id="i-k" class="k">Entrée en Bourse · 2026</span>
+      <span id="i-h" class="h">BGFI Holding Corporation</span>
+      <span id="i-s" class="s">la maison mère du groupe BGFIBank</span>
+      <div id="i-n" class="num"><span id="n-45">0,00</span><span class="u">milliards FCFA levés</span></div>
+      <span id="i-ar" class="ar">Arrangeur et chef de file : BGFIBourse</span>
+    </div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__BL_CUES;
+      var at = function (id, w) {
+        return C.at(id, w);
+      };
+      var tl = gsap.timeline({ paused: true });
+      function inn(sel, t) {
+        tl.fromTo(sel, { opacity: 0, y: 16, filter: "blur(8px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }, t);
+      }
+      function out(sel, t) {
+        tl.to(sel, { opacity: 0, y: -10, filter: "blur(6px)", duration: 0.45, ease: "power2.in" }, t);
+      }
+      // L02 : la phrase-image
+      inn("#t-m1", at("L02", "chaque") - 0.15);
+      out("#t-m1", at("L02", "Seule") - 0.5);
+      inn("#t-m2", at("L02", "Seule") - 0.05);
+      out("#t-m2", at("L03", "Réunies") - 0.35);
+      // L06 : BGFIBourse, la société de bourse du groupe BGFIBank, agréée depuis 2006
+      var tLand = at("L06", "BGFI") - 0.45 + 1.25;
+      tl.set("#t-bgfi", { opacity: 1 }, tLand - 0.2);
+      inn("#b-h", tLand - 0.15);
+      inn("#b-s", at("L06", "société") - 0.15);
+      inn("#b-k", at("L06", "agréée") - 0.1);
+      out("#t-bgfi", at("L07", "transmet") - 0.5);
+      // L09 : l'entrée en Bourse de BGFI Holding Corporation
+      tl.set("#t-ipo", { opacity: 1 }, at("L09", "deux") - 0.25);
+      inn("#i-k", at("L09", "deux") - 0.2);
+      inn("#i-h", at("L09", "BGFI") - 0.1);
+      inn("#i-s", at("L09", "maison") - 0.15);
+      inn("#i-n", at("L09", "plus") - 0.15);
+      var o = { v: 0 };
+      tl.fromTo(
+        o,
+        { v: 0 },
+        {
+          v: 45.32,
+          duration: at("L09", "levés") + 0.3 - (at("L09", "plus") - 0.1),
+          ease: "power2.out",
+          onUpdate: function () {
+            document.querySelector("#n-45").textContent = o.v.toFixed(2).replace(".", ",");
+          },
+        },
+        at("L09", "plus") - 0.1,
+      );
+      inn("#i-ar", at("L09", "milliards") - 0.05);
+      out("#t-ipo", at("L10", "BGFI") - 0.45);
+      window.__timelines["ov-titles"] = tl;
+    })();
+  </script>
+</template>
