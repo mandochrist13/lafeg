@@ -15,7 +15,7 @@
       "words": [
         {
           "text": "La",
-          "start": 0.0,
+          "start": 0,
           "end": 0.296
         },
         {
@@ -26,60 +26,59 @@
         {
           "text": "on",
           "start": 0.935,
-          "end": 1.089
+          "end": 1.079
         },
         {
           "text": "lève",
-          "start": 1.089,
-          "end": 1.242
+          "start": 1.079,
+          "end": 1.222
         },
         {
           "text": "les",
-          "start": 1.242,
-          "end": 1.396
+          "start": 1.222,
+          "end": 1.365
         },
         {
           "text": "yeux",
-          "start": 1.396,
-          "end": 1.549
+          "start": 1.365,
+          "end": 1.508
         },
         {
           "text": "vers",
-          "start": 1.549,
-          "end": 1.703
+          "start": 1.508,
+          "end": 1.652
         },
         {
           "text": "les",
-          "start": 1.703,
-          "end": 1.856
+          "start": 1.652,
+          "end": 1.795
         },
         {
           "text": "étoiles",
-          "start": 1.856,
-          "end": 2.163
+          "start": 1.795,
+          "end": 2.225
         },
         {
           "text": "pour",
-          "start": 2.163,
-          "end": 2.317
+          "start": 2.225,
+          "end": 2.368
         },
         {
           "text": "trouver",
-          "start": 2.317,
-          "end": 2.624
+          "start": 2.368,
+          "end": 2.655
         },
         {
           "text": "son",
-          "start": 2.624,
-          "end": 2.777
+          "start": 2.655,
+          "end": 2.798
         },
         {
           "text": "chemin.",
-          "start": 2.777,
+          "start": 2.798,
           "end": 3.084
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L02",
@@ -159,8 +158,7 @@
           "start": 4.862,
           "end": 5.149
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L03",
@@ -183,71 +181,76 @@
         {
           "text": "ces",
           "start": 0.775,
-          "end": 0.918
+          "end": 0.964
         },
         {
           "text": "lumières",
-          "start": 0.918,
-          "end": 1.205
+          "start": 0.964,
+          "end": 1.533
         },
         {
           "text": "financent",
-          "start": 1.205,
-          "end": 1.636
+          "start": 1.533,
+          "end": 2.103
         },
         {
           "text": "les",
-          "start": 1.636,
-          "end": 1.779
+          "start": 2.103,
+          "end": 2.292
         },
         {
           "text": "projets",
-          "start": 1.779,
-          "end": 2.066
+          "start": 2.292,
+          "end": 2.672
         },
         {
           "text": "des",
-          "start": 2.066,
-          "end": 2.21
+          "start": 2.672,
+          "end": 2.861
         },
         {
           "text": "entreprises",
-          "start": 2.21,
-          "end": 2.64
+          "start": 2.861,
+          "end": 3.62
         },
         {
           "text": "et",
-          "start": 2.64,
-          "end": 2.784
+          "start": 3.62,
+          "end": 3.81
         },
         {
           "text": "des",
-          "start": 2.784,
-          "end": 2.928
+          "start": 3.81,
+          "end": 4
         },
         {
-          "text": "États :",
-          "start": 2.928,
-          "end": 3.215
+          "text": "États",
+          "start": 4,
+          "end": 4.379
         },
         {
-          "text": "des",
-          "start": 3.61,
-          "end": 3.929
-        },
-        {
-          "text": "usines,",
-          "start": 3.929,
+          "text": ":",
+          "start": 4.379,
           "end": 4.569
         },
         {
           "text": "des",
           "start": 5.137,
-          "end": 5.411
+          "end": 5.215
+        },
+        {
+          "text": "usines,",
+          "start": 5.215,
+          "end": 5.45
+        },
+        {
+          "text": "des",
+          "start": 5.45,
+          "end": 5.529
         },
         {
           "text": "routes,",
-          "start": 5.411,
+          "start": 5.529,
           "end": 5.685
         },
         {
@@ -260,8 +263,7 @@
           "start": 6.318,
           "end": 6.706
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L04",
@@ -279,66 +281,71 @@
         {
           "text": "Elles",
           "start": 0.12,
-          "end": 0.289
+          "end": 0.424
         },
         {
           "text": "se",
-          "start": 0.289,
-          "end": 0.459
+          "start": 0.424,
+          "end": 0.576
         },
         {
           "text": "rencontrent",
-          "start": 0.459,
-          "end": 0.969
+          "start": 0.576,
+          "end": 1.032
         },
         {
           "text": "sur",
-          "start": 0.969,
-          "end": 1.139
+          "start": 1.032,
+          "end": 1.184
         },
         {
           "text": "la",
-          "start": 1.139,
-          "end": 1.309
+          "start": 1.184,
+          "end": 1.336
         },
         {
           "text": "Bourse",
-          "start": 1.309,
-          "end": 1.479
+          "start": 1.336,
+          "end": 1.488
         },
         {
           "text": "commune",
-          "start": 1.479,
-          "end": 1.819
+          "start": 1.488,
+          "end": 1.792
         },
         {
           "text": "aux",
-          "start": 1.819,
-          "end": 1.989
+          "start": 1.792,
+          "end": 1.944
         },
         {
           "text": "six",
-          "start": 1.989,
-          "end": 2.159
+          "start": 1.944,
+          "end": 2.096
         },
         {
           "text": "pays",
-          "start": 2.159,
-          "end": 2.329
+          "start": 2.096,
+          "end": 2.248
         },
         {
           "text": "de",
-          "start": 2.329,
-          "end": 2.499
+          "start": 2.248,
+          "end": 2.4
         },
         {
           "text": "la",
-          "start": 2.499,
-          "end": 2.668
+          "start": 2.4,
+          "end": 2.552
         },
         {
-          "text": "Cémac :",
-          "start": 2.668,
+          "text": "Cémac",
+          "start": 2.552,
+          "end": 2.856
+        },
+        {
+          "text": ":",
+          "start": 2.856,
           "end": 3.008
         },
         {
@@ -361,8 +368,7 @@
           "start": 4.576,
           "end": 4.852
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L05",
@@ -435,11 +441,16 @@
         {
           "text": "la",
           "start": 3.299,
-          "end": 3.47
+          "end": 3.435
         },
         {
-          "text": "Cosumaf :",
-          "start": 3.47,
+          "text": "Cosumaf",
+          "start": 3.435,
+          "end": 3.846
+        },
+        {
+          "text": ":",
+          "start": 3.846,
           "end": 3.982
         },
         {
@@ -462,8 +473,7 @@
           "start": 5.362,
           "end": 5.528
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L06",
@@ -480,7 +490,7 @@
       "words": [
         {
           "text": "Ce",
-          "start": 0.119,
+          "start": 0.12,
           "end": 0.34
         },
         {
@@ -545,41 +555,40 @@
         },
         {
           "text": "Elle",
-          "start": 4.931,
-          "end": 5.084
+          "start": 4.51,
+          "end": 4.71
         },
         {
           "text": "est",
-          "start": 5.084,
-          "end": 5.237
+          "start": 4.71,
+          "end": 4.91
         },
         {
           "text": "agréée",
-          "start": 5.237,
-          "end": 5.543
+          "start": 4.91,
+          "end": 5.309
         },
         {
           "text": "depuis",
-          "start": 5.543,
-          "end": 5.849
+          "start": 5.309,
+          "end": 5.708
         },
         {
           "text": "deux",
-          "start": 5.849,
-          "end": 6.002
+          "start": 5.708,
+          "end": 5.908
         },
         {
           "text": "mille",
-          "start": 6.002,
-          "end": 6.154
+          "start": 5.908,
+          "end": 6.108
         },
         {
           "text": "six.",
-          "start": 6.154,
+          "start": 6.108,
           "end": 6.307
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L07",
@@ -597,76 +606,76 @@
         {
           "text": "Elle",
           "start": 0.119,
-          "end": 0.303
+          "end": 0.291
         },
         {
           "text": "transmet",
-          "start": 0.303,
-          "end": 0.672
+          "start": 0.291,
+          "end": 0.635
         },
         {
           "text": "et",
-          "start": 0.672,
-          "end": 0.856
+          "start": 0.635,
+          "end": 0.807
         },
         {
           "text": "exécute",
-          "start": 0.856,
-          "end": 1.408
+          "start": 0.807,
+          "end": 1.322
         },
         {
           "text": "vos",
-          "start": 1.408,
-          "end": 1.593
+          "start": 1.322,
+          "end": 1.494
         },
         {
           "text": "ordres",
-          "start": 1.593,
-          "end": 1.777
+          "start": 1.494,
+          "end": 1.838
         },
         {
           "text": "d'achat",
-          "start": 1.777,
-          "end": 2.145
+          "start": 1.838,
+          "end": 2.182
         },
         {
           "text": "et",
-          "start": 2.145,
-          "end": 2.329
+          "start": 2.182,
+          "end": 2.354
         },
         {
           "text": "de",
-          "start": 2.329,
-          "end": 2.513
+          "start": 2.354,
+          "end": 2.526
         },
         {
           "text": "vente,",
-          "start": 2.513,
+          "start": 2.526,
           "end": 2.697
         },
         {
           "text": "conserve",
           "start": 3.337,
-          "end": 3.685
+          "end": 3.65
         },
         {
           "text": "vos",
-          "start": 3.685,
-          "end": 3.859
+          "start": 3.65,
+          "end": 3.807
         },
         {
           "text": "titres",
-          "start": 3.859,
-          "end": 4.033
+          "start": 3.807,
+          "end": 4.121
         },
         {
           "text": "en",
-          "start": 4.033,
-          "end": 4.208
+          "start": 4.121,
+          "end": 4.277
         },
         {
           "text": "sécurité,",
-          "start": 4.208,
+          "start": 4.277,
           "end": 4.904
         },
         {
@@ -729,8 +738,7 @@
           "start": 8.576,
           "end": 9.116
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L08",
@@ -777,61 +785,60 @@
         },
         {
           "text": "et",
-          "start": 2.437,
-          "end": 2.571
+          "start": 2.23,
+          "end": 2.368
         },
         {
           "text": "accompagne",
-          "start": 2.571,
-          "end": 2.975
+          "start": 2.368,
+          "end": 2.784
         },
         {
           "text": "les",
-          "start": 2.975,
-          "end": 3.109
+          "start": 2.784,
+          "end": 2.922
         },
         {
           "text": "entreprises",
-          "start": 3.109,
-          "end": 3.513
+          "start": 2.922,
+          "end": 3.477
         },
         {
           "text": "et",
-          "start": 3.513,
-          "end": 3.647
+          "start": 3.477,
+          "end": 3.615
         },
         {
           "text": "les",
-          "start": 3.647,
-          "end": 3.782
+          "start": 3.615,
+          "end": 3.754
         },
         {
           "text": "États",
-          "start": 3.782,
-          "end": 4.051
+          "start": 3.754,
+          "end": 4.031
         },
         {
           "text": "qui",
-          "start": 4.051,
-          "end": 4.186
+          "start": 4.031,
+          "end": 4.169
         },
         {
           "text": "lèvent",
-          "start": 4.186,
-          "end": 4.455
+          "start": 4.169,
+          "end": 4.446
         },
         {
           "text": "des",
-          "start": 4.455,
-          "end": 4.589
+          "start": 4.446,
+          "end": 4.585
         },
         {
           "text": "fonds.",
-          "start": 4.589,
+          "start": 4.585,
           "end": 4.724
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L09",
@@ -937,62 +944,66 @@
           "end": 5.453
         },
         {
-          "text": "groupe :",
+          "text": "groupe",
           "start": 5.453,
+          "end": 5.591
+        },
+        {
+          "text": ":",
+          "start": 5.591,
           "end": 5.728
         },
         {
           "text": "plus",
           "start": 6.297,
-          "end": 6.449
+          "end": 6.452
         },
         {
           "text": "de",
-          "start": 6.449,
-          "end": 6.601
+          "start": 6.452,
+          "end": 6.608
         },
         {
           "text": "quarante-cinq",
-          "start": 6.712,
-          "end": 7.191
+          "start": 6.608,
+          "end": 7.229
         },
         {
           "text": "milliards",
-          "start": 7.191,
-          "end": 7.51
+          "start": 7.229,
+          "end": 7.54
         },
         {
           "text": "de",
-          "start": 7.51,
-          "end": 7.67
+          "start": 7.54,
+          "end": 7.695
         },
         {
           "text": "francs",
-          "start": 7.67,
-          "end": 7.829
+          "start": 7.695,
+          "end": 7.851
         },
         {
           "text": "CFA",
-          "start": 7.829,
-          "end": 8.308
+          "start": 7.851,
+          "end": 8.317
         },
         {
           "text": "levés.",
-          "start": 8.308,
+          "start": 8.317,
           "end": 8.628
         }
-      ],
-      "align": "pauses+ponctuation (tools/align.py)"
+      ]
     },
     {
       "id": "L10",
       "path": "assets/voice/L10.wav",
       "voice": "Charon",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 4.025,
+      "duration_s": 3.139,
       "speech": [
         0.117,
-        3.86
+        2.959
       ],
       "pauses": 1,
       "anchored": 1,
@@ -1000,57 +1011,32 @@
         {
           "text": "BGFI",
           "start": 0.117,
-          "end": 0.656
+          "end": 0.781
         },
         {
           "text": "Bourse :",
-          "start": 0.656,
-          "end": 0.926
-        },
-        {
-          "text": "une",
-          "start": 1.591,
-          "end": 1.743
-        },
-        {
-          "text": "étoile",
-          "start": 1.743,
-          "end": 2.045
-        },
-        {
-          "text": "pour",
-          "start": 2.045,
-          "end": 2.196
-        },
-        {
-          "text": "guider",
-          "start": 2.196,
-          "end": 2.499
+          "start": 0.781,
+          "end": 1.114
         },
         {
           "text": "votre",
-          "start": 2.499,
-          "end": 2.65
+          "start": 1.611,
+          "end": 1.78
         },
         {
-          "text": "épargne",
-          "start": 2.65,
-          "end": 2.953
+          "text": "partenaire",
+          "start": 1.78,
+          "end": 2.285
         },
         {
-          "text": "en",
-          "start": 2.953,
-          "end": 3.104
+          "text": "pour",
+          "start": 2.285,
+          "end": 2.454
         },
         {
-          "text": "Afrique",
-          "start": 3.104,
-          "end": 3.558
-        },
-        {
-          "text": "centrale.",
-          "start": 3.558,
-          "end": 3.86
+          "text": "l'avenir.",
+          "start": 2.454,
+          "end": 2.959
         }
       ],
       "align": "pauses+ponctuation (tools/align.py)"
@@ -1061,7 +1047,8 @@
     "voice": "Charon",
     "model": "gemini-3.8-flash-tts",
     "regenerated_alone": {
-      "L09": "phrase refaite seule (même voix, même consigne) pour que l'année « deux mille vingt-six » soit bien détachée"
+      "L09": "phrase refaite seule (même voix, même consigne) pour que l'année « deux mille vingt-six » soit bien détachée",
+      "L10": "phrase refaite avec le slogan de BGFIBourse, lue à la suite de la phrase 9 (tools/voice_context.mjs) pour garder le ton du récit"
     }
   },
   "tts_provider": "gemini"

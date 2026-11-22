@@ -108,7 +108,7 @@
       id="world-root"
       data-composition-id="world"
       data-start="0"
-      data-duration="80.384"
+      data-duration="79.998"
       data-total
       data-width="1920"
       data-height="1080"
@@ -118,7 +118,7 @@
         id="world-cv"
         class="clip"
         data-start="0"
-        data-duration="80.384"
+        data-duration="79.998"
         data-total
         data-track-index="0"
         data-layout-allow-overflow
@@ -264,14 +264,14 @@
         plus: at("L09", "plus"),
         leves: at("L09", "levés"),
         bgfi10: at("L10", "BGFI"),
-        etoile10: at("L10", "étoile"),
-        guider: at("L10", "guider"),
+        etoile10: at("L10", "votre"),
+        guider: at("L10", "avenir"),
         logo: C.logo,
       };
       T.gDown = T.bgfi - 0.45; // l'étoile guide quitte le ciel
       T.gLand = T.gDown + 1.25; // … et se pose à la porte du marché
-      T.gUp = T.etoile10 - 0.3; // L10 : elle s'élève, l'épargne la suit
-      T.dawn = E("L10") - 0.05; // le jour se lève
+      T.gUp = T.etoile10 - 0.3; // L10 « votre partenaire pour l'avenir » : elle s'élève, l'épargne la suit
+      T.dawn = E("L10") + 0.45; // le jour se lève
 
       // ------------------------------------------------------------------ rendu
       const canvas = document.getElementById("world-cv");
@@ -299,7 +299,7 @@
             // le jour se lève à partir de l'étoile, en cercle qui s'élargit
             float dist = length((vUv - uStar) * vec2(1.7778, 1.0));
             float dl = smoothstep(0.0, 1.0, uDawn * 2.25 - dist * 0.78);
-            vec3 day = mix(c, vec3(0.973, 0.980, 0.992), dl);
+            vec3 day = mix(c, vec3(0.99216, 1.0, 1.0), dl);
             gl_FragColor = vec4(day, 1.0);
           }`,
         depthTest: false,
@@ -742,8 +742,8 @@
         flN = 0;
       }
 
-      // ------------------------------------------------------------------ l'étoile BGFIBourse : l'étoile à quatre branches du logo
-      // (branches horizontales plus longues, quatre petits rayons en diagonale, cœur blanc) ; branche horizontale = A unités
+      // ------------------------------------------------------------------ l'étoile BGFIBourse : l'étoile à huit branches du logo officiel
+      // (quatre grandes branches égales, quatre diagonales de 0,66, effilées en ligne droite, cœur blanc) ; grande branche = A unités
       const starMat = new THREE.ShaderMaterial({
         uniforms: { uA: { value: 0 }, uHalo: { value: new THREE.Vector3(0.42, 0.62, 0.95) }, uHaloA: { value: 0.5 }, uSpk: { value: 1 } },
         vertexShader: `varying vec2 vUv; void main(){ vUv = uv; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }`,
@@ -753,10 +753,10 @@
           void main(){
             vec2 p = (vUv * 2.0 - 1.0) * 1.6;
             float e = 0.02;
-            float h = arm(p, uSpk, 0.11, e);
-            float v = arm(p.yx, 0.79 * uSpk, 0.075, e);
+            float h = arm(p, uSpk, 0.132, e);
+            float v = arm(p.yx, uSpk, 0.132, e);
             vec2 q = vec2(p.x + p.y, p.y - p.x) * 0.70710678;
-            float dg = 0.75 * max(arm(q, 0.69, 0.04, e), arm(q.yx, 0.69, 0.04, e));
+            float dg = max(arm(q, 0.66, 0.106, e), arm(q.yx, 0.66, 0.106, e));
             float s = max(max(h, v), dg);
             float r2 = dot(p, p);
             float glow = exp(-r2 * 42.0) * 0.95 + exp(-r2 * 11.0) * 0.2;
@@ -803,11 +803,15 @@
       }
 
       // ------------------------------------------------------------------ caméra (perspective ; plan final calé sur la carte de fin)
-      // Carte de fin : logo de 1 100 px de large en (410 ; 300) ; son étoile est en (1 412,7 ; 388,9), branche horizontale de 49,4 px.
-      const STAR_PX = [410 + (2844 / 3120) * 1100, 300 + (252 / 900) * ((900 / 3120) * 1100)];
+      // Carte de fin : logo officiel (2 000 × 541 px) affiché à l'échelle 0,55 en (410 ; 290) ;
+      // son étoile (centre 1 827 ; 153, grande branche 108 px) tombe en (1 414,9 ; 374,2), grande branche de 59,4 px.
+      const LOGO_K = 0.55,
+        LOGO_X = 410,
+        LOGO_Y = 290;
+      const STAR_PX = [LOGO_X + 1827 * LOGO_K, LOGO_Y + 153 * LOGO_K];
       const D_FIN = 46;
       const S_FIN = 540 / (D_FIN * TANH); // px par unité, à z = 0
-      const A_FIN = ((140 / 3120) * 1100) / S_FIN; // demi-branche horizontale de l'étoile du logo
+      const A_FIN = (108 * LOGO_K) / S_FIN; // grande branche de l'étoile du logo
       const FIN = { x: STAR_FIN[0] - (STAR_PX[0] - 960) / S_FIN, y: STAR_FIN[1] + (STAR_PX[1] - 540) / S_FIN, d: D_FIN, yaw: 0, pitch: 0 };
       const keys = [];
       const key = (t0, dur, to, ease = inOut) => keys.push({ t0, dur, to, ease });

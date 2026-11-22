@@ -1,6 +1,6 @@
 <template>
-  <!-- Carte de fin : le jour s'est levé. L'étoile de la scène devient celle du logo : les deux pavés (bleu et sauge)
-       apparaissent autour d'elle, puis le nom se dessine et la phrase de fin s'écrit. -->
+  <!-- Carte de fin : le jour s'est levé. L'étoile de la scène devient celle du logo officiel : les deux pavés (bleu et sauge)
+       apparaissent autour d'elle, puis le nom se dessine, puis le slogan de BGFIBourse. -->
   <style>
     @font-face {
       font-family: "Lato";
@@ -16,42 +16,41 @@
       position: absolute;
       inset: 0;
       font-family: "Lato", sans-serif;
-      color: #0b2677;
+      color: #005592;
     }
-    /* Logo de 1 100 px de large en (410 ; 300) : son étoile tombe en (1 412,7 ; 388,9), là où la scène pose la sienne. */
-    /* deux découpes du logo : les pavés et l'étoile (x ≥ 2600, y < 468 px du logo), puis le nom (y ≥ 468) */
+    /* Logo officiel (2 000 × 541 px) à l'échelle 0,55 en (410 ; 290), en deux découpes transparentes :
+       les pavés avec l'étoile (1 672–1 974 × 7–294 du logo), puis le nom (22–1 727 × 285–534).
+       L'étoile tombe en (1 414,9 ; 374,2), là où la scène pose la sienne. */
     #en-mark {
       position: absolute;
-      left: 1326.67px;
-      top: 300px;
-      width: 183.33px;
-      height: 165.00px;
+      left: 1329.6px;
+      top: 293.85px;
+      width: 166.1px;
+      height: 157.85px;
     }
     #en-word {
       position: absolute;
-      left: 410px;
-      top: 465.00px;
-      width: 1100px;
-      height: 152.31px;
+      left: 422.1px;
+      top: 446.75px;
+      width: 937.75px;
+      height: 136.95px;
     }
     #en-tag {
       position: absolute;
       left: 0;
-      top: 688px;
+      top: 650px;
       width: 1920px;
       text-align: center;
       font-family: "Tenor Sans", sans-serif;
-      font-size: 56px;
+      font-size: 62px;
       line-height: 1.2;
-      color: #0b2677;
-    }
-    #en-tag span {
-      display: inline-block;
+      letter-spacing: 0.01em;
+      color: #005592;
     }
     #en-sub {
       position: absolute;
       left: 0;
-      top: 852px;
+      top: 752px;
       width: 1920px;
       text-align: center;
       font-size: 30px;
@@ -62,7 +61,7 @@
   <div id="root" data-composition-id="ov-end" data-width="1920" data-height="1080">
     <img id="en-word" src="assets/img/bgfibourse-word.png" alt="BGFIBourse" />
     <img id="en-mark" src="assets/img/bgfibourse-mark.png" alt="" />
-    <div id="en-tag"><span>Une étoile pour guider votre épargne</span><br /><span>en Afrique centrale</span></div>
+    <div id="en-tag">Votre partenaire pour l'avenir</div>
     <div id="en-sub">La société de bourse du groupe BGFIBank</div>
   </div>
   <script>
@@ -72,11 +71,12 @@
       var tLogo = Math.max(0.1, C.logo - W.start);
       var tl = gsap.timeline({ paused: true });
       // les deux pavés apparaissent autour de l'étoile, pendant que le jour se lève
-      tl.fromTo("#en-mark", { opacity: 0, scale: 0.97, transformOrigin: "46.9% 53.8%" }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, tLogo - 0.3);
-      // le nom se dessine de gauche à droite sur l'accord final
+      tl.fromTo("#en-mark", { opacity: 0, scale: 0.97, transformOrigin: "51.3% 50.9%" }, { opacity: 1, scale: 1, duration: 0.7, ease: "power2.out" }, tLogo - 0.3);
+      // le nom se dessine de gauche à droite
       tl.fromTo("#en-word", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.95, ease: "power2.inOut" }, tLogo);
-      tl.fromTo("#en-tag span", { opacity: 0, y: 12, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.55, stagger: 0.35, ease: "power3.out" }, tLogo + 1.0);
-      tl.fromTo("#en-sub", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, tLogo + 1.9);
+      // le slogan de BGFIBourse, puis la signature
+      tl.fromTo("#en-tag", { opacity: 0, y: 12, filter: "blur(6px)" }, { opacity: 1, y: 0, filter: "blur(0px)", duration: 0.6, ease: "power3.out" }, tLogo + 1.0);
+      tl.fromTo("#en-sub", { opacity: 0 }, { opacity: 1, duration: 0.5, ease: "power2.out" }, tLogo + 1.7);
       window.__timelines["ov-end"] = tl;
     })();
   </script>

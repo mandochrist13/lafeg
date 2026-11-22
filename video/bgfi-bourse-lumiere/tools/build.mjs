@@ -41,13 +41,13 @@ const at = (id, needle, which = "s") => {
   return L.start;
 };
 
-// carte de fin : le logo arrive 0,9 s après la dernière phrase ; elle tient au moins 6 s
-const LOGO_T = r3(E("L10") + 0.9);
+// carte de fin : le logo arrive 1,4 s après la dernière phrase (l'épargne suit l'étoile, puis le jour se lève) ; elle tient au moins 6 s
+const LOGO_T = r3(E("L10") + 1.4);
 let total = r3(Math.max(t + cfg.tail, LOGO_T + 6.2));
 
-// Musique : SoundHill « Find Yourself » (fournie par la FEG, déjà utilisée pour les films BGFIBourse) ; son dernier accord (130,16 s du morceau)
-// tombe sur le logo de la carte de fin, puis le morceau s'éteint seul.
-const MUSIC = { src: "assets/bgm/soundhill-find-yourself.mp3", length: 138.109, finalHit: 130.16 };
+// Musique propre au film : « Horizon » d'Andrewkn (Freesound, CC BY 4.0, voir assets/bgm/CREDITS.md), volume relevé de 6 dB.
+// La fin de sa dernière montée (222 s du morceau) tombe sur le logo ; elle redescend ensuite sur la carte de fin, puis s'éteint.
+const MUSIC = { src: "assets/bgm/andrewkn-horizon.mp3", length: 260.049, finalHit: 222.0 };
 let offset = r3(MUSIC.finalHit - LOGO_T);
 let startAt = 0;
 if (offset < 0) {
@@ -125,6 +125,9 @@ const audio = order.map((id) => `    <audio id="vo-${id}" src="${lines[id].src}"
   });
   push(E("L10") + 0.15, UNDER);
   push(LOGO_T - 0.05, END);
+  // fondu de sortie sur les dernières secondes de la carte de fin
+  push(total - 2.6, END);
+  push(total - 0.05, 0.0);
   const dur = r3(Math.min(total - startAt, MUSIC.length - offset));
   const auto = JSON.stringify({ version: 1, lanes: [{ target: "volume", points: pts }] });
   audio.push(
