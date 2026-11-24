@@ -1,4 +1,4 @@
-# Relecture — BGFIBourse, « Une étoile pour guider votre épargne » (version lumière)
+# Relecture — BGFIBourse, « Votre partenaire pour l'avenir » (version lumière)
 
 ## Contrôle automatique
 
@@ -65,3 +65,42 @@ La planche du fichier rendu (une image toutes les 5 s) correspond aux images fix
 - H.264 en deux passes à 1,35 Mbit/s, son AAC 128 kbit/s ;
 - 14,9 Mo, quasi identique au rendu (SSIM 0,994) ;
 - les étoiles fines restent nettes (vérifié en gros plan).
+
+## Version 3 : demandes de BGFIBourse
+
+| Demande | Ce qui a été fait |
+| --- | --- |
+| Remplacer « guide » par « intermédiaire » | Voix : « il faut un intermédiaire agréé par le régulateur, la Cosumaf » ; « Cet intermédiaire, c'est BGFI Bourse ». À l'écran, la place vide de l'anneau s'appelle « Intermédiaire · agréé » (au lieu de « Société de bourse · agréée »). |
+| Supprimer « une société de bourse » après la COSUMAF | Retiré de la voix. BGFIBourse reste présentée comme « la société de bourse du groupe BGFIBank », juste après. |
+| BVMAC se prononce « bévémaque » | Nouvelle prise de L04 ; Gemini entend « bé-vé-mak ». |
+| + de 1 600 milliards de levée de fonds, 20 opérations de référence en CEMAC | Fin de L08, à la voix ; à l'écran, compteur « + de 1 600 milliards FCFA levés » et « à travers 20 opérations de référence en CEMAC ». |
+| Phase 1 : 45,32 milliards, souscripteurs de 24 pays | L09 : « Phase 1 · Entrée en Bourse », « Arrangeur et chef de file : BGFIBourse », compteur 45,32, « auprès de souscripteurs de 24 pays ». L'année n'est plus dite pour cette phase. |
+| Phase 2 (2026) : 100,836 milliards, 125,17 %, 10 % au public | Nouvelle phrase L09b. À l'écran : « Phase 2 · 2026 », « Augmentation de capital », compteur 100,836, « Taux de souscription : 125,17 % », « Capital détenu par le public : 10 % ». Dans la scène, un afflux plus dense rejoint BGFI HC, et un arc de 36° (10 %) s'allume sur l'anneau de son capital. |
+
+- **Voix.** L04–L06 relues à la suite de L03, L08–L09b à la suite de L07, avec la même voix et la même consigne.
+  - Gemini entend le texte exact de chaque phrase.
+  - Les raccords avec les prises gardées (L03 → L04, L07 → L08, L09b → L10) sont jugés homogènes, « sans aucune rupture audible ».
+  - L09b a été reprise trois fois : « deux mille vingt-six » s'entendait parfois « deux mille six » ou « seize ». La prise retenue est entendue « 2026 » trois fois sur trois.
+- **Corrigé pendant la relecture.**
+
+| Moment | Problème | Correction |
+| --- | --- | --- |
+| L08 | Le compteur « + de 1 600 milliards » chevauchait les étiquettes des projets, en haut à droite. | Placé en haut à gauche, au-dessus de la carte. |
+| L09–L09b | Montant de la phase 2 trop large : « mobilisés » passait à la ligne ; « BGFI Holding Corporation » tenait sur deux lignes. | Blocs élargis : chaque titre tient sur une ligne. |
+| L09 | « Arrangeur et chef de file » ne restait qu'une seconde à l'écran. | Affiché dès « Elle a conduit », sous le surtitre. |
+| Chiffres | « 1600 » sans espace. | « 1 600 ». |
+| Calage | Les mots « Douala » et « 2026 » étaient mal placés par l'aligneur. | L04 et L09b calées sur les mots horodatés de Whisper. |
+
+- **Contrôle.** `npx hyperframes check` passé, 0 erreur ; les 10 textes contrôlés sont conformes WCAG AA. Les avertissements restants sont ceux de la version 2 : longueur de `world.html` et messages du pilote WebGL.
+
+### Rendu (version 3)
+
+| Fichier | Image | Durée | Poids | Son |
+| --- | --- | --- | --- | --- |
+| `renders/BGFIBourse-lumiere-v3.mp4` | 1920 × 1080, 30 im/s, qualité « delivery » | 97,4 s | 68,9 Mo | −15,8 LUFS, plage 3,9 LU, crête −2,4 dBFS |
+| `renders/BGFIBourse-lumiere-v3-whatsapp.mp4` | idem, H.264 deux passes à 1,12 Mbit/s, AAC 128 kbit/s | 97,4 s | 15,3 Mo (sous les 16 Mo de WhatsApp) | idem |
+
+- Rendu en 36 min. La planche du fichier (une image toutes les 5 s) est conforme aux images de contrôle.
+- Seules les trois premières images sont noires : c'est le fondu d'entrée du ciel, voulu.
+- La copie WhatsApp reste quasi identique au rendu (SSIM 0,993). Les étoiles et les chiffres restent nets.
+- La musique commence plus tôt dans le morceau (132,1 s au lieu de 149,5 s) : sa dernière montée tombe toujours sur le logo.
