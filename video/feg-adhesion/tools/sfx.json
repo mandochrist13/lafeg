@@ -296,5 +296,50 @@
     "line": "L10",
     "word": "données",
     "offset": 0.0
+  },
+  {
+    "id": "sfx-globe",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.575,
+    "volume": 0.14,
+    "line": "LD1",
+    "word": "Et",
+    "offset": -0.45
+  },
+  {
+    "id": "sfx-plane",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.575,
+    "volume": 0.12,
+    "line": "LD1",
+    "word": "diaspora",
+    "offset": 0.4
+  },
+  {
+    "id": "sfx-card",
+    "src": "assets/sfx/paper.wav",
+    "dur": 0.42,
+    "volume": 0.2,
+    "line": "LD2",
+    "word": "Entrepreneurs",
+    "offset": -0.15
+  },
+  {
+    "id": "sfx-badge",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.366,
+    "volume": 0.28,
+    "line": "LD2",
+    "word": "rejoindre",
+    "offset": -0.05
+  },
+  {
+    "id": "sfx-seat",
+    "src": "assets/sfx/pat.wav",
+    "dur": 0.16,
+    "volume": 0.18,
+    "line": "LD3",
+    "word": "participer",
+    "offset": 0.25
   }
 ]

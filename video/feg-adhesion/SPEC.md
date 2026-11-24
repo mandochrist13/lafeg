@@ -1,10 +1,10 @@
 # SPEC — « Comment adhérer à la FEG » (storyline A, « Le dossier »)
 
-GOAL: un chef d'entreprise gabonais sait qu'il doit d'abord être une entreprise formelle (registre du commerce et identifiant fiscal validés, à jour CNSS, CNAMGS et impôts), connaît les six étapes du dossier d'adhésion dans l'ordre, les pièces à joindre (justificatifs CNSS et CNAMGS, fiche circuit) et sait où le déposer.
+GOAL: un chef d'entreprise gabonais sait qu'il doit d'abord être une entreprise formelle (registre du commerce et identifiant fiscal validés, à jour CNSS, CNAMGS et impôts), connaît les six étapes du dossier d'adhésion dans l'ordre, les pièces à joindre (justificatifs CNSS et CNAMGS, fiche circuit) et sait où le déposer. **v6 (diaspora)** : l'entrepreneur qui n'est pas au Gabon sait que la FEG s'ouvre à la diaspora gabonaise. Les entrepreneurs de la diaspora et les entreprises de droit étranger à capitaux gabonais peuvent la rejoindre, selon des modalités adaptées, et participer à ses travaux à travers le comité Rayonnement à l'international. Les renseignements s'obtiennent à info@lafeg.ga.
 
 OUTPUT: HyperFrames, 1920 × 1080, 30 i/s, MP4 H.264, voix off Despina + musique. Version réseaux sociaux : 1080 × 1920 (9:16), même voix, même musique, même minutage, sous-titres incrustés (voir « 9:16 » plus bas).
 
-TIME: 98,5 s (fixé par la voix off) ≈ 2955 images. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
+TIME: 120,3 s (fixé par la voix off) ≈ 3608 images ; v5 sans la diaspora : 98,5 s. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
 
 ## LOOK
 
@@ -54,8 +54,9 @@ Temps réels, calés sur la voix off (générés par `tools/build.mjs`) :
 | s6 · La validation | L07 | 52,16 s | 62,36 s |
 | s7 · La cotisation | L08 | 62,36 s | 70,76 s |
 | s8 · Membre | L09 | 70,76 s | 79,51 s |
-| s9 · Chaque année | L10 | 79,51 s | 86,09 s |
-| s10 · Fin | L11 | 86,09 s | 98,48 s (logo à 91,17 s) |
+| s9 · Chaque année | L10 | 79,51 s | 86,04 s |
+| s9d · Hors du Gabon | LD1–LD3 | 86,04 s | 107,87 s |
+| s10 · Fin | L11 | 107,87 s | 120,26 s (logo à 112,95 s) |
 
 Les étapes 1 et 2 sont dans le même plan (s3), le dossier restant à l'écran.
 
@@ -68,7 +69,12 @@ Les étapes 1 et 2 sont dans le même plan (s3), le dossier restant à l'écran.
 7. **S7 · La cotisation** (L08) : l'escalier des tranches, son repère, puis le droit d'accès. « Étape 5 ». Aucun montant.
 8. **S8 · Membre** (L09) : poignée de main en pied devant le logo de la FEG, puis la table de sa fédération qui l'accueille.
 9. **S9 · Chaque année** (L10) : le calendrier « 31 mars », la fiche entreprise se met à jour. « Étape 6 ».
-10. **S10 · Fin** (L11) : « Bâtir ensemble une économie forte », « pour garantir la souveraineté nationale », puis logo FEG, « Devenez membre · lafeg.ga », « info@lafeg.ga · +241 77 55 95/97 » et « Immeuble Odyssée, 8ème et 9ème étages · BP 410 · Libreville », tenus au moins 2,5 s.
+10. **S9d · Hors du Gabon** (LD1–LD3, ajouté en v6 pour la rencontre avec la diaspora en France).
+   - **Le globe.** Un globe à plat (Europe et Afrique, Natural Earth, `tools/globe.mjs` → `assets/img/globe-base.svg` et `assets/globe.js`). Surtitre « Hors du Gabon ». Sur « Gabon ? », le pays s'allume en vert avec Libreville ; titre « La FEG s'ouvre à la diaspora ». Sur « diaspora », la France s'éclaire, Paris apparaît, et un trajet en pointillés suivi d'un avion relie Paris à Libreville.
+   - **Les publics.** Une carte apparaît à côté de Paris : « Entrepreneurs de la diaspora », puis « Entreprises de droit étranger », puis « à capitaux gabonais » (avec le drapeau gabonais), ligne par ligne sur la voix.
+   - **La FEG.** Sur « rejoindre la Fédération », le badge FEG se pose à Libreville. Sur « selon des modalités adaptées » : « Selon des modalités adaptées », « Renseignements : info@lafeg.ga ».
+   - **Le comité.** Sur « Et participer », la table du comité, comme à la S8. Un entrepreneur de la diaspora (costume bleu nuit, cravate bronze) prend la place libre à côté de la dirigeante ; ses voisins se tournent vers lui. Au mur, le globe avec le trajet. Surtitre « Un comité de la FEG », titre « Rayonnement à l'international ».
+11. **S10 · Fin** (L11) : « Bâtir ensemble une économie forte », « pour garantir la souveraineté nationale », puis logo FEG, « Devenez membre · lafeg.ga », « info@lafeg.ga · +241 77 55 95/97 » et « Immeuble Odyssée, 8ème et 9ème étages · BP 410 · Libreville », tenus au moins 2,5 s.
 
 ## 9:16 (réseaux sociaux)
 
@@ -96,3 +102,23 @@ Fond sombre ; lueurs, particules ; dégradés violet/bleu, cartes en verre ; pap
 - La poignée de main se lit au premier coup d'œil ; la table compte au moins six personnes.
 - Carte de fin : logo, appel à l'action, téléphone et adresse tenus au moins 2,5 s.
 - 9:16 : aucun texte hors de la bande 168–1330 px ; les sous-titres ne cachent ni visage ni tampon ; aucun bord d'image 16:9 visible ; raccords S1→S2 et S2→S3 exacts.
+
+## v6 : la diaspora (FEG-comment-adherer-v6, 9:16 v3)
+
+Demande de la FEG, avant sa rencontre avec les entreprises de la diaspora gabonaise en France : préciser que la FEG s'ouvre à la diaspora.
+
+- **Voix.** Trois phrases ajoutées entre l'étape 6 (L10) et la conclusion (L11), voix Despina.
+  - LD1 « Et si vous n'êtes pas présent au Gabon ? La Fédération s'ouvre aussi à la diaspora gabonaise. »
+  - LD2 « Entrepreneurs de la diaspora, entreprises de droit étranger à capitaux gabonais : vous pouvez, vous aussi, rejoindre la Fédération, selon des modalités adaptées. »
+  - LD3 « Et participer à ses travaux à travers le comité Rayonnement à l'international. »
+  - Lues en une seule requête, précédées de la phrase L10 (`tools/voice_suite.mjs --context L10 LD1 LD2 LD3`, même consigne que la prise d'origine), puis coupées aux pauses. La phrase de contexte est jetée.
+  - Normalisées à −16 LUFS (`tools/voice_finish.mjs`) et calées mot à mot (`tools/align.py`).
+  - Contrôle Gemini : « droit étranger », « capitaux gabonais » et « Rayonnement à l'international » sont bien articulés. De L10 à L11, l'enchaînement est jugé « parfaitement homogène ».
+- **Image.** Le plan S9d, ci-dessus ; sous-titres 9:16 dans `tools/captions.json` ; cinq bruitages discrets (`tools/sfx.json`).
+- **Livret.** `livret/FEG-comment-adherer-9x16-v3-texte.docx`, avec une section « Hors du Gabon ».
+
+### À valider (v6)
+
+- **Le nom exact du comité.** Le film écrit « comité Rayonnement à l'international », tel que la FEG l'a donné. Aucune source publique ne le cite.
+- **« Selon des modalités adaptées ».** Le dossier d'adhésion 2026 ne prévoit rien pour la diaspora, et le film ne détaille donc aucune condition. Il renvoie à info@lafeg.ga. Si les modalités sont fixées (pièces, cotisation, statut de membre), elles peuvent être ajoutées.
+- **Le cas des entreprises de droit étranger à capitaux gabonais.** Le film dit qu'elles peuvent « rejoindre la Fédération ». Si leur place est différente (membre associé, rattachement au seul comité), le texte est à ajuster.

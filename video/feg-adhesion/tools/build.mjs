@@ -55,7 +55,9 @@ const scenes = [
   { id: "s6", src: "compositions/s6-validation.html", start: S("L07") - 0.3, end: S("L08") - 0.35 },
   { id: "s7", src: "compositions/s7-cotisation.html", start: S("L08") - 0.35, end: S("L09") - 0.4 },
   { id: "s8", src: "compositions/s8-membre.html", start: S("L09") - 0.4, end: S("L10") - 0.35 },
-  { id: "s9", src: "compositions/s9-annee.html", start: S("L10") - 0.35, end: S("L11") - 0.3 },
+  { id: "s9", src: "compositions/s9-annee.html", start: S("L10") - 0.35, end: S("LD1") - 0.35 },
+  // hors du Gabon : la diaspora et le comité Rayonnement à l'international
+  { id: "s9d", src: "compositions/s9d-diaspora.html", start: S("LD1") - 0.35, end: S("L11") - 0.3 },
   { id: "s10", src: "compositions/s10-fin.html", start: S("L11") - 0.3, end: total },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
 const ONLY = (process.argv.find((a) => a.startsWith("--only=")) || "").slice(7).split(",").filter(Boolean);
@@ -278,6 +280,7 @@ const html = `<!doctype html>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <script src="assets/people.js"></script>
+    <script src="assets/globe.js"></script>
     <style>
       @font-face {
         font-family: "Hyundai Sans Head";

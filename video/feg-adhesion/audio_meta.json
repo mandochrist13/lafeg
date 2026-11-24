@@ -1111,6 +1111,304 @@
       ]
     },
     {
+      "id": "LD1",
+      "path": "assets/voice/LD1.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.801,
+      "speech": [
+        0.122,
+        4.605
+      ],
+      "pauses": 1,
+      "anchored": 1,
+      "words": [
+        {
+          "text": "Et",
+          "start": 0.122,
+          "end": 0.273
+        },
+        {
+          "text": "si",
+          "start": 0.273,
+          "end": 0.424
+        },
+        {
+          "text": "vous",
+          "start": 0.424,
+          "end": 0.575
+        },
+        {
+          "text": "n'êtes",
+          "start": 0.575,
+          "end": 0.726
+        },
+        {
+          "text": "pas",
+          "start": 0.726,
+          "end": 0.877
+        },
+        {
+          "text": "présent",
+          "start": 0.877,
+          "end": 1.179
+        },
+        {
+          "text": "au",
+          "start": 1.179,
+          "end": 1.33
+        },
+        {
+          "text": "Gabon ?",
+          "start": 1.33,
+          "end": 1.632
+        },
+        {
+          "text": "La",
+          "start": 2.235,
+          "end": 2.384
+        },
+        {
+          "text": "Fédération",
+          "start": 2.384,
+          "end": 2.976
+        },
+        {
+          "text": "s'ouvre",
+          "start": 2.976,
+          "end": 3.124
+        },
+        {
+          "text": "aussi",
+          "start": 3.124,
+          "end": 3.42
+        },
+        {
+          "text": "à",
+          "start": 3.42,
+          "end": 3.568
+        },
+        {
+          "text": "la",
+          "start": 3.568,
+          "end": 3.716
+        },
+        {
+          "text": "diaspora",
+          "start": 3.716,
+          "end": 4.161
+        },
+        {
+          "text": "gabonaise.",
+          "start": 4.161,
+          "end": 4.605
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "LD2",
+      "path": "assets/voice/LD2.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.38,
+      "speech": [
+        0.12,
+        9.2
+      ],
+      "pauses": 3,
+      "anchored": 3,
+      "words": [
+        {
+          "text": "Entrepreneurs",
+          "start": 0.12,
+          "end": 0.877
+        },
+        {
+          "text": "de",
+          "start": 0.877,
+          "end": 1.067
+        },
+        {
+          "text": "la",
+          "start": 1.067,
+          "end": 1.256
+        },
+        {
+          "text": "diaspora,",
+          "start": 1.256,
+          "end": 1.824
+        },
+        {
+          "text": "entreprises",
+          "start": 1.824,
+          "end": 2.393
+        },
+        {
+          "text": "de",
+          "start": 2.393,
+          "end": 2.582
+        },
+        {
+          "text": "droit",
+          "start": 2.582,
+          "end": 2.771
+        },
+        {
+          "text": "étranger",
+          "start": 2.771,
+          "end": 3.34
+        },
+        {
+          "text": "à",
+          "start": 3.34,
+          "end": 3.529
+        },
+        {
+          "text": "capitaux",
+          "start": 3.529,
+          "end": 4.097
+        },
+        {
+          "text": "gabonais :",
+          "start": 4.097,
+          "end": 4.665
+        },
+        {
+          "text": "vous",
+          "start": 4.89,
+          "end": 5.106
+        },
+        {
+          "text": "pouvez,",
+          "start": 5.106,
+          "end": 5.537
+        },
+        {
+          "text": "vous",
+          "start": 5.537,
+          "end": 5.753
+        },
+        {
+          "text": "aussi,",
+          "start": 5.753,
+          "end": 6.185
+        },
+        {
+          "text": "rejoindre",
+          "start": 6.379,
+          "end": 6.71
+        },
+        {
+          "text": "la",
+          "start": 6.71,
+          "end": 6.875
+        },
+        {
+          "text": "Fédération,",
+          "start": 6.875,
+          "end": 7.537
+        },
+        {
+          "text": "selon",
+          "start": 7.875,
+          "end": 8.14
+        },
+        {
+          "text": "des",
+          "start": 8.14,
+          "end": 8.272
+        },
+        {
+          "text": "modalités",
+          "start": 8.272,
+          "end": 8.802
+        },
+        {
+          "text": "adaptées.",
+          "start": 8.802,
+          "end": 9.2
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "LD3",
+      "path": "assets/voice/LD3.wav",
+      "voice": "Despina",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 4.6,
+      "speech": [
+        0.12,
+        4.42
+      ],
+      "pauses": 1,
+      "anchored": 0,
+      "words": [
+        {
+          "text": "Et",
+          "start": 0.12,
+          "end": 0.281
+        },
+        {
+          "text": "participer",
+          "start": 0.281,
+          "end": 0.928
+        },
+        {
+          "text": "à",
+          "start": 0.928,
+          "end": 1.089
+        },
+        {
+          "text": "ses",
+          "start": 1.089,
+          "end": 1.251
+        },
+        {
+          "text": "travaux",
+          "start": 1.251,
+          "end": 1.574
+        },
+        {
+          "text": "à",
+          "start": 1.574,
+          "end": 1.736
+        },
+        {
+          "text": "travers",
+          "start": 1.736,
+          "end": 2.059
+        },
+        {
+          "text": "le",
+          "start": 2.059,
+          "end": 2.221
+        },
+        {
+          "text": "comité",
+          "start": 2.221,
+          "end": 2.705
+        },
+        {
+          "text": "Rayonnement",
+          "start": 2.946,
+          "end": 3.437
+        },
+        {
+          "text": "à",
+          "start": 3.437,
+          "end": 3.601
+        },
+        {
+          "text": "l'international.",
+          "start": 3.601,
+          "end": 4.42
+        }
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
       "id": "L11",
       "path": "assets/voice/L11.wav",
       "voice": "Despina",

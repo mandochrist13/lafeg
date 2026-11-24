@@ -122,3 +122,33 @@ Pour regénérer : `node tools/build.mjs` (16:9) ou `node tools/build.mjs --vert
 - Le numéro de téléphone « +241 77 55 95/97 » : un seul numéro ou deux numéros (…95 et …97) ? Il est écrit tel que transmis.
 - Le délai de **trois mois** pour compléter un dossier accepté sous réserve : la page 2 du dossier d'adhésion 2026 dit encore « six (6) mois ».
 - Le raccord de la voix dans L06, après « Fédération » (voir v4).
+
+## v6 : la diaspora (16:9 v6, 9:16 v3)
+
+Ajout demandé par la FEG avant sa rencontre avec les entreprises de la diaspora gabonaise en France : un plan « Hors du Gabon » entre l'étape 6 et la conclusion.
+
+- **Voix.** Trois phrases Despina (LD1–LD3), lues à la suite de L10 dans une seule requête pour garder le ton.
+  - Contrôle Gemini : les mots clés sont bien articulés (« droit étranger », « capitaux gabonais », « Rayonnement à l'international »).
+  - De L10 à L11, l'enchaînement avec la prise d'origine est jugé « parfaitement homogène » : même voix, même acoustique, même rythme.
+  - Whisper entendait « Capito Gabonet » et « Réunionnement » : ce sont ses erreurs, la diction est nette.
+- **Images.** Vues en images fixes à chaque temps fort, en 16:9 et en 9:16.
+
+| Moment | Problème | Correction |
+| --- | --- | --- |
+| Carte de la diaspora | Elle s'ouvrait en grand cadre presque vide, avec une seule ligne. | Elle grandit ligne par ligne, sur la voix. |
+| Libreville | Le trajet Paris → Libreville frôlait l'étiquette. | Étiquette passée sous la ville. |
+| Comité (9:16) | Bande blanche sous la table après le recul ; tableau coupé au bord. | Mur et devant de table prolongés, comme au plan 8 ; tableau rentré dans le cadre. |
+| Carte de la diaspora (9:16) | Agrandie pour rester lisible, elle couvrait Paris. | En vertical, elle passe sous le titre, hors du globe ; les modalités prennent ensuite sa place. |
+| Noms de villes (9:16) | « Libreville » tombait à 27 px une fois réduit par la caméra. | 46 px avant réduction, soit 29 px à l'écran. |
+| Contrôle | Le globe était chargé deux fois (doublon de média). | Le tableau du comité l'affiche en image de fond. |
+
+- **Contrôle.**
+  - 16:9 : `npx hyperframes check` passé, 0 erreur, 16 textes sur 16 conformes en contraste.
+  - 9:16 : passé, 0 erreur, 18 textes sur 18 conformes.
+  - Les avertissements de zone sûre du 9:16 concernent des plans existants, conçus pour la bande utile 168–1330 px de la SPEC.
+
+### À valider (v6)
+
+- Le nom exact du comité : « comité Rayonnement à l'international ».
+- La formule « selon des modalités adaptées », et le renvoi à info@lafeg.ga pour les détails.
+- La place des entreprises de droit étranger à capitaux gabonais : membres à part entière, ou rattachées au comité ?

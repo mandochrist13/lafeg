@@ -1,0 +1,110 @@
+// Nouvelles phrases lues à la suite d'une phrase existante, en une seule requête (même voix, même consigne que
+// voice_onepass.mjs), pour qu'elles gardent le ton du film ; seule la phrase de contexte est jetée.
+// La prise est coupée aux plus longs silences intérieurs (les pauses de paragraphe, ≈ 1 s), un par frontière.
+// Écrit assets/voice/raw/<id>.wav pour chaque nouvelle phrase ; ensuite : node tools/voice_finish.mjs <ids…>
+//
+// Usage : NODE_USE_ENV_PROXY=1 node tools/voice_suite.mjs --context L10 LD1 LD2 LD3 [--voice Despina] [--model gemini-3.8-flash-tts]
+import { readFileSync, mkdirSync } from "node:fs";
+import { dirname, join } from "node:path";
+import { fileURLToPath } from "node:url";
+import { spawnSync } from "node:child_process";
+
+const ROOT = join(dirname(fileURLToPath(import.meta.url)), "..");
+const args = process.argv.slice(2);
+const opt = (n, d) => {
+  const i = args.indexOf("--" + n);
+  return i >= 0 ? args[i + 1] : d;
+};
+const CTX = opt("context", null);
+const VOICE = opt("voice", "Despina");
+const MODEL = opt("model", "gemini-3.8-flash-tts");
+const skip = new Set();
+["context", "voice", "model"].forEach((n) => {
+  const i = args.indexOf("--" + n);
+  if (i >= 0) {
+    skip.add(i);
+    skip.add(i + 1);
+  }
+});
+const IDS = args.filter((a, i) => !skip.has(i));
+// même consigne que voice_onepass.mjs (prise d'origine du film)
+const STYLE =
+  "Voix féminine française, naturelle, claire et bienveillante, comme une conseillère qui guide un chef d'entreprise pas à pas : " +
+  "posée, souriante, assurée, jamais lue. Rythme vivant et varié, respirations naturelles, intonation conversationnelle. " +
+  "Prononce CNSS lettre par lettre : cé-èn-èss-èss. Prononce CNAM-GS comme le mot « knam » suivi de « jé-èss » (knam-jé-èss), jamais lettre par lettre. " +
+  "Marque une vraie pause, d'environ une seconde, entre chaque paragraphe. Jamais monotone, jamais publicitaire.";
+
+const lines = JSON.parse(readFileSync(join(ROOT, "tools/lines.json"), "utf8")).lines;
+const get = (id) => {
+  const L = lines.find((x) => x.id === id);
+  if (!L) throw new Error(`phrase inconnue : ${id}`);
+  return L;
+};
+const seq = (CTX ? [CTX] : []).concat(IDS).map(get);
+const rawDir = join(ROOT, "assets/voice/raw");
+mkdirSync(rawDir, { recursive: true });
+const full = join(rawDir, `suite-${IDS.join("-")}-${VOICE}.wav`);
+const { synthesizeGemini } = await import(join(ROOT, "../../.agents/skills/media-use/audio/scripts/lib/gemini-tts.mjs"));
+let r;
+for (let a = 0; a < 6; a++) {
+  r = await synthesizeGemini(
+    { text: seq.map((L) => L.text).join("\n\n"), voiceId: VOICE, model: MODEL, style: STYLE, wavAbs: full },
+    process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY ? {} : { authenticate: () => ({ headers: {}, secret: undefined }) },
+  );
+  if (r.ok) break;
+  const m = /retry in ([0-9.]+)s/.exec(r.error || "");
+  const wait = m ? Math.min(90, Math.ceil(parseFloat(m[1]) + 2)) : 30;
+  console.log(`essai ${a + 1} : ${String(r.error).slice(0, 140)} — nouvel essai dans ${wait} s`);
+  await new Promise((res) => setTimeout(res, wait * 1000));
+}
+if (!r.ok) {
+  console.error("échec :", r.error);
+  process.exit(1);
+}
+const run = (a) => spawnSync(a[0], a.slice(1), { encoding: "utf8" });
+const dur = parseFloat(run(["ffprobe", "-v", "error", "-show_entries", "format=duration", "-of", "csv=p=0", full]).stdout);
+const sd = run(["ffmpeg", "-hide_banner", "-i", full, "-af", "silencedetect=noise=-38dB:d=0.16", "-f", "null", "-"]).stderr;
+const sil = [];
+let s0 = null;
+for (const l of sd.split("\n")) {
+  const a = /silence_start: ([0-9.]+)/.exec(l);
+  const b = /silence_end: ([0-9.]+)/.exec(l);
+  if (a) s0 = parseFloat(a[1]);
+  if (b && s0 !== null) {
+    sil.push([s0, parseFloat(b[1])]);
+    s0 = null;
+  }
+}
+if (s0 !== null) sil.push([s0, dur]);
+const inner = sil.filter((s) => s[0] > 0.05 && s[1] < dur - 0.05);
+const nb = seq.length - 1;
+if (inner.length < nb) {
+  console.error(`seulement ${inner.length} silences pour ${nb} frontières`);
+  process.exit(1);
+}
+const cuts = inner
+  .slice()
+  .sort((a, b) => b[1] - b[0] - (a[1] - a[0]))
+  .slice(0, nb)
+  .sort((a, b) => a[0] - b[0]);
+const bounds = [];
+for (let k = 0; k < seq.length; k++) {
+  const a = k === 0 ? 0 : Math.max(cuts[k - 1][1] - 0.12, (cuts[k - 1][0] + cuts[k - 1][1]) / 2);
+  const b = k === seq.length - 1 ? dur : Math.min(cuts[k][0] + 0.18, (cuts[k][0] + cuts[k][1]) / 2);
+  bounds.push([a, b]);
+}
+// contrôle : la durée de chaque morceau suit à peu près le nombre de mots
+const words = seq.map((L) => L.text.split(/\s+/).length);
+const rate = seq.map((L, k) => (bounds[k][1] - bounds[k][0]) / words[k]);
+console.log(`prise ${dur.toFixed(2)} s ; pauses retenues : ${cuts.map((c) => `${c[0].toFixed(2)}–${c[1].toFixed(2)}`).join(", ")}`);
+seq.forEach((L, k) => console.log(`  ${L.id} ${bounds[k][0].toFixed(2)}–${bounds[k][1].toFixed(2)} s · ${words[k]} mots · ${rate[k].toFixed(3)} s/mot${CTX && k === 0 ? " (contexte, jeté)" : ""}`));
+const med = rate.slice().sort((a, b) => a - b)[Math.floor(rate.length / 2)];
+if (rate.some((x) => x < med * 0.55 || x > med * 1.8)) {
+  console.error("découpage douteux : une phrase a une durée sans rapport avec son nombre de mots");
+  process.exit(2);
+}
+seq.forEach((L, k) => {
+  if (CTX && k === 0) return;
+  run(["ffmpeg", "-v", "error", "-y", "-i", full, "-ss", bounds[k][0].toFixed(3), "-to", bounds[k][1].toFixed(3), join(rawDir, `${L.id}.wav`)]);
+});
+console.log("écrit :", IDS.map((id) => `assets/voice/raw/${id}.wav`).join(", "));

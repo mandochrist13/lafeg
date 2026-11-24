@@ -1,0 +1,383 @@
+<template>
+  <!-- S9d · Hors du Gabon (LD1–LD3) : la FEG s'ouvre à la diaspora.
+       A : un globe à plat (Europe, Afrique) ; le Gabon s'allume, Paris est relié à Libreville ; la carte des entrepreneurs de la diaspora
+       et des entreprises de droit étranger à capitaux gabonais ; la FEG à Libreville ; « selon des modalités adaptées ».
+       B : la table du comité Rayonnement à l'international, où un entrepreneur de la diaspora prend place. -->
+  <style>
+    #root {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      background: #ffffff;
+      font-family: "Hyundai Sans Head", sans-serif;
+    }
+    .s9d-abs {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+    #s9d-a,
+    #s9d-b,
+    #s9d-bcam {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 1920px;
+      height: 1080px;
+    }
+    #s9d-globe {
+      position: absolute;
+      left: 930px;
+      top: 160px;
+      width: 800px;
+      height: 800px;
+    }
+    .s9d-kick {
+      position: absolute;
+      left: 132px;
+      top: 150px;
+      font-weight: 500;
+      font-size: 36px;
+      color: #0a7537;
+    }
+    .s9d-title {
+      position: absolute;
+      left: 132px;
+      top: 202px;
+      width: 720px;
+      font-weight: 700;
+      font-size: 80px;
+      line-height: 1.02;
+      letter-spacing: -0.015em;
+      color: #063d21;
+    }
+    .s9d-title span {
+      display: inline-block;
+    }
+    #s9d-sub {
+      position: absolute;
+      left: 132px;
+      top: 418px;
+      width: 700px;
+    }
+    #s9d-sub .m {
+      display: block;
+      font-weight: 500;
+      font-size: 36px;
+      color: #0a7537;
+    }
+    #s9d-sub .c {
+      display: block;
+      margin-top: 8px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 30px;
+      color: #3c423b;
+    }
+    #s9d-card {
+      position: absolute;
+      left: 818px;
+      top: 232px;
+      padding: 18px 26px 20px;
+      border-radius: 14px;
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+      white-space: nowrap;
+    }
+    #s9d-card .l {
+      display: block;
+      font-weight: 500;
+      font-size: 30px;
+      line-height: 1.25;
+      color: #063d21;
+    }
+    #s9d-card .l3 {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 2px;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-weight: 400;
+      font-size: 28px;
+      color: #3c423b;
+    }
+    #s9d-card .flag {
+      display: inline-block;
+      width: 36px;
+      height: 24px;
+      border-radius: 3px;
+      background: linear-gradient(#009e60 0 33.4%, #fcd116 33.4% 66.7%, #3a75c4 66.7% 100%);
+    }
+    .s9d-lab {
+      position: absolute;
+      font-family: "Hyundai Sans Text", sans-serif;
+      font-size: 28px;
+      color: #3c423b;
+      white-space: nowrap;
+    }
+    #s9d-badge {
+      position: absolute;
+      left: 1399px;
+      top: 594px;
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+    #s9d-badge img {
+      position: absolute;
+      left: 16px;
+      top: 18px;
+      width: 60px;
+      height: 55px;
+    }
+    #s9d-poster {
+      position: absolute;
+      left: 1408px;
+      top: 352px;
+      width: 214px;
+      height: 214px;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+    }
+    #s9d-poster .pglobe {
+      position: absolute;
+      left: 12px;
+      top: 12px;
+      width: 190px;
+      height: 190px;
+      background: url("assets/img/globe-base.svg") center / 190px 190px no-repeat;
+    }
+  </style>
+  <div id="root" data-composition-id="s9d" data-width="1920" data-height="1080">
+    <!-- A : le globe -->
+    <div id="s9d-a">
+      <img id="s9d-globe" src="assets/img/globe-base.svg" alt="" />
+      <svg class="s9d-abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="overflow: visible">
+        <defs>
+          <mask id="s9d-arcmask" maskUnits="userSpaceOnUse" x="0" y="0" width="1920" height="1080">
+            <path id="s9d-arcrev" d="M 1305.4,387.9 Q 1143.6,563.5 1339.6,699.9" fill="none" stroke="#FFFFFF" stroke-width="14" stroke-linecap="round" />
+          </mask>
+        </defs>
+        <g transform="translate(1330,560)">
+          <path id="s9d-fr" fill="#DCE1D8" stroke="#F1F4F0" stroke-width="1.2" />
+          <path id="s9d-ga" fill="#DCE1D8" />
+        </g>
+        <path id="s9d-arc" d="M 1305.4,387.9 Q 1143.6,563.5 1339.6,699.9" fill="none" stroke="#0A7537" stroke-width="6" stroke-dasharray="14 11" stroke-linecap="round" mask="url(#s9d-arcmask)" />
+        <line id="s9d-lead" x1="1238" y1="272" x2="1299" y2="379" stroke="#063D21" stroke-width="2" />
+        <line id="s9d-lead2" x1="1347" y1="694" x2="1408" y2="660" stroke="#063D21" stroke-width="2" />
+        <g id="s9d-ringga" transform="translate(1352,712)"><circle r="30" fill="none" stroke="#0A7537" stroke-width="4" /></g>
+        <g id="s9d-paris" transform="translate(1305.4,387.9)"><circle r="11" fill="#063D21" stroke="#FFFFFF" stroke-width="3" /></g>
+        <g id="s9d-lbv" transform="translate(1339.6,699.9)"><circle r="11" fill="#063D21" stroke="#FFFFFF" stroke-width="3" /></g>
+        <g id="s9d-plane" transform="translate(1305.4,387.9)">
+          <path d="M 0,-21 C 2,-21 3.4,-18 3.4,-14 L 3.4,-5 L 19,4 L 19,8.5 L 3.4,3.5 L 3.4,12 L 8.5,16 L 8.5,19.5 L 0,17.5 L -8.5,19.5 L -8.5,16 L -3.4,12 L -3.4,3.5 L -19,8.5 L -19,4 L -3.4,-5 L -3.4,-14 C -3.4,-18 -2,-21 0,-21 Z" fill="#063D21" />
+        </g>
+      </svg>
+      <div id="s9d-lparis" class="s9d-lab" style="left: 1324px; top: 368px">Paris</div>
+      <div id="s9d-llbv" class="s9d-lab" style="left: 1176px; top: 708px; width: 144px; text-align: right">Libreville</div>
+      <div id="s9d-badge"><img src="assets/img/feg-logo.png" alt="FEG" /></div>
+      <div id="s9d-card">
+        <span id="s9d-c1" class="l">Entrepreneurs de la diaspora</span>
+        <span id="s9d-c2" class="l">Entreprises de droit étranger</span>
+        <span id="s9d-c3" class="l3"><i class="flag"></i>à capitaux gabonais</span>
+      </div>
+    </div>
+    <!-- B : la table du comité Rayonnement à l'international -->
+    <div id="s9d-b">
+      <div id="s9d-bcam">
+        <svg class="s9d-abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="overflow: visible">
+          <rect id="s9d-wall" x="-200" y="330" width="2320" height="442" fill="#F4F5F2" />
+          <rect id="s9d-walltop" x="-200" y="330" width="2320" height="8" fill="#E4E6E0" />
+          <path d="M -200,772 L 2120,772 L 2120,808 L -200,808 Z" fill="#F2F3EF" />
+          <rect x="-200" y="772" width="2320" height="5" fill="#E4E6E0" />
+          <rect id="s9d-chair" x="1122" y="610" width="116" height="170" rx="22" fill="#3A4540" />
+        </svg>
+        <div id="s9d-poster">
+          <div class="pglobe"></div>
+          <svg style="position: absolute; left: 12px; top: 12px" width="190" height="190" viewBox="-400 -400 800 800">
+            <path id="s9d-pfr" fill="#9DB3A4" />
+            <path id="s9d-pga" fill="#0A7537" />
+            <path d="M -24.6,-172.1 Q -186.4,3.5 9.6,139.9" fill="none" stroke="#0A7537" stroke-width="14" stroke-dasharray="34 26" stroke-linecap="round" />
+          </svg>
+        </div>
+        <div id="s9d-people" class="s9d-abs"></div>
+        <svg class="s9d-abs" width="1920" height="1080" viewBox="0 0 1920 1080" style="overflow: visible">
+          <rect id="s9d-front" x="-200" y="806" width="2320" height="400" fill="#E4E6E0" />
+          <rect x="-200" y="806" width="2320" height="12" fill="#D3D7CF" />
+        </svg>
+      </div>
+    </div>
+    <div id="s9d-kickA" class="s9d-kick">Hors du Gabon</div>
+    <div id="s9d-titleA" class="s9d-title"><span>La</span> <span>FEG</span> <span>s'ouvre</span><br /><span>à</span> <span>la</span> <span>diaspora</span></div>
+    <div id="s9d-sub"><span class="m">Selon des modalités adaptées</span><span class="c">Renseignements : info@lafeg.ga</span></div>
+    <div id="s9d-kickB" class="s9d-kick">Un comité de la FEG</div>
+    <div id="s9d-titleB" class="s9d-title"><span>Rayonnement</span><br /><span>à</span> <span>l'international</span></div>
+  </div>
+  <script>
+    (function () {
+      var C = window.__FEG_CUES;
+      var P = window.FEGP;
+      var G = window.__FEG_GLOBE;
+      var L = C.local("s9d");
+      var D = C.sc.s9d.dur;
+      document.getElementById("s9d-fr").setAttribute("d", G.france);
+      document.getElementById("s9d-ga").setAttribute("d", G.gabon);
+      document.getElementById("s9d-pfr").setAttribute("d", G.france);
+      document.getElementById("s9d-pga").setAttribute("d", G.gabon);
+      var tl = gsap.timeline({ paused: true });
+
+      // ---------------- A : le globe
+      var arc = document.getElementById("s9d-arcrev");
+      var arcLen = arc.getTotalLength();
+      gsap.set("#s9d-arcrev", { strokeDasharray: arcLen + 20, strokeDashoffset: arcLen + 20 });
+      gsap.set(["#s9d-paris", "#s9d-lbv", "#s9d-plane"], { scale: 0, transformOrigin: "50% 50%" });
+      gsap.set(["#s9d-ringga"], { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" });
+      gsap.set(["#s9d-lead", "#s9d-lead2"], { opacity: 0 });
+      gsap.set("#s9d-b", { opacity: 0 });
+      tl.fromTo("#s9d-globe", { opacity: 0, scale: 0.94, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.8, ease: "expo.out" }, 0.1);
+      tl.fromTo("#s9d-kickA", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, L(C.at("LD1", "Et")) + 0.05);
+      // « au Gabon ? » : le Gabon s'allume, Libreville apparaît
+      var tGab = L(C.at("LD1", "Gabon")) - 0.05;
+      tl.to("#s9d-ga", { fill: "#0A7537", duration: 0.3, ease: "power2.out" }, tGab);
+      tl.to("#s9d-ringga", { opacity: 1, scale: 1, duration: 0.25, ease: "power2.out" }, tGab).to("#s9d-ringga", { opacity: 0, scale: 1.9, duration: 0.6, ease: "power2.out" }, tGab + 0.25);
+      tl.to("#s9d-lbv", { scale: 1, duration: 0.3, ease: "back.out(2)" }, tGab + 0.15);
+      tl.fromTo("#s9d-llbv", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, tGab + 0.25);
+      // « La Fédération s'ouvre aussi à la diaspora gabonaise »
+      tl.fromTo("#s9d-titleA span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.067, ease: "power4.out" }, L(C.at("LD1", "Fédération")) - 0.12);
+      var tDia = L(C.at("LD1", "diaspora")) - 0.1;
+      tl.to("#s9d-fr", { fill: "#9DB3A4", duration: 0.3, ease: "power2.out" }, tDia);
+      tl.to("#s9d-paris", { scale: 1, duration: 0.3, ease: "back.out(2)" }, tDia);
+      tl.fromTo("#s9d-lparis", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power2.out" }, tDia + 0.1);
+      // le trajet Paris → Libreville se trace ; l'avion le suit
+      var tArc = tDia + 0.25,
+        dArc = 1.5;
+      tl.to("#s9d-arcrev", { strokeDashoffset: 0, duration: dArc, ease: "power2.inOut" }, tArc);
+      var A0 = [1305.4, 387.9],
+        AC = [1143.6, 563.5],
+        A2 = [1339.6, 699.9];
+      var pl = { u: 0 };
+      function placePlane() {
+        var u = pl.u,
+          iu = 1 - u;
+        var x = iu * iu * A0[0] + 2 * iu * u * AC[0] + u * u * A2[0];
+        var y = iu * iu * A0[1] + 2 * iu * u * AC[1] + u * u * A2[1];
+        var dx = 2 * iu * (AC[0] - A0[0]) + 2 * u * (A2[0] - AC[0]);
+        var dy = 2 * iu * (AC[1] - A0[1]) + 2 * u * (A2[1] - AC[1]);
+        var ang = (Math.atan2(dy, dx) * 180) / Math.PI + 90;
+        document.getElementById("s9d-plane").setAttribute("transform", "translate(" + x.toFixed(1) + "," + y.toFixed(1) + ") rotate(" + ang.toFixed(1) + ") scale(" + (Math.sin(Math.PI * Math.min(1, u * 1.02)) > 0.02 ? 1 : 0) + ")");
+      }
+      placePlane();
+      tl.fromTo(pl, { u: 0 }, { u: 1, duration: dArc, ease: "power2.inOut", onUpdate: placePlane }, tArc);
+      // LD2 : la carte de la diaspora, sur Paris
+      var tEnt = L(C.at("LD2", "Entrepreneurs")) - 0.12;
+      tl.fromTo("#s9d-card", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.6, ease: "expo.out" }, tEnt);
+      tl.to("#s9d-lead", { opacity: 1, duration: 0.2, ease: "power2.out" }, tEnt + 0.2);
+      gsap.set(["#s9d-c2", "#s9d-c3"], { display: "none" });
+      var tEtr = L(C.at("LD2", "entreprises")) - 0.1;
+      tl.set("#s9d-c2", { display: "block" }, tEtr).fromTo("#s9d-c2", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, tEtr);
+      var tCap = L(C.at("LD2", "capitaux")) - 0.1;
+      tl.set("#s9d-c3", { display: "flex" }, tCap).fromTo("#s9d-c3", { opacity: 0, y: 8 }, { opacity: 1, y: 0, duration: 0.25, ease: "power2.out", immediateRender: false }, tCap);
+      // « rejoindre la Fédération » : la FEG à Libreville
+      var tFed = L(C.at("LD2", "rejoindre")) - 0.1;
+      tl.fromTo("#s9d-badge", { opacity: 0, scale: 0.6, transformOrigin: "50% 50%" }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.8)" }, tFed);
+      tl.to("#s9d-lead2", { opacity: 1, duration: 0.2, ease: "power2.out" }, tFed + 0.15);
+      tl.fromTo("#s9d-lbv", { scale: 1 }, { scale: 1.35, duration: 0.18, ease: "power2.out", immediateRender: false }, tFed + 0.1).to("#s9d-lbv", { scale: 1, duration: 0.3, ease: "power2.inOut" }, tFed + 0.3);
+      // « selon des modalités adaptées »
+      tl.fromTo("#s9d-sub .m", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, L(C.at("LD2", "selon")) - 0.1);
+      tl.fromTo("#s9d-sub .c", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power2.out" }, L(C.at("LD2", "modalités")) + 0.1);
+
+      // ---------------- B : la table du comité Rayonnement à l'international
+      var Y = 880,
+        cut = 772 - Y;
+      var ppl = [
+        { id: "d0", x: 80, skin: "#5C3A24", hair: "short", top: "#C9CEC9", tie: "#3A4540", sex: "m" },
+        { id: "d1", x: 300, skin: "#7F5236", hair: "bun", top: "#3A4540", sex: "f" },
+        { id: "d2", x: 520, skin: "#4A2D1C", hair: "shaved", top: "#2F3A34", tie: "#AEB4AF", sex: "m", beard: true },
+        { id: "d3", x: 740, skin: "#6E4429", hair: "locs", top: "#5C6660", sex: "f" },
+        { id: "dh", x: 960, skin: "#6E4429", hair: "afro", top: "#0A7537", sex: "f" },
+        { id: "d5", x: 1400, skin: "#4A2D1C", hair: "afro", top: "#2F3A34", sex: "f" },
+        { id: "d6", x: 1620, skin: "#7F5236", hair: "grey", hairColor: "#BFC3BE", top: "#5C6660", tie: "#3A4540", sex: "m" },
+        { id: "d7", x: 1840, skin: "#6E4429", hair: "bun", top: "#C9CEC9", sex: "f" },
+      ];
+      var html = ppl
+        .map(function (p) {
+          return P.front(p.id, { x: p.x, y: Y, s: 1, skin: p.skin, hair: p.hair, hairColor: p.hairColor, top: p.top, tie: p.tie, sex: p.sex, glasses: p.glasses, beard: p.beard, cut: cut, table: true });
+        })
+        .join("");
+      // l'entrepreneur de la diaspora, qui prend la place libre
+      html += P.front("dn", { x: 1180, y: Y, s: 1, skin: "#5C3A24", hair: "short", top: "#26344D", tie: "#AEAE7D", sex: "m", glasses: true, cut: cut, table: true });
+      document.getElementById("s9d-people").innerHTML = html;
+      ppl.concat([{ id: "dn" }]).forEach(function (p) {
+        P.prep(p.id);
+        gsap.set("#" + p.id + "-uaL", { rotation: 14 });
+        gsap.set("#" + p.id + "-uaR", { rotation: -14 });
+      });
+      var tCut = L(C.lines.LD3.start) - 0.25;
+      tl.set("#s9d-a", { opacity: 0 }, tCut).set("#s9d-b", { opacity: 1 }, tCut);
+      tl.to(["#s9d-kickA", "#s9d-titleA", "#s9d-sub"], { opacity: 0, filter: "blur(8px)", duration: 0.22, ease: "power3.in" }, tCut - 0.22);
+      tl.fromTo("#s9d-kickB", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power4.out" }, tCut + 0.1);
+      // « participer » : il prend place ; elle et ses voisins se tournent vers lui
+      var tSit = L(C.at("LD3", "participer")) - 0.3;
+      gsap.set("#dn", { y: -46, opacity: 0 });
+      tl.to("#dn", { opacity: 1, duration: 0.3, ease: "power2.out" }, tSit).to("#dn", { y: 0, duration: 0.6, ease: "power2.inOut" }, tSit);
+      tl.to("#dh-head", { rotation: 7, duration: 0.45, ease: "power2.inOut" }, tSit + 0.4)
+        .to("#d5-head", { rotation: -7, duration: 0.45, ease: "power2.inOut" }, tSit + 0.5)
+        .to(["#dh-mouth", "#d5-mouth", "#dn-mouth"], { scaleX: 1.12, scaleY: 1.35, duration: 0.35, ease: "power2.out", stagger: 0.1 }, tSit + 0.55)
+        .to("#dn-head", { rotation: -4, duration: 0.45, ease: "power2.inOut" }, tSit + 0.7)
+        .to("#d3-head", { rotation: 4, duration: 0.5, ease: "power2.inOut" }, tSit + 0.8)
+        .to("#d6-head", { rotation: -4, duration: 0.5, ease: "power2.inOut" }, tSit + 0.9);
+      tl.fromTo("#s9d-poster", { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.5, ease: "power3.out" }, tCut + 0.2);
+      // « le comité Rayonnement à l'international »
+      tl.fromTo("#s9d-titleB span", { opacity: 0, filter: "blur(6px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.13, stagger: 0.12, ease: "power4.out" }, L(C.at("LD3", "Rayonnement")) - 0.1);
+      var tWide = L(C.at("LD3", "international")) - 0.1;
+      tl.to("#s9d-bcam", { scale: 0.88, transformOrigin: "1060px 860px", duration: 1.6, ease: "power2.inOut" }, tWide);
+      ppl.concat([{ id: "dn" }]).forEach(function (p, i) {
+        P.breathe(tl, p.id, tCut + 0.1 * i, D, 3.2 + 0.25 * (i % 4), 0.007);
+      });
+      P.blink(tl, "d1", [tSit + 1.2]);
+      P.blink(tl, "dn", [tWide + 0.6]);
+      P.blink(tl, "dh", [tSit + 1.9]);
+
+      tl.set("#s9d-card", { opacity: 0 }, tCut);
+      if (P.V) {
+        // vertical : les textes en haut ; la carte de la diaspora sous le titre (hors du globe, pour rester lisible),
+        // puis les modalités à sa place ; le globe dessous, au-dessus des sous-titres ; enfin la table du comité
+        var vw = P.vwrap("s9d-a", ["s9d-kickA", "s9d-titleA", "s9d-sub", "s9d-kickB", "s9d-titleB", "s9d-card"]);
+        P.vkick("s9d-kickA");
+        P.vtitle("s9d-titleA", 250, 92);
+        P.vtext("s9d-card", { left: "80px", top: "468px" });
+        document.querySelectorAll("#s9d-card .l").forEach(function (e) {
+          e.style.fontSize = "38px";
+        });
+        document.querySelector("#s9d-card .l3").style.fontSize = "36px";
+        document.getElementById("s9d-lead").style.display = "none";
+        tl.to("#s9d-card", { opacity: 0, duration: 0.25, ease: "power2.in" }, L(C.at("LD2", "selon")) - 0.38);
+        P.vtext("s9d-sub", { left: "80px", top: "484px", width: "920px" });
+        document.querySelector("#s9d-sub .m").style.fontSize = "44px";
+        document.querySelector("#s9d-sub .c").style.fontSize = "38px";
+        P.vkick("s9d-kickB");
+        P.vtitle("s9d-titleB", 250, 92);
+        // noms de villes agrandis (la caméra les réduit à 0,64)
+        P.vtext("s9d-lparis", { fontSize: "46px", left: "1328px", top: "356px" });
+        P.vtext("s9d-llbv", { fontSize: "46px", left: "1060px", top: "708px", width: "260px" });
+        // la table du comité : le mur couvre le haut du cadre, le devant de table le bas (pas de bande blanche)
+        var wall = document.getElementById("s9d-wall");
+        wall.setAttribute("x", "-600");
+        wall.setAttribute("width", "3120");
+        wall.setAttribute("y", "-900");
+        wall.setAttribute("height", "1672");
+        document.getElementById("s9d-walltop").style.display = "none";
+        wall.ownerSVGElement.style.overflow = "visible";
+        var front = document.getElementById("s9d-front");
+        front.setAttribute("x", "-600");
+        front.setAttribute("width", "3120");
+        front.setAttribute("height", "1800");
+        P.vtext("s9d-poster", { left: "1296px", top: "340px" });
+        P.vset(vw, 1330, 607, 0.64);
+        P.vto(tl, vw, tCut, 0.01, 1070, 640, 1.0, "none");
+      }
+      window.__timelines["s9d"] = tl;
+    })();
+  </script>
+</template>

@@ -1,5 +1,5 @@
-// Texte de la vidéo « Comment adhérer à la FEG ? » (FEG-comment-adherer-9x16-v2) mis en page pour le livret.
-// Usage : node livret/livret_docx.js livret/FEG-comment-adherer-9x16-v2-texte.docx
+// Texte de la vidéo « Comment adhérer à la FEG ? » (FEG-comment-adherer-9x16-v3, avec la diaspora) mis en page pour le livret.
+// Usage : node livret/livret_docx.js livret/FEG-comment-adherer-9x16-v3-texte.docx
 const fs = require("fs");
 const {
   Document, Packer, Paragraph, TextRun, HeadingLevel, Table, TableRow, TableCell, WidthType, ShadingType,
@@ -68,7 +68,7 @@ const boxLine = (runs, last = false) =>
 
 const children = [
   new Paragraph({ heading: HeadingLevel.TITLE, children: [t("Comment adhérer à la FEG ?")] }),
-  new Paragraph({ style: "Source", children: [t("Fédération des Entreprises du Gabon · texte de la vidéo « Comment adhérer à la FEG ? » (FEG-comment-adherer-9x16-v2)")] }),
+  new Paragraph({ style: "Source", children: [t("Fédération des Entreprises du Gabon · texte de la vidéo « Comment adhérer à la FEG ? » (FEG-comment-adherer-9x16-v3)")] }),
   body("Vous souhaitez rejoindre la Fédération des Entreprises du Gabon ? Voici comment adhérer, étape par étape."),
 
   kicker("Condition impérative"),
@@ -123,6 +123,15 @@ const children = [
   body("Et chaque année, avant le 31 mars, vous actualisez les données économiques de votre entreprise.", true),
   boxLine([t("Date limite : ", { bold: true }), t("31 mars", { bold: true, color: GREEN })], true),
 
+  kicker("Hors du Gabon"),
+  h1("La FEG s'ouvre à la diaspora"),
+  body("Et si vous n'êtes pas présent au Gabon ? La Fédération s'ouvre aussi à la diaspora gabonaise. Entrepreneurs de la diaspora, entreprises de droit étranger à capitaux gabonais : vous pouvez, vous aussi, rejoindre la Fédération, selon des modalités adaptées. Et participer à ses travaux à travers le comité Rayonnement à l'international.", true),
+  bullet([t("Entrepreneurs de la diaspora gabonaise")]),
+  bullet([t("Entreprises de droit étranger à capitaux gabonais")]),
+  bullet([t("Adhésion selon des modalités adaptées : "), t("renseignements auprès de la FEG", { color: GREY })]),
+  bullet([t("Participation à travers le comité "), t("Rayonnement à l'international", { bold: true, color: GREEN })], true),
+  boxLine([t("Renseignements : ", { bold: true }), t("info@lafeg.ga", { bold: true, color: GREEN })], true),
+
   new Paragraph({ style: "Kicker", children: [] }),
   h1("Bâtir ensemble une économie forte"),
   new Paragraph({ style: "Lead", children: [t("pour garantir la "), t("souveraineté nationale", { bold: true, color: GREEN })] }),
@@ -135,7 +144,7 @@ const children = [
 const doc = new Document({
   creator: "Fédération des Entreprises du Gabon",
   title: "Comment adhérer à la FEG ?",
-  description: "Texte de la vidéo FEG-comment-adherer-9x16-v2, guide pour le livret",
+  description: "Texte de la vidéo FEG-comment-adherer-9x16-v3, guide pour le livret",
   styles: {
     default: { document: { run: { font: FONT, size: 22, color: INK } } },
     paragraphStyles: [
