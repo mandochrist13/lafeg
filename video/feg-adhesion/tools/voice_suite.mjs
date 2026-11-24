@@ -26,7 +26,7 @@ const skip = new Set();
     skip.add(i + 1);
   }
 });
-const IDS = args.filter((a, i) => !skip.has(i));
+const IDS = args.filter((a, i) => !skip.has(i) && a !== "--split-only");
 // même consigne que voice_onepass.mjs (prise d'origine du film)
 const STYLE =
   "Voix féminine française, naturelle, claire et bienveillante, comme une conseillère qui guide un chef d'entreprise pas à pas : " +
@@ -44,9 +44,10 @@ const seq = (CTX ? [CTX] : []).concat(IDS).map(get);
 const rawDir = join(ROOT, "assets/voice/raw");
 mkdirSync(rawDir, { recursive: true });
 const full = join(rawDir, `suite-${IDS.join("-")}-${VOICE}.wav`);
+const SPLIT_ONLY = process.argv.includes("--split-only");
 const { synthesizeGemini } = await import(join(ROOT, "../../.agents/skills/media-use/audio/scripts/lib/gemini-tts.mjs"));
-let r;
-for (let a = 0; a < 6; a++) {
+let r = { ok: true };
+for (let a = 0; a < 6 && !SPLIT_ONLY; a++) {
   r = await synthesizeGemini(
     { text: seq.map((L) => L.text).join("\n\n"), voiceId: VOICE, model: MODEL, style: STYLE, wavAbs: full },
     process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY ? {} : { authenticate: () => ({ headers: {}, secret: undefined }) },
@@ -82,11 +83,31 @@ if (inner.length < nb) {
   console.error(`seulement ${inner.length} silences pour ${nb} frontières`);
   process.exit(1);
 }
-const cuts = inner
-  .slice()
-  .sort((a, b) => b[1] - b[0] - (a[1] - a[0]))
-  .slice(0, nb)
-  .sort((a, b) => a[0] - b[0]);
+// frontières : parmi les silences d'au moins 0,35 s, la combinaison qui donne à chaque phrase un débit
+// (secondes par mot) aussi régulier que possible, en préférant les longues pauses (paragraphes)
+const nWords = seq.map((L) => L.text.split(/\s+/).length);
+const cand = inner.filter((s) => s[1] - s[0] >= 0.35);
+if (cand.length < nb) {
+  console.error(`seulement ${cand.length} pauses d'au moins 0,35 s pour ${nb} frontières`);
+  process.exit(1);
+}
+let best = null;
+(function pick(start, chosen) {
+  if (chosen.length === nb) {
+    const edges = [0].concat(chosen.map((c) => (c[0] + c[1]) / 2), [dur]);
+    const rates = seq.map((L, k) => (edges[k + 1] - edges[k]) / nWords[k]);
+    const med = rates.slice().sort((a, b) => a - b)[Math.floor(rates.length / 2)];
+    const score = rates.reduce((a, r) => a + Math.pow(Math.log(r / med), 2), 0) - 0.4 * chosen.reduce((a, c) => a + (c[1] - c[0]), 0);
+    if (!best || score < best.score) best = { score, chosen: chosen.slice() };
+    return;
+  }
+  for (let i = start; i < cand.length; i++) {
+    chosen.push(cand[i]);
+    pick(i + 1, chosen);
+    chosen.pop();
+  }
+})(0, []);
+const cuts = best.chosen;
 const bounds = [];
 for (let k = 0; k < seq.length; k++) {
   const a = k === 0 ? 0 : Math.max(cuts[k - 1][1] - 0.12, (cuts[k - 1][0] + cuts[k - 1][1]) / 2);

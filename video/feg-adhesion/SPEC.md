@@ -1,10 +1,10 @@
 # SPEC — « Comment adhérer à la FEG » (storyline A, « Le dossier »)
 
-GOAL: un chef d'entreprise gabonais sait qu'il doit d'abord être une entreprise formelle (registre du commerce et identifiant fiscal validés, à jour CNSS, CNAMGS et impôts), connaît les six étapes du dossier d'adhésion dans l'ordre, les pièces à joindre (justificatifs CNSS et CNAMGS, fiche circuit) et sait où le déposer. **v6 (diaspora)** : l'entrepreneur qui n'est pas au Gabon sait que la FEG s'ouvre à la diaspora gabonaise. Les entrepreneurs de la diaspora et les entreprises de droit étranger à capitaux gabonais peuvent la rejoindre, selon des modalités adaptées, et participer à ses travaux à travers le comité Rayonnement à l'international. Les renseignements s'obtiennent à info@lafeg.ga.
+GOAL: un chef d'entreprise gabonais sait qu'il doit d'abord être une entreprise formelle (registre du commerce et identifiant fiscal validés, à jour CNSS, CNAMGS et impôts), connaît les six étapes du dossier d'adhésion dans l'ordre, les pièces à joindre (justificatifs CNSS et CNAMGS, fiche circuit) et sait où le déposer. **v7 (diaspora)** : l'entrepreneur qui n'est pas au Gabon, où qu'il soit dans le monde, sait que la FEG s'ouvre à la diaspora gabonaise. Les entrepreneurs de la diaspora et les entreprises de droit étranger à capitaux gabonais peuvent la rejoindre et participer à ses travaux à travers le comité Rayonnement international. Pour les conditions d'adhésion de la diaspora et toute information : info@lafeg.ga.
 
 OUTPUT: HyperFrames, 1920 × 1080, 30 i/s, MP4 H.264, voix off Despina + musique. Version réseaux sociaux : 1080 × 1920 (9:16), même voix, même musique, même minutage, sous-titres incrustés (voir « 9:16 » plus bas).
 
-TIME: 120,3 s (fixé par la voix off) ≈ 3608 images ; v5 sans la diaspora : 98,5 s. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
+TIME: 129,6 s (fixé par la voix off) ≈ 3888 images ; v6 : 120,3 s ; v5 sans la diaspora : 98,5 s. Musique SoundHill « Find Yourself », 120 BPM → 15 images par temps.
 
 ## LOOK
 
@@ -69,11 +69,13 @@ Les étapes 1 et 2 sont dans le même plan (s3), le dossier restant à l'écran.
 7. **S7 · La cotisation** (L08) : l'escalier des tranches, son repère, puis le droit d'accès. « Étape 5 ». Aucun montant.
 8. **S8 · Membre** (L09) : poignée de main en pied devant le logo de la FEG, puis la table de sa fédération qui l'accueille.
 9. **S9 · Chaque année** (L10) : le calendrier « 31 mars », la fiche entreprise se met à jour. « Étape 6 ».
-10. **S9d · Hors du Gabon** (LD1–LD3, ajouté en v6 pour la rencontre avec la diaspora en France).
-   - **Le globe.** Un globe à plat (Europe et Afrique, Natural Earth, `tools/globe.mjs` → `assets/img/globe-base.svg` et `assets/globe.js`). Surtitre « Hors du Gabon ». Sur « Gabon ? », le pays s'allume en vert avec Libreville ; titre « La FEG s'ouvre à la diaspora ». Sur « diaspora », la France s'éclaire, Paris apparaît, et un trajet en pointillés suivi d'un avion relie Paris à Libreville.
-   - **Les publics.** Une carte apparaît à côté de Paris : « Entrepreneurs de la diaspora », puis « Entreprises de droit étranger », puis « à capitaux gabonais » (avec le drapeau gabonais), ligne par ligne sur la voix.
-   - **La FEG.** Sur « rejoindre la Fédération », le badge FEG se pose à Libreville. Sur « selon des modalités adaptées » : « Selon des modalités adaptées », « Renseignements : info@lafeg.ga ».
-   - **Le comité.** Sur « Et participer », la table du comité, comme à la S8. Un entrepreneur de la diaspora (costume bleu nuit, cravate bronze) prend la place libre à côté de la dirigeante ; ses voisins se tournent vers lui. Au mur, le globe avec le trajet. Surtitre « Un comité de la FEG », titre « Rayonnement à l'international ».
+10. **S9d · Hors du Gabon** (LD1–LD3, ajouté en v6 pour la rencontre avec la diaspora, refait en v7 pour plusieurs pays).
+   - **La carte du monde.** Carte à plat, projection Equal Earth (Natural Earth, `tools/worldmap.mjs` → `assets/worldmap.js`). Surtitre « Hors du Gabon ». On part serré sur l'Afrique centrale ; sur « Gabon ? », le pays s'allume en vert avec Libreville et son nom.
+   - **Où que vous soyez.** Sur « Où que vous soyez dans le monde », la caméra recule jusqu'à la carte entière. Dix pays de la diaspora se teintent, puis leurs villes et leurs noms apparaissent un à un : Canada, États-Unis, Royaume-Uni, Belgique, France, Maroc, Sénégal, Côte d'Ivoire, Afrique du Sud, Émirats arabes unis. Ce sont des exemples, pas une liste officielle. Titre « La FEG s'ouvre à la diaspora » ; sur « diaspora gabonaise », un trajet en pointillés part de chaque pays vers Libreville.
+   - **Les publics.** Sous le titre, une carte : « Entrepreneurs de la diaspora », puis « Entreprises de droit étranger », puis « à capitaux gabonais » (avec le drapeau gabonais), ligne par ligne sur la voix. En 9:16, elle prend la place du titre.
+   - **La FEG.** Sur « rejoindre la Fédération », le badge FEG se pose à côté du Gabon, et un trait file de chaque pays jusqu'à Libreville.
+   - **Le comité.** Sur « et participer », la table du comité, comme à la S8. Un entrepreneur de la diaspora (costume bleu nuit, cravate bronze, lunettes) prend la place libre à côté de la dirigeante ; ses voisins se tournent vers lui. Au mur, la carte du monde avec les trajets. Surtitre « Un comité de la FEG », titre « Rayonnement international », mot à mot sur la voix.
+   - **Le contact.** Sur LD3, le même entrepreneur, chez lui, à son bureau (ordinateur portable, petit globe, plante). Titre « Conditions d'adhésion de la diaspora », puis « Pour toute information, contactez-nous : ». L'adresse info@lafeg.ga s'écrit dans un cartouche, lettre à lettre au rythme de la voix (« info arobase lafeg point G-A »). Une enveloppe part de l'ordinateur.
 11. **S10 · Fin** (L11) : « Bâtir ensemble une économie forte », « pour garantir la souveraineté nationale », puis logo FEG, « Devenez membre · lafeg.ga », « info@lafeg.ga · +241 77 55 95/97 » et « Immeuble Odyssée, 8ème et 9ème étages · BP 410 · Libreville », tenus au moins 2,5 s.
 
 ## 9:16 (réseaux sociaux)
@@ -102,6 +104,30 @@ Fond sombre ; lueurs, particules ; dégradés violet/bleu, cartes en verre ; pap
 - La poignée de main se lit au premier coup d'œil ; la table compte au moins six personnes.
 - Carte de fin : logo, appel à l'action, téléphone et adresse tenus au moins 2,5 s.
 - 9:16 : aucun texte hors de la bande 168–1330 px ; les sous-titres ne cachent ni visage ni tampon ; aucun bord d'image 16:9 visible ; raccords S1→S2 et S2→S3 exacts.
+
+## v7 : la diaspora dans plusieurs pays (FEG-comment-adherer-v7, 9:16 v4)
+
+Demandes de la FEG sur la v6 :
+
+- la diaspora n'est pas qu'à Paris : montrer plusieurs pays ;
+- le comité s'appelle « Rayonnement international » ;
+- dire explicitement que, pour les conditions d'adhésion de la diaspora et pour toute information, on écrit à info@lafeg.ga.
+
+- **Voix.** Les trois phrases sont réécrites et relues par Despina, à la suite de L10, dans une seule requête (`tools/voice_suite.mjs`).
+  - LD1 « Et si vous n'êtes pas présent au Gabon ? Où que vous soyez dans le monde, la Fédération s'ouvre aussi à la diaspora gabonaise. »
+  - LD2 « Entrepreneurs de la diaspora, entreprises de droit étranger à capitaux gabonais : vous pouvez, vous aussi, rejoindre la Fédération, et participer à ses travaux à travers le comité Rayonnement international. »
+  - LD3 « Pour connaître les conditions d'adhésion de la diaspora, et pour toute information, contactez-nous à info arobase lafeg point G-A. »
+  - L'adresse est épelée dans le texte lu, comme dans les autres films ; à l'écran et dans les sous-titres, elle s'écrit info@lafeg.ga.
+  - « selon des modalités adaptées » est retiré : LD3 renvoie à l'adresse pour les conditions.
+  - Le découpage de la prise choisit désormais les pauses qui donnent à chaque phrase un débit régulier (la pause après « Gabon ? » avait été prise pour une fin de phrase).
+  - Contrôle Gemini : texte exact, ton naturel ; « comité Rayonnement international » et l'adresse sont clairement entendus.
+- **Image.** Le plan S9d ci-dessus (carte du monde, comité, contact). Sous-titres 9:16 : `tools/captions.json` ; `tools/build.mjs` réécrit les mots dits « info arobase lafeg point G-A » en « info@lafeg.ga ». Bruitages : `tools/sfx.json`.
+- **Livret.** `livret/FEG-comment-adherer-9x16-v4-texte.docx` : section « Hors du Gabon » mise à jour, et « Conditions d'adhésion de la diaspora » avec l'adresse.
+
+### À valider (v7)
+
+- **Les dix pays de la carte.** Canada, États-Unis, Royaume-Uni, Belgique, France, Maroc, Sénégal, Côte d'Ivoire, Afrique du Sud, Émirats arabes unis : choisis pour illustrer une diaspora présente sur plusieurs continents. La FEG peut en ajouter, en retirer ou en changer.
+- **Le cas des entreprises de droit étranger à capitaux gabonais.** Le film dit qu'elles peuvent « rejoindre la Fédération ». Si leur place est différente (membre associé, rattachement au seul comité), le texte est à ajuster.
 
 ## v6 : la diaspora (FEG-comment-adherer-v6, 9:16 v3)
 

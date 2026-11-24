@@ -1115,93 +1115,128 @@
       "path": "assets/voice/LD1.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 4.801,
+      "duration_s": 7.356,
       "speech": [
         0.122,
-        4.605
+        7.176
       ],
-      "pauses": 1,
-      "anchored": 1,
+      "pauses": 3,
+      "anchored": 2,
       "words": [
         {
           "text": "Et",
           "start": 0.122,
-          "end": 0.273
+          "end": 0.285
         },
         {
           "text": "si",
-          "start": 0.273,
-          "end": 0.424
+          "start": 0.285,
+          "end": 0.448
         },
         {
           "text": "vous",
-          "start": 0.424,
-          "end": 0.575
+          "start": 0.448,
+          "end": 0.611
         },
         {
           "text": "n'êtes",
-          "start": 0.575,
-          "end": 0.726
+          "start": 0.611,
+          "end": 0.774
         },
         {
           "text": "pas",
-          "start": 0.726,
-          "end": 0.877
+          "start": 0.774,
+          "end": 0.937
         },
         {
           "text": "présent",
-          "start": 0.877,
-          "end": 1.179
+          "start": 0.937,
+          "end": 1.262
         },
         {
           "text": "au",
-          "start": 1.179,
-          "end": 1.33
+          "start": 1.262,
+          "end": 1.425
         },
         {
           "text": "Gabon ?",
-          "start": 1.33,
-          "end": 1.632
+          "start": 1.425,
+          "end": 1.751
         },
         {
-          "text": "La",
-          "start": 2.235,
-          "end": 2.384
+          "text": "Où",
+          "start": 2.735,
+          "end": 2.928
         },
         {
-          "text": "Fédération",
-          "start": 2.384,
-          "end": 2.976
+          "text": "que",
+          "start": 2.928,
+          "end": 3.121
         },
         {
-          "text": "s'ouvre",
-          "start": 2.976,
-          "end": 3.124
+          "text": "vous",
+          "start": 3.121,
+          "end": 3.314
         },
         {
-          "text": "aussi",
-          "start": 3.124,
-          "end": 3.42
+          "text": "soyez",
+          "start": 3.314,
+          "end": 3.507
         },
         {
-          "text": "à",
-          "start": 3.42,
-          "end": 3.568
+          "text": "dans",
+          "start": 3.507,
+          "end": 3.7
+        },
+        {
+          "text": "le",
+          "start": 3.7,
+          "end": 3.893
+        },
+        {
+          "text": "monde,",
+          "start": 3.893,
+          "end": 4.086
         },
         {
           "text": "la",
-          "start": 3.568,
-          "end": 3.716
+          "start": 4.086,
+          "end": 4.279
+        },
+        {
+          "text": "Fédération",
+          "start": 4.279,
+          "end": 5.052
+        },
+        {
+          "text": "s'ouvre",
+          "start": 5.052,
+          "end": 5.245
+        },
+        {
+          "text": "aussi",
+          "start": 5.245,
+          "end": 5.631
+        },
+        {
+          "text": "à",
+          "start": 5.631,
+          "end": 5.824
+        },
+        {
+          "text": "la",
+          "start": 5.824,
+          "end": 6.017
         },
         {
           "text": "diaspora",
-          "start": 3.716,
-          "end": 4.161
+          "start": 6.017,
+          "end": 6.596
         },
         {
           "text": "gabonaise.",
-          "start": 4.161,
-          "end": 4.605
+          "start": 6.596,
+          "end": 7.176
         }
       ],
       "align": "pauses+ponctuation (tools/align.py)"
@@ -1211,123 +1246,158 @@
       "path": "assets/voice/LD2.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 9.38,
+      "duration_s": 12.541,
       "speech": [
         0.12,
-        9.2
+        12.358
       ],
-      "pauses": 3,
-      "anchored": 3,
+      "pauses": 6,
+      "anchored": 4,
       "words": [
         {
           "text": "Entrepreneurs",
           "start": 0.12,
-          "end": 0.877
+          "end": 0.731
         },
         {
           "text": "de",
-          "start": 0.877,
-          "end": 1.067
+          "start": 0.731,
+          "end": 0.884
         },
         {
           "text": "la",
-          "start": 1.067,
-          "end": 1.256
+          "start": 0.884,
+          "end": 1.036
         },
         {
           "text": "diaspora,",
-          "start": 1.256,
-          "end": 1.824
+          "start": 1.036,
+          "end": 1.494
         },
         {
           "text": "entreprises",
-          "start": 1.824,
-          "end": 2.393
+          "start": 1.663,
+          "end": 1.938
         },
         {
           "text": "de",
-          "start": 2.393,
-          "end": 2.582
+          "start": 2.09,
+          "end": 2.226
         },
         {
           "text": "droit",
-          "start": 2.582,
-          "end": 2.771
+          "start": 2.226,
+          "end": 2.361
         },
         {
           "text": "étranger",
-          "start": 2.771,
-          "end": 3.34
+          "start": 2.361,
+          "end": 2.767
         },
         {
           "text": "à",
-          "start": 3.34,
-          "end": 3.529
+          "start": 2.767,
+          "end": 2.902
         },
         {
           "text": "capitaux",
-          "start": 3.529,
-          "end": 4.097
+          "start": 2.902,
+          "end": 3.308
         },
         {
           "text": "gabonais :",
-          "start": 4.097,
-          "end": 4.665
+          "start": 3.308,
+          "end": 3.714
         },
         {
           "text": "vous",
-          "start": 4.89,
-          "end": 5.106
+          "start": 3.86,
+          "end": 4.148
         },
         {
           "text": "pouvez,",
-          "start": 5.106,
-          "end": 5.537
+          "start": 4.148,
+          "end": 4.723
         },
         {
           "text": "vous",
-          "start": 5.537,
-          "end": 5.753
+          "start": 5.331,
+          "end": 5.556
         },
         {
           "text": "aussi,",
-          "start": 5.753,
-          "end": 6.185
+          "start": 5.556,
+          "end": 6.008
         },
         {
           "text": "rejoindre",
-          "start": 6.379,
-          "end": 6.71
+          "start": 6.16,
+          "end": 6.596
         },
         {
           "text": "la",
-          "start": 6.71,
-          "end": 6.875
+          "start": 6.596,
+          "end": 6.815
         },
         {
           "text": "Fédération,",
-          "start": 6.875,
-          "end": 7.537
+          "start": 6.815,
+          "end": 7.688
         },
         {
-          "text": "selon",
-          "start": 7.875,
-          "end": 8.14
+          "text": "et",
+          "start": 8.015,
+          "end": 8.196
         },
         {
-          "text": "des",
-          "start": 8.14,
-          "end": 8.272
+          "text": "participer",
+          "start": 8.196,
+          "end": 8.92
         },
         {
-          "text": "modalités",
-          "start": 8.272,
-          "end": 8.802
+          "text": "à",
+          "start": 8.92,
+          "end": 9.101
         },
         {
-          "text": "adaptées.",
-          "start": 8.802,
-          "end": 9.2
+          "text": "ses",
+          "start": 9.101,
+          "end": 9.282
+        },
+        {
+          "text": "travaux",
+          "start": 9.282,
+          "end": 9.644
+        },
+        {
+          "text": "à",
+          "start": 9.644,
+          "end": 9.825
+        },
+        {
+          "text": "travers",
+          "start": 9.825,
+          "end": 10.186
+        },
+        {
+          "text": "le",
+          "start": 10.186,
+          "end": 10.367
+        },
+        {
+          "text": "comité",
+          "start": 10.367,
+          "end": 10.91
+        },
+        {
+          "text": "Rayonnement",
+          "start": 10.91,
+          "end": 11.453
+        },
+        {
+          "text": "international.",
+          "start": 11.453,
+          "end": 12.358
         }
       ],
       "align": "pauses+ponctuation (tools/align.py)"
@@ -1337,73 +1407,108 @@
       "path": "assets/voice/LD3.wav",
       "voice": "Despina",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 4.6,
+      "duration_s": 8.206,
       "speech": [
         0.12,
-        4.42
+        8.021
       ],
-      "pauses": 1,
-      "anchored": 0,
+      "pauses": 7,
+      "anchored": 2,
       "words": [
         {
-          "text": "Et",
+          "text": "Pour",
           "start": 0.12,
-          "end": 0.281
+          "end": 0.309
         },
         {
-          "text": "participer",
-          "start": 0.281,
-          "end": 0.928
+          "text": "connaître",
+          "start": 0.309,
+          "end": 0.685
+        },
+        {
+          "text": "les",
+          "start": 0.685,
+          "end": 0.873
+        },
+        {
+          "text": "conditions",
+          "start": 0.873,
+          "end": 1.438
+        },
+        {
+          "text": "d'adhésion",
+          "start": 1.438,
+          "end": 2.003
+        },
+        {
+          "text": "de",
+          "start": 2.003,
+          "end": 2.191
+        },
+        {
+          "text": "la",
+          "start": 2.191,
+          "end": 2.379
+        },
+        {
+          "text": "diaspora,",
+          "start": 2.379,
+          "end": 2.944
+        },
+        {
+          "text": "et",
+          "start": 3.06,
+          "end": 3.204
+        },
+        {
+          "text": "pour",
+          "start": 3.204,
+          "end": 3.348
+        },
+        {
+          "text": "toute",
+          "start": 3.348,
+          "end": 3.492
+        },
+        {
+          "text": "information,",
+          "start": 3.492,
+          "end": 4.067
+        },
+        {
+          "text": "contactez-nous",
+          "start": 4.652,
+          "end": 5.311
         },
         {
           "text": "à",
-          "start": 0.928,
-          "end": 1.089
+          "start": 5.311,
+          "end": 5.476
         },
         {
-          "text": "ses",
-          "start": 1.089,
-          "end": 1.251
+          "text": "info",
+          "start": 5.614,
+          "end": 5.721
         },
         {
-          "text": "travaux",
-          "start": 1.251,
-          "end": 1.574
+          "text": "arobase",
+          "start": 5.834,
+          "end": 6.184
         },
         {
-          "text": "à",
-          "start": 1.574,
-          "end": 1.736
+          "text": "lafeg",
+          "start": 6.313,
+          "end": 6.861
         },
         {
-          "text": "travers",
-          "start": 1.736,
-          "end": 2.059
+          "text": "point",
+          "start": 7.042,
+          "end": 7.513
         },
         {
-          "text": "le",
-          "start": 2.059,
-          "end": 2.221
-        },
-        {
-          "text": "comité",
-          "start": 2.221,
-          "end": 2.705
-        },
-        {
-          "text": "Rayonnement",
-          "start": 2.946,
-          "end": 3.437
-        },
-        {
-          "text": "à",
-          "start": 3.437,
-          "end": 3.601
-        },
-        {
-          "text": "l'international.",
-          "start": 3.601,
-          "end": 4.42
+          "text": "G-A.",
+          "start": 7.654,
+          "end": 8.021
         }
       ],
       "align": "pauses+ponctuation (tools/align.py)"

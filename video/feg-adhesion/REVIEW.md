@@ -1,9 +1,11 @@
-# REVIEW — « Comment adhérer à la FEG » (v5, 16:9 et 9:16)
+# REVIEW — « Comment adhérer à la FEG » (v7, 16:9 et 9:16)
 
 ## Livrables
 
-- `renders/FEG-comment-adherer-v5.mp4` : 1920 × 1080, 30 i/s, 1 min 38 s (98,5 s), voix off et musique.
-- `renders/FEG-comment-adherer-9x16-v2.mp4` : 1080 × 1920, 30 i/s, même durée, même bande-son, sous-titres incrustés, pour les réseaux sociaux.
+- `renders/FEG-comment-adherer-v7.mp4` : 1920 × 1080, 30 i/s, 2 min 10 s (129,6 s), voix off et musique, avec le plan « Hors du Gabon » (la diaspora).
+- `renders/FEG-comment-adherer-v7-whatsapp.mp4` : la même, réencodée sous 16 Mo pour WhatsApp.
+- `renders/FEG-comment-adherer-9x16-v4.mp4` : 1080 × 1920, 30 i/s, même durée, même bande-son, sous-titres incrustés, pour les réseaux sociaux.
+- `livret/FEG-comment-adherer-9x16-v4-texte.docx` : le texte de la vidéo, mis en page pour le livret.
 
 Pour regénérer : `node tools/build.mjs` (16:9) ou `node tools/build.mjs --vertical` (9:16), puis `npx hyperframes render --quality delivery -o renders/<nom>.mp4`. Le dépôt garde la racine 16:9 ; la version 9:16 se reconstruit à la demande.
 
@@ -164,3 +166,53 @@ Ajout demandé par la FEG avant sa rencontre avec les entreprises de la diaspora
 - Aucune image noire. Les plans calmes (le globe pendant que le trajet se trace, la carte complète) ne sont pas figés : seul un petit élément y bouge.
 - Planches des fichiers rendus sur le plan « Hors du Gabon » : conformes aux images de contrôle.
 - Livret : `livret/FEG-comment-adherer-9x16-v3-texte.docx`, 3 pages, avec la section « Hors du Gabon ».
+
+## v7 : la diaspora dans plusieurs pays (16:9 v7, 9:16 v4)
+
+Demandes de la FEG sur la v6 : la diaspora n'est pas qu'à Paris ; le comité s'appelle « Rayonnement international » ; dire explicitement qu'on écrit à info@lafeg.ga pour les conditions d'adhésion de la diaspora et pour toute information.
+
+| Demande | Ce qui a été fait |
+| --- | --- |
+| Plusieurs pays | Le globe Europe-Afrique devient une carte du monde. Sur « Où que vous soyez dans le monde », la caméra recule depuis le Gabon. Dix pays s'allument, sur quatre continents, avec un trajet vers Libreville. |
+| « Rayonnement international » | Nouveau nom à la voix, au titre du plan du comité, dans les sous-titres et dans le livret. |
+| Contact explicite | Nouvelle phrase LD3 et nouveau plan : « Conditions d'adhésion de la diaspora », « Pour toute information, contactez-nous : ». L'adresse info@lafeg.ga s'écrit en grand, lettre à lettre au rythme de la voix. |
+
+- **Voix.** Trois phrases Despina relues à la suite de L10, dans une seule requête.
+  - Gemini entend le texte exact, sur un ton naturel, posé, non publicitaire.
+  - « comité Rayonnement international » est entendu clairement.
+  - L'adresse est entendue « info arobase lafeg point g a ». « lafeg » est dit comme un mot ; l'écran l'écrit en toutes lettres pendant qu'elle le dit.
+- **Corrigé pendant la relecture.**
+
+| Moment | Problème | Correction |
+| --- | --- | --- |
+| Découpage de la prise | La pause après « Gabon ? » était prise pour une fin de phrase : LD1 tombait à 2 s. | Le découpage choisit les pauses qui donnent à chaque phrase un débit régulier. |
+| Calage de LD1 | « Gabon » était calé après la pause, et le pays s'allumait une seconde trop tard. | Calage refait sans les micro-silences de consonne ; « Gabon » tombe à 87,8 s. |
+| Carte du monde | Les Émirats touchaient le bord droit. | Carte recadrée, avec une marge de chaque côté. |
+| Ordinateur portable | Les mains dépassaient sous l'ordinateur. | L'ordinateur est descendu : il les cache, comme sur un clavier. |
+| Enveloppe | Elle naissait devant le visage. | Elle sort à droite de l'écran, puis s'envole. |
+| Bureau (9:16) | La bande des sous-titres cachait l'ordinateur. | Plan réduit à 0,85 : les sous-titres tombent sur la façade du bureau. |
+| Carte de la diaspora (9:16) | Sous le titre, elle aurait couvert le Canada et l'Europe. | En vertical, elle prend la place du titre. |
+
+- **Contrôle.**
+  - 16:9 : `npx hyperframes check` passé, 0 erreur.
+  - 9:16 : passé, 0 erreur, 21 textes sur 21 conformes en contraste.
+  - Les avertissements de zone sûre du 9:16 suivent la bande utile 168–1330 px de la SPEC, comme aux versions précédentes. Ils concernent aussi les noms de pays au bord de la carte.
+
+### À valider (v7)
+
+- Les dix pays de la carte, choisis comme exemples : Canada, États-Unis, Royaume-Uni, Belgique, France, Maroc, Sénégal, Côte d'Ivoire, Afrique du Sud, Émirats arabes unis.
+- La place des entreprises de droit étranger à capitaux gabonais : membres à part entière, ou rattachées au comité ?
+
+### Rendus v7
+
+| Fichier | Image | Durée | Poids | Son |
+| --- | --- | --- | --- | --- |
+| `renders/FEG-comment-adherer-v7.mp4` | 1920 × 1080, 30 im/s | 129,6 s | 20,2 Mo | −15,3 LUFS, crête −1,0 dBFS |
+| `renders/FEG-comment-adherer-v7-whatsapp.mp4` | 1920 × 1080, 30 im/s | 129,6 s | 15,4 Mo | AAC 128 kbit/s |
+| `renders/FEG-comment-adherer-9x16-v4.mp4` | 1080 × 1920, 30 im/s | 129,6 s | 17,1 Mo | −15,3 LUFS, crête −1,0 dBFS |
+| `renders/FEG-comment-adherer-9x16-v4-whatsapp.mp4` | 1080 × 1920, 30 im/s | 129,6 s | 15,9 Mo | AAC 128 kbit/s |
+
+- Les deux rendus dépassent les 16 Mo de WhatsApp : les copies « whatsapp » sont réencodées en deux passes (800 et 820 kbit/s). Elles restent quasi identiques aux rendus (SSIM 0,9996 et 0,9998) ; les noms de pays et l'adresse restent nets.
+- Le globe de la v6 (`tools/globe.mjs`, `assets/globe.js`, `assets/img/globe-base.svg`) est retiré : la carte du monde le remplace.
+- Aucune image noire. La planche du fichier rendu sur le plan « Hors du Gabon » est conforme aux images de contrôle.
+- Livret : `livret/FEG-comment-adherer-9x16-v4-texte.docx`, 3 pages.

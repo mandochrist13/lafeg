@@ -298,7 +298,7 @@
     "offset": 0.0
   },
   {
-    "id": "sfx-globe",
+    "id": "sfx-map",
     "src": "assets/sfx/whoosh-short.mp3",
     "dur": 0.575,
     "volume": 0.14,
@@ -307,13 +307,31 @@
     "offset": -0.45
   },
   {
-    "id": "sfx-plane",
+    "id": "sfx-zoom",
     "src": "assets/sfx/whoosh-short.mp3",
     "dur": 0.575,
     "volume": 0.12,
     "line": "LD1",
+    "word": "Où",
+    "offset": -0.2
+  },
+  {
+    "id": "sfx-dots",
+    "src": "assets/sfx/click-soft.mp3",
+    "dur": 0.366,
+    "volume": 0.16,
+    "line": "LD1",
+    "word": "monde",
+    "offset": -0.1
+  },
+  {
+    "id": "sfx-arcs",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.575,
+    "volume": 0.1,
+    "line": "LD1",
     "word": "diaspora",
-    "offset": 0.4
+    "offset": 0.1
   },
   {
     "id": "sfx-card",
@@ -338,8 +356,26 @@
     "src": "assets/sfx/pat.wav",
     "dur": 0.16,
     "volume": 0.18,
-    "line": "LD3",
+    "line": "LD2",
     "word": "participer",
-    "offset": 0.25
+    "offset": 0.3
+  },
+  {
+    "id": "sfx-pill",
+    "src": "assets/sfx/paper.wav",
+    "dur": 0.42,
+    "volume": 0.18,
+    "line": "LD3",
+    "word": "contactez",
+    "offset": -0.15
+  },
+  {
+    "id": "sfx-mail",
+    "src": "assets/sfx/whoosh-short.mp3",
+    "dur": 0.575,
+    "volume": 0.13,
+    "line": "LD3",
+    "word": "G-A",
+    "offset": 0.55
   }
 ]

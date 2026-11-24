@@ -56,7 +56,7 @@ const scenes = [
   { id: "s7", src: "compositions/s7-cotisation.html", start: S("L08") - 0.35, end: S("L09") - 0.4 },
   { id: "s8", src: "compositions/s8-membre.html", start: S("L09") - 0.4, end: S("L10") - 0.35 },
   { id: "s9", src: "compositions/s9-annee.html", start: S("L10") - 0.35, end: S("LD1") - 0.35 },
-  // hors du Gabon : la diaspora et le comité Rayonnement à l'international
+  // hors du Gabon : la diaspora (carte du monde), le comité Rayonnement international, le contact info@lafeg.ga
   { id: "s9d", src: "compositions/s9d-diaspora.html", start: S("LD1") - 0.35, end: S("L11") - 0.3 },
   { id: "s10", src: "compositions/s10-fin.html", start: S("L11") - 0.3, end: total },
 ].map((o) => ({ ...o, start: r3(Math.max(0, o.start)), end: r3(Math.min(total, o.end)) }));
@@ -174,6 +174,12 @@ if (VERT) {
         i += 2;
         continue;
       }
+      // l'adresse dite « info arobase lafeg point G-A » s'écrit info@lafeg.ga
+      if (n === "info" && ws[i + 4] && norm(ws[i + 1].w) === "arobase" && norm(ws[i + 2].w) === "lafeg" && norm(ws[i + 3].w) === "point" && norm(ws[i + 4].w) === "ga") {
+        out.push({ t: "info@lafeg.ga" + ws[i + 4].w.replace(/^G-A/i, ""), s: ws[i].s, e: ws[i + 4].e });
+        i += 4;
+        continue;
+      }
       if (/^[:;!?»]$/.test(ws[i].w) && out.length) {
         out[out.length - 1].t += " " + ws[i].w;
         out[out.length - 1].e = ws[i].e;
@@ -280,7 +286,7 @@ const html = `<!doctype html>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <script src="assets/people.js"></script>
-    <script src="assets/globe.js"></script>
+    <script src="assets/worldmap.js"></script>
     <style>
       @font-face {
         font-family: "Hyundai Sans Head";
