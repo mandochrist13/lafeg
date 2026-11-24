@@ -152,3 +152,15 @@ Ajout demandé par la FEG avant sa rencontre avec les entreprises de la diaspora
 - Le nom exact du comité : « comité Rayonnement à l'international ».
 - La formule « selon des modalités adaptées », et le renvoi à info@lafeg.ga pour les détails.
 - La place des entreprises de droit étranger à capitaux gabonais : membres à part entière, ou rattachées au comité ?
+
+### Rendus v6
+
+| Fichier | Image | Durée | Poids | Son |
+| --- | --- | --- | --- | --- |
+| `renders/FEG-comment-adherer-v6.mp4` | 1920 × 1080, 30 im/s | 120,3 s | 14,7 Mo | −15,3 LUFS, crête −1,1 dBFS |
+| `renders/FEG-comment-adherer-9x16-v3.mp4` | 1080 × 1920, 30 im/s | 120,3 s | 15,4 Mo | −15,3 LUFS, crête −1,1 dBFS |
+
+- Les deux fichiers restent sous les 16 Mo de WhatsApp.
+- Aucune image noire. Les plans calmes (le globe pendant que le trajet se trace, la carte complète) ne sont pas figés : seul un petit élément y bouge.
+- Planches des fichiers rendus sur le plan « Hors du Gabon » : conformes aux images de contrôle.
+- Livret : `livret/FEG-comment-adherer-9x16-v3-texte.docx`, 3 pages, avec la section « Hors du Gabon ».
