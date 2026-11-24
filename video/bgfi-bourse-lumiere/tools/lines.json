@@ -20,17 +20,17 @@
     {
       "id": "L04",
       "gap": 1.0,
-      "text": "Elles se rencontrent sur la Bourse commune aux six pays de la Cémac : la BVMAC, à Douala."
+      "text": "Elles se rencontrent sur la Bourse commune aux six pays de la Cémac : la Bévémaque, à Douala."
     },
     {
       "id": "L05",
       "gap": 1.0,
-      "text": "Pour y accéder, il faut un guide agréé par le régulateur, la Cosumaf : une société de bourse."
+      "text": "Pour y accéder, il faut un intermédiaire agréé par le régulateur, la Cosumaf."
     },
     {
       "id": "L06",
       "gap": 1.0,
-      "text": "Ce guide, c'est BGFI Bourse, la société de bourse du groupe BGFI Bank. Elle est agréée depuis deux mille six."
+      "text": "Cet intermédiaire, c'est BGFI Bourse, la société de bourse du groupe BGFI Bank. Elle est agréée depuis deux mille six."
     },
     {
       "id": "L07",
@@ -40,13 +40,17 @@
     {
       "id": "L08",
       "gap": 1.0,
-      "text": "Elle vous conseille selon vos objectifs, et accompagne les entreprises et les États qui lèvent des fonds."
+      "text": "Elle vous conseille selon vos objectifs, et accompagne les entreprises et les États qui lèvent des fonds : plus de mille six cents milliards de francs CFA, à travers vingt opérations de référence en Cémac."
     },
     {
       "id": "L09",
       "gap": 1.0,
-      "text": "En deux mille vingt-six, elle a conduit l'entrée en Bourse de BGFI Holding Corporation, la maison mère du groupe : plus de quarante-cinq milliards de francs CFA levés.",
-      "match": "En 2026, elle"
+      "text": "Elle a conduit l'entrée en Bourse de BGFI Holding Corporation, la maison mère du groupe : quarante-cinq virgule trente-deux milliards de francs CFA levés, auprès de souscripteurs de vingt-quatre pays."
+    },
+    {
+      "id": "L09b",
+      "gap": 1.0,
+      "text": "Puis, en 2026, une deuxième augmentation de capital a mobilisé plus de cent milliards de francs CFA : le public détient désormais dix pour cent du capital."
     },
     {
       "id": "L10",

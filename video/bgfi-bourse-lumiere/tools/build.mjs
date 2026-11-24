@@ -150,7 +150,7 @@ writeFileSync(
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=1920, height=1080" />
-    <title>BGFIBourse — Une étoile pour guider votre épargne</title>
+    <title>BGFIBourse — Votre partenaire pour l'avenir</title>
     <script src="lib/gsap.min.js"></script>
     <script src="assets/cues.js"></script>
     <style>

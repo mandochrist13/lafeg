@@ -270,325 +270,298 @@
       "path": "assets/voice/L04.wav",
       "voice": "Charon",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 5.031,
+      "duration_s": 5.431,
       "speech": [
         0.12,
-        4.852
+        5.251
       ],
-      "pauses": 2,
-      "anchored": 2,
+      "pauses": 1,
+      "anchored": 1,
       "words": [
         {
           "text": "Elles",
-          "start": 0.12,
-          "end": 0.424
+          "start": 0.13,
+          "end": 0.21
         },
         {
           "text": "se",
-          "start": 0.424,
-          "end": 0.576
+          "start": 0.21,
+          "end": 0.31
         },
         {
           "text": "rencontrent",
-          "start": 0.576,
-          "end": 1.032
+          "start": 0.31,
+          "end": 0.78
         },
         {
           "text": "sur",
-          "start": 1.032,
-          "end": 1.184
+          "start": 0.78,
+          "end": 0.94
         },
         {
           "text": "la",
-          "start": 1.184,
-          "end": 1.336
+          "start": 0.94,
+          "end": 1.03
         },
         {
           "text": "Bourse",
-          "start": 1.336,
-          "end": 1.488
+          "start": 1.04,
+          "end": 1.3
         },
         {
           "text": "commune",
-          "start": 1.488,
-          "end": 1.792
+          "start": 1.41,
+          "end": 1.75
         },
         {
           "text": "aux",
-          "start": 1.792,
-          "end": 1.944
+          "start": 1.76,
+          "end": 1.94
         },
         {
           "text": "six",
-          "start": 1.944,
-          "end": 2.096
+          "start": 1.94,
+          "end": 2.11
         },
         {
           "text": "pays",
-          "start": 2.096,
-          "end": 2.248
+          "start": 2.13,
+          "end": 2.37
         },
         {
           "text": "de",
-          "start": 2.248,
-          "end": 2.4
+          "start": 2.37,
+          "end": 2.48
         },
         {
           "text": "la",
-          "start": 2.4,
-          "end": 2.552
+          "start": 2.48,
+          "end": 2.59
         },
         {
-          "text": "Cémac",
-          "start": 2.552,
-          "end": 2.856
-        },
-        {
-          "text": ":",
-          "start": 2.856,
-          "end": 3.008
+          "text": "Cémac :",
+          "start": 2.62,
+          "end": 3.1
         },
         {
           "text": "la",
-          "start": 3.392,
-          "end": 3.514
+          "start": 3.46,
+          "end": 3.49
         },
         {
-          "text": "BVMAC,",
-          "start": 3.514,
-          "end": 4.123
+          "text": "Bévémaque,",
+          "start": 3.49,
+          "end": 3.98
         },
         {
           "text": "à",
-          "start": 4.437,
-          "end": 4.576
+          "start": 3.99,
+          "end": 4.1
         },
         {
           "text": "Douala.",
-          "start": 4.576,
-          "end": 4.852
+          "start": 4.1,
+          "end": 4.644
         }
-      ]
+      ],
+      "align": "Whisper (mots horodatés), vérifié sur les pauses"
     },
     {
       "id": "L05",
       "path": "assets/voice/L05.wav",
       "voice": "Charon",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 5.7,
+      "duration_s": 4.799,
       "speech": [
-        0.12,
-        5.528
+        0.119,
+        4.62
       ],
-      "pauses": 3,
-      "anchored": 3,
+      "pauses": 2,
+      "anchored": 2,
       "words": [
         {
           "text": "Pour",
-          "start": 0.12,
-          "end": 0.27
+          "start": 0.119,
+          "end": 0.287
         },
         {
           "text": "y",
-          "start": 0.27,
-          "end": 0.42
+          "start": 0.287,
+          "end": 0.454
         },
         {
           "text": "accéder,",
-          "start": 0.42,
-          "end": 0.869
+          "start": 0.454,
+          "end": 0.955
         },
         {
           "text": "il",
-          "start": 1.209,
-          "end": 1.359
+          "start": 1.232,
+          "end": 1.391
         },
         {
           "text": "faut",
-          "start": 1.359,
-          "end": 1.509
+          "start": 1.391,
+          "end": 1.549
         },
         {
           "text": "un",
-          "start": 1.509,
-          "end": 1.659
+          "start": 1.549,
+          "end": 1.708
         },
         {
-          "text": "guide",
-          "start": 1.659,
-          "end": 1.809
+          "text": "intermédiaire",
+          "start": 1.708,
+          "end": 2.342
         },
         {
           "text": "agréé",
-          "start": 1.809,
-          "end": 2.11
+          "start": 2.342,
+          "end": 2.66
         },
         {
           "text": "par",
-          "start": 2.11,
-          "end": 2.26
+          "start": 2.66,
+          "end": 2.818
         },
         {
           "text": "le",
-          "start": 2.26,
-          "end": 2.41
+          "start": 2.818,
+          "end": 2.977
         },
         {
           "text": "régulateur,",
-          "start": 2.41,
-          "end": 3.01
+          "start": 2.977,
+          "end": 3.611
         },
         {
           "text": "la",
-          "start": 3.299,
-          "end": 3.435
+          "start": 3.839,
+          "end": 4.034
         },
         {
-          "text": "Cosumaf",
-          "start": 3.435,
-          "end": 3.846
-        },
-        {
-          "text": ":",
-          "start": 3.846,
-          "end": 3.982
-        },
-        {
-          "text": "une",
-          "start": 4.533,
-          "end": 4.699
-        },
-        {
-          "text": "société",
-          "start": 4.699,
-          "end": 5.196
-        },
-        {
-          "text": "de",
-          "start": 5.196,
-          "end": 5.362
-        },
-        {
-          "text": "bourse.",
-          "start": 5.362,
-          "end": 5.528
+          "text": "Cosumaf.",
+          "start": 4.034,
+          "end": 4.62
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L06",
       "path": "assets/voice/L06.wav",
       "voice": "Charon",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 6.481,
+      "duration_s": 7.034,
       "speech": [
-        0.12,
-        6.307
+        0.118,
+        6.855
       ],
-      "pauses": 4,
-      "anchored": 3,
+      "pauses": 2,
+      "anchored": 2,
       "words": [
         {
-          "text": "Ce",
-          "start": 0.12,
-          "end": 0.34
+          "text": "Cet",
+          "start": 0.118,
+          "end": 0.297
         },
         {
-          "text": "guide,",
-          "start": 0.34,
-          "end": 0.56
+          "text": "intermédiaire,",
+          "start": 0.297,
+          "end": 1.012
         },
         {
           "text": "c'est",
-          "start": 0.927,
-          "end": 1.097
+          "start": 1.147,
+          "end": 1.325
         },
         {
           "text": "BGFI",
-          "start": 1.097,
-          "end": 1.778
+          "start": 1.325,
+          "end": 2.035
         },
         {
           "text": "Bourse,",
-          "start": 1.778,
-          "end": 1.948
+          "start": 2.035,
+          "end": 2.212
         },
         {
           "text": "la",
-          "start": 2.475,
-          "end": 2.622
+          "start": 2.212,
+          "end": 2.389
         },
         {
           "text": "société",
-          "start": 2.622,
-          "end": 3.063
+          "start": 2.389,
+          "end": 2.922
         },
         {
           "text": "de",
-          "start": 3.063,
-          "end": 3.21
+          "start": 2.922,
+          "end": 3.099
         },
         {
           "text": "bourse",
-          "start": 3.21,
-          "end": 3.357
+          "start": 3.099,
+          "end": 3.276
         },
         {
           "text": "du",
-          "start": 3.357,
-          "end": 3.504
+          "start": 3.276,
+          "end": 3.454
         },
         {
           "text": "groupe",
-          "start": 3.504,
-          "end": 3.651
+          "start": 3.454,
+          "end": 3.631
         },
         {
           "text": "BGFI",
-          "start": 3.651,
-          "end": 4.24
+          "start": 3.631,
+          "end": 4.341
         },
         {
           "text": "Bank.",
-          "start": 4.24,
-          "end": 4.387
+          "start": 4.341,
+          "end": 4.518
         },
         {
           "text": "Elle",
-          "start": 4.51,
-          "end": 4.71
+          "start": 5.138,
+          "end": 5.329
         },
         {
           "text": "est",
-          "start": 4.71,
-          "end": 4.91
+          "start": 5.329,
+          "end": 5.519
         },
         {
           "text": "agréée",
-          "start": 4.91,
-          "end": 5.309
+          "start": 5.519,
+          "end": 5.901
         },
         {
           "text": "depuis",
-          "start": 5.309,
-          "end": 5.708
+          "start": 5.901,
+          "end": 6.282
         },
         {
           "text": "deux",
-          "start": 5.708,
-          "end": 5.908
+          "start": 6.282,
+          "end": 6.473
         },
         {
           "text": "mille",
-          "start": 5.908,
-          "end": 6.108
+          "start": 6.473,
+          "end": 6.664
         },
         {
           "text": "six.",
-          "start": 6.108,
-          "end": 6.307
+          "start": 6.664,
+          "end": 6.855
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L07",
@@ -745,255 +718,493 @@
       "path": "assets/voice/L08.wav",
       "voice": "Charon",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 4.894,
+      "duration_s": 10.931,
       "speech": [
-        0.12,
-        4.724
+        0.119,
+        10.751
       ],
-      "pauses": 2,
-      "anchored": 1,
+      "pauses": 4,
+      "anchored": 3,
       "words": [
         {
           "text": "Elle",
-          "start": 0.12,
-          "end": 0.267
+          "start": 0.119,
+          "end": 0.303
         },
         {
           "text": "vous",
-          "start": 0.267,
-          "end": 0.415
+          "start": 0.303,
+          "end": 0.487
         },
         {
           "text": "conseille",
-          "start": 0.415,
-          "end": 0.71
+          "start": 0.487,
+          "end": 0.854
         },
         {
           "text": "selon",
-          "start": 0.71,
-          "end": 1.006
+          "start": 0.854,
+          "end": 1.221
         },
         {
           "text": "vos",
-          "start": 1.006,
-          "end": 1.153
+          "start": 1.221,
+          "end": 1.405
         },
         {
           "text": "objectifs,",
-          "start": 1.153,
-          "end": 1.597
+          "start": 1.405,
+          "end": 1.956
         },
         {
           "text": "et",
-          "start": 2.23,
-          "end": 2.368
+          "start": 2.257,
+          "end": 2.414
         },
         {
           "text": "accompagne",
-          "start": 2.368,
-          "end": 2.784
+          "start": 2.414,
+          "end": 2.887
         },
         {
           "text": "les",
-          "start": 2.784,
-          "end": 2.922
+          "start": 2.887,
+          "end": 3.045
         },
         {
           "text": "entreprises",
-          "start": 2.922,
-          "end": 3.477
+          "start": 3.045,
+          "end": 3.518
         },
         {
           "text": "et",
-          "start": 3.477,
-          "end": 3.615
+          "start": 3.518,
+          "end": 3.675
         },
         {
           "text": "les",
-          "start": 3.615,
-          "end": 3.754
+          "start": 3.675,
+          "end": 3.833
         },
         {
           "text": "États",
-          "start": 3.754,
-          "end": 4.031
+          "start": 3.833,
+          "end": 4.148
         },
         {
           "text": "qui",
-          "start": 4.031,
-          "end": 4.169
+          "start": 4.148,
+          "end": 4.306
         },
         {
           "text": "lèvent",
-          "start": 4.169,
-          "end": 4.446
+          "start": 4.306,
+          "end": 4.621
         },
         {
           "text": "des",
-          "start": 4.446,
-          "end": 4.585
+          "start": 4.621,
+          "end": 4.779
         },
         {
-          "text": "fonds.",
-          "start": 4.585,
-          "end": 4.724
+          "text": "fonds :",
+          "start": 4.779,
+          "end": 4.937
+        },
+        {
+          "text": "plus",
+          "start": 5.712,
+          "end": 5.933
+        },
+        {
+          "text": "de",
+          "start": 5.933,
+          "end": 6.153
+        },
+        {
+          "text": "mille",
+          "start": 6.153,
+          "end": 6.374
+        },
+        {
+          "text": "six",
+          "start": 6.374,
+          "end": 6.595
+        },
+        {
+          "text": "cents",
+          "start": 6.595,
+          "end": 6.816
+        },
+        {
+          "text": "milliards",
+          "start": 6.816,
+          "end": 7.257
+        },
+        {
+          "text": "de",
+          "start": 7.257,
+          "end": 7.478
+        },
+        {
+          "text": "francs",
+          "start": 7.478,
+          "end": 7.698
+        },
+        {
+          "text": "CFA,",
+          "start": 7.698,
+          "end": 8.361
+        },
+        {
+          "text": "à",
+          "start": 8.496,
+          "end": 8.646
+        },
+        {
+          "text": "travers",
+          "start": 8.646,
+          "end": 8.947
+        },
+        {
+          "text": "vingt",
+          "start": 8.947,
+          "end": 9.097
+        },
+        {
+          "text": "opérations",
+          "start": 9.097,
+          "end": 9.699
+        },
+        {
+          "text": "de",
+          "start": 9.699,
+          "end": 9.849
+        },
+        {
+          "text": "référence",
+          "start": 9.849,
+          "end": 10.3
+        },
+        {
+          "text": "en",
+          "start": 10.3,
+          "end": 10.45
+        },
+        {
+          "text": "Cémac.",
+          "start": 10.45,
+          "end": 10.751
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
     },
     {
       "id": "L09",
       "path": "assets/voice/L09.wav",
       "voice": "Charon",
       "model": "gemini-3.8-flash-tts",
-      "duration_s": 8.808,
+      "duration_s": 10.069,
       "speech": [
-        0.12,
-        8.628
+        0.119,
+        9.889
       ],
       "pauses": 4,
       "anchored": 3,
       "words": [
         {
-          "text": "En",
-          "start": 0.12,
-          "end": 0.339
-        },
-        {
-          "text": "deux",
-          "start": 0.339,
-          "end": 0.557
-        },
-        {
-          "text": "mille",
-          "start": 0.557,
-          "end": 0.776
-        },
-        {
-          "text": "vingt-six,",
-          "start": 0.776,
-          "end": 1.213
-        },
-        {
-          "text": "elle",
-          "start": 1.442,
-          "end": 1.593
+          "text": "Elle",
+          "start": 0.119,
+          "end": 0.292
         },
         {
           "text": "a",
-          "start": 1.593,
-          "end": 1.745
+          "start": 0.292,
+          "end": 0.464
         },
         {
           "text": "conduit",
-          "start": 1.745,
-          "end": 2.048
+          "start": 0.464,
+          "end": 0.809
         },
         {
           "text": "l'entrée",
-          "start": 2.048,
-          "end": 2.351
+          "start": 0.809,
+          "end": 1.154
         },
         {
           "text": "en",
-          "start": 2.351,
-          "end": 2.503
+          "start": 1.154,
+          "end": 1.327
         },
         {
           "text": "Bourse",
-          "start": 2.503,
-          "end": 2.654
+          "start": 1.327,
+          "end": 1.499
         },
         {
           "text": "de",
-          "start": 2.654,
-          "end": 2.806
+          "start": 1.499,
+          "end": 1.671
         },
         {
           "text": "BGFI",
-          "start": 2.806,
-          "end": 3.412
+          "start": 1.671,
+          "end": 2.361
         },
         {
           "text": "Holding",
-          "start": 3.412,
-          "end": 3.715
+          "start": 2.361,
+          "end": 2.706
         },
         {
           "text": "Corporation,",
-          "start": 3.715,
-          "end": 4.321
+          "start": 2.706,
+          "end": 3.396
         },
         {
           "text": "la",
-          "start": 4.766,
-          "end": 4.903
+          "start": 3.53,
+          "end": 3.672
         },
         {
           "text": "maison",
-          "start": 4.903,
-          "end": 5.178
+          "start": 3.672,
+          "end": 3.954
         },
         {
           "text": "mère",
-          "start": 5.178,
-          "end": 5.316
+          "start": 3.954,
+          "end": 4.095
         },
         {
           "text": "du",
-          "start": 5.316,
-          "end": 5.453
+          "start": 4.095,
+          "end": 4.236
         },
         {
-          "text": "groupe",
-          "start": 5.453,
-          "end": 5.591
-        },
-        {
-          "text": ":",
-          "start": 5.591,
-          "end": 5.728
-        },
-        {
-          "text": "plus",
-          "start": 6.297,
-          "end": 6.452
-        },
-        {
-          "text": "de",
-          "start": 6.452,
-          "end": 6.608
+          "text": "groupe :",
+          "start": 4.236,
+          "end": 4.518
         },
         {
           "text": "quarante-cinq",
-          "start": 6.608,
-          "end": 7.229
+          "start": 5.197,
+          "end": 5.658
+        },
+        {
+          "text": "virgule",
+          "start": 5.658,
+          "end": 5.966
+        },
+        {
+          "text": "trente-deux",
+          "start": 5.966,
+          "end": 6.273
         },
         {
           "text": "milliards",
-          "start": 7.229,
-          "end": 7.54
+          "start": 6.273,
+          "end": 6.581
         },
         {
           "text": "de",
-          "start": 7.54,
-          "end": 7.695
+          "start": 6.581,
+          "end": 6.735
         },
         {
           "text": "francs",
-          "start": 7.695,
-          "end": 7.851
+          "start": 6.735,
+          "end": 6.889
         },
         {
           "text": "CFA",
-          "start": 7.851,
-          "end": 8.317
+          "start": 6.889,
+          "end": 7.35
         },
         {
-          "text": "levés.",
-          "start": 8.317,
-          "end": 8.628
+          "text": "levés,",
+          "start": 7.35,
+          "end": 7.658
+        },
+        {
+          "text": "auprès",
+          "start": 8.174,
+          "end": 8.517
+        },
+        {
+          "text": "de",
+          "start": 8.517,
+          "end": 8.689
+        },
+        {
+          "text": "souscripteurs",
+          "start": 8.689,
+          "end": 9.203
+        },
+        {
+          "text": "de",
+          "start": 9.203,
+          "end": 9.375
+        },
+        {
+          "text": "vingt-quatre",
+          "start": 9.375,
+          "end": 9.718
+        },
+        {
+          "text": "pays.",
+          "start": 9.718,
+          "end": 9.889
         }
-      ]
+      ],
+      "align": "pauses+ponctuation (tools/align.py)"
+    },
+    {
+      "id": "L09b",
+      "path": "assets/voice/L09b.wav",
+      "voice": "Charon",
+      "model": "gemini-3.8-flash-tts",
+      "duration_s": 9.007,
+      "speech": [
+        0.12,
+        8.849
+      ],
+      "pauses": 5,
+      "anchored": 2,
+      "words": [
+        {
+          "text": "Puis,",
+          "start": 0.13,
+          "end": 0.24
+        },
+        {
+          "text": "en",
+          "start": 0.24,
+          "end": 0.36
+        },
+        {
+          "text": "2026,",
+          "start": 0.36,
+          "end": 1.24
+        },
+        {
+          "text": "une",
+          "start": 1.24,
+          "end": 1.41
+        },
+        {
+          "text": "deuxième",
+          "start": 1.59,
+          "end": 1.86
+        },
+        {
+          "text": "augmentation",
+          "start": 1.86,
+          "end": 2.55
+        },
+        {
+          "text": "de",
+          "start": 2.56,
+          "end": 2.75
+        },
+        {
+          "text": "capital",
+          "start": 2.75,
+          "end": 3.2
+        },
+        {
+          "text": "a",
+          "start": 3.2,
+          "end": 3.59
+        },
+        {
+          "text": "mobilisé",
+          "start": 3.59,
+          "end": 4.04
+        },
+        {
+          "text": "plus",
+          "start": 4.04,
+          "end": 4.06
+        },
+        {
+          "text": "de",
+          "start": 4.21,
+          "end": 4.25
+        },
+        {
+          "text": "cent",
+          "start": 4.25,
+          "end": 4.55
+        },
+        {
+          "text": "milliards",
+          "start": 4.57,
+          "end": 4.92
+        },
+        {
+          "text": "de",
+          "start": 4.92,
+          "end": 4.95
+        },
+        {
+          "text": "francs",
+          "start": 4.96,
+          "end": 5.57
+        },
+        {
+          "text": "CFA :",
+          "start": 5.79,
+          "end": 6
+        },
+        {
+          "text": "le",
+          "start": 6.13,
+          "end": 6.14
+        },
+        {
+          "text": "public",
+          "start": 6.16,
+          "end": 6.59
+        },
+        {
+          "text": "détient",
+          "start": 6.59,
+          "end": 7.03
+        },
+        {
+          "text": "désormais",
+          "start": 7.23,
+          "end": 7.76
+        },
+        {
+          "text": "dix",
+          "start": 7.76,
+          "end": 7.93
+        },
+        {
+          "text": "pour",
+          "start": 7.93,
+          "end": 8.1
+        },
+        {
+          "text": "cent",
+          "start": 8.1,
+          "end": 8.27
+        },
+        {
+          "text": "du",
+          "start": 8.27,
+          "end": 8.37
+        },
+        {
+          "text": "capital.",
+          "start": 8.43,
+          "end": 9
+        }
+      ],
+      "align": "Whisper (mots horodatés), vérifié sur les pauses"
     },
     {
       "id": "L10",
@@ -1042,7 +1253,7 @@
       "align": "pauses+ponctuation (tools/align.py)"
     }
   ],
-  "voice_credit": "Voix : Google Gemini TTS (Charon, gemini-3.8-flash-tts)",
+  "voice_credit": "Voix : Google Gemini TTS (Charon)",
   "onepass": {
     "voice": "Charon",
     "model": "gemini-3.8-flash-tts",

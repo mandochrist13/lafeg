@@ -1,5 +1,6 @@
 <template>
-  <!-- Titres : la phrase-image de l'épargne, l'identité de BGFIBourse, l'entrée en Bourse de BGFI Holding Corporation. -->
+  <!-- Titres : la phrase-image de l'épargne, l'identité de BGFIBourse, ses levées de fonds en CEMAC,
+       puis BGFI Holding Corporation : phase 1 (l'entrée en Bourse), phase 2 (l'augmentation de capital de 2026). -->
   <style>
     @font-face {
       font-family: "Lato";
@@ -63,10 +64,21 @@
       color: #ffe9c6;
     }
     #t-bgfi,
-    #t-ipo {
+    #t-ipo,
+    #t-p2 {
       right: 100px;
       width: 760px;
       text-align: right;
+    }
+    /* la phase 1 et la phase 2 tiennent sur des lignes plus longues (nom du groupe, montant à six chiffres) */
+    #t-ipo,
+    #t-p2 {
+      width: 900px;
+    }
+    /* L08 : en haut à gauche, au-dessus de la carte (les étiquettes des projets sont en haut à droite) */
+    #t-lev {
+      left: 110px;
+      width: 900px;
     }
     #t-bgfi {
       top: 112px;
@@ -82,40 +94,63 @@
     #t-bgfi .k {
       margin-top: 12px;
     }
-    #t-ipo {
+    #t-ipo,
+    #t-p2 {
       top: 84px;
     }
-    #t-ipo .h {
+    #t-lev {
+      top: 96px;
+    }
+
+    #t-ipo .h,
+    #t-p2 .h {
       margin-top: 8px;
       font-size: 60px;
       line-height: 1.05;
       color: #ffffff;
     }
-    #t-ipo .s {
+    #t-ipo .s,
+    #t-p2 .s,
+    #t-lev .s {
       margin-top: 6px;
       font-size: 34px;
     }
-    #t-ipo .num {
+    #t-ipo .num,
+    #t-p2 .num,
+    #t-lev .num {
       display: flex;
       justify-content: flex-end;
+      white-space: nowrap;
       align-items: baseline;
       gap: 18px;
       margin-top: 14px;
     }
-    #n-45 {
+    #t-lev .num {
+      justify-content: flex-start;
+    }
+    #n-45,
+    #n-100,
+    #n-1600 {
       font-family: "Tenor Sans", sans-serif;
       font-size: 112px;
       line-height: 1;
       color: #ffe9c6;
       font-variant-numeric: tabular-nums;
     }
-    #t-ipo .u {
+    #t-ipo .u,
+    #t-p2 .u,
+    #t-lev .u,
+    #t-lev .pre {
       font-size: 38px;
+      color: #ffe9c6;
+    }
+    #t-p2 .s b {
+      font-weight: 700;
       color: #ffe9c6;
     }
     #t-ipo .ar {
       display: block;
-      margin-top: 10px;
+      margin-top: 4px;
       font-size: 30px;
       color: #c9d6ee;
     }
@@ -130,12 +165,26 @@
       <span id="b-k" class="k">Agréée par la COSUMAF depuis 2006</span>
     </div>
 
+    <div id="t-lev" class="tt">
+      <div id="l-n" class="num"><span class="pre">+ de</span><span id="n-1600">0</span><span class="u">milliards FCFA levés</span></div>
+      <span id="l-s" class="s">à travers 20 opérations de référence en CEMAC</span>
+    </div>
+
     <div id="t-ipo" class="tt">
-      <span id="i-k" class="k">Entrée en Bourse · 2026</span>
+      <span id="i-k" class="k">Phase 1 · Entrée en Bourse</span>
+      <span id="i-ar" class="ar">Arrangeur et chef de file : BGFIBourse</span>
       <span id="i-h" class="h">BGFI Holding Corporation</span>
       <span id="i-s" class="s">la maison mère du groupe BGFIBank</span>
       <div id="i-n" class="num"><span id="n-45">0,00</span><span class="u">milliards FCFA levés</span></div>
-      <span id="i-ar" class="ar">Arrangeur et chef de file : BGFIBourse</span>
+      <span id="i-p" class="s">auprès de souscripteurs de 24 pays</span>
+    </div>
+
+    <div id="t-p2" class="tt">
+      <span id="p-k" class="k">Phase 2 · 2026</span>
+      <span id="p-h" class="h">Augmentation de capital</span>
+      <div id="p-n" class="num"><span id="n-100">0,000</span><span class="u">milliards FCFA mobilisés</span></div>
+      <span id="p-t" class="s">Taux de souscription : <b>125,17 %</b></span>
+      <span id="p-p" class="s">Capital détenu par le public : <b>10 %</b></span>
     </div>
   </div>
   <script>
@@ -163,28 +212,49 @@
       inn("#b-s", at("L06", "société") - 0.15);
       inn("#b-k", at("L06", "agréée") - 0.1);
       out("#t-bgfi", at("L07", "transmet") - 0.5);
-      // L09 : l'entrée en Bourse de BGFI Holding Corporation
-      tl.set("#t-ipo", { opacity: 1 }, at("L09", "deux") - 0.25);
-      inn("#i-k", at("L09", "deux") - 0.2);
+      // compteur : de 0 à v, entre t0 et t1, affiché avec d décimales (virgule) et espace des milliers
+      function counter(sel, v, d, t0, t1) {
+        var o = { v: 0 };
+        tl.fromTo(
+          o,
+          { v: 0 },
+          {
+            v: v,
+            duration: t1 - t0,
+            ease: "power2.out",
+            onUpdate: function () {
+              var txt = o.v.toFixed(d).replace(".", ",");
+              document.querySelector(sel).textContent = txt.replace(/^(\d+)(\d{3})(?=,|$)/, "$1\u00a0$2");
+            },
+          },
+          t0,
+        );
+      }
+      // L08 : plus de 1 600 milliards de francs CFA levés, à travers 20 opérations de référence en CEMAC
+      tl.set("#t-lev", { opacity: 1 }, at("L08", "plus") - 0.25);
+      inn("#l-n", at("L08", "plus") - 0.15);
+      counter("#n-1600", 1600, 0, at("L08", "plus") - 0.1, at("L08", "CFA") + 0.2);
+      inn("#l-s", at("L08", "travers") - 0.15);
+      out("#t-lev", at("L09", "Elle") - 0.5);
+      // L09 : phase 1, l'entrée en Bourse de BGFI Holding Corporation
+      tl.set("#t-ipo", { opacity: 1 }, at("L09", "Elle") - 0.25);
+      inn("#i-k", at("L09", "Elle") - 0.2);
       inn("#i-h", at("L09", "BGFI") - 0.1);
       inn("#i-s", at("L09", "maison") - 0.15);
-      inn("#i-n", at("L09", "plus") - 0.15);
-      var o = { v: 0 };
-      tl.fromTo(
-        o,
-        { v: 0 },
-        {
-          v: 45.32,
-          duration: at("L09", "levés") + 0.3 - (at("L09", "plus") - 0.1),
-          ease: "power2.out",
-          onUpdate: function () {
-            document.querySelector("#n-45").textContent = o.v.toFixed(2).replace(".", ",");
-          },
-        },
-        at("L09", "plus") - 0.1,
-      );
-      inn("#i-ar", at("L09", "milliards") - 0.05);
-      out("#t-ipo", at("L10", "BGFI") - 0.45);
+      inn("#i-n", at("L09", "quarante") - 0.15);
+      counter("#n-45", 45.32, 2, at("L09", "quarante") - 0.1, at("L09", "levés") + 0.3);
+      inn("#i-ar", at("L09", "conduit") - 0.1);
+      inn("#i-p", at("L09", "auprès") - 0.2);
+      out("#t-ipo", at("L09b", "Puis") - 0.45);
+      // L09b : phase 2 (2026), la deuxième augmentation de capital
+      tl.set("#t-p2", { opacity: 1 }, at("L09b", "Puis") - 0.2);
+      inn("#p-k", at("L09b", "2026") - 0.15);
+      inn("#p-h", at("L09b", "deuxième") - 0.15);
+      inn("#p-n", at("L09b", "mobilisé") - 0.15);
+      counter("#n-100", 100.836, 3, at("L09b", "mobilisé") - 0.1, at("L09b", "CFA") + 0.3);
+      inn("#p-t", at("L09b", "CFA") + 0.05);
+      inn("#p-p", at("L09b", "public") - 0.15);
+      out("#t-p2", at("L10", "BGFI") - 0.45);
       window.__timelines["ov-titles"] = tl;
     })();
   </script>

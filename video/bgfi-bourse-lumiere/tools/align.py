@@ -23,7 +23,7 @@ if "--min-pause" in args:
 ONLY = args[0].split(",") if args else None
 
 # sigles dits comme des mots ; nombres écrits en chiffres
-WORD_SYL = {"festac": 2, "cipres": 2, "knam-gs": 3, "1959": 7, "1": 2, "118": 3, "1118": 5, "13": 2, "80": 3, "90": 4, "2026": 5, "8": 1}
+WORD_SYL = {"festac": 2, "cipres": 2, "knam-gs": 3, "1959": 7, "1": 2, "118": 3, "1118": 5, "13": 2, "80": 3, "90": 4, "2026": 5, "8": 1, "bévémaque": 3}
 PUNCT = re.compile(r"[«»\"“”(),.;:!?]")
 
 

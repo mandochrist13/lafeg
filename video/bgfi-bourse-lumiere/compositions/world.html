@@ -3,7 +3,7 @@
   BGFIBourse — « Une étoile pour guider votre épargne ». Un ciel de nuit, froid et calme.
   L'épargne de l'Afrique centrale : 953 petites lumières sur la carte des six pays de la CEMAC (Natural Earth).
   Réunies, elles financent les projets (usines, routes, logements, tracés en constellations). Elles se rencontrent
-  sur la BVMAC (une étoile, à Douala) ; la COSUMAF trace l'anneau du marché réglementé ; il y faut un guide :
+  sur la BVMAC (une étoile, à Douala) ; la COSUMAF trace l'anneau du marché réglementé ; il y faut un intermédiaire agréé :
   BGFIBourse, l'étoile à quatre branches du logo, descend du ciel et prend la place de la société de bourse.
   À la fin, l'étoile s'élève, l'épargne la suit, le jour se lève et l'étoile devient celle du logo.
   Tout ce qui est visible est render(t), fonction pure du temps (horloge GSAP linéaire) ; temps : assets/cues.js.
@@ -108,7 +108,7 @@
       id="world-root"
       data-composition-id="world"
       data-start="0"
-      data-duration="79.998"
+      data-duration="97.355"
       data-total
       data-width="1920"
       data-height="1080"
@@ -118,7 +118,7 @@
         id="world-cv"
         class="clip"
         data-start="0"
-        data-duration="79.998"
+        data-duration="97.355"
         data-total
         data-track-index="0"
         data-layout-allow-overflow
@@ -141,7 +141,7 @@
         <div id="wl-dla" class="wl sm r">Douala</div>
 
         <div id="wl-cos" class="wl c"><span class="ti">COSUMAF</span><span class="su">le régulateur</span></div>
-        <div id="wl-gate" class="wl c"><span class="ti">Société de bourse</span><span class="su">agréée</span></div>
+        <div id="wl-gate" class="wl c"><span class="ti">Intermédiaire</span><span class="su">agréé</span></div>
         <div id="wl-you" class="wl sm c">votre épargne</div>
 
         <div id="wl-s0" class="wl c"><span class="ti">Courtage</span><span class="su">vos ordres d'achat et de vente</span></div>
@@ -235,15 +235,15 @@
         bourse: at("L04", "Bourse"),
         six: at("L04", "six"),
         cemac: at("L04", "Cémac"),
-        bvmac: at("L04", "BVMAC"),
+        bvmac: at("L04", "Bévémaque"),
         douala: at("L04", "Douala"),
         acceder: at("L05", "accéder"),
         faut: at("L05", "faut"),
-        guide: at("L05", "guide"),
+        guide: at("L05", "intermédiaire"), // la place de l'intermédiaire agréé
         regul: at("L05", "régulateur"),
         cosumaf: at("L05", "Cosumaf"),
-        societe: at("L05", "société"),
-        ceGuide: at("L06", "guide"),
+        societe: at("L05", "agréé"), // étiquette « Intermédiaire agréé »
+        ceGuide: at("L06", "intermédiaire"), // « Cet intermédiaire, c'est BGFI Bourse »
         bgfi: at("L06", "BGFI"),
         groupe: at("L06", "groupe"),
         agreee: at("L06", "agréée"),
@@ -258,14 +258,19 @@
         objectifs: at("L08", "objectifs"),
         accompagne: at("L08", "accompagne"),
         fonds: at("L08", "fonds"),
-        y2026: at("L09", "deux"),
+        mille: at("L08", "mille"), // plus de 1 600 milliards, 20 opérations de référence
+        ipo: at("L09", "Elle"), // phase 1 : l'entrée en Bourse de BGFI Holding Corporation
         conduit: at("L09", "conduit"),
         holding: at("L09", "Holding"),
-        plus: at("L09", "plus"),
+        plus: at("L09", "quarante"),
         leves: at("L09", "levés"),
+        pays: at("L09", "pays"),
+        p2: at("L09b", "Puis"), // phase 2 (2026) : la deuxième augmentation de capital
+        p2mob: at("L09b", "mobilisé"),
+        p2dix: at("L09b", "dix"),
         bgfi10: at("L10", "BGFI"),
         etoile10: at("L10", "votre"),
-        guider: at("L10", "avenir"),
+        guider: at("L10", "l'avenir"),
         logo: C.logo,
       };
       T.gDown = T.bgfi - 0.45; // l'étoile guide quitte le ciel
@@ -830,7 +835,8 @@
       key(T.gDown + 0.25, 1.6, { x: -8.7, y: 2.8, d: 34, yaw: -2, pitch: 1 });
       key(T.transmet - 0.45, 1.6, { x: -6, y: 0, d: 36, yaw: 3, pitch: 3 });
       key(T.accompagne - 0.35, 2.0, { x: 2, y: 0.3, d: 78, yaw: 0, pitch: 3 });
-      key(T.y2026 - 0.45, 1.8, { x: -5, y: 4.6, d: 56, yaw: -2, pitch: 2 });
+      key(T.ipo - 0.45, 1.8, { x: -5, y: 4.6, d: 56, yaw: -2, pitch: 2 });
+      key(T.p2 - 0.3, 2.6, { x: -3.6, y: 4.1, d: 49, yaw: -3, pitch: 2 }); // phase 2 : on se rapproche de BGFI HC
       key(T.bgfi10 - 0.3, T.gUp + 1.45 - (T.bgfi10 - 0.3), FIN, inOut);
       function camAt(t) {
         let s = { ...CAM0 };
@@ -1212,7 +1218,7 @@
         // projets : constellations
         {
           const times = [T.usines, T.routes, T.logements];
-          const a = (0.75 + 0.25 * win(t, T.accompagne - 0.3, 0.6, T.y2026 - 0.4, 0.8) - 0.4 * win(t, T.acceder, 1.0, T.accompagne - 0.4, 0.8) - 0.75 * out3(prog(t, T.y2026 - 0.3, 1.2))) * endFade;
+          const a = (0.75 + 0.25 * win(t, T.accompagne - 0.3, 0.6, T.ipo - 0.4, 0.8) - 0.4 * win(t, T.acceder, 1.0, T.accompagne - 0.4, 0.8) - 0.75 * out3(prog(t, T.ipo - 0.3, 1.2))) * endFade;
           TRACES.forEach((tr, k) => {
             const rev = inOutQ(prog(t, times[k] - 0.35, 1.25));
             drawTrace(tr, rev, CS, a, t);
@@ -1256,11 +1262,11 @@
             dottedFx(DOUALA, mid(DOUALA, BV, 3.2, 1.5), [-0.4, 0.2, 0], 90, out3(prog(t, T.douala - 0.1, 0.8)), CB, 3.8, a * 0.6);
           }
         }
-        // L05 : la COSUMAF trace l'anneau du marché réglementé ; une place vide pour un guide agréé
+        // L05 : la COSUMAF trace l'anneau du marché réglementé ; une place vide pour un intermédiaire agréé
         const ringA = out3(prog(t, T.faut - 0.25, 0.4)) * endFade;
         if (ringA > 0.01) {
           const rev = out3(prog(t, T.faut - 0.25, 1.1));
-          const glow = 1 + 0.6 * win(t, T.regul - 0.1, 0.4, T.societe, 0.8) + 0.9 * bump(t, T.hit + 0.05, 0.18);
+          const glow = 1 + 0.6 * win(t, T.regul - 0.1, 0.4, E("L05"), 0.8) + 0.9 * bump(t, T.hit + 0.05, 0.18);
           // l'anneau s'ouvre à la porte (à gauche) et se referme à droite
           const n = 300;
           for (let k = 0; k < n; k++) {
@@ -1279,7 +1285,7 @@
               FX.push(Math.cos(ang) * RC, Math.sin(ang) * RC, 0, CI, 9 - j, ringA * (1 - j / 6));
             }
         }
-        // la place du guide : cercle pointillé (vide), puis plein quand l'étoile s'y pose
+        // la place de l'intermédiaire : cercle pointillé (vide), puis plein quand l'étoile s'y pose
         {
           const a = win(t, T.guide - 0.1, 0.4, T.bgfi10 - 0.2, 1.0);
           if (a > 0.01) {
@@ -1336,7 +1342,7 @@
         }
         // L07 : conservation — les titres reviennent et se mettent à l'abri dans une sphère de lumière
         {
-          const a = win(t, T.conserve - 0.2, 0.5, T.y2026 - 0.4, 0.8);
+          const a = win(t, T.conserve - 0.2, 0.5, T.ipo - 0.4, 0.8);
           if (a > 0.01) {
             const r = out3(prog(t, T.conserve - 0.1, 0.8));
             streamFx(BV, mid(BV, CONS, 2.2, 1.0), CONS, 8, r * (1 - prog(t, T.securite + 0.5, 0.5)), 0.7, CB, 8, a, t);
@@ -1355,7 +1361,7 @@
         }
         // L07 : OPC — l'épargne de chacun mise en commun, gérée par des professionnels (orbites réglées)
         {
-          const a = win(t, T.rassemble + 0.6, 0.6, T.y2026 - 0.4, 0.8);
+          const a = win(t, T.rassemble + 0.6, 0.6, T.ipo - 0.4, 0.8);
           if (a > 0.01) {
             flare(OPC[0], OPC[1], OPC[2], 3.2, CW, a * 0.35, 0);
             const r = out3(prog(t, T.geres - 0.15, 0.8));
@@ -1375,7 +1381,7 @@
         }
         // L08 : conseil — l'étoile éclaire votre épargne et trace le chemin vers vos objectifs
         {
-          const a = win(t, T.conseille - 0.25, 0.5, T.y2026 - 0.4, 0.8);
+          const a = win(t, T.conseille - 0.25, 0.5, T.ipo - 0.4, 0.8);
           if (a > 0.01) {
             streamFx(GATE, mid(GATE, HV, 1.0, 0.6), HV, 14, out3(prog(t, T.conseille - 0.2, 0.6)), 0.6, CI, 6, a * 0.8, t);
             const r = out3(prog(t, T.objectifs - 0.3, 1.0));
@@ -1395,7 +1401,7 @@
         }
         // L08 : levée de fonds — l'épargne passe de la Bourse aux projets, l'étoile les accompagne
         {
-          const a = win(t, T.accompagne - 0.2, 0.5, T.y2026 - 0.2, 0.8);
+          const a = win(t, T.accompagne - 0.2, 0.5, T.ipo - 0.2, 0.8);
           if (a > 0.01) {
             PROJ.forEach((pj, k) => {
               const b = [pj[0] - 3.7, pj[1] - (k === 0 ? 0.4 : 0), 0];
@@ -1423,17 +1429,33 @@
             x = bz[0];
             y = bz[1] + (u < 0.35 ? 0.55 * Math.sin((Math.PI * u) / 0.35) : 0);
             z = bz[2];
-            const fund = out3(prog(t, T.plus - 0.1, 2.0));
-            const sz = (1.9 + 1.2 * fund) * (1 + 0.4 * bump(t, T.conduit + 1.95, 0.25));
+            const fund = out3(prog(t, T.plus - 0.1, 2.0)) + 0.7 * out3(prog(t, T.p2mob - 0.1, 2.0));
+            const sz = (1.9 + 1.2 * fund) * (1 + 0.4 * bump(t, T.conduit + 1.95, 0.25) + 0.25 * bump(t, T.p2mob + 1.6, 0.3));
             flare(x, y, z, sz, mixc(CI, CB, 0.35), a * out3(prog(t, T.conduit - 0.3, 0.5)), 0.6);
             if (u >= 1) ringFx(NEW_END, 0.5 + 0.12 * Math.sin(t * 2), 40, 1, CB, 3.0, a * 0.6, t, 0.5);
             const ur = prog(t, T.conduit + 1.95, 1.0);
             if (ur > 0 && ur < 1) ringFx(NEW_END, 0.4 + ur * 2.4, 90, 1, CI, 3.4, a * 0.6 * (1 - ur), t);
-            // plus de 45 milliards de francs CFA levés : l'épargne afflue vers la nouvelle étoile
-            const fa = win(t, T.plus - 0.3, 0.5, T.bgfi10 - 0.3, 0.8);
+            // phase 1 : 45,32 milliards de francs CFA levés, de 24 pays : l'épargne afflue vers la nouvelle étoile
+            const fa = win(t, T.plus - 0.3, 0.5, T.p2 - 0.1, 0.8);
             if (fa > 0.01) {
               SRC.forEach((sa, k) => streamFx(sa, mid(sa, GATE, 1.2 + (k % 3) * 0.5, 1), GATE, 26, out3(prog(t, T.plus - 0.25 + k * 0.05, 0.8)), 0.45, CW, 4.4, fa * 0.6, t));
               streamFx(GATE, mid(GATE, NEW_END, 1.6, 0.8), NEW_END, 50, out3(prog(t, T.plus + 0.1, 0.7)), 0.5, CW, 5.2, fa * 0.85, t);
+            }
+            // phase 2 (2026) : une deuxième augmentation de capital, plus de 100 milliards : un afflux plus dense
+            const f2 = win(t, T.p2mob - 0.35, 0.5, T.bgfi10 - 0.3, 0.8);
+            if (f2 > 0.01) {
+              SRC.forEach((sa, k) => streamFx(sa, mid(sa, GATE, 1.5 + (k % 3) * 0.5, 1), GATE, 34, out3(prog(t, T.p2mob - 0.3 + k * 0.04, 0.8)), 0.5, CW, 4.6, f2 * 0.7, t));
+              streamFx(GATE, mid(GATE, NEW_END, 1.9, 0.9), NEW_END, 70, out3(prog(t, T.p2mob, 0.7)), 0.55, CW, 5.6, f2 * 0.9, t);
+              streamFx(GATE, mid(GATE, NEW_END, 1.1, 0.6), NEW_END, 50, out3(prog(t, T.p2mob + 0.15, 0.7)), 0.5, CI, 4.8, f2 * 0.6, t + 0.4);
+            }
+            // « le public détient désormais dix pour cent du capital » : autour de BGFI HC, le capital entier
+            // en anneau discret, et la part du public (10 %, soit 36°) qui s'allume
+            const pub = out3(prog(t, T.p2dix - 0.2, 0.9));
+            if (pub > 0) {
+              const pa = a * win(t, T.p2dix - 0.2, 0.4, T.bgfi10 - 0.3, 0.8);
+              ringFx(NEW_END, 1.5, 150, pub, CV, 3.2, pa * 0.55, t, 0, Math.PI / 2);
+              ringFx(NEW_END, 1.5, 150, 0.1 * pub, CW, 6.5, pa, t, 0, Math.PI / 2);
+              flare(NEW_END[0], NEW_END[1] + 1.5, NEW_END[2], 0.9, CW, pa * 0.5 * pub, 0.4);
             }
           }
         }
@@ -1451,11 +1473,11 @@
 
         // --- étiquettes
         place("ep", HERO.home[0], HERO.home[1], HERO.home[2], win(t, T.epargne + 0.1, 0.45, T.seule - 0.35, 0.4), 1, 0.5, -22, 0);
-        const pA = win(t, T.usines - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5);
-        place("hdr", FA[0], FA[1] + 3.6, 0, Math.min(1, win(t, T.entreprises - 0.1, 0.5, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5)), 0.5, 1);
+        const pA = win(t, T.usines - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.ipo - 0.5, 0.5);
+        place("hdr", FA[0], FA[1] + 3.6, 0, Math.min(1, win(t, T.entreprises - 0.1, 0.5, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.ipo - 0.5, 0.5)), 0.5, 1);
         place("p0", FA[0], FA[1] - 2.0, 0, Math.min(1, pA), 0.5, 0);
-        place("p1", RO[0], RO[1] - 1.9, 0, Math.min(1, win(t, T.routes - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5)), 0.5, 0);
-        place("p2", HO[0], HO[1] - 1.9, 0, Math.min(1, win(t, T.logements - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.y2026 - 0.5, 0.5)), 0.5, 0);
+        place("p1", RO[0], RO[1] - 1.9, 0, Math.min(1, win(t, T.routes - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.ipo - 0.5, 0.5)), 0.5, 0);
+        place("p2", HO[0], HO[1] - 1.9, 0, Math.min(1, win(t, T.logements - 0.1, 0.45, T.rencontrent - 0.5, 0.5) + win(t, T.accompagne + 0.2, 0.5, T.ipo - 0.5, 0.5)), 0.5, 0);
         // les six pays (étiquettes au centre de chaque pays ; Guinée équatoriale et Gabon côté océan)
         const cOut = T.bvmac - 0.05;
         ORDER.forEach((ci, k) => {
@@ -1484,7 +1506,7 @@
         place("s2", OPC[0] - 1.75, OPC[1], OPC[2], win(t, T.rassemble + 0.4, 0.45, svcOut, 0.45), 1, 0.5);
         $("wl-s2b").style.opacity = out3(prog(t, T.geres - 0.1, 0.45)).toFixed(3);
         place("s3", OBJ[0], OBJ[1] + 1.25, OBJ[2], win(t, T.objectifs - 0.2, 0.45, T.accompagne + 0.1, 0.45), 0.5, 1);
-        place("s4", FA[0], FA[1] + 6.2, 0, win(t, T.accompagne + 0.4, 0.45, T.y2026 - 0.5, 0.5), 0.5, 1);
+        place("s4", FA[0], FA[1] + 6.2, 0, win(t, T.accompagne + 0.4, 0.45, T.ipo - 0.5, 0.5), 0.5, 1);
         place("hc", NEW_END[0] + 0.75, NEW_END[1], NEW_END[2], win(t, T.conduit + 1.9, 0.45, T.bgfi10 - 0.4, 0.5), 0, 0.5);
 
         flareEnd();
