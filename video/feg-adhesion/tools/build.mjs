@@ -191,7 +191,9 @@ if (VERT) {
     // groupes écrits à la main (tools/captions.json), calés sur les mots de la voix dans l'ordre
     const phrases = CAPS[id] || [];
     let k = 0;
-    for (const ph of phrases) {
+    for (const it of phrases) {
+      // un groupe peut être un objet { t, align, bottom } (réglages du 16:9 sous-titré, sous-titres/captions.mjs)
+      const ph = typeof it === "string" ? it : it.t;
       const toks = ph.replace(/ ([:;!?»])/g, "\u00a0$1").split(" ");
       const take = out.slice(k, k + toks.length);
       const ok = take.length === toks.length && take.every((w, j) => norm(w.t) === norm(toks[j]));

@@ -72,3 +72,16 @@ Vingt-quatre images extraites du MP4, de 1,5 s à 80,5 s, montrent les mêmes pl
 7. **Slogan.** « Des entreprises fortes, une prospérité partagée » abrège le thème du Gabon Economic Forum.
 8. **Téléphone.** +241 11 77 55 95, comme les films précédents ; le site donne aussi +241 011 77 55 57, la vidéo d'adhésion +241 77 55 95/97.
 9. **Musique.** SoundHill « Find Yourself », la même que les autres films FEG.
+
+## Version sous-titrée (pour les projections sans son)
+
+`renders/FEG-collage-sous-titres.mp4` : la voix off écrite à l'écran, 29 groupes de `tools/captions.json`, calés mot à mot sur la voix.
+
+- La couche de sous-titres est rendue seule par HyperFrames, en transparence, puis incrustée sur `renders/FEG-collage-master.mp4 (CRF 20, comme la version d'envoi)` (`../sous-titres/sous-titrer.sh`, voir `../sous-titres/README.md`).
+- Le film n'est pas rendu une deuxième fois. Même durée, son repris tel quel. 53,6 Mo.
+- Cartouche vert foncé de la FEG, texte blanc en Hyundai Sans Text 48 px, centré à 50 px du bas, un groupe à la fois.
+- Nombres écrits en chiffres, comme à l'écran : 1959, 1 100, 80 %, 13 fédérations.
+- Vérifié image par image au milieu de chaque groupe : la zone du cartouche est mesurée sur l'image d'origine, et les plans chargés sont regardés un par un.
+- Le tampon « Depuis 1959 » et le « ensemble ! » manuscrit étaient cachés : les groupes de ces deux moments passent à droite, puis à gauche.
+- Les photos du « quotidien » restent en partie sous le cartouche ; ce sont des éléments de décor.
+

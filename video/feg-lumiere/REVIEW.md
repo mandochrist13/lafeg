@@ -75,3 +75,15 @@ Vingt-six images extraites du MP4, de 1,5 s à 84 s, montrent les mêmes plans q
 5. **Étiquettes « Bureau exécutif » et « Pouvoirs publics »** : formulation à confirmer.
 6. **Téléphone.** +241 11 77 55 95, comme le film v6 (pied de page de la Déclaration). Le site mentionne aussi +241 011 77 55 57, et la vidéo d'adhésion affiche +241 77 55 95/97.
 7. **Musique.** SoundHill « Find Yourself », la même que les autres films FEG ; mention de l'artiste selon la licence.
+
+## Version sous-titrée (pour les projections sans son)
+
+`renders/FEG-lumiere-sous-titres.mp4` : la voix off écrite à l'écran, 28 groupes de `tools/captions.json`, calés mot à mot sur la voix.
+
+- La couche de sous-titres est rendue seule par HyperFrames, en transparence, puis incrustée sur `renders/FEG-lumiere.mp4` (`../sous-titres/sous-titrer.sh`, voir `../sous-titres/README.md`).
+- Le film n'est pas rendu une deuxième fois. Même durée, son repris tel quel. 32,4 Mo.
+- Cartouche vert foncé de la FEG, texte blanc en Hyundai Sans Text 48 px, centré à 50 px du bas, un groupe à la fois.
+- Nombres écrits en chiffres, comme à l'écran : 1959, 1 100, 80 %, 13 fédérations.
+- Vérifié image par image au milieu de chaque groupe : la zone du cartouche est mesurée sur l'image d'origine, et les plans chargés sont regardés un par un.
+- Sur le fond sombre, le texte blanc reste bien lisible ; aucune étiquette du film n'est recouverte.
+

@@ -216,3 +216,16 @@ Demandes de la FEG sur la v6 : la diaspora n'est pas qu'à Paris ; le comité s'
 - Le globe de la v6 (`tools/globe.mjs`, `assets/globe.js`, `assets/img/globe-base.svg`) est retiré : la carte du monde le remplace.
 - Aucune image noire. La planche du fichier rendu sur le plan « Hors du Gabon » est conforme aux images de contrôle.
 - Livret : `livret/FEG-comment-adherer-9x16-v4-texte.docx`, 3 pages.
+
+## Version sous-titrée (pour les projections sans son)
+
+`renders/FEG-comment-adherer-v7-sous-titres.mp4` : la voix off écrite à l'écran, 57 groupes, ceux du 9:16 de `tools/captions.json`, calés mot à mot sur la voix.
+
+- La couche de sous-titres est rendue seule par HyperFrames, en transparence, puis incrustée sur `renders/FEG-comment-adherer-v7.mp4` (`../sous-titres/sous-titrer.sh`, voir `../sous-titres/README.md`).
+- Le film n'est pas rendu une deuxième fois. Même durée, son repris tel quel. 14,4 Mo.
+- Cartouche vert foncé de la FEG, texte blanc en Hyundai Sans Text 48 px, centré à 50 px du bas, un groupe à la fois.
+- Graphies d'écran : CNAMGS, 31 mars, 8ème et 9ème étages, info@lafeg.ga.
+- Vérifié image par image au milieu de chaque groupe : la zone du cartouche est mesurée sur l'image d'origine, et les plans chargés sont regardés un par un.
+- L'axe « Chiffre d'affaires » (étape 5) et l'étiquette « Fédération · Logistique et manutention » (adhésion effective) restaient sous le cartouche : ces sept groupes passent 26 px plus bas, à 24 px du bord.
+- Le fichier pèse 14,4 Mo : il passe sur WhatsApp tel quel.
+

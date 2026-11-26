@@ -40,16 +40,37 @@
     "vous avez trois mois pour le compléter."
   ],
   "L08": [
-    "Une fois le dossier validé,",
-    "réglez la cotisation annuelle,",
-    "selon votre chiffre d'affaires,",
-    "et le droit d'accès de première adhésion."
+    {
+      "t": "Une fois le dossier validé,",
+      "bottom": 24
+    },
+    {
+      "t": "réglez la cotisation annuelle,",
+      "bottom": 24
+    },
+    {
+      "t": "selon votre chiffre d'affaires,",
+      "bottom": 24
+    },
+    {
+      "t": "et le droit d'accès de première adhésion.",
+      "bottom": 24
+    }
   ],
   "L09": [
     "Votre adhésion est alors effective :",
-    "vous prenez place dans votre fédération,",
-    "aux côtés des entreprises",
-    "qui font l'économie du pays."
+    {
+      "t": "vous prenez place dans votre fédération,",
+      "bottom": 24
+    },
+    {
+      "t": "aux côtés des entreprises",
+      "bottom": 24
+    },
+    {
+      "t": "qui font l'économie du pays.",
+      "bottom": 24
+    }
   ],
   "L10": [
     "Et chaque année, avant le 31 mars,",
@@ -83,5 +104,31 @@
     "pour garantir la souveraineté nationale :",
     "rejoignez la Fédération",
     "des Entreprises du Gabon."
+  ],
+  "_subst": [
+    [
+      "trente et un",
+      "31"
+    ],
+    [
+      "Knam-GS",
+      "CNAMGS"
+    ],
+    [
+      "CNAM-GS",
+      "CNAMGS"
+    ],
+    [
+      "huitième",
+      "8ème"
+    ],
+    [
+      "neuvième",
+      "9ème"
+    ],
+    [
+      "info arobase lafeg point G-A",
+      "info@lafeg.ga"
+    ]
   ]
 }

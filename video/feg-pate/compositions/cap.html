@@ -1,0 +1,78 @@
+<template>
+  <!-- Sous-titres de la voix off, un groupe à la fois. Généré par sous-titres/captions.mjs depuis tools/captions.json. -->
+  <style>
+    @font-face {
+      font-family: "Hyundai Sans Text";
+      font-weight: 500;
+      src: url("assets/fonts/HyundaiSansText-Medium.woff2") format("woff2");
+    }
+    #root {
+      position: absolute;
+      inset: 0;
+      font-family: "Hyundai Sans Text", sans-serif;
+    }
+    .cg {
+      position: absolute;
+      left: 0;
+      bottom: 50px;
+      width: 1920px;
+      text-align: center;
+      opacity: 0;
+    }
+    .cg span {
+      display: inline-block;
+      max-width: 1560px;
+      padding: 12px 30px 14px;
+      border-radius: 14px;
+      background: rgba(6, 61, 33, 0.88);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.16);
+      font-weight: 500;
+      font-size: 48px;
+      line-height: 1.24;
+      color: #ffffff;
+    }
+  </style>
+  <div id="root" data-composition-id="cap" data-width="1920" data-height="1080">
+    <div id="cg0" class="cg"><span>Chaque entreprise compte :</span></div>
+    <div id="cg1" class="cg"><span>un atelier, un commerce, un chantier</span></div>
+    <div id="cg2" class="cg"><span>qui fait vivre le pays.</span></div>
+    <div id="cg3" class="cg"><span>Mais seule, une entreprise pèse peu,</span></div>
+    <div id="cg4" class="cg"><span>et sa voix se perd.</span></div>
+    <div id="cg5" class="cg"><span>Depuis 1959, la Fédération des Entreprises du Gabon</span></div>
+    <div id="cg6" class="cg"><span>rassemble ceux qui font l'économie du pays :</span></div>
+    <div id="cg7" class="cg"><span>plus de 1 100 entreprises.</span></div>
+    <div id="cg8" class="cg"><span>Ensemble, elles représentent près de 80 % du PIB,</span></div>
+    <div id="cg9" class="cg"><span>et plus de 90 % de la main-d'œuvre formelle.</span></div>
+    <div id="cg10" class="cg"><span>Réunies en 13 fédérations métiers,</span></div>
+    <div id="cg11" class="cg"><span>elles parlent d'une seule voix.</span></div>
+    <div id="cg12" class="cg"><span>Leurs préoccupations remontent jusqu'au Bureau exécutif,</span></div>
+    <div id="cg13" class="cg"><span>puis à la table du dialogue public-privé.</span></div>
+    <div id="cg14" class="cg"><span>Ce dialogue a son grand rendez-vous :</span></div>
+    <div id="cg15" class="cg"><span>le Gabon Economic Forum.</span></div>
+    <div id="cg16" class="cg"><span>Lors de sa dernière édition, ses huit ateliers</span></div>
+    <div id="cg17" class="cg"><span>ont abouti à la Déclaration de Libreville.</span></div>
+    <div id="cg18" class="cg"><span>Dette intérieure, fiscalité, commande publique,</span></div>
+    <div id="cg19" class="cg"><span>financement des PME :</span></div>
+    <div id="cg20" class="cg"><span>ensemble, les entreprises pèsent</span></div>
+    <div id="cg21" class="cg"><span>sur les réformes du pays.</span></div>
+    <div id="cg22" class="cg"><span>Et au quotidien : une veille sur les réformes,</span></div>
+    <div id="cg23" class="cg"><span>des formations, un réseau d'affaires,</span></div>
+    <div id="cg24" class="cg"><span>la médiation et l'arbitrage.</span></div>
+    <div id="cg25" class="cg"><span>Des entreprises fortes, une prospérité partagée.</span></div>
+    <div id="cg26" class="cg"><span>Votre entreprise a sa place à nos côtés :</span></div>
+    <div id="cg27" class="cg"><span>rejoignez la Fédération des Entreprises du Gabon.</span></div>
+  </div>
+  <script>
+    (function () {
+      // un groupe à la fois : entrée 0,1 s, sortie 0,08 s, puis masqué net (pas de groupe resté à l'écran)
+      var G = [[2.64,4.232],[4.554,7.797],[7.817,9.213],[9.936,12.704],[12.891,14.086],[15.211,19.206],[19.226,21.662],[21.975,23.952],[24.772,28.142],[28.162,30.87],[31.802,33.905],[33.925,35.618],[36.449,39.382],[39.402,41.426],[42.343,44.461],[44.603,46.323],[46.647,48.6],[48.62,51.125],[52.045,55.162],[55.182,56.346],[56.366,58.148],[58.168,59.79],[60.708,63.633],[63.764,66.072],[66.318,68.188],[69.308,72.574],[72.762,75.494],[75.986,78.451]];
+      var tl = gsap.timeline({ paused: true });
+      G.forEach(function (g, i) {
+        tl.fromTo("#cg" + i, { opacity: 0 }, { opacity: 1, duration: 0.1, ease: "power2.out" }, g[0]);
+        tl.to("#cg" + i, { opacity: 0, duration: 0.08, ease: "power2.in" }, g[1] - 0.08);
+        tl.set("#cg" + i, { opacity: 0, visibility: "hidden" }, g[1]);
+      });
+      window.__timelines["cap"] = tl;
+    })();
+  </script>
+</template>
